@@ -7,7 +7,7 @@ import {
   legalOperator,
   type LegalSection,
 } from '@/components/marketing/legal'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 
 const description = `How ${site.name} collects, uses and protects personal data — for businesses using ${site.name} and for customers who book with them.`
 
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: '/privacy' },
   openGraph: {
+    images: [socialImage],
     type: 'article',
     url: '/privacy',
     title: `Privacy policy · ${site.name}`,

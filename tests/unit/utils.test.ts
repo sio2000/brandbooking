@@ -114,3 +114,17 @@ describe('small helpers', () => {
     expect(clamp(11, 0, 10)).toBe(10)
   })
 })
+
+describe('cn with the marketing type scale', () => {
+  const classes = (s: string) => s.split(' ').sort()
+  it('keeps type-scale utilities next to text colours', async () => {
+    const { cn } = await import('@/lib/utils')
+    expect(classes(cn('text-h3', 'text-foreground'))).toEqual(['text-foreground', 'text-h3'])
+    expect(classes(cn('text-display', 'text-muted-foreground'))).toEqual([
+      'text-display',
+      'text-muted-foreground',
+    ])
+    // Two font sizes still resolve to the last one.
+    expect(cn('text-h2', 'text-sm')).toBe('text-sm')
+  })
+})

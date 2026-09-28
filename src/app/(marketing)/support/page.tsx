@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowUpRight, CreditCard, Mail, Rocket, Share2 } from 'lucide-react'
 import { Container, Eyebrow } from '@/components/marketing/section'
 import { Button } from '@/components/ui/button'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 
 const description = `Help with getting started on ${site.name}, sharing your booking page and billing — and how to reach us.`
 
@@ -11,7 +11,13 @@ export const metadata: Metadata = {
   title: 'Support',
   description,
   alternates: { canonical: '/support' },
-  openGraph: { type: 'website', url: '/support', title: `Support · ${site.name}`, description },
+  openGraph: {
+    images: [socialImage],
+    type: 'website',
+    url: '/support',
+    title: `Support · ${site.name}`,
+    description,
+  },
 }
 
 const topics = [

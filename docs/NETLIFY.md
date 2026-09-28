@@ -95,3 +95,24 @@ for the new URL.
 - Uploaded images live in the site-wide Netlify Blobs store `hournook-uploads`.
 - Server Actions accept up to 6 MB, matching Netlify Functions' request limit;
   image uploads are capped at 5 MB.
+
+## Production domain (www.hournook.com)
+
+The canonical public domain is **https://www.hournook.com** — canonical tags,
+the sitemap, Open Graph and structured data always point there
+(`src/lib/site.ts`, overridable with `NEXT_PUBLIC_SITE_URL`). Every other host,
+such as the `*.netlify.app` staging URL, is served with
+`X-Robots-Tag: noindex` and a `robots.txt` that disallows crawling, so staging
+never competes with production in search results.
+
+When the domain is purchased:
+
+1. Netlify → _Domain management_ → add `www.hournook.com` as the **primary
+   domain** and `hournook.com` as an alias (Netlify provisions HTTPS).
+   `netlify.toml` already redirects `https://hournook.com/*` to
+   `https://www.hournook.com/:splat` with a permanent 301.
+2. Set `APP_URL=https://www.hournook.com` and redeploy (links in emails and the
+   Stripe webhook then use the real domain; the build re-registers the webhook).
+3. Verify the domain in Resend and set `EMAIL_FROM`, e.g. `Hournook <bookings@hournook.com>`.
+4. Add the property `https://www.hournook.com/` in Google Search Console and
+   submit `https://www.hournook.com/sitemap.xml`.

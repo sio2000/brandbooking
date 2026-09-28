@@ -7,7 +7,7 @@ import {
   legalOperator,
   type LegalSection,
 } from '@/components/marketing/legal'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 
 const description = `The terms that apply when you use ${site.name} to take appointment bookings online.`
 
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: '/terms' },
   openGraph: {
+    images: [socialImage],
     type: 'article',
     url: '/terms',
     title: `Terms of service · ${site.name}`,

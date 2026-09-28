@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import * as React from 'react'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -38,7 +38,7 @@ export function Reveal({
   const hydrated = useHydrated()
   if (!hydrated) return <div className={className}>{children}</div>
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function Reveal({
       transition={{ duration: 0.6, ease, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -69,7 +69,7 @@ export function RevealGroup({
     const Tag = as
     return <Tag className={className}>{children}</Tag>
   }
-  const Comp = motion[as]
+  const Comp = m[as]
   return (
     <RevealContext.Provider value>
       <Comp
@@ -99,7 +99,7 @@ export function RevealItem({
     const Tag = as
     return <Tag className={className}>{children}</Tag>
   }
-  const Comp = motion[as]
+  const Comp = m[as]
   return (
     <Comp
       className={className}

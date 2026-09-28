@@ -1,6 +1,7 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence } from 'motion/react'
+import * as m from 'motion/react-m'
 import {
   ArrowLeft,
   CalendarDays,
@@ -9,14 +10,13 @@ import {
   Clock3,
   Mail,
   RotateCcw,
-  Scissors,
-  Sparkles,
-  UserRound,
+  type LucideIcon,
 } from 'lucide-react'
 import * as React from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { INDUSTRIES, euro, type Industry } from './industries'
 
 type Service = {
   id: string
@@ -24,43 +24,20 @@ type Service = {
   detail: string
   mins: number
   price: string
-  Icon: typeof Scissors
+  Icon: LucideIcon
 }
 
-const services: Service[] = [
-  {
-    id: 'cut',
-    name: 'Cut & finish',
-    detail: 'Wash, cut and blow-dry',
-    mins: 45,
-    price: '€38',
-    Icon: Scissors,
-  },
-  {
-    id: 'colour',
-    name: 'Colour refresh',
-    detail: 'Roots or all-over colour',
-    mins: 90,
-    price: '€72',
-    Icon: Sparkles,
-  },
-  {
-    id: 'beard',
-    name: 'Beard trim',
-    detail: 'Shape-up and hot towel',
-    mins: 20,
-    price: '€18',
-    Icon: Scissors,
-  },
-  {
-    id: 'consult',
-    name: 'Consultation',
-    detail: 'Talk through what you’d like',
-    mins: 15,
-    price: 'Free',
-    Icon: UserRound,
-  },
-]
+/** The demo's services come from the sample businesses in industries.ts. */
+function servicesFor(industry: Industry): Service[] {
+  return industry.services.map((s, i) => ({
+    id: `${industry.id}-${i}`,
+    name: s.name,
+    detail: `with ${industry.staff}`,
+    mins: s.minutes,
+    price: euro(s.price),
+    Icon: industry.Icon,
+  }))
+}
 
 type Step = 'service' | 'time' | 'review' | 'done'
 const stepList: Array<{ id: Exclude<Step, 'done'>; label: string; short: string }> = [
@@ -95,16 +72,16 @@ function nextDays(from: number) {
 function slotsFor(day: Date, dayIndex: number, service: Service): number[] {
   if (day.getDay() === 0) return []
   if (dayIndex === 2) return []
-  const serviceIndex = services.indexOf(service)
+  const serviceIndex = Number(service.id.split('-').pop())
   const out: number[] = []
-  for (let m = OPEN, i = 0; m + service.mins <= CLOSE; m += 30, i++) {
+  for (let start = OPEN, i = 0; start + service.mins <= CLOSE; start += 30, i++) {
     // Cheap deterministic pseudo-random so each day looks different.
     const r =
       Math.abs(
         Math.sin((i + 1) * 12.9898 + (dayIndex + 1) * 78.233 + serviceIndex * 37.719) * 43758.5453,
       ) % 1
     if (r < 0.2 + (dayIndex % 3) * 0.15) continue
-    out.push(m)
+    out.push(start)
   }
   return out
 }
@@ -114,6 +91,9 @@ function slotsFor(day: Date, dayIndex: number, service: Service): number[] {
  * No network requests; nothing is booked. Every control is a native button.
  */
 export function BookingDemo() {
+  const [industryIndex, setIndustryIndex] = React.useState(0)
+  const industry = INDUSTRIES[industryIndex]!
+  const services = React.useMemo(() => servicesFor(industry), [industry])
   const [step, setStep] = React.useState<Step>('service')
   const [service, setService] = React.useState<Service | null>(null)
   const [base, setBase] = React.useState<number | null>(null)
@@ -151,15 +131,25 @@ export function BookingDemo() {
     go('time', `${s.name} selected. Step 2 of 3: choose a date and time.`)
   }
 
-  function chooseTime(m: number) {
-    setTime(m)
-    go('review', `${hhmm(m)} selected. Step 3 of 3: review and confirm.`)
+  function chooseTime(start: number) {
+    setTime(start)
+    go('review', `${hhmm(start)} selected. Step 3 of 3: review and confirm.`)
   }
 
   function reset() {
     setService(null)
     setTime(null)
     go('service', 'Demo restarted. Step 1 of 3: choose a service.')
+  }
+
+  function chooseIndustry(i: number) {
+    setIndustryIndex(i)
+    setService(null)
+    setTime(null)
+    setStep('service')
+    setAnnounce(
+      `Showing ${INDUSTRIES[i]!.business}, an example ${INDUSTRIES[i]!.label.toLowerCase()}. Step 1 of 3: choose a service.`,
+    )
   }
 
   const stepIndex = step === 'done' ? 3 : stepList.findIndex((s) => s.id === step)
@@ -177,18 +167,48 @@ export function BookingDemo() {
         </p>
       </div>
 
+      {/* Industry picker: same booking flow, different kinds of business. */}
+      <div className="border-b border-border px-4 py-3 sm:px-6">
+        <p id="demo-industry" className="text-[12px] font-medium text-muted-foreground">
+          Try it as
+        </p>
+        <div
+          role="group"
+          aria-labelledby="demo-industry"
+          className="-mx-1 mt-2 flex [scrollbar-width:none] gap-1.5 overflow-x-auto [mask-image:linear-gradient(to_right,black_85%,transparent)] px-1 pb-0.5 md:flex-wrap md:[mask-image:none]"
+        >
+          {INDUSTRIES.map((it, i) => (
+            <button
+              key={it.id}
+              type="button"
+              aria-pressed={i === industryIndex}
+              onClick={() => chooseIndustry(i)}
+              className={cn(
+                'inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border px-3 text-[13px] font-medium transition-colors',
+                i === industryIndex
+                  ? 'border-foreground bg-foreground text-background'
+                  : 'border-border text-muted-foreground hover:border-border-strong hover:text-foreground',
+              )}
+            >
+              <it.Icon className="size-3.5" aria-hidden />
+              {it.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Business header */}
       <div className="flex items-center gap-3 px-4 pt-5 sm:px-6">
         <span
           aria-hidden
-          className="grid size-11 shrink-0 place-items-center rounded-full bg-accent-soft font-display text-sm font-bold text-accent-soft-foreground"
+          className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary font-display text-sm font-bold text-primary-foreground"
         >
-          SL
+          {industry.monogram}
         </span>
         <div className="min-w-0">
-          <p className="truncate font-semibold">Studio Linden</p>
+          <p className="truncate font-semibold">{industry.business}</p>
           <p className="truncate text-[13px] text-muted-foreground">
-            Hair studio · example business
+            {industry.category} · example business
           </p>
         </div>
       </div>
@@ -246,7 +266,7 @@ export function BookingDemo() {
 
       <div className="relative min-h-[440px] px-4 pt-5 pb-5 sm:min-h-[420px] sm:px-6 sm:pb-6">
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div
+          <m.div
             key={step}
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
@@ -362,15 +382,15 @@ export function BookingDemo() {
                   </span>
                 </h4>
                 <ul className="mt-2.5 grid grid-cols-3 gap-1.5 min-[400px]:grid-cols-4 sm:grid-cols-5">
-                  {times.map((m) => (
-                    <li key={m}>
+                  {times.map((start) => (
+                    <li key={start}>
                       <button
                         type="button"
-                        onClick={() => chooseTime(m)}
-                        aria-label={`${hhmm(m)} to ${hhmm(m + service.mins)}`}
+                        onClick={() => chooseTime(start)}
+                        aria-label={`${hhmm(start)} to ${hhmm(start + service.mins)}`}
                         className="tabular h-11 w-full rounded-lg border border-border bg-surface text-sm font-medium transition-[border-color,background-color,color] hover:border-primary hover:bg-primary-soft hover:text-primary-soft-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                       >
-                        {hhmm(m)}
+                        {hhmm(start)}
                       </button>
                     </li>
                   ))}
@@ -429,7 +449,7 @@ export function BookingDemo() {
 
             {step === 'done' && service && day && time !== null && (
               <div className="flex flex-col items-center pt-2 text-center">
-                <motion.span
+                <m.span
                   aria-hidden
                   className="grid size-16 place-items-center rounded-full bg-success-soft text-success"
                   initial={{ scale: 0.6, opacity: 0 }}
@@ -437,7 +457,7 @@ export function BookingDemo() {
                   transition={{ type: 'spring', stiffness: 420, damping: 18, delay: 0.1 }}
                 >
                   <Check className="size-8" strokeWidth={2.75} />
-                </motion.span>
+                </m.span>
                 <h3 ref={headingRef} tabIndex={-1} className="mt-4 text-2xl font-bold outline-none">
                   Booked!
                 </h3>
@@ -469,7 +489,7 @@ export function BookingDemo() {
                 </Button>
               </div>
             )}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

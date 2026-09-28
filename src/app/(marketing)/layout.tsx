@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { Logo } from '@/components/brand/logo'
-import { MobileNav } from '@/components/marketing/mobile-nav'
-import { marketingNav } from '@/components/marketing/nav'
+import { MarketingMotion } from '@/components/marketing/marketing-motion'
+import { SiteHeader } from '@/components/marketing/site-header'
 import { Container } from '@/components/marketing/section'
 import { ThemeSwitcher } from '@/components/providers/theme'
-import { Button } from '@/components/ui/button'
 import { site } from '@/lib/site'
 
 const footerColumns = [
@@ -12,6 +11,7 @@ const footerColumns = [
     title: 'Product',
     links: [
       { href: '/#features', label: 'Features' },
+      { href: '/#how', label: 'How it works' },
       { href: '/#demo', label: 'Booking preview' },
       { href: '/pricing', label: 'Pricing' },
       { href: '/#faq', label: 'FAQ' },
@@ -46,39 +46,10 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-background/70">
-        <Container className="flex h-16 items-center gap-3">
-          <Link href="/" className="-ml-1 rounded-md p-1" aria-label={`${site.name} home`}>
-            <Logo />
-          </Link>
-          <nav aria-label="Main" className="ml-6 hidden md:block">
-            <ul className="flex items-center gap-1">
-              {marketingNav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="inline-flex h-9 items-center rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-            <Button asChild variant="ghost" className="hidden sm:inline-flex">
-              <Link href="/login">Sign in</Link>
-            </Button>
-            <Button asChild className="h-11 px-4 md:h-10">
-              <Link href="/signup">Start free</Link>
-            </Button>
-            <MobileNav />
-          </div>
-        </Container>
-      </header>
+      <SiteHeader />
 
-      <main id="main" tabIndex={-1} className="flex-1 outline-none">
-        {children}
+      <main id="main" data-marketing tabIndex={-1} className="flex-1 outline-none">
+        <MarketingMotion>{children}</MarketingMotion>
       </main>
 
       <footer className="border-t border-border bg-surface-2/60">
@@ -89,7 +60,8 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 <Logo />
               </Link>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {site.tagline} One simple plan for {site.price.display}/{site.price.period}.
+                Online booking, calendar, customer records and analytics for businesses that run on
+                appointments. One plan, {site.price.display}/{site.price.period}.
               </p>
               <div className="mt-6 flex items-center gap-3">
                 <span className="text-xs font-medium text-muted-foreground">Theme</span>
@@ -120,7 +92,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             <p>
               © {year} {site.name}. All rights reserved.
             </p>
-            <p>Online booking for businesses that run on appointments.</p>
+            <p>{site.tagline}</p>
           </div>
         </Container>
       </footer>

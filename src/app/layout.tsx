@@ -4,7 +4,7 @@ import Script from 'next/script'
 import { headers } from 'next/headers'
 import { AppProviders } from '@/components/providers/app-providers'
 import { themeScript } from '@/components/providers/theme'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 import './globals.css'
 
 const inter = localFont({
@@ -34,12 +34,13 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   openGraph: {
+    images: [socialImage],
     type: 'website',
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary_large_image', images: [socialImage.url] },
 }
 
 export const viewport: Viewport = {

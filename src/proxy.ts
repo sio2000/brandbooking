@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
+const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
+
 /**
  * Runs before every page render:
  *  - assigns a request id (propagated to logs and audit records),
@@ -41,6 +43,10 @@ export function proxy(request: NextRequest) {
   response.headers.set('Content-Security-Policy', csp)
   response.headers.set('x-request-id', requestId)
   if (!isEmbed) response.headers.set('X-Frame-Options', 'DENY')
+  // Only the production domain may be indexed; staging/preview hosts never are.
+  if (request.headers.get('host') !== SITE_HOST) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  }
   return response
 }
 

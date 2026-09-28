@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ContactEmail, LegalDocument, type LegalSection } from '@/components/marketing/legal'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 
 const description = `${site.name} uses only strictly necessary cookies — no analytics or advertising cookies. See exactly what is stored and why.`
 
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: '/cookies' },
   openGraph: {
+    images: [socialImage],
     type: 'article',
     url: '/cookies',
     title: `Cookie policy · ${site.name}`,

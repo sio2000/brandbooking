@@ -11,7 +11,7 @@ import { Faq, type FaqItem } from '@/components/marketing/faq'
 import { PricingCard } from '@/components/marketing/pricing-card'
 import { Reveal } from '@/components/marketing/reveal'
 import { Container, Eyebrow, SectionHeader } from '@/components/marketing/section'
-import { site } from '@/lib/site'
+import { site, socialImage } from '@/lib/site'
 
 const title = 'Pricing'
 const description = `Everything you need to accept bookings online for ${site.price.display}/month: unlimited bookings, your own booking page, calendar, reminders, team members and more. ${site.trialDays}-day free trial, no card required.`
@@ -20,7 +20,13 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: '/pricing' },
-  openGraph: { type: 'website', url: '/pricing', title: `${title} · ${site.name}`, description },
+  openGraph: {
+    images: [socialImage],
+    type: 'website',
+    url: '/pricing',
+    title: `${title} · ${site.name}`,
+    description,
+  },
 }
 
 const promises = [

@@ -12,3 +12,11 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Production domain: the apex redirects permanently to www (the canonical host).
+# Harmless until the domain is attached to the site.
+[[redirects]]
+  from = "https://hournook.com/*"
+  to = "https://www.hournook.com/:splat"
+  status = 301
+  force = true

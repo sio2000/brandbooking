@@ -1,5 +1,14 @@
 import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { extendTailwindMerge } from 'tailwind-merge'
+
+/**
+ * tailwind-merge that knows the custom type-scale utilities from globals.css
+ * (`text-display`, `text-h2`, `text-h3`, `text-lead`) are font sizes, so they
+ * aren't dropped when combined with a text colour such as `text-foreground`.
+ */
+const twMerge = extendTailwindMerge({
+  extend: { classGroups: { 'font-size': [{ text: ['display', 'h2', 'h3', 'lead'] }] } },
+})
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
