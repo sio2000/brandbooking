@@ -9,6 +9,9 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // A separate build dir lets the E2E server (port 3100) run next to `next dev`,
+  // which locks `.next`. Unset in normal use.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   poweredByHeader: false,
   reactStrictMode: true,
   serverExternalPackages: ['@node-rs/argon2', 'sharp', 'postgres'],
