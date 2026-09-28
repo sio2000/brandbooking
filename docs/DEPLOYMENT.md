@@ -35,7 +35,7 @@ Copy `.env.example` and fill it in on your host. Required in production
 - `STORAGE_DRIVER=s3` + `S3_ENDPOINT`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` (+ `S3_REGION`, optional `S3_PUBLIC_URL`)
 - `TRUST_PROXY=true` when behind a proxy/load balancer that sets `X-Forwarded-For` (Vercel, Render, Fly, nginx)
 - Billing: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID` (without them the app runs, but the Billing page shows "not set up")
-- Legal/support: `SUPPORT_EMAIL`, `LEGAL_ENTITY_NAME`, `LEGAL_CONTACT_EMAIL` (shown on legal pages and emails)
+- Support: `SUPPORT_EMAIL` (defaults to the provider email in `src/lib/legal.ts`, which also holds the legal entity details shown on the legal pages)
 
 Generate secrets with:
 

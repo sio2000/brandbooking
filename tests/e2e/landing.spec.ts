@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 import { test, expect } from './support/test'
 import { settle } from './support/flows'
 
-/** Interactive demos only respond once React has hydrated. */
+/** Interactive parts only respond once React has hydrated. */
 async function ready(page: Page, url: string) {
   await page.goto(url)
   await page.waitForLoadState('networkidle')
@@ -10,8 +10,8 @@ async function ready(page: Page, url: string) {
 }
 
 /**
- * Public landing page: SEO wiring for the production domain, the multi-industry
- * product demos, and progressive enhancement (readable without JavaScript).
+ * Public landing page: SEO wiring for the production domain, the rotating hero
+ * example, legal pages and progressive enhancement (readable without JS).
  */
 const SITE = 'https://www.hournook.com'
 
@@ -37,6 +37,7 @@ test.describe('landing page', () => {
       /appointments/,
     )
     await expect(page.locator('h1')).toHaveCount(1)
+    await expect(page.locator('h1')).toContainText('Online booking for your')
 
     const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent())!)
     const types = (ld['@graph'] as Array<{ '@type': string; url?: string }>).map((n) => n['@type'])
@@ -48,53 +49,37 @@ test.describe('landing page', () => {
     const robots = await (await request.get('/robots.txt')).text()
     expect(robots).toMatch(/Disallow: \//)
     const sitemap = await (await request.get('/sitemap.xml')).text()
-    expect(sitemap).toContain(`<loc>${SITE}/</loc>`)
+    for (const path of ['/', '/terms', '/privacy', '/dpa', '/legal']) {
+      expect(sitemap).toContain(`<loc>${SITE}${path}</loc>`)
+    }
     expect(sitemap).not.toContain('localhost')
     const og = await request.get('/opengraph-image')
     expect(og.status()).toBe(200)
     expect(og.headers()['content-type']).toContain('image/png')
   })
 
-  test('the hero demo switches between business types', async ({ page }) => {
+  test('the hero example rotates on its own and can be paused', async ({ page }) => {
     await ready(page, '/')
-    const tabs = page.getByRole('tablist', { name: 'Example business type' })
-    await tabs.getByRole('tab', { name: 'Medical' }).click()
-    await expect(tabs.getByRole('tab', { name: 'Medical' })).toHaveAttribute(
-      'aria-selected',
-      'true',
-    )
-    await expect(page.getByText('Harbor Family Clinic').first()).toBeVisible()
-    // Arrow keys move between tabs.
-    await page.keyboard.press('ArrowRight')
-    await expect(tabs.getByRole('tab', { name: 'Beauty' })).toHaveAttribute('aria-selected', 'true')
-    await expect(tabs.getByRole('tab', { name: 'Beauty' })).toBeFocused()
-  })
-
-  test('the booking preview works for another industry and books nothing', async ({ page }) => {
-    await ready(page, '/#demo')
-    const demo = page.locator('#demo')
-    await demo.getByRole('button', { name: 'Medical practice' }).click()
-    await expect(demo.getByRole('button', { name: 'Medical practice' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    )
-    await demo
-      .getByRole('button', { name: /Consultation/ })
-      .first()
-      .click()
-    await expect(demo.getByRole('heading', { name: 'Pick a day' })).toBeVisible()
-    await expect(demo.getByText('Demo only — no booking is made')).toBeVisible()
+    const hero = page.locator('section[aria-labelledby="hero-title"]')
+    const word = hero.locator('h1 [aria-hidden]').first()
+    await expect(word).toHaveText('nail studio.')
+    await expect(word).not.toHaveText('nail studio.', { timeout: 10_000 })
+    const pause = hero.getByRole('button', { name: 'Pause animation' })
+    await pause.click()
+    await expect(hero.getByRole('button', { name: 'Play animation' })).toBeVisible()
+    await page.waitForTimeout(1_000) // let a word transition that was under way finish
+    const frozen = await word.textContent()
+    await page.waitForTimeout(7_000)
+    await expect(word).toHaveText(frozen!)
   })
 
   test('FAQ answers expand and collapse from the keyboard', async ({ page }) => {
     await ready(page, '/#faq')
-    const q = page.getByRole('button', { name: 'What kinds of businesses is Hournook for?' })
+    const q = page.getByRole('button', { name: 'Do I need a website?' })
     await q.focus()
     await page.keyboard.press('Enter')
     await expect(q).toHaveAttribute('aria-expanded', 'true')
-    await expect(
-      page.getByText(/physiotherapists and therapists, medical and dental/),
-    ).toBeVisible()
+    await expect(page.getByText(/Your booking page is your website for bookings/)).toBeVisible()
     await page.keyboard.press('Enter')
     await expect(q).toHaveAttribute('aria-expanded', 'false')
   })
@@ -103,13 +88,37 @@ test.describe('landing page', () => {
     page,
   }) => {
     await page.goto('/')
-    await page.getByRole('main').getByRole('link', { name: 'Start free' }).first().click()
+    await page
+      .getByRole('main')
+      .getByRole('link', { name: 'Create your booking page' })
+      .first()
+      .click()
     await expect(page).toHaveURL(/\/signup$/)
     await page.goto('/')
     await page.locator('#pricing').scrollIntoViewIfNeeded()
     await expect(
       page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Pricing' }),
     ).toHaveAttribute('aria-current', 'true')
+  })
+
+  test('legal pages name the provider and link to each other', async ({ page }) => {
+    await page.goto('/legal')
+    await expect(page.getByRole('heading', { level: 1, name: 'Legal notice' })).toBeVisible()
+    await expect(page.getByText('169481343', { exact: true })).toBeVisible()
+    await expect(page.getByText(/186989906000/)).toBeVisible()
+    for (const [path, h1] of [
+      ['/terms', 'Terms of service'],
+      ['/privacy', 'Privacy policy'],
+      ['/dpa', 'Data processing agreement'],
+      ['/cookies', 'Cookie policy'],
+    ] as const) {
+      await page.goto(path)
+      await expect(page.getByRole('heading', { level: 1, name: h1 })).toBeVisible()
+      await expect(
+        page.getByText(/Theocharis Panagiotis Siozos|devtaskhub@devtaskhub\.com/).first(),
+      ).toBeVisible()
+      await expect(page.locator('main')).not.toContainText('[')
+    }
   })
 })
 
@@ -118,20 +127,10 @@ test.describe('landing page without JavaScript', () => {
 
   test('every section is readable (nothing waits on animation)', async ({ page }) => {
     await page.goto('/')
-    for (const id of [
-      'problem',
-      'how',
-      'demo',
-      'system',
-      'calendar',
-      'customers',
-      'analytics',
-      'features',
-      'pricing',
-      'faq',
-    ]) {
+    for (const id of ['how', 'features', 'trust', 'pricing', 'faq']) {
       await expect(page.locator(`#${id}`)).toBeVisible()
     }
+    await expect(page.getByText('You’re booked!')).toBeVisible()
     // Text hidden by its own or any ancestor's opacity counts as invisible.
     const invisible = await page.evaluate(() => {
       const hidden = (el: Element | null): boolean =>

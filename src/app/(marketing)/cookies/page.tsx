@@ -104,8 +104,10 @@ export default function CookiesPage() {
             </table>
           </div>
           <p>
-            We consider these cookies strictly necessary to provide the service you asked for, which
-            is why we do not show a cookie banner.
+            These cookies are strictly necessary to provide the service you asked for, so under the
+            ePrivacy Directive (art. 5(3)) and Greek law 3471/2006 (art. 4(5)) they do not require
+            consent. That is why we do not show a cookie banner. If we ever add optional cookies, we
+            will ask for your consent first.
           </p>
         </>
       ),
@@ -175,6 +177,7 @@ export default function CookiesPage() {
 
   return (
     <LegalDocument
+      path="/cookies"
       title="Cookie policy"
       intro={
         <p>

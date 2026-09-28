@@ -12,7 +12,16 @@ export const revalidate = 3600
  * always on the canonical production domain (see src/lib/site.ts).
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const statics = ['/', '/pricing', '/support', '/privacy', '/terms', '/cookies'].map((p) => ({
+  const statics = [
+    '/',
+    '/pricing',
+    '/support',
+    '/privacy',
+    '/terms',
+    '/dpa',
+    '/cookies',
+    '/legal',
+  ].map((p) => ({
     url: absoluteUrl(p),
     changeFrequency: 'monthly' as const,
     priority: p === '/' ? 1 : 0.5,

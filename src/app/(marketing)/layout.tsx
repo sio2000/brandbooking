@@ -4,15 +4,15 @@ import { MarketingMotion } from '@/components/marketing/marketing-motion'
 import { SiteHeader } from '@/components/marketing/site-header'
 import { Container } from '@/components/marketing/section'
 import { ThemeSwitcher } from '@/components/providers/theme'
+import { company } from '@/lib/legal'
 import { site } from '@/lib/site'
 
 const footerColumns = [
   {
     title: 'Product',
     links: [
-      { href: '/#features', label: 'Features' },
       { href: '/#how', label: 'How it works' },
-      { href: '/#demo', label: 'Booking preview' },
+      { href: '/#features', label: 'Features' },
       { href: '/pricing', label: 'Pricing' },
       { href: '/#faq', label: 'FAQ' },
     ],
@@ -28,9 +28,11 @@ const footerColumns = [
   {
     title: 'Legal',
     links: [
-      { href: '/privacy', label: 'Privacy policy' },
       { href: '/terms', label: 'Terms of service' },
+      { href: '/privacy', label: 'Privacy policy' },
+      { href: '/dpa', label: 'Data processing' },
       { href: '/cookies', label: 'Cookie policy' },
+      { href: '/legal', label: 'Legal notice' },
     ],
   },
 ]
@@ -48,7 +50,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
 
       <SiteHeader />
 
-      <main id="main" data-marketing tabIndex={-1} className="flex-1 outline-none">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <MarketingMotion>{children}</MarketingMotion>
       </main>
 
@@ -90,9 +92,12 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </div>
           <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-[13px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {year} {site.name}. All rights reserved.
+              © {year} {site.name}, a product of {company.tradingName}. All rights reserved.
             </p>
-            <p>{site.tagline}</p>
+            <p>
+              {company.legalName} · VAT {company.vatNumber} · {company.address.city},{' '}
+              {company.address.country}
+            </p>
           </div>
         </Container>
       </footer>

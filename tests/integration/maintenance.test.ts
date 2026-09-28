@@ -151,7 +151,47 @@ describe('runMaintenance', () => {
       limits: 0,
       events: 0,
       scrubbed: 0,
+      audits: 0,
+      auditIps: 0,
+      accountEmails: 0,
     })
+  })
+
+  it('deletes old account emails but keeps appointment email records', async () => {
+    await book()
+    await db()
+      .execute(sql`INSERT INTO notifications (template, recipient, status, created_at) VALUES
+      ('email_verification', 'old@example.com', 'sent', now() - interval '181 days'),
+      ('email_verification', 'new@example.com', 'sent', now() - interval '10 days'),
+      ('password_reset', 'queued@example.com', 'pending', now() - interval '181 days')`)
+    await db().execute(
+      sql`UPDATE notifications SET created_at = now() - interval '400 days', status = 'sent' WHERE appointment_id IS NOT NULL`,
+    )
+    expect(await runMaintenance()).toMatchObject({ accountEmails: 1 })
+    const left = await db().execute<{ recipient: string }>(
+      sql`SELECT recipient FROM notifications WHERE appointment_id IS NULL ORDER BY recipient`,
+    )
+    expect(left.map((r) => r.recipient)).toEqual(['new@example.com', 'queued@example.com'])
+    const kept = await db().execute<{ n: number }>(
+      sql`SELECT count(*)::int AS n FROM notifications WHERE appointment_id IS NOT NULL`,
+    )
+    expect(kept[0]!.n).toBeGreaterThan(0)
+  })
+
+  it('drops audit IPs after 180 days and audit entries after two years', async () => {
+    await db().execute(sql`DELETE FROM audit_logs`)
+    await db().execute(sql`INSERT INTO audit_logs (actor, action, ip, created_at) VALUES
+      ('user', 'ancient', '203.0.113.1', now() - interval '731 days'),
+      ('user', 'old', '203.0.113.2', now() - interval '200 days'),
+      ('user', 'recent', '203.0.113.3', now() - interval '10 days')`)
+    expect(await runMaintenance()).toMatchObject({ audits: 1, auditIps: 1 })
+    const rows = await db().execute<{ action: string; ip: string | null }>(
+      sql`SELECT action, ip FROM audit_logs ORDER BY action`,
+    )
+    expect(rows.map((r) => [r.action, r.ip])).toEqual([
+      ['old', null],
+      ['recent', '203.0.113.3'],
+    ])
   })
 
   it('leaves appointments alone (outcomes are recorded by the business)', async () => {

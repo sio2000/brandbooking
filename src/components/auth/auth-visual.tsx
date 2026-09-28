@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { CalendarCheck2, Clock3, Sparkles } from 'lucide-react'
+import { BellRing, CalendarCheck2, Clock3 } from 'lucide-react'
 
 const cards = [
   { t: 'Haircut & finish', who: 'Maya R.', time: 'Tue 10:30', tone: 'var(--chart-1)' },
@@ -13,8 +13,6 @@ const cards = [
 export function AuthVisual() {
   return (
     <div className="bg-grid absolute inset-0 flex items-center justify-center p-12">
-      <div className="absolute -top-24 -right-24 size-96 rounded-full bg-primary/15 blur-3xl" />
-      <div className="absolute -bottom-32 -left-20 size-96 rounded-full bg-accent/15 blur-3xl" />
       <div className="relative w-full max-w-md">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -58,7 +56,7 @@ export function AuthVisual() {
           transition={{ delay: 0.7 }}
           className="absolute -bottom-10 -left-8 flex items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm font-medium shadow-md"
         >
-          <Sparkles className="size-4 text-accent" /> Booked while you slept
+          <BellRing className="size-4 text-primary" /> Booked while you slept
         </motion.div>
       </div>
       <p className="absolute right-0 bottom-16 left-0 text-center text-sm text-muted-foreground">

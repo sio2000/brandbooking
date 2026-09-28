@@ -105,9 +105,13 @@ export function SignUpForm({ next }: { next?: string }) {
         <label htmlFor="acceptTerms" className="text-sm leading-snug text-muted-foreground">
           I agree to the{' '}
           <Link href="/terms" className="font-medium text-foreground underline underline-offset-2">
-            Terms
+            Terms of Service
           </Link>{' '}
-          and have read the{' '}
+          (including the{' '}
+          <Link href="/dpa" className="font-medium text-foreground underline underline-offset-2">
+            Data Processing Agreement
+          </Link>
+          ) and have read the{' '}
           <Link
             href="/privacy"
             className="font-medium text-foreground underline underline-offset-2"

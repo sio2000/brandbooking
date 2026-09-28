@@ -6,7 +6,7 @@ On Netlify the app configures itself as far as possible:
 
 | Concern                         | On Netlify                                                                                                                       |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Site URL                        | Taken from Netlify at build time (`URL` / `DEPLOY_PRIME_URL`); set `APP_URL` only for a custom domain                            |
+| Site URL                        | Production: `https://www.hournook.com` once the domain is attached; otherwise Netlify's `URL` / `DEPLOY_PRIME_URL`               |
 | File uploads                    | **Netlify Blobs**, automatically (no bucket needed)                                                                              |
 | Scheduler (emails, reminders)   | **Netlify Scheduled Function** `netlify/functions/cron-tick.mts`, every minute                                                   |
 | Database migrations             | Run on every build (`npm run build:netlify`)                                                                                     |
@@ -28,14 +28,14 @@ Use any PostgreSQL 16+ reachable from the internet. Two easy options:
 Netlify → _Site configuration_ → _Environment variables_ (scopes: Builds **and**
 Functions). Minimum set:
 
-| Variable                | Value                                                                                                       |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `DATABASE_URL`          | Postgres connection string (not needed with Netlify DB)                                                     |
-| `APP_SECRET`            | 32+ random characters                                                                                       |
-| `CRON_SECRET`           | 24+ random characters                                                                                       |
-| `STRIPE_SECRET_KEY`     | `sk_test_…` (Stripe test mode)                                                                              |
-| `RESEND_API_KEY`        | from resend.com — **or** `ALLOW_LOG_EMAIL_IN_PRODUCTION=1` for a trial (emails appear in the function logs) |
-| `PLATFORM_ADMIN_EMAILS` | your email address — becomes platform admin once verified                                                   |
+| Variable                | Value                                                                                                 |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`          | Postgres connection string (not needed with Netlify DB)                                               |
+| `APP_SECRET`            | 32+ random characters                                                                                 |
+| `CRON_SECRET`           | 24+ random characters                                                                                 |
+| `STRIPE_SECRET_KEY`     | `sk_test_…` (Stripe test mode)                                                                        |
+| `RESEND_API_KEY`        | from resend.com (sends as `no-reply@hournook.com`) — or `ALLOW_LOG_EMAIL_IN_PRODUCTION=1` for a trial |
+| `PLATFORM_ADMIN_EMAILS` | your email address — becomes platform admin once verified                                             |
 
 Stripe stays in **test mode**: live keys (`sk_live_…`) are refused unless
 `STRIPE_LIVE_MODE=enabled` is also set, which is reserved for go-live day.
@@ -47,11 +47,12 @@ Values are trimmed and stray quotes removed automatically.
 Generate secrets with
 `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"`.
 
-Optional: `APP_URL` (custom domain), `EMAIL_FROM` (after verifying a sending
-domain in Resend; before that the app uses `onboarding@resend.dev`, which can
-only deliver to your own Resend account address), `TRIAL_DAYS`,
-`PAST_DUE_GRACE_DAYS`, `SUPPORT_EMAIL`, `LEGAL_ENTITY_NAME`, `LEGAL_CONTACT_EMAIL`,
-`ERROR_WEBHOOK_URL`, `STRIPE_AUTOMATIC_TAX`. Pinning `STRIPE_PRICE_ID`,
+Optional: `APP_URL` (only to override the site URL), `EMAIL_FROM` (defaults to
+`Hournook <no-reply@hournook.com>` with Resend, which requires `hournook.com`
+to be verified there; use `Hournook <onboarding@resend.dev>` before that — it
+can only deliver to your own Resend account address), `TRIAL_DAYS`,
+`PAST_DUE_GRACE_DAYS`, `SUPPORT_EMAIL`, `ERROR_WEBHOOK_URL`,
+`STRIPE_AUTOMATIC_TAX`. Pinning `STRIPE_PRICE_ID`,
 `STRIPE_WEBHOOK_SECRET` or `STRIPE_PORTAL_CONFIGURATION_ID` overrides the
 automatic Stripe setup.
 
@@ -68,7 +69,7 @@ The build log shows the migrations and lines like:
 [stripe:setup] Stripe test mode
 [stripe:setup] plan price: price_…
 [stripe:setup] portal configuration: bpc_…
-[stripe:setup] webhook created: we_… → https://<site>.netlify.app/api/stripe/webhook
+[stripe:setup] webhook created: we_… → https://www.hournook.com/api/stripe/webhook
 ```
 
 If the site URL changes (e.g. you rename the site or add a custom domain and
@@ -105,14 +106,16 @@ such as the `*.netlify.app` staging URL, is served with
 `X-Robots-Tag: noindex` and a `robots.txt` that disallows crawling, so staging
 never competes with production in search results.
 
-When the domain is purchased:
+Setup (done once):
 
-1. Netlify → _Domain management_ → add `www.hournook.com` as the **primary
-   domain** and `hournook.com` as an alias (Netlify provisions HTTPS).
-   `netlify.toml` already redirects `https://hournook.com/*` to
-   `https://www.hournook.com/:splat` with a permanent 301.
-2. Set `APP_URL=https://www.hournook.com` and redeploy (links in emails and the
-   Stripe webhook then use the real domain; the build re-registers the webhook).
-3. Verify the domain in Resend and set `EMAIL_FROM`, e.g. `Hournook <bookings@hournook.com>`.
-4. Add the property `https://www.hournook.com/` in Google Search Console and
-   submit `https://www.hournook.com/sitemap.xml`.
+1. Netlify → _Domain management_ → make `www.hournook.com` the **primary
+   domain**, with `hournook.com` as an alias. Netlify provisions HTTPS and
+   301-redirects `hournook.com` to `www` itself (no rule in `netlify.toml`, which
+   could loop if the apex were ever primary).
+2. Redeploy. Production builds detect the domain from Netlify's `URL` and use
+   `https://www.hournook.com` for links in emails, Stripe redirects and the
+   webhook (`scripts/deploy-url.mjs`); `APP_URL` is only needed to override it.
+3. Verify `hournook.com` in Resend (DKIM + SPF records); mail is sent as
+   `Hournook <no-reply@hournook.com>` unless `EMAIL_FROM` says otherwise.
+4. Google Search Console: a Domain property for `hournook.com` (DNS TXT record),
+   then submit `https://www.hournook.com/sitemap.xml`.

@@ -82,10 +82,6 @@ export default function PricingPage() {
           aria-hidden
           className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black_15%,transparent_65%)] opacity-70"
         />
-        <div
-          aria-hidden
-          className="absolute top-40 left-1/2 -z-10 h-80 w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
-        />
         <Container className="pt-14 pb-16 sm:pt-20 lg:pt-24">
           <div className="mx-auto max-w-3xl text-center">
             <Eyebrow className="justify-center">Pricing</Eyebrow>

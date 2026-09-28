@@ -4,6 +4,7 @@
  * malformed. Never prints secret values.
  */
 import { spawnSync } from 'node:child_process'
+import { deploymentUrl } from './deploy-url.mjs'
 
 const log = (msg) => console.log(`[hournook] ${msg}`)
 const fail = (msg) => {
@@ -55,6 +56,7 @@ if (!['postgres:', 'postgresql:'].includes(parsed.protocol)) {
   fail(`${source} must start with postgres:// or postgresql:// (found "${parsed.protocol}")`)
 }
 log(`database: ${parsed.hostname}${parsed.pathname} (from ${source})`)
+log(`site URL for links, emails and the Stripe webhook: ${deploymentUrl() ?? '(not set)'}`)
 // Scripts run outside Next.js, so tell them they're on Netlify (Blobs storage etc.).
 if (process.env.NETLIFY === 'true') process.env.HN_PLATFORM = 'netlify'
 process.env.DATABASE_URL = dbUrl
@@ -77,7 +79,7 @@ if (process.env.CONTEXT === 'production') {
     'npx',
     ['tsx', 'scripts/stripe-setup.ts'],
     {
-      APP_URL: process.env.APP_URL || process.env.URL,
+      APP_URL: deploymentUrl() ?? '',
     },
   )
 } else {

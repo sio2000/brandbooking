@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowUpRight, CreditCard, Mail, Rocket, Share2 } from 'lucide-react'
 import { Container, Eyebrow } from '@/components/marketing/section'
 import { Button } from '@/components/ui/button'
+import { company } from '@/lib/legal'
 import { site, socialImage } from '@/lib/site'
 
 const description = `Help with getting started on ${site.name}, sharing your booking page and billing — and how to reach us.`
@@ -59,7 +60,7 @@ const topics = [
 ]
 
 function supportContact() {
-  const email = process.env.SUPPORT_EMAIL?.trim() || null
+  const email = process.env.SUPPORT_EMAIL?.trim() || company.email
   const rawUrl = process.env.SUPPORT_URL?.trim() || null
   let url: string | null = null
   if (rawUrl) {

@@ -13,10 +13,6 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Production domain: the apex redirects permanently to www (the canonical host).
-# Harmless until the domain is attached to the site.
-[[redirects]]
-  from = "https://hournook.com/*"
-  to = "https://www.hournook.com/:splat"
-  status = 301
-  force = true
+# Production domain: set www.hournook.com as the *primary* domain in Netlify
+# (Domain management). Netlify then redirects hournook.com → www with a 301
+# itself; a rule here as well could loop if the primary were ever the apex.

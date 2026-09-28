@@ -41,10 +41,6 @@ export function PricingCard({
         className,
       )}
     >
-      <div
-        aria-hidden
-        className="absolute -top-24 -right-20 size-64 rounded-full bg-primary/12 blur-3xl"
-      />
       <div className="relative">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Heading className="font-sans text-base font-semibold tracking-normal">

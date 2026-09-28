@@ -327,24 +327,6 @@
   text-wrap: pretty;
 }
 /* Diagonal hatching for free/blocked calendar time in product mockups. */
-@utility bg-hatch {
-  background-image: repeating-linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--border-strong) 55%, transparent) 0 1px,
-    transparent 1px 7px
-  );
-}
-
-/*
- * Marketing pages: the browser skips style, layout and paint for sections
- * below the fold until they approach the viewport. `auto` remembers each
- * section's real height once rendered, so scrolling and anchors stay stable.
- */
-main[data-marketing] > section ~ section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

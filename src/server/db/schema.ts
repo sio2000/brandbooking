@@ -89,6 +89,9 @@ export const users = pgTable('users', {
   failedLoginCount: integer('failed_login_count').notNull().default(0),
   lockedUntil: tstz('locked_until'),
   lastLoginAt: tstz('last_login_at'),
+  // Set at sign-up: acceptance of the Terms of Service (incl. the DPA).
+  termsAcceptedAt: tstz('terms_accepted_at'),
+  termsVersion: text('terms_version'),
   createdAt: tstz('created_at').notNull().defaultNow(),
   updatedAt: tstz('updated_at').notNull().defaultNow(),
 })

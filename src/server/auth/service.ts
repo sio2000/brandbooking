@@ -14,6 +14,7 @@ import {
   sendVerificationEmail,
 } from '@/server/notifications/account-emails'
 import { passwordProblem } from '@/lib/validation/password'
+import { LEGAL_VERSION } from '@/lib/legal'
 import type { RequestMeta } from '@/server/request'
 
 const VERIFY_TTL_MS = 24 * 60 * 60 * 1000
@@ -80,7 +81,14 @@ export async function signUp(
   try {
     const [u] = await db()
       .insert(users)
-      .values({ email: input.email, name: input.name, passwordHash })
+      .values({
+        email: input.email,
+        name: input.name,
+        passwordHash,
+        // Sign-up requires ticking "I agree to the Terms" (validated upstream).
+        termsAcceptedAt: new Date(),
+        termsVersion: LEGAL_VERSION,
+      })
       .returning({ id: users.id })
     userId = u!.id
   } catch (err) {
@@ -97,6 +105,7 @@ export async function signUp(
     action: 'user.signed_up',
     entityType: 'user',
     entityId: userId,
+    metadata: { termsVersion: LEGAL_VERSION },
     ip: meta.ip,
     requestId: meta.requestId,
   })

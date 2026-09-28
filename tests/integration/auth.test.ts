@@ -5,6 +5,7 @@ import { authTokens, sessions, users } from '@/server/db/schema'
 import { resetDatabase, clearRateLimits } from '../helpers/db'
 import { meta, TEST_PASSWORD, createUser } from '../helpers/factory'
 import { AppError } from '@/server/errors'
+import { LEGAL_VERSION } from '@/lib/legal'
 import {
   changePassword,
   requestPasswordReset,
@@ -42,6 +43,9 @@ describe('sign up and email verification', () => {
     )
     const [u] = await db().select().from(users).where(eq(users.id, r.userId))
     expect(u!.emailVerifiedAt).toBeNull()
+    // Evidence of accepting the Terms (incl. the DPA) at sign-up.
+    expect(u!.termsVersion).toBe(LEGAL_VERSION)
+    expect(u!.termsAcceptedAt).toBeInstanceOf(Date)
     expect(u!.passwordHash).toMatch(/^\$argon2id\$/)
     expect(u!.passwordHash).not.toContain('a-very-good-passphrase')
     expect(memoryMailbox().sent.at(-1)!.to).toBe('ann@example.com')

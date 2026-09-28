@@ -13,15 +13,26 @@ export async function runMaintenance() {
     limits: number
     events: number
     scrubbed: number
+    audits: number
+    auditIps: number
+    accountEmails: number
   }>(sql`
     WITH
       s AS (DELETE FROM sessions WHERE expires_at < now() RETURNING 1),
       t AS (DELETE FROM auth_tokens WHERE expires_at < now() - interval '7 days' RETURNING 1),
       r AS (DELETE FROM rate_limits WHERE reset_at < now() - interval '1 hour' RETURNING 1),
       e AS (DELETE FROM booking_page_events WHERE occurred_at < now() - interval '400 days' RETURNING 1),
-      n AS (UPDATE notifications SET payload = '{}'::jsonb WHERE status IN ('sent','cancelled','failed') AND created_at < now() - interval '180 days' AND payload <> '{}'::jsonb RETURNING 1)
+      n AS (UPDATE notifications SET payload = '{}'::jsonb WHERE status IN ('sent','cancelled','failed') AND created_at < now() - interval '180 days' AND payload <> '{}'::jsonb RETURNING 1),
+      -- Audit trail retention (see the privacy policy): IP addresses are dropped
+      -- after 180 days and entries deleted after two years.
+      -- Account emails (verification, password reset, invitations) are not tied
+      -- to an appointment; their records go entirely after 180 days.
+      m AS (DELETE FROM notifications WHERE appointment_id IS NULL AND status IN ('sent','cancelled','failed') AND created_at < now() - interval '180 days' RETURNING 1),
+      a AS (DELETE FROM audit_logs WHERE created_at < now() - interval '730 days' RETURNING 1),
+      ai AS (UPDATE audit_logs SET ip = NULL WHERE ip IS NOT NULL AND created_at < now() - interval '180 days' AND created_at >= now() - interval '730 days' RETURNING 1)
     SELECT (SELECT count(*) FROM s)::int AS sessions, (SELECT count(*) FROM t)::int AS tokens,
-      (SELECT count(*) FROM r)::int AS limits, (SELECT count(*) FROM e)::int AS events, (SELECT count(*) FROM n)::int AS scrubbed
+      (SELECT count(*) FROM r)::int AS limits, (SELECT count(*) FROM e)::int AS events, (SELECT count(*) FROM n)::int AS scrubbed,
+      (SELECT count(*) FROM a)::int AS audits, (SELECT count(*) FROM ai)::int AS "auditIps", (SELECT count(*) FROM m)::int AS "accountEmails"
   `)
   return results[0]
 }

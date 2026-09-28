@@ -129,7 +129,7 @@ describe('hosting defaults', () => {
     resetEnvCache()
     E.RESEND_API_KEY = 're_123'
     expect(env().EMAIL_PROVIDER).toBe('resend')
-    expect(env().EMAIL_FROM).toBe('Hournook <onboarding@resend.dev>')
+    expect(env().EMAIL_FROM).toBe('Hournook <no-reply@hournook.com>')
     resetEnvCache()
     delete E.RESEND_API_KEY
     E.SMTP_URL = 'smtp://localhost:1025'

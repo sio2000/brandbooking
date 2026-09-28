@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import { deploymentUrl } from './scripts/deploy-url.mjs'
 
 const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -12,14 +13,9 @@ const securityHeaders = [
 ]
 
 // Values baked in at build time so the running app knows where it lives
-// without extra configuration on Netlify (URL / DEPLOY_PRIME_URL are Netlify
-// build variables). An explicit APP_URL always wins at runtime.
-const netlifyUrl =
-  process.env.CONTEXT === 'production'
-    ? process.env.URL
-    : process.env.DEPLOY_PRIME_URL || process.env.URL
+// without extra configuration on Netlify. See scripts/deploy-url.mjs.
 const bakedEnv: Record<string, string> = {}
-const publicUrl = process.env.APP_URL || netlifyUrl
+const publicUrl = deploymentUrl()
 if (publicUrl) bakedEnv.NEXT_PUBLIC_APP_URL = publicUrl
 if (process.env.NETLIFY === 'true') bakedEnv.HN_PLATFORM = 'netlify'
 

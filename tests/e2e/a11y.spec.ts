@@ -38,6 +38,10 @@ type Who = 'anonymous' | 'owner' | 'newcomer'
 const PAGES: Array<{ path: string; who: Who; ready?: (page: Page) => Promise<void> }> = [
   { path: '/', who: 'anonymous' },
   { path: '/pricing', who: 'anonymous' },
+  { path: '/terms', who: 'anonymous' },
+  { path: '/privacy', who: 'anonymous' },
+  { path: '/dpa', who: 'anonymous' },
+  { path: '/legal', who: 'anonymous' },
   { path: '/login', who: 'anonymous' },
   { path: '/signup', who: 'anonymous' },
   { path: '/forgot-password', who: 'anonymous' },

@@ -9,6 +9,10 @@ import { z } from 'zod'
  * Nothing in this module may be imported from client components.
  */
 
+/** Bare domain of the canonical site (hournook.com), used for the sender address. */
+const mailDomain = () =>
+  new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host.replace(/^www\./, '')
+
 const bool = z
   .enum(['true', 'false', '1', '0', ''])
   .optional()
@@ -47,14 +51,15 @@ const EnvSchema = z
       .default(() =>
         process.env.RESEND_API_KEY ? 'resend' : process.env.SMTP_URL ? 'smtp' : 'log',
       ),
-    // Resend's shared sender works before you verify a domain (it can only
-    // deliver to your own Resend account address).
+    // With Resend, mail comes from the production domain verified there
+    // (no-reply@hournook.com). Set EMAIL_FROM to use another address, e.g.
+    // Resend's shared "onboarding@resend.dev" before a domain is verified.
     EMAIL_FROM: z
       .string()
       .min(3)
       .default(() =>
         process.env.RESEND_API_KEY
-          ? 'Hournook <onboarding@resend.dev>'
+          ? `Hournook <no-reply@${mailDomain()}>`
           : 'Hournook <no-reply@localhost>',
       ),
     SMTP_URL: z.string().optional(),
@@ -93,8 +98,6 @@ const EnvSchema = z
 
     SUPPORT_EMAIL: z.email().optional(),
     SUPPORT_URL: z.url().optional(),
-    LEGAL_ENTITY_NAME: z.string().optional(),
-    LEGAL_CONTACT_EMAIL: z.email().optional(),
   })
   .superRefine((env, ctx) => {
     // Stripe safety lock: only TEST MODE keys are accepted — on developer
