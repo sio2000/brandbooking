@@ -3,6 +3,7 @@ import { drizzle, type PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
 import { env } from '@/server/env'
 import * as schema from './schema'
+import { normalizeDatabaseUrl, sslOption } from './connection'
 
 export type Database = PostgresJsDatabase<typeof schema>
 /** A transaction handle has the same query surface as the database. */
@@ -15,9 +16,9 @@ const holder = globalThis as unknown as { __hournookDb?: Holder }
 
 function init(): Holder {
   const e = env()
-  const sql = postgres(e.DATABASE_URL, {
+  const sql = postgres(normalizeDatabaseUrl(e.DATABASE_URL), {
     max: e.DATABASE_POOL_MAX,
-    ssl: e.DATABASE_SSL ? 'require' : undefined,
+    ...sslOption(e.DATABASE_SSL),
     idle_timeout: 20,
     connect_timeout: 10,
     // Prepared statements break behind transaction-mode poolers (PgBouncer).
