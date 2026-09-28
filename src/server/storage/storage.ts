@@ -101,6 +101,6 @@ export function storage(): ObjectStorage {
   instance =
     e.STORAGE_DRIVER === 's3'
       ? new S3Storage(e.S3_ENDPOINT!, e.S3_BUCKET!, e.S3_REGION, e.S3_ACCESS_KEY_ID!, e.S3_SECRET_ACCESS_KEY!, e.S3_PUBLIC_URL)
-      : new LocalStorage(path.resolve(process.cwd(), e.STORAGE_LOCAL_DIR))
+      : new LocalStorage(path.resolve(/*turbopackIgnore: true*/ process.cwd(), e.STORAGE_LOCAL_DIR))
   return instance
 }
