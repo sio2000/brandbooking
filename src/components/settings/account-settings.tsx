@@ -162,7 +162,7 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
       <CardBody className="grid grid-cols-1 gap-3">
         {blocked ? (
           <Alert tone="warning" title="You still own a business">
-            Owners must delete their businesses before deleting their account, so customers and bookings are never left without an owner. You own{' '}
+            Owners must delete their businesses — or make someone else the owner under Settings → Team — before deleting their account, so customers and bookings are never left without an owner. You own{' '}
             <strong>{ownedBusinesses.join(', ')}</strong>. Delete it under{' '}
             <Link href="/app/settings/privacy#danger" className="font-semibold underline underline-offset-2">
               Privacy &amp; data

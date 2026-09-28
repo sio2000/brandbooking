@@ -15,7 +15,7 @@ import { AppError } from '@/server/errors'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import { updateProfile } from '@/server/business/profile'
 import { saveBookingRules } from '@/server/business/availability-admin'
-import { changeRole, inviteMember, leaveBusiness, removeMember, revokeInvitation, saveMyPrefs } from '@/server/business/team'
+import { changeRole, inviteMember, leaveBusiness, removeMember, revokeInvitation, saveMyPrefs, transferOwnership } from '@/server/business/team'
 import { deleteBusiness } from '@/server/business/deletion'
 import { changePassword, deleteAccount } from '@/server/auth/service'
 import { clearSessionCookie } from '@/server/auth/session'
@@ -140,6 +140,15 @@ export async function removeMemberAction(memberId: unknown) {
     revalidatePath('/app/settings/team')
     return null
   }, 'Removed from your team')
+}
+
+export async function transferOwnershipAction(memberId: unknown) {
+  return runAction(async () => {
+    const ctx = await requireTenantAction('team.manage')
+    await transferOwnership(ctx, parse(z.uuid(), memberId), await requestMeta())
+    revalidatePath('/app', 'layout')
+    return null
+  }, 'Ownership transferred')
 }
 
 /* ------------------------------------------------------------------------ */

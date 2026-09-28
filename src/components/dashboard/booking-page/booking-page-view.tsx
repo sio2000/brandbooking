@@ -103,7 +103,7 @@ function PublishCard({ business: b, bookingUrl, canPublish, emailVerified, accep
             Pause online booking (vacation mode)
             <span className="text-xs transition-transform group-open:rotate-180">▾</span>
           </summary>
-          <div className="grid gap-3 px-5 pb-5 sm:px-6">
+          <div className="grid grid-cols-1 gap-3 px-5 pb-5 sm:px-6">
             <Field label="Message for customers" htmlFor="pause-msg" optional hint="Shown on your booking page while paused.">
               <Input value={pauseMsg} onChange={(e) => setPauseMsg(e.target.value)} placeholder="We’re on holiday until 3 September — see you soon!" maxLength={500} />
             </Field>
@@ -135,7 +135,7 @@ function ShareCard({ bookingUrl, business }: Parameters<typeof BookingPageView>[
   return (
     <Card id="share">
       <CardHeader title="Share" description="Put your link wherever customers find you." />
-      <CardBody className="grid gap-4">
+      <CardBody className="grid grid-cols-1 gap-4">
         <div className="flex gap-2">
           <Input readOnly value={bookingUrl} aria-label="Booking link" onFocus={(e) => e.currentTarget.select()} />
           <CopyButton value={bookingUrl} label="Copy" variant="secondary" />
@@ -149,7 +149,7 @@ function ShareCard({ bookingUrl, business }: Parameters<typeof BookingPageView>[
         <div className="flex flex-col gap-4 rounded-xl border border-border p-3 sm:flex-row sm:items-center">
           {/* eslint-disable-next-line @next/next/no-img-element -- dynamic authenticated SVG */}
           <img src="/app/qr?format=svg" alt={`QR code linking to ${bookingUrl}`} className="size-28 rounded-lg bg-white p-1" />
-          <div className="grid gap-2">
+          <div className="grid grid-cols-1 gap-2">
             <p className="flex items-center gap-1.5 text-sm font-medium"><QrCode className="size-4" /> QR code</p>
             <p className="text-[13px] text-muted-foreground">For your counter, flyers or business cards. Bookings from it are tracked as “QR code”.</p>
             <div className="flex flex-wrap gap-2">
@@ -182,7 +182,7 @@ function EmbedCard({ business, origin }: Parameters<typeof BookingPageView>[0]) 
             <TabsTrigger value="inline">Inline</TabsTrigger>
           </TabsList>
           {[['button', button, 'A button that opens booking in a popup.'], ['inline', inline, 'The full booking flow embedded where you place the code.']].map(([k, code, desc]) => (
-            <TabsContent key={k} value={k!} className="mt-3 grid gap-2">
+            <TabsContent key={k} value={k!} className="mt-3 grid grid-cols-1 gap-2">
               <p className="text-[13px] text-muted-foreground">{desc}</p>
               <pre className="overflow-x-auto rounded-xl bg-foreground p-3 text-xs text-background"><code>{code}</code></pre>
               <CopyButton value={code!} label="Copy code" size="sm" variant="secondary" className="justify-self-start" toastMessage="Code copied" />
@@ -213,7 +213,7 @@ function BrandingCard({ business: b, logoUrl, coverUrl }: Parameters<typeof Book
   return (
     <Card>
       <CardHeader title="Branding" description="Your logo, cover and colour — the preview updates as you edit." />
-      <CardBody className="grid gap-5">
+      <CardBody className="grid grid-cols-1 gap-5">
         <div className="brand-scope overflow-hidden rounded-2xl border border-border" style={brandStyle(v.brandColor)} aria-label="Live preview" role="img">
           <div className="h-20 bg-primary-soft" style={coverUrl ? { backgroundImage: `url(${coverUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' } : { background: 'radial-gradient(120% 140% at 10% 0%, color-mix(in oklab, var(--primary) 55%, transparent) 0%, transparent 55%), var(--primary-soft)' }} />
           <div className="-mt-6 flex items-end gap-3 px-4">
@@ -233,11 +233,11 @@ function BrandingCard({ business: b, logoUrl, coverUrl }: Parameters<typeof Book
             <div className="mt-2 rounded-xl bg-primary px-3 py-2 text-center text-sm font-medium text-primary-foreground">Confirm booking</div>
           </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <ImageUpload kind="logo" label="Logo" hint="Square, at least 64px." current={logoUrl} />
           <ImageUpload kind="cover" label="Cover image" hint="Wide, at least 800×200px." current={coverUrl} />
         </div>
-        <div className="grid gap-2">
+        <div className="grid grid-cols-1 gap-2">
           <span className="text-sm font-medium">Brand colour</span>
           <div className="flex flex-wrap items-center gap-3">
             <ColorPicker value={v.brandColor} onChange={(brandColor) => setV({ ...v, brandColor })} label="Brand colour" />
@@ -280,7 +280,7 @@ function ImageUpload({ kind, label, hint, current }: { kind: 'logo' | 'cover'; l
   const ref = React.useRef<HTMLInputElement>(null)
   const [pending, setPending] = React.useState(false)
   return (
-    <div className="grid gap-1.5">
+    <div className="grid grid-cols-1 gap-1.5">
       <span className="text-sm font-medium">{label}</span>
       <div className="flex items-center gap-2">
         <input ref={ref} type="file" accept="image/jpeg,image/png,image/webp" className="sr-only" id={`up-${kind}`} onChange={async (e) => {
@@ -313,7 +313,7 @@ function SeoCard({ business: b, bookingUrl }: Parameters<typeof BookingPageView>
   return (
     <Card>
       <CardHeader title="Search & social previews" description="How your page appears on Google and when shared." />
-      <CardBody className="grid gap-4">
+      <CardBody className="grid grid-cols-1 gap-4">
         <div className="rounded-xl border border-border p-3" aria-label="Search result preview">
           <p className="truncate text-xs text-muted-foreground">{bookingUrl.replace(/^https?:\/\//, '')}</p>
           <p className="truncate text-[15px] font-medium text-info">{title}</p>
@@ -348,7 +348,7 @@ function LinkCard({ business: b, origin }: Parameters<typeof BookingPageView>[0]
   return (
     <Card>
       <CardHeader title="Booking link" description="Changing it breaks links you’ve already shared (including printed QR codes)." />
-      <CardBody className="grid gap-2">
+      <CardBody className="grid grid-cols-1 gap-2">
         <FormError message={error} />
         <InputGroup prefix={`${origin.replace(/^https?:\/\//, '')}/book/`} value={slug} onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))} aria-label="Booking link" maxLength={48} />
         {status && <p className={cn('text-[13px] font-medium', status.available ? 'text-success' : 'text-danger')}>{status.available ? 'Available' : (status.reason ?? 'Already taken')}</p>}

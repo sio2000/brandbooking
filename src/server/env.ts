@@ -43,6 +43,9 @@ const EnvSchema = z
     S3_PUBLIC_URL: z.url().optional(),
 
     STRIPE_SECRET_KEY: z.string().optional(),
+    // Not needed by the server-redirect Checkout flow; accepted so a shared
+    // .env can carry it. Never exposed to the browser by this app.
+    STRIPE_PUBLISHABLE_KEY: z.string().optional(),
     STRIPE_WEBHOOK_SECRET: z.string().optional(),
     STRIPE_PRICE_ID: z.string().optional(),
     // Test-only: point the Stripe SDK at a local fake API. Ignored in production.
@@ -60,7 +63,16 @@ const EnvSchema = z
     LEGAL_CONTACT_EMAIL: z.email().optional(),
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV !== 'production') return
+    if (env.NODE_ENV !== 'production') {
+      // Safety net: outside production only Stripe TEST MODE keys are accepted,
+      // so a developer machine or CI run can never create real charges.
+      for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
+        if (/^(sk|rk|pk)_live_/.test(env[key] ?? '')) {
+          ctx.addIssue({ code: 'custom', path: [key], message: `${key} is a live-mode key; only test-mode keys are allowed outside production` })
+        }
+      }
+      return
+    }
     const need = (key: keyof typeof env, when = true) => {
       if (when && !env[key]) {
         ctx.addIssue({ code: 'custom', path: [key], message: `${key} is required in production` })

@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22'
+  # Throwaway credentials for the CI-only Postgres service below.
+  DATABASE_URL: postgres://hournook:hournook@localhost:5432/hournook
+  TEST_DATABASE_URL: postgres://hournook:hournook@localhost:5432/hournook_test
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  checks:
+    name: Lint, typecheck, unit & integration tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: hournook
+          POSTGRES_PASSWORD: hournook
+          POSTGRES_DB: hournook
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U hournook"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Create test databases
+        run: |
+          psql "postgres://hournook:hournook@localhost:5432/hournook" -c 'CREATE DATABASE hournook_test'
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run format:check
+      - run: npm run test:unit
+      - run: npm run test:integration
+      - name: Migrations apply and roll back cleanly
+        run: |
+          npm run db:migrate
+          npm run db:rollback
+          npm run db:migrate
+      - name: Production build
+        run: npm run build
+        env:
+          APP_URL: http://localhost:3000
+      - name: Dependency audit (production deps)
+        run: npm audit --omit=dev --audit-level=high
+
+  e2e:
+    name: End-to-end & accessibility (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: checks
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: hournook
+          POSTGRES_PASSWORD: hournook
+          POSTGRES_DB: hournook
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U hournook"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Create E2E database
+        run: psql "postgres://hournook:hournook@localhost:5432/hournook" -c 'CREATE DATABASE hournook_e2e'
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          CI: 'true'
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

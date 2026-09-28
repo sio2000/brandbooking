@@ -156,6 +156,36 @@ export async function changeRole(ctx: TenantContext, memberId: string, role: Mem
   await audit(db(), { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'team.role_changed', entityType: 'member', entityId: memberId, metadata: { from: target.role, to: role }, ip: meta.ip })
 }
 
+/**
+ * Hand the business over to another member. The current owner becomes a
+ * manager in the same transaction, so there is always exactly one owner.
+ * The new owner must have a verified email (they gain billing and deletion rights).
+ */
+export async function transferOwnership(ctx: TenantContext, memberId: string, meta: RequestMeta) {
+  if (ctx.membership.role !== 'owner') throw new AppError('forbidden')
+  await db().transaction(async (tx) => {
+    const [target] = await tx
+      .select({ member: businessMembers, verifiedAt: users.emailVerifiedAt, name: users.name })
+      .from(businessMembers)
+      .innerJoin(users, eq(users.id, businessMembers.userId))
+      .where(and(eq(businessMembers.businessId, ctx.business.id), eq(businessMembers.id, memberId)))
+      .limit(1)
+    if (!target) throw new AppError('not_found')
+    if (target.member.userId === ctx.user.id || target.member.role === 'owner') throw new AppError('forbidden')
+    if (!target.verifiedAt) {
+      throw new AppError('validation', { fields: { _form: `${target.name} needs to verify their email address before they can become the owner.` } })
+    }
+    await tx.update(businessMembers).set({ role: 'manager' }).where(and(eq(businessMembers.businessId, ctx.business.id), eq(businessMembers.id, ctx.membership.id)))
+    await tx.update(businessMembers).set({ role: 'owner' }).where(and(eq(businessMembers.businessId, ctx.business.id), eq(businessMembers.id, memberId)))
+    await audit(tx, { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'team.ownership_transferred', entityType: 'member', entityId: memberId, metadata: { fromMemberId: ctx.membership.id }, ip: meta.ip })
+    await addInboxItems(tx, ctx.business.id, [target.member.userId], {
+      kind: 'team',
+      title: `${ctx.user.name} made you the owner of ${ctx.business.name}`,
+      href: '/app/settings/team',
+    })
+  })
+}
+
 export async function removeMember(ctx: TenantContext, memberId: string, meta: RequestMeta) {
   const [target] = await db().select().from(businessMembers).where(and(eq(businessMembers.businessId, ctx.business.id), eq(businessMembers.id, memberId))).limit(1)
   if (!target) throw new AppError('not_found')

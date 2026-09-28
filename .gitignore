@@ -16,3 +16,5 @@ blob-report/
 .vercel
 .DS_Store
 npm-debug.log*
+.next-e2e/
+/scratch/

@@ -1,0 +1,30 @@
+# Local development services: PostgreSQL 16 and Mailpit (catches outgoing email).
+#   docker compose up -d
+#   → Postgres on localhost:5432 (hournook/hournook), Mailpit UI on http://localhost:8025
+# Set EMAIL_PROVIDER=smtp and SMTP_URL=smtp://localhost:1025 in .env to see emails in Mailpit.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: hournook
+      POSTGRES_PASSWORD: hournook
+      POSTGRES_DB: hournook
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/docker/init-test-db.sql:/docker-entrypoint-initdb.d/10-test-db.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U hournook']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+volumes:
+  pgdata:

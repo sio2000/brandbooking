@@ -14,7 +14,7 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input, NativeSelect } from '@/components/ui/input'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/menu'
 import { toast } from '@/components/ui/toaster'
-import { changeRoleAction, inviteMemberAction, removeMemberAction, revokeInvitationAction } from '@/app/app/_actions/settings'
+import { changeRoleAction, inviteMemberAction, removeMemberAction, revokeInvitationAction, transferOwnershipAction } from '@/app/app/_actions/settings'
 import { cn } from '@/lib/utils'
 import { useActionForm } from './use-action-form'
 
@@ -155,6 +155,7 @@ export function TeamManager({
   staff: UnlinkedStaff[]
 }) {
   const [removing, setRemoving] = React.useState<TeamMember | null>(null)
+  const [transferring, setTransferring] = React.useState<TeamMember | null>(null)
   const [busy, setBusy] = React.useState<string | null>(null)
 
   const canChangeRole = (m: TeamMember) => me.role === 'owner' && m.role !== 'owner' && m.userId !== me.userId
@@ -233,6 +234,11 @@ export function TeamManager({
                           ))}
                         </>
                       )}
+                      {canChangeRole(m) && (
+                        <DropdownMenuItem onSelect={() => setTransferring(m)}>
+                          <Crown /> Make owner…
+                        </DropdownMenuItem>
+                      )}
                       {canChangeRole(m) && canRemove(m) && <DropdownMenuSeparator />}
                       {canRemove(m) && (
                         <DropdownMenuItem tone="danger" onSelect={() => setRemoving(m)}>
@@ -277,6 +283,24 @@ export function TeamManager({
           </ul>
         )}
       </Card>
+
+      <ConfirmDialog
+        open={transferring !== null}
+        onOpenChange={(o) => !o && setTransferring(null)}
+        title={transferring ? `Make ${transferring.name} the owner?` : 'Transfer ownership?'}
+        description={
+          <>
+            They’ll get full control, including billing and deleting the business. You’ll stay on the team as a manager. Only the new owner can undo this.
+          </>
+        }
+        confirmLabel="Transfer ownership"
+        onConfirm={async () => {
+          if (!transferring) return
+          const r = await transferOwnershipAction(transferring.id)
+          if (r.ok) toast.success(`${transferring.name} is now the owner`)
+          else toast.error(r.error)
+        }}
+      />
 
       <ConfirmDialog
         open={removing !== null}
