@@ -63,7 +63,11 @@ const EnvSchema = z
     // Netlify builds bake HN_PLATFORM=netlify in, making Netlify Blobs the default there.
     STORAGE_DRIVER: z
       .enum(['local', 's3', 'netlify-blobs'])
-      .default(() => (process.env.HN_PLATFORM === 'netlify' ? 'netlify-blobs' : 'local')),
+      .default(() =>
+        process.env.HN_PLATFORM === 'netlify' || process.env.NETLIFY === 'true'
+          ? 'netlify-blobs'
+          : 'local',
+      ),
     STORAGE_LOCAL_DIR: z.string().default('.data/uploads'),
     S3_ENDPOINT: z.url().optional(),
     S3_REGION: z.string().default('auto'),

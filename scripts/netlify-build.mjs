@@ -31,6 +31,10 @@ const missing = [
   !dbUrl && 'DATABASE_URL (or a Netlify DB database)',
   !clean(process.env.APP_SECRET) && 'APP_SECRET',
   !clean(process.env.CRON_SECRET) && 'CRON_SECRET',
+  !clean(process.env.RESEND_API_KEY) &&
+    !clean(process.env.SMTP_URL) &&
+    !clean(process.env.ALLOW_LOG_EMAIL_IN_PRODUCTION) &&
+    'RESEND_API_KEY (or SMTP_URL; for a trial without email: ALLOW_LOG_EMAIL_IN_PRODUCTION=1)',
 ].filter(Boolean)
 if (missing.length) {
   fail(
@@ -51,6 +55,8 @@ if (!['postgres:', 'postgresql:'].includes(parsed.protocol)) {
   fail(`${source} must start with postgres:// or postgresql:// (found "${parsed.protocol}")`)
 }
 log(`database: ${parsed.hostname}${parsed.pathname} (from ${source})`)
+// Scripts run outside Next.js, so tell them they're on Netlify (Blobs storage etc.).
+if (process.env.NETLIFY === 'true') process.env.HN_PLATFORM = 'netlify'
 process.env.DATABASE_URL = dbUrl
 for (const k of ['APP_SECRET', 'CRON_SECRET', 'STRIPE_SECRET_KEY', 'APP_URL']) {
   if (process.env[k] !== undefined) process.env[k] = clean(process.env[k])
