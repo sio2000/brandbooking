@@ -20,5 +20,5 @@ export default defineConfig([
     files: ['scripts/**', 'tests/**', 'e2e/**'],
     rules: { 'no-console': 'off' },
   },
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '.data/**', 'playwright-report/**', 'test-results/**', 'coverage/**', 'public/embed.js']),
+  globalIgnores(['.next/**', '.next-*/**', 'out/**', 'build/**', 'next-env.d.ts', '.data/**', 'playwright-report/**', 'test-results/**', 'coverage/**', 'public/embed.js']),
 ])
