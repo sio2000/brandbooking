@@ -52,7 +52,7 @@ export default function DpaPage() {
       body: (
         <ul>
           <li>
-            <strong>Subject matter and purpose:</strong> providing {site.name} to you — hosting your
+            <strong>Subject matter and purpose:</strong> providing {site.name} to you: hosting your
             booking page, taking and managing bookings, storing customer records, sending
             appointment emails on your behalf, statistics, exports and support.
           </li>
@@ -175,7 +175,7 @@ export default function DpaPage() {
       body: (
         <p>
           Where a sub-processor processes personal data outside the European Economic Area, we
-          ensure the transfer complies with Chapter V of the GDPR — through an adequacy decision
+          ensure the transfer complies with Chapter V of the GDPR, through an adequacy decision
           (such as the EU–U.S. Data Privacy Framework for certified providers) or the European
           Commission’s Standard Contractual Clauses with supplementary measures where needed.
         </p>

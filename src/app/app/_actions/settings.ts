@@ -1,5 +1,7 @@
 'use server'
 
+import { getSession } from '@/server/auth/session'
+
 import { eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
@@ -227,7 +229,11 @@ export async function leaveBusinessAction() {
 
 export async function deleteAccountAction(input: unknown) {
   return runAction(async () => {
-    const ctx = await requireTenantAction()
+    // Only a signed-in user is needed: someone who deleted their last business
+    // (or never finished setting one up) must still be able to delete the account.
+    const session = await getSession()
+    if (!session) throw new AppError('unauthenticated')
+    const ctx = { user: session.user }
     const v = parse(
       z.object({ password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX) }),
       input,

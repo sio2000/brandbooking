@@ -173,7 +173,7 @@ export function InsightsPanel({ insights }: { insights: AnalyticsData['insights'
       <CardBody>
         {insights.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            Not enough data yet for insights — they appear once you have a few weeks of bookings.
+            Not enough data yet for insights. They appear once you have a few weeks of bookings.
           </p>
         ) : (
           <ul className="grid gap-2.5 md:grid-cols-2">
@@ -215,7 +215,7 @@ export function FunnelCard({
         title="Booking funnel"
         description={
           filtered
-            ? 'Where do visitors drop off? Shows your whole booking page — team and service filters don’t apply here.'
+            ? 'Where do visitors drop off? Shows your whole booking page; team and service filters don’t apply here.'
             : 'Where do visitors drop off on your booking page?'
         }
         action={
@@ -263,7 +263,8 @@ export function FunnelCard({
         )}
       </CardBody>
       <div className="border-t border-border px-5 py-3 text-xs text-muted-foreground">
-        Estimated — anonymous page-load counts (no cookies), so repeat visits count more than once.
+        Estimated from anonymous page-load counts (no cookies), so repeat visits count more than
+        once.
       </div>
     </Card>
   )
@@ -314,7 +315,7 @@ export function ServicesTable({
     <Card className="min-w-0 overflow-hidden">
       <CardHeader
         title="Services"
-        description="Which services drive your business — and which get cancelled or missed?"
+        description="Which services drive your business, and which get cancelled or missed?"
       />
       {rows.length === 0 ? (
         <CardBody>
@@ -488,8 +489,8 @@ export function StaffTable({
       )}
       <div className="border-t border-border px-5 py-3 text-xs leading-relaxed text-muted-foreground">
         Utilization = booked minutes ÷ available working minutes (from opening hours, schedules and
-        closures). These figures describe booking outcomes — who customers chose and when they were
-        free — not anyone’s performance.
+        closures). These figures describe booking outcomes (who customers chose and when they were
+        free), not anyone’s performance.
       </div>
     </Card>
   )
@@ -696,8 +697,8 @@ export function CustomersCard({ data, currency }: { data: AnalyticsData; currenc
           </div>
         ) : (
           <p className="text-xs leading-relaxed text-muted-foreground">
-            Lifetime value is hidden until at least 20 customers have completed a priced appointment
-            — below that, one big spender would skew the average.
+            Lifetime value is hidden until at least 20 customers have completed a priced
+            appointment. Below that, one big spender would skew the average.
           </p>
         )}
       </CardBody>

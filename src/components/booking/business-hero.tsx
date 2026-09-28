@@ -106,13 +106,13 @@ export function BusinessContact({ data }: { data: PublicPageData }) {
   if (!items.length && !socials.length && !b.bookingPolicy) return null
   return (
     <aside
-      className="grid gap-5 rounded-2xl border border-border bg-surface p-5 shadow-xs"
+      className="grid min-w-0 gap-5 rounded-2xl border border-border bg-surface p-5 shadow-xs"
       aria-label="Contact information"
     >
       {items.length > 0 && (
-        <ul className="grid gap-3 text-sm">
+        <ul className="grid min-w-0 gap-3 text-sm">
           {items.map(({ Icon, label, href }) => (
-            <li key={label}>
+            <li key={label} className="min-w-0">
               <a
                 href={href}
                 className="flex items-start gap-3 rounded-md hover:text-primary"
@@ -120,7 +120,8 @@ export function BusinessContact({ data }: { data: PublicPageData }) {
                 rel="noopener noreferrer"
               >
                 <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden />
-                <span className="min-w-0 break-words">{label}</span>
+                {/* Long emails and web addresses have no spaces: allow breaks anywhere. */}
+                <span className="min-w-0 [overflow-wrap:anywhere]">{label}</span>
               </a>
             </li>
           ))}

@@ -114,3 +114,12 @@ and several colour-contrast failures (subtle text and dark-mode avatars).
 - Load/performance testing and a professional penetration test.
 - Server Actions are tested through the service functions they call
   (auth/tenant guards need Next's request context) and end-to-end through the UI.
+
+## Emails in E2E tests
+
+The E2E server sends mail through the real Resend provider, pointed at a local
+stand-in (`tests/e2e/support/fake-resend.mjs`, started by Playwright on port
+3199). Every accepted message is stored as JSON in `.data/e2e-mail/`; tests read
+them with `tests/e2e/support/mail.ts` (`waitForMail`, `linkIn`) and follow the
+links like a recipient. `tests/e2e/qa-lifecycle.spec.ts` is the full business
+scenario used for the production readiness audit (`docs/QA_REPORT.md`).

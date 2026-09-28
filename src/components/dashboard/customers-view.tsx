@@ -179,7 +179,7 @@ export function CustomersView(p: {
       ) : (
         <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-xs">
           <table className="w-full text-sm">
-            <caption className="sr-only">Customers — {p.total} total</caption>
+            <caption className="sr-only">Customers, {p.total} total</caption>
             <thead className="hidden border-b border-border bg-surface-2/60 text-left text-xs font-medium text-muted-foreground md:table-header-group">
               <tr>
                 <th scope="col" className="px-4 py-2.5 font-medium">

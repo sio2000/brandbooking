@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ContactEmail, LegalDocument, type LegalSection } from '@/components/marketing/legal'
 import { site, socialImage } from '@/lib/site'
 
-const description = `${site.name} uses only strictly necessary cookies — no analytics or advertising cookies. See exactly what is stored and why.`
+const description = `${site.name} uses only strictly necessary cookies: no analytics or advertising cookies. See exactly what is stored and why.`
 
 export const metadata: Metadata = {
   title: 'Cookie policy',
@@ -55,7 +55,7 @@ export default function CookiesPage() {
           </li>
           <li>We do not use analytics, advertising or social-media tracking cookies.</li>
           <li>
-            Booking-page statistics are anonymous and cookieless — nothing is stored on your
+            Booking-page statistics are anonymous and cookieless. Nothing is stored on your
             customers’ devices.
           </li>
         </ul>
@@ -129,8 +129,8 @@ export default function CookiesPage() {
       body: (
         <>
           <p>
-            When customers open a business’s booking page — directly, through a QR code or through
-            the widget embedded on the business’s website — {site.name} does not set cookies for
+            When customers open a business’s booking page (directly, through a QR code or through
+            the widget embedded on the business’s website), {site.name} does not set cookies for
             analytics or advertising. To show businesses how their booking page performs, we count
             steps such as “page viewed” and “booking completed” anonymously, without cookies, device
             identifiers or personal data.

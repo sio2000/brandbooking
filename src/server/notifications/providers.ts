@@ -121,12 +121,20 @@ class SmtpProvider implements EmailProvider {
   }
 }
 
+/** Tests point Resend at a local fake API; never honoured in production. */
+function resendBase() {
+  const e = env()
+  return e.RESEND_API_BASE && e.NODE_ENV !== 'production'
+    ? e.RESEND_API_BASE.replace(/\/+$/, '')
+    : 'https://api.resend.com'
+}
+
 class ResendProvider implements EmailProvider {
   readonly name = 'resend'
   async send(m: EmailMessage) {
     let res: Response
     try {
-      res = await fetch('https://api.resend.com/emails', {
+      res = await fetch(`${resendBase()}/emails`, {
         method: 'POST',
         headers: {
           authorization: `Bearer ${env().RESEND_API_KEY}`,
@@ -156,6 +164,10 @@ class ResendProvider implements EmailProvider {
 }
 
 let provider: EmailProvider | undefined
+/** Tests only: pick the provider again after changing EMAIL_PROVIDER. */
+export function resetEmailProvider() {
+  provider = undefined
+}
 export function emailProvider(): EmailProvider {
   if (provider) return provider
   switch (env().EMAIL_PROVIDER) {

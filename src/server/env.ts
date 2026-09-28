@@ -64,6 +64,8 @@ const EnvSchema = z
       ),
     SMTP_URL: z.string().optional(),
     RESEND_API_KEY: z.string().optional(),
+    // Test-only: point the Resend client at a local fake API. Ignored in production.
+    RESEND_API_BASE: z.url().optional(),
 
     // Netlify builds bake HN_PLATFORM=netlify in, making Netlify Blobs the default there.
     STORAGE_DRIVER: z

@@ -82,7 +82,7 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
     setError(null)
     const json = await post('reschedule', { start }).catch(() => ({
       ok: false,
-      error: 'Network error — nothing was changed. Please try again.',
+      error: 'Network error. Nothing was changed. Please try again.',
     }))
     setBusy(false)
     if (json.ok) {
@@ -100,7 +100,7 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
   async function cancel() {
     const json = await post('cancel', { reason: reason || null }).catch(() => ({
       ok: false,
-      error: 'Network error — your booking was not cancelled. Please try again.',
+      error: 'Network error. Your booking was not cancelled. Please try again.',
     }))
     if (json.ok) {
       toast.success('Your booking has been cancelled')
@@ -112,7 +112,7 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
   }
 
   const ev = {
-    title: `${a.serviceName} — ${b.name}`,
+    title: `${a.serviceName} at ${b.name}`,
     start: new Date(a.startsAt),
     end: new Date(a.endsAt),
     location: b.address,
@@ -271,7 +271,7 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
                   <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
                   <span>
                     {!data.deadlines.allowCancel && !data.deadlines.allowReschedule
-                      ? `${b.name} handles changes personally — please contact them.`
+                      ? `${b.name} handles changes personally. Please contact them.`
                       : `Online changes were possible until ${formatDateTime(data.can.cancel ? data.deadlines.reschedule : data.deadlines.cancel, tz)}. For changes now, please contact ${b.name}.`}
                   </span>
                 </p>
@@ -332,9 +332,9 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
             {b.email && (
               <a
                 href={`mailto:${b.email}`}
-                className="inline-flex items-center gap-1.5 hover:text-foreground"
+                className="inline-flex min-w-0 items-center gap-1.5 [overflow-wrap:anywhere] hover:text-foreground"
               >
-                <Mail className="size-4" /> {b.email}
+                <Mail className="size-4 shrink-0" /> {b.email}
               </a>
             )}
           </div>

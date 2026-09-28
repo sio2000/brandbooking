@@ -25,7 +25,7 @@ export default function AdminError({
         description={
           <>
             Something went wrong while fetching platform data. It may be a temporary database or
-            network issue — try again in a moment.
+            network issue. Try again in a moment.
             {error.digest && (
               <span className="mt-2 block text-xs text-subtle-foreground">
                 Reference: <code className="font-mono">{error.digest}</code>

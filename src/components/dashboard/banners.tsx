@@ -67,7 +67,7 @@ export function AccountBanner({ input }: { input: BannerInput }) {
         bookings because there’s no active subscription.
         {input.canBilling && (
           <Link href="/app/billing" className="font-semibold underline underline-offset-2">
-            Subscribe — €10/month
+            Subscribe for €10/month
           </Link>
         )}
       </div>

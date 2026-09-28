@@ -115,7 +115,7 @@ function InviteDialog({ assignable, staff }: { assignable: Role[]; staff: Unlink
       </Button>
       <DialogContent
         title="Invite to your team"
-        description="They’ll get an email with a link to join. No extra cost — your plan includes the whole team."
+        description="They’ll get an email with a link to join. No extra cost: your plan includes the whole team."
       >
         {/* Content unmounts when closed, so the form starts fresh each time. */}
         <InviteForm assignable={assignable} staff={staff} onDone={() => setOpen(false)} />
@@ -215,7 +215,7 @@ function InviteForm({
               {staff.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
-                  {s.title ? ` — ${s.title}` : ''}
+                  {s.title ? ` · ${s.title}` : ''}
                 </option>
               ))}
             </NativeSelect>
@@ -456,7 +456,7 @@ export function TeamManager({
         description={
           <>
             They’ll lose access to this business straight away. Their profile, past appointments and
-            upcoming bookings stay in your calendar — you can reassign or cancel them later.
+            upcoming bookings stay in your calendar, and you can reassign or cancel them later.
           </>
         }
         confirmLabel="Remove from team"

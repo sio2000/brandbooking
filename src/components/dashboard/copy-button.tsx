@@ -25,7 +25,7 @@ export function CopyButton({
           toast.success(toastMessage)
           setTimeout(() => setCopied(false), 1800)
         } catch {
-          toast.error('Couldn’t copy automatically — select the link and copy it manually.')
+          toast.error('Couldn’t copy automatically. Select the link and copy it manually.')
         }
       }}
     >

@@ -58,11 +58,11 @@ const billingFaq: FaqItem[] = [
   },
   {
     q: 'How do I cancel?',
-    a: 'Open the Stripe billing portal from your billing settings and cancel there — no emails or calls needed. Cancelling stops future renewals.',
+    a: 'Open the Stripe billing portal from your billing settings and cancel there. No emails or calls needed. Cancelling stops future renewals.',
   },
   {
     q: 'Is VAT included?',
-    a: 'Prices are shown in euros. Depending on where your business is based and the tax details you provide, VAT may be added at checkout. You’ll see the total before you pay.',
+    a: `Yes. ${site.price.display} a month is the full price, including Greek VAT of 24%. Nothing is added at checkout, and you receive an invoice for every payment.`,
   },
   {
     q: 'Can I update my card or billing details?',
@@ -121,7 +121,7 @@ export default function PricingPage() {
             ))}
           </ul>
           <p className="mt-8 text-center text-[13px] text-muted-foreground">
-            Prices in euros. VAT may apply depending on your location.
+            Prices in euros, VAT included.
           </p>
         </Container>
       </section>

@@ -64,7 +64,9 @@ const PAGES: Array<{ path: string; who: Who; ready?: (page: Page) => Promise<voi
 for (const colorScheme of ['light', 'dark'] as const) {
   test.describe(`axe (${colorScheme})`, () => {
     test.beforeEach(async ({ page }) => {
-      await page.emulateMedia({ colorScheme })
+      // Reduced motion: axe must judge the settled page, not a frame in the
+      // middle of a cross-fade (the rotating hero), where colours are blended.
+      await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' })
     })
 
     for (const p of PAGES) {

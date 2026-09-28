@@ -181,7 +181,7 @@ function PublishCard({
         <div className="border-t border-border px-5 py-3 sm:px-6">
           <Alert tone="info">
             {!emailVerified
-              ? 'Confirm your email address first — check your inbox for the link.'
+              ? 'Confirm your email address first. Check your inbox for the link.'
               : 'Add at least one active service with a team member assigned, then publish.'}
           </Alert>
         </div>
@@ -202,7 +202,7 @@ function PublishCard({
               <Input
                 value={pauseMsg}
                 onChange={(e) => setPauseMsg(e.target.value)}
-                placeholder="We’re on holiday until 3 September — see you soon!"
+                placeholder="We’re on holiday until 3 September. See you soon!"
                 maxLength={500}
               />
             </Field>
@@ -245,7 +245,7 @@ function PublishCard({
               <Check className="size-5" /> Your booking page is live.
             </p>
             <p className="mt-1 text-sm">
-              Share the link on Instagram, Google Business Profile, WhatsApp — or print the QR code
+              Share the link on Instagram, Google Business Profile or WhatsApp, or print the QR code
               for your counter.
             </p>
             <div className="mt-3 flex gap-2">
@@ -368,7 +368,7 @@ function EmbedCard({ business, origin }: Parameters<typeof BookingPageView>[0]) 
     <Card>
       <CardHeader
         title="Add booking to your website"
-        description="Paste one line into your site. The booking flow opens in a secure, self-contained window — it won’t clash with your site’s design."
+        description="Paste one line into your site. The booking flow opens in a secure, self-contained window, so it won’t clash with your site’s design."
       />
       <CardBody>
         <Tabs defaultValue="button">
@@ -427,7 +427,7 @@ function BrandingCard({ business: b, logoUrl, coverUrl }: Parameters<typeof Book
     <Card>
       <CardHeader
         title="Branding"
-        description="Your logo, cover and colour — the preview updates as you edit."
+        description="Your logo, cover and colour. The preview updates as you edit."
       />
       <CardBody className="grid grid-cols-1 gap-5">
         <div
@@ -517,7 +517,7 @@ function BrandingCard({ business: b, logoUrl, coverUrl }: Parameters<typeof Book
           label="Booking policy"
           htmlFor="policy"
           optional
-          hint="Shown on your page and in confirmation emails — e.g. late arrivals, deposits, cancellations."
+          hint="Shown on your page and in confirmation emails, e.g. late arrivals, deposits, cancellations."
           error={errors.bookingPolicy}
         >
           <Textarea
@@ -658,7 +658,7 @@ function SeoCard({ business: b, bookingUrl }: Parameters<typeof BookingPageView>
     allowIndexing: b.allowIndexing,
   })
   const [pending, setPending] = React.useState(false)
-  const title = v.seoTitle || `${b.name} — Online booking`
+  const title = v.seoTitle || `${b.name} · Online booking`
   const desc =
     v.seoDescription || b.description?.slice(0, 160) || `Book an appointment with ${b.name} online.`
   return (
@@ -680,7 +680,7 @@ function SeoCard({ business: b, bookingUrl }: Parameters<typeof BookingPageView>
             value={v.seoTitle}
             maxLength={70}
             onChange={(e) => setV({ ...v, seoTitle: e.target.value })}
-            placeholder={`${b.name} — Online booking`}
+            placeholder={`${b.name} · Online booking`}
           />
         </Field>
         <Field

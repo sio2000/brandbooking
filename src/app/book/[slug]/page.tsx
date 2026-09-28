@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<'/book/[slug]'>): P
   if (!r || !isPubliclyVisible(r.business))
     return { title: 'Booking page not found', robots: { index: false } }
   const b = r.business
-  const title = b.seoTitle || `${b.name} — Online booking`
+  const title = b.seoTitle || `${b.name} · Online booking`
   const description =
     b.seoDescription || b.description?.slice(0, 160) || `Book an appointment with ${b.name} online.`
   const image = r.data.business.coverUrl ?? r.data.business.logoUrl
@@ -99,7 +99,7 @@ export default async function PublicBookingPage({
       )}
       {isPreview && (
         <div className="sticky top-0 z-30 flex items-center justify-center gap-2 bg-foreground px-4 py-2 text-center text-[13px] text-background">
-          <Eye className="size-4" aria-hidden /> Preview — this page isn’t published yet. Only you
+          <Eye className="size-4" aria-hidden /> Preview: this page isn’t published yet. Only you
           can see it.
           <Link href="/app/booking-page" className="font-semibold underline underline-offset-2">
             Publish

@@ -98,7 +98,7 @@ export default async function AdminHealthPage() {
               {h.lastCron ? (
                 <>
                   Last run <UtcTime value={h.lastCron.at} mode="relative" className="font-medium" />{' '}
-                  — <UtcTime value={h.lastCron.at} /> UTC
+                  · <UtcTime value={h.lastCron.at} /> UTC
                   {cronTook && <span className="text-muted-foreground"> · {cronTook}</span>}
                 </>
               ) : (

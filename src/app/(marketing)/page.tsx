@@ -1,24 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import {
-  ArrowRight,
-  BarChart3,
-  BellRing,
-  CalendarDays,
-  Check,
-  Clock3,
-  Download,
-  Globe2,
-  Link2,
-  LockKeyhole,
-  Mail,
-  MessageCircle,
-  QrCode,
-  RefreshCcw,
-  ShieldCheck,
-} from 'lucide-react'
+import { ArrowRight, Check, Download, Globe2, LockKeyhole, Mail, ShieldCheck } from 'lucide-react'
 import { Faq, type FaqItem } from '@/components/marketing/faq'
+import { FeatureTiles } from '@/components/marketing/feature-tiles'
 import { HeroShowcase } from '@/components/marketing/hero-showcase'
+import { HowItWorks } from '@/components/marketing/how-it-works'
+import { BusinessMarquee } from '@/components/marketing/business-marquee'
 import { BUSINESS_TYPES } from '@/components/marketing/industries'
 import { PricingCard } from '@/components/marketing/pricing-card'
 import { SectionIntro } from '@/components/marketing/primitives'
@@ -28,8 +15,8 @@ import { Button } from '@/components/ui/button'
 import { company } from '@/lib/legal'
 import { absoluteUrl, site, socialImage } from '@/lib/site'
 
-const title = `${site.name} — Online booking software for appointment-based businesses`
-const description = `Your own booking page, calendar, customer list and automatic reminders — for salons, nail studios, barbers, clinics, trainers, consultants and every business that runs on appointments. ${site.price.display}/month, ${site.trialDays}-day free trial, no card required.`
+const title = `${site.name}: Online booking software for appointment-based businesses`
+const description = `Your own booking page, calendar, customer list and automatic reminders for salons, nail studios, barbers, clinics, trainers, consultants and every business that runs on appointments. ${site.price.display}/month, ${site.trialDays}-day free trial, no card required.`
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -58,7 +45,7 @@ const faq: FaqItem[] = [
   },
   {
     q: 'What happens after the free trial?',
-    a: `Nothing happens automatically — we never ask for a card up front. If Hournook works for you, subscribe for ${site.price.display}/month to keep taking bookings. If not, your booking page simply stops accepting new bookings.`,
+    a: `Nothing happens automatically. We never ask for a card up front. If Hournook works for you, subscribe for ${site.price.display}/month to keep taking bookings. If not, your booking page simply stops accepting new bookings.`,
   },
   {
     q: 'Are there fees per booking or per team member?',
@@ -66,7 +53,7 @@ const faq: FaqItem[] = [
   },
   {
     q: 'Can clients cancel or move their appointment?',
-    a: 'Yes, from the link in their confirmation email — and only within the limits you set (for example, not later than 24 hours before). You can also switch this off.',
+    a: 'Yes, from the link in their confirmation email, but only within the limits you set (for example, not later than 24 hours before). You can also switch this off.',
   },
   {
     q: 'Can clients pay online?',
@@ -78,7 +65,7 @@ const faq: FaqItem[] = [
   },
   {
     q: 'I’m not good with technology. Is it hard to set up?',
-    a: 'Setup takes a few minutes: name your business, add your services with their length and price, and set your opening hours. We suggest typical services for your type of business, and you can change everything later. If you get stuck, email us — a real person answers.',
+    a: 'Setup takes a few minutes: name your business, add your services with their length and price, and set your opening hours. We suggest typical services for your type of business, and you can change everything later. If you get stuck, email us and a real person answers.',
   },
 ]
 
@@ -128,57 +115,6 @@ const jsonLd = {
     },
   ],
 }
-
-const steps = [
-  {
-    title: 'Add your services and hours',
-    text: 'Name each service, how long it takes and what it costs. Set the days and hours you work. About five minutes.',
-    visual: 'services',
-  },
-  {
-    title: 'Share your booking link',
-    text: 'Put it in your Instagram bio, Google profile, WhatsApp status or website — or print the QR code for your front desk.',
-    visual: 'share',
-  },
-  {
-    title: 'Bookings arrive on their own',
-    text: 'Clients pick a free time, and it appears in your calendar. Confirmations and reminders are emailed for you.',
-    visual: 'booked',
-  },
-] as const
-
-const features = [
-  {
-    Icon: Link2,
-    title: 'Your own booking page',
-    text: 'Your services, prices and free times on one page made for phones. Share the link, print the QR code or add it to your website.',
-  },
-  {
-    Icon: Clock3,
-    title: 'Only real free times',
-    text: 'Set working hours, breaks and days off. Clients can only pick times you are actually free — no double bookings.',
-  },
-  {
-    Icon: BellRing,
-    title: 'Automatic emails',
-    text: 'Instant confirmation, plus reminders 24 hours and 2 hours before (you choose). Fewer forgotten appointments.',
-  },
-  {
-    Icon: RefreshCcw,
-    title: 'Clients reschedule themselves',
-    text: 'Every confirmation has a link to change or cancel, within the rules you set. Fewer calls and messages.',
-  },
-  {
-    Icon: CalendarDays,
-    title: 'One calendar for the whole team',
-    text: 'Day and week view of every appointment, with each person’s hours and services. Add phone bookings in seconds.',
-  },
-  {
-    Icon: BarChart3,
-    title: 'Clients and simple reports',
-    text: 'A client list with visit history and notes builds itself. Reports show bookings, no-shows and where they come from.',
-  },
-] as const
 
 const trust = [
   {
@@ -236,73 +172,20 @@ export default function HomePage() {
         <Container className="pt-8 pb-16 sm:pt-12 lg:pt-16 lg:pb-24">
           <HeroShowcase />
         </Container>
-        <div className="border-y border-border bg-surface-2/50">
-          <Container className="flex flex-col gap-3 py-6 lg:flex-row lg:items-baseline lg:gap-10">
-            <h2 className="shrink-0 font-sans text-[13px] font-semibold tracking-[0.12em] text-subtle-foreground uppercase">
-              For every business that works by appointment
-            </h2>
-            <ul className="flex flex-wrap gap-x-2 gap-y-1 text-[14.5px] leading-relaxed">
-              {BUSINESS_TYPES.slice(0, 14).map((t, i, arr) => (
-                <li key={t} className="flex items-center gap-2 text-muted-foreground">
-                  <span className={i < 7 ? 'text-foreground' : undefined}>{t}</span>
-                  {i < arr.length - 1 && (
-                    <span aria-hidden className="text-border-strong">
-                      ·
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </div>
+        <BusinessMarquee items={BUSINESS_TYPES.slice(0, 14)} />
       </section>
 
       {/* How it works */}
       <section id="how" aria-labelledby="how-title" className="scroll-mt-20 py-16 sm:py-24">
         <Container>
-          <Reveal>
-            <SectionIntro
-              id="how-title"
-              kicker="How it works"
-              title="Set up once. Take bookings every day."
-              lead="No technical skills needed. If you can post on Instagram, you can use Hournook."
-            />
-          </Reveal>
-          <ol className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
-            {steps.map((s, i) => (
-              <li
-                key={s.title}
-                className="flex flex-col overflow-hidden rounded-[22px] border border-border bg-surface"
-              >
-                <div
-                  aria-hidden
-                  className="hidden border-b border-border bg-surface-2/60 p-5 sm:block"
-                >
-                  <StepVisual kind={s.visual} />
-                </div>
-                <div className="flex gap-4 p-5 sm:block sm:p-6">
-                  <span
-                    aria-hidden
-                    className="tabular grid size-9 shrink-0 place-items-center rounded-full bg-primary text-[15px] font-semibold text-primary-foreground sm:hidden"
-                  >
-                    {i + 1}
-                  </span>
-                  <div>
-                    <p className="hidden text-[13px] font-semibold text-primary sm:block">
-                      Step {i + 1}
-                    </p>
-                    <h3 className="text-h3 sm:mt-1">
-                      <span className="sr-only sm:hidden">Step {i + 1}: </span>
-                      {s.title}
-                    </h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground sm:mt-2">
-                      {s.text}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <SectionIntro
+            id="how-title"
+            kicker="How it works"
+            title="Three steps. Then bookings come to you."
+          />
+          <div className="mt-8 sm:mt-10">
+            <HowItWorks />
+          </div>
         </Container>
       </section>
 
@@ -313,30 +196,15 @@ export default function HomePage() {
         className="scroll-mt-20 border-y border-border bg-surface-2/40 py-16 sm:py-24"
       >
         <Container>
-          <Reveal>
-            <SectionIntro
-              id="features-title"
-              kicker="What you get"
-              title="Everything you need to run your bookings."
-              lead={`All included in one plan, for ${site.price.display} a month. No add-ons, no extra fees.`}
-            />
-          </Reveal>
-          <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map(({ Icon, title: t, text }) => (
-              <li key={t} className="flex gap-4">
-                <span
-                  aria-hidden
-                  className="grid size-10 shrink-0 place-items-center rounded-xl border border-border bg-surface text-primary"
-                >
-                  <Icon className="size-5" />
-                </span>
-                <div>
-                  <h3 className="font-sans text-[16.5px] font-semibold tracking-normal">{t}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <SectionIntro
+            id="features-title"
+            kicker="What you get"
+            title="Everything included. Nothing to set up twice."
+            lead={`One plan, ${site.price.display} a month, VAT included.`}
+          />
+          <div className="mt-8 sm:mt-10">
+            <FeatureTiles />
+          </div>
         </Container>
       </section>
 
@@ -389,7 +257,7 @@ export default function HomePage() {
             />
             <ul className="mt-6 space-y-2.5 text-[15px]">
               {[
-                `Try it free for ${site.trialDays} days — no card needed`,
+                `Try it free for ${site.trialDays} days, no card needed`,
                 'Cancel anytime from your dashboard',
                 'Keep your data: export it whenever you want',
               ].map((t) => (
@@ -441,8 +309,8 @@ export default function HomePage() {
             Your booking page could be live in ten minutes.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lead text-ink-muted">
-            Start free for {site.trialDays} days. No card, no contract — just fewer messages and
-            more bookings.
+            Start free for {site.trialDays} days. No card, no contract. Just fewer messages and more
+            bookings.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
@@ -464,88 +332,5 @@ export default function HomePage() {
         </div>
       </section>
     </>
-  )
-}
-
-/** Small illustrations for the three steps (decorative). */
-function StepVisual({ kind }: { kind: (typeof steps)[number]['visual'] }) {
-  if (kind === 'services') {
-    return (
-      <div className="space-y-2">
-        {[
-          ['Haircut', '30 min', '€22'],
-          ['Haircut & beard', '45 min', '€30'],
-        ].map(([n, d, p]) => (
-          <div
-            key={n}
-            className="flex items-center justify-between rounded-xl border border-border bg-surface px-3 py-2.5 text-[13px]"
-          >
-            <span className="font-medium">{n}</span>
-            <span className="tabular text-muted-foreground">
-              {d} · {p}
-            </span>
-          </div>
-        ))}
-        <div className="flex items-center justify-between rounded-xl border border-dashed border-border-strong px-3 py-2.5 text-[13px] text-muted-foreground">
-          <span>Mon–Sat · 09:00–18:00</span>
-          <Clock3 className="size-4" />
-        </div>
-      </div>
-    )
-  }
-  if (kind === 'share') {
-    return (
-      <div className="flex items-center gap-3">
-        <div className="min-w-0 flex-1 space-y-2">
-          <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2.5 text-[13px]">
-            <Link2 className="size-4 shrink-0 text-primary" />
-            <span className="truncate font-medium">hournook.com/book/your-name</span>
-          </div>
-          <div className="flex gap-2">
-            {[
-              [MessageCircle, 'WhatsApp'],
-              [Globe2, 'Google'],
-              [Mail, 'Email'],
-            ].map(([I, l]) => {
-              const Ico = I as typeof Mail
-              return (
-                <span
-                  key={l as string}
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-surface py-2 text-[12px] text-muted-foreground"
-                >
-                  <Ico className="size-3.5" />
-                  <span className="hidden min-[400px]:inline">{l as string}</span>
-                </span>
-              )
-            })}
-          </div>
-        </div>
-        <span className="grid size-[88px] shrink-0 place-items-center rounded-xl border border-border bg-surface">
-          <QrCode className="size-14 text-foreground" strokeWidth={1.5} />
-        </span>
-      </div>
-    )
-  }
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center gap-3 rounded-xl border border-border bg-surface px-3 py-2.5">
-        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground">
-          <BellRing className="size-4" />
-        </span>
-        <div className="min-w-0 text-[13px] leading-snug">
-          <p className="font-semibold">New booking</p>
-          <p className="truncate text-muted-foreground">Maria P. · Gel manicure · Tue 15:30</p>
-        </div>
-      </div>
-      <div className="flex items-center gap-3 rounded-xl border border-border bg-surface px-3 py-2.5">
-        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-surface-2">
-          <Mail className="size-4" />
-        </span>
-        <div className="min-w-0 text-[13px] leading-snug">
-          <p className="font-semibold">Reminder sent</p>
-          <p className="truncate text-muted-foreground">To Nikos G. · tomorrow at 10:00</p>
-        </div>
-      </div>
-    </div>
   )
 }

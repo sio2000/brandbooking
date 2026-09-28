@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { company } from '@/lib/legal'
 import { site, socialImage } from '@/lib/site'
 
-const description = `Help with getting started on ${site.name}, sharing your booking page and billing — and how to reach us.`
+const description = `Help with getting started on ${site.name}, sharing your booking page and billing, and how to reach us.`
 
 export const metadata: Metadata = {
   title: 'Support',
@@ -51,10 +51,10 @@ const topics = [
     Icon: CreditCard,
     title: 'Billing',
     steps: [
-      `Your ${site.trialDays}-day free trial starts when you sign up — no card needed.`,
+      `Your ${site.trialDays}-day free trial starts when you sign up. No card needed.`,
       `Subscribe for ${site.price.display}/month from your billing settings when you’re ready.`,
       'Open the Stripe billing portal to update your card, download invoices or cancel.',
-      'VAT may be added depending on where your business is located.',
+      'The price includes VAT (24%). You receive an invoice for every payment.',
     ],
   },
 ]
@@ -208,7 +208,7 @@ export default function SupportPage() {
               </p>
             )}
             <p className="mt-6 text-[13px] text-muted-foreground">
-              Booked an appointment with a business? Please contact that business directly — you’ll
+              Booked an appointment with a business? Please contact that business directly; you’ll
               find their details on their booking page and in your confirmation email.
             </p>
           </div>

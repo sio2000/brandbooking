@@ -120,7 +120,7 @@ export default async function ReportsPage({ searchParams }: PageProps<'/app/repo
         <ReportSection title="Insights">
           {data.insights.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              Not enough data yet for insights — they appear once you have a few weeks of bookings.
+              Not enough data yet for insights. They appear once you have a few weeks of bookings.
             </p>
           ) : (
             <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed marker:text-muted-foreground">

@@ -327,6 +327,26 @@
   text-wrap: pretty;
 }
 /* Diagonal hatching for free/blocked calendar time in product mockups. */
+/* Business-types band: two identical copies side by side, shifted by one copy. */
+@keyframes hn-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero: fill of the active example's progress bar. */
+@keyframes hn-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

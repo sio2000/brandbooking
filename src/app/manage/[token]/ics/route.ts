@@ -9,7 +9,7 @@ export async function GET(_req: Request, ctx: RouteContext<'/manage/[token]/ics'
     const { appt, business, serviceName } = await icsForToken(token)
     const ics = buildIcs({
       uid: `${appt.id}@hournook`,
-      title: `${serviceName} — ${business.name}`,
+      title: `${serviceName} at ${business.name}`,
       start: appt.startsAt,
       end: appt.endsAt,
       location: [business.addressLine1, business.addressLine2, business.city]

@@ -54,7 +54,9 @@ export function PricingCard({
           <span className="tabular font-display text-[3.5rem] leading-none font-bold tracking-tight sm:text-6xl">
             {site.price.display}
           </span>
-          <span className="text-base text-muted-foreground">/ {site.price.period}</span>
+          <span className="text-base text-muted-foreground">
+            / {site.price.period} · VAT included
+          </span>
         </p>
         <p className="mt-3 text-[15px] text-muted-foreground">
           {site.trialDays}-day free trial. No card required to start. No per-booking fees.

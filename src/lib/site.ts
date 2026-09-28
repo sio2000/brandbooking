@@ -36,5 +36,5 @@ export const socialImage = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'Hournook — online booking software for businesses that run on appointments',
+  alt: 'Hournook: online booking software for businesses that run on appointments',
 }

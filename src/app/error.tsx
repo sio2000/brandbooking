@@ -16,8 +16,8 @@ export default function ErrorPage({
       <div className="max-w-md">
         <h1 className="text-2xl font-bold">This page didn’t load properly</h1>
         <p className="mt-2 text-muted-foreground">
-          Something went wrong on our side. Your data is safe — try again, and if it keeps
-          happening, contact support with the reference below.
+          Something went wrong on our side. Your data is safe. Try again, and if it keeps happening,
+          contact support with the reference below.
         </p>
         {error.digest && (
           <p className="mt-3 font-mono text-xs text-subtle-foreground">Reference: {error.digest}</p>

@@ -254,7 +254,7 @@ export function BookingFlow({
       setFormError(json.error ?? messages.errors.internal)
     } catch {
       setFormError(
-        'We couldn’t reach the server. Check your connection and try again — nothing has been booked yet.',
+        'We couldn’t reach the server. Check your connection and try again. Nothing has been booked yet.',
       )
     } finally {
       setSubmitting(false)
@@ -602,8 +602,8 @@ export function BookingFlow({
                   role="note"
                   className="mt-4 rounded-xl bg-warning-soft px-4 py-3 text-[13px] leading-relaxed text-warning-soft-foreground"
                 >
-                  This is a preview. Publish your booking page to start accepting real bookings —
-                  customers will see exactly this flow.
+                  This is a preview. Publish your booking page to start accepting real bookings.
+                  Customers will see exactly this flow.
                 </p>
               )}
               <StickyAction>
@@ -893,7 +893,7 @@ function Success({
   const pending = result.status === 'pending'
   const end = new Date(new Date(start).getTime() + service.durationMinutes * 60_000)
   const ev = {
-    title: `${service.name} — ${business.name}`,
+    title: `${service.name} at ${business.name}`,
     start: new Date(start),
     end,
     location: business.address.join(', '),

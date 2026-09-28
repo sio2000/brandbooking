@@ -1,19 +1,19 @@
 'use client'
 
 import Link from 'next/link'
-import { useActionState, useState } from 'react'
+import { useActionState, useState, useTransition } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Field, FormError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Alert } from '@/components/ui/feedback'
-import { Checkbox } from '@/components/ui/controls'
 import {
   forgotPasswordAction,
   resetPasswordAction,
   signInAction,
   signUpAction,
 } from '@/app/(auth)/actions'
+import { Checkbox } from '@/components/ui/controls'
 import { PASSWORD_MIN } from '@/lib/validation/password'
 
 function PasswordInput(props: React.ComponentProps<typeof Input>) {
@@ -66,17 +66,50 @@ function StrengthMeter({ value }: { value: string }) {
 
 export function SignUpForm({ next }: { next?: string }) {
   const [state, action, pending] = useActionState(signUpAction, null)
+  // Controlled fields: React resets uncontrolled inputs after a form action,
+  // which would wipe what the person typed whenever validation fails.
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [pw, setPw] = useState('')
+  const [accepted, setAccepted] = useState(false)
+  const [, startTransition] = useTransition()
   const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
-    <form action={action} className="grid gap-4" noValidate>
+    <form
+      action={action}
+      // With JavaScript, submit without React's automatic form reset so a
+      // failed attempt keeps everything the person entered (the tick box
+      // included). Without JavaScript the plain form action still works.
+      onSubmit={(e) => {
+        e.preventDefault()
+        const data = new FormData(e.currentTarget)
+        startTransition(() => action(data))
+      }}
+      className="grid gap-4"
+      noValidate
+    >
       {next && <input type="hidden" name="next" value={next} />}
       <FormError message={state && !state.ok && !Object.keys(f).length ? state.error : null} />
       <Field label="Your name" htmlFor="name" error={f.name}>
-        <Input name="name" autoComplete="name" required maxLength={120} />
+        <Input
+          name="name"
+          autoComplete="name"
+          required
+          maxLength={120}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </Field>
       <Field label="Work email" htmlFor="email" error={f.email}>
-        <Input name="email" type="email" autoComplete="email" required inputMode="email" />
+        <Input
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          inputMode="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </Field>
       <Field
         label="Password"
@@ -100,6 +133,8 @@ export function SignUpForm({ next }: { next?: string }) {
           name="acceptTerms"
           value="on"
           required
+          checked={accepted}
+          onCheckedChange={(c) => setAccepted(c === true)}
           aria-describedby={f.acceptTerms ? 'terms-error' : undefined}
         />
         <label htmlFor="acceptTerms" className="text-sm leading-snug text-muted-foreground">
@@ -135,6 +170,7 @@ export function SignUpForm({ next }: { next?: string }) {
 
 export function SignInForm({ next, notice }: { next?: string; notice?: string | null }) {
   const [state, action, pending] = useActionState(signInAction, null)
+  const [email, setEmail] = useState('')
   const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
     <form action={action} className="grid gap-4" noValidate>
@@ -149,6 +185,8 @@ export function SignInForm({ next, notice }: { next?: string; notice?: string | 
           required
           inputMode="email"
           autoFocus
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </Field>
       <div className="grid gap-1.5">
@@ -171,6 +209,7 @@ export function SignInForm({ next, notice }: { next?: string; notice?: string | 
 
 export function ForgotPasswordForm() {
   const [state, action, pending] = useActionState(forgotPasswordAction, null)
+  const [email, setEmail] = useState('')
   if (state?.ok) {
     return (
       <Alert tone="success" title="Check your inbox">
@@ -183,7 +222,15 @@ export function ForgotPasswordForm() {
     <form action={action} className="grid gap-4" noValidate>
       <FormError message={state && !state.ok && !f.email ? state.error : null} />
       <Field label="Email" htmlFor="email" error={f.email}>
-        <Input name="email" type="email" autoComplete="email" required autoFocus />
+        <Input
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          autoFocus
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </Field>
       <Button type="submit" size="lg" loading={pending} className="w-full">
         Send reset link

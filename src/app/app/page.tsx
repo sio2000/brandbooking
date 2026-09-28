@@ -94,7 +94,7 @@ export default async function OverviewPage() {
       ctx.can('billing.manage') && {
         icon: CreditCard,
         tone: 'danger',
-        text: 'Your last payment failed — update your card to stay online',
+        text: 'Your last payment failed. Update your card to stay online',
         href: '/app/billing',
         cta: 'Fix',
       },
@@ -266,7 +266,7 @@ export default async function OverviewPage() {
                 <EmptyState
                   icon={CalendarCheck2}
                   title="No appointments today"
-                  description="Share your booking link so customers can find a time — or add an appointment yourself."
+                  description="Share your booking link so customers can find a time, or add an appointment yourself."
                   action={
                     ctx.can('appointments.manage_all') || ctx.can('appointments.manage_own') ? (
                       <Button asChild size="sm">

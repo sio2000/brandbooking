@@ -172,7 +172,7 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
     <div>
       <SettingsIntro
         title="Activity"
-        description={`A record of important changes in ${ctx.business.name} — who did what, and when. Times are shown in ${tz.replaceAll('_', ' ')}.`}
+        description={`A record of important changes in ${ctx.business.name}: who did what, and when. Times are shown in ${tz.replaceAll('_', ' ')}.`}
       />
 
       {items.length === 0 ? (

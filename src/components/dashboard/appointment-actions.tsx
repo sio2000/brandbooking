@@ -106,7 +106,7 @@ export function AppointmentActions({
             </Button>
           }
           title="Cancel this appointment?"
-          description="The time will be freed up for other bookings. This can’t be undone — you’d need to book again."
+          description="The time will be freed up for other bookings. This can’t be undone; you’d need to book again."
           confirmLabel="Cancel appointment"
           onConfirm={() => run('cancel')}
         >
@@ -287,7 +287,7 @@ function RescheduleForm({
             <p className="text-sm text-muted-foreground">Checking…</p>
           ) : list.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              No free times within working hours on this day — you can still pick any time manually.
+              No free times within working hours on this day. You can still pick any time manually.
             </p>
           ) : (
             <div className="flex flex-wrap gap-1.5">

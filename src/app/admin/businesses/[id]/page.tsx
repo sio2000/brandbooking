@@ -116,7 +116,7 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
             <Kpi
               label="Customers"
               value={formatNumber(data.counts.customers)}
-              hint="Count only — records stay private"
+              hint="Count only. Records stay private"
             />
             <Kpi label="Services" value={formatNumber(data.counts.services)} />
             <Kpi label="Staff" value={formatNumber(data.counts.staff)} />

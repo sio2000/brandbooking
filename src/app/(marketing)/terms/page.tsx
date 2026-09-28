@@ -62,8 +62,8 @@ export default function TermsPage() {
           </p>
           <p>
             People who book an appointment through your booking page (“End Customers”) do not need
-            an account and are not parties to these Terms. Your relationship with them — the
-            services you provide, your prices, your cancellation rules — is between you and them.
+            an account and are not parties to these Terms. Your relationship with them (the services
+            you provide, your prices, your cancellation rules) is between you and them.
           </p>
         </>
       ),
@@ -129,8 +129,8 @@ export default function TermsPage() {
               per-booking fees.
             </li>
             <li>
-              Any VAT or other tax that applies to you is shown before you pay and is charged in
-              accordance with Greek and EU tax rules.
+              The price includes VAT at the Greek rate of 24%. Nothing is added on top at checkout,
+              and you receive an invoice for every payment.
             </li>
             <li>
               Payments are processed by our payment provider, Stripe. By subscribing you authorise
@@ -171,7 +171,7 @@ export default function TermsPage() {
       body: (
         <>
           <p>
-            You keep all rights in the content you put into {site.name} — business details, images,
+            You keep all rights in the content you put into {site.name}: business details, images,
             services, prices and customer records (“Your Content”). You give us a non-exclusive,
             worldwide, royalty-free licence to host, copy, display and process Your Content only as
             needed to provide, secure and support the service for you, including showing your
@@ -238,8 +238,8 @@ export default function TermsPage() {
       body: (
         <>
           <p>
-            Booking pages are published at the request of the businesses that create them. Anyone —
-            including authorities — can report content they believe is illegal or breaches these
+            Booking pages are published at the request of the businesses that create them. Anyone,
+            including authorities, can report content they believe is illegal or breaches these
             Terms by writing to our single point of contact,{' '}
             <ContactEmail subject="Content report" />, in English or Greek. Please include:
           </p>

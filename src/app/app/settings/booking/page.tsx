@@ -14,7 +14,7 @@ export default async function BookingSettingsPage() {
     <>
       <SettingsIntro
         title="Booking rules"
-        description="Decide when and how customers can book, change and cancel — these apply to your whole booking page."
+        description="Decide when and how customers can book, change and cancel. These apply to your whole booking page."
       />
       <BookingRulesForm
         initial={{

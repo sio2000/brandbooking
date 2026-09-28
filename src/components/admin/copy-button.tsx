@@ -20,7 +20,7 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
           setCopied(true)
           setTimeout(() => setCopied(false), 1500)
         } catch {
-          toast.error('Couldn’t copy — select the text and copy it manually.')
+          toast.error('Couldn’t copy. Select the text and copy it manually.')
         }
       }}
     >

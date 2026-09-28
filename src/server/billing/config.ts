@@ -52,7 +52,9 @@ function matchesPlan(p: Stripe.Price) {
     p.unit_amount === e.PLAN_PRICE_CENTS &&
     p.currency.toUpperCase() === e.PLAN_CURRENCY.toUpperCase() &&
     p.recurring?.interval === 'month' &&
-    p.recurring.interval_count === 1
+    p.recurring.interval_count === 1 &&
+    // The advertised price includes VAT; Stripe must never add tax on top.
+    p.tax_behavior === 'inclusive'
   )
 }
 
@@ -74,7 +76,7 @@ export async function planPriceId(): Promise<string> {
     const product = await stripe().products.create(
       {
         name: 'Hournook',
-        description: 'Online booking for your business — one plan, everything included.',
+        description: 'Online booking for your business. One plan, everything included.',
         metadata: { app: 'hournook' },
       },
       { idempotencyKey: `hournook-product-${e.PLAN_PRICE_CENTS}-${e.PLAN_CURRENCY}` },
@@ -85,12 +87,13 @@ export async function planPriceId(): Promise<string> {
         currency: e.PLAN_CURRENCY.toLowerCase(),
         unit_amount: e.PLAN_PRICE_CENTS,
         recurring: { interval: 'month' },
+        tax_behavior: 'inclusive',
         lookup_key: PRICE_LOOKUP_KEY,
         // Move the lookup key off an older price whose amount no longer matches.
         transfer_lookup_key: true,
         metadata: { app: 'hournook' },
       },
-      { idempotencyKey: `hournook-price-${product.id}-${e.PLAN_PRICE_CENTS}` },
+      { idempotencyKey: `hournook-price-${product.id}-${e.PLAN_PRICE_CENTS}-inclusive` },
     )
     logger.info('stripe.price_created', { priceId: price.id })
   }

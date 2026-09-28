@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
-import { ArrowRight, BellRing, Check, Lock, Mail, Pause, Play } from 'lucide-react'
+import { ArrowRight, BellRing, Check, Lock, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { site } from '@/lib/site'
 import { cn } from '@/lib/utils'
@@ -40,8 +40,9 @@ const SCENES: Scene[] = [
 ].map(({ id, ...rest }) => ({ industry: INDUSTRIES.find((i) => i.id === id)!, ...rest }))
 
 /** How long each step stays on screen: browsing, service picked, time picked, booked. */
-const PHASE_MS = [1500, 1100, 1100, 3000] as const
+const PHASE_MS = [650, 550, 550, 1900] as const
 const BOOKED = 3
+const SCENE_MS = PHASE_MS.reduce((a, b) => a + b, 0)
 const EASE = [0.22, 1, 0.36, 1] as const
 
 const slug = (s: string) =>
@@ -56,6 +57,7 @@ export function HeroShowcase() {
   const [index, setIndex] = React.useState(0)
   const [phase, setPhase] = React.useState<number>(BOOKED)
   const [paused, setPaused] = React.useState(false)
+  const [hovered, setHovered] = React.useState(false)
   const [visible, setVisible] = React.useState(true)
   const stageRef = React.useRef<HTMLDivElement>(null)
 
@@ -77,7 +79,7 @@ export function HeroShowcase() {
     }
   }, [])
 
-  const playing = hydrated && !reduced && !paused && visible
+  const playing = hydrated && !reduced && !paused && !hovered && visible
 
   React.useEffect(() => {
     if (!playing) return
@@ -105,13 +107,9 @@ export function HeroShowcase() {
     <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-16">
       {/* Copy */}
       <div className="max-w-xl min-w-0">
-        <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-[13px] font-medium text-muted-foreground">
-          <span aria-hidden className="size-1.5 rounded-full bg-success" />
-          {site.trialDays} days free · no card needed
-        </p>
         <h1
           id="hero-title"
-          className="mt-6 text-display max-[359px]:text-[2.2rem] lg:text-[clamp(3rem,4.4vw,4.35rem)]"
+          className="text-display max-[359px]:text-[2.2rem] lg:text-[clamp(3rem,4.4vw,4.35rem)]"
         >
           Online booking for your <span className="sr-only">appointment-based business</span>
           <span aria-hidden className="relative block h-[1.08em] overflow-hidden text-primary">
@@ -122,7 +120,7 @@ export function HeroShowcase() {
                 initial={animate ? { y: '100%', opacity: 0 } : false}
                 animate={{ y: '0%', opacity: 1 }}
                 exit={animate ? { y: '-100%', opacity: 0 } : undefined}
-                transition={{ duration: 0.55, ease: EASE }}
+                transition={{ duration: 0.45, ease: EASE }}
               >
                 {scene.phrase}.
               </m.span>
@@ -131,7 +129,7 @@ export function HeroShowcase() {
         </h1>
         <p className="mt-6 max-w-lg text-lead text-muted-foreground">
           Get your own booking page in minutes. Clients choose a service and a free time on their
-          phone, and the appointment lands in your calendar — with confirmation and reminder emails
+          phone, and the appointment lands in your calendar. Confirmation and reminder emails are
           sent for you.
         </p>
         <div className="mt-8 flex flex-col gap-3 min-[420px]:flex-row">
@@ -150,8 +148,9 @@ export function HeroShowcase() {
         </div>
         <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[13.5px] text-muted-foreground">
           {[
-            `${site.price.display}/month after the trial`,
-            'Everything included',
+            `${site.trialDays} days free`,
+            'No card needed',
+            `${site.price.display}/month after, VAT included`,
             'Cancel anytime',
           ].map((t) => (
             <li key={t} className="flex items-center gap-1.5">
@@ -165,6 +164,8 @@ export function HeroShowcase() {
       {/* Stage */}
       <div
         ref={stageRef}
+        onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
         className="relative mx-auto w-full max-w-[460px] min-w-0 lg:max-w-none"
         style={{ '--accent': scene.accent } as React.CSSProperties}
       >
@@ -242,37 +243,46 @@ export function HeroShowcase() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-3 px-1">
-          <div aria-hidden className="flex items-center gap-1.5">
-            {SCENES.map((s, i) => (
-              <span
-                key={s.phrase}
-                className={cn(
-                  'h-1 rounded-full transition-all duration-500',
-                  i === index ? 'w-6 bg-foreground' : 'w-2.5 bg-border-strong',
-                )}
-              />
-            ))}
-            <span className="ml-2 text-[12px] text-muted-foreground">
-              Example businesses — not real customers
-            </span>
-          </div>
-          {hydrated && !reduced && (
-            <button
-              type="button"
-              onClick={() => setPaused((p) => !p)}
-              className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full px-2.5 text-[12.5px] font-medium text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            >
-              {paused ? (
-                <Play aria-hidden className="size-3.5" />
-              ) : (
-                <Pause aria-hidden className="size-3.5" />
+        <div aria-hidden className="mt-4 flex items-center justify-center gap-1.5">
+          {SCENES.map((sc, i) => (
+            <span
+              key={sc.phrase}
+              className={cn(
+                'relative h-1 overflow-hidden rounded-full bg-border-strong transition-[width] duration-500',
+                i === index ? 'w-8' : 'w-2.5',
               )}
-              {paused ? 'Play' : 'Pause'}
-              <span className="sr-only"> animation</span>
-            </button>
-          )}
+            >
+              {i === index && (
+                <span
+                  key={index}
+                  className={cn(
+                    'absolute inset-0 origin-left rounded-full bg-foreground',
+                    animate && 'animate-[hn-progress_linear_forwards]',
+                  )}
+                  style={
+                    animate
+                      ? {
+                          animationDuration: `${SCENE_MS}ms`,
+                          animationPlayState: playing ? 'running' : 'paused',
+                        }
+                      : undefined
+                  }
+                />
+              )}
+            </span>
+          ))}
         </div>
+        {hydrated && !reduced && (
+          // Keyboard and screen-reader users can stop the motion (WCAG 2.2.2);
+          // the control only becomes visible when focused.
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            className="sr-only rounded-full bg-surface px-3 py-1.5 text-[13px] font-medium focus-visible:not-sr-only focus-visible:absolute focus-visible:right-2 focus-visible:bottom-10 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          >
+            {paused ? 'Play animation' : 'Pause animation'}
+          </button>
+        )}
       </div>
     </div>
   )
@@ -343,7 +353,7 @@ function Phone({
                 className="absolute -right-3 -bottom-4 size-24 text-white/15"
                 strokeWidth={1.25}
               />
-              <span className="absolute top-2.5 left-3 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-medium text-white">
+              <span className="absolute top-2.5 left-3 rounded-full bg-black/25 px-2 py-0.5 text-[10px] font-medium text-white">
                 {industry.category}
               </span>
             </div>
@@ -412,7 +422,7 @@ function Phone({
             <div
               className={cn(
                 'mt-1.5 grid grid-cols-4 gap-1.5 px-3 transition-opacity duration-300',
-                chosenService ? 'opacity-100' : 'opacity-45',
+                chosenService ? 'opacity-100' : 'opacity-70',
               )}
             >
               {industry.times.map((t, i) => {
@@ -437,7 +447,7 @@ function Phone({
               <span
                 className={cn(
                   'grid h-10 place-items-center rounded-xl text-[12.5px] font-semibold transition-colors duration-300',
-                  chosenTime ? 'text-white' : 'bg-[#efece6] text-[#8a8378]',
+                  chosenTime ? 'text-white' : 'bg-[#efece6] text-[#5f5a51]',
                 )}
                 style={chosenTime ? { backgroundColor: scene.accent } : undefined}
               >

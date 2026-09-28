@@ -367,7 +367,7 @@ export function buildInsights(input: {
   if (outcomes >= 10 && c.no_show / outcomes >= 0.1) {
     out.push({
       tone: 'attention',
-      text: `${Math.round((c.no_show / outcomes) * 100)}% of appointments were no-shows. Reminders are on by default — consider adding a 2-hour reminder in Booking settings.`,
+      text: `${Math.round((c.no_show / outcomes) * 100)}% of appointments were no-shows. Reminders are on by default; consider adding a 2-hour reminder in Booking settings.`,
     })
   }
   if (c.total >= 10 && c.cancelled / c.total >= 0.2) {

@@ -66,8 +66,8 @@ export default function PrivacyPage() {
           </ul>
           <p>
             If you booked with a business and want to see, correct or delete your details, please
-            contact the business directly — it can do this from its dashboard. If you write to us,
-            we will forward your request to the business and help it respond.
+            contact the business directly; it can do this from its dashboard. If you write to us, we
+            will forward your request to the business and help it respond.
           </p>
         </>
       ),
@@ -80,7 +80,7 @@ export default function PrivacyPage() {
           <h3>Account data (we are controller)</h3>
           <ul>
             <li>Name, email address, whether the email is verified, language.</li>
-            <li>Your password, stored only as a salted one-way hash — we cannot read it.</li>
+            <li>Your password, stored only as a salted one-way hash, so we cannot read it.</li>
             <li>When and which version of our terms you accepted at sign-up.</li>
             <li>
               Sign-in sessions with IP address and browser type, to keep you signed in and protect
@@ -149,35 +149,35 @@ export default function PrivacyPage() {
       body: (
         <ul>
           <li>
-            <strong>Providing the service to businesses</strong> — accounts, booking pages,
-            calendar, customer lists, team features, exports and service emails (verification,
-            password reset, invitations, billing notices): necessary to perform our contract with
-            you (GDPR art. 6(1)(b)).
+            <strong>Providing the service to businesses:</strong> accounts, booking pages, calendar,
+            customer lists, team features, exports and service emails (verification, password reset,
+            invitations, billing notices): necessary to perform our contract with you (GDPR art.
+            6(1)(b)).
           </li>
           <li>
-            <strong>Processing customer and appointment data</strong> — only on the instructions of
+            <strong>Processing customer and appointment data:</strong> only on the instructions of
             the business, under the <Link href="/dpa">DPA</Link> (GDPR art. 28). The business is
             responsible for its own legal basis.
           </li>
           <li>
-            <strong>Billing, invoicing and accounting</strong> — contract (art. 6(1)(b)) and our
+            <strong>Billing, invoicing and accounting:</strong> contract (art. 6(1)(b)) and our
             legal obligations under Greek tax and accounting law (art. 6(1)(c)).
           </li>
           <li>
-            <strong>Security, fraud and abuse prevention</strong> — audit logs, rate limits and
+            <strong>Security, fraud and abuse prevention:</strong> audit logs, rate limits and
             server logs: our legitimate interest in keeping the service and its users safe (art.
             6(1)(f)).
           </li>
           <li>
-            <strong>Support</strong> — answering your messages: contract or, if you are not a
+            <strong>Support:</strong> answering your messages: contract or, if you are not a
             customer, our legitimate interest in responding (art. 6(1)(b) or (f)).
           </li>
           <li>
-            <strong>Improving {site.name}</strong> — using aggregated, non-identifying information
+            <strong>Improving {site.name}:</strong> using aggregated, non-identifying information
             about how features are used: our legitimate interest (art. 6(1)(f)).
           </li>
           <li>
-            <strong>Legal claims and requests from authorities</strong> — where necessary to
+            <strong>Legal claims and requests from authorities:</strong> where necessary to
             establish, exercise or defend legal claims or comply with the law (art. 6(1)(c) and
             (f)).
           </li>
@@ -222,8 +222,8 @@ export default function PrivacyPage() {
         <p>
           Some of our providers are based in the United States or may access data from there. Where
           personal data is transferred outside the European Economic Area, we rely on an adequacy
-          decision of the European Commission — for providers certified under the EU–U.S. Data
-          Privacy Framework — or on the European Commission’s Standard Contractual Clauses, together
+          decision of the European Commission (for providers certified under the EU–U.S. Data
+          Privacy Framework) or on the European Commission’s Standard Contractual Clauses, together
           with the additional safeguards our providers offer, such as encryption in transit and at
           rest. You can ask us for more information about these safeguards.
         </p>
@@ -268,7 +268,7 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Invoices and billing records</strong>: for as long as Greek tax and accounting
-            law requires — generally five years from the end of the tax year, longer if the law
+            law requires: generally five years from the end of the tax year, longer if the law
             extends that period.
           </li>
           <li>
@@ -407,7 +407,7 @@ export default function PrivacyPage() {
       intro={
         <p>
           How {site.name} handles personal data under the EU General Data Protection Regulation
-          (GDPR) and Greek law 4624/2019 — whether you run a business on {site.name} or booked an
+          (GDPR) and Greek law 4624/2019, whether you run a business on {site.name} or booked an
           appointment with one.
         </p>
       }

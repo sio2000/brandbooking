@@ -603,7 +603,7 @@ function BlocksCard(p: Props) {
     <Card>
       <CardHeader
         title="Blocked time"
-        description="Block part of a day — a meeting, an errand, a delivery. Existing bookings aren’t affected."
+        description="Block part of a day for a meeting, an errand or a delivery. Existing bookings aren’t affected."
       />
       <CardBody className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <form

@@ -62,7 +62,7 @@ export function EmailSettingsForm({
               htmlFor="emailFooter"
               error={e.emailFooter}
               optional
-              hint={`A short note at the bottom of every email — e.g. parking tips or your cancellation policy. ${v.emailFooter.length}/500`}
+              hint={`A short note at the bottom of every email, e.g. parking tips or your cancellation policy. ${v.emailFooter.length}/500`}
             >
               <Textarea
                 name="emailFooter"
@@ -113,7 +113,7 @@ export function EmailSettingsForm({
           <div className="lg:col-span-2">
             <Alert tone="info" title="Why emails come from Hournook’s address">
               To keep your emails out of spam folders, they’re sent from Hournook’s verified address
-              with your business name as the sender — we never pretend to send from your own domain.
+              with your business name as the sender. We never pretend to send from your own domain.
               When customers hit reply, their message goes straight to{' '}
               {businessEmail ? <strong>{businessEmail}</strong> : 'your business email'}.
               {!businessEmail && (

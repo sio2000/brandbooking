@@ -204,7 +204,7 @@ function NewAppointmentForm({
             label="Start time"
             htmlFor="na-time"
             error={errors.time ?? errors.startMinute}
-            hint="Any time works — you can book outside opening hours."
+            hint="Any time works, even outside opening hours."
           >
             <Input type="time" step={300} value={time} onChange={(e) => setTime(e.target.value)} />
           </Field>

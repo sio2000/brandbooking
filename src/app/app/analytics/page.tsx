@@ -63,7 +63,7 @@ export default async function AnalyticsPage({ searchParams }: PageProps<'/app/an
     <PageContainer wide>
       <PageHeader
         title="Analytics"
-        description="How your bookings, customers and calendar are doing — and what changed since the previous period."
+        description="How your bookings, customers and calendar are doing, and what changed since the previous period."
         actions={
           <Button asChild variant="secondary">
             <Link href={`/app/reports?month=${range.to.slice(0, 7)}`}>

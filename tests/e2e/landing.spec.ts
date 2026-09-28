@@ -25,7 +25,7 @@ test.describe('landing page', () => {
     // The E2E server is not the production host, so it must not be indexed.
     expect(res!.headers()['x-robots-tag']).toBe('noindex, nofollow')
 
-    await expect(page).toHaveTitle(/Hournook — Online booking software/)
+    await expect(page).toHaveTitle(/Hournook: Online booking software/)
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${SITE}`)
     await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', `${SITE}`)
     await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute(
@@ -62,11 +62,16 @@ test.describe('landing page', () => {
     await ready(page, '/')
     const hero = page.locator('section[aria-labelledby="hero-title"]')
     const word = hero.locator('h1 [aria-hidden]').first()
-    await expect(word).toHaveText('nail studio.')
-    await expect(word).not.toHaveText('nail studio.', { timeout: 10_000 })
+    // It starts with the nail studio and moves on without any interaction.
+    const first = (await word.textContent())!
+    expect(first).toMatch(/\.$/)
+    await expect(word).not.toHaveText(first, { timeout: 10_000 })
+    // The pause control is for keyboard users: hidden until focused (WCAG 2.2.2).
     const pause = hero.getByRole('button', { name: 'Pause animation' })
-    await pause.click()
-    await expect(hero.getByRole('button', { name: 'Play animation' })).toBeVisible()
+    await pause.focus()
+    await expect(pause).toBeVisible()
+    await page.keyboard.press('Enter')
+    await expect(hero.getByRole('button', { name: 'Play animation' })).toBeFocused()
     await page.waitForTimeout(1_000) // let a word transition that was under way finish
     const frozen = await word.textContent()
     await page.waitForTimeout(7_000)

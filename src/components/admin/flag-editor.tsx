@@ -138,7 +138,7 @@ function FlagForm({ flag, onSaved }: { flag?: FlagValue; onSaved: () => void }) 
             description={
               enabled
                 ? 'On for every business. The allowlist below has no extra effect.'
-                : 'Off globally — only allowlisted businesses get it.'
+                : 'Off globally. Only allowlisted businesses get it.'
             }
             checked={enabled}
             onCheckedChange={setEnabled}

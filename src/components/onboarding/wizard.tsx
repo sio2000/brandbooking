@@ -10,6 +10,7 @@ import {
   Check,
   ExternalLink,
   ImageUp,
+  LogOut,
   MailWarning,
   Plus,
   Trash2,
@@ -20,6 +21,14 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input, InputGroup, NativeSelect } from '@/components/ui/input'
 import { Checkbox, RadioCard, RadioGroup, SwitchRow } from '@/components/ui/controls'
 import { Alert } from '@/components/ui/feedback'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/menu'
+import { DeleteAccountForm } from '@/components/settings/account-settings'
 import { toast } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import { formatDuration } from '@/lib/format'
@@ -39,7 +48,7 @@ import {
 } from '@/app/onboarding/actions'
 import { saveWeeklyHoursAction } from '@/app/app/_actions/availability'
 import { brandingAction, uploadImageAction } from '@/app/app/_actions/booking-page'
-import { resendVerificationAction } from '@/app/(auth)/actions'
+import { resendVerificationAction, signOutAction } from '@/app/(auth)/actions'
 
 const STEPS = [
   'Your business',
@@ -109,14 +118,14 @@ export function OnboardingWizard({
     <div className="min-h-dvh bg-background">
       <header className="mx-auto flex max-w-3xl items-center justify-between px-5 py-5">
         <Logo />
-        {biz && (
-          <Link
-            href="/app"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground"
-          >
-            Finish later
-          </Link>
-        )}
+        <div className="flex items-center gap-4 text-sm font-medium text-muted-foreground">
+          {biz && (
+            <Link href="/app" className="hover:text-foreground">
+              Finish later
+            </Link>
+          )}
+          <OnboardingAccountMenu />
+        </div>
       </header>
       <main className="mx-auto max-w-2xl px-5 pb-20">
         {step <= STEPS.length && (
@@ -631,7 +640,7 @@ function StepServices({
     >
       <Heading
         title="What can customers book?"
-        subtitle="Add the services you offer. Customers pick the one they want — you can fine-tune everything later."
+        subtitle="Add the services you offer. Customers pick the one they want, and you can fine-tune everything later."
       />
       <FormError message={formError} />
 
@@ -795,7 +804,7 @@ function StepRules({ onBack, onDone }: { onBack: () => void; onDone: () => void 
     >
       <Heading
         title="How should booking work?"
-        subtitle="Sensible defaults — change anything later in Settings → Booking."
+        subtitle="Sensible defaults. Change anything later in Settings → Booking."
       />
       <FormError message={error} />
       <div className="grid gap-6">
@@ -879,7 +888,7 @@ function StepBranding({ onBack, onDone }: { onBack: () => void; onDone: () => vo
     >
       <Heading
         title="Make it yours"
-        subtitle="Add your logo and pick a colour. Optional — you can skip this."
+        subtitle="Add your logo and pick a colour. Optional, you can skip this."
       />
       <div className="grid gap-6">
         <div className="flex items-center gap-4">
@@ -1003,7 +1012,7 @@ function StepPublish({
                   const r = await resendVerificationAction()
                   if (r.ok) {
                     setSent(true)
-                    toast.success('Sent — check your inbox')
+                    toast.success('Sent. Check your inbox')
                   } else toast.error(r.error)
                 }}
               >
@@ -1046,7 +1055,7 @@ function Done({
       <SuccessCheck />
       <h1 className="mt-6 text-3xl font-bold">Your booking page is live.</h1>
       <p className="mt-2 max-w-md text-muted-foreground">
-        Share your link and let customers book {biz.name} any time — you’ll get an email for every
+        Share your link and let customers book {biz.name} any time. You’ll get an email for every
         new booking.
       </p>
       <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-2xl border border-border bg-surface p-2 pl-4">
@@ -1069,5 +1078,36 @@ function Done({
         </Button>
       </div>
     </div>
+  )
+}
+
+/** Sign out or delete the account, even before a business exists. */
+function OnboardingAccountMenu() {
+  const [deleting, setDeleting] = React.useState(false)
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="rounded-md hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+          Account
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onSelect={() => void signOutAction()}>
+            <LogOut /> Sign out
+          </DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => setDeleting(true)} className="text-danger">
+            <Trash2 /> Delete account…
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <Dialog open={deleting} onOpenChange={setDeleting}>
+        <DialogContent
+          title="Delete your account?"
+          description="Enter your password to confirm. This can’t be undone."
+          size="sm"
+        >
+          <DeleteAccountForm onCancel={() => setDeleting(false)} />
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }

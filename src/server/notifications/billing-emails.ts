@@ -1,4 +1,5 @@
 import 'server-only'
+import { absoluteUrl } from '@/lib/site'
 import { eq } from 'drizzle-orm'
 import { db } from '@/server/db/client'
 import { businesses } from '@/server/db/schema'
@@ -28,7 +29,7 @@ export async function renderBillingEmail(
     },
     billing_subscription_active: {
       subject: `Your Hournook subscription is active`,
-      heading: 'Thanks — you’re all set',
+      heading: 'Thanks, you’re all set',
       text: `Your subscription for ${b.name} is active. Your booking page will keep accepting bookings without interruption.`,
       cta: 'View billing',
     },
@@ -44,12 +45,13 @@ export async function renderBillingEmail(
   const { html, text } = renderEmail({
     preheader: c.subject,
     brandName: 'Hournook',
+    logoUrl: absoluteUrl('/brand/wordmark.png'),
     blocks: [
       { type: 'heading', text: c.heading },
       { type: 'text', text: c.text },
       { type: 'button', label: c.cta, url: billingUrl },
     ],
-    footer: 'Hournook — online booking for small businesses.',
+    footer: 'Hournook, online booking for small businesses.',
   })
   return { message: { to: recipient, subject: c.subject, html, text } }
 }

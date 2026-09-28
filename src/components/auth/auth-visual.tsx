@@ -60,7 +60,7 @@ export function AuthVisual() {
         </motion.div>
       </div>
       <p className="absolute right-0 bottom-16 left-0 text-center text-sm text-muted-foreground">
-        Your booking page works around the clock — you just show up.
+        Your booking page works around the clock. You just show up.
       </p>
     </div>
   )

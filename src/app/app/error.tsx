@@ -18,7 +18,7 @@ export default function DashboardError({
         </div>
         <h1 className="mt-4 text-xl font-bold">We couldn’t load this page</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Your bookings and data are safe. Try again — if the problem continues, contact support and
+          Your bookings and data are safe. Try again. If the problem continues, contact support and
           mention the reference.
         </p>
         {error.digest && (

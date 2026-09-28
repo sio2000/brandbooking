@@ -41,10 +41,11 @@ export default function LegalNoticePage() {
           </Row>
           <Row label="Legal form">Sole proprietorship (ατομική επιχείρηση), Greece</Row>
           <Row label="Trading as">
-            {company.tradingName} — {site.name} is a product of {company.tradingName}
+            {company.tradingName} ({site.name} is a product of {company.tradingName})
           </Row>
           <Row label="Address">
-            {company.address.street}, {company.address.city}, {company.address.country}
+            {company.address.street}, {company.address.postalCode} {company.address.city},{' '}
+            {company.address.country}
           </Row>
           <Row label="Email">
             <ContactEmail />
@@ -76,17 +77,17 @@ export default function LegalNoticePage() {
       body: (
         <ul>
           <li>
-            <Link href="/terms">Terms of service</Link> — the agreement with businesses using{' '}
+            <Link href="/terms">Terms of service</Link>: the agreement with businesses using{' '}
             {site.name}.
           </li>
           <li>
-            <Link href="/dpa">Data processing agreement</Link> — part of the terms; GDPR article 28.
+            <Link href="/dpa">Data processing agreement</Link>: part of the terms, GDPR article 28.
           </li>
           <li>
-            <Link href="/privacy">Privacy policy</Link> — how we process personal data.
+            <Link href="/privacy">Privacy policy</Link>: how we process personal data.
           </li>
           <li>
-            <Link href="/cookies">Cookie policy</Link> — the only cookies we use.
+            <Link href="/cookies">Cookie policy</Link>: the only cookies we use.
           </li>
         </ul>
       ),
@@ -98,7 +99,7 @@ export default function LegalNoticePage() {
         <p>
           {site.name} is offered to businesses only. We are neither obliged nor willing to take part
           in dispute resolution proceedings before a consumer arbitration board. If you have a
-          complaint, please email us first — we will do our best to resolve it.
+          complaint, please email us first and we will do our best to resolve it.
         </p>
       ),
     },

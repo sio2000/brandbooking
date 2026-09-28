@@ -94,10 +94,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             <p>
               © {year} {site.name}, a product of {company.tradingName}. All rights reserved.
             </p>
-            <p>
-              {company.legalName} · VAT {company.vatNumber} · {company.address.city},{' '}
-              {company.address.country}
-            </p>
+            <p>{site.tagline}</p>
           </div>
         </Container>
       </footer>

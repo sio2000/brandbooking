@@ -62,7 +62,7 @@ export function currencyOptions(current: string): Option[] {
     CURRENCY_CODES.includes(current) || !/^[A-Z]{3}$/.test(current)
       ? CURRENCY_CODES
       : [...CURRENCY_CODES, current]
-  return codes.map((c) => ({ value: c, label: `${c} — ${names?.of(c) ?? c}` }))
+  return codes.map((c) => ({ value: c, label: `${c} · ${names?.of(c) ?? c}` }))
 }
 
 function offsetLabel(tz: string, at: Date) {

@@ -16,7 +16,7 @@ export const en = {
     rate_limited: 'Too many attempts. Please wait a moment and try again.',
     conflict: 'This was changed by someone else. Refresh and try again.',
     internal:
-      'Something unexpected happened on our side. Please try again — if it keeps happening, contact support.',
+      'Something unexpected happened on our side. Please try again. If it keeps happening, contact support.',
     invalid_credentials: "That email and password don't match. Check them and try again.",
     account_locked:
       'Too many failed sign-in attempts. For your security, sign-in is paused for 15 minutes.',
@@ -59,7 +59,7 @@ export const en = {
     anyStaff: 'Any available',
     anyStaffHint: 'We’ll match you with whoever is free.',
     noSlots: 'No free times on this day.',
-    noSlotsHint: 'Try another date — days with availability are highlighted.',
+    noSlotsHint: 'Try another date. Days with availability are highlighted.',
     timesShownIn: 'Times shown in {tz}',
     confirmTitle: 'You’re booked!',
     pendingTitle: 'Request received',

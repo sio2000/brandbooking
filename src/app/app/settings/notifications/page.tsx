@@ -24,7 +24,7 @@ export default async function NotificationSettingsPage() {
       <section>
         <SettingsIntro
           title="Your notifications"
-          description="Choose what we tell you about. This only affects you — each team member sets their own."
+          description="Choose what we tell you about. This only affects you; each team member sets their own."
         />
         <MyNotificationPrefs
           role={ctx.membership.role}

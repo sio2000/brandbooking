@@ -249,7 +249,7 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
               )}
               {!c.email && (
                 <p className="text-[13px] text-muted-foreground">
-                  No email on file — this customer won’t receive confirmations or reminders.
+                  No email on file, so this customer won’t receive confirmations or reminders.
                 </p>
               )}
             </CardBody>

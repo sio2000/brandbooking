@@ -37,7 +37,7 @@ export const metadata: Metadata = { title: 'Billing' }
 const INCLUDED = [
   'Your own booking page, QR code & website widget',
   'Unlimited bookings, customers and services',
-  'Your whole team — no per-seat fees',
+  'Your whole team, no per-seat fees',
   'Calendar, availability, holidays and time off',
   'Email confirmations and automatic reminders',
   'Analytics, exports and activity log',
@@ -81,7 +81,7 @@ function describe(
         badge: { tone: 'warning', label: 'Ends soon' },
         icon: CalendarClock,
         title: `Your subscription ends on ${date(sub.currentPeriodEnd) ?? 'the end of this period'}`,
-        body: 'You won’t be charged again. Everything keeps working until then — after that your booking page stops taking new bookings. Changed your mind? You can resume in the billing portal.',
+        body: 'You won’t be charged again. Everything keeps working until then; after that your booking page stops taking new bookings. Changed your mind? You can resume in the billing portal.',
         alert: 'warning',
         cta: 'portal',
       }
@@ -121,7 +121,7 @@ function describe(
       badge: { tone: 'primary', label: 'Free trial' },
       icon: Hourglass,
       title: `${days} day${days === 1 ? '' : 's'} left in your free trial`,
-      body: `Your trial ends on ${date(trialEndsAt)}. Subscribe any time — if there are more than two days left, they carry over and your first payment is taken when the trial ends.`,
+      body: `Your trial ends on ${date(trialEndsAt)}. Subscribe any time. If there are more than two days left, they carry over and your first payment is taken when the trial ends.`,
       cta: 'checkout',
     }
   }
@@ -141,7 +141,7 @@ function describe(
       badge: { tone: 'neutral', label: 'Cancelled' },
       icon: Info,
       title: 'Your subscription has ended',
-      body: `Your booking page isn’t taking new bookings. All your data is still here — subscribe again to reopen it instantly.`,
+      body: `Your booking page isn’t taking new bookings. All your data is still here. Subscribe again to reopen it instantly.`,
       alert: 'warning',
       cta: 'checkout',
     }
@@ -168,7 +168,7 @@ function Invoices({ invoices, tz }: { invoices: InvoiceSummary[] | null; tz: str
   if (invoices === null) {
     return (
       <Alert tone="warning" title="Invoices are unavailable right now">
-        We couldn’t reach Stripe to load your invoices. Try again in a moment — your subscription
+        We couldn’t reach Stripe to load your invoices. Try again in a moment; your subscription
         isn’t affected.
       </Alert>
     )
@@ -245,18 +245,18 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
 
       {checkout === 'success' &&
         (access.state === 'active' ? (
-          <Alert tone="success" title="Thanks — you’re all set!" className="mb-6">
+          <Alert tone="success" title="Thanks, you’re all set!" className="mb-6">
             Your subscription is active. A receipt is on its way to your inbox.
           </Alert>
         ) : (
           <Alert tone="info" className="mb-6" action={<RefreshButton />}>
-            Thanks! Your subscription will activate as soon as Stripe confirms the payment — usually
+            Thanks! Your subscription will activate as soon as Stripe confirms the payment, usually
             within seconds. Refresh if it doesn’t update.
           </Alert>
         ))}
       {checkout === 'cancelled' && (
         <Alert tone="info" title="Checkout cancelled" className="mb-6">
-          No worries — you haven’t been charged.
+          No worries, you haven’t been charged.
           {access.state === 'trial' ? ' Your free trial continues as normal.' : ''}
         </Alert>
       )}
@@ -331,7 +331,7 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
                   <div className="flex flex-wrap gap-2">
                     {status.cta === 'checkout' && !inPortal && (
                       <StripeButton kind="checkout" size="lg" className="w-full sm:w-auto">
-                        <CreditCard /> Subscribe — {site.price.display}/{site.price.period}
+                        <CreditCard /> Subscribe for {site.price.display}/{site.price.period}
                       </StripeButton>
                     )}
                     {inPortal &&
@@ -477,7 +477,7 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
                   <span>
                     <span className="font-medium">Your data stays yours.</span>{' '}
                     <span className="text-muted-foreground">
-                      If your plan lapses, nothing is deleted — you can still sign in and export.
+                      If your plan lapses, nothing is deleted. You can still sign in and export.
                     </span>
                   </span>
                 </li>

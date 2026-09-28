@@ -115,7 +115,7 @@ export function SuspendBusiness({
           hint={
             suspending
               ? 'Visible to other admins in the audit log. Don’t include customer details.'
-              : 'Optional — recorded in the audit log.'
+              : 'Optional. Recorded in the audit log.'
           }
         >
           <Textarea

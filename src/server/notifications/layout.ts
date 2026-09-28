@@ -100,7 +100,7 @@ function blockText(b: EmailBlock): string {
 export function renderEmail(layout: EmailLayout): { html: string; text: string } {
   const color = /^#[0-9a-fA-F]{6}$/.test(layout.brandColor ?? '') ? layout.brandColor! : '#0f766e'
   const header = layout.logoUrl
-    ? `<img src="${esc(safeUrl(layout.logoUrl))}" alt="${esc(layout.brandName)}" height="40" style="height:40px;max-width:200px;border-radius:8px;display:block;">`
+    ? `<img src="${esc(safeUrl(layout.logoUrl))}" alt="${esc(layout.brandName)}" height="40" style="height:40px;max-width:220px;border-radius:8px;display:block;">`
     : `<span style="font-size:17px;font-weight:700;color:${INK};">${esc(layout.brandName)}</span>`
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(layout.preheader)}</title></head>

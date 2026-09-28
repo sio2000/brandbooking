@@ -181,7 +181,7 @@ export default async function PrivacySettingsPage() {
           <p className="mt-4 flex items-start gap-2 text-[13px] leading-relaxed text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
             <span>
-              Card payments for your subscription are handled by Stripe — we never see or store card
+              Card payments for your subscription are handled by Stripe. We never see or store card
               numbers. Read the full{' '}
               <Link href="/privacy" className="font-medium text-primary hover:underline">
                 privacy policy
@@ -203,8 +203,8 @@ export default async function PrivacySettingsPage() {
               <FileSpreadsheet className="size-4 text-primary" aria-hidden /> Access requests
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-              Open the customer’s page to see everything stored about them — details, notes and
-              every appointment — and share it with them.
+              Open the customer’s page to see everything stored about them (details, notes and every
+              appointment) and share it with them.
             </p>
           </div>
           <div className="rounded-xl border border-border p-4">

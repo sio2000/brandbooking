@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 import { site } from '@/lib/site'
 
 /** Social sharing card (Open Graph + X). Static: rendered once at build. */
-export const alt = `${site.name} — online booking software for businesses that run on appointments`
+export const alt = `${site.name}: online booking software for businesses that run on appointments`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -23,21 +23,21 @@ export default function OpenGraphImage() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-        <svg width="56" height="56" viewBox="0 0 32 32">
+        <svg width="60" height="60" viewBox="0 0 32 32">
+          <rect x="1" y="1" width="30" height="30" rx="9" fill="#4fd1bd" />
           <path
-            d="M5 26.5V14.5C5 8.425 9.925 3.5 16 3.5s11 4.925 11 11v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"
-            fill="#4fd1bd"
-          />
-          <path
-            d="M16 10.5v6.2l4.6 3.6"
+            d="M10.5 7.5v17M10.5 17a5.5 5.5 0 0 1 11 0v7.5"
             fill="none"
             stroke="#161513"
-            strokeWidth="2.6"
+            strokeWidth="3.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+          <circle cx="16" cy="21.4" r="2.35" fill="#ee8a4f" />
         </svg>
-        <span style={{ fontSize: 40, fontWeight: 700, letterSpacing: -1.5 }}>hournook</span>
+        <span style={{ display: 'flex', fontSize: 42, fontWeight: 700, letterSpacing: -1.5 }}>
+          hour<span style={{ color: '#4fd1bd' }}>nook</span>
+        </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
         <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.02, letterSpacing: -3 }}>

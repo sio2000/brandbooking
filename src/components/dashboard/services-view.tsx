@@ -106,7 +106,7 @@ export function ServicesView({
     if (r.ok) {
       toast.success(
         patch.isActive === false
-          ? 'Service paused — it can’t be booked'
+          ? 'Service paused. It can’t be booked'
           : patch.isActive
             ? 'Service active again'
             : 'Saved',
@@ -518,7 +518,7 @@ function ServiceForm({
           ))}
           {v.staffIds.length === 0 && staff.length > 0 && (
             <p className="text-[13px] text-warning">
-              Nobody is assigned — customers won’t be able to book this service.
+              Nobody is assigned, so customers won’t be able to book this service.
             </p>
           )}
         </fieldset>

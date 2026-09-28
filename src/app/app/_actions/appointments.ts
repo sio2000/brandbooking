@@ -46,7 +46,7 @@ export async function rescheduleAction(input: unknown) {
     )
     refresh(appt.id)
     return { id: appt.id, startsAt: appt.startsAt.toISOString() }
-  }, 'Appointment moved — the customer has been notified')
+  }, 'Appointment moved. The customer has been notified')
 }
 
 const transitionSchema = z.object({

@@ -9,6 +9,7 @@ export const company = {
   tradingName: 'DevTaskHub.com',
   address: {
     street: 'Markou Mpotsari 83',
+    postalCode: '546 44',
     city: 'Thessaloniki',
     country: 'Greece',
   },
@@ -20,7 +21,7 @@ export const company = {
   website: 'https://devtaskhub.com',
 } as const
 
-export const companyAddress = `${company.address.street}, ${company.address.city}, ${company.address.country}`
+export const companyAddress = `${company.address.street}, ${company.address.postalCode} ${company.address.city}, ${company.address.country}`
 
 /**
  * Version of the Terms of Service / DPA / Privacy Policy. Recorded against each

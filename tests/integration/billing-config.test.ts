@@ -77,9 +77,28 @@ describe('plan price', () => {
       unit_amount: 1000,
       lookup_key: PRICE_LOOKUP_KEY,
       recurring: { interval: 'month', interval_count: 1 },
+      tax_behavior: 'inclusive',
     })
     expect(await planPriceId()).toBe('price_existing')
     expect(creates('/v1/prices')).toBe(0)
+  })
+
+  it('replaces a price that would add VAT on top (the €10 includes VAT)', async () => {
+    fake.state.prices.push({
+      id: 'price_exclusive',
+      object: 'price',
+      active: true,
+      currency: 'eur',
+      unit_amount: 1000,
+      lookup_key: PRICE_LOOKUP_KEY,
+      recurring: { interval: 'month', interval_count: 1 },
+      tax_behavior: 'unspecified',
+    })
+    const id = await planPriceId()
+    expect(id).not.toBe('price_exclusive')
+    const req = fake.requests.find((r) => r.method === 'POST' && r.path === '/v1/prices')!
+    expect(req.params.get('tax_behavior')).toBe('inclusive')
+    expect(req.params.get('unit_amount')).toBe('1000')
   })
 
   it('replaces a price whose amount no longer matches the plan', async () => {

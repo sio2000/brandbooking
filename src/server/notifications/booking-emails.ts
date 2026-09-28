@@ -126,7 +126,7 @@ function manageUrl(a: Appointment) {
 function calendarLinks(d: Loaded) {
   const a = d.appt
   const ev = {
-    title: `${d.serviceName} — ${d.business.name}`,
+    title: `${d.serviceName} at ${d.business.name}`,
     start: a.startsAt,
     end: a.endsAt,
     location: address(d.business),
@@ -208,15 +208,15 @@ export async function renderBookingEmail(
         message: await customerEmail(
           d,
           pending
-            ? `Booking request received — ${b.name}`
-            : `Booking confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+            ? `Booking request received: ${b.name}`
+            : `Booking confirmed: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
           pending
             ? `${b.name} will confirm your request shortly.`
             : `See you on ${formatDateLong(a.startsAt, a.timezone, b.locale)}.`,
           [
             {
               type: 'heading',
-              text: pending ? `Thanks, ${first} — request received` : `You're booked, ${first}!`,
+              text: pending ? `Thanks, ${first}. Request received` : `You're booked, ${first}!`,
             },
             {
               type: 'text',
@@ -237,13 +237,13 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          `Confirmed: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
           `${b.name} confirmed your booking.`,
           [
             { type: 'heading', text: 'Your booking is confirmed' },
             {
               type: 'text',
-              text: `Good news, ${first} — ${b.name} has confirmed your appointment.`,
+              text: `Good news, ${first}! ${b.name} has confirmed your appointment.`,
             },
             { type: 'details', rows: detailRows(d) },
             { type: 'button', label: messages.email.manageCta, url: manage },
@@ -285,7 +285,7 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Rescheduled — ${d.serviceName} now ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          `Rescheduled: ${d.serviceName} now ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
           'Your appointment has a new time.',
           [
             { type: 'heading', text: 'Your appointment has moved' },
@@ -320,7 +320,7 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Cancelled — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          `Cancelled: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
           'Your appointment has been cancelled.',
           [
             { type: 'heading', text: 'Appointment cancelled' },

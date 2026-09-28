@@ -89,6 +89,7 @@ export async function startFakeStripe() {
           unit_amount: Number(params.get('unit_amount')),
           lookup_key: params.get('lookup_key'),
           recurring: { interval: params.get('recurring[interval]'), interval_count: 1 },
+          tax_behavior: params.get('tax_behavior') ?? 'unspecified',
         }
         state.prices.unshift(price)
         return json(200, price)

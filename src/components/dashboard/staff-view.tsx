@@ -334,7 +334,7 @@ function StaffForm({
           <SwitchRow
             id="st-active"
             label="Bookable"
-            description="Turn off during long absences — existing appointments stay."
+            description="Turn off during long absences. Existing appointments stay."
             checked={v.isActive}
             onCheckedChange={(c) => setV({ ...v, isActive: c })}
           />
