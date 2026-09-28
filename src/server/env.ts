@@ -23,7 +23,13 @@ const EnvSchema = z
       .default(() => process.env.NEXT_PUBLIC_APP_URL || process.env.URL || 'http://localhost:3000'),
     // Netlify DB (Neon) exposes NETLIFY_DATABASE_URL.
     DATABASE_URL: z.preprocess(
-      (v) => v || process.env.NETLIFY_DATABASE_URL,
+      // Tolerate whitespace/quotes pasted into hosting dashboards.
+      (v) =>
+        String(v || process.env.NETLIFY_DATABASE_URL || '')
+          .trim()
+          .replace(/^psql\s+/, '')
+          .replace(/^(['"])(.*)\1$/, '$2')
+          .trim() || undefined,
       z.string({ error: 'DATABASE_URL is required' }).min(1, 'DATABASE_URL is required'),
     ),
     DATABASE_POOL_MAX: z.coerce.number().int().min(1).max(100).default(10),
@@ -87,26 +93,27 @@ const EnvSchema = z
     LEGAL_CONTACT_EMAIL: z.email().optional(),
   })
   .superRefine((env, ctx) => {
+    // Stripe safety lock: only TEST MODE keys are accepted — on developer
+    // machines, CI and every deployment — until live mode is deliberately
+    // switched on at go-live with STRIPE_LIVE_MODE=enabled.
+    if (process.env.STRIPE_LIVE_MODE !== 'enabled') {
+      for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
+        if (/^(sk|rk|pk)_live_/.test(env[key] ?? '')) {
+          ctx.addIssue({
+            code: 'custom',
+            path: [key],
+            message: `${key} is a live-mode key; only Stripe test-mode keys are accepted until STRIPE_LIVE_MODE=enabled is set`,
+          })
+        }
+      }
+    }
     // Hosted production deploys (Netlify/Vercel) may run build-time scripts
     // without NODE_ENV=production.
     const productionDeploy =
       env.NODE_ENV === 'production' ||
       process.env.CONTEXT === 'production' ||
       process.env.VERCEL_ENV === 'production'
-    if (!productionDeploy) {
-      // Safety net: outside production only Stripe TEST MODE keys are accepted,
-      // so a developer machine or CI run can never create real charges.
-      for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
-        if (/^(sk|rk|pk)_live_/.test(env[key] ?? '')) {
-          ctx.addIssue({
-            code: 'custom',
-            path: [key],
-            message: `${key} is a live-mode key; only test-mode keys are allowed outside production`,
-          })
-        }
-      }
-      return
-    }
+    if (!productionDeploy) return
     const need = (key: keyof typeof env, when = true) => {
       if (when && !env[key]) {
         ctx.addIssue({ code: 'custom', path: [key], message: `${key} is required in production` })

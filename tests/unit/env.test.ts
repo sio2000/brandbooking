@@ -22,6 +22,7 @@ const KEYS = [
   'CRON_SECRET',
   'ALLOW_LOG_EMAIL_IN_PRODUCTION',
   'ALLOW_LOCAL_STORAGE_IN_PRODUCTION',
+  'STRIPE_LIVE_MODE',
 ] as const
 let saved: Record<string, string | undefined>
 // Writable view (NODE_ENV is typed read-only).
@@ -51,7 +52,7 @@ const prodBasics = () => {
 }
 
 describe('Stripe key safety', () => {
-  it('refuses live-mode keys outside production', () => {
+  it('refuses live-mode keys by default', () => {
     E.STRIPE_SECRET_KEY = 'sk_live_abc'
     expect(() => env()).toThrow(/live-mode key/)
     resetEnvCache()
@@ -60,19 +61,31 @@ describe('Stripe key safety', () => {
     expect(() => env()).toThrow(/STRIPE_PUBLISHABLE_KEY/)
   })
 
-  it('accepts test-mode keys, and live keys on a production deploy', () => {
+  it('accepts test-mode keys everywhere', () => {
     E.STRIPE_SECRET_KEY = 'sk_test_abc'
     expect(isStripeConfigured()).toBe(true)
     resetEnvCache()
     prodBasics()
+    E.STRIPE_SECRET_KEY = 'sk_test_abc'
+    expect(isStripeConfigured()).toBe(true)
+  })
+
+  it('refuses live keys on production deploys too, until live mode is explicitly enabled', () => {
+    prodBasics()
     E.STRIPE_SECRET_KEY = 'sk_live_abc'
+    expect(() => env()).toThrow(/only Stripe test-mode keys are accepted/)
+    resetEnvCache()
+    E.CONTEXT = 'production'
+    E.STRIPE_LIVE_MODE = 'true' // only the exact opt-in value counts
+    expect(() => env()).toThrow(/live-mode key/)
+    resetEnvCache()
+    E.STRIPE_LIVE_MODE = 'enabled'
     expect(isStripeConfigured()).toBe(true)
   })
 
   it('treats a Netlify production build context as production', () => {
     E.CONTEXT = 'production'
-    E.STRIPE_SECRET_KEY = 'sk_live_abc'
-    // Production rules apply (so missing secrets are reported), not the live-key guard.
+    // Production rules apply, so missing secrets are reported.
     expect(() => env()).toThrow(/CRON_SECRET is required/)
   })
 

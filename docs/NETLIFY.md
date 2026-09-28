@@ -37,6 +37,13 @@ Functions). Minimum set:
 | `RESEND_API_KEY`        | from resend.com — **or** `ALLOW_LOG_EMAIL_IN_PRODUCTION=1` for a trial (emails appear in the function logs) |
 | `PLATFORM_ADMIN_EMAILS` | your email address — becomes platform admin once verified                                                   |
 
+Stripe stays in **test mode**: live keys (`sk_live_…`) are refused unless
+`STRIPE_LIVE_MODE=enabled` is also set, which is reserved for go-live day.
+
+If the build fails with a database error, the log names the variable at fault
+(`[hournook] … is not a valid connection string`) without printing its value.
+Values are trimmed and stray quotes removed automatically.
+
 Generate secrets with
 `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"`.
 

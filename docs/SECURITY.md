@@ -113,9 +113,10 @@ validated against path traversal; `/media/*` responses send `nosniff`.
 
 - Only the server holds `STRIPE_SECRET_KEY`; the browser receives Stripe-hosted
   Checkout/Portal URLs only. Card data never touches Hournook (PCI scope SAQ A).
-- Outside `NODE_ENV=production`, the app refuses live-mode keys
-  (`sk_live_`, `rk_live_`, `pk_live_`), so development and CI can only use
-  Stripe **test mode**.
+- **Test mode lock**: the app refuses live-mode keys (`sk_live_`, `rk_live_`,
+  `pk_live_`) on every environment — development, CI and deployed sites —
+  unless `STRIPE_LIVE_MODE=enabled` is set, so no real charge is possible
+  until live mode is switched on deliberately at go-live.
 - Access is granted **only** from verified webhooks: signature checked on the
   raw request body with a 5-minute tolerance, event ids recorded for idempotency
   (duplicate deliveries are no-ops), out-of-order updates ignored by event time.

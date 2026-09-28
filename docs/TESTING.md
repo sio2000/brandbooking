@@ -13,7 +13,7 @@ Safety rails: the integration global setup refuses any database whose name
 doesn't end in `_test`, and the E2E setup refuses anything not ending in `_e2e`.
 Both drop and recreate the schema from migrations, so tests never touch the
 development or production databases. The Stripe suite accepts only `sk_test_`
-keys, and the app itself refuses live keys outside production.
+keys, and the app itself refuses live keys unless `STRIPE_LIVE_MODE=enabled`.
 
 ### Running locally
 

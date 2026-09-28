@@ -112,8 +112,9 @@ the webhook signing secret encrypted with `APP_SECRET`. The manual steps below
 are only needed if you prefer to create these objects yourself and pin them
 with `STRIPE_PRICE_ID`, `STRIPE_PORTAL_CONFIGURATION_ID` and `STRIPE_WEBHOOK_SECRET`.
 
-Develop and test with **test-mode** keys only; the app refuses live keys
-unless `NODE_ENV=production`.
+Develop, test and run staging with **test-mode** keys only: the app refuses
+live keys on every environment, including deployed sites, until
+`STRIPE_LIVE_MODE=enabled` is set — a deliberate switch for go-live day.
 
 1. **Product & price**: Stripe Dashboard → Product catalogue → add product
    "Hournook" with a **recurring monthly price of €10.00**. Copy the price id
@@ -138,8 +139,10 @@ unless `NODE_ENV=production`.
 7. Optional live-API test suite (test mode):
    `STRIPE_TEST_SECRET_KEY=sk_test_… STRIPE_TEST_PRICE_ID=price_… npm run test:stripe-live`.
 
-Going live: repeat steps 1–4 in **live mode** on the production deployment
-only, then run one real purchase and cancellation yourself.
+Going live (final step only): set `STRIPE_LIVE_MODE=enabled` and the live
+`sk_live_…` key on the production site, redeploy (the automatic setup creates
+the live price, portal configuration and webhook), then run one real purchase
+and cancellation yourself.
 
 ## 7. Email deliverability
 
