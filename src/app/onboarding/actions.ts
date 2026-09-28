@@ -12,6 +12,7 @@ import { createBusinessSchema, slugSchema } from '@/lib/validation/business'
 import { createBusiness, isSlugAvailable, suggestSlug } from '@/server/business/onboarding'
 import { getOrCreateRules } from '@/server/booking/loader'
 import { saveBookingRules } from '@/server/business/availability-admin'
+import { setPublishState } from '@/server/business/profile'
 import { db } from '@/server/db/client'
 import { businesses } from '@/server/db/schema'
 import { env } from '@/server/env'
@@ -72,6 +73,20 @@ export async function onboardingPrefsAction(input: unknown) {
       },
       await requestMeta(),
     )
+    return null
+  })
+}
+
+/**
+ * Publishes from the wizard's "Go live" step. Unlike the dashboard's
+ * publishAction it doesn't revalidate: publishing marks onboarding complete,
+ * and a re-render of /onboarding would redirect to /app before the wizard can
+ * show its "Your booking page is live" screen.
+ */
+export async function publishFromOnboardingAction() {
+  return runAction(async () => {
+    const ctx = await requireTenantAction('booking_page.manage')
+    await setPublishState(ctx, { action: 'publish', pausedMessage: null, pausedUntil: null }, await requestMeta())
     return null
   })
 }

@@ -18,9 +18,9 @@ import { BUSINESS_CATEGORIES } from '@/lib/validation/business'
 import { SuccessCheck } from '@/components/booking/success-check'
 import { CopyButton } from '@/components/dashboard/copy-button'
 import { ColorPicker } from '@/components/dashboard/color-picker'
-import { checkSlugAction, createBusinessAction, createFirstServiceAction, finishOnboardingAction, onboardingPrefsAction, suggestSlugAction } from '@/app/onboarding/actions'
+import { checkSlugAction, createBusinessAction, createFirstServiceAction, finishOnboardingAction, onboardingPrefsAction, publishFromOnboardingAction, suggestSlugAction } from '@/app/onboarding/actions'
 import { saveWeeklyHoursAction } from '@/app/app/_actions/availability'
-import { brandingAction, publishAction, uploadImageAction } from '@/app/app/_actions/booking-page'
+import { brandingAction, uploadImageAction } from '@/app/app/_actions/booking-page'
 import { resendVerificationAction } from '@/app/(auth)/actions'
 
 const STEPS = ['Your business', 'Opening hours', 'First service', 'Booking rules', 'Branding', 'Go live'] as const
@@ -374,7 +374,7 @@ function StepPublish({ biz, origin, emailVerified, email, trialDays, onBack, onD
       onSubmit={async (e) => {
         e.preventDefault()
         setPending(true)
-        const r = await publishAction({ action: 'publish' })
+        const r = await publishFromOnboardingAction()
         setPending(false)
         if (r.ok) onDone()
         else setError(r.fields?._form ?? r.error)

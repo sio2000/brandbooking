@@ -1,5 +1,5 @@
 import 'server-only'
-import { and, eq, sql } from 'drizzle-orm'
+import { and, eq, isNull, sql } from 'drizzle-orm'
 import { db, pgConstraint, pgErrorCode, PgErrorCode, type DbOrTx, type Tx } from '@/server/db/client'
 import {
   appointmentEvents,
@@ -173,8 +173,9 @@ async function upsertCustomer(tx: Tx, businessId: string, c: BookParams['custome
     const [row] = await tx
       .select({ id: customers.id, email: customers.email })
       .from(customers)
-      .where(and(eq(customers.businessId, businessId), eq(customers.id, existingId)))
+      .where(and(eq(customers.businessId, businessId), eq(customers.id, existingId), isNull(customers.erasedAt)))
       .limit(1)
+    // Erased customers (GDPR) can't receive new bookings; create a new record instead.
     if (!row) throw new AppError('not_found')
     return row
   }

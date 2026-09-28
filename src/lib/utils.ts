@@ -24,7 +24,11 @@ export function safeRedirectPath(input: unknown, fallback = '/app'): string {
   try {
     const u = new URL(input, 'http://x')
     if (u.origin !== 'http://x') return fallback
-    return u.pathname + u.search + u.hash
+    const path = u.pathname + u.search + u.hash
+    // Dot segments can normalise to "//host" (e.g. "/.//evil.com"), which a
+    // browser would treat as a protocol-relative URL to another origin.
+    if (path.startsWith('//') || path.startsWith('/\\')) return fallback
+    return path
   } catch {
     return fallback
   }

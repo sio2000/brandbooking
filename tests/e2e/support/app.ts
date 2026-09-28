@@ -10,7 +10,7 @@
 import './server-env'
 import { and, desc, eq, sql } from 'drizzle-orm'
 import type { BrowserContext } from '@playwright/test'
-import { db } from '@/server/db/client'
+import { closeDb, db } from '@/server/db/client'
 import { appointments, businesses, bookingRules, customers, notifications, services, staff, users, weeklyHours, type Business } from '@/server/db/schema'
 import { hashPassword } from '@/server/auth/password'
 import { createSession, type SessionUser } from '@/server/auth/session'
@@ -22,7 +22,7 @@ import { signManageToken } from '@/server/booking/manage-token'
 import { addDays, localToDate, todayIn } from '@/lib/tz'
 import { E2E_BASE_URL } from './env'
 
-export { db, sql }
+export { closeDb, db, sql }
 export { appointments, businesses, customers, notifications, users }
 
 export const PASSWORD = 'e2e-Tangerine-Lantern-42'

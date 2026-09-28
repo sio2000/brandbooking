@@ -126,7 +126,13 @@ export async function acceptInvitation(user: SessionUser, token: string, meta: R
       const [s] = await tx.insert(staff).values({ businessId: inv.businessId, userId: user.id, name: user.name, email: user.email }).returning({ id: staff.id })
       staffId = s!.id
     } else {
-      await tx.update(staff).set({ userId: user.id }).where(and(eq(staff.businessId, inv.businessId), eq(staff.id, staffId)))
+      // Only claim a profile that is still unlinked and not deleted; never re-link another member's profile.
+      const [linked] = await tx
+        .update(staff)
+        .set({ userId: user.id })
+        .where(and(eq(staff.businessId, inv.businessId), eq(staff.id, staffId), isNull(staff.userId), isNull(staff.deletedAt)))
+        .returning({ id: staff.id })
+      if (!linked) throw new AppError('validation', { fields: { _form: 'This team profile is already linked to another account. Ask for a new invitation.' } })
     }
     try {
       await tx.insert(businessMembers).values({ businessId: inv.businessId, userId: user.id, role: inv.role, staffId })

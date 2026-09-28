@@ -52,6 +52,29 @@ export function CommandPaletteProvider({ children, bookingUrl, timezone, can }: 
   const heading = '[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:tracking-wider [&_[cmdk-group-heading]]:text-subtle-foreground [&_[cmdk-group-heading]]:uppercase'
   const r = (query.trim().length >= 2 ? results : null) as { customers: Array<{ id: string; firstName: string; lastName: string; email: string | null }>; services: Array<{ id: string; name: string }>; staff: Array<{ id: string; name: string }>; appointments: Array<{ id: string; reference: string; startsAt: Date }> } | null
 
+  const pages = (
+    [
+      ['/app', 'Overview', Home, true],
+      ['/app/calendar', 'Calendar', Calendar, true],
+      ['/app/appointments', 'Appointments', List, true],
+      ['/app/customers', 'Customers', Users, can.customers],
+      ['/app/services', 'Services', Scissors, can.services],
+      ['/app/staff', 'Team', UserCog, can.staff],
+      ['/app/analytics', 'Analytics', BarChart3, can.analytics],
+      ['/app/booking-page', 'Booking page', Globe, can.bookingPage],
+      ['/app/settings', 'Settings', Settings, can.settings],
+      ['/app/billing', 'Billing', CreditCard, can.billing],
+    ] as Array<[string, string, typeof Home, boolean | undefined]>
+  ).filter(([, , , show]) => show)
+  // While search results are shown (cmdk filtering is off), keep pages whose
+  // name matches the query, so typing a page name still jumps there.
+  const matchingPages = r ? pages.filter(([, label]) => label.toLowerCase().includes(query.trim().toLowerCase())) : []
+  const pageItem = ([href, label, I]: (typeof pages)[number]) => (
+    <Command.Item key={href} onSelect={() => go(href)} className={item}>
+      <I /> {label}
+    </Command.Item>
+  )
+
   return (
     <PaletteContext.Provider value={{ open: () => setOpen(true) }}>
       {children}
@@ -70,6 +93,7 @@ export function CommandPaletteProvider({ children, bookingUrl, timezone, can }: 
                 <Command.Empty className="px-3 py-8 text-center text-sm text-muted-foreground">No results for “{query}”.</Command.Empty>
                 {r && (
                   <>
+                    {matchingPages.length > 0 && <Command.Group heading="Go to">{matchingPages.map(pageItem)}</Command.Group>}
                     {r.customers.length > 0 && (
                       <Command.Group heading="Customers">
                         {r.customers.map((c) => (
@@ -146,27 +170,7 @@ export function CommandPaletteProvider({ children, bookingUrl, timezone, can }: 
                       )}
                     </Command.Group>
                     <Command.Group heading="Go to">
-                      {[
-                        ['/app', 'Overview', Home, true],
-                        ['/app/calendar', 'Calendar', Calendar, true],
-                        ['/app/appointments', 'Appointments', List, true],
-                        ['/app/customers', 'Customers', Users, can.customers],
-                        ['/app/services', 'Services', Scissors, can.services],
-                        ['/app/staff', 'Team', UserCog, can.staff],
-                        ['/app/analytics', 'Analytics', BarChart3, can.analytics],
-                        ['/app/booking-page', 'Booking page', Globe, can.bookingPage],
-                        ['/app/settings', 'Settings', Settings, can.settings],
-                        ['/app/billing', 'Billing', CreditCard, can.billing],
-                      ]
-                        .filter(([, , , show]) => show)
-                        .map(([href, label, Icon]) => {
-                          const I = Icon as typeof Home
-                          return (
-                            <Command.Item key={href as string} onSelect={() => go(href as string)} className={item}>
-                              <I /> {label as string}
-                            </Command.Item>
-                          )
-                        })}
+                      {pages.map(pageItem)}
                     </Command.Group>
                   </>
                 )}

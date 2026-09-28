@@ -83,10 +83,12 @@ export function formatDuration(minutes: number) {
 
 const moneyCache = new Map<string, Intl.NumberFormat>()
 export function formatMoney(cents: number, currency: string, locale = DEFAULT_LOCALE) {
-  const key = `${locale}|${currency}`
+  // Whole amounts read as "€35"; fractional ones always show two decimals ("€35.50", never "€35.5").
+  const minDigits = cents % 100 === 0 ? 0 : 2
+  const key = `${locale}|${currency}|${minDigits}`
   let f = moneyCache.get(key)
   if (!f) {
-    f = new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 2 })
+    f = new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: minDigits, maximumFractionDigits: 2 })
     moneyCache.set(key, f)
   }
   return f.format(cents / 100)

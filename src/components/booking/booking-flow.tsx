@@ -68,6 +68,9 @@ export function BookingFlow({
   const [direction, setDirection] = React.useState(1)
   const topRef = React.useRef<HTMLDivElement>(null)
   const sent = React.useRef(new Set<string>())
+  // Honeypot value, captured when the details form is submitted: the field is
+  // unmounted by the time the booking is sent from the review step.
+  const honeypot = React.useRef('')
 
   const serviceStaff = React.useMemo(() => staff.filter((m) => service?.staffIds.includes(m.id)), [staff, service])
   const showStaffStep = rules.staffSelection !== 'hidden' && serviceStaff.length > 1
@@ -140,7 +143,7 @@ export function BookingFlow({
           utmMedium: attribution.utmMedium,
           utmCampaign: attribution.utmCampaign,
           referrerHost: referrerHost(),
-          website: (document.getElementById('hn-website') as HTMLInputElement | null)?.value ?? '',
+          website: honeypot.current,
         }),
       })
       const json = await res.json()
@@ -334,6 +337,7 @@ export function BookingFlow({
               noValidate
               onSubmit={(e) => {
                 e.preventDefault()
+                honeypot.current = (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)?.value ?? ''
                 if (validateDetails()) go('review')
               }}
             >

@@ -9,7 +9,7 @@ type Level = 'debug' | 'info' | 'warn' | 'error'
 const ORDER: Record<Level, number> = { debug: 10, info: 20, warn: 30, error: 40 }
 
 const REDACT_KEYS =
-  /pass(word)?|secret|token|authorization|cookie|api[-_]?key|signature|card|cvc|iban|session|hash|smtp_url|database_url/i
+  /pass(word)?|secret|token|authorization|cookie|api[-_]?key|stripe[-_]?key|signature|card|cvc|iban|session|hash|smtp_url|database_url|credential/i
 const PII_KEYS = /^(email|phone|first_?name|last_?name|name|address|notes?|message|recipient)$/i
 
 export function redact(value: unknown, depth = 0): unknown {
@@ -45,7 +45,7 @@ function threshold(): number {
 
 function write(level: Level, msg: string, fields?: Record<string, unknown>) {
   if (ORDER[level] < threshold()) return
-  const line = JSON.stringify({ ts: new Date().toISOString(), level, msg, ...(redact(fields ?? {}) as object) })
+  const line = JSON.stringify({ ...(redact(fields ?? {}) as object), ts: new Date().toISOString(), level, msg })
   if (level === 'error' || level === 'warn') console.error(line)
   // eslint-disable-next-line no-console
   else console.log(line)

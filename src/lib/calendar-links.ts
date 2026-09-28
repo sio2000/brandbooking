@@ -29,7 +29,7 @@ export function outlookCalendarUrl(e: CalendarEvent): string {
 }
 
 function icsEscape(s: string) {
-  return s.replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
+  return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n')
 }
 
 /** Fold long lines at 75 octets as required by RFC 5545. */
@@ -41,6 +41,9 @@ function fold(line: string) {
   while (byteLength(rest) > 75) {
     let cut = 75
     while (byteLength(rest.slice(0, cut)) > 75) cut--
+    // Never split a UTF-16 surrogate pair (e.g. an emoji) across lines.
+    const code = rest.charCodeAt(cut - 1)
+    if (code >= 0xd800 && code <= 0xdbff) cut--
     out.push(rest.slice(0, cut))
     rest = ' ' + rest.slice(cut)
   }

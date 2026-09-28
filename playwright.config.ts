@@ -5,7 +5,7 @@ import { E2E_BASE_URL, E2E_PORT, E2E_SERVER_ENV } from './tests/e2e/support/env'
 /**
  * End-to-end + accessibility tests. They run against their own Next.js dev
  * server (port 3100, build dir `.next-e2e`) backed by the dedicated
- * `hournook_e2e` database, which global setup wipes and re-seeds — never the
+ * `hournook_e2e` database, which the "setup" project (tests/e2e/global.setup.ts) wipes and re-seeds — never the
  * development or integration-test databases.
  */
 
@@ -17,7 +17,6 @@ const launchOptions = existsSync(chromiumPath) ? { executablePath: chromiumPath 
 
 export default defineConfig({
   testDir: 'tests/e2e',
-  globalSetup: './tests/e2e/support/global-setup.ts',
   // Tests share one server and one seeded database; data is isolated per test
   // (unique customers, slots and users), but a single worker keeps timing-
   // sensitive flows (rate limits, slot contention) deterministic.
@@ -40,20 +39,25 @@ export default defineConfig({
     launchOptions,
   },
   projects: [
+    // Resets and seeds hournook_e2e before any browser test runs.
+    { name: 'setup', testMatch: /global\.setup\.ts/ },
     {
       name: 'desktop',
+      dependencies: ['setup'],
       use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 }, launchOptions },
     },
     {
       // Pixel 7 emulation on Chromium; runs the flows tagged @mobile.
       name: 'mobile',
+      dependencies: ['setup'],
       grep: /@mobile/,
       use: { ...devices['Pixel 7'], launchOptions },
     },
   ],
   webServer: {
     command: `npx next dev --port ${E2E_PORT}`,
-    url: `${E2E_BASE_URL}/api/health`,
+    // Readiness probe that needs no database (the setup project migrates it afterwards).
+    url: `${E2E_BASE_URL}/robots.txt`,
     reuseExistingServer: !CI,
     timeout: 180_000,
     stdout: 'ignore',

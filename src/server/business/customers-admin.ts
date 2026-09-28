@@ -222,10 +222,15 @@ export async function eraseCustomer(ctx: TenantContext, id: string, meta: Reques
     if (!row) throw new AppError('not_found')
     await tx
       .update(appointments)
-      .set({ customerMessage: null, internalNotes: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null })
+      .set({ customerMessage: null, internalNotes: null, cancellationReason: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null })
       .where(and(eq(appointments.businessId, ctx.business.id), eq(appointments.customerId, id)))
     await tx.execute(sql`UPDATE notifications SET recipient = 'erased', payload = '{}'::jsonb, status = CASE WHEN status = 'pending' THEN 'cancelled'::notification_status ELSE status END
       WHERE business_id = ${ctx.business.id} AND appointment_id IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
+    // History notes (e.g. cancellation reasons) and inbox item bodies ("<name> booked …") also carry personal data.
+    await tx.execute(sql`UPDATE appointment_events SET note = NULL
+      WHERE business_id = ${ctx.business.id} AND appointment_id IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
+    await tx.execute(sql`UPDATE inbox_items SET body = NULL
+      WHERE business_id = ${ctx.business.id} AND href IN (SELECT '/app/appointments/' || id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
     await audit(tx, { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'customer.erased', entityType: 'customer', entityId: id, ip: meta.ip })
   })
 }

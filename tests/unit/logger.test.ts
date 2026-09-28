@@ -144,3 +144,16 @@ describe('logger output', () => {
     expect(err).not.toHaveBeenCalled()
   })
 })
+
+describe('logger line integrity', () => {
+  it('fields cannot overwrite level, msg or ts', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    logger.error('real message', { level: 'debug', msg: 'forged', ts: 'x', stripeKey: 'sk_test_123' })
+    const line = JSON.parse(String(spy.mock.calls[0]![0]))
+    spy.mockRestore()
+    expect(line.level).toBe('error')
+    expect(line.msg).toBe('real message')
+    expect(line.ts).not.toBe('x')
+    expect(line.stripeKey).toBe('[redacted]')
+  })
+})
