@@ -1,0 +1,16 @@
+import { chromium } from '@playwright/test'
+const [,, out] = process.argv
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
+const p = await b.newPage({ viewport: { width: 390, height: 844 } })
+const errors = []; p.on('pageerror', (e) => errors.push(String(e))); p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
+await p.goto('http://localhost:3000/pricing', { waitUntil: 'networkidle' })
+await p.keyboard.press('Tab')
+console.log('first tab:', await p.evaluate(() => document.activeElement?.textContent))
+await p.getByRole('button', { name: 'Open menu' }).click()
+await p.waitForTimeout(500)
+await p.screenshot({ path: out })
+await p.getByRole('dialog').getByRole('link', { name: 'FAQ' }).click()
+await p.waitForTimeout(1500)
+console.log('url after FAQ:', p.url(), 'dialog open:', await p.getByRole('dialog').count())
+if (errors.length) console.log('ERRORS', errors)
+await b.close()

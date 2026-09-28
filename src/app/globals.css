@@ -1,0 +1,292 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Hournook design tokens.
+ * Warm paper neutrals + evergreen primary + apricot accent. Every text/background
+ * pair used for body copy meets WCAG 2.2 AA (4.5:1); large text and UI parts ≥ 3:1.
+ * Dark mode is designed separately (warm charcoal), not inverted.
+ */
+:root {
+  --background: #f7f5f0;
+  --surface: #ffffff;
+  --surface-2: #f1eee7;
+  --surface-3: #e9e5dc;
+  --elevated: #ffffff;
+  --border: #e4dfd5;
+  --border-strong: #d3ccbf;
+  --foreground: #1d1a16;
+  --muted-foreground: #645d53;
+  --subtle-foreground: #857d71;
+
+  --primary: #0f766e;
+  --primary-hover: #0b625b;
+  --primary-foreground: #ffffff;
+  --primary-soft: #e2f1ee;
+  --primary-soft-foreground: #0b4f49;
+
+  --accent: #ee8a4f;
+  --accent-soft: #fdeee3;
+  --accent-soft-foreground: #8a3f12;
+
+  --success: #15803d;
+  --success-soft: #e6f4ea;
+  --success-soft-foreground: #14532d;
+  --warning: #b45309;
+  --warning-soft: #fdf3e0;
+  --warning-soft-foreground: #7c3a06;
+  --danger: #c42828;
+  --danger-hover: #a51f1f;
+  --danger-soft: #fcebea;
+  --danger-soft-foreground: #8b1c1c;
+  --info: #2459c9;
+  --info-soft: #e9effc;
+  --info-soft-foreground: #1d3f8f;
+
+  --ring: #0f766e;
+  --overlay: rgb(29 26 22 / 0.42);
+
+  --shadow-xs: 0 1px 2px rgb(29 26 22 / 0.05);
+  --shadow-sm: 0 1px 2px rgb(29 26 22 / 0.05), 0 2px 6px -1px rgb(29 26 22 / 0.06);
+  --shadow-md: 0 1px 2px rgb(29 26 22 / 0.04), 0 8px 24px -6px rgb(29 26 22 / 0.12);
+  --shadow-lg: 0 2px 4px rgb(29 26 22 / 0.04), 0 24px 48px -12px rgb(29 26 22 / 0.2);
+
+  /* Charts: categorical order validated with the dataviz palette checker
+     (lightness band, chroma, CVD ΔE ≥ 8, contrast ≥ 3:1) for light and dark. */
+  --chart-1: #0b8a7b;
+  --chart-2: #d56a28;
+  --chart-3: #6d5bd0;
+  --chart-4: #c2417a;
+  --chart-5: #3b82c4;
+  --chart-6: #9a7a1f;
+  --chart-grid: #e9e5dc;
+  --chart-axis: #857d71;
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: #121110;
+  --surface: #1a1917;
+  --surface-2: #211f1c;
+  --surface-3: #2a2824;
+  --elevated: #22201d;
+  --border: #2e2b27;
+  --border-strong: #3e3a34;
+  --foreground: #f2eee7;
+  --muted-foreground: #aaa295;
+  --subtle-foreground: #8a8276;
+
+  --primary: #3cc6b2;
+  --primary-hover: #5ad3c1;
+  --primary-foreground: #06201c;
+  --primary-soft: #133530;
+  --primary-soft-foreground: #9de6da;
+
+  --accent: #f4a06f;
+  --accent-soft: #3a2518;
+  --accent-soft-foreground: #f8c7a6;
+
+  --success: #4ade80;
+  --success-soft: #13301f;
+  --success-soft-foreground: #a7f0c1;
+  --warning: #f5b454;
+  --warning-soft: #362610;
+  --warning-soft-foreground: #f8d49a;
+  --danger: #f87171;
+  --danger-hover: #fca5a5;
+  --danger-soft: #3a1717;
+  --danger-soft-foreground: #fbb9b9;
+  --info: #7aa7f5;
+  --info-soft: #172442;
+  --info-soft-foreground: #bfd3fa;
+
+  --ring: #3cc6b2;
+  --overlay: rgb(0 0 0 / 0.6);
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 6px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -6px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 48px -12px rgb(0 0 0 / 0.6);
+
+  --chart-1: #27ab98;
+  --chart-2: #cf7039;
+  --chart-3: #8b7be4;
+  --chart-4: #d8659a;
+  --chart-5: #5596d8;
+  --chart-6: #a98b30;
+  --chart-grid: #2e2b27;
+  --chart-axis: #8a8276;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-elevated: var(--elevated);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-foreground: var(--danger-soft-foreground);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-foreground: var(--info-soft-foreground);
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  @keyframes shimmer {
+    from {
+      background-position: 200% 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--primary-soft);
+    color: var(--primary-soft-foreground);
+  }
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 37%, var(--surface-2) 63%);
+    background-size: 400% 100%;
+    animation: var(--animate-shimmer);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
+
+/* Business-branded scope (public booking pages, previews). */
+.brand-scope {
+  --primary: var(--brand);
+  --primary-hover: color-mix(in oklab, var(--brand) 86%, black);
+  --primary-foreground: var(--brand-fg);
+  --primary-soft: color-mix(in oklab, var(--brand) 11%, var(--surface));
+  --primary-soft-foreground: color-mix(in oklab, var(--brand) 70%, var(--foreground));
+  --ring: var(--brand);
+}
+.dark .brand-scope {
+  --primary: color-mix(in oklab, var(--brand) 62%, white);
+  --primary-hover: color-mix(in oklab, var(--brand) 50%, white);
+  --primary-foreground: #121110;
+  --primary-soft: color-mix(in oklab, var(--brand) 22%, var(--surface));
+  --primary-soft-foreground: color-mix(in oklab, var(--brand) 40%, white);
+  --ring: color-mix(in oklab, var(--brand) 62%, white);
+}

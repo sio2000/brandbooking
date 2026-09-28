@@ -1,0 +1,47 @@
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+export function initials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  const first = parts[0]?.[0] ?? ''
+  const last = parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? '') : ''
+  return (first + last).toUpperCase() || '?'
+}
+
+export function pluralize(count: number, one: string, many = `${one}s`): string {
+  return `${count} ${count === 1 ? one : many}`
+}
+
+/** Safe relative in-app path for post-login redirects (prevents open redirects). */
+export function safeRedirectPath(input: unknown, fallback = '/app'): string {
+  if (typeof input !== 'string') return fallback
+  if (!input.startsWith('/') || input.startsWith('//') || input.startsWith('/\\')) return fallback
+  if (/[\r\n]/.test(input)) return fallback
+  try {
+    const u = new URL(input, 'http://x')
+    if (u.origin !== 'http://x') return fallback
+    return u.pathname + u.search + u.hash
+  } catch {
+    return fallback
+  }
+}
+
+export function slugify(input: string): string {
+  return input
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 48)
+    .replace(/-+$/g, '')
+}
+
+export function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n))
+}
