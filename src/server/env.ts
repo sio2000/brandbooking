@@ -174,6 +174,16 @@ export function resetEnvCache() {
   cached = undefined
 }
 
+/**
+ * True when emails are only written to the server log in a deployed app
+ * (trial mode, ALLOW_LOG_EMAIL_IN_PRODUCTION) — the UI must then not claim
+ * that anything was "sent".
+ */
+export function isEmailSimulated(): boolean {
+  const e = env()
+  return e.EMAIL_PROVIDER === 'log' && e.NODE_ENV === 'production'
+}
+
 export function isStripeConfigured(): boolean {
   const e = env()
   // The price, portal configuration and webhook secret are provisioned

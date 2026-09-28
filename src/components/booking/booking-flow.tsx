@@ -90,6 +90,7 @@ export function BookingFlow({
   attribution,
   preselectServiceId,
   compact,
+  preview,
 }: {
   business: FlowBusiness
   services: FlowService[]
@@ -99,6 +100,8 @@ export function BookingFlow({
   attribution: Attribution
   preselectServiceId?: string | null
   compact?: boolean
+  /** Owner/manager previewing an unpublished page: everything works except booking. */
+  preview?: boolean
 }) {
   const initialService =
     services.find((s) => s.id === preselectServiceId) ??
@@ -594,14 +597,28 @@ export function BookingFlow({
                   )}
                 </div>
               )}
+              {preview && (
+                <p
+                  role="note"
+                  className="mt-4 rounded-xl bg-warning-soft px-4 py-3 text-[13px] leading-relaxed text-warning-soft-foreground"
+                >
+                  This is a preview. Publish your booking page to start accepting real bookings —
+                  customers will see exactly this flow.
+                </p>
+              )}
               <StickyAction>
                 <Button
                   size="lg"
                   className="w-full sm:w-auto"
                   loading={submitting}
+                  disabled={preview}
                   onClick={submit}
                 >
-                  {rules.requiresConfirmation ? 'Request booking' : 'Confirm booking'}
+                  {preview
+                    ? 'Booking disabled in preview'
+                    : rules.requiresConfirmation
+                      ? 'Request booking'
+                      : 'Confirm booking'}
                 </Button>
               </StickyAction>
             </div>

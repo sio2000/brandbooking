@@ -115,6 +115,7 @@ export default async function PublicBookingPage({
           <div className="min-w-0">
             {state.accepting ? (
               <BookingFlow
+                preview={isPreview}
                 business={{
                   slug: business.slug,
                   name: business.name,

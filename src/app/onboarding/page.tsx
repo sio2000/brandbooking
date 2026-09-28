@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
-import { and, count, eq, isNull } from 'drizzle-orm'
+import { and, asc, eq, isNull } from 'drizzle-orm'
 import { requireUserPage, listMemberships, optionalTenant } from '@/server/tenancy/context'
 import { db } from '@/server/db/client'
 import { services } from '@/server/db/schema'
-import { appUrl } from '@/server/env'
+import { appUrl, isEmailSimulated } from '@/server/env'
 import { OnboardingWizard } from '@/components/onboarding/wizard'
 import { site } from '@/lib/site'
 
@@ -15,21 +15,45 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
   const sp = await searchParams
   const memberships = await listMemberships(session.user.id)
   const creatingAnother = sp.new === '1'
-  let resume: { name: string; slug: string; step: number } | null = null
+  let resume: {
+    name: string
+    slug: string
+    step: number
+    category: string | null
+    services: Array<{
+      id: string
+      name: string
+      durationMinutes: number
+      priceCents: number | null
+    }>
+  } | null = null
   if (memberships.length > 0 && !creatingAnother) {
     const ctx = await optionalTenant()
     if (!ctx || ctx.business.onboardingCompletedAt || ctx.membership.role !== 'owner')
       redirect('/app')
-    const [svc] = await db()
-      .select({ n: count() })
+    const existing = await db()
+      .select({
+        id: services.id,
+        name: services.name,
+        durationMinutes: services.durationMinutes,
+        priceCents: services.priceCents,
+      })
       .from(services)
       .where(and(eq(services.businessId, ctx.business.id), isNull(services.deletedAt)))
-    resume = { name: ctx.business.name, slug: ctx.business.slug, step: (svc?.n ?? 0) > 0 ? 4 : 2 }
+      .orderBy(asc(services.position))
+    resume = {
+      name: ctx.business.name,
+      slug: ctx.business.slug,
+      step: existing.length > 0 ? 4 : 2,
+      category: ctx.business.category,
+      services: existing,
+    }
   }
   return (
     <OnboardingWizard
       userName={session.user.name}
       emailVerified={session.user.emailVerified}
+      emailSimulated={isEmailSimulated()}
       email={session.user.email}
       resume={resume}
       origin={appUrl('/').replace(/\/$/, '')}

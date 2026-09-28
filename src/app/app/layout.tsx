@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { requireTenantPage, listMemberships } from '@/server/tenancy/context'
 import { inbox } from '@/server/business/overview'
 import { accessFor } from '@/server/billing/service'
-import { appUrl } from '@/server/env'
+import { appUrl, isEmailSimulated } from '@/server/env'
 import { NAV_GROUPS } from '@/components/dashboard/nav'
 import { MobileNav, Sidebar } from '@/components/dashboard/sidebar'
 import { Topbar } from '@/components/dashboard/topbar'
@@ -59,6 +59,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           <AccountBanner
             input={{
               emailVerified: ctx.user.emailVerified,
+              emailSimulated: isEmailSimulated(),
               email: ctx.user.email,
               suspended: ctx.business.status === 'suspended',
               access: {

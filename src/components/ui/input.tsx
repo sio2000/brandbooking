@@ -20,9 +20,17 @@ export function Textarea({ className, ...props }: React.ComponentProps<'textarea
   )
 }
 
-export function NativeSelect({ className, children, ...props }: React.ComponentProps<'select'>) {
+export function NativeSelect({
+  className,
+  containerClassName,
+  children,
+  ...props
+}: React.ComponentProps<'select'> & {
+  /** Layout classes (e.g. max width) for the wrapper, so the chevron stays inside the field. */
+  containerClassName?: string
+}) {
   return (
-    <div className="relative">
+    <div className={cn('relative', containerClassName)}>
       <select
         className={cn(base, 'h-10 appearance-none pr-9 pl-3 [&>option]:bg-surface', className)}
         {...props}

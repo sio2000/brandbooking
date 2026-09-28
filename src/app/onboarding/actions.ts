@@ -122,6 +122,60 @@ const firstServiceSchema = z.object({
   price: z.string().trim().max(20).optional().default(''),
 })
 
+/**
+ * Creates the services added during onboarding (up to 20 at once) and assigns
+ * each to every active team member. Field errors come back as
+ * `services.<index>.<field>`.
+ */
+export async function createServicesAction(input: unknown) {
+  return runAction(async () => {
+    const ctx = await requireTenantAction('services.manage')
+    const v = parse(
+      z.object({
+        services: z.array(firstServiceSchema).min(1, 'Add at least one service.').max(20),
+      }),
+      input,
+    )
+    const { listStaff, saveService } = await import('@/server/business/catalog')
+    const { serviceSchema } = await import('@/lib/validation/business')
+    const team = await listStaff(ctx)
+    const staffIds = team.filter((s) => s.isActive).map((s) => s.id)
+    const meta = await requestMeta()
+    // Validate every row before creating any, so a typo never leaves half a list.
+    const parsed = v.services.map((row, i) => {
+      const r = serviceSchema.safeParse({
+        name: row.name,
+        durationMinutes: row.durationMinutes,
+        price: row.price,
+        isActive: true,
+        isVisible: true,
+        staffIds,
+      })
+      if (!r.success) {
+        const issue = r.error.issues[0]
+        throw new AppError('validation', {
+          fields: {
+            [`services.${i}.${String(issue?.path[0] ?? 'name')}`]:
+              issue?.message ?? 'Check this service.',
+          },
+        })
+      }
+      return r.data
+    })
+    const created = []
+    for (const data of parsed) {
+      const svc = await saveService(ctx, null, data, meta)
+      created.push({
+        id: svc.id,
+        name: svc.name,
+        durationMinutes: svc.durationMinutes,
+        priceCents: svc.priceCents,
+      })
+    }
+    return { services: created }
+  })
+}
+
 /** Creates the first service and assigns it to every active team member. */
 export async function createFirstServiceAction(input: unknown) {
   return runAction(async () => {

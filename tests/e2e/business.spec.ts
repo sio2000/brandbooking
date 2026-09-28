@@ -51,10 +51,14 @@ test.describe('business owner journey', () => {
     await page.getByRole('button', { name: 'Continue' }).click()
 
     await expect(page.getByRole('heading', { name: 'What can customers book?' })).toBeVisible()
+    // Several services can be added in one go.
     await page.getByLabel('Service name').fill('Deep Tissue Massage')
-    await page.getByRole('radio', { name: '1 h 30 min' }).click()
+    await page.getByLabel('Duration').selectOption({ label: '1 h 30 min' })
     await page.getByLabel('Price').fill('65')
-    await page.getByRole('button', { name: 'Continue' }).click()
+    await page.getByRole('button', { name: 'Add another service' }).click()
+    await page.getByLabel('Service name').nth(1).fill('Sports Massage')
+    await page.getByLabel('Price').nth(1).fill('55')
+    await page.getByRole('button', { name: 'Save 2 services' }).click()
 
     await expect(page.getByRole('heading', { name: 'How should booking work?' })).toBeVisible()
     await page.getByLabel('How much notice do you need?').selectOption('0')
@@ -85,6 +89,7 @@ test.describe('business owner journey', () => {
     await sheet.getByLabel('Price').fill('70')
     await sheet.getByRole('button', { name: 'Add service' }).click()
     await expect(sheet).toBeHidden()
+    await expect(page.getByRole('button', { name: /^Sports Massage/ })).toBeVisible()
     await expect(page.getByRole('button', { name: /^Hot Stone Therapy/ })).toBeVisible()
 
     // --- Set hours: open on Sundays too ---
@@ -120,10 +125,11 @@ test.describe('business owner journey', () => {
     await page.getByRole('button', { name: 'Publish', exact: true }).click()
     await expect(page.getByRole('heading', { name: 'Your booking page is live' })).toBeVisible()
 
-    // --- Public page shows both services ---
+    // --- Public page shows every service ---
     await page.goto(`/book/${slug}`)
     await expect(page.getByRole('heading', { level: 1, name: businessName })).toBeVisible()
     await expect(page.getByRole('button', { name: /^Deep Tissue Massage/ })).toBeVisible()
+    await expect(page.getByRole('button', { name: /^Sports Massage/ })).toBeVisible()
     await expect(page.getByRole('button', { name: /^Hot Stone Therapy/ })).toBeVisible()
 
     // --- Sign out and back in ---

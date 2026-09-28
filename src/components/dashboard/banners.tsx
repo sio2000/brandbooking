@@ -8,6 +8,8 @@ import { resendVerificationAction } from '@/app/(auth)/actions'
 
 export type BannerInput = {
   emailVerified: boolean
+  /** Emails go to the server log (no provider connected yet). */
+  emailSimulated?: boolean
   email: string
   suspended: boolean
   access: { state: string; trialDaysLeft: number | null; canAcceptBookings: boolean }
@@ -24,6 +26,15 @@ export function AccountBanner({ input }: { input: BannerInput }) {
       <div role="alert" className={`${base} bg-danger-soft text-danger-soft-foreground`}>
         <ShieldAlert className="size-4" aria-hidden /> This account is suspended. Your booking page
         is offline and changes are disabled. Contact support to resolve it.
+      </div>
+    )
+  }
+  if (!input.emailVerified && input.emailSimulated) {
+    return (
+      <div role="status" className={`${base} bg-warning-soft text-warning-soft-foreground`}>
+        <MailWarning className="size-4" aria-hidden /> Email sending isn’t connected on this site
+        yet, so your confirmation link was written to the server log instead of {input.email}.
+        Connect an email provider (Resend or SMTP) to deliver it to your inbox.
       </div>
     )
   }

@@ -210,9 +210,17 @@ export async function publicAvailability(
   slug: string,
   q: { serviceId: string; staffId: string | null; from?: string; to?: string },
   meta: RequestMeta,
+  /** Business the signed-in viewer may preview while it is unpublished. */
+  previewBusinessId: string | null = null,
 ) {
   await enforceRateLimits([[`avail:ip:${meta.ip}`, POLICIES.availabilityByIp]])
-  const b = await requireAccepting(slug)
+  const found = await findPublicBusiness(slug)
+  const previewing =
+    !!found &&
+    found.id === previewBusinessId &&
+    found.status === 'active' &&
+    !isPubliclyVisible(found)
+  const b = previewing ? found : await requireAccepting(slug)
   const { from, to } = defaultRange(b.timezone, q)
   const rules = await getOrCreateRules(db(), b.id)
   const days = await getAvailability({
