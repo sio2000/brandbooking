@@ -5,6 +5,20 @@ import * as React from 'react'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+const noop = () => () => {}
+/**
+ * False while server-rendering and hydrating, true afterwards. Reveal effects
+ * only hide content once JavaScript is running, so the page is fully readable
+ * without it (no-JS visitors, blocked scripts, crawlers).
+ */
+function useHydrated() {
+  return React.useSyncExternalStore(
+    noop,
+    () => true,
+    () => false,
+  )
+}
+
 /**
  * Fades content up a few pixels the first time it scrolls into view.
  * Opacity/transform only (GPU-friendly, no layout shift). MotionConfig's
@@ -21,6 +35,8 @@ export function Reveal({
   delay?: number
   y?: number
 }) {
+  const hydrated = useHydrated()
+  if (!hydrated) return <div className={className}>{children}</div>
   return (
     <motion.div
       className={className}
@@ -34,6 +50,8 @@ export function Reveal({
   )
 }
 
+const RevealContext = React.createContext(false)
+
 /** Staggers direct children (each wrapped in <RevealItem>) as the group enters the viewport. */
 export function RevealGroup({
   children,
@@ -46,17 +64,24 @@ export function RevealGroup({
   as?: 'div' | 'ul' | 'ol'
   stagger?: number
 }) {
+  const hydrated = useHydrated()
+  if (!hydrated) {
+    const Tag = as
+    return <Tag className={className}>{children}</Tag>
+  }
   const Comp = motion[as]
   return (
-    <Comp
-      className={className}
-      initial="hidden"
-      whileInView="shown"
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-      variants={{ hidden: {}, shown: { transition: { staggerChildren: stagger } } }}
-    >
-      {children}
-    </Comp>
+    <RevealContext.Provider value>
+      <Comp
+        className={className}
+        initial="hidden"
+        whileInView="shown"
+        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+        variants={{ hidden: {}, shown: { transition: { staggerChildren: stagger } } }}
+      >
+        {children}
+      </Comp>
+    </RevealContext.Provider>
   )
 }
 
@@ -69,6 +94,11 @@ export function RevealItem({
   className?: string
   as?: 'div' | 'li'
 }) {
+  const animated = React.useContext(RevealContext)
+  if (!animated) {
+    const Tag = as
+    return <Tag className={className}>{children}</Tag>
+  }
   const Comp = motion[as]
   return (
     <Comp

@@ -31,6 +31,11 @@ export function proxy(request: NextRequest) {
 
   const headers = new Headers(request.headers)
   headers.set('x-nonce', nonce)
+  // Next.js extracts the nonce for its own scripts from the *request* CSP
+  // header. Without this, hosts that run the proxy separately from rendering
+  // (e.g. Netlify's edge) serve scripts without a nonce and the browser blocks
+  // them all.
+  headers.set('Content-Security-Policy', csp)
   headers.set('x-request-id', requestId)
   const response = NextResponse.next({ request: { headers } })
   response.headers.set('Content-Security-Policy', csp)
