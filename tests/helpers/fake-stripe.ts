@@ -18,6 +18,13 @@ export type RecordedRequest = {
 export async function startFakeStripe() {
   const requests: RecordedRequest[] = []
   let counter = 0
+  // Minimal server-side state for the configuration objects the app provisions.
+  const state = {
+    prices: [] as Array<Record<string, unknown> & { lookup_key: string | null }>,
+    products: [] as unknown[],
+    portalConfigs: [] as unknown[],
+    webhooks: [] as Array<Record<string, unknown> & { id: string }>,
+  }
   const server = http.createServer((req, res) => {
     let body = ''
     req.on('data', (c) => (body += c))
@@ -61,6 +68,74 @@ export async function startFakeStripe() {
           url: `https://billing.stripe.com/p/session/test_${id}`,
         })
       }
+      const list = (url: string, data: unknown[]) =>
+        json(200, { object: 'list', data, has_more: false, url })
+      if (req.method === 'GET' && path === '/v1/prices') return list(path, state.prices)
+      if (req.method === 'POST' && path === '/v1/products') {
+        const product = { id: `prod_test_${id}`, object: 'product', name: params.get('name') }
+        state.products.push(product)
+        return json(200, product)
+      }
+      if (req.method === 'POST' && path === '/v1/prices') {
+        if (params.get('transfer_lookup_key') === 'true')
+          for (const p of state.prices)
+            if (p.lookup_key === params.get('lookup_key')) p.lookup_key = null
+        const price = {
+          id: `price_test_${id}`,
+          object: 'price',
+          active: true,
+          product: params.get('product'),
+          currency: params.get('currency'),
+          unit_amount: Number(params.get('unit_amount')),
+          lookup_key: params.get('lookup_key'),
+          recurring: { interval: params.get('recurring[interval]'), interval_count: 1 },
+        }
+        state.prices.unshift(price)
+        return json(200, price)
+      }
+      if (req.method === 'GET' && path === '/v1/billing_portal/configurations')
+        return list(path, state.portalConfigs)
+      if (req.method === 'POST' && path === '/v1/billing_portal/configurations') {
+        const config = {
+          id: `bpc_test_${id}`,
+          object: 'billing_portal.configuration',
+          active: true,
+          is_default: false,
+        }
+        state.portalConfigs.push(config)
+        return json(200, config)
+      }
+      if (req.method === 'GET' && path === '/v1/webhook_endpoints')
+        return list(path, state.webhooks)
+      if (req.method === 'POST' && path === '/v1/webhook_endpoints') {
+        const hook = {
+          id: `we_test_${id}`,
+          object: 'webhook_endpoint',
+          url: params.get('url'),
+          status: 'enabled',
+          enabled_events: params.getAll('enabled_events[]').length
+            ? params.getAll('enabled_events[]')
+            : [...params.entries()]
+                .filter(([k]) => k.startsWith('enabled_events'))
+                .map(([, v]) => v),
+          secret: `whsec_test_${id}_${Math.random().toString(36).slice(2)}`,
+        }
+        state.webhooks.push({ ...hook, secret: undefined })
+        return json(200, hook)
+      }
+      if (req.method === 'DELETE' && path.startsWith('/v1/webhook_endpoints/')) {
+        const hookId = path.split('/').pop()
+        state.webhooks = state.webhooks.filter((w) => w.id !== hookId)
+        return json(200, { id: hookId, object: 'webhook_endpoint', deleted: true })
+      }
+      if (req.method === 'POST' && path.startsWith('/v1/webhook_endpoints/')) {
+        const hook = state.webhooks.find((w) => w.id === path.split('/').pop())
+        return hook
+          ? json(200, hook)
+          : json(404, {
+              error: { type: 'invalid_request_error', message: 'No such webhook endpoint' },
+            })
+      }
       if (req.method === 'GET' && path === '/v1/invoices') {
         return json(200, { object: 'list', data: [], has_more: false, url: '/v1/invoices' })
       }
@@ -77,6 +152,7 @@ export async function startFakeStripe() {
   return {
     url: `http://127.0.0.1:${port}`,
     requests,
+    state,
     close: () => new Promise<void>((r) => server.close(() => r())),
   }
 }

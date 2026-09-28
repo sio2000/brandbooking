@@ -79,12 +79,12 @@ keyboard-only booking test with visible-focus assertions.
 Run on 2026-09-28 in the development container (PostgreSQL 16, Node 22,
 Chromium), after the final code changes and formatting:
 
-| Suite                                   | Files           | Tests | Result                                      |
-| --------------------------------------- | --------------- | ----- | ------------------------------------------- |
-| Unit                                    | 16              | 454   | 454 passed                                  |
-| Integration                             | 19              | 262   | 262 passed                                  |
-| End-to-end + accessibility + responsive | 7 specs + setup | 117   | 117 passed, 0 retries, 0 flaky (5.2 min)    |
-| Stripe live API (test mode)             | 1               | 4     | skipped — no Stripe test keys were provided |
+| Suite                                   | Files           | Tests | Result                                                                                                 |
+| --------------------------------------- | --------------- | ----- | ------------------------------------------------------------------------------------------------------ |
+| Unit                                    | 20              | 473   | 473 passed                                                                                             |
+| Integration                             | 20              | 271   | 271 passed                                                                                             |
+| End-to-end + accessibility + responsive | 7 specs + setup | 117   | 117 passed, 0 retries, 0 flaky (7.2 min)                                                               |
+| Stripe live API (test mode)             | 1               | 4     | not run — test keys were provided, but this build environment blocks outbound access to api.stripe.com |
 
 Also clean: `npm run typecheck`, `npm run lint`, `npm run format:check`,
 `npm audit` (0 vulnerabilities), and `next build` (no warnings). A production

@@ -14,6 +14,7 @@ import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
 import { computeAccess, type Access } from './entitlements'
 import { stripe, type Stripe } from './stripe'
+import { planPriceId, portalConfigurationId } from './config'
 import { logger } from '@/server/observability/logger'
 
 export async function getSubscription(businessId: string): Promise<Subscription | null> {
@@ -97,7 +98,7 @@ export async function createCheckoutSession(
     mode: 'subscription',
     customer,
     client_reference_id: business.id,
-    line_items: [{ price: e.STRIPE_PRICE_ID!, quantity: 1 }],
+    line_items: [{ price: await planPriceId(), quantity: 1 }],
     subscription_data: {
       metadata: { business_id: business.id },
       ...(carryTrial ? { trial_end: Math.floor(trialEnd / 1000) } : {}),
@@ -127,6 +128,7 @@ export async function createPortalSession(business: Business): Promise<string> {
   if (!sub) throw new AppError('not_found')
   const portal = await stripe().billingPortal.sessions.create({
     customer: sub.stripeCustomerId,
+    configuration: await portalConfigurationId(),
     return_url: appUrl('/app/billing'),
   })
   return portal.url

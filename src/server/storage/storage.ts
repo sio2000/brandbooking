@@ -2,12 +2,13 @@ import 'server-only'
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { AwsClient } from 'aws4fetch'
+import { getStore } from '@netlify/blobs'
 import { env, appUrl } from '@/server/env'
 
 /**
  * Object storage abstraction. Local disk for development / single-server
  * deployments; any S3-compatible service (AWS S3, Cloudflare R2, Backblaze B2,
- * MinIO) in production. Business logic never touches the driver directly.
+ * MinIO) or Netlify Blobs (zero-config on Netlify) in production. Business logic never touches the driver directly.
  */
 export interface ObjectStorage {
   put(key: string, body: Buffer, contentType: string): Promise<void>
@@ -108,20 +109,65 @@ class S3Storage implements ObjectStorage {
   }
 }
 
+/** Netlify Blobs: site-wide store, strongly consistent so an upload is readable at once. */
+class NetlifyBlobsStorage implements ObjectStorage {
+  private store() {
+    return getStore({ name: 'hournook-uploads', consistency: 'strong' })
+  }
+  async put(key: string, body: Buffer, contentType: string) {
+    assertSafeKey(key)
+    const bytes = new Uint8Array(body)
+    await this.store().set(
+      key,
+      bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
+      {
+        metadata: { contentType },
+      },
+    )
+  }
+  async get(key: string) {
+    assertSafeKey(key)
+    const r = await this.store()
+      .getWithMetadata(key, { type: 'arrayBuffer' })
+      .catch((err: unknown) => {
+        // Environments without strong-consistency support fall back to eventual reads.
+        if (err instanceof Error && err.name === 'BlobsConsistencyError')
+          return getStore({ name: 'hournook-uploads' }).getWithMetadata(key, {
+            type: 'arrayBuffer',
+          })
+        throw err
+      })
+    if (!r) return null
+    const ct = typeof r.metadata.contentType === 'string' ? r.metadata.contentType : undefined
+    return { body: Buffer.from(r.data), contentType: ct ?? 'application/octet-stream' }
+  }
+  async delete(key: string) {
+    assertSafeKey(key)
+    await this.store().delete(key)
+  }
+  publicUrl(key: string) {
+    return appUrl(`/media/${key}`)
+  }
+}
+
 let instance: ObjectStorage | undefined
 export function storage(): ObjectStorage {
   if (instance) return instance
   const e = env()
   instance =
-    e.STORAGE_DRIVER === 's3'
-      ? new S3Storage(
-          e.S3_ENDPOINT!,
-          e.S3_BUCKET!,
-          e.S3_REGION,
-          e.S3_ACCESS_KEY_ID!,
-          e.S3_SECRET_ACCESS_KEY!,
-          e.S3_PUBLIC_URL,
-        )
-      : new LocalStorage(path.resolve(/*turbopackIgnore: true*/ process.cwd(), e.STORAGE_LOCAL_DIR))
+    e.STORAGE_DRIVER === 'netlify-blobs'
+      ? new NetlifyBlobsStorage()
+      : e.STORAGE_DRIVER === 's3'
+        ? new S3Storage(
+            e.S3_ENDPOINT!,
+            e.S3_BUCKET!,
+            e.S3_REGION,
+            e.S3_ACCESS_KEY_ID!,
+            e.S3_SECRET_ACCESS_KEY!,
+            e.S3_PUBLIC_URL,
+          )
+        : new LocalStorage(
+            path.resolve(/*turbopackIgnore: true*/ process.cwd(), e.STORAGE_LOCAL_DIR),
+          )
   return instance
 }

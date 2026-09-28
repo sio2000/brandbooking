@@ -1,0 +1,14 @@
+# Netlify deployment for Hournook (Next.js 16 via the official Next.js runtime).
+# Required environment variables are listed in docs/NETLIFY.md.
+
+[build]
+  # Apply database migrations, provision Stripe (price, portal, webhook), then build.
+  command = "npm run build:netlify"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

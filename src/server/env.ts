@@ -17,8 +17,15 @@ const bool = z
 const EnvSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-    APP_URL: z.url().default('http://localhost:3000'),
-    DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+    // On Netlify the site URL is baked in at build time (next.config.ts).
+    APP_URL: z
+      .url()
+      .default(() => process.env.NEXT_PUBLIC_APP_URL || process.env.URL || 'http://localhost:3000'),
+    // Netlify DB (Neon) exposes NETLIFY_DATABASE_URL.
+    DATABASE_URL: z.preprocess(
+      (v) => v || process.env.NETLIFY_DATABASE_URL,
+      z.string({ error: 'DATABASE_URL is required' }).min(1, 'DATABASE_URL is required'),
+    ),
     DATABASE_POOL_MAX: z.coerce.number().int().min(1).max(100).default(10),
     DATABASE_SSL: bool,
     TRUST_PROXY: bool,
@@ -28,12 +35,29 @@ const EnvSchema = z
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
     ERROR_WEBHOOK_URL: z.url().optional(),
 
-    EMAIL_PROVIDER: z.enum(['log', 'smtp', 'resend', 'memory']).default('log'),
-    EMAIL_FROM: z.string().min(3).default('Hournook <no-reply@localhost>'),
+    // Defaults to whichever provider has credentials configured.
+    EMAIL_PROVIDER: z
+      .enum(['log', 'smtp', 'resend', 'memory'])
+      .default(() =>
+        process.env.RESEND_API_KEY ? 'resend' : process.env.SMTP_URL ? 'smtp' : 'log',
+      ),
+    // Resend's shared sender works before you verify a domain (it can only
+    // deliver to your own Resend account address).
+    EMAIL_FROM: z
+      .string()
+      .min(3)
+      .default(() =>
+        process.env.RESEND_API_KEY
+          ? 'Hournook <onboarding@resend.dev>'
+          : 'Hournook <no-reply@localhost>',
+      ),
     SMTP_URL: z.string().optional(),
     RESEND_API_KEY: z.string().optional(),
 
-    STORAGE_DRIVER: z.enum(['local', 's3']).default('local'),
+    // Netlify builds bake HN_PLATFORM=netlify in, making Netlify Blobs the default there.
+    STORAGE_DRIVER: z
+      .enum(['local', 's3', 'netlify-blobs'])
+      .default(() => (process.env.HN_PLATFORM === 'netlify' ? 'netlify-blobs' : 'local')),
     STORAGE_LOCAL_DIR: z.string().default('.data/uploads'),
     S3_ENDPOINT: z.url().optional(),
     S3_REGION: z.string().default('auto'),
@@ -63,7 +87,13 @@ const EnvSchema = z
     LEGAL_CONTACT_EMAIL: z.email().optional(),
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV !== 'production') {
+    // Hosted production deploys (Netlify/Vercel) may run build-time scripts
+    // without NODE_ENV=production.
+    const productionDeploy =
+      env.NODE_ENV === 'production' ||
+      process.env.CONTEXT === 'production' ||
+      process.env.VERCEL_ENV === 'production'
+    if (!productionDeploy) {
       // Safety net: outside production only Stripe TEST MODE keys are accepted,
       // so a developer machine or CI run can never create real charges.
       for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
@@ -90,11 +120,15 @@ const EnvSchema = z
     need('S3_ACCESS_KEY_ID', env.STORAGE_DRIVER === 's3')
     need('S3_SECRET_ACCESS_KEY', env.STORAGE_DRIVER === 's3')
     need('S3_ENDPOINT', env.STORAGE_DRIVER === 's3')
-    if (env.EMAIL_PROVIDER === 'memory' || env.EMAIL_PROVIDER === 'log') {
+    if (
+      env.EMAIL_PROVIDER === 'memory' ||
+      (env.EMAIL_PROVIDER === 'log' && !process.env.ALLOW_LOG_EMAIL_IN_PRODUCTION)
+    ) {
       ctx.addIssue({
         code: 'custom',
         path: ['EMAIL_PROVIDER'],
-        message: 'EMAIL_PROVIDER must be smtp or resend in production',
+        message:
+          'EMAIL_PROVIDER must be smtp or resend in production (for a trial deployment, ALLOW_LOG_EMAIL_IN_PRODUCTION=1 writes emails to the server log instead)',
       })
     }
     if (env.STORAGE_DRIVER === 'local' && !process.env.ALLOW_LOCAL_STORAGE_IN_PRODUCTION) {
@@ -131,7 +165,9 @@ export function resetEnvCache() {
 
 export function isStripeConfigured(): boolean {
   const e = env()
-  return Boolean(e.STRIPE_SECRET_KEY && e.STRIPE_WEBHOOK_SECRET && e.STRIPE_PRICE_ID)
+  // The price, portal configuration and webhook secret are provisioned
+  // automatically when not pinned (see src/server/billing/config.ts).
+  return Boolean(e.STRIPE_SECRET_KEY)
 }
 
 export function appUrl(path = ''): string {

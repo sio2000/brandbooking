@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { handleStripeWebhook } from '@/server/billing/webhook'
 import { isStripeConfigured } from '@/server/env'
+import { webhookSecret } from '@/server/billing/config'
 import { logger } from '@/server/observability/logger'
 
 export const dynamic = 'force-dynamic'
@@ -10,7 +11,7 @@ export const dynamic = 'force-dynamic'
  * verification, so it's read as text and never parsed before verifying.
  */
 export async function POST(req: Request) {
-  if (!isStripeConfigured())
+  if (!isStripeConfigured() || !(await webhookSecret()))
     return NextResponse.json({ error: 'billing not configured' }, { status: 503 })
   const body = await req.text()
   const outcome = await handleStripeWebhook(body, req.headers.get('stripe-signature'))

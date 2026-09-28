@@ -104,6 +104,14 @@ admin panel (Health) shows when the last tick ran.
 
 ## 6. Stripe (billing)
 
+**Automatic setup (recommended):** with only `STRIPE_SECRET_KEY` set, run
+`npm run stripe:setup` (Netlify production builds do this automatically). It
+idempotently creates the €10/month price (lookup key `hournook_monthly`), a
+Customer Portal configuration and the webhook endpoint for `APP_URL`, storing
+the webhook signing secret encrypted with `APP_SECRET`. The manual steps below
+are only needed if you prefer to create these objects yourself and pin them
+with `STRIPE_PRICE_ID`, `STRIPE_PORTAL_CONFIGURATION_ID` and `STRIPE_WEBHOOK_SECRET`.
+
 Develop and test with **test-mode** keys only; the app refuses live keys
 unless `NODE_ENV=production`.
 

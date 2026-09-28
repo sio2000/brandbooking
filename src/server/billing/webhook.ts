@@ -7,11 +7,11 @@ import {
   subscriptions,
   type SubscriptionStatus,
 } from '@/server/db/schema'
-import { env } from '@/server/env'
 import { audit } from '@/server/audit'
 import { logger } from '@/server/observability/logger'
 import { addInboxItems, enqueueEmail, membersToNotify } from '@/server/notifications/outbox'
 import { stripe, type Stripe } from './stripe'
+import { webhookSecret } from './config'
 
 /**
  * Stripe webhook processing.
@@ -47,10 +47,15 @@ const HANDLED = new Set([
 
 const STALE_PROCESSING_MS = 5 * 60 * 1000
 
-export function verifyEvent(rawBody: string, signature: string | null): Stripe.Event | null {
+export async function verifyEvent(
+  rawBody: string,
+  signature: string | null,
+): Promise<Stripe.Event | null> {
   if (!signature) return null
+  const secret = await webhookSecret()
+  if (!secret) return null
   try {
-    return stripe().webhooks.constructEvent(rawBody, signature, env().STRIPE_WEBHOOK_SECRET!)
+    return stripe().webhooks.constructEvent(rawBody, signature, secret)
   } catch {
     return null
   }
@@ -61,7 +66,7 @@ export async function handleStripeWebhook(
   signature: string | null,
 ): Promise<WebhookOutcome> {
   if (rawBody.length > 512 * 1024) return { status: 400, result: 'invalid_payload' }
-  const event = verifyEvent(rawBody, signature)
+  const event = await verifyEvent(rawBody, signature)
   if (!event) return { status: 400, result: 'invalid_signature' }
   if (
     typeof event.id !== 'string' ||

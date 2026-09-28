@@ -18,3 +18,4 @@ blob-report/
 npm-debug.log*
 .next-e2e/
 /scratch/
+.netlify/

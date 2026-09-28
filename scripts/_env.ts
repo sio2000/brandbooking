@@ -9,6 +9,8 @@ import { loadEnvConfig } from '@next/env'
 
 const mode = process.env.NODE_ENV ?? 'development'
 loadEnvConfig(process.cwd(), mode === 'development', { info: () => {}, error: console.error })
+// Netlify DB (Neon) exposes its connection string as NETLIFY_DATABASE_URL.
+process.env.DATABASE_URL ||= process.env.NETLIFY_DATABASE_URL
 if (!existsSync('.env') && !existsSync('.env.local') && !process.env.DATABASE_URL) {
   console.warn('No .env file found. Copy .env.example to .env and adjust it.')
 }

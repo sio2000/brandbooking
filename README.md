@@ -65,7 +65,8 @@ set `DATABASE_URL`.
 | `npm run db:seed`                         | Load demo data (refuses in production)                                               |
 | `npm run db:reset`                        | Drop and recreate the local dev schema (refuses non-local/production)                |
 | `npm run worker`                          | Long-running scheduler (alternative to calling `/api/cron/tick`)                     |
-| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin                                               |
+| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin (or set `PLATFORM_ADMIN_EMAILS`)              |
+| `npm run stripe:setup`                    | Create/verify the Stripe price, portal configuration and webhook (idempotent)        |
 | `npm test`                                | Unit + integration tests (integration uses `TEST_DATABASE_URL`, must end in `_test`) |
 | `npm run test:e2e`                        | Playwright end-to-end + accessibility tests (own `_e2e` database)                    |
 | `npm run test:stripe-live`                | Optional tests against the real Stripe API in **test mode**                          |
@@ -77,6 +78,7 @@ set `DATABASE_URL`.
 - [docs/SECURITY.md](docs/SECURITY.md) — threat model, tenant isolation, auth, payments, privacy
 - [docs/TESTING.md](docs/TESTING.md) — test strategy, how to run each suite, current results
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — production setup, Stripe, email, storage, cron, backups
+- [docs/NETLIFY.md](docs/NETLIFY.md) — step-by-step Netlify deployment (self-configuring)
 
 ## Project status
 

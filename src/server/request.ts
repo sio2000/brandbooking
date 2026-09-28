@@ -5,11 +5,18 @@ import { randomUUID } from 'node:crypto'
 export type RequestMeta = { ip: string; userAgent: string | null; requestId: string }
 
 /**
- * Client IP. X-Forwarded-For is only trusted when TRUST_PROXY=true (i.e. the
+ * Client IP. On Netlify the platform's x-nf-client-connection-ip is used.
+ * X-Forwarded-For is only trusted when TRUST_PROXY=true (i.e. the
  * app runs behind a proxy that overwrites it, such as Vercel or a load
  * balancer); otherwise a client could spoof it to dodge rate limits.
  */
 export function clientIpFrom(h: Headers): string {
+  // On Netlify (baked in at build time) the edge sets this header itself and
+  // overwrites any client-supplied value.
+  if (process.env.HN_PLATFORM === 'netlify') {
+    const nf = h.get('x-nf-client-connection-ip')?.trim()
+    if (nf) return nf.slice(0, 64)
+  }
   if (process.env.TRUST_PROXY === 'true' || process.env.TRUST_PROXY === '1') {
     const xff = h.get('x-forwarded-for')
     const first = xff?.split(',')[0]?.trim()

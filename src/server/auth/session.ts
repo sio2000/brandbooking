@@ -91,9 +91,23 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       email: row.email,
       name: row.name,
       emailVerified: row.emailVerifiedAt !== null,
-      isPlatformAdmin: row.isPlatformAdmin,
+      isPlatformAdmin: row.isPlatformAdmin || isBootstrapAdmin(row.email, row.emailVerifiedAt),
     },
   }
+}
+
+/**
+ * PLATFORM_ADMIN_EMAILS (comma-separated) grants platform-admin rights to
+ * those accounts once their email address is verified — a way to get the first
+ * admin on hosted deployments without shell access (`npm run admin:grant`).
+ */
+export function isBootstrapAdmin(email: string, verifiedAt: Date | null): boolean {
+  if (!verifiedAt) return false
+  const list = (process.env.PLATFORM_ADMIN_EMAILS ?? '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean)
+  return list.includes(email.toLowerCase())
 }
 
 export async function invalidateSession(sessionId: string) {

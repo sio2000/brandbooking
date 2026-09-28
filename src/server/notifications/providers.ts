@@ -49,6 +49,12 @@ class LogProvider implements EmailProvider {
   readonly name = 'log'
   async send(m: EmailMessage) {
     const id = `log-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+    if (process.env.NODE_ENV === 'production') {
+      // Trial deployments only (ALLOW_LOG_EMAIL_IN_PRODUCTION): the message,
+      // including any links, goes to the server log so it can be read there.
+      logger.warn('email.logged', { to: m.to, subject: m.subject, text: m.text })
+      return { id }
+    }
     // Development preview: open .data/mail/*.html in a browser.
     try {
       const dir = path.join(process.cwd(), '.data/mail')
