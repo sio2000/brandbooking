@@ -7,15 +7,15 @@ and what **you** must configure — nothing here is pre-provisioned.
 
 ## 1. What you need
 
-| Service | Purpose | Examples |
-|---|---|---|
-| Node.js host | Runs the app (`next build` / `next start`) | Vercel, Render, Fly.io, Docker on a VM |
-| PostgreSQL ≥ 16 | All application data | Neon, AWS RDS, Google Cloud SQL, Render, DigitalOcean |
-| Transactional email | Booking confirmations, reminders, account emails | Resend (API) or any SMTP: Postmark, SES, Mailgun |
-| S3-compatible storage | Logos, covers, avatars | AWS S3, Cloudflare R2, Backblaze B2, MinIO |
-| Scheduler (every minute) | Sends due emails & reminders, housekeeping | Vercel Cron (paid plans), GitHub Actions/cron-job.org, `npm run worker` |
-| Stripe account | €10/month subscriptions | Stripe Billing |
-| Domain + DNS | App URL and email sending domain (SPF/DKIM/DMARC) | Any registrar |
+| Service                  | Purpose                                           | Examples                                                                |
+| ------------------------ | ------------------------------------------------- | ----------------------------------------------------------------------- |
+| Node.js host             | Runs the app (`next build` / `next start`)        | Vercel, Render, Fly.io, Docker on a VM                                  |
+| PostgreSQL ≥ 16          | All application data                              | Neon, AWS RDS, Google Cloud SQL, Render, DigitalOcean                   |
+| Transactional email      | Booking confirmations, reminders, account emails  | Resend (API) or any SMTP: Postmark, SES, Mailgun                        |
+| S3-compatible storage    | Logos, covers, avatars                            | AWS S3, Cloudflare R2, Backblaze B2, MinIO                              |
+| Scheduler (every minute) | Sends due emails & reminders, housekeeping        | Vercel Cron (paid plans), GitHub Actions/cron-job.org, `npm run worker` |
+| Stripe account           | €10/month subscriptions                           | Stripe Billing                                                          |
+| Domain + DNS             | App URL and email sending domain (SPF/DKIM/DMARC) | Any registrar                                                           |
 
 The database needs the `citext`, `btree_gist` and `pg_trgm` extensions (standard
 contrib modules; all managed providers above support them). The migration

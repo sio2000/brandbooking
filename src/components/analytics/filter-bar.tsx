@@ -64,7 +64,8 @@ export function FilterBar({
     e.preventDefault()
     if (!draft.from || !draft.to) return setError('Choose a start and an end date.')
     if (draft.from > draft.to) return setError('The start date must be on or before the end date.')
-    if (spanDays(draft.from, draft.to) > MAX_DAYS) return setError(`Choose a range of at most ${MAX_DAYS} days.`)
+    if (spanDays(draft.from, draft.to) > MAX_DAYS)
+      return setError(`Choose a range of at most ${MAX_DAYS} days.`)
     setOpen(false)
     setParams({ range: 'custom', from: draft.from, to: draft.to })
   }
@@ -83,7 +84,9 @@ export function FilterBar({
             >
               <CalendarRange className="size-4 shrink-0 text-muted-foreground" aria-hidden />
               <span className="font-medium">{presetLabel}</span>
-              <span className="hidden truncate text-muted-foreground sm:inline">{formatSpan(from, to)}</span>
+              <span className="hidden truncate text-muted-foreground sm:inline">
+                {formatSpan(from, to)}
+              </span>
               <ChevronDown className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             </button>
           </PopoverTrigger>
@@ -98,7 +101,10 @@ export function FilterBar({
                     role="option"
                     aria-selected={selected}
                     onClick={() => choose(p.value)}
-                    className={cn('flex h-9 w-full items-center gap-2 rounded-lg px-2.5 text-left text-sm outline-none hover:bg-surface-2 focus-visible:bg-surface-2', selected && 'font-semibold')}
+                    className={cn(
+                      'flex h-9 w-full items-center gap-2 rounded-lg px-2.5 text-left text-sm outline-none hover:bg-surface-2 focus-visible:bg-surface-2',
+                      selected && 'font-semibold',
+                    )}
                   >
                     <span className="grid size-4 place-items-center" aria-hidden>
                       {selected && <Check className="size-4 text-primary" strokeWidth={3} />}
@@ -108,8 +114,17 @@ export function FilterBar({
                 )
               })}
             </div>
-            <form onSubmit={applyCustom} className="mt-1 border-t border-border px-2.5 pt-3 pb-2" noValidate>
-              <p className={cn('mb-2 flex items-center gap-2 text-sm', preset === 'custom' ? 'font-semibold' : 'text-muted-foreground')}>
+            <form
+              onSubmit={applyCustom}
+              className="mt-1 border-t border-border px-2.5 pt-3 pb-2"
+              noValidate
+            >
+              <p
+                className={cn(
+                  'mb-2 flex items-center gap-2 text-sm',
+                  preset === 'custom' ? 'font-semibold' : 'text-muted-foreground',
+                )}
+              >
                 <span className="grid size-4 place-items-center" aria-hidden>
                   {preset === 'custom' && <Check className="size-4 text-primary" strokeWidth={3} />}
                 </span>
@@ -118,11 +133,25 @@ export function FilterBar({
               <div className="grid grid-cols-2 gap-2">
                 <label className="text-xs font-medium text-muted-foreground">
                   From
-                  <Input type="date" value={draft.from} max={draft.to || undefined} onChange={(e) => setDraft((d) => ({ ...d, from: e.target.value }))} className="mt-1 h-9 px-2 text-sm" aria-invalid={Boolean(error) || undefined} />
+                  <Input
+                    type="date"
+                    value={draft.from}
+                    max={draft.to || undefined}
+                    onChange={(e) => setDraft((d) => ({ ...d, from: e.target.value }))}
+                    className="mt-1 h-9 px-2 text-sm"
+                    aria-invalid={Boolean(error) || undefined}
+                  />
                 </label>
                 <label className="text-xs font-medium text-muted-foreground">
                   To
-                  <Input type="date" value={draft.to} min={draft.from || undefined} onChange={(e) => setDraft((d) => ({ ...d, to: e.target.value }))} className="mt-1 h-9 px-2 text-sm" aria-invalid={Boolean(error) || undefined} />
+                  <Input
+                    type="date"
+                    value={draft.to}
+                    min={draft.from || undefined}
+                    onChange={(e) => setDraft((d) => ({ ...d, to: e.target.value }))}
+                    className="mt-1 h-9 px-2 text-sm"
+                    aria-invalid={Boolean(error) || undefined}
+                  />
                 </label>
               </div>
               {error && (
@@ -131,7 +160,11 @@ export function FilterBar({
                 </p>
               )}
               <div className="mt-3 flex items-center justify-between gap-2">
-                <button type="button" className="text-xs text-muted-foreground underline-offset-2 hover:underline" onClick={() => setDraft({ from: today, to: today })}>
+                <button
+                  type="button"
+                  className="text-xs text-muted-foreground underline-offset-2 hover:underline"
+                  onClick={() => setDraft({ from: today, to: today })}
+                >
                   Today
                 </button>
                 <Button type="submit" size="sm">
@@ -166,7 +199,11 @@ export function FilterBar({
           Service
         </label>
         <div className="w-full min-w-0 sm:w-52">
-          <NativeSelect id="analytics-service" value={serviceId ?? ''} onChange={(e) => setParams({ service: e.target.value || null })}>
+          <NativeSelect
+            id="analytics-service"
+            value={serviceId ?? ''}
+            onChange={(e) => setParams({ service: e.target.value || null })}
+          >
             <option value="">All services</option>
             {services.map((s) => (
               <option key={s.id} value={s.id}>
@@ -178,15 +215,23 @@ export function FilterBar({
         </div>
 
         {hasDimensionFilter && (
-          <Button variant="ghost" size="sm" onClick={() => setParams({ staff: null, service: null })}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setParams({ staff: null, service: null })}
+          >
             <X aria-hidden /> Clear filters
           </Button>
         )}
       </div>
-      <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-muted-foreground" aria-live="polite">
+      <p
+        className="flex flex-wrap items-center gap-x-2 text-[13px] text-muted-foreground"
+        aria-live="polite"
+      >
         <span className="sm:hidden">{formatSpan(from, to)} ·</span>
         <span>
-          Compared with <span className="text-foreground">{formatSpan(previous.from, previous.to)}</span>
+          Compared with{' '}
+          <span className="text-foreground">{formatSpan(previous.from, previous.to)}</span>
         </span>
         {pending && <span className="text-subtle-foreground">Updating…</span>}
       </p>

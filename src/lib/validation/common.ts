@@ -31,7 +31,12 @@ export const urlSchema = z
   .trim()
   .max(300)
   .transform((v) => (v && !/^https?:\/\//i.test(v) ? `https://${v}` : v))
-  .pipe(z.union([z.literal(''), z.url({ protocol: /^https?$/, message: 'Enter a valid web address.' })]))
+  .pipe(
+    z.union([
+      z.literal(''),
+      z.url({ protocol: /^https?$/, message: 'Enter a valid web address.' }),
+    ]),
+  )
 
 /** Flatten Zod issues into { field: message } for form display. */
 export function fieldErrors(error: z.ZodError): Record<string, string> {

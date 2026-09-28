@@ -7,12 +7,22 @@ import { Activity, Bell, Building2, CalendarCog, ShieldCheck, UserRound, Users }
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-const ICONS = { business: Building2, booking: CalendarCog, notifications: Bell, team: Users, account: UserRound, privacy: ShieldCheck, activity: Activity }
+const ICONS = {
+  business: Building2,
+  booking: CalendarCog,
+  notifications: Bell,
+  team: Users,
+  account: UserRound,
+  privacy: ShieldCheck,
+  activity: Activity,
+}
 
 export type SettingsNavItem = { href: string; label: string; icon: keyof typeof ICONS }
 
 function isActive(pathname: string, href: string) {
-  return href === '/app/settings' ? pathname === href : pathname === href || pathname.startsWith(href + '/')
+  return href === '/app/settings'
+    ? pathname === href
+    : pathname === href || pathname.startsWith(href + '/')
 }
 
 /** Underlined tabs on desktop; a horizontally scrolling row of pills on phones. */
@@ -32,7 +42,10 @@ export function SettingsNav({ items }: { items: SettingsNavItem[] }) {
 
   return (
     <nav aria-label="Settings" className="-mx-4 mb-6 sm:mx-0 md:mb-8 md:border-b md:border-border">
-      <ul ref={listRef} className="relative flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-1 sm:px-0 md:gap-1 md:overflow-visible md:pb-0">
+      <ul
+        ref={listRef}
+        className="relative flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-1 sm:px-0 md:gap-1 md:overflow-visible md:pb-0"
+      >
         {items.map((item) => {
           const Icon = ICONS[item.icon]
           const active = isActive(pathname, item.href)

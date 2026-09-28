@@ -27,7 +27,9 @@ function b64ToUuid(s: string): string | null {
 }
 
 function mac(appointmentId: string, nonce: string) {
-  return createHmac('sha256', appSecret()).update(`manage:v1:${appointmentId}:${nonce}`).digest('base64url')
+  return createHmac('sha256', appSecret())
+    .update(`manage:v1:${appointmentId}:${nonce}`)
+    .digest('base64url')
 }
 
 export function signManageToken(appointmentId: string, nonce: string): string {
@@ -35,7 +37,9 @@ export function signManageToken(appointmentId: string, nonce: string): string {
 }
 
 /** Extract the appointment id without trusting it (verify with `verifyManageToken`). */
-export function parseManageToken(token: string): { appointmentId: string; signature: string } | null {
+export function parseManageToken(
+  token: string,
+): { appointmentId: string; signature: string } | null {
   if (typeof token !== 'string' || token.length > 120) return null
   const [idPart, sig, extra] = token.split('.')
   if (!idPart || !sig || extra !== undefined || !/^[A-Za-z0-9_-]+$/.test(idPart + sig)) return null
@@ -43,6 +47,10 @@ export function parseManageToken(token: string): { appointmentId: string; signat
   return appointmentId ? { appointmentId, signature: sig } : null
 }
 
-export function verifyManageToken(signature: string, appointmentId: string, nonce: string): boolean {
+export function verifyManageToken(
+  signature: string,
+  appointmentId: string,
+  nonce: string,
+): boolean {
   return safeEqual(signature, mac(appointmentId, nonce))
 }

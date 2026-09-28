@@ -5,8 +5,22 @@ import { z } from 'zod'
 import { parse, runAction } from '@/server/actions'
 import { requestMeta } from '@/server/request'
 import { requireTenantAction } from '@/server/tenancy/context'
-import { closureSchema, specialHoursSchema, timeBlockSchema, weeklyHoursSchema } from '@/lib/validation/business'
-import { addClosure, addTimeBlock, clearSpecialHours, removeClosure, removeTimeBlock, saveWeeklyHours, setSpecialHours, followBusinessHours } from '@/server/business/availability-admin'
+import {
+  closureSchema,
+  specialHoursSchema,
+  timeBlockSchema,
+  weeklyHoursSchema,
+} from '@/lib/validation/business'
+import {
+  addClosure,
+  addTimeBlock,
+  clearSpecialHours,
+  removeClosure,
+  removeTimeBlock,
+  saveWeeklyHours,
+  setSpecialHours,
+  followBusinessHours,
+} from '@/server/business/availability-admin'
 
 const PERMS = ['availability.manage', 'availability.manage_own'] as const
 
@@ -63,7 +77,9 @@ export async function setSpecialHoursAction(input: unknown) {
 export async function clearSpecialHoursAction(onDate: string, staffId: string | null) {
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
-    const v = z.object({ onDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), staffId: z.uuid().nullable() }).parse({ onDate, staffId })
+    const v = z
+      .object({ onDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/), staffId: z.uuid().nullable() })
+      .parse({ onDate, staffId })
     await clearSpecialHours(ctx, v.onDate, v.staffId)
     done()
     return null

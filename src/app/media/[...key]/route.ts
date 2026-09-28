@@ -8,8 +8,11 @@ import { storage } from '@/server/storage/storage'
 export async function GET(_req: Request, ctx: RouteContext<'/media/[...key]'>) {
   const { key } = await ctx.params
   const path = key.join('/')
-  if (!/^b\/[0-9a-f-]{36}\/(logo|cover|avatar)\/[0-9a-f-]{36}-(main|sm)\.webp$/.test(path)) return new Response('Not found', { status: 404 })
-  const obj = await storage().get(path).catch(() => null)
+  if (!/^b\/[0-9a-f-]{36}\/(logo|cover|avatar)\/[0-9a-f-]{36}-(main|sm)\.webp$/.test(path))
+    return new Response('Not found', { status: 404 })
+  const obj = await storage()
+    .get(path)
+    .catch(() => null)
   if (!obj) return new Response('Not found', { status: 404 })
   return new Response(new Uint8Array(obj.body), {
     headers: {

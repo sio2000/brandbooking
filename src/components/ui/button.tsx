@@ -7,17 +7,18 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 export const buttonVariants = cva(
-  'relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap font-medium select-none transition-[background-color,color,box-shadow,transform,border-color] duration-150 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-55 active:scale-[0.97] [&_svg]:size-4 [&_svg]:shrink-0',
+  'relative inline-flex shrink-0 items-center justify-center gap-2 font-medium whitespace-nowrap transition-[background-color,color,box-shadow,transform,border-color] duration-150 ease-out outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97] disabled:pointer-events-none disabled:opacity-55 [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         primary: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary-hover',
-        secondary: 'bg-surface text-foreground border border-border-strong shadow-xs hover:bg-surface-2',
+        secondary:
+          'border border-border-strong bg-surface text-foreground shadow-xs hover:bg-surface-2',
         soft: 'bg-primary-soft text-primary-soft-foreground hover:brightness-[0.97] dark:hover:brightness-125',
         ghost: 'text-foreground hover:bg-surface-2',
         danger: 'bg-danger text-white shadow-xs hover:bg-danger-hover dark:text-[#1a0606]',
         'danger-soft': 'bg-danger-soft text-danger-soft-foreground hover:brightness-[0.97]',
-        link: 'text-primary underline-offset-4 hover:underline px-0 h-auto active:scale-100',
+        link: 'h-auto px-0 text-primary underline-offset-4 hover:underline active:scale-100',
       },
       size: {
         sm: 'h-8 rounded-md px-3 text-[13px]',
@@ -38,7 +39,17 @@ export type ButtonProps = React.ComponentProps<'button'> &
     success?: boolean
   }
 
-export function Button({ className, variant, size, asChild, loading, success, children, disabled, ...props }: ButtonProps) {
+export function Button({
+  className,
+  variant,
+  size,
+  asChild,
+  loading,
+  success,
+  children,
+  disabled,
+  ...props
+}: ButtonProps) {
   const Comp = asChild ? Slot.Root : 'button'
   if (asChild) {
     return (
@@ -54,14 +65,24 @@ export function Button({ className, variant, size, asChild, loading, success, ch
       aria-busy={loading || undefined}
       {...props}
     >
-      <span className={cn('inline-flex items-center gap-2 transition-opacity', (loading || success) && 'opacity-0')}>{children}</span>
+      <span
+        className={cn(
+          'inline-flex items-center gap-2 transition-opacity',
+          (loading || success) && 'opacity-0',
+        )}
+      >
+        {children}
+      </span>
       {loading && (
         <span className="absolute inset-0 flex items-center justify-center" aria-hidden>
           <Loader2 className="animate-spin" />
         </span>
       )}
       {success && !loading && (
-        <span className="absolute inset-0 flex items-center justify-center animate-in zoom-in-50 fade-in duration-200" aria-hidden>
+        <span
+          className="absolute inset-0 flex animate-in items-center justify-center duration-200 zoom-in-50 fade-in"
+          aria-hidden
+        >
           <Check />
         </span>
       )}

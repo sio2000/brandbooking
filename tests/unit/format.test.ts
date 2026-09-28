@@ -63,13 +63,17 @@ describe('time and date formatting', () => {
     expect(formatDate(t, 'America/New_York')).toBe('Sat, Mar 28, 2026')
   })
   it('formats ranges and zone names', () => {
-    expect(norm(formatTimeRange(t, new Date(t.getTime() + 3_600_000), 'UTC'))).toBe('1:30 AM – 2:30 AM')
+    expect(norm(formatTimeRange(t, new Date(t.getTime() + 3_600_000), 'UTC'))).toBe(
+      '1:30 AM – 2:30 AM',
+    )
     expect(formatTimeZoneName(t, 'UTC')).toBe('UTC')
     expect(formatTimeZoneName(new Date('2026-01-15T12:00:00Z'), 'America/New_York')).toBe('EST')
   })
   it('formatPlainDate never shifts the day', () => {
     expect(formatPlainDate('2024-02-29')).toBe('Thursday, February 29')
-    expect(formatPlainDate('2026-01-01', 'en', { day: 'numeric', month: 'short', year: 'numeric' })).toBe('Jan 1, 2026')
+    expect(
+      formatPlainDate('2026-01-01', 'en', { day: 'numeric', month: 'short', year: 'numeric' }),
+    ).toBe('Jan 1, 2026')
   })
   it('formatMinutesOfDay', () => {
     expect(norm(formatMinutesOfDay(0))).toBe('12:00 AM')

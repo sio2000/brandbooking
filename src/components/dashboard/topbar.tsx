@@ -2,11 +2,31 @@
 
 import Link from 'next/link'
 import * as React from 'react'
-import { Bell, Check, ChevronsUpDown, ExternalLink, LogOut, Plus, Search, Settings, User } from 'lucide-react'
+import {
+  Bell,
+  Check,
+  ChevronsUpDown,
+  ExternalLink,
+  LogOut,
+  Plus,
+  Search,
+  Settings,
+  User,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Kbd } from '@/components/ui/kbd'
 import { Avatar } from '@/components/ui/avatar'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Popover, PopoverContent, PopoverTrigger } from '@/components/ui/menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/menu'
 import { ThemeSwitcher } from '@/components/providers/theme'
 import { LogoMark } from '@/components/brand/logo'
 import { formatRelative } from '@/lib/format'
@@ -16,7 +36,14 @@ import { inboxAction, markInboxReadAction, switchBusinessAction } from '@/app/ap
 import { useCommandPalette } from './command-palette'
 
 type Membership = { businessId: string; name: string; role: string }
-type InboxItem = { id: string; title: string; body: string | null; href: string | null; readAt: Date | null; createdAt: Date }
+type InboxItem = {
+  id: string
+  title: string
+  body: string | null
+  href: string | null
+  readAt: Date | null
+  createdAt: Date
+}
 
 export function Topbar({
   user,
@@ -50,7 +77,13 @@ export function Topbar({
         <span className="flex-1 text-left">Search or jump to…</span>
         <Kbd>⌘K</Kbd>
       </button>
-      <Button variant="ghost" size="icon" className="md:hidden" onClick={() => palette.open()} aria-label="Search">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="md:hidden"
+        onClick={() => palette.open()}
+        aria-label="Search"
+      >
         <Search />
       </Button>
       {canCreate && (
@@ -61,7 +94,13 @@ export function Topbar({
         </Button>
       )}
       {bookingUrl && (
-        <Button asChild variant="ghost" size="icon" className="hidden sm:inline-flex" aria-label="Open booking page">
+        <Button
+          asChild
+          variant="ghost"
+          size="icon"
+          className="hidden sm:inline-flex"
+          aria-label="Open booking page"
+        >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink />
           </a>
@@ -69,7 +108,10 @@ export function Topbar({
       )}
       <InboxButton initialUnread={initialUnread} />
       <DropdownMenu>
-        <DropdownMenuTrigger className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Account menu">
+        <DropdownMenuTrigger
+          className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          aria-label="Account menu"
+        >
           <Avatar name={user.name} className="size-8" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-64">
@@ -79,10 +121,14 @@ export function Topbar({
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/app/settings/account"><User /> Account</Link>
+            <Link href="/app/settings/account">
+              <User /> Account
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/app/settings"><Settings /> Settings</Link>
+            <Link href="/app/settings">
+              <Settings /> Settings
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <div className="flex items-center justify-between px-2.5 py-1.5 text-sm">
@@ -99,7 +145,13 @@ export function Topbar({
   )
 }
 
-function BusinessSwitcher({ business, memberships }: { business: { id: string; name: string }; memberships: Membership[] }) {
+function BusinessSwitcher({
+  business,
+  memberships,
+}: {
+  business: { id: string; name: string }
+  memberships: Membership[]
+}) {
   if (memberships.length <= 1) {
     return <span className="truncate text-sm font-semibold sm:text-[15px]">{business.name}</span>
   }
@@ -112,14 +164,19 @@ function BusinessSwitcher({ business, memberships }: { business: { id: string; n
       <DropdownMenuContent align="start" className="w-64">
         <DropdownMenuLabel>Switch business</DropdownMenuLabel>
         {memberships.map((m) => (
-          <DropdownMenuItem key={m.businessId} onSelect={() => void switchBusinessAction(m.businessId)}>
+          <DropdownMenuItem
+            key={m.businessId}
+            onSelect={() => void switchBusinessAction(m.businessId)}
+          >
             <span className="flex-1 truncate">{m.name}</span>
             {m.businessId === business.id && <Check className="!text-primary" />}
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/onboarding?new=1"><Plus /> Add another business</Link>
+          <Link href="/onboarding?new=1">
+            <Plus /> Add another business
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -139,9 +196,18 @@ function InboxButton({ initialUnread }: { initialUnread: number }) {
   return (
     <Popover onOpenChange={(o) => o && void load()}>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative" aria-label={unread ? `Notifications, ${unread} unread` : 'Notifications'}>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative"
+          aria-label={unread ? `Notifications, ${unread} unread` : 'Notifications'}
+        >
           <Bell />
-          {unread > 0 && <span className="absolute top-1.5 right-1.5 grid min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] leading-4 font-bold text-white">{unread > 9 ? '9+' : unread}</span>}
+          {unread > 0 && (
+            <span className="absolute top-1.5 right-1.5 grid min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] leading-4 font-bold text-white">
+              {unread > 9 ? '9+' : unread}
+            </span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-[min(92vw,380px)] p-0">
@@ -162,21 +228,42 @@ function InboxButton({ initialUnread }: { initialUnread: number }) {
           )}
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
-          {items === null && <p className="p-6 text-center text-sm text-muted-foreground">Loading…</p>}
-          {items?.length === 0 && <p className="p-6 text-center text-sm text-muted-foreground">You’re all caught up. New bookings and changes will show up here.</p>}
+          {items === null && (
+            <p className="p-6 text-center text-sm text-muted-foreground">Loading…</p>
+          )}
+          {items?.length === 0 && (
+            <p className="p-6 text-center text-sm text-muted-foreground">
+              You’re all caught up. New bookings and changes will show up here.
+            </p>
+          )}
           <ul>
             {items?.map((i) => (
               <li key={i.id} className="border-b border-border last:border-0">
                 <Link
                   href={i.href ?? '/app'}
                   onClick={() => !i.readAt && void markInboxReadAction([i.id])}
-                  className={cn('flex gap-3 px-4 py-3 hover:bg-surface-2', !i.readAt && 'bg-primary-soft/30')}
+                  className={cn(
+                    'flex gap-3 px-4 py-3 hover:bg-surface-2',
+                    !i.readAt && 'bg-primary-soft/30',
+                  )}
                 >
-                  <span className={cn('mt-1.5 size-2 shrink-0 rounded-full', i.readAt ? 'bg-transparent' : 'bg-primary')} aria-hidden />
+                  <span
+                    className={cn(
+                      'mt-1.5 size-2 shrink-0 rounded-full',
+                      i.readAt ? 'bg-transparent' : 'bg-primary',
+                    )}
+                    aria-hidden
+                  />
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-medium">{i.title}</span>
-                    {i.body && <span className="mt-0.5 block text-[13px] text-muted-foreground">{i.body}</span>}
-                    <span className="mt-1 block text-xs text-subtle-foreground">{formatRelative(i.createdAt)}</span>
+                    {i.body && (
+                      <span className="mt-0.5 block text-[13px] text-muted-foreground">
+                        {i.body}
+                      </span>
+                    )}
+                    <span className="mt-1 block text-xs text-subtle-foreground">
+                      {formatRelative(i.createdAt)}
+                    </span>
                   </span>
                   {!i.readAt && <span className="sr-only">Unread</span>}
                 </Link>

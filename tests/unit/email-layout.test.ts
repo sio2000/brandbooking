@@ -4,12 +4,20 @@ import { esc, renderEmail, safeUrl, type EmailLayout } from '@/server/notificati
 const XSS = `<script>alert("x")</script>`
 
 function render(over: Partial<EmailLayout> = {}) {
-  return renderEmail({ preheader: 'Pre', brandName: 'Studio', blocks: [], footer: 'Footer', ...over })
+  return renderEmail({
+    preheader: 'Pre',
+    brandName: 'Studio',
+    blocks: [],
+    footer: 'Footer',
+    ...over,
+  })
 }
 
 describe('esc', () => {
   it('escapes the five HTML-significant characters', () => {
-    expect(esc(`<a href="x" onclick='y'>&</a>`)).toBe('&lt;a href=&quot;x&quot; onclick=&#39;y&#39;&gt;&amp;&lt;/a&gt;')
+    expect(esc(`<a href="x" onclick='y'>&</a>`)).toBe(
+      '&lt;a href=&quot;x&quot; onclick=&#39;y&#39;&gt;&amp;&lt;/a&gt;',
+    )
   })
   it('escapes & first (no double-decoding tricks)', () => {
     expect(esc('&lt;script&gt;')).toBe('&amp;lt;script&amp;gt;')
@@ -27,12 +35,20 @@ describe('safeUrl', () => {
     expect(safeUrl('https://example.com/a?b=1&c=2')).toBe('https://example.com/a?b=1&c=2')
     expect(safeUrl('http://localhost:3000/manage/x')).toBe('http://localhost:3000/manage/x')
   })
-  it.each(['javascript:alert(1)', 'JaVaScRiPt:alert(1)', ' javascript:alert(1)', 'data:text/html,<script>', 'vbscript:x', 'file:///etc/passwd', 'mailto:a@b.c', '/relative', '', 'not a url'])(
-    'neutralises %j',
-    (u) => {
-      expect(safeUrl(u)).toBe('#')
-    },
-  )
+  it.each([
+    'javascript:alert(1)',
+    'JaVaScRiPt:alert(1)',
+    ' javascript:alert(1)',
+    'data:text/html,<script>',
+    'vbscript:x',
+    'file:///etc/passwd',
+    'mailto:a@b.c',
+    '/relative',
+    '',
+    'not a url',
+  ])('neutralises %j', (u) => {
+    expect(safeUrl(u)).toBe('#')
+  })
   it('normalises embedded whitespace tricks via the URL parser', () => {
     expect(safeUrl('java\tscript:alert(1)')).toBe('#')
   })
@@ -48,7 +64,10 @@ describe('renderEmail escaping', () => {
   })
 
   it('escapes the business name used as logo alt text and refuses javascript: logos', () => {
-    const { html } = render({ brandName: '"><img src=x onerror=alert(1)>', logoUrl: 'javascript:alert(1)' })
+    const { html } = render({
+      brandName: '"><img src=x onerror=alert(1)>',
+      logoUrl: 'javascript:alert(1)',
+    })
     expect(html).not.toContain('<img src=x')
     expect(html).toContain('<img src="#"')
     expect(html).toContain('alt="&quot;&gt;&lt;img src=x onerror=alert(1)&gt;"')
@@ -76,10 +95,18 @@ describe('renderEmail escaping', () => {
   })
 
   it('rejects CSS injection through the brand colour', () => {
-    const { html } = render({ brandColor: 'red;background:url(https://evil.example/x)', blocks: [{ type: 'button', label: 'Go', url: 'https://ok.example' }] })
+    const { html } = render({
+      brandColor: 'red;background:url(https://evil.example/x)',
+      blocks: [{ type: 'button', label: 'Go', url: 'https://ok.example' }],
+    })
     expect(html).not.toContain('evil.example')
     expect(html).toContain('background:#0f766e')
-    expect(render({ brandColor: '#123abc', blocks: [{ type: 'button', label: 'Go', url: 'https://ok.example' }] }).html).toContain('background:#123abc')
+    expect(
+      render({
+        brandColor: '#123abc',
+        blocks: [{ type: 'button', label: 'Go', url: 'https://ok.example' }],
+      }).html,
+    ).toContain('background:#123abc')
   })
 })
 
@@ -88,7 +115,14 @@ describe('renderEmail text version', () => {
     const { text } = render({
       blocks: [
         { type: 'heading', text: 'Booking confirmed' },
-        { type: 'details', rows: [['Date', 'Mon'], ['Time', '10:00']], strike: true },
+        {
+          type: 'details',
+          rows: [
+            ['Date', 'Mon'],
+            ['Time', '10:00'],
+          ],
+          strike: true,
+        },
         { type: 'button', label: 'Manage', url: 'https://example.com/manage/x' },
         { type: 'links', links: [{ label: 'Bad', url: 'javascript:1' }] },
         { type: 'divider' },

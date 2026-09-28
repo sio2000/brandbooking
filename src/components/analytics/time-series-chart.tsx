@@ -13,8 +13,15 @@ const RIGHT = 8
 const GAP = 2
 
 function bucketLabel(bucket: string, unit: 'day' | 'week', long = false) {
-  if (unit === 'week') return `${long ? 'Week of ' : ''}${formatPlainDate(bucket, undefined, { day: 'numeric', month: 'short' })}`
-  return formatPlainDate(bucket, undefined, long ? { weekday: 'short', day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short' })
+  if (unit === 'week')
+    return `${long ? 'Week of ' : ''}${formatPlainDate(bucket, undefined, { day: 'numeric', month: 'short' })}`
+  return formatPlainDate(
+    bucket,
+    undefined,
+    long
+      ? { weekday: 'short', day: 'numeric', month: 'short' }
+      : { day: 'numeric', month: 'short' },
+  )
 }
 
 /**
@@ -47,7 +54,11 @@ export function TimeSeriesChart({
   const [ref, width] = useElementWidth<HTMLDivElement>(720)
   const [active, setActive] = React.useState<number | null>(null)
   const n = points.length
-  const totals = points.map((p) => (mode === 'stack' ? series.reduce((s, x) => s + (p.values[x.key] ?? 0), 0) : Math.max(...series.map((x) => p.values[x.key] ?? 0))))
+  const totals = points.map((p) =>
+    mode === 'stack'
+      ? series.reduce((s, x) => s + (p.values[x.key] ?? 0), 0)
+      : Math.max(...series.map((x) => p.values[x.key] ?? 0)),
+  )
   const max = Math.max(0, ...totals)
   const ticks = integer ? countTicks(max) : niceTicks(max)
   const top = ticks[ticks.length - 1] || 1
@@ -87,8 +98,14 @@ export function TimeSeriesChart({
     : ''
 
   // Area geometry.
-  const linePath = (key: string) => points.map((p, i) => `${i ? 'L' : 'M'}${cx(i).toFixed(1)},${y(p.values[key] ?? 0).toFixed(1)}`).join('')
-  const areaPath = (key: string) => (n ? `${linePath(key)}L${cx(n - 1).toFixed(1)},${TOP + plotH}L${cx(0).toFixed(1)},${TOP + plotH}Z` : '')
+  const linePath = (key: string) =>
+    points
+      .map((p, i) => `${i ? 'L' : 'M'}${cx(i).toFixed(1)},${y(p.values[key] ?? 0).toFixed(1)}`)
+      .join('')
+  const areaPath = (key: string) =>
+    n
+      ? `${linePath(key)}L${cx(n - 1).toFixed(1)},${TOP + plotH}L${cx(0).toFixed(1)},${TOP + plotH}Z`
+      : ''
 
   return (
     <div
@@ -102,18 +119,50 @@ export function TimeSeriesChart({
       onFocus={() => setActive((a) => a ?? n - 1)}
       onBlur={() => setActive(null)}
     >
-      <svg role="img" aria-label={ariaLabel} width="100%" height={height} viewBox={`0 0 ${width} ${height}`} className="block overflow-visible">
+      <svg
+        role="img"
+        aria-label={ariaLabel}
+        width="100%"
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        className="block overflow-visible"
+      >
         {/* Grid + y-axis ticks */}
         {ticks.map((t) => (
           <g key={t}>
-            <line x1={left} x2={left + plotW} y1={y(t)} y2={y(t)} stroke="var(--chart-grid)" strokeWidth={1} shapeRendering="crispEdges" />
-            <text x={left - 8} y={y(t)} dy="0.32em" textAnchor="end" className="tabular" fontSize={11} fill="var(--chart-axis)">
+            <line
+              x1={left}
+              x2={left + plotW}
+              y1={y(t)}
+              y2={y(t)}
+              stroke="var(--chart-grid)"
+              strokeWidth={1}
+              shapeRendering="crispEdges"
+            />
+            <text
+              x={left - 8}
+              y={y(t)}
+              dy="0.32em"
+              textAnchor="end"
+              className="tabular"
+              fontSize={11}
+              fill="var(--chart-axis)"
+            >
               {tickText(t)}
             </text>
           </g>
         ))}
         {/* Hover band */}
-        {active !== null && mode === 'stack' && <rect x={left + band * active} y={TOP} width={band} height={plotH} fill="var(--chart-grid)" opacity={0.55} />}
+        {active !== null && mode === 'stack' && (
+          <rect
+            x={left + band * active}
+            y={TOP}
+            width={band}
+            height={plotH}
+            fill="var(--chart-grid)"
+            opacity={0.55}
+          />
+        )}
 
         {mode === 'stack' &&
           points.map((p, i) => {
@@ -127,7 +176,9 @@ export function TimeSeriesChart({
                   const h = (v / top) * plotH - (j > 0 ? GAP : 0)
                   const yTop = base - (j > 0 ? GAP : 0) - Math.max(h, 0)
                   const isTop = j === present.length - 1
-                  const d = isTop ? columnPath(x, yTop, barW, Math.max(h, 1), barW >= 6 ? 4 : barW / 2) : `M${x},${yTop}h${barW}v${Math.max(h, 0)}h${-barW}Z`
+                  const d = isTop
+                    ? columnPath(x, yTop, barW, Math.max(h, 1), barW >= 6 ? 4 : barW / 2)
+                    : `M${x},${yTop}h${barW}v${Math.max(h, 0)}h${-barW}Z`
                   base = yTop
                   return <path key={s.key} d={d} fill={s.color} />
                 })}
@@ -139,12 +190,28 @@ export function TimeSeriesChart({
           series.map((s) => (
             <g key={s.key}>
               <path d={areaPath(s.key)} fill={s.color} opacity={0.1} />
-              <path d={linePath(s.key)} fill="none" stroke={s.color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+              <path
+                d={linePath(s.key)}
+                fill="none"
+                stroke={s.color}
+                strokeWidth={2}
+                strokeLinejoin="round"
+                strokeLinecap="round"
+              />
             </g>
           ))}
 
         {/* Baseline */}
-        <line x1={left} x2={left + plotW} y1={TOP + plotH} y2={TOP + plotH} stroke="var(--chart-axis)" strokeOpacity={0.5} strokeWidth={1} shapeRendering="crispEdges" />
+        <line
+          x1={left}
+          x2={left + plotW}
+          y1={TOP + plotH}
+          y2={TOP + plotH}
+          stroke="var(--chart-axis)"
+          strokeOpacity={0.5}
+          strokeWidth={1}
+          shapeRendering="crispEdges"
+        />
 
         {/* Selective direct label: the peak only */}
         {max > 0 && active === null && (
@@ -164,9 +231,25 @@ export function TimeSeriesChart({
         {/* Crosshair for area */}
         {mode === 'area' && activePoint && active !== null && (
           <g>
-            <line x1={cx(active)} x2={cx(active)} y1={TOP} y2={TOP + plotH} stroke="var(--chart-axis)" strokeWidth={1} shapeRendering="crispEdges" />
+            <line
+              x1={cx(active)}
+              x2={cx(active)}
+              y1={TOP}
+              y2={TOP + plotH}
+              stroke="var(--chart-axis)"
+              strokeWidth={1}
+              shapeRendering="crispEdges"
+            />
             {series.map((s) => (
-              <circle key={s.key} cx={cx(active)} cy={y(activePoint.values[s.key] ?? 0)} r={4.5} fill={s.color} stroke="var(--surface)" strokeWidth={2} />
+              <circle
+                key={s.key}
+                cx={cx(active)}
+                cy={y(activePoint.values[s.key] ?? 0)}
+                r={4.5}
+                fill={s.color}
+                stroke="var(--surface)"
+                strokeWidth={2}
+              />
             ))}
           </g>
         )}
@@ -174,7 +257,14 @@ export function TimeSeriesChart({
         {/* X labels */}
         {points.map((p, i) =>
           i % labelEvery === 0 ? (
-            <text key={p.bucket} x={cx(i)} y={TOP + plotH + 17} textAnchor={n === 1 ? 'middle' : i === 0 && band < 30 ? 'start' : 'middle'} fontSize={11} fill="var(--chart-axis)">
+            <text
+              key={p.bucket}
+              x={cx(i)}
+              y={TOP + plotH + 17}
+              textAnchor={n === 1 ? 'middle' : i === 0 && band < 30 ? 'start' : 'middle'}
+              fontSize={11}
+              fill="var(--chart-axis)"
+            >
               {bucketLabel(p.bucket, unit)}
             </text>
           ) : null,
@@ -187,7 +277,9 @@ export function TimeSeriesChart({
           width={plotW}
           height={plotH}
           fill="transparent"
-          onPointerMove={(e) => setActive(indexAt(e.clientX, e.currentTarget.ownerSVGElement!.getBoundingClientRect()))}
+          onPointerMove={(e) =>
+            setActive(indexAt(e.clientX, e.currentTarget.ownerSVGElement!.getBoundingClientRect()))
+          }
           onPointerLeave={() => setActive(null)}
         />
       </svg>
@@ -198,7 +290,12 @@ export function TimeSeriesChart({
           y={TOP + plotH / 2}
           containerWidth={width}
           title={bucketLabel(activePoint.bucket, unit, true)}
-          rows={[...series].reverse().map((s) => ({ key: s.key, color: s.color, label: s.label, value: formatValue(activePoint.values[s.key] ?? 0) }))}
+          rows={[...series].reverse().map((s) => ({
+            key: s.key,
+            color: s.color,
+            label: s.label,
+            value: formatValue(activePoint.values[s.key] ?? 0),
+          }))}
         />
       )}
       <p className="sr-only" aria-live="polite">

@@ -43,10 +43,23 @@ export function useAnalyticsFrame() {
 }
 
 /** Dims its content while filters are being applied. */
-export function PendingContent({ children, className }: { children: React.ReactNode; className?: string }) {
+export function PendingContent({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
   const { pending } = useAnalyticsFrame()
   return (
-    <div aria-busy={pending || undefined} className={cn('transition-opacity duration-200', pending && 'pointer-events-none opacity-55', className)}>
+    <div
+      aria-busy={pending || undefined}
+      className={cn(
+        'transition-opacity duration-200',
+        pending && 'pointer-events-none opacity-55',
+        className,
+      )}
+    >
       {children}
     </div>
   )

@@ -12,9 +12,16 @@ export async function GET(_req: Request, ctx: RouteContext<'/manage/[token]/ics'
       title: `${serviceName} — ${business.name}`,
       start: appt.startsAt,
       end: appt.endsAt,
-      location: [business.addressLine1, business.addressLine2, business.city].filter(Boolean).join(', '),
+      location: [business.addressLine1, business.addressLine2, business.city]
+        .filter(Boolean)
+        .join(', '),
       details: `Reference ${appt.reference}. Manage your booking: ${appUrl(`/manage/${token}`)}`,
-      status: appt.status === 'cancelled' ? 'CANCELLED' : appt.status === 'pending' ? 'TENTATIVE' : 'CONFIRMED',
+      status:
+        appt.status === 'cancelled'
+          ? 'CANCELLED'
+          : appt.status === 'pending'
+            ? 'TENTATIVE'
+            : 'CONFIRMED',
       sequence: appt.rescheduleCount,
     })
     return new Response(ics, {

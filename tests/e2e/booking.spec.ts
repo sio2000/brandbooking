@@ -1,7 +1,27 @@
 import { test, expect } from './support/test'
 import { and, eq } from 'drizzle-orm'
-import { appointments, appointmentsForEmail, BIZ_A, book, businessBySlug, db, notificationsFor, SERVICES_A, STAFF_A, staffByName, uniqueCustomer } from './support/app'
-import { chooseLaterDay, chooseService, chooseStaff, chooseTime, continueToDetails, fillDetails, toReview } from './support/flows'
+import {
+  appointments,
+  appointmentsForEmail,
+  BIZ_A,
+  book,
+  businessBySlug,
+  db,
+  notificationsFor,
+  SERVICES_A,
+  STAFF_A,
+  staffByName,
+  uniqueCustomer,
+} from './support/app'
+import {
+  chooseLaterDay,
+  chooseService,
+  chooseStaff,
+  chooseTime,
+  continueToDetails,
+  fillDetails,
+  toReview,
+} from './support/flows'
 
 const BOOK_URL = `/book/${BIZ_A.slug}`
 
@@ -25,9 +45,17 @@ test.describe('public booking', () => {
     await page.getByRole('button', { name: 'Confirm booking' }).click()
     await expect(page.getByRole('heading', { name: 'You’re booked!' })).toBeVisible()
     await expect(page.getByRole('status')).toContainText(customer.email)
-    const reference = (await page.getByText(/^Reference/).locator('span').innerText()).trim()
+    const reference = (
+      await page
+        .getByText(/^Reference/)
+        .locator('span')
+        .innerText()
+    ).trim()
     expect(reference).toMatch(/^[A-HJ-NP-Z2-9]{8}$/)
-    await expect(page.getByRole('link', { name: 'View, reschedule or cancel' })).toHaveAttribute('href', /^\/manage\//)
+    await expect(page.getByRole('link', { name: 'View, reschedule or cancel' })).toHaveAttribute(
+      'href',
+      /^\/manage\//,
+    )
 
     // Persisted for the right tenant, exactly once, with a confirmation email queued.
     const business = await businessBySlug(BIZ_A.slug)
@@ -41,7 +69,12 @@ test.describe('public booking', () => {
     expect(appt.source).toBe('booking_page')
     expect(c.phone).toBe(customer.phone)
     await expect
-      .poll(async () => (await notificationsFor(appt.id)).filter((n) => n.template === 'booking_received' && n.recipient === customer.email).length)
+      .poll(
+        async () =>
+          (await notificationsFor(appt.id)).filter(
+            (n) => n.template === 'booking_received' && n.recipient === customer.email,
+          ).length,
+      )
       .toBe(1)
   })
 
@@ -65,14 +98,18 @@ test.describe('public booking', () => {
       await expect(input).toHaveAttribute('aria-invalid', 'true')
       await expect(input).toHaveAccessibleDescription(new RegExp(message.replace('.', '\\.')))
     }
-    await expect(page.getByRole('alert').filter({ hasText: 'Enter your first name.' })).toBeVisible()
+    await expect(
+      page.getByRole('alert').filter({ hasText: 'Enter your first name.' }),
+    ).toBeVisible()
 
     // Fixing one field clears only that error on the next attempt.
     await page.getByLabel('Email').fill('not-an-email')
     await page.getByLabel('First name').fill('Grace')
     await page.getByRole('button', { name: 'Review booking' }).click()
     await expect(page.getByLabel('First name')).not.toHaveAttribute('aria-invalid', 'true')
-    await expect(page.getByLabel('Email')).toHaveAccessibleDescription(/Enter a valid email address\./)
+    await expect(page.getByLabel('Email')).toHaveAccessibleDescription(
+      /Enter a valid email address\./,
+    )
   })
 
   test('honeypot submissions are rejected without booking', async ({ page }) => {
@@ -89,7 +126,10 @@ test.describe('public booking', () => {
       el.value = 'https://spam.example'
     })
     await toReview(page)
-    const response = page.waitForResponse((r) => r.url().endsWith(`/api/public/${BIZ_A.slug}/bookings`) && r.request().method() === 'POST')
+    const response = page.waitForResponse(
+      (r) =>
+        r.url().endsWith(`/api/public/${BIZ_A.slug}/bookings`) && r.request().method() === 'POST',
+    )
     await page.getByRole('button', { name: 'Confirm booking' }).click()
     expect((await response).status()).toBe(400)
     await expect(page.getByRole('heading', { name: 'Your details' })).toBeVisible()
@@ -116,13 +156,20 @@ test.describe('public booking', () => {
     await page.route(`**/api/public/${BIZ_A.slug}/bookings`, async (route) => {
       const body = route.request().postDataJSON() as { start: string }
       takenStart = new Date(body.start)
-      await book(BIZ_A.slug, { serviceName: SERVICES_A.cut, staffName: STAFF_A.second, start: takenStart, customer: uniqueCustomer('Rival') })
+      await book(BIZ_A.slug, {
+        serviceName: SERVICES_A.cut,
+        staffName: STAFF_A.second,
+        start: takenStart,
+        customer: uniqueCustomer('Rival'),
+      })
       await route.continue()
     })
     await page.getByRole('button', { name: 'Confirm booking' }).click()
 
     await expect(page.getByRole('heading', { name: 'Pick a date and time' })).toBeVisible()
-    await expect(page.getByText('That time was just booked. Please choose another available time.')).toBeVisible()
+    await expect(
+      page.getByText('That time was just booked. Please choose another available time.'),
+    ).toBeVisible()
     await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled()
     expect(takenStart).not.toBeNull()
     const atThatTime = await db()

@@ -18,8 +18,12 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
   let resume: { name: string; slug: string; step: number } | null = null
   if (memberships.length > 0 && !creatingAnother) {
     const ctx = await optionalTenant()
-    if (!ctx || ctx.business.onboardingCompletedAt || ctx.membership.role !== 'owner') redirect('/app')
-    const [svc] = await db().select({ n: count() }).from(services).where(and(eq(services.businessId, ctx.business.id), isNull(services.deletedAt)))
+    if (!ctx || ctx.business.onboardingCompletedAt || ctx.membership.role !== 'owner')
+      redirect('/app')
+    const [svc] = await db()
+      .select({ n: count() })
+      .from(services)
+      .where(and(eq(services.businessId, ctx.business.id), isNull(services.deletedAt)))
     resume = { name: ctx.business.name, slug: ctx.business.slug, step: (svc?.n ?? 0) > 0 ? 4 : 2 }
   }
   return (

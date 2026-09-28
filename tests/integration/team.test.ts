@@ -3,7 +3,14 @@ import { and, eq, sql } from 'drizzle-orm'
 import { closeDb, db } from '@/server/db/client'
 import { businessMembers, inboxItems, invitations, staff } from '@/server/db/schema'
 import { resetDatabase } from '../helpers/db'
-import { addMember, addStaff, createUser, meta, setupBusiness, type Setup } from '../helpers/factory'
+import {
+  addMember,
+  addStaff,
+  createUser,
+  meta,
+  setupBusiness,
+  type Setup,
+} from '../helpers/factory'
 import { AppError } from '@/server/errors'
 import { memoryMailbox } from '@/server/notifications/providers'
 import { hashToken } from '@/server/security/crypto'
@@ -35,13 +42,21 @@ function inviteToken(to: string) {
   return decodeURIComponent(m[1]!)
 }
 
-async function invite(ctx: Setup['ctx'], email: string, role: 'manager' | 'staff' = 'staff', staffId: string | null = null) {
+async function invite(
+  ctx: Setup['ctx'],
+  email: string,
+  role: 'manager' | 'staff' = 'staff',
+  staffId: string | null = null,
+) {
   await inviteMember(ctx, { email, role, staffId }, meta())
   return inviteToken(email)
 }
 
 async function owners(businessId: string) {
-  return db().select().from(businessMembers).where(and(eq(businessMembers.businessId, businessId), eq(businessMembers.role, 'owner')))
+  return db()
+    .select()
+    .from(businessMembers)
+    .where(and(eq(businessMembers.businessId, businessId), eq(businessMembers.role, 'owner')))
 }
 
 async function memberRow(ctx: Setup['ctx'], userId: string) {
@@ -60,10 +75,17 @@ afterAll(async () => {
 
 describe('invitations', () => {
   it('sends a single-use link and stores only a hash of the token', async () => {
-    const r = await inviteMember(A.ctx, { email: 'nina@example.com', role: 'staff', staffId: null }, meta())
+    const r = await inviteMember(
+      A.ctx,
+      { email: 'nina@example.com', role: 'staff', staffId: null },
+      meta(),
+    )
     expect(r.sent).toBe(true)
     const token = inviteToken('nina@example.com')
-    const [row] = await db().select().from(invitations).where(eq(invitations.businessId, A.ctx.business.id))
+    const [row] = await db()
+      .select()
+      .from(invitations)
+      .where(eq(invitations.businessId, A.ctx.business.id))
     expect(row!.tokenHash).toBe(hashToken(token))
     expect(row!.tokenHash).not.toContain(token)
     expect(row!.invitedBy).toBe(A.owner.id)
@@ -80,37 +102,78 @@ describe('invitations', () => {
     expect(second).not.toBe(first)
     await expectCode(findInvitation(first), 'token_invalid')
     expect((await findInvitation(second)).inv.role).toBe('manager')
-    const open = await db().select().from(invitations).where(and(eq(invitations.businessId, A.ctx.business.id), sql`revoked_at IS NULL`))
+    const open = await db()
+      .select()
+      .from(invitations)
+      .where(and(eq(invitations.businessId, A.ctx.business.id), sql`revoked_at IS NULL`))
     expect(open).toHaveLength(1)
     expect((await listTeam(A.ctx)).invites).toHaveLength(1)
   })
 
   it('refuses to invite someone who is already a member', async () => {
     const { user } = await addMember(A.ctx, 'staff')
-    await expectCode(inviteMember(A.ctx, { email: user.email, role: 'staff', staffId: null }, meta()), 'validation')
-    await expectCode(inviteMember(A.ctx, { email: A.owner.email, role: 'manager', staffId: null }, meta()), 'validation')
+    await expectCode(
+      inviteMember(A.ctx, { email: user.email, role: 'staff', staffId: null }, meta()),
+      'validation',
+    )
+    await expectCode(
+      inviteMember(A.ctx, { email: A.owner.email, role: 'manager', staffId: null }, meta()),
+      'validation',
+    )
   })
 
   it('validates the staff profile to link', async () => {
     // Another business's staff profile.
-    await expectCode(inviteMember(A.ctx, { email: 'x@example.com', role: 'staff', staffId: B.ownerStaffId }, meta()), 'not_found')
+    await expectCode(
+      inviteMember(
+        A.ctx,
+        { email: 'x@example.com', role: 'staff', staffId: B.ownerStaffId },
+        meta(),
+      ),
+      'not_found',
+    )
     // A profile already linked to a login (the owner's own).
-    await expectCode(inviteMember(A.ctx, { email: 'x@example.com', role: 'staff', staffId: A.ownerStaffId }, meta()), 'validation')
+    await expectCode(
+      inviteMember(
+        A.ctx,
+        { email: 'x@example.com', role: 'staff', staffId: A.ownerStaffId },
+        meta(),
+      ),
+      'validation',
+    )
   })
 
   it('enforces who may invite which role', async () => {
     const { ctx: manager } = await addMember(A.ctx, 'manager')
     const { ctx: staffCtx } = await addMember(A.ctx, 'staff')
-    await expectCode(inviteMember(manager, { email: 'm2@example.com', role: 'manager', staffId: null }, meta()), 'forbidden')
-    await expect(inviteMember(manager, { email: 's2@example.com', role: 'staff', staffId: null }, meta())).resolves.toBeTruthy()
-    await expectCode(inviteMember(staffCtx, { email: 's3@example.com', role: 'staff', staffId: null }, meta()), 'forbidden')
+    await expectCode(
+      inviteMember(manager, { email: 'm2@example.com', role: 'manager', staffId: null }, meta()),
+      'forbidden',
+    )
+    await expect(
+      inviteMember(manager, { email: 's2@example.com', role: 'staff', staffId: null }, meta()),
+    ).resolves.toBeTruthy()
+    await expectCode(
+      inviteMember(staffCtx, { email: 's3@example.com', role: 'staff', staffId: null }, meta()),
+      'forbidden',
+    )
     // Even bypassing input validation, nobody can invite an owner.
-    await expectCode(inviteMember(A.ctx, { email: 'o@example.com', role: 'owner' as 'manager', staffId: null }, meta()), 'forbidden')
+    await expectCode(
+      inviteMember(
+        A.ctx,
+        { email: 'o@example.com', role: 'owner' as 'manager', staffId: null },
+        meta(),
+      ),
+      'forbidden',
+    )
   })
 
   it('can be revoked, but only within the same business', async () => {
     const token = await invite(A.ctx, 'nina@example.com')
-    const [row] = await db().select().from(invitations).where(eq(invitations.businessId, A.ctx.business.id))
+    const [row] = await db()
+      .select()
+      .from(invitations)
+      .where(eq(invitations.businessId, A.ctx.business.id))
     await expectCode(revokeInvitation(B.ctx, row!.id, meta()), 'not_found')
     expect((await findInvitation(token)).inv.id).toBe(row!.id)
     await revokeInvitation(A.ctx, row!.id, meta())
@@ -121,7 +184,10 @@ describe('invitations', () => {
   it('rejects unknown and expired tokens', async () => {
     await expectCode(findInvitation('not-a-real-token-0000000000000000000000000'), 'token_invalid')
     const token = await invite(A.ctx, 'late@example.com')
-    await db().update(invitations).set({ expiresAt: new Date(Date.now() - 1000) }).where(eq(invitations.businessId, A.ctx.business.id))
+    await db()
+      .update(invitations)
+      .set({ expiresAt: new Date(Date.now() - 1000) })
+      .where(eq(invitations.businessId, A.ctx.business.id))
     const late = await createUser({ email: 'late@example.com' })
     await expectCode(acceptInvitation(late, token, meta()), 'token_expired')
   })
@@ -149,7 +215,10 @@ describe('accepting invitations', () => {
     const [profile] = await db().select().from(staff).where(eq(staff.id, t!.membership.staffId!))
     expect(profile).toMatchObject({ businessId: A.ctx.business.id, userId: nina.id, name: 'Nina' })
     // Owner gets an in-app notice; the new member does not notify themselves.
-    const inbox = await db().select().from(inboxItems).where(eq(inboxItems.businessId, A.ctx.business.id))
+    const inbox = await db()
+      .select()
+      .from(inboxItems)
+      .where(eq(inboxItems.businessId, A.ctx.business.id))
     expect(inbox.map((i) => i.userId)).toEqual([A.owner.id])
     expect(inbox[0]!.title).toBe('Nina joined your team')
   })
@@ -175,9 +244,18 @@ describe('accepting invitations', () => {
   it('concurrent accepts of the same invitation create one membership', async () => {
     const token = await invite(A.ctx, 'nina@example.com')
     const nina = await createUser({ email: 'nina@example.com' })
-    const results = await Promise.allSettled([acceptInvitation(nina, token, meta()), acceptInvitation(nina, token, meta()), acceptInvitation(nina, token, meta())])
+    const results = await Promise.allSettled([
+      acceptInvitation(nina, token, meta()),
+      acceptInvitation(nina, token, meta()),
+      acceptInvitation(nina, token, meta()),
+    ])
     expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(1)
-    const rows = await db().select().from(businessMembers).where(and(eq(businessMembers.businessId, A.ctx.business.id), eq(businessMembers.userId, nina.id)))
+    const rows = await db()
+      .select()
+      .from(businessMembers)
+      .where(
+        and(eq(businessMembers.businessId, A.ctx.business.id), eq(businessMembers.userId, nina.id)),
+      )
     expect(rows).toHaveLength(1)
   })
 
@@ -267,14 +345,20 @@ describe('removing and leaving', () => {
     const { ctx: manager } = await addMember(A.ctx, 'manager')
     const { user: otherMgr } = await addMember(A.ctx, 'manager')
     const { user: staffUser } = await addMember(A.ctx, 'staff')
-    await expectCode(removeMember(manager, (await memberRow(A.ctx, otherMgr.id))!.id, meta()), 'forbidden')
+    await expectCode(
+      removeMember(manager, (await memberRow(A.ctx, otherMgr.id))!.id, meta()),
+      'forbidden',
+    )
     await removeMember(manager, (await memberRow(A.ctx, staffUser.id))!.id, meta())
     expect(await memberRow(A.ctx, staffUser.id)).toBeUndefined()
   })
 
   it('cannot remove members of another business', async () => {
     const { user } = await addMember(B.ctx, 'staff')
-    await expectCode(removeMember(A.ctx, (await memberRow(B.ctx, user.id))!.id, meta()), 'not_found')
+    await expectCode(
+      removeMember(A.ctx, (await memberRow(B.ctx, user.id))!.id, meta()),
+      'not_found',
+    )
     expect(await loadTenant(user.id, B.ctx.business.id)).not.toBeNull()
   })
 
@@ -301,18 +385,32 @@ describe('ownership transfer', () => {
 
   it('requires the new owner to have a verified email', async () => {
     const unverified = await createUser({ verified: false })
-    await db().insert(businessMembers).values({ businessId: A.ctx.business.id, userId: unverified.id, role: 'staff' })
-    await expectCode(transferOwnership(A.ctx, (await memberRow(A.ctx, unverified.id))!.id, meta()), 'validation')
+    await db()
+      .insert(businessMembers)
+      .values({ businessId: A.ctx.business.id, userId: unverified.id, role: 'staff' })
+    await expectCode(
+      transferOwnership(A.ctx, (await memberRow(A.ctx, unverified.id))!.id, meta()),
+      'validation',
+    )
     expect((await owners(A.ctx.business.id)).map((r) => r.userId)).toEqual([A.owner.id])
   })
 
   it('only the owner can transfer, and not to themselves or across businesses', async () => {
     const { user, ctx: manager } = await addMember(A.ctx, 'manager')
     const { user: staffUser } = await addMember(A.ctx, 'staff')
-    await expectCode(transferOwnership(manager, (await memberRow(A.ctx, staffUser.id))!.id, meta()), 'forbidden')
-    await expectCode(transferOwnership(A.ctx, (await memberRow(A.ctx, A.owner.id))!.id, meta()), 'forbidden')
+    await expectCode(
+      transferOwnership(manager, (await memberRow(A.ctx, staffUser.id))!.id, meta()),
+      'forbidden',
+    )
+    await expectCode(
+      transferOwnership(A.ctx, (await memberRow(A.ctx, A.owner.id))!.id, meta()),
+      'forbidden',
+    )
     const { user: bUser } = await addMember(B.ctx, 'manager')
-    await expectCode(transferOwnership(A.ctx, (await memberRow(B.ctx, bUser.id))!.id, meta()), 'not_found')
+    await expectCode(
+      transferOwnership(A.ctx, (await memberRow(B.ctx, bUser.id))!.id, meta()),
+      'not_found',
+    )
     expect((await owners(A.ctx.business.id)).map((r) => r.userId)).toEqual([A.owner.id])
     expect((await owners(B.ctx.business.id)).map((r) => r.userId)).toEqual([B.owner.id])
     void user
@@ -321,7 +419,15 @@ describe('ownership transfer', () => {
   it('the database itself rejects a second owner', async () => {
     const { user } = await addMember(A.ctx, 'manager')
     await expect(
-      db().update(businessMembers).set({ role: 'owner' }).where(and(eq(businessMembers.businessId, A.ctx.business.id), eq(businessMembers.userId, user.id))),
+      db()
+        .update(businessMembers)
+        .set({ role: 'owner' })
+        .where(
+          and(
+            eq(businessMembers.businessId, A.ctx.business.id),
+            eq(businessMembers.userId, user.id),
+          ),
+        ),
     ).rejects.toThrow()
   })
 })

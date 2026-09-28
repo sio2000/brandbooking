@@ -24,7 +24,9 @@ describe('generateToken', () => {
 
 describe('hashToken', () => {
   it('is SHA-256 hex (known vectors)', () => {
-    expect(hashToken('abc')).toBe('ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad')
+    expect(hashToken('abc')).toBe(
+      'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
+    )
     expect(hashToken('')).toBe('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
   })
   it('is deterministic and input-sensitive', () => {
@@ -68,6 +70,8 @@ describe('generateReference', () => {
   })
   it('honours the length and varies', () => {
     expect(generateReference(12)).toHaveLength(12)
-    expect(new Set(Array.from({ length: 500 }, () => generateReference())).size).toBeGreaterThan(495)
+    expect(new Set(Array.from({ length: 500 }, () => generateReference())).size).toBeGreaterThan(
+      495,
+    )
   })
 })

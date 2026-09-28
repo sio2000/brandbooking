@@ -16,7 +16,19 @@ export type BarListItem = {
  * data-end, square baseline) and the value directly labelled. Every value is
  * visible, so no tooltip is needed to read it. One series → one colour.
  */
-export function BarList({ items, max, color = 'var(--primary)', ariaLabel, className }: { items: BarListItem[]; max?: number; color?: string; ariaLabel: string; className?: string }) {
+export function BarList({
+  items,
+  max,
+  color = 'var(--primary)',
+  ariaLabel,
+  className,
+}: {
+  items: BarListItem[]
+  max?: number
+  color?: string
+  ariaLabel: string
+  className?: string
+}) {
   const top = max ?? Math.max(1, ...items.map((i) => i.value))
   return (
     <ul aria-label={ariaLabel} className={cn('space-y-3', className)}>
@@ -26,9 +38,11 @@ export function BarList({ items, max, color = 'var(--primary)', ariaLabel, class
           <li key={i.key} className="group">
             <div className="flex items-baseline justify-between gap-3 text-sm">
               <span className="min-w-0 truncate">{i.label}</span>
-              <span className="shrink-0 text-right tabular">
+              <span className="tabular shrink-0 text-right">
                 <span className="font-semibold">{i.display}</span>
-                {i.detail && <span className="ml-1.5 text-xs text-muted-foreground">{i.detail}</span>}
+                {i.detail && (
+                  <span className="ml-1.5 text-xs text-muted-foreground">{i.detail}</span>
+                )}
               </span>
             </div>
             <div className="mt-1.5 h-2.5 w-full" aria-hidden>

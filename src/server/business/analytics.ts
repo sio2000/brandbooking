@@ -18,14 +18,17 @@ export const METRIC_DEFINITIONS = {
   bookings: 'Appointments scheduled in the period (excluding cancelled).',
   cancellationRate: 'Cancelled ÷ all appointments scheduled in the period.',
   noShowRate: 'No-shows ÷ appointments that reached an outcome (completed + no-show).',
-  revenue: 'Sum of service prices for completed appointments. Payments are taken outside Hournook, so this is an estimate of earned revenue, not money collected.',
+  revenue:
+    'Sum of service prices for completed appointments. Payments are taken outside Hournook, so this is an estimate of earned revenue, not money collected.',
   bookedValue: 'Sum of service prices for all non-cancelled appointments in the period.',
   avgValue: 'Average service price of completed appointments that have a price.',
   newCustomers: 'Customers whose first (non-cancelled) appointment falls in the period.',
   returningCustomers: 'Customers with an appointment in the period who had visited before it.',
   repeatRate: 'Returning customers ÷ all customers with an appointment in the period.',
-  utilization: 'Booked minutes ÷ available working minutes (from opening hours, staff schedules, closures).',
-  funnel: 'Anonymous step counts from your booking page (no cookies). Counts are per page load, so treat them as estimates.',
+  utilization:
+    'Booked minutes ÷ available working minutes (from opening hours, staff schedules, closures).',
+  funnel:
+    'Anonymous step counts from your booking page (no cookies). Counts are per page load, so treat them as estimates.',
 } as const
 
 export type Range = { from: PlainDateString; to: PlainDateString }
@@ -105,9 +108,19 @@ async function summary(ctx: TenantContext, f: Filters): Promise<Summary> {
   return row!
 }
 
-export type SeriesPoint = { bucket: string; bookings: number; cancelled: number; revenue_cents: number; new_customers: number }
+export type SeriesPoint = {
+  bucket: string
+  bookings: number
+  cancelled: number
+  revenue_cents: number
+  new_customers: number
+}
 
-async function series(ctx: TenantContext, f: Filters, unit: 'day' | 'week'): Promise<SeriesPoint[]> {
+async function series(
+  ctx: TenantContext,
+  f: Filters,
+  unit: 'day' | 'week',
+): Promise<SeriesPoint[]> {
   const tz = ctx.business.timezone
   const { start, end } = bounds(tz, f)
   const rows = await db().execute<SeriesPoint>(sql`
@@ -133,7 +146,15 @@ async function series(ctx: TenantContext, f: Filters, unit: 'day' | 'week'): Pro
     const key = unit === 'day' ? d : weekStart(d)
     if (seen.has(key)) continue
     seen.add(key)
-    out.push(byBucket.get(key) ?? { bucket: key, bookings: 0, cancelled: 0, revenue_cents: 0, new_customers: 0 })
+    out.push(
+      byBucket.get(key) ?? {
+        bucket: key,
+        bookings: 0,
+        cancelled: 0,
+        revenue_cents: 0,
+        new_customers: 0,
+      },
+    )
   }
   return out
 }
@@ -175,7 +196,11 @@ export type Breakdown = {
   prev_bookings: number
 }
 
-async function byDimension(ctx: TenantContext, f: Filters, dim: 'service' | 'staff'): Promise<Breakdown[]> {
+async function byDimension(
+  ctx: TenantContext,
+  f: Filters,
+  dim: 'service' | 'staff',
+): Promise<Breakdown[]> {
   const tz = ctx.business.timezone
   const { start, end } = bounds(tz, f)
   const prev = bounds(tz, previousRange(f))
@@ -239,15 +264,32 @@ async function availableMinutes(ctx: TenantContext, f: Filters) {
   const staffRows = await db()
     .select({ id: staff.id, usesBusinessHours: staff.usesBusinessHours })
     .from(staff)
-    .where(and(eq(staff.businessId, ctx.business.id), eq(staff.isActive, true), isNull(staff.deletedAt), f.staffId ? eq(staff.id, f.staffId) : undefined))
-  const schedules = await loadSchedules(db(), ctx.business.id, staffRows.map((s) => s.id), f)
+    .where(
+      and(
+        eq(staff.businessId, ctx.business.id),
+        eq(staff.isActive, true),
+        isNull(staff.deletedAt),
+        f.staffId ? eq(staff.id, f.staffId) : undefined,
+      ),
+    )
+  const schedules = await loadSchedules(
+    db(),
+    ctx.business.id,
+    staffRows.map((s) => s.id),
+    f,
+  )
   const dates = eachDate(f.from, f.to)
   const perStaff = new Map<string, number>()
   for (const s of staffRows) {
     let minutes = 0
     const sched = schedules.byStaff.get(s.id) ?? { weekly: {}, special: {}, closures: [] }
     for (const d of dates) {
-      for (const r of staffRangesOn({ usesBusinessHours: s.usesBusinessHours, schedule: sched }, schedules.business, d)) minutes += r.end - r.start
+      for (const r of staffRangesOn(
+        { usesBusinessHours: s.usesBusinessHours, schedule: sched },
+        schedules.business,
+        d,
+      ))
+        minutes += r.end - r.start
     }
     perStaff.set(s.id, minutes)
   }
@@ -255,7 +297,11 @@ async function availableMinutes(ctx: TenantContext, f: Filters) {
 }
 
 async function lifetimeValue(ctx: TenantContext) {
-  const [row] = await db().execute<{ customers: number; avg_cents: number | null; avg_visits: number | null }>(sql`
+  const [row] = await db().execute<{
+    customers: number
+    avg_cents: number | null
+    avg_visits: number | null
+  }>(sql`
     SELECT count(*)::int AS customers, round(avg(rev))::int AS avg_cents, round(avg(visits)::numeric, 1)::float AS avg_visits FROM (
       SELECT customer_id, sum(price_cents) AS rev, count(*) AS visits FROM appointments
       WHERE business_id = ${ctx.business.id} AND status = 'completed' AND price_cents IS NOT NULL
@@ -302,23 +348,39 @@ export function buildInsights(input: {
     }
     const [bestKey, bestVal] = [...byDowPart.entries()].sort((a, b) => b[1] - a[1])[0]!
     const [dow, part] = bestKey.split('|')
-    out.push({ tone: 'neutral', text: `${DOW[Number(dow)]} ${part} are your busiest time (${Math.round((bestVal / total) * 100)}% of bookings).` })
+    out.push({
+      tone: 'neutral',
+      text: `${DOW[Number(dow)]} ${part} are your busiest time (${Math.round((bestVal / total) * 100)}% of bookings).`,
+    })
   }
   const svcTotal = input.services.reduce((s, x) => s + x.bookings, 0)
   const top = input.services[0]
   if (top && svcTotal >= 10 && input.services.length > 1) {
     const share = top.bookings / svcTotal
-    if (share >= 0.3) out.push({ tone: 'neutral', text: `${top.name} accounts for ${Math.round(share * 100)}% of your bookings.` })
+    if (share >= 0.3)
+      out.push({
+        tone: 'neutral',
+        text: `${top.name} accounts for ${Math.round(share * 100)}% of your bookings.`,
+      })
   }
   const outcomes = c.completed + c.no_show
   if (outcomes >= 10 && c.no_show / outcomes >= 0.1) {
-    out.push({ tone: 'attention', text: `${Math.round((c.no_show / outcomes) * 100)}% of appointments were no-shows. Reminders are on by default — consider adding a 2-hour reminder in Booking settings.` })
+    out.push({
+      tone: 'attention',
+      text: `${Math.round((c.no_show / outcomes) * 100)}% of appointments were no-shows. Reminders are on by default — consider adding a 2-hour reminder in Booking settings.`,
+    })
   }
   if (c.total >= 10 && c.cancelled / c.total >= 0.2) {
-    out.push({ tone: 'attention', text: `${Math.round((c.cancelled / c.total) * 100)}% of appointments were cancelled in this period.` })
+    out.push({
+      tone: 'attention',
+      text: `${Math.round((c.cancelled / c.total) * 100)}% of appointments were cancelled in this period.`,
+    })
   }
   if (input.inactiveCustomers >= 5) {
-    out.push({ tone: 'neutral', text: `${input.inactiveCustomers} customers haven't returned in over 90 days.` })
+    out.push({
+      tone: 'neutral',
+      text: `${input.inactiveCustomers} customers haven't returned in over 90 days.`,
+    })
   }
   return out
 }
@@ -327,28 +389,33 @@ export async function getAnalytics(ctx: TenantContext, f: Filters) {
   const span = daysBetween(f.from, f.to) + 1
   const unit = span > 92 ? 'week' : 'day'
   const prev = { ...previousRange(f), staffId: f.staffId, serviceId: f.serviceId }
-  const [current, previous, points, heat, svc, stf, src, camp, fun, avail, ltv, inactive] = await Promise.all([
-    summary(ctx, f),
-    summary(ctx, prev),
-    series(ctx, f, unit),
-    heatmap(ctx, f),
-    byDimension(ctx, f, 'service'),
-    byDimension(ctx, f, 'staff'),
-    sources(ctx, f),
-    campaigns(ctx, f),
-    funnel(ctx, f),
-    availableMinutes(ctx, f),
-    lifetimeValue(ctx),
-    db().execute<{ n: number }>(sql`
+  const [current, previous, points, heat, svc, stf, src, camp, fun, avail, ltv, inactive] =
+    await Promise.all([
+      summary(ctx, f),
+      summary(ctx, prev),
+      series(ctx, f, unit),
+      heatmap(ctx, f),
+      byDimension(ctx, f, 'service'),
+      byDimension(ctx, f, 'staff'),
+      sources(ctx, f),
+      campaigns(ctx, f),
+      funnel(ctx, f),
+      availableMinutes(ctx, f),
+      lifetimeValue(ctx),
+      db().execute<{ n: number }>(sql`
       SELECT count(*)::int AS n FROM (
         SELECT customer_id FROM appointments WHERE business_id = ${ctx.business.id}
         GROUP BY customer_id
         HAVING max(starts_at) FILTER (WHERE status = 'completed') < now() - interval '90 days'
           AND count(*) FILTER (WHERE status IN ('pending','confirmed') AND starts_at >= now()) = 0
       ) t`),
-  ])
+    ])
   const availableTotal = [...avail.values()].reduce((a, b) => a + b, 0)
-  const staffWithUtil = stf.map((s) => ({ ...s, available_minutes: avail.get(s.id) ?? 0, utilization: (avail.get(s.id) ?? 0) > 0 ? s.booked_minutes / avail.get(s.id)! : null }))
+  const staffWithUtil = stf.map((s) => ({
+    ...s,
+    available_minutes: avail.get(s.id) ?? 0,
+    utilization: (avail.get(s.id) ?? 0) > 0 ? s.booked_minutes / avail.get(s.id)! : null,
+  }))
   const inactiveCustomers = (inactive as Array<{ n: number }>)[0]?.n ?? 0
   return {
     range: f,

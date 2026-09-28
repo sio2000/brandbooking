@@ -1,5 +1,24 @@
 import { test, expect } from './support/test'
-import { addDays, appointmentById, appointmentsForEmail, BIZ_A, book, businessBySlug, freeSlot, localToDate, loginAs, SEEDED_CUSTOMERS_A, SERVICES_A, STAFF_A, staffByName, todayIn, uniqueCustomer, USERS } from './support/app'
+import { formatTime } from '@/lib/format'
+import { epochToLocalDate, epochToLocalMinute } from '@/lib/tz'
+import {
+  addDays,
+  appointmentById,
+  appointmentsForEmail,
+  BIZ_A,
+  book,
+  businessBySlug,
+  freeSlot,
+  localToDate,
+  loginAs,
+  SEEDED_CUSTOMERS_A,
+  SERVICES_A,
+  STAFF_A,
+  staffByName,
+  todayIn,
+  uniqueCustomer,
+  USERS,
+} from './support/app'
 
 test.beforeEach(async ({ context }) => {
   await loginAs(context, USERS.ownerA.email)
@@ -7,7 +26,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('owner dashboard', () => {
   test('lists the seeded appointments @mobile', async ({ page }) => {
-    await page.goto('/app/appointments?view=all')
+    await page.goto('/app/appointments')
     await expect(page.getByRole('heading', { level: 1, name: 'Appointments' })).toBeVisible()
     for (const name of SEEDED_CUSTOMERS_A) {
       await expect(page.getByRole('link', { name: new RegExp(name) })).toBeVisible()
@@ -18,7 +37,14 @@ test.describe('owner dashboard', () => {
 
   test('creates a manual appointment from the New appointment dialog', async ({ page }) => {
     const customer = uniqueCustomer('Remy')
-    const date = addDays(todayIn(BIZ_A.timezone), 9)
+    // A time that is free for Sam, so repeated runs never collide.
+    const { start } = await freeSlot(BIZ_A.slug, SERVICES_A.trim, {
+      staffName: STAFF_A.second,
+      fromDaysAhead: 9,
+    })
+    const date = epochToLocalDate(start.getTime(), BIZ_A.timezone)
+    const minute = epochToLocalMinute(start.getTime(), BIZ_A.timezone)
+    const hhmm = `${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')}`
     await page.goto('/app/appointments')
     await page.getByRole('button', { name: 'New', exact: true }).click()
     const dialog = page.getByRole('dialog', { name: 'New appointment' })
@@ -28,8 +54,10 @@ test.describe('owner dashboard', () => {
     await dialog.getByLabel('Date').fill(date)
     const freeTimes = dialog.getByRole('listbox', { name: 'Free times' })
     await expect(freeTimes.getByRole('option').first()).toBeVisible()
-    await freeTimes.getByRole('option', { name: '2:00 PM', exact: true }).click()
-    await expect(dialog.getByLabel('Start time')).toHaveValue('14:00')
+    await freeTimes
+      .getByRole('option', { name: formatTime(start, BIZ_A.timezone), exact: true })
+      .click()
+    await expect(dialog.getByLabel('Start time')).toHaveValue(hhmm)
     await dialog.getByRole('button', { name: 'New customer' }).click()
     await dialog.getByLabel('First name').fill(customer.firstName)
     await dialog.getByLabel('Last name').fill(customer.lastName)
@@ -46,14 +74,16 @@ test.describe('owner dashboard', () => {
     expect(appt.businessId).toBe(business.id)
     expect(appt.staffId).toBe(sam.id)
     expect(appt.source).toBe('manual')
-    expect(appt.startsAt.getTime()).toBe(localToDate(date, 14 * 60, BIZ_A.timezone).getTime())
+    expect(appt.startsAt.getTime()).toBe(start.getTime())
 
     await page.goto(`/app/appointments/${appt.id}`)
     await expect(page.getByRole('heading', { level: 1, name: SERVICES_A.trim })).toBeVisible()
     await expect(page.getByText(`${customer.firstName} ${customer.lastName}`).first()).toBeVisible()
   })
 
-  test('changes appointment status: complete a past one, cancel an upcoming one', async ({ page }) => {
+  test('changes appointment status: complete a past one, cancel an upcoming one', async ({
+    page,
+  }) => {
     const past = await book(BIZ_A.slug, {
       serviceName: SERVICES_A.trim,
       staffName: STAFF_A.second,
@@ -66,10 +96,16 @@ test.describe('owner dashboard', () => {
     await page.getByRole('button', { name: 'Completed' }).click()
     await expect(page.getByText('Marked as completed')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Reopen' })).toBeVisible()
-    await expect.poll(async () => (await appointmentById(past.appointment.id))!.status).toBe('completed')
+    await expect
+      .poll(async () => (await appointmentById(past.appointment.id))!.status)
+      .toBe('completed')
 
     const { start } = await freeSlot(BIZ_A.slug, SERVICES_A.trim, { fromDaysAhead: 4 })
-    const upcoming = await book(BIZ_A.slug, { serviceName: SERVICES_A.trim, start, customer: uniqueCustomer('Uma') })
+    const upcoming = await book(BIZ_A.slug, {
+      serviceName: SERVICES_A.trim,
+      start,
+      customer: uniqueCustomer('Uma'),
+    })
     await page.goto(`/app/appointments/${upcoming.appointment.id}`)
     await expect(page.getByRole('button', { name: 'Completed' })).toHaveCount(0) // not started yet
     await page.getByRole('button', { name: 'Cancel' }).click()
@@ -88,16 +124,28 @@ test.describe('owner dashboard', () => {
     await page.goto('/app/calendar')
     const views = page.getByRole('radiogroup', { name: 'Calendar view' })
     await expect(views.getByRole('radio', { name: 'Week' })).toHaveAttribute('aria-checked', 'true')
-    await expect(page.getByRole('heading', { level: 1, name: /^[A-Z][a-z]{2} \d{1,2} – ([A-Z][a-z]{2} )?\d{1,2}, \d{4}$/ })).toBeVisible()
+    await expect(
+      page.getByRole('heading', {
+        level: 1,
+        name: /^[A-Z][a-z]{2} \d{1,2} – ([A-Z][a-z]{2} )?\d{1,2}, \d{4}$/,
+      }),
+    ).toBeVisible()
 
     await views.getByRole('radio', { name: 'Day' }).click()
     await expect(page).toHaveURL(/view=day/)
-    await expect(page.getByRole('heading', { level: 1, name: /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/ })).toBeVisible()
+    await expect(
+      page.getByRole('heading', {
+        level: 1,
+        name: /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)/,
+      }),
+    ).toBeVisible()
 
     await views.getByRole('radio', { name: 'Month' }).click()
     await expect(page).toHaveURL(/view=month/)
     await expect(page.getByRole('heading', { level: 1, name: /^[A-Z][a-z]+ \d{4}$/ })).toBeVisible()
-    await expect(page.getByRole('button', { name: /: [1-9]\d* appointments?$/ }).first()).toBeVisible()
+    await expect(
+      page.getByRole('button', { name: /: [1-9]\d* appointments?$/ }).first(),
+    ).toBeVisible()
 
     await views.getByRole('radio', { name: 'Agenda' }).click()
     await expect(page).toHaveURL(/view=agenda/)
@@ -122,7 +170,9 @@ test.describe('owner dashboard', () => {
     await expect(palette).toBeVisible()
     // Typing a page name also runs a server-side search (customers, services,
     // team…); the matching page must stay available once those results arrive.
-    const search = page.waitForResponse((r) => r.request().method() === 'POST' && r.url().includes('/app'))
+    const search = page.waitForResponse(
+      (r) => r.request().method() === 'POST' && r.url().includes('/app'),
+    )
     await page.keyboard.type('Custom')
     await search
     await expect(palette.getByText('No results for')).toHaveCount(0)

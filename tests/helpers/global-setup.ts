@@ -10,7 +10,8 @@ import { TEST_DATABASE_URL } from './test-env'
 export default async function setup() {
   const url = new URL(TEST_DATABASE_URL)
   const name = url.pathname.slice(1)
-  if (!name.endsWith('_test')) throw new Error(`Refusing to run tests against non-test database "${name}"`)
+  if (!name.endsWith('_test'))
+    throw new Error(`Refusing to run tests against non-test database "${name}"`)
   const sql = postgres(TEST_DATABASE_URL, { max: 1, onnotice: () => {} })
   try {
     await sql.unsafe(`DROP SCHEMA IF EXISTS public CASCADE; CREATE SCHEMA public;`)

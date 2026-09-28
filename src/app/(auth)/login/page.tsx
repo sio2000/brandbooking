@@ -12,7 +12,11 @@ export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const sp = await searchParams
   const next = typeof sp.next === 'string' ? safeRedirectPath(sp.next) : undefined
   if (await getSession()) redirect(next ?? '/app')
-  const notice = sp.reset ? 'Your password was changed. Sign in with your new password.' : sp.signed_out ? 'You’ve been signed out.' : null
+  const notice = sp.reset
+    ? 'Your password was changed. Sign in with your new password.'
+    : sp.signed_out
+      ? 'You’ve been signed out.'
+      : null
   return (
     <AuthShell
       title="Welcome back"
@@ -20,7 +24,10 @@ export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
       footer={
         <>
           New to Hournook?{' '}
-          <Link href={next ? `/signup?next=${encodeURIComponent(next)}` : '/signup'} className="font-medium text-primary hover:underline">
+          <Link
+            href={next ? `/signup?next=${encodeURIComponent(next)}` : '/signup'}
+            className="font-medium text-primary hover:underline"
+          >
             Create an account
           </Link>
         </>

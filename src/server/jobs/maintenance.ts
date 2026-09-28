@@ -7,7 +7,13 @@ import { logger } from '@/server/observability/logger'
 
 /** Housekeeping: expired sessions/tokens/rate-limit windows, data retention. */
 export async function runMaintenance() {
-  const results = await db().execute<{ sessions: number; tokens: number; limits: number; events: number; scrubbed: number }>(sql`
+  const results = await db().execute<{
+    sessions: number
+    tokens: number
+    limits: number
+    events: number
+    scrubbed: number
+  }>(sql`
     WITH
       s AS (DELETE FROM sessions WHERE expires_at < now() RETURNING 1),
       t AS (DELETE FROM auth_tokens WHERE expires_at < now() - interval '7 days' RETURNING 1),

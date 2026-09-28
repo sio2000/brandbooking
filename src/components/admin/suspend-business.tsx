@@ -16,7 +16,17 @@ const REASON_MAX = 500
  * Suspend / reactivate a business. Suspension requires a reason (kept in the
  * audit log) and typing the business slug, so it can't happen by accident.
  */
-export function SuspendBusiness({ id, name, slug, suspended }: { id: string; name: string; slug: string; suspended: boolean }) {
+export function SuspendBusiness({
+  id,
+  name,
+  slug,
+  suspended,
+}: {
+  id: string
+  name: string
+  slug: string
+  suspended: boolean
+}) {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
   const [reason, setReason] = React.useState('')
@@ -67,9 +77,15 @@ export function SuspendBusiness({ id, name, slug, suspended }: { id: string; nam
       title={suspending ? `Suspend ${name}?` : `Reactivate ${name}?`}
       description={
         suspending ? (
-          <>The business’s booking page stops accepting bookings and its team loses access to the dashboard until it is reactivated. Existing data is kept.</>
+          <>
+            The business’s booking page stops accepting bookings and its team loses access to the
+            dashboard until it is reactivated. Existing data is kept.
+          </>
         ) : (
-          <>The booking page and dashboard become available again immediately. The reactivation is recorded in the audit log.</>
+          <>
+            The booking page and dashboard become available again immediately. The reactivation is
+            recorded in the audit log.
+          </>
         )
       }
       confirmLabel={suspending ? 'Suspend business' : 'Reactivate business'}
@@ -96,7 +112,11 @@ export function SuspendBusiness({ id, name, slug, suspended }: { id: string; nam
           htmlFor="suspend-reason"
           optional={!suspending}
           error={fieldError}
-          hint={suspending ? 'Visible to other admins in the audit log. Don’t include customer details.' : 'Optional — recorded in the audit log.'}
+          hint={
+            suspending
+              ? 'Visible to other admins in the audit log. Don’t include customer details.'
+              : 'Optional — recorded in the audit log.'
+          }
         >
           <Textarea
             value={reason}
@@ -104,7 +124,9 @@ export function SuspendBusiness({ id, name, slug, suspended }: { id: string; nam
             maxLength={REASON_MAX}
             rows={3}
             className="min-h-20"
-            placeholder={suspending ? 'e.g. Chargeback fraud reported by Stripe, ticket #1234' : undefined}
+            placeholder={
+              suspending ? 'e.g. Chargeback fraud reported by Stripe, ticket #1234' : undefined
+            }
           />
         </Field>
       </div>

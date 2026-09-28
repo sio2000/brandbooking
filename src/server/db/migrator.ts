@@ -24,7 +24,12 @@ async function listMigrations(dir = MIGRATIONS_DIR): Promise<MigrationFile[]> {
   return ups.map((file) => {
     const version = file.slice(0, 4)
     const down = file.replace(/\.sql$/, '.down.sql')
-    return { version, name: file, file: path.join(dir, file), downFile: files.includes(down) ? path.join(dir, down) : undefined }
+    return {
+      version,
+      name: file,
+      file: path.join(dir, file),
+      downFile: files.includes(down) ? path.join(dir, down) : undefined,
+    }
   })
 }
 
@@ -46,9 +51,11 @@ export async function migrateUp(sql: postgres.Sql, log: (m: string) => void = ()
     await reserved`SELECT pg_advisory_lock(${LOCK_KEY})`
     await ensureTable(reserved)
     const applied = new Map(
-      (await reserved<{ version: string; checksum: string }[]>`SELECT version, checksum FROM schema_migrations`).map(
-        (r) => [r.version, r.checksum],
-      ),
+      (
+        await reserved<
+          { version: string; checksum: string }[]
+        >`SELECT version, checksum FROM schema_migrations`
+      ).map((r) => [r.version, r.checksum]),
     )
     const migrations = await listMigrations()
     let count = 0
@@ -58,7 +65,9 @@ export async function migrateUp(sql: postgres.Sql, log: (m: string) => void = ()
       const existing = applied.get(m.version)
       if (existing) {
         if (existing !== sum) {
-          throw new Error(`Migration ${m.name} was modified after being applied. Create a new migration instead.`)
+          throw new Error(
+            `Migration ${m.name} was modified after being applied. Create a new migration instead.`,
+          )
         }
         continue
       }
@@ -71,7 +80,9 @@ export async function migrateUp(sql: postgres.Sql, log: (m: string) => void = ()
         await reserved`COMMIT`
       } catch (err) {
         await reserved`ROLLBACK`
-        throw new Error(`Migration ${m.name} failed: ${err instanceof Error ? err.message : String(err)}`)
+        throw new Error(
+          `Migration ${m.name} failed: ${err instanceof Error ? err.message : String(err)}`,
+        )
       }
       count++
     }

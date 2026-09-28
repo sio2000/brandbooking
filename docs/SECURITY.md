@@ -7,14 +7,14 @@ open public issues for security problems.
 
 ## Assets and trust boundaries
 
-| Asset | Where it lives | Who may access it |
-|---|---|---|
-| Business data (services, hours, settings) | PostgreSQL, scoped by `business_id` | Members of that business, by role |
-| Customer PII (name, email, phone, notes) | `customers`, `appointments` | Members of that business (staff: only own appointments) |
-| Credentials | Argon2id hashes in `users` | Nobody (verified only) |
-| Session / reset / verification / invite tokens | Only SHA-256 hashes stored | Holder of the raw token |
-| Payment data | Stripe only — never touches our servers | Stripe |
-| Secrets (`APP_SECRET`, `CRON_SECRET`, Stripe, SMTP, S3) | Server environment variables | Server code only |
+| Asset                                                   | Where it lives                          | Who may access it                                       |
+| ------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------- |
+| Business data (services, hours, settings)               | PostgreSQL, scoped by `business_id`     | Members of that business, by role                       |
+| Customer PII (name, email, phone, notes)                | `customers`, `appointments`             | Members of that business (staff: only own appointments) |
+| Credentials                                             | Argon2id hashes in `users`              | Nobody (verified only)                                  |
+| Session / reset / verification / invite tokens          | Only SHA-256 hashes stored              | Holder of the raw token                                 |
+| Payment data                                            | Stripe only — never touches our servers | Stripe                                                  |
+| Secrets (`APP_SECRET`, `CRON_SECRET`, Stripe, SMTP, S3) | Server environment variables            | Server code only                                        |
 
 The browser is untrusted. It never connects to the database, never receives a
 secret, and its view of payment status is never trusted.
@@ -24,7 +24,7 @@ secret, and its view of payment status is never trusted.
 - **Single choke point**: dashboard pages and actions obtain a `TenantContext`
   from `requireTenantPage` / `requireTenantAction`, which authenticates the
   session and re-verifies membership in the requested business on every call.
-  The `hn_business` cookie only selects among the user's *own* memberships.
+  The `hn_business` cookie only selects among the user's _own_ memberships.
 - **Explicit scoping**: every tenant-owned query filters by the context's
   business id (`WHERE business_id = $ctx AND id = $param`). Ids from URLs or
   forms are never used alone. Unknown or foreign ids yield 404, not 403, so
@@ -159,8 +159,8 @@ admins see the global log.
 
 ## Known residual risks
 
-- **Account lockout can be triggered by a third party** (10 wrong passwords in
-  15 minutes) — a deliberate trade-off against password guessing; the lock is
+- **Sign-in throttling and account lockout can be triggered by a third party**
+  (repeated wrong passwords for someone's email) — a deliberate trade-off against password guessing; the lock is
   temporary and the owner can still reset their password.
 - The lockout message reveals that an account exists once it is locked.
 - Rate limits are fixed-window; a determined attacker with many IPs can still
@@ -170,4 +170,10 @@ admins see the global log.
 - No WAF/DDoS protection is included; use the hosting provider's.
 - Backups, encryption at rest and point-in-time recovery depend on the chosen
   Postgres provider and are **not configured by this repository**.
+- Dashboard detail pages for ids outside the current tenant render the
+  not-found page (with `noindex`, no foreign data) but, because they stream
+  behind a loading boundary, the HTTP status is 200 rather than 404.
+- The per-email sign-in throttle (8 attempts / 15 min) normally triggers before
+  the 10-failure account lock, so the lock mainly guards against distributed
+  attempts across windows.
 - No independent penetration test has been performed.

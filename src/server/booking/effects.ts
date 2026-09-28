@@ -2,7 +2,13 @@ import 'server-only'
 import { and, eq } from 'drizzle-orm'
 import type { Tx } from '@/server/db/client'
 import { customers, services, type Appointment, type BookingRules } from '@/server/db/schema'
-import { addInboxItems, cancelPendingReminders, enqueueEmail, membersToNotify, scheduleReminders } from '@/server/notifications/outbox'
+import {
+  addInboxItems,
+  cancelPendingReminders,
+  enqueueEmail,
+  membersToNotify,
+  scheduleReminders,
+} from '@/server/notifications/outbox'
 import { getOrCreateRules } from './loader'
 import type { Actor } from './booking-service'
 import { formatDateTime } from '@/lib/format'
@@ -15,7 +21,11 @@ import { formatDateTime } from '@/lib/format'
 
 async function customerEmail(tx: Tx, appt: Appointment) {
   const [c] = await tx
-    .select({ email: customers.email, firstName: customers.firstName, lastName: customers.lastName })
+    .select({
+      email: customers.email,
+      firstName: customers.firstName,
+      lastName: customers.lastName,
+    })
     .from(customers)
     .where(and(eq(customers.businessId, appt.businessId), eq(customers.id, appt.customerId)))
     .limit(1)
@@ -118,12 +128,19 @@ export async function afterAppointmentConfirmed(tx: Tx, p: { appointment: Appoin
 
 export async function afterAppointmentRescheduled(
   tx: Tx,
-  p: { appointment: Appointment; previousStartsAt: Date; rules: BookingRules; actor: Actor; now: Date },
+  p: {
+    appointment: Appointment
+    previousStartsAt: Date
+    rules: BookingRules
+    actor: Actor
+    now: Date
+  },
 ) {
   const a = p.appointment
   await cancelPendingReminders(tx, a.id)
   const c = await customerEmail(tx, a)
-  if (a.status === 'confirmed') await scheduleReminders(tx, a, c?.email ?? null, p.rules.reminderOffsetsMinutes, p.now)
+  if (a.status === 'confirmed')
+    await scheduleReminders(tx, a, c?.email ?? null, p.rules.reminderOffsetsMinutes, p.now)
   const payload = { previousStartsAt: p.previousStartsAt.toISOString() }
   if (c?.email) {
     await enqueueEmail(tx, {

@@ -29,7 +29,11 @@ import {
 export type MinuteRange = { start: number; end: number }
 export type Interval = { start: number; end: number } // epoch ms, half-open
 
-export type Closure = { startsOn: PlainDateString; endsOn: PlainDateString; recurringYearly: boolean }
+export type Closure = {
+  startsOn: PlainDateString
+  endsOn: PlainDateString
+  recurringYearly: boolean
+}
 
 export type Schedule = {
   /** ISO weekday (1-7) -> local minute ranges. Missing weekday = closed. */
@@ -215,7 +219,8 @@ export function computeAvailability(input: AvailabilityInput): DayAvailability[]
 
   // Include neighbouring days so windows spanning midnight merge correctly.
   const dates: PlainDateString[] = []
-  for (let d = addDays(from, -1); compareDates(d, addDays(to, 1)) <= 0; d = addDays(d, 1)) dates.push(d)
+  for (let d = addDays(from, -1); compareDates(d, addDays(to, 1)) <= 0; d = addDays(d, 1))
+    dates.push(d)
 
   const byStart = new Map<number, string[]>()
 
@@ -245,7 +250,11 @@ export function computeAvailability(input: AvailabilityInput): DayAvailability[]
     const date = epochToLocalDate(start, timeZone)
     const bucket = days.get(date)
     if (!bucket) continue
-    if (rules.maxBookingsPerDay != null && (input.bookingsPerDay?.[date] ?? 0) >= rules.maxBookingsPerDay) continue
+    if (
+      rules.maxBookingsPerDay != null &&
+      (input.bookingsPerDay?.[date] ?? 0) >= rules.maxBookingsPerDay
+    )
+      continue
     bucket.push({ start, staffIds: byStart.get(start)! })
   }
   return [...days.entries()].map(([date, slots]) => ({ date, slots }))
@@ -256,7 +265,10 @@ export function computeAvailability(input: AvailabilityInput): DayAvailability[]
  * requested slot server-side (never trusting the client) and to assign staff
  * for "any available" bookings.
  */
-export function staffFreeAt(input: Omit<AvailabilityInput, 'from' | 'to'>, start: number): string[] {
+export function staffFreeAt(
+  input: Omit<AvailabilityInput, 'from' | 'to'>,
+  start: number,
+): string[] {
   const date = epochToLocalDate(start, input.timeZone)
   const days = computeAvailability({ ...input, from: date, to: date })
   const slot = days[0]?.slots.find((s) => s.start === start)
@@ -264,7 +276,10 @@ export function staffFreeAt(input: Omit<AvailabilityInput, 'from' | 'to'>, start
 }
 
 /** Pick the least-loaded free staff member (stable by input order). */
-export function pickStaff(freeIds: string[], loadByStaff: Partial<Record<string, number>>): string | undefined {
+export function pickStaff(
+  freeIds: string[],
+  loadByStaff: Partial<Record<string, number>>,
+): string | undefined {
   let best: string | undefined
   let bestLoad = Infinity
   for (const id of freeIds) {

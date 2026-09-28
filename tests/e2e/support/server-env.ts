@@ -22,12 +22,21 @@ const g = globalThis as { __hnServerOnlyShim?: boolean }
 if (!g.__hnServerOnlyShim) {
   g.__hnServerOnlyShim = true
   const mod = Module as unknown as {
-    registerHooks?: (hooks: { resolve: (specifier: string, context: unknown, next: (s: string, c: unknown) => unknown) => unknown }) => void
+    registerHooks?: (hooks: {
+      resolve: (
+        specifier: string,
+        context: unknown,
+        next: (s: string, c: unknown) => unknown,
+      ) => unknown
+    }) => void
     _resolveFilename: (request: string, ...rest: unknown[]) => string
   }
   if (typeof mod.registerHooks === 'function') {
     mod.registerHooks({
-      resolve: (specifier, context, next) => (specifier === 'server-only' ? { url: pathToFileURL(shim).href, format: 'commonjs', shortCircuit: true } : next(specifier, context)),
+      resolve: (specifier, context, next) =>
+        specifier === 'server-only'
+          ? { url: pathToFileURL(shim).href, format: 'commonjs', shortCircuit: true }
+          : next(specifier, context),
     })
   } else {
     const original = mod._resolveFilename

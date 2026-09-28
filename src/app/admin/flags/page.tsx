@@ -73,7 +73,11 @@ export default async function AdminFlagsPage() {
                     <th scope="row" className="font-mono text-[13px] font-medium break-all">
                       {f.key}
                     </th>
-                    <td className="max-w-md text-muted-foreground">{f.description || <span className="text-subtle-foreground italic">No description</span>}</td>
+                    <td className="max-w-md text-muted-foreground">
+                      {f.description || (
+                        <span className="text-subtle-foreground italic">No description</span>
+                      )}
+                    </td>
                     <td>
                       <FlagState enabled={f.enabled} allowlist={f.businessAllowlist.length} />
                     </td>
@@ -82,7 +86,14 @@ export default async function AdminFlagsPage() {
                     </td>
                     <td className="py-2!">
                       <div className="flex justify-end gap-1">
-                        <FlagDialog flag={{ key: f.key, description: f.description, enabled: f.enabled, businessAllowlist: f.businessAllowlist }} />
+                        <FlagDialog
+                          flag={{
+                            key: f.key,
+                            description: f.description,
+                            enabled: f.enabled,
+                            businessAllowlist: f.businessAllowlist,
+                          }}
+                        />
                         <DeleteFlagButton flagKey={f.key} />
                       </div>
                     </td>
@@ -99,13 +110,22 @@ export default async function AdminFlagsPage() {
                   <p className="min-w-0 font-mono text-[13px] font-medium break-all">{f.key}</p>
                   <FlagState enabled={f.enabled} allowlist={f.businessAllowlist.length} />
                 </div>
-                <p className="mt-1.5 text-sm text-muted-foreground">{f.description || 'No description'}</p>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  {f.description || 'No description'}
+                </p>
                 <div className="mt-3 flex items-center justify-between gap-2 border-t border-border pt-2">
                   <span className="text-xs text-muted-foreground">
                     Updated <UtcTime value={f.updatedAt} mode="date" />
                   </span>
                   <div className="flex gap-1">
-                    <FlagDialog flag={{ key: f.key, description: f.description, enabled: f.enabled, businessAllowlist: f.businessAllowlist }} />
+                    <FlagDialog
+                      flag={{
+                        key: f.key,
+                        description: f.description,
+                        enabled: f.enabled,
+                        businessAllowlist: f.businessAllowlist,
+                      }}
+                    />
                     <DeleteFlagButton flagKey={f.key} />
                   </div>
                 </div>

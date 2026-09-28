@@ -22,7 +22,10 @@ export default async function NotificationSettingsPage() {
   return (
     <div className="grid grid-cols-1 gap-8">
       <section>
-        <SettingsIntro title="Your notifications" description="Choose what we tell you about. This only affects you — each team member sets their own." />
+        <SettingsIntro
+          title="Your notifications"
+          description="Choose what we tell you about. This only affects you — each team member sets their own."
+        />
         <MyNotificationPrefs
           role={ctx.membership.role}
           initial={{
@@ -40,13 +43,19 @@ export default async function NotificationSettingsPage() {
           </p>
         )}
         {!ctx.user.emailVerified && (
-          <p className="mt-3 text-[13px] text-muted-foreground">Verify your email address to receive notification emails. Until then they only appear in your inbox.</p>
+          <p className="mt-3 text-[13px] text-muted-foreground">
+            Verify your email address to receive notification emails. Until then they only appear in
+            your inbox.
+          </p>
         )}
       </section>
 
       {canManage && (
         <section>
-          <SettingsIntro title="Customer emails" description="How your automatic emails to customers look." />
+          <SettingsIntro
+            title="Customer emails"
+            description="How your automatic emails to customers look."
+          />
           <EmailSettingsForm
             initial={{ emailSenderName: b.emailSenderName ?? '', emailFooter: b.emailFooter ?? '' }}
             businessName={b.name}
@@ -57,7 +66,10 @@ export default async function NotificationSettingsPage() {
             <BellRing className="size-3.5 shrink-0" aria-hidden />
             <span>
               Looking for appointment reminders? They’re set under{' '}
-              <Link href="/app/settings/booking#reminders" className="font-medium text-primary hover:underline">
+              <Link
+                href="/app/settings/booking#reminders"
+                className="font-medium text-primary hover:underline"
+              >
                 Booking rules
               </Link>
               .

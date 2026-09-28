@@ -30,25 +30,55 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
   }
   const { customer: c, stats: s } = data
   const tz = ctx.business.timezone
-  const [history, pickers] = await Promise.all([listAppointments(ctx, { customerId: id, order: 'desc', limit: 200 }), pickerData(ctx)])
+  const [history, pickers] = await Promise.all([
+    listAppointments(ctx, { customerId: id, order: 'desc', limit: 200 }),
+    pickerData(ctx),
+  ])
   const name = `${c.firstName} ${c.lastName}`.trim()
   const outcomes = s.completed + s.no_shows
   return (
     <PageContainer>
-      <Link href="/app/customers" className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" /> Customers</Link>
+      <Link
+        href="/app/customers"
+        className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
+      >
+        <ArrowLeft className="size-4" /> Customers
+      </Link>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <Avatar name={name} className="size-14 text-base" />
           <div className="min-w-0">
             <h1 className="truncate text-2xl font-bold">{name}</h1>
             <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-              {c.email && <a href={`mailto:${c.email}`} className="inline-flex items-center gap-1.5 hover:text-foreground"><Mail className="size-4" /> {c.email}</a>}
-              {c.phone && <a href={`tel:${c.phone.replace(/[^+\d]/g, '')}`} className="inline-flex items-center gap-1.5 hover:text-foreground"><Phone className="size-4" /> {c.phone}</a>}
+              {c.email && (
+                <a
+                  href={`mailto:${c.email}`}
+                  className="inline-flex items-center gap-1.5 hover:text-foreground"
+                >
+                  <Mail className="size-4" /> {c.email}
+                </a>
+              )}
+              {c.phone && (
+                <a
+                  href={`tel:${c.phone.replace(/[^+\d]/g, '')}`}
+                  className="inline-flex items-center gap-1.5 hover:text-foreground"
+                >
+                  <Phone className="size-4" /> {c.phone}
+                </a>
+              )}
             </div>
           </div>
         </div>
         <CustomerActions
-          customer={{ id: c.id, name, firstName: c.firstName, lastName: c.lastName, email: c.email ?? '', phone: c.phone ?? '', internalNotes: c.internalNotes ?? '' }}
+          customer={{
+            id: c.id,
+            name,
+            firstName: c.firstName,
+            lastName: c.lastName,
+            email: c.email ?? '',
+            phone: c.phone ?? '',
+            internalNotes: c.internalNotes ?? '',
+          }}
           canManage={ctx.can('customers.manage')}
           canErase={ctx.can('customers.erase')}
           canBook={ctx.can('appointments.manage_all') || ctx.can('appointments.manage_own')}
@@ -61,26 +91,58 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
 
       <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat label="Visits" value={s.completed} hint={`${s.total} booked in total`} />
-        <Stat label="Revenue" value={formatMoney(s.revenue_cents, ctx.business.currency)} hint={s.avg_cents != null ? `Avg. ${formatMoney(s.avg_cents, ctx.business.currency)} per visit` : 'From completed visits'} definition="Sum of service prices for completed appointments." />
-        <Stat label="Cancellations" value={s.cancelled} hint={s.total ? `${Math.round((s.cancelled / s.total) * 100)}% of bookings` : undefined} />
-        <Stat label="No-shows" value={s.no_shows} hint={outcomes ? `${Math.round((s.no_shows / outcomes) * 100)}% of visits` : undefined} />
+        <Stat
+          label="Revenue"
+          value={formatMoney(s.revenue_cents, ctx.business.currency)}
+          hint={
+            s.avg_cents != null
+              ? `Avg. ${formatMoney(s.avg_cents, ctx.business.currency)} per visit`
+              : 'From completed visits'
+          }
+          definition="Sum of service prices for completed appointments."
+        />
+        <Stat
+          label="Cancellations"
+          value={s.cancelled}
+          hint={s.total ? `${Math.round((s.cancelled / s.total) * 100)}% of bookings` : undefined}
+        />
+        <Stat
+          label="No-shows"
+          value={s.no_shows}
+          hint={outcomes ? `${Math.round((s.no_shows / outcomes) * 100)}% of visits` : undefined}
+        />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card>
-          <CardHeader title="Appointment history" description={`${history.length} appointment${history.length === 1 ? '' : 's'}`} />
+          <CardHeader
+            title="Appointment history"
+            description={`${history.length} appointment${history.length === 1 ? '' : 's'}`}
+          />
           <CardBody className="px-0 pb-2">
-            {history.length === 0 ? <p className="px-5 pb-4 text-sm text-muted-foreground">No appointments yet.</p> : (
+            {history.length === 0 ? (
+              <p className="px-5 pb-4 text-sm text-muted-foreground">No appointments yet.</p>
+            ) : (
               <ul className="divide-y divide-border">
                 {history.map((a) => (
                   <li key={a.id}>
-                    <Link href={`/app/appointments/${a.id}`} className="flex items-center gap-3 px-5 py-3 hover:bg-surface-2">
+                    <Link
+                      href={`/app/appointments/${a.id}`}
+                      className="flex items-center gap-3 px-5 py-3 hover:bg-surface-2"
+                    >
                       <span className="w-28 shrink-0 text-sm">
                         <span className="block font-medium">{formatDate(a.startsAt, tz)}</span>
-                        <span className="text-xs text-muted-foreground tabular">{formatTime(a.startsAt, tz)}</span>
+                        <span className="tabular text-xs text-muted-foreground">
+                          {formatTime(a.startsAt, tz)}
+                        </span>
                       </span>
-                      <span className="min-w-0 flex-1 truncate text-sm">{a.serviceName}<span className="text-muted-foreground"> · {a.staffName}</span></span>
-                      <span className="hidden text-sm tabular sm:block">{a.priceCents != null ? formatMoney(a.priceCents, a.currency) : ''}</span>
+                      <span className="min-w-0 flex-1 truncate text-sm">
+                        {a.serviceName}
+                        <span className="text-muted-foreground"> · {a.staffName}</span>
+                      </span>
+                      <span className="tabular hidden text-sm sm:block">
+                        {a.priceCents != null ? formatMoney(a.priceCents, a.currency) : ''}
+                      </span>
                       <StatusBadge status={a.status} />
                     </Link>
                   </li>
@@ -97,7 +159,11 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
                 <Row label="Customer since">{formatDate(c.createdAt, tz)}</Row>
                 <Row label="First visit">{s.first_at ? formatDate(s.first_at, tz) : '—'}</Row>
                 <Row label="Last visit">{s.last_visit ? formatDate(s.last_visit, tz) : '—'}</Row>
-                <Row label="Next appointment">{s.next_at ? `${formatDate(s.next_at, tz)}, ${formatTime(s.next_at, tz)}` : 'None booked'}</Row>
+                <Row label="Next appointment">
+                  {s.next_at
+                    ? `${formatDate(s.next_at, tz)}, ${formatTime(s.next_at, tz)}`
+                    : 'None booked'}
+                </Row>
                 <Row label="Favourite service">{s.favorite_service ?? '—'}</Row>
                 <Row label="Usually sees">{s.favorite_staff ?? '—'}</Row>
               </dl>
@@ -105,7 +171,12 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
           </Card>
           <Card>
             <CardHeader title="Internal notes" description="Only visible to your team." />
-            <CardBody><p className="text-sm whitespace-pre-line text-muted-foreground">{c.internalNotes || 'No notes yet. Use Edit to add allergies, preferences or anything useful.'}</p></CardBody>
+            <CardBody>
+              <p className="text-sm whitespace-pre-line text-muted-foreground">
+                {c.internalNotes ||
+                  'No notes yet. Use Edit to add allergies, preferences or anything useful.'}
+              </p>
+            </CardBody>
           </Card>
         </div>
       </div>

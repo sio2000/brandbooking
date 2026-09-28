@@ -9,7 +9,8 @@ export function Toaster() {
       closeButton
       toastOptions={{
         classNames: {
-          toast: '!rounded-xl !border !border-border !bg-elevated !text-foreground !shadow-lg !font-sans',
+          toast:
+            '!rounded-xl !border !border-border !bg-elevated !text-foreground !shadow-lg !font-sans',
           description: '!text-muted-foreground',
           actionButton: '!bg-primary !text-primary-foreground',
           closeButton: '!bg-elevated !border-border',

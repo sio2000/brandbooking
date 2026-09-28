@@ -68,7 +68,11 @@ const EnvSchema = z
       // so a developer machine or CI run can never create real charges.
       for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
         if (/^(sk|rk|pk)_live_/.test(env[key] ?? '')) {
-          ctx.addIssue({ code: 'custom', path: [key], message: `${key} is a live-mode key; only test-mode keys are allowed outside production` })
+          ctx.addIssue({
+            code: 'custom',
+            path: [key],
+            message: `${key} is a live-mode key; only test-mode keys are allowed outside production`,
+          })
         }
       }
       return
@@ -111,7 +115,9 @@ export function env(): Env {
   if (cached) return cached
   const parsed = EnvSchema.safeParse(process.env)
   if (!parsed.success) {
-    const details = parsed.error.issues.map((i) => `  - ${i.path.join('.')}: ${i.message}`).join('\n')
+    const details = parsed.error.issues
+      .map((i) => `  - ${i.path.join('.')}: ${i.message}`)
+      .join('\n')
     throw new Error(`Invalid environment configuration:\n${details}`)
   }
   cached = parsed.data

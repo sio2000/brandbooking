@@ -2,7 +2,15 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Activity, ArrowLeft, Building2, Flag, LayoutDashboard, Menu, ScrollText } from 'lucide-react'
+import {
+  Activity,
+  ArrowLeft,
+  Building2,
+  Flag,
+  LayoutDashboard,
+  Menu,
+  ScrollText,
+} from 'lucide-react'
 import { Dialog, DialogClose, DialogTrigger, SheetContent } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/brand/logo'
@@ -25,7 +33,9 @@ export function AdminBrand() {
   return (
     <Link href="/admin" className="inline-flex items-center gap-2 rounded-md">
       <Logo markClassName="size-6" className="[&>span:nth-child(2)]:text-[1.05rem]" />
-      <span className="rounded-md bg-foreground px-1.5 py-0.5 text-[11px] font-semibold tracking-wide text-background uppercase">Admin</span>
+      <span className="rounded-md bg-foreground px-1.5 py-0.5 text-[11px] font-semibold tracking-wide text-background uppercase">
+        Admin
+      </span>
     </Link>
   )
 }
@@ -42,14 +52,18 @@ function NavLinks({ onNavigate }: { onNavigate?: boolean }) {
             aria-current={active ? 'page' : undefined}
             className={cn(
               'flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm font-medium transition-colors',
-              active ? 'bg-surface-2 text-foreground' : 'text-muted-foreground hover:bg-surface-2/70 hover:text-foreground',
+              active
+                ? 'bg-surface-2 text-foreground'
+                : 'text-muted-foreground hover:bg-surface-2/70 hover:text-foreground',
             )}
           >
             <it.icon className={cn('size-4 shrink-0', active && 'text-primary')} aria-hidden />
             {it.label}
           </Link>
         )
-        return <li key={it.href}>{onNavigate ? <DialogClose asChild>{link}</DialogClose> : link}</li>
+        return (
+          <li key={it.href}>{onNavigate ? <DialogClose asChild>{link}</DialogClose> : link}</li>
+        )
       })}
     </ul>
   )
@@ -57,7 +71,10 @@ function NavLinks({ onNavigate }: { onNavigate?: boolean }) {
 
 function Footer({ email, inSheet }: { email: string; inSheet?: boolean }) {
   const back = (
-    <Link href="/app" className="flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2/70 hover:text-foreground">
+    <Link
+      href="/app"
+      className="flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2/70 hover:text-foreground"
+    >
       <ArrowLeft className="size-4" aria-hidden />
       Back to app
     </Link>
@@ -104,7 +121,11 @@ export function AdminTopBar({ email }: { email: string }) {
       <AdminBrand />
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="secondary" size="sm" aria-label={`Open admin menu${current ? ` (current: ${current.label})` : ''}`}>
+          <Button
+            variant="secondary"
+            size="sm"
+            aria-label={`Open admin menu${current ? ` (current: ${current.label})` : ''}`}
+          >
             <Menu aria-hidden />
             <span className="hidden min-[380px]:inline">Menu</span>
           </Button>

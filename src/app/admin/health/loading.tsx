@@ -1,4 +1,9 @@
-import { HeaderSkeleton, KpiSkeleton, LoadingPage, TableSkeleton } from '@/components/admin/skeletons'
+import {
+  HeaderSkeleton,
+  KpiSkeleton,
+  LoadingPage,
+  TableSkeleton,
+} from '@/components/admin/skeletons'
 
 export default function Loading() {
   return (

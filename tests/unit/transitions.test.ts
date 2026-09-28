@@ -42,22 +42,38 @@ describe('checkTransition', () => {
   }
 
   it('cancelled is terminal', () => {
-    for (const t of TRANSITIONS) expect(checkTransition('cancelled', t, start, after).ok).toBe(false)
+    for (const t of TRANSITIONS)
+      expect(checkTransition('cancelled', t, start, after).ok).toBe(false)
     expect(availableTransitions('cancelled', start, after)).toEqual([])
   })
 
   it('cannot complete or mark no-show before the appointment starts', () => {
-    expect(checkTransition('confirmed', 'complete', start, before)).toEqual({ ok: false, reason: 'not_started' })
-    expect(checkTransition('confirmed', 'no_show', start, before)).toEqual({ ok: false, reason: 'not_started' })
+    expect(checkTransition('confirmed', 'complete', start, before)).toEqual({
+      ok: false,
+      reason: 'not_started',
+    })
+    expect(checkTransition('confirmed', 'no_show', start, before)).toEqual({
+      ok: false,
+      reason: 'not_started',
+    })
   })
 
   it('allows outcomes exactly at the start instant', () => {
-    expect(checkTransition('confirmed', 'complete', start, start)).toEqual({ ok: true, to: 'completed' })
-    expect(checkTransition('confirmed', 'no_show', start, start)).toEqual({ ok: true, to: 'no_show' })
+    expect(checkTransition('confirmed', 'complete', start, start)).toEqual({
+      ok: true,
+      to: 'completed',
+    })
+    expect(checkTransition('confirmed', 'no_show', start, start)).toEqual({
+      ok: true,
+      to: 'no_show',
+    })
   })
 
   it('reports invalid_transition (not not_started) for disallowed outcomes before start', () => {
-    expect(checkTransition('pending', 'complete', start, before)).toEqual({ ok: false, reason: 'invalid_transition' })
+    expect(checkTransition('pending', 'complete', start, before)).toEqual({
+      ok: false,
+      reason: 'invalid_transition',
+    })
   })
 
   it('cancel and confirm are allowed before start', () => {
@@ -69,7 +85,11 @@ describe('checkTransition', () => {
 describe('availableTransitions', () => {
   it('filters by time', () => {
     expect(availableTransitions('confirmed', start, before)).toEqual(['cancel'])
-    expect(availableTransitions('confirmed', start, after)).toEqual(['cancel', 'complete', 'no_show'])
+    expect(availableTransitions('confirmed', start, after)).toEqual([
+      'cancel',
+      'complete',
+      'no_show',
+    ])
     expect(availableTransitions('pending', start, after)).toEqual(['confirm', 'cancel'])
     expect(availableTransitions('completed', start, after)).toEqual(['reopen'])
     expect(availableTransitions('no_show', start, before)).toEqual(['reopen'])
@@ -84,7 +104,12 @@ describe('isActive', () => {
 })
 
 describe('customer self-service deadlines', () => {
-  const rules = { allowCustomerCancel: true, allowCustomerReschedule: true, cancellationDeadlineMinutes: 120, rescheduleDeadlineMinutes: 60 }
+  const rules = {
+    allowCustomerCancel: true,
+    allowCustomerReschedule: true,
+    cancellationDeadlineMinutes: 120,
+    rescheduleDeadlineMinutes: 60,
+  }
   const deadlineCancel = start.getTime() - 120 * 60_000
   const deadlineResched = start.getTime() - 60 * 60_000
 
@@ -95,9 +120,13 @@ describe('customer self-service deadlines', () => {
   })
 
   it('uses its own deadline for rescheduling', () => {
-    expect(customerCanReschedule('confirmed', start, rules, new Date(deadlineCancel + 1))).toBe(true)
+    expect(customerCanReschedule('confirmed', start, rules, new Date(deadlineCancel + 1))).toBe(
+      true,
+    )
     expect(customerCanReschedule('confirmed', start, rules, new Date(deadlineResched))).toBe(true)
-    expect(customerCanReschedule('confirmed', start, rules, new Date(deadlineResched + 1))).toBe(false)
+    expect(customerCanReschedule('confirmed', start, rules, new Date(deadlineResched + 1))).toBe(
+      false,
+    )
   })
 
   it('pending bookings can be cancelled/rescheduled; inactive ones cannot', () => {
@@ -112,10 +141,21 @@ describe('customer self-service deadlines', () => {
 
   it('respects the business switches', () => {
     const early = new Date(start.getTime() - 7 * 86_400_000)
-    expect(customerCanCancel('confirmed', start, { ...rules, allowCustomerCancel: false }, early)).toBe(false)
-    expect(customerCanReschedule('confirmed', start, { ...rules, allowCustomerReschedule: false }, early)).toBe(false)
+    expect(
+      customerCanCancel('confirmed', start, { ...rules, allowCustomerCancel: false }, early),
+    ).toBe(false)
+    expect(
+      customerCanReschedule(
+        'confirmed',
+        start,
+        { ...rules, allowCustomerReschedule: false },
+        early,
+      ),
+    ).toBe(false)
     // Each switch only affects its own action.
-    expect(customerCanReschedule('confirmed', start, { ...rules, allowCustomerCancel: false }, early)).toBe(true)
+    expect(
+      customerCanReschedule('confirmed', start, { ...rules, allowCustomerCancel: false }, early),
+    ).toBe(true)
   })
 
   it('a zero deadline allows changes until the start instant, never after', () => {

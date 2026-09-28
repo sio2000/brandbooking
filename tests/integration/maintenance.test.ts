@@ -1,7 +1,13 @@
 import { afterAll, beforeEach, describe, expect, it } from 'vitest'
 import { eq, sql } from 'drizzle-orm'
 import { closeDb, db } from '@/server/db/client'
-import { appointments, authTokens, bookingPageEvents, notifications, sessions } from '@/server/db/schema'
+import {
+  appointments,
+  authTokens,
+  bookingPageEvents,
+  notifications,
+  sessions,
+} from '@/server/db/schema'
 import { resetDatabase } from '../helpers/db'
 import { createUser, futureDate, meta, setupBusiness, type Setup } from '../helpers/factory'
 import { runMaintenance, runScheduledTick } from '@/server/jobs/maintenance'
@@ -18,14 +24,31 @@ const ago = (ms: number) => new Date(Date.now() - ms)
 const DAY = 86_400_000
 
 async function count(table: string) {
-  const r = await db().execute<{ n: number }>(sql`SELECT count(*)::int AS n FROM ${sql.identifier(table)}`)
+  const r = await db().execute<{ n: number }>(
+    sql`SELECT count(*)::int AS n FROM ${sql.identifier(table)}`,
+  )
   return r[0]!.n
 }
 
 async function book(minute = 600, email = 'cora@example.com') {
   return createPublicBooking(
     s.ctx.business.slug,
-    { serviceId: s.serviceId, staffId: null, start: localToDate(futureDate(TZ, 3), minute, TZ).toISOString(), firstName: 'Cora', lastName: 'C', email, phone: '+30 210 1234567', message: null, src: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null, website: null },
+    {
+      serviceId: s.serviceId,
+      staffId: null,
+      start: localToDate(futureDate(TZ, 3), minute, TZ).toISOString(),
+      firstName: 'Cora',
+      lastName: 'C',
+      email,
+      phone: '+30 210 1234567',
+      message: null,
+      src: null,
+      utmSource: null,
+      utmMedium: null,
+      utmCampaign: null,
+      referrerHost: null,
+      website: null,
+    },
     meta(`203.0.113.${minute % 200}`),
   )
 }
@@ -41,28 +64,56 @@ afterAll(async () => {
 describe('runMaintenance', () => {
   it('purges expired sessions, stale tokens, old rate-limit windows and old funnel events', async () => {
     const u = await createUser()
-    await db().insert(sessions).values([
-      { id: hashToken('expired'), userId: u.id, expiresAt: ago(1000) },
-      { id: hashToken('valid'), userId: u.id, expiresAt: new Date(Date.now() + DAY) },
-    ])
-    await db().insert(authTokens).values([
-      { userId: u.id, purpose: 'password_reset', tokenHash: hashToken(generateToken()), expiresAt: ago(8 * DAY) },
-      { userId: u.id, purpose: 'password_reset', tokenHash: hashToken(generateToken()), expiresAt: ago(6 * DAY) },
-      { userId: u.id, purpose: 'email_verification', tokenHash: hashToken(generateToken()), expiresAt: new Date(Date.now() + DAY) },
-    ])
+    await db()
+      .insert(sessions)
+      .values([
+        { id: hashToken('expired'), userId: u.id, expiresAt: ago(1000) },
+        { id: hashToken('valid'), userId: u.id, expiresAt: new Date(Date.now() + DAY) },
+      ])
+    await db()
+      .insert(authTokens)
+      .values([
+        {
+          userId: u.id,
+          purpose: 'password_reset',
+          tokenHash: hashToken(generateToken()),
+          expiresAt: ago(8 * DAY),
+        },
+        {
+          userId: u.id,
+          purpose: 'password_reset',
+          tokenHash: hashToken(generateToken()),
+          expiresAt: ago(6 * DAY),
+        },
+        {
+          userId: u.id,
+          purpose: 'email_verification',
+          tokenHash: hashToken(generateToken()),
+          expiresAt: new Date(Date.now() + DAY),
+        },
+      ])
     await db().execute(sql`INSERT INTO rate_limits (key, count, reset_at) VALUES
       ('old', 5, now() - interval '2 hours'), ('recent', 5, now() - interval '10 minutes'), ('live', 5, now() + interval '10 minutes')`)
-    await db().insert(bookingPageEvents).values([
-      { businessId: s.ctx.business.id, step: 'view', occurredAt: ago(401 * DAY) },
-      { businessId: s.ctx.business.id, step: 'view', occurredAt: ago(399 * DAY) },
-    ])
+    await db()
+      .insert(bookingPageEvents)
+      .values([
+        { businessId: s.ctx.business.id, step: 'view', occurredAt: ago(401 * DAY) },
+        { businessId: s.ctx.business.id, step: 'view', occurredAt: ago(399 * DAY) },
+      ])
     const before = { sessions: await count('sessions') }
     const r = await runMaintenance()
     expect(r).toMatchObject({ sessions: 1, tokens: 1, limits: 1, events: 1 })
     expect(await count('sessions')).toBe(before.sessions - 1)
-    expect(await db().select().from(sessions).where(eq(sessions.id, hashToken('valid')))).toHaveLength(1)
+    expect(
+      await db()
+        .select()
+        .from(sessions)
+        .where(eq(sessions.id, hashToken('valid'))),
+    ).toHaveLength(1)
     expect(await count('auth_tokens')).toBe(2)
-    const keys = (await db().execute<{ key: string }>(sql`SELECT key FROM rate_limits ORDER BY key`)).map((k) => k.key)
+    const keys = (
+      await db().execute<{ key: string }>(sql`SELECT key FROM rate_limits ORDER BY key`)
+    ).map((k) => k.key)
     expect(keys).toEqual(['live', 'recent'])
     expect(await count('booking_page_events')).toBe(1)
   })
@@ -73,8 +124,12 @@ describe('runMaintenance', () => {
     expect(rows.length).toBeGreaterThanOrEqual(2)
     const [oldSent, oldPending, ...rest] = rows
     await db().execute(sql`UPDATE notifications SET payload = '{"name":"Cora"}'::jsonb`)
-    await db().execute(sql`UPDATE notifications SET status = 'sent', created_at = now() - interval '200 days' WHERE id = ${oldSent!.id}`)
-    await db().execute(sql`UPDATE notifications SET status = 'pending', created_at = now() - interval '200 days' WHERE id = ${oldPending!.id}`)
+    await db().execute(
+      sql`UPDATE notifications SET status = 'sent', created_at = now() - interval '200 days' WHERE id = ${oldSent!.id}`,
+    )
+    await db().execute(
+      sql`UPDATE notifications SET status = 'pending', created_at = now() - interval '200 days' WHERE id = ${oldPending!.id}`,
+    )
     const r = await runMaintenance()
     expect(r!.scrubbed).toBe(1)
     const after = await db().select().from(notifications)
@@ -86,15 +141,35 @@ describe('runMaintenance', () => {
 
   it('is idempotent', async () => {
     const u = await createUser()
-    await db().insert(sessions).values({ id: hashToken('gone'), userId: u.id, expiresAt: ago(1000) })
+    await db()
+      .insert(sessions)
+      .values({ id: hashToken('gone'), userId: u.id, expiresAt: ago(1000) })
     expect((await runMaintenance())!.sessions).toBe(1)
-    expect(await runMaintenance()).toEqual({ sessions: 0, tokens: 0, limits: 0, events: 0, scrubbed: 0 })
+    expect(await runMaintenance()).toEqual({
+      sessions: 0,
+      tokens: 0,
+      limits: 0,
+      events: 0,
+      scrubbed: 0,
+    })
   })
 
   it('leaves appointments alone (outcomes are recorded by the business)', async () => {
     const past = await createManualAppointment(
       s.ctx,
-      { serviceId: s.serviceId, staffId: s.ownerStaffId, date: addDays(todayIn(TZ), -2), startMinute: 600, customerId: null, firstName: 'Past', lastName: '', email: null, phone: null, internalNotes: null, notifyCustomer: false },
+      {
+        serviceId: s.serviceId,
+        staffId: s.ownerStaffId,
+        date: addDays(todayIn(TZ), -2),
+        startMinute: 600,
+        customerId: null,
+        firstName: 'Past',
+        lastName: '',
+        email: null,
+        phone: null,
+        internalNotes: null,
+        notifyCustomer: false,
+      },
       meta(),
     )
     await runMaintenance()
@@ -119,7 +194,9 @@ describe('runScheduledTick', () => {
     // A second tick sends nothing new (reminders are not due yet).
     await runScheduledTick()
     expect(box.sent.length).toBe(firstCount)
-    const pendingReminders = await db().execute<{ n: number }>(sql`SELECT count(*)::int AS n FROM notifications WHERE template = 'booking_reminder' AND status = 'pending'`)
+    const pendingReminders = await db().execute<{ n: number }>(
+      sql`SELECT count(*)::int AS n FROM notifications WHERE template = 'booking_reminder' AND status = 'pending'`,
+    )
     expect(pendingReminders[0]!.n).toBeGreaterThan(0)
   })
 
@@ -128,7 +205,9 @@ describe('runScheduledTick', () => {
     await book(600, 'remind@example.com')
     await runScheduledTick()
     const before = box.sent.length
-    await db().execute(sql`UPDATE notifications SET send_after = now() - interval '1 second' WHERE template = 'booking_reminder' AND status = 'pending'`)
+    await db().execute(
+      sql`UPDATE notifications SET send_after = now() - interval '1 second' WHERE template = 'booking_reminder' AND status = 'pending'`,
+    )
     await runScheduledTick()
     const reminders = box.sent.slice(before)
     expect(reminders.length).toBeGreaterThan(0)

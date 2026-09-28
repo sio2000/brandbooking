@@ -2,7 +2,14 @@ import { Ban, CheckCircle2, CircleDashed, CircleDot, UserX } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import type { AppointmentStatus } from '@/server/db/schema'
 
-export const STATUS_META: Record<AppointmentStatus, { label: string; tone: 'success' | 'warning' | 'danger' | 'neutral' | 'info' | 'primary'; Icon: typeof CheckCircle2 }> = {
+export const STATUS_META: Record<
+  AppointmentStatus,
+  {
+    label: string
+    tone: 'success' | 'warning' | 'danger' | 'neutral' | 'info' | 'primary'
+    Icon: typeof CheckCircle2
+  }
+> = {
   pending: { label: 'Pending', tone: 'warning', Icon: CircleDashed },
   confirmed: { label: 'Confirmed', tone: 'primary', Icon: CircleDot },
   completed: { label: 'Completed', tone: 'success', Icon: CheckCircle2 },

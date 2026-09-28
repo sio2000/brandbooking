@@ -1,6 +1,13 @@
 import 'server-only'
 import { and, eq, isNull, sql } from 'drizzle-orm'
-import { db, pgConstraint, pgErrorCode, PgErrorCode, type DbOrTx, type Tx } from '@/server/db/client'
+import {
+  db,
+  pgConstraint,
+  pgErrorCode,
+  PgErrorCode,
+  type DbOrTx,
+  type Tx,
+} from '@/server/db/client'
 import {
   appointmentEvents,
   appointments,
@@ -36,11 +43,21 @@ import {
   toStaffInputs,
 } from './loader'
 import { checkTransition, isActive, type Transition } from './transitions'
-import { afterAppointmentCancelled, afterAppointmentCreated, afterAppointmentRescheduled, afterAppointmentConfirmed } from './effects'
+import {
+  afterAppointmentCancelled,
+  afterAppointmentCreated,
+  afterAppointmentRescheduled,
+  afterAppointmentConfirmed,
+} from './effects'
 
 const MAX_RANGE_DAYS = 62
 
-export type Actor = { type: ActorType; userId?: string | null; ip?: string | null; requestId?: string | null }
+export type Actor = {
+  type: ActorType
+  userId?: string | null
+  ip?: string | null
+  requestId?: string | null
+}
 
 // ---------------------------------------------------------------------------
 // Availability
@@ -50,8 +67,19 @@ export async function buildAvailabilityInput(
   tx: DbOrTx,
   business: Pick<Business, 'id' | 'timezone'>,
   rules: BookingRules,
-  service: { id: string; durationMinutes: number; bufferBeforeMinutes: number; bufferAfterMinutes: number },
-  opts: { staffId: string | null; from: PlainDateString; to: PlainDateString; now: Date; excludeAppointmentId?: string },
+  service: {
+    id: string
+    durationMinutes: number
+    bufferBeforeMinutes: number
+    bufferAfterMinutes: number
+  },
+  opts: {
+    staffId: string | null
+    from: PlainDateString
+    to: PlainDateString
+    now: Date
+    excludeAppointmentId?: string
+  },
 ): Promise<AvailabilityInput> {
   const eligible = await loadEligibleStaff(tx, business.id, service.id, opts.staffId)
   const ids = eligible.map((s) => s.id)
@@ -94,7 +122,9 @@ export async function getAvailability(params: {
   let to = params.to
   if (addDays(params.from, MAX_RANGE_DAYS) < to) to = addDays(params.from, MAX_RANGE_DAYS)
   const tx = db()
-  const service = await loadService(tx, params.business.id, params.serviceId, { bookableOnly: true })
+  const service = await loadService(tx, params.business.id, params.serviceId, {
+    bookableOnly: true,
+  })
   if (!service) throw new AppError('not_found')
   const rules = await getOrCreateRules(tx, params.business.id)
   const input = await buildAvailabilityInput(tx, params.business, rules, service, {
@@ -148,7 +178,8 @@ async function withRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
       const code = pgErrorCode(err)
       const retryable =
         code === PgErrorCode.serializationFailure ||
-        (code === PgErrorCode.uniqueViolation && pgConstraint(err) === 'appointments_business_id_reference_key')
+        (code === PgErrorCode.uniqueViolation &&
+          pgConstraint(err) === 'appointments_business_id_reference_key')
       if (!retryable) throw err
     }
   }
@@ -157,23 +188,37 @@ async function withRetry<T>(fn: () => Promise<T>, attempts = 3): Promise<T> {
 
 /** Serialize bookings per business + local date (max-per-day counts, staff choice). */
 async function lockBusinessDay(tx: Tx, businessId: string, date: PlainDateString) {
-  await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtextextended(${`book:${businessId}:${date}`}, 0))`)
+  await tx.execute(
+    sql`SELECT pg_advisory_xact_lock(hashtextextended(${`book:${businessId}:${date}`}, 0))`,
+  )
 }
 
 function translateConflict(err: unknown): never {
   const code = pgErrorCode(err)
-  if (code === PgErrorCode.exclusionViolation) throw new AppError('slot_unavailable', { cause: err })
+  if (code === PgErrorCode.exclusionViolation)
+    throw new AppError('slot_unavailable', { cause: err })
   // Composite (business_id, id) foreign keys reject references to another tenant's rows.
   if (code === PgErrorCode.foreignKeyViolation) throw new AppError('not_found', { cause: err })
   throw err
 }
 
-async function upsertCustomer(tx: Tx, businessId: string, c: BookParams['customer'], existingId?: string | null) {
+async function upsertCustomer(
+  tx: Tx,
+  businessId: string,
+  c: BookParams['customer'],
+  existingId?: string | null,
+) {
   if (existingId) {
     const [row] = await tx
       .select({ id: customers.id, email: customers.email })
       .from(customers)
-      .where(and(eq(customers.businessId, businessId), eq(customers.id, existingId), isNull(customers.erasedAt)))
+      .where(
+        and(
+          eq(customers.businessId, businessId),
+          eq(customers.id, existingId),
+          isNull(customers.erasedAt),
+        ),
+      )
       .limit(1)
     // Erased customers (GDPR) can't receive new bookings; create a new record instead.
     if (!row) throw new AppError('not_found')
@@ -191,7 +236,13 @@ async function upsertCustomer(tx: Tx, businessId: string, c: BookParams['custome
   // number is only filled in if missing.
   const [row] = await tx
     .insert(customers)
-    .values({ businessId, firstName: c.firstName, lastName: c.lastName, email: c.email, phone: c.phone })
+    .values({
+      businessId,
+      firstName: c.firstName,
+      lastName: c.lastName,
+      email: c.email,
+      phone: c.phone,
+    })
     .onConflictDoUpdate({
       target: [customers.businessId, customers.email],
       targetWhere: sql`email IS NOT NULL`,
@@ -206,7 +257,9 @@ export async function bookAppointment(p: BookParams): Promise<BookResult> {
   return withRetry(() =>
     db()
       .transaction(async (tx) => {
-        const service = await loadService(tx, p.business.id, p.serviceId, { bookableOnly: p.enforceAvailability })
+        const service = await loadService(tx, p.business.id, p.serviceId, {
+          bookableOnly: p.enforceAvailability,
+        })
         if (!service) throw new AppError('not_found')
         const rules = await getOrCreateRules(tx, p.business.id)
         const startMs = p.start.getTime()
@@ -224,21 +277,34 @@ export async function bookAppointment(p: BookParams): Promise<BookResult> {
           const free = staffFreeAt(input, startMs)
           if (free.length === 0) {
             // Distinguish "someone just took it" from "never was a valid time".
-            const withoutBookings = staffFreeAt({ ...input, staff: input.staff.map((s) => ({ ...s, busy: [] })), bookingsPerDay: {} }, startMs)
+            const withoutBookings = staffFreeAt(
+              { ...input, staff: input.staff.map((s) => ({ ...s, busy: [] })), bookingsPerDay: {} },
+              startMs,
+            )
             throw new AppError(withoutBookings.length > 0 ? 'slot_unavailable' : 'slot_invalid')
           }
           if (p.staffId) {
             staffId = p.staffId
           } else {
-            const counts = await loadDailyCounts(tx, p.business.id, p.business.timezone, { from: date, to: date })
+            const counts = await loadDailyCounts(tx, p.business.id, p.business.timezone, {
+              from: date,
+              to: date,
+            })
             staffId = pickStaff(free, counts.perStaffDay[date] ?? {})!
           }
         } else {
-          if (!p.staffId) throw new AppError('validation', { fields: { staffId: 'Choose a team member.' } })
+          if (!p.staffId)
+            throw new AppError('validation', { fields: { staffId: 'Choose a team member.' } })
           const [member] = await tx
             .select({ id: staff.id })
             .from(staff)
-            .where(and(eq(staff.businessId, p.business.id), eq(staff.id, p.staffId), sql`${staff.deletedAt} IS NULL`))
+            .where(
+              and(
+                eq(staff.businessId, p.business.id),
+                eq(staff.id, p.staffId),
+                sql`${staff.deletedAt} IS NULL`,
+              ),
+            )
             .limit(1)
           if (!member) throw new AppError('not_found')
           staffId = member.id
@@ -246,7 +312,8 @@ export async function bookAppointment(p: BookParams): Promise<BookResult> {
 
         const customer = await upsertCustomer(tx, p.business.id, p.customer, p.existingCustomerId)
         const times = blockedInterval(startMs, service)
-        const status = rules.requiresConfirmation && p.actor.type === 'customer' ? 'pending' : 'confirmed'
+        const status =
+          rules.requiresConfirmation && p.actor.type === 'customer' ? 'pending' : 'confirmed'
         const manageNonce = generateToken(18)
         let appointment: Appointment
         try {
@@ -419,11 +486,21 @@ export async function rescheduleAppointment(p: {
         action: 'appointment.rescheduled',
         entityType: 'appointment',
         entityId: current.id,
-        metadata: { from: current.startsAt.toISOString(), to: updated.startsAt.toISOString(), staffId },
+        metadata: {
+          from: current.startsAt.toISOString(),
+          to: updated.startsAt.toISOString(),
+          staffId,
+        },
         ip: p.actor.ip,
         requestId: p.actor.requestId,
       })
-      await afterAppointmentRescheduled(tx, { appointment: updated, previousStartsAt: current.startsAt, rules, actor: p.actor, now })
+      await afterAppointmentRescheduled(tx, {
+        appointment: updated,
+        previousStartsAt: current.startsAt,
+        rules,
+        actor: p.actor,
+        now,
+      })
       return updated
     })
     .catch(translateConflict)
@@ -441,10 +518,16 @@ export async function cancelAppointment(p: {
   return db().transaction(async (tx) => {
     const current = await lockAppointment(tx, p.business.id, p.appointmentId)
     const check = checkTransition(current.status, 'cancel', current.startsAt, now)
-    if (!check.ok) throw new AppError(isActive(current.status) ? 'invalid_transition' : 'appointment_not_active')
+    if (!check.ok)
+      throw new AppError(isActive(current.status) ? 'invalid_transition' : 'appointment_not_active')
     const [updated] = await tx
       .update(appointments)
-      .set({ status: 'cancelled', cancelledAt: now, cancelledBy: p.actor.type, cancellationReason: p.reason ?? null })
+      .set({
+        status: 'cancelled',
+        cancelledAt: now,
+        cancelledBy: p.actor.type,
+        cancellationReason: p.reason ?? null,
+      })
       .where(and(eq(appointments.businessId, p.business.id), eq(appointments.id, current.id)))
       .returning()
     await tx.insert(appointmentEvents).values({
@@ -508,7 +591,14 @@ export async function transitionAppointment(p: {
       } catch (err) {
         translateConflict(err)
       }
-      const event = p.transition === 'confirm' ? 'confirmed' : p.transition === 'complete' ? 'completed' : p.transition === 'no_show' ? 'no_show' : 'reopened'
+      const event =
+        p.transition === 'confirm'
+          ? 'confirmed'
+          : p.transition === 'complete'
+            ? 'completed'
+            : p.transition === 'no_show'
+              ? 'no_show'
+              : 'reopened'
       await tx.insert(appointmentEvents).values({
         businessId: p.business.id,
         appointmentId: current.id,

@@ -32,9 +32,15 @@ export function isActive(status: AppointmentStatus) {
   return status === 'pending' || status === 'confirmed'
 }
 
-export type TransitionCheck = { ok: true; to: AppointmentStatus } | { ok: false; reason: 'invalid_transition' | 'not_started' }
+export type TransitionCheck =
+  { ok: true; to: AppointmentStatus } | { ok: false; reason: 'invalid_transition' | 'not_started' }
 
-export function checkTransition(from: AppointmentStatus, t: Transition, startsAt: Date, now: Date): TransitionCheck {
+export function checkTransition(
+  from: AppointmentStatus,
+  t: Transition,
+  startsAt: Date,
+  now: Date,
+): TransitionCheck {
   if (!ALLOWED[from].includes(t)) return { ok: false, reason: 'invalid_transition' }
   // Outcomes can only be recorded once the appointment has started.
   if ((t === 'complete' || t === 'no_show') && now.getTime() < startsAt.getTime()) {
@@ -43,16 +49,28 @@ export function checkTransition(from: AppointmentStatus, t: Transition, startsAt
   return { ok: true, to: TARGET[t] }
 }
 
-export function availableTransitions(from: AppointmentStatus, startsAt: Date, now: Date): Transition[] {
+export function availableTransitions(
+  from: AppointmentStatus,
+  startsAt: Date,
+  now: Date,
+): Transition[] {
   return ALLOWED[from].filter((t) => checkTransition(from, t, startsAt, now).ok)
 }
 
 type CustomerRules = Pick<
   BookingRules,
-  'allowCustomerCancel' | 'allowCustomerReschedule' | 'cancellationDeadlineMinutes' | 'rescheduleDeadlineMinutes'
+  | 'allowCustomerCancel'
+  | 'allowCustomerReschedule'
+  | 'cancellationDeadlineMinutes'
+  | 'rescheduleDeadlineMinutes'
 >
 
-export function customerCanCancel(status: AppointmentStatus, startsAt: Date, rules: CustomerRules, now: Date) {
+export function customerCanCancel(
+  status: AppointmentStatus,
+  startsAt: Date,
+  rules: CustomerRules,
+  now: Date,
+) {
   return (
     rules.allowCustomerCancel &&
     isActive(status) &&
@@ -60,7 +78,12 @@ export function customerCanCancel(status: AppointmentStatus, startsAt: Date, rul
   )
 }
 
-export function customerCanReschedule(status: AppointmentStatus, startsAt: Date, rules: CustomerRules, now: Date) {
+export function customerCanReschedule(
+  status: AppointmentStatus,
+  startsAt: Date,
+  rules: CustomerRules,
+  now: Date,
+) {
   return (
     rules.allowCustomerReschedule &&
     isActive(status) &&

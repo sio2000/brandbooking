@@ -50,16 +50,33 @@ describe('suspending businesses', () => {
     const [b] = await db().select().from(businesses).where(eq(businesses.id, A.ctx.business.id))
     expect(b).toMatchObject({ status: 'suspended', suspendedReason: 'Fraud report #42' })
     expect(b!.suspendedAt).not.toBeNull()
-    const [log] = await db().select().from(auditLogs).where(eq(auditLogs.action, 'business.suspended'))
-    expect(log).toMatchObject({ businessId: A.ctx.business.id, actor: 'admin', actorUserId: admin.user.id, metadata: { reason: 'Fraud report #42' } })
+    const [log] = await db()
+      .select()
+      .from(auditLogs)
+      .where(eq(auditLogs.action, 'business.suspended'))
+    expect(log).toMatchObject({
+      businessId: A.ctx.business.id,
+      actor: 'admin',
+      actorUserId: admin.user.id,
+      metadata: { reason: 'Fraud report #42' },
+    })
     // Public page and billing access are cut off; the owner keeps read-only dashboard access.
-    await expectCode(publicAvailability(A.ctx.business.slug, { serviceId: A.serviceId, staffId: null }, meta()), 'booking_page_unavailable')
+    await expectCode(
+      publicAvailability(A.ctx.business.slug, { serviceId: A.serviceId, staffId: null }, meta()),
+      'booking_page_unavailable',
+    )
     expect((await accessFor(b!)).state).toBe('suspended')
     const ctx = await ctxFor(A.owner, A.ctx.business.id)
     expect(ctx.can('services.manage')).toBe(false)
     expect(ctx.can('business.export')).toBe(true)
     // Other tenants are unaffected.
-    await expect(publicAvailability(B.ctx.business.slug, { serviceId: B.serviceId, staffId: null }, meta('203.0.113.2'))).resolves.toHaveProperty('days')
+    await expect(
+      publicAvailability(
+        B.ctx.business.slug,
+        { serviceId: B.serviceId, staffId: null },
+        meta('203.0.113.2'),
+      ),
+    ).resolves.toHaveProperty('days')
   })
 
   it('reactivation clears the suspension', async () => {
@@ -67,38 +84,87 @@ describe('suspending businesses', () => {
     await setBusinessSuspended(admin, A.ctx.business.id, false, null, meta())
     const [b] = await db().select().from(businesses).where(eq(businesses.id, A.ctx.business.id))
     expect(b).toMatchObject({ status: 'active', suspendedAt: null, suspendedReason: null })
-    expect(await db().select().from(auditLogs).where(eq(auditLogs.action, 'business.reactivated'))).toHaveLength(1)
-    await expect(publicAvailability(A.ctx.business.slug, { serviceId: A.serviceId, staffId: null }, meta())).resolves.toHaveProperty('days')
+    expect(
+      await db().select().from(auditLogs).where(eq(auditLogs.action, 'business.reactivated')),
+    ).toHaveLength(1)
+    await expect(
+      publicAvailability(A.ctx.business.slug, { serviceId: A.serviceId, staffId: null }, meta()),
+    ).resolves.toHaveProperty('days')
   })
 
   it('reports unknown businesses', async () => {
-    await expectCode(setBusinessSuspended(admin, '00000000-0000-0000-0000-000000000000', true, 'x', meta()), 'not_found')
+    await expectCode(
+      setBusinessSuspended(admin, '00000000-0000-0000-0000-000000000000', true, 'x', meta()),
+      'not_found',
+    )
   })
 })
 
 describe('platform overview', () => {
   it('computes metrics across tenants', async () => {
-    await db().insert(subscriptions).values([
-      { businessId: A.ctx.business.id, stripeCustomerId: 'cus_a', stripeSubscriptionId: 'sub_a', status: 'active' },
-      { businessId: B.ctx.business.id, stripeCustomerId: 'cus_b', stripeSubscriptionId: 'sub_b', status: 'past_due' },
-    ])
+    await db()
+      .insert(subscriptions)
+      .values([
+        {
+          businessId: A.ctx.business.id,
+          stripeCustomerId: 'cus_a',
+          stripeSubscriptionId: 'sub_a',
+          status: 'active',
+        },
+        {
+          businessId: B.ctx.business.id,
+          stripeCustomerId: 'cus_b',
+          stripeSubscriptionId: 'sub_b',
+          status: 'past_due',
+        },
+      ])
     await setBusinessSuspended(admin, B.ctx.business.id, true, null, meta())
     const m = await platformMetrics()
-    expect(m).toMatchObject({ businesses: 2, published: 2, suspended: 1, users: 3, active_subs: 1, past_due: 1, canceled: 0, trialing_app: 0, mrrCents: 2000, currency: 'EUR' })
+    expect(m).toMatchObject({
+      businesses: 2,
+      published: 2,
+      suspended: 1,
+      users: 3,
+      active_subs: 1,
+      past_due: 1,
+      canceled: 0,
+      trialing_app: 0,
+      mrrCents: 2000,
+      currency: 'EUR',
+    })
   })
 
   it('lists and searches businesses with owner and booking counts', async () => {
     const date = futureDate(TZ, 3)
     await createPublicBooking(
       A.ctx.business.slug,
-      { serviceId: A.serviceId, staffId: null, start: localToDate(date, 600, TZ).toISOString(), firstName: 'Private', lastName: 'Customer', email: 'private@example.com', phone: '+30 210 1234567', message: null, src: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null, website: null },
+      {
+        serviceId: A.serviceId,
+        staffId: null,
+        start: localToDate(date, 600, TZ).toISOString(),
+        firstName: 'Private',
+        lastName: 'Customer',
+        email: 'private@example.com',
+        phone: '+30 210 1234567',
+        message: null,
+        src: null,
+        utmSource: null,
+        utmMedium: null,
+        utmCampaign: null,
+        referrerHost: null,
+        website: null,
+      },
       meta('203.0.113.40'),
     )
     const all = await listBusinesses(undefined)
     expect(all.map((b) => b.name).sort()).toEqual(['Alpha Salon', 'Beta Barbers'])
     const alpha = await listBusinesses('alpha')
     expect(alpha).toHaveLength(1)
-    expect(alpha[0]).toMatchObject({ id: A.ctx.business.id, ownerEmail: A.owner.email, bookings: 1 })
+    expect(alpha[0]).toMatchObject({
+      id: A.ctx.business.id,
+      ownerEmail: A.owner.email,
+      bookings: 1,
+    })
     expect(await listBusinesses(B.ctx.business.slug)).toHaveLength(1)
     // LIKE wildcards in the query are ignored rather than matching everything.
     expect(await listBusinesses('%_%nomatch')).toHaveLength(0)
@@ -109,7 +175,22 @@ describe('platform overview', () => {
     const date = futureDate(TZ, 3)
     await createPublicBooking(
       A.ctx.business.slug,
-      { serviceId: A.serviceId, staffId: null, start: localToDate(date, 600, TZ).toISOString(), firstName: 'Hidden', lastName: 'Person', email: 'hidden.person@example.com', phone: '+30 210 9999999', message: 'secret message', src: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null, website: null },
+      {
+        serviceId: A.serviceId,
+        staffId: null,
+        start: localToDate(date, 600, TZ).toISOString(),
+        firstName: 'Hidden',
+        lastName: 'Person',
+        email: 'hidden.person@example.com',
+        phone: '+30 210 9999999',
+        message: 'secret message',
+        src: null,
+        utmSource: null,
+        utmMedium: null,
+        utmCampaign: null,
+        referrerHost: null,
+        website: null,
+      },
       meta('203.0.113.41'),
     )
     const d = await getBusinessAdmin(A.ctx.business.id)
@@ -126,22 +207,47 @@ describe('platform overview', () => {
 
 describe('feature flags and settings', () => {
   it('enables flags globally or per business', async () => {
-    await upsertFlag(admin, { key: 'new-calendar', description: 'Beta', enabled: false, businessAllowlist: [A.ctx.business.id] }, meta())
+    await upsertFlag(
+      admin,
+      {
+        key: 'new-calendar',
+        description: 'Beta',
+        enabled: false,
+        businessAllowlist: [A.ctx.business.id],
+      },
+      meta(),
+    )
     expect(await isFeatureEnabled('new-calendar', A.ctx.business.id)).toBe(true)
     expect(await isFeatureEnabled('new-calendar', B.ctx.business.id)).toBe(false)
     expect(await isFeatureEnabled('new-calendar')).toBe(false)
-    await upsertFlag(admin, { key: 'new-calendar', description: 'GA', enabled: true, businessAllowlist: [] }, meta())
+    await upsertFlag(
+      admin,
+      { key: 'new-calendar', description: 'GA', enabled: true, businessAllowlist: [] },
+      meta(),
+    )
     expect(await isFeatureEnabled('new-calendar', B.ctx.business.id)).toBe(true)
     expect((await listFlags()).map((f) => [f.key, f.description])).toEqual([['new-calendar', 'GA']])
     await deleteFlag(admin, 'new-calendar', meta())
     expect(await isFeatureEnabled('new-calendar', A.ctx.business.id)).toBe(false)
     expect(await isFeatureEnabled('never-defined')).toBe(false)
-    const actions = (await db().select().from(auditLogs)).map((l) => l.action).filter((a) => a.startsWith('platform.'))
-    expect(actions.sort()).toEqual(['platform.flag_deleted', 'platform.flag_updated', 'platform.flag_updated'])
+    const actions = (await db().select().from(auditLogs))
+      .map((l) => l.action)
+      .filter((a) => a.startsWith('platform.'))
+    expect(actions.sort()).toEqual([
+      'platform.flag_deleted',
+      'platform.flag_updated',
+      'platform.flag_updated',
+    ])
   })
 
   it('rejects malformed flag keys in the database', async () => {
-    await expect(upsertFlag(admin, { key: 'Bad Key!', description: '', enabled: true, businessAllowlist: [] }, meta())).rejects.toThrow()
+    await expect(
+      upsertFlag(
+        admin,
+        { key: 'Bad Key!', description: '', enabled: true, businessAllowlist: [] },
+        meta(),
+      ),
+    ).rejects.toThrow()
   })
 
   it('stores JSON settings', async () => {

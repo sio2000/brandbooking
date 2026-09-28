@@ -15,7 +15,16 @@ import { FilterBar } from '@/components/analytics/filter-bar'
 import { resolveRange, uuidParam } from '@/components/analytics/range'
 import { BookingsTrendCard, RevenueTrendCard } from '@/components/analytics/trend-cards'
 import { HeatmapCard } from '@/components/analytics/heatmap-card'
-import { CampaignsCard, CustomersCard, FunnelCard, InsightsPanel, KpiGrid, ServicesTable, SourcesCard, StaffTable } from '@/components/analytics/sections'
+import {
+  CampaignsCard,
+  CustomersCard,
+  FunnelCard,
+  InsightsPanel,
+  KpiGrid,
+  ServicesTable,
+  SourcesCard,
+  StaffTable,
+} from '@/components/analytics/sections'
 
 export const metadata: Metadata = { title: 'Analytics' }
 
@@ -30,15 +39,24 @@ export default async function AnalyticsPage({ searchParams }: PageProps<'/app/an
   const pickers = await pickerData(ctx)
   // Only accept ids that belong to this business; a locked (own-calendar) member always sees their own figures.
   const requestedStaff = uuidParam(str('staff'))
-  const staffId = pickers.lockedStaffId ?? (requestedStaff && pickers.allStaff.some((s) => s.id === requestedStaff) ? requestedStaff : null)
+  const staffId =
+    pickers.lockedStaffId ??
+    (requestedStaff && pickers.allStaff.some((s) => s.id === requestedStaff)
+      ? requestedStaff
+      : null)
   const requestedService = uuidParam(str('service'))
-  const serviceId = requestedService && pickers.allServices.some((s) => s.id === requestedService) ? requestedService : null
+  const serviceId =
+    requestedService && pickers.allServices.some((s) => s.id === requestedService)
+      ? requestedService
+      : null
 
   const data = await getAnalytics(ctx, { from: range.from, to: range.to, staffId, serviceId })
   const hasData = data.current.total > 0
   const unit = data.unit === 'week' ? 'week' : 'day'
   const filtered = Boolean((staffId && !pickers.lockedStaffId) || serviceId)
-  const staffOptions = pickers.lockedStaffId ? pickers.allStaff.filter((s) => s.id === pickers.lockedStaffId) : pickers.allStaff.filter((s) => s.isActive || s.id === staffId)
+  const staffOptions = pickers.lockedStaffId
+    ? pickers.allStaff.filter((s) => s.id === pickers.lockedStaffId)
+    : pickers.allStaff.filter((s) => s.isActive || s.id === staffId)
   const serviceOptions = pickers.allServices.filter((s) => s.isActive || s.id === serviceId)
 
   return (
@@ -77,7 +95,11 @@ export default async function AnalyticsPage({ searchParams }: PageProps<'/app/an
             <Card>
               <EmptyState
                 icon={BarChart3}
-                title={filtered ? 'No appointments match these filters' : 'No appointments in this period'}
+                title={
+                  filtered
+                    ? 'No appointments match these filters'
+                    : 'No appointments in this period'
+                }
                 description={
                   filtered
                     ? 'Try a different team member or service, or widen the date range.'
@@ -126,4 +148,3 @@ export default async function AnalyticsPage({ searchParams }: PageProps<'/app/an
     </PageContainer>
   )
 }
-

@@ -15,9 +15,11 @@ export const en = {
     not_found: "We couldn't find what you were looking for.",
     rate_limited: 'Too many attempts. Please wait a moment and try again.',
     conflict: 'This was changed by someone else. Refresh and try again.',
-    internal: 'Something unexpected happened on our side. Please try again — if it keeps happening, contact support.',
+    internal:
+      'Something unexpected happened on our side. Please try again — if it keeps happening, contact support.',
     invalid_credentials: "That email and password don't match. Check them and try again.",
-    account_locked: 'Too many failed sign-in attempts. For your security, sign-in is paused for 15 minutes.',
+    account_locked:
+      'Too many failed sign-in attempts. For your security, sign-in is paused for 15 minutes.',
     email_taken: 'An account with this email already exists. Try signing in instead.',
     email_not_verified: 'Please verify your email address first. We can send you a new link.',
     weak_password: 'Choose a password with at least 10 characters that is not easy to guess.',
@@ -29,16 +31,20 @@ export const en = {
     booking_page_unavailable: 'This booking page is not available.',
     bookings_paused: 'This business is not accepting online bookings right now.',
     business_suspended: 'This account is suspended. Contact support for help.',
-    subscription_inactive: 'Your subscription is not active. Update billing to continue accepting bookings.',
-    cancellation_not_allowed: 'This booking can no longer be cancelled online. Please contact the business directly.',
-    reschedule_not_allowed: 'This booking can no longer be rescheduled online. Please contact the business directly.',
+    subscription_inactive:
+      'Your subscription is not active. Update billing to continue accepting bookings.',
+    cancellation_not_allowed:
+      'This booking can no longer be cancelled online. Please contact the business directly.',
+    reschedule_not_allowed:
+      'This booking can no longer be rescheduled online. Please contact the business directly.',
     appointment_not_active: 'This appointment has already been cancelled or completed.',
     invalid_transition: "That status change isn't possible for this appointment.",
     upload_invalid: 'This file could not be used. Upload a JPG, PNG or WebP image under 5 MB.',
     upload_too_small: 'This image is too small. Use an image at least {min}px wide.',
     billing_not_configured: 'Billing is not configured yet. Please contact support.',
     last_owner: 'A business must always have an owner.',
-    invitation_email_mismatch: 'This invitation was sent to a different email address. Sign in with that address to accept it.',
+    invitation_email_mismatch:
+      'This invitation was sent to a different email address. Sign in with that address to accept it.',
     service_has_no_staff: 'Nobody is assigned to this service yet.',
   },
   booking: {

@@ -43,7 +43,12 @@ export async function claimDue(limit: number): Promise<Claimed[]> {
   return db()
     .select()
     .from(notifications)
-    .where(sql`${notifications.id} IN (${sql.join(ids.map((id) => sql`${id}::uuid`), sql`, `)})`)
+    .where(
+      sql`${notifications.id} IN (${sql.join(
+        ids.map((id) => sql`${id}::uuid`),
+        sql`, `,
+      )})`,
+    )
 }
 
 async function render(n: Claimed): Promise<RenderResult> {
@@ -72,7 +77,13 @@ export async function deliver(n: Claimed): Promise<'sent' | 'skipped' | 'retry' 
     })
     await db()
       .update(notifications)
-      .set({ status: 'sent', sentAt: new Date(), providerMessageId: id, lockedUntil: null, lastError: null })
+      .set({
+        status: 'sent',
+        sentAt: new Date(),
+        providerMessageId: id,
+        lockedUntil: null,
+        lastError: null,
+      })
       .where(and(eq(notifications.id, n.id), eq(notifications.status, 'sending')))
     return 'sent'
   } catch (err) {
@@ -82,9 +93,20 @@ export async function deliver(n: Claimed): Promise<'sent' | 'skipped' | 'retry' 
       const delay = BACKOFF_MINUTES[Math.min(n.attempts - 1, BACKOFF_MINUTES.length - 1)]!
       await db()
         .update(notifications)
-        .set({ status: 'pending', lastError: message, lockedUntil: null, sendAfter: new Date(Date.now() + delay * 60_000) })
+        .set({
+          status: 'pending',
+          lastError: message,
+          lockedUntil: null,
+          sendAfter: new Date(Date.now() + delay * 60_000),
+        })
         .where(eq(notifications.id, n.id))
-      logger.warn('notification.retry', { id: n.id, template: n.template, attempt: n.attempts, delayMinutes: delay, error: message })
+      logger.warn('notification.retry', {
+        id: n.id,
+        template: n.template,
+        attempt: n.attempts,
+        delayMinutes: delay,
+        error: message,
+      })
       return 'retry'
     }
     await db()

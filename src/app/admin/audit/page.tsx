@@ -16,7 +16,10 @@ function Entity({ type, id }: { type: string | null; id: string | null }) {
     <>
       {type ?? '—'}
       {id && (
-        <span className="block max-w-52 truncate font-mono text-xs text-subtle-foreground" title={id}>
+        <span
+          className="block max-w-52 truncate font-mono text-xs text-subtle-foreground"
+          title={id}
+        >
           {id}
         </span>
       )}
@@ -38,11 +41,18 @@ export default async function AdminAuditPage() {
 
   return (
     <>
-      <PageHeader title="Audit log" description={`The latest ${LIMIT} security-relevant events across the platform, newest first. Times in UTC.`} />
+      <PageHeader
+        title="Audit log"
+        description={`The latest ${LIMIT} security-relevant events across the platform, newest first. Times in UTC.`}
+      />
 
       {rows.length === 0 ? (
         <Card>
-          <EmptyState icon={ScrollText} title="Nothing logged yet" description="Sign-ins, team changes, billing updates and admin actions are recorded here as they happen." />
+          <EmptyState
+            icon={ScrollText}
+            title="Nothing logged yet"
+            description="Sign-ins, team changes, billing updates and admin actions are recorded here as they happen."
+          />
         </Card>
       ) : (
         <>
@@ -69,7 +79,10 @@ export default async function AdminAuditPage() {
                       <div className="flex flex-col items-start gap-1">
                         <ActorBadge actor={log.actor} />
                         {actorEmail && (
-                          <span className="max-w-48 truncate text-xs text-muted-foreground" title={actorEmail}>
+                          <span
+                            className="max-w-48 truncate text-xs text-muted-foreground"
+                            title={actorEmail}
+                          >
                             {actorEmail}
                           </span>
                         )}
@@ -89,11 +102,19 @@ export default async function AdminAuditPage() {
             </TableWrap>
           </Card>
 
-          <ol className="grid grid-cols-1 gap-2 md:hidden" aria-label={`Platform audit log, latest ${LIMIT} entries`}>
+          <ol
+            className="grid grid-cols-1 gap-2 md:hidden"
+            aria-label={`Platform audit log, latest ${LIMIT} entries`}
+          >
             {rows.map(({ log, actorEmail, businessName }) => (
-              <li key={log.id} className="rounded-xl border border-border bg-surface p-3.5 shadow-xs">
+              <li
+                key={log.id}
+                className="rounded-xl border border-border bg-surface p-3.5 shadow-xs"
+              >
                 <div className="flex items-start justify-between gap-2">
-                  <p className="min-w-0 font-mono text-[13px] font-medium break-all">{log.action}</p>
+                  <p className="min-w-0 font-mono text-[13px] font-medium break-all">
+                    {log.action}
+                  </p>
                   <ActorBadge actor={log.actor} />
                 </div>
                 <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs">
@@ -116,7 +137,9 @@ export default async function AdminAuditPage() {
                       <dt className="text-muted-foreground">Entity</dt>
                       <dd className="min-w-0 truncate">
                         {log.entityType}
-                        {log.entityId && <span className="font-mono text-subtle-foreground"> {log.entityId}</span>}
+                        {log.entityId && (
+                          <span className="font-mono text-subtle-foreground"> {log.entityId}</span>
+                        )}
                       </dd>
                     </>
                   )}

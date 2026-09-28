@@ -13,17 +13,25 @@ import { findPublicBusiness, isPubliclyVisible } from './public'
  */
 export async function recordFunnelStep(
   slug: string,
-  input: { step: FunnelStep; src?: string | null; utmSource?: string | null; utmCampaign?: string | null; referrerHost?: string | null },
+  input: {
+    step: FunnelStep
+    src?: string | null
+    utmSource?: string | null
+    utmCampaign?: string | null
+    referrerHost?: string | null
+  },
   ip: string,
 ) {
   const limit = await checkRateLimit(`funnel:ip:${ip}`, POLICIES.funnelByIp)
   if (!limit.ok) return
   const b = await findPublicBusiness(slug)
   if (!b || !isPubliclyVisible(b)) return
-  await db().insert(bookingPageEvents).values({
-    businessId: b.id,
-    step: input.step,
-    source: deriveSource(input),
-    utmCampaign: input.utmCampaign?.slice(0, 100) || null,
-  })
+  await db()
+    .insert(bookingPageEvents)
+    .values({
+      businessId: b.id,
+      step: input.step,
+      source: deriveSource(input),
+      utmCampaign: input.utmCampaign?.slice(0, 100) || null,
+    })
 }

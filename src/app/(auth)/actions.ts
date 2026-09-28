@@ -4,15 +4,35 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { parse, runAction, type ActionResult } from '@/server/actions'
 import { requestMeta } from '@/server/request'
-import { forgotPasswordSchema, resetPasswordSchema, signInSchema, signUpSchema } from '@/lib/validation/auth'
-import { requestPasswordReset, resendVerification, resetPassword, signIn, signUp, verifyEmail } from '@/server/auth/service'
-import { clearSessionCookie, getSession, invalidateSession, setSessionCookie } from '@/server/auth/session'
+import {
+  forgotPasswordSchema,
+  resetPasswordSchema,
+  signInSchema,
+  signUpSchema,
+} from '@/lib/validation/auth'
+import {
+  requestPasswordReset,
+  resendVerification,
+  resetPassword,
+  signIn,
+  signUp,
+  verifyEmail,
+} from '@/server/auth/service'
+import {
+  clearSessionCookie,
+  getSession,
+  invalidateSession,
+  setSessionCookie,
+} from '@/server/auth/session'
 import { acceptInvitation } from '@/server/business/team'
 import { BUSINESS_COOKIE } from '@/server/tenancy/context'
 import { safeRedirectPath } from '@/lib/utils'
 import { AppError } from '@/server/errors'
 
-export async function signUpAction(_: ActionResult<null> | null, form: FormData): Promise<ActionResult<null>> {
+export async function signUpAction(
+  _: ActionResult<null> | null,
+  form: FormData,
+): Promise<ActionResult<null>> {
   const next = safeRedirectPath(form.get('next'), '/onboarding')
   const result = await runAction(async () => {
     const input = parse(signUpSchema, form)
@@ -24,7 +44,10 @@ export async function signUpAction(_: ActionResult<null> | null, form: FormData)
   return result
 }
 
-export async function signInAction(_: ActionResult<null> | null, form: FormData): Promise<ActionResult<null>> {
+export async function signInAction(
+  _: ActionResult<null> | null,
+  form: FormData,
+): Promise<ActionResult<null>> {
   const next = safeRedirectPath(form.get('next'), '/app')
   const result = await runAction(async () => {
     const input = parse(signInSchema, form)
@@ -44,7 +67,10 @@ export async function signOutAction() {
   redirect('/login?signed_out=1')
 }
 
-export async function forgotPasswordAction(_: ActionResult<null> | null, form: FormData): Promise<ActionResult<null>> {
+export async function forgotPasswordAction(
+  _: ActionResult<null> | null,
+  form: FormData,
+): Promise<ActionResult<null>> {
   return runAction(async () => {
     const { email } = parse(forgotPasswordSchema, form)
     await requestPasswordReset(email, await requestMeta())
@@ -52,7 +78,10 @@ export async function forgotPasswordAction(_: ActionResult<null> | null, form: F
   }, 'If an account exists for that email, we’ve sent a link to reset your password.')
 }
 
-export async function resetPasswordAction(_: ActionResult<null> | null, form: FormData): Promise<ActionResult<null>> {
+export async function resetPasswordAction(
+  _: ActionResult<null> | null,
+  form: FormData,
+): Promise<ActionResult<null>> {
   const result = await runAction(async () => {
     const input = parse(resetPasswordSchema, form)
     await resetPassword(input.token, input.password, await requestMeta())
@@ -82,7 +111,12 @@ export async function acceptInvitationAction(token: string): Promise<ActionResul
     const session = await getSession()
     if (!session) throw new AppError('unauthenticated')
     const businessId = await acceptInvitation(session.user, token, await requestMeta())
-    ;(await cookies()).set(BUSINESS_COOKIE, businessId, { httpOnly: true, sameSite: 'lax', path: '/', secure: process.env.APP_URL?.startsWith('https://') })
+    ;(await cookies()).set(BUSINESS_COOKIE, businessId, {
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      secure: process.env.APP_URL?.startsWith('https://'),
+    })
     return null
   })
   if (result.ok) redirect('/app?joined=1')

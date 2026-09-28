@@ -22,7 +22,16 @@ import type { customerSchema } from '@/lib/validation/business'
  *  - cancelled:  cancelled at least once
  *  - no_show:    missed at least once
  */
-export const SEGMENTS = ['all', 'new', 'returning', 'vip', 'inactive', 'upcoming', 'cancelled', 'no_show'] as const
+export const SEGMENTS = [
+  'all',
+  'new',
+  'returning',
+  'vip',
+  'inactive',
+  'upcoming',
+  'cancelled',
+  'no_show',
+] as const
 export type Segment = (typeof SEGMENTS)[number]
 
 export const SEGMENT_LABELS: Record<Segment, { label: string; help: string }> = {
@@ -94,7 +103,9 @@ export async function listCustomers(
   const search = q
     ? sql`AND lower(c.first_name || ' ' || c.last_name || ' ' || coalesce(c.email::text, '') || ' ' || coalesce(c.phone, '')) LIKE ${'%' + q.replace(/[%_\\]/g, (m) => '\\' + m) + '%'}`
     : sql``
-  const staffScope = own ? sql`AND EXISTS (SELECT 1 FROM appointments x WHERE x.business_id = c.business_id AND x.customer_id = c.id AND x.staff_id = ${own})` : sql``
+  const staffScope = own
+    ? sql`AND EXISTS (SELECT 1 FROM appointments x WHERE x.business_id = c.business_id AND x.customer_id = c.id AND x.staff_id = ${own})`
+    : sql``
   const rows = await db().execute<CustomerListItem & { total_count: number }>(sql`
     WITH s AS (
       SELECT customer_id,
@@ -120,7 +131,13 @@ export async function listCustomers(
     LIMIT ${pageSize} OFFSET ${(page - 1) * pageSize}
   `)
   const total = rows[0]?.total_count ?? 0
-  return { rows: rows as CustomerListItem[], total, page, pageSize, pages: Math.max(1, Math.ceil(total / pageSize)) }
+  return {
+    rows: rows as CustomerListItem[],
+    total,
+    page,
+    pageSize,
+    pages: Math.max(1, Math.ceil(total / pageSize)),
+  }
 }
 
 export async function segmentCounts(ctx: TenantContext) {
@@ -151,19 +168,38 @@ export async function segmentCounts(ctx: TenantContext) {
 
 export async function getCustomer(ctx: TenantContext, id: string) {
   const own = ownStaffFilter(ctx)
-  const [c] = await db().select().from(customers).where(and(eq(customers.businessId, ctx.business.id), eq(customers.id, id))).limit(1)
+  const [c] = await db()
+    .select()
+    .from(customers)
+    .where(and(eq(customers.businessId, ctx.business.id), eq(customers.id, id)))
+    .limit(1)
   if (!c || c.erasedAt) throw new AppError('not_found')
   if (own) {
     const [link] = await db()
       .select({ id: appointments.id })
       .from(appointments)
-      .where(and(eq(appointments.businessId, ctx.business.id), eq(appointments.customerId, id), eq(appointments.staffId, own)))
+      .where(
+        and(
+          eq(appointments.businessId, ctx.business.id),
+          eq(appointments.customerId, id),
+          eq(appointments.staffId, own),
+        ),
+      )
       .limit(1)
     if (!link) throw new AppError('not_found')
   }
   const [stats] = await db().execute<{
-    total: number; completed: number; cancelled: number; no_shows: number; revenue_cents: number; avg_cents: number | null
-    first_at: Date | null; last_visit: Date | null; next_at: Date | null; favorite_service: string | null; favorite_staff: string | null
+    total: number
+    completed: number
+    cancelled: number
+    no_shows: number
+    revenue_cents: number
+    avg_cents: number | null
+    first_at: Date | null
+    last_visit: Date | null
+    next_at: Date | null
+    favorite_service: string | null
+    favorite_staff: string | null
   }>(sql`
     SELECT count(*)::int AS total,
       count(*) FILTER (WHERE a.status = 'completed')::int AS completed,
@@ -185,24 +221,56 @@ export async function getCustomer(ctx: TenantContext, id: string) {
   return { customer: c, stats: stats! }
 }
 
-export async function saveCustomer(ctx: TenantContext, id: string | null, input: z.infer<typeof customerSchema>, meta: RequestMeta) {
+export async function saveCustomer(
+  ctx: TenantContext,
+  id: string | null,
+  input: z.infer<typeof customerSchema>,
+  meta: RequestMeta,
+) {
   try {
     if (id) {
       const [row] = await db()
         .update(customers)
         .set(input)
-        .where(and(eq(customers.businessId, ctx.business.id), eq(customers.id, id), sql`${customers.erasedAt} IS NULL`))
+        .where(
+          and(
+            eq(customers.businessId, ctx.business.id),
+            eq(customers.id, id),
+            sql`${customers.erasedAt} IS NULL`,
+          ),
+        )
         .returning()
       if (!row) throw new AppError('not_found')
-      await audit(db(), { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'customer.updated', entityType: 'customer', entityId: id, ip: meta.ip })
+      await audit(db(), {
+        businessId: ctx.business.id,
+        actor: 'user',
+        actorUserId: ctx.user.id,
+        action: 'customer.updated',
+        entityType: 'customer',
+        entityId: id,
+        ip: meta.ip,
+      })
       return row
     }
-    const [row] = await db().insert(customers).values({ businessId: ctx.business.id, ...input }).returning()
-    await audit(db(), { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'customer.created', entityType: 'customer', entityId: row!.id, ip: meta.ip })
+    const [row] = await db()
+      .insert(customers)
+      .values({ businessId: ctx.business.id, ...input })
+      .returning()
+    await audit(db(), {
+      businessId: ctx.business.id,
+      actor: 'user',
+      actorUserId: ctx.user.id,
+      action: 'customer.created',
+      entityType: 'customer',
+      entityId: row!.id,
+      ip: meta.ip,
+    })
     return row!
   } catch (err) {
     if (pgErrorCode(err) === PgErrorCode.uniqueViolation) {
-      throw new AppError('validation', { fields: { email: 'A customer with this email already exists.' } })
+      throw new AppError('validation', {
+        fields: { email: 'A customer with this email already exists.' },
+      })
     }
     throw err
   }
@@ -216,13 +284,34 @@ export async function eraseCustomer(ctx: TenantContext, id: string, meta: Reques
   await db().transaction(async (tx) => {
     const [row] = await tx
       .update(customers)
-      .set({ firstName: 'Deleted', lastName: 'customer', email: null, phone: null, internalNotes: null, erasedAt: new Date() })
-      .where(and(eq(customers.businessId, ctx.business.id), eq(customers.id, id), sql`${customers.erasedAt} IS NULL`))
+      .set({
+        firstName: 'Deleted',
+        lastName: 'customer',
+        email: null,
+        phone: null,
+        internalNotes: null,
+        erasedAt: new Date(),
+      })
+      .where(
+        and(
+          eq(customers.businessId, ctx.business.id),
+          eq(customers.id, id),
+          sql`${customers.erasedAt} IS NULL`,
+        ),
+      )
       .returning({ id: customers.id })
     if (!row) throw new AppError('not_found')
     await tx
       .update(appointments)
-      .set({ customerMessage: null, internalNotes: null, cancellationReason: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null })
+      .set({
+        customerMessage: null,
+        internalNotes: null,
+        cancellationReason: null,
+        utmSource: null,
+        utmMedium: null,
+        utmCampaign: null,
+        referrerHost: null,
+      })
       .where(and(eq(appointments.businessId, ctx.business.id), eq(appointments.customerId, id)))
     await tx.execute(sql`UPDATE notifications SET recipient = 'erased', payload = '{}'::jsonb, status = CASE WHEN status = 'pending' THEN 'cancelled'::notification_status ELSE status END
       WHERE business_id = ${ctx.business.id} AND appointment_id IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
@@ -231,6 +320,14 @@ export async function eraseCustomer(ctx: TenantContext, id: string, meta: Reques
       WHERE business_id = ${ctx.business.id} AND appointment_id IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
     await tx.execute(sql`UPDATE inbox_items SET body = NULL
       WHERE business_id = ${ctx.business.id} AND href IN (SELECT '/app/appointments/' || id FROM appointments WHERE business_id = ${ctx.business.id} AND customer_id = ${id})`)
-    await audit(tx, { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'customer.erased', entityType: 'customer', entityId: id, ip: meta.ip })
+    await audit(tx, {
+      businessId: ctx.business.id,
+      actor: 'user',
+      actorUserId: ctx.user.id,
+      action: 'customer.erased',
+      entityType: 'customer',
+      entityId: id,
+      ip: meta.ip,
+    })
   })
 }

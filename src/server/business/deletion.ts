@@ -20,10 +20,16 @@ import { logger } from '@/server/observability/logger'
 export async function deleteBusiness(ctx: TenantContext, confirmName: string, meta: RequestMeta) {
   if (ctx.membership.role !== 'owner') throw new AppError('forbidden')
   if (confirmName.trim() !== ctx.business.name.trim()) {
-    throw new AppError('validation', { fields: { confirmName: 'Type the business name exactly to confirm.' } })
+    throw new AppError('validation', {
+      fields: { confirmName: 'Type the business name exactly to confirm.' },
+    })
   }
   const sub = await getSubscription(ctx.business.id)
-  if (sub?.stripeSubscriptionId && sub.status && !['canceled', 'incomplete_expired'].includes(sub.status)) {
+  if (
+    sub?.stripeSubscriptionId &&
+    sub.status &&
+    !['canceled', 'incomplete_expired'].includes(sub.status)
+  ) {
     if (!isStripeConfigured()) throw new AppError('billing_not_configured')
     try {
       await stripe().subscriptions.cancel(sub.stripeSubscriptionId)
@@ -32,13 +38,27 @@ export async function deleteBusiness(ctx: TenantContext, confirmName: string, me
       if (code !== 'resource_missing') throw err
     }
   }
-  const assets = await db().select({ variants: uploadedAssets.variants }).from(uploadedAssets).where(eq(uploadedAssets.businessId, ctx.business.id))
+  const assets = await db()
+    .select({ variants: uploadedAssets.variants })
+    .from(uploadedAssets)
+    .where(eq(uploadedAssets.businessId, ctx.business.id))
   // Keep a platform-level audit record (business_id null so it survives the cascade).
-  await audit(db(), { businessId: null, actor: 'user', actorUserId: ctx.user.id, action: 'business.deleted', entityType: 'business', entityId: ctx.business.id, metadata: { slug: ctx.business.slug }, ip: meta.ip })
+  await audit(db(), {
+    businessId: null,
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'business.deleted',
+    entityType: 'business',
+    entityId: ctx.business.id,
+    metadata: { slug: ctx.business.slug },
+    ip: meta.ip,
+  })
   await db().delete(businesses).where(eq(businesses.id, ctx.business.id))
   for (const a of assets) {
     for (const v of Object.values(a.variants)) {
-      await storage().delete(v.key).catch((err) => logger.warn('storage.delete_failed', { key: v.key, err }))
+      await storage()
+        .delete(v.key)
+        .catch((err) => logger.warn('storage.delete_failed', { key: v.key, err }))
     }
   }
 }

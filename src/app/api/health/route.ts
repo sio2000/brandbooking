@@ -14,10 +14,20 @@ export async function GET() {
         (SELECT max(version) FROM schema_migrations) AS schema
     `)) as unknown as Array<{ ok: number; overdue: number; schema: string }>
     return NextResponse.json(
-      { status: 'ok', db: 'ok', dbLatencyMs: Math.round(performance.now() - started), schemaVersion: row?.schema ?? null, overdueEmails: row?.overdue ?? 0, time: new Date().toISOString() },
+      {
+        status: 'ok',
+        db: 'ok',
+        dbLatencyMs: Math.round(performance.now() - started),
+        schemaVersion: row?.schema ?? null,
+        overdueEmails: row?.overdue ?? 0,
+        time: new Date().toISOString(),
+      },
       { headers: { 'cache-control': 'no-store' } },
     )
   } catch {
-    return NextResponse.json({ status: 'error', db: 'unreachable' }, { status: 503, headers: { 'cache-control': 'no-store' } })
+    return NextResponse.json(
+      { status: 'error', db: 'unreachable' },
+      { status: 503, headers: { 'cache-control': 'no-store' } },
+    )
   }
 }

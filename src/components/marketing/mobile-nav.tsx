@@ -26,7 +26,10 @@ export function MobileNav() {
             {marketingNav.map((item) => (
               <li key={item.href}>
                 <DialogClose asChild>
-                  <Link href={item.href} className="flex h-12 items-center rounded-lg px-3 text-[17px] font-medium transition-colors hover:bg-surface-2">
+                  <Link
+                    href={item.href}
+                    className="flex h-12 items-center rounded-lg px-3 text-[17px] font-medium transition-colors hover:bg-surface-2"
+                  >
                     {item.label}
                   </Link>
                 </DialogClose>
@@ -34,7 +37,10 @@ export function MobileNav() {
             ))}
             <li>
               <DialogClose asChild>
-                <Link href="/support" className="flex h-12 items-center rounded-lg px-3 text-[17px] font-medium transition-colors hover:bg-surface-2">
+                <Link
+                  href="/support"
+                  className="flex h-12 items-center rounded-lg px-3 text-[17px] font-medium transition-colors hover:bg-surface-2"
+                >
                   Support
                 </Link>
               </DialogClose>

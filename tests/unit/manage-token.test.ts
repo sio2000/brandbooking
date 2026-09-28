@@ -1,7 +1,12 @@
 import { afterAll, beforeEach, describe, expect, it } from 'vitest'
 import { randomUUID } from 'node:crypto'
 import { resetEnvCache } from '@/server/env'
-import { LINK_VALID_AFTER_END_MS, parseManageToken, signManageToken, verifyManageToken } from '@/server/booking/manage-token'
+import {
+  LINK_VALID_AFTER_END_MS,
+  parseManageToken,
+  signManageToken,
+  verifyManageToken,
+} from '@/server/booking/manage-token'
 
 const SECRET_A = 'unit-secret-A-0123456789-abcdefghijklmnopqrstuvwxyz'
 const SECRET_B = 'unit-secret-B-0123456789-abcdefghijklmnopqrstuvwxyz'
@@ -42,7 +47,9 @@ describe('signManageToken / parseManageToken', () => {
     expect(signManageToken(id, nonce)).toBe(signManageToken(id, nonce))
     const other = randomUUID()
     expect(signManageToken(other, nonce)).not.toBe(signManageToken(id, nonce))
-    expect(signManageToken(other, nonce).split('.')[1]).not.toBe(signManageToken(id, nonce).split('.')[1])
+    expect(signManageToken(other, nonce).split('.')[1]).not.toBe(
+      signManageToken(id, nonce).split('.')[1],
+    )
   })
 
   it('does not leak the nonce or the secret into the token', () => {

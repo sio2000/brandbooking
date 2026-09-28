@@ -8,7 +8,12 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Alert } from '@/components/ui/feedback'
 import { Checkbox } from '@/components/ui/controls'
-import { forgotPasswordAction, resetPasswordAction, signInAction, signUpAction } from '@/app/(auth)/actions'
+import {
+  forgotPasswordAction,
+  resetPasswordAction,
+  signInAction,
+  signUpAction,
+} from '@/app/(auth)/actions'
 import { PASSWORD_MIN } from '@/lib/validation/password'
 
 function PasswordInput(props: React.ComponentProps<typeof Input>) {
@@ -46,10 +51,15 @@ function StrengthMeter({ value }: { value: string }) {
     <div className="mt-1.5 flex items-center gap-2" aria-live="polite">
       <div className="flex flex-1 gap-1">
         {[0, 1, 2, 3].map((i) => (
-          <span key={i} className={`h-1 flex-1 rounded-full transition-colors ${i < s ? (s <= 1 ? 'bg-warning' : 'bg-primary') : 'bg-surface-3'}`} />
+          <span
+            key={i}
+            className={`h-1 flex-1 rounded-full transition-colors ${i < s ? (s <= 1 ? 'bg-warning' : 'bg-primary') : 'bg-surface-3'}`}
+          />
         ))}
       </div>
-      <span className="text-xs text-muted-foreground">{value.length < PASSWORD_MIN ? labels[0] : labels[s]}</span>
+      <span className="text-xs text-muted-foreground">
+        {value.length < PASSWORD_MIN ? labels[0] : labels[s]}
+      </span>
     </div>
   )
 }
@@ -57,7 +67,7 @@ function StrengthMeter({ value }: { value: string }) {
 export function SignUpForm({ next }: { next?: string }) {
   const [state, action, pending] = useActionState(signUpAction, null)
   const [pw, setPw] = useState('')
-  const f = state && !state.ok ? state.fields ?? {} : {}
+  const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
     <form action={action} className="grid gap-4" noValidate>
       {next && <input type="hidden" name="next" value={next} />}
@@ -68,18 +78,50 @@ export function SignUpForm({ next }: { next?: string }) {
       <Field label="Work email" htmlFor="email" error={f.email}>
         <Input name="email" type="email" autoComplete="email" required inputMode="email" />
       </Field>
-      <Field label="Password" htmlFor="password" error={f.password} hint={`At least ${PASSWORD_MIN} characters. A short phrase works well.`}>
-        <PasswordInput name="password" autoComplete="new-password" required minLength={PASSWORD_MIN} value={pw} onChange={(e) => setPw(e.target.value)} />
+      <Field
+        label="Password"
+        htmlFor="password"
+        error={f.password}
+        hint={`At least ${PASSWORD_MIN} characters. A short phrase works well.`}
+      >
+        <PasswordInput
+          name="password"
+          autoComplete="new-password"
+          required
+          minLength={PASSWORD_MIN}
+          value={pw}
+          onChange={(e) => setPw(e.target.value)}
+        />
       </Field>
       <StrengthMeter value={pw} />
       <div className="flex items-start gap-2.5">
-        <Checkbox id="acceptTerms" name="acceptTerms" value="on" required aria-describedby={f.acceptTerms ? 'terms-error' : undefined} />
+        <Checkbox
+          id="acceptTerms"
+          name="acceptTerms"
+          value="on"
+          required
+          aria-describedby={f.acceptTerms ? 'terms-error' : undefined}
+        />
         <label htmlFor="acceptTerms" className="text-sm leading-snug text-muted-foreground">
-          I agree to the <Link href="/terms" className="font-medium text-foreground underline underline-offset-2">Terms</Link> and have read the{' '}
-          <Link href="/privacy" className="font-medium text-foreground underline underline-offset-2">Privacy Policy</Link>.
+          I agree to the{' '}
+          <Link href="/terms" className="font-medium text-foreground underline underline-offset-2">
+            Terms
+          </Link>{' '}
+          and have read the{' '}
+          <Link
+            href="/privacy"
+            className="font-medium text-foreground underline underline-offset-2"
+          >
+            Privacy Policy
+          </Link>
+          .
         </label>
       </div>
-      {f.acceptTerms && <p id="terms-error" className="-mt-2 text-[13px] font-medium text-danger">{f.acceptTerms}</p>}
+      {f.acceptTerms && (
+        <p id="terms-error" className="-mt-2 text-[13px] font-medium text-danger">
+          {f.acceptTerms}
+        </p>
+      )}
       <Button type="submit" size="lg" loading={pending} className="mt-1 w-full">
         Create account
       </Button>
@@ -89,20 +131,30 @@ export function SignUpForm({ next }: { next?: string }) {
 
 export function SignInForm({ next, notice }: { next?: string; notice?: string | null }) {
   const [state, action, pending] = useActionState(signInAction, null)
-  const f = state && !state.ok ? state.fields ?? {} : {}
+  const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
     <form action={action} className="grid gap-4" noValidate>
       {notice && <Alert tone="success">{notice}</Alert>}
       {next && <input type="hidden" name="next" value={next} />}
       <FormError message={state && !state.ok ? state.error : null} />
       <Field label="Email" htmlFor="email" error={f.email}>
-        <Input name="email" type="email" autoComplete="email" required inputMode="email" autoFocus />
+        <Input
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          inputMode="email"
+          autoFocus
+        />
       </Field>
       <div className="grid gap-1.5">
         <Field label="Password" htmlFor="password" error={f.password}>
           <PasswordInput name="password" autoComplete="current-password" required />
         </Field>
-        <Link href="/forgot-password" className="justify-self-end text-[13px] font-medium text-primary hover:underline">
+        <Link
+          href="/forgot-password"
+          className="justify-self-end text-[13px] font-medium text-primary hover:underline"
+        >
           Forgot password?
         </Link>
       </div>
@@ -122,7 +174,7 @@ export function ForgotPasswordForm() {
       </Alert>
     )
   }
-  const f = state && !state.ok ? state.fields ?? {} : {}
+  const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
     <form action={action} className="grid gap-4" noValidate>
       <FormError message={state && !state.ok && !f.email ? state.error : null} />
@@ -139,13 +191,25 @@ export function ForgotPasswordForm() {
 export function ResetPasswordForm({ token }: { token: string }) {
   const [state, action, pending] = useActionState(resetPasswordAction, null)
   const [pw, setPw] = useState('')
-  const f = state && !state.ok ? state.fields ?? {} : {}
+  const f = state && !state.ok ? (state.fields ?? {}) : {}
   return (
     <form action={action} className="grid gap-4" noValidate>
       <input type="hidden" name="token" value={token} />
       <FormError message={state && !state.ok && !f.password ? state.error : null} />
-      <Field label="New password" htmlFor="password" error={f.password} hint={`At least ${PASSWORD_MIN} characters.`}>
-        <PasswordInput name="password" autoComplete="new-password" required value={pw} onChange={(e) => setPw(e.target.value)} autoFocus />
+      <Field
+        label="New password"
+        htmlFor="password"
+        error={f.password}
+        hint={`At least ${PASSWORD_MIN} characters.`}
+      >
+        <PasswordInput
+          name="password"
+          autoComplete="new-password"
+          required
+          value={pw}
+          onChange={(e) => setPw(e.target.value)}
+          autoFocus
+        />
       </Field>
       <StrengthMeter value={pw} />
       <Button type="submit" size="lg" loading={pending} className="w-full">

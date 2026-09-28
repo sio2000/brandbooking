@@ -13,4 +13,9 @@ async function main() {
   const s = await createSession(u.id, { userAgent: 'dev-session' })
   console.log(`hn_session=${s.token}`)
 }
-main().catch((e) => { console.error(e.message); process.exitCode = 1 }).finally(() => closeDb())
+main()
+  .catch((e) => {
+    console.error(e.message)
+    process.exitCode = 1
+  })
+  .finally(() => closeDb())

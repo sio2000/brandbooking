@@ -11,13 +11,27 @@ import { clientIpFrom, type RequestMeta } from '@/server/request'
 /** JSON error envelope shared by all route handlers. Never leaks internals. */
 export function jsonError(err: unknown, requestId?: string) {
   if (err instanceof ZodError) {
-    return NextResponse.json({ ok: false, code: 'validation', error: messages.errors.validation, fields: fieldErrors(err) }, { status: 400 })
+    return NextResponse.json(
+      {
+        ok: false,
+        code: 'validation',
+        error: messages.errors.validation,
+        fields: fieldErrors(err),
+      },
+      { status: 400 },
+    )
   }
   if (isAppError(err)) {
-    return NextResponse.json({ ok: false, code: err.code, error: err.message, fields: err.fields }, { status: err.status })
+    return NextResponse.json(
+      { ok: false, code: err.code, error: err.message, fields: err.fields },
+      { status: err.status },
+    )
   }
   reportError(err, { message: 'route.failed', requestId })
-  return NextResponse.json({ ok: false, code: 'internal', error: messages.errors.internal }, { status: 500 })
+  return NextResponse.json(
+    { ok: false, code: 'internal', error: messages.errors.internal },
+    { status: 500 },
+  )
 }
 
 export function metaFrom(req: Request): RequestMeta {
@@ -46,7 +60,10 @@ export function assertSameOrigin(req: Request): boolean {
 
 export async function readJson(req: Request, maxBytes = 16_384): Promise<unknown> {
   const text = await req.text()
-  if (text.length > maxBytes) throw new ZodError([{ code: 'custom', path: [], message: 'Request too large', input: undefined }])
+  if (text.length > maxBytes)
+    throw new ZodError([
+      { code: 'custom', path: [], message: 'Request too large', input: undefined },
+    ])
   try {
     return JSON.parse(text)
   } catch {
@@ -55,5 +72,8 @@ export async function readJson(req: Request, maxBytes = 16_384): Promise<unknown
 }
 
 export function forbiddenOrigin() {
-  return NextResponse.json({ ok: false, code: 'forbidden', error: messages.errors.forbidden }, { status: 403 })
+  return NextResponse.json(
+    { ok: false, code: 'forbidden', error: messages.errors.forbidden },
+    { status: 403 },
+  )
 }

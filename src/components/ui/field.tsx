@@ -47,8 +47,15 @@ export function Field({
         </p>
       )}
       {error && (
-        <p id={errorId} className="flex items-start gap-1.5 text-[13px] leading-snug font-medium text-danger" role="alert">
-          <svg aria-hidden viewBox="0 0 16 16" className="mt-0.5 size-3.5 shrink-0"><circle cx="8" cy="8" r="7" fill="currentColor" /><path d="M8 4.5v4M8 11h.01" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" /></svg>
+        <p
+          id={errorId}
+          className="flex items-start gap-1.5 text-[13px] leading-snug font-medium text-danger"
+          role="alert"
+        >
+          <svg aria-hidden viewBox="0 0 16 16" className="mt-0.5 size-3.5 shrink-0">
+            <circle cx="8" cy="8" r="7" fill="currentColor" />
+            <path d="M8 4.5v4M8 11h.01" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
           {error}
         </p>
       )}
@@ -59,7 +66,10 @@ export function Field({
 export function FormError({ message }: { message?: string | null }) {
   if (!message) return null
   return (
-    <div role="alert" className="rounded-lg border border-danger/25 bg-danger-soft px-3.5 py-2.5 text-sm text-danger-soft-foreground">
+    <div
+      role="alert"
+      className="rounded-lg border border-danger/25 bg-danger-soft px-3.5 py-2.5 text-sm text-danger-soft-foreground"
+    >
       {message}
     </div>
   )

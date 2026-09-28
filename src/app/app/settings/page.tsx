@@ -18,7 +18,10 @@ export default async function BusinessSettingsPage() {
   const b = ctx.business
   return (
     <>
-      <SettingsIntro title="Business profile" description="The basics customers see on your booking page and in their emails." />
+      <SettingsIntro
+        title="Business profile"
+        description="The basics customers see on your booking page and in their emails."
+      />
       <ProfileForm
         initial={{
           name: b.name,

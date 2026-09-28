@@ -22,7 +22,19 @@ afterAll(async () => {
 async function manual(date: string, minute: number, email: string | null = null) {
   return createManualAppointment(
     s.ctx,
-    { serviceId: s.serviceId, staffId: s.ownerStaffId, date, startMinute: minute, customerId: null, firstName: 'A', lastName: 'B', email, phone: null, internalNotes: null, notifyCustomer: false },
+    {
+      serviceId: s.serviceId,
+      staffId: s.ownerStaffId,
+      date,
+      startMinute: minute,
+      customerId: null,
+      firstName: 'A',
+      lastName: 'B',
+      email,
+      phone: null,
+      internalNotes: null,
+      notifyCustomer: false,
+    },
     meta(),
   )
 }
@@ -48,10 +60,19 @@ describe('analytics', () => {
     const b = await manual(d2, 600, 'r@example.com')
     const c = await manual(d2, 720, 'n@example.com')
     const d = await manual(d2, 840, 'x@example.com')
-    await db().update(appointments).set({ status: 'completed', completedAt: new Date() }).where(eq(appointments.id, a.id))
-    await db().update(appointments).set({ status: 'completed', completedAt: new Date() }).where(eq(appointments.id, b.id))
+    await db()
+      .update(appointments)
+      .set({ status: 'completed', completedAt: new Date() })
+      .where(eq(appointments.id, a.id))
+    await db()
+      .update(appointments)
+      .set({ status: 'completed', completedAt: new Date() })
+      .where(eq(appointments.id, b.id))
     await db().update(appointments).set({ status: 'no_show' }).where(eq(appointments.id, c.id))
-    await db().update(appointments).set({ status: 'cancelled', cancelledAt: new Date() }).where(eq(appointments.id, d.id))
+    await db()
+      .update(appointments)
+      .set({ status: 'cancelled', cancelledAt: new Date() })
+      .where(eq(appointments.id, d.id))
     const data = await getAnalytics(s.ctx, { from: addDays(todayIn(TZ), -7), to: todayIn(TZ) })
     expect(data.current.total).toBe(3)
     expect(data.current.completed).toBe(1)

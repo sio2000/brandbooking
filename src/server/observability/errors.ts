@@ -15,10 +15,15 @@ export function reportError(err: unknown, context: Record<string, unknown> = {})
   const body = JSON.stringify({
     text: `[hournook] ${e.name}: ${e.message}`.slice(0, 500),
     context: Object.fromEntries(
-      Object.entries(context).filter(([k]) => ['requestId', 'route', 'businessId', 'job'].includes(k)),
+      Object.entries(context).filter(([k]) =>
+        ['requestId', 'route', 'businessId', 'job'].includes(k),
+      ),
     ),
   })
-  fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body, signal: AbortSignal.timeout(3000) }).catch(
-    () => {},
-  )
+  fetch(url, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body,
+    signal: AbortSignal.timeout(3000),
+  }).catch(() => {})
 }

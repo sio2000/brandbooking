@@ -13,7 +13,12 @@ import { closeDb, db } from '@/server/db/client'
 import { businesses, subscriptions } from '@/server/db/schema'
 import { resetEnvCache } from '@/server/env'
 import { resetStripeClient, stripe } from '@/server/billing/stripe'
-import { accessFor, createCheckoutSession, createPortalSession, getSubscription } from '@/server/billing/service'
+import {
+  accessFor,
+  createCheckoutSession,
+  createPortalSession,
+  getSubscription,
+} from '@/server/billing/service'
 import { handleStripeWebhook } from '@/server/billing/webhook'
 import { resetDatabase } from '../helpers/db'
 import { setupBusiness, type Setup } from '../helpers/factory'
@@ -38,7 +43,10 @@ describe.skipIf(!enabled)('Stripe test mode (live API)', () => {
   })
 
   afterAll(async () => {
-    for (const id of customers) await stripe().customers.del(id).catch(() => {})
+    for (const id of customers)
+      await stripe()
+        .customers.del(id)
+        .catch(() => {})
     resetStripeClient()
     await closeDb()
   })
@@ -60,7 +68,10 @@ describe.skipIf(!enabled)('Stripe test mode (live API)', () => {
     expect(sub?.status).toBeNull()
     customers.push(sub!.stripeCustomerId)
 
-    const sessions = await stripe().checkout.sessions.list({ customer: sub!.stripeCustomerId, limit: 1 })
+    const sessions = await stripe().checkout.sessions.list({
+      customer: sub!.stripeCustomerId,
+      limit: 1,
+    })
     const session = sessions.data[0]!
     expect(session.mode).toBe('subscription')
     expect(session.client_reference_id).toBe(s.ctx.business.id)
@@ -73,7 +84,9 @@ describe.skipIf(!enabled)('Stripe test mode (live API)', () => {
 
   it('syncs a real test-mode subscription from a genuine Stripe event payload', async () => {
     const sub = (await getSubscription(s.ctx.business.id))!
-    const pm = await stripe().paymentMethods.attach('pm_card_visa', { customer: sub.stripeCustomerId })
+    const pm = await stripe().paymentMethods.attach('pm_card_visa', {
+      customer: sub.stripeCustomerId,
+    })
     const created = await stripe().subscriptions.create({
       customer: sub.stripeCustomerId,
       items: [{ price: PRICE }],
@@ -86,17 +99,26 @@ describe.skipIf(!enabled)('Stripe test mode (live API)', () => {
     // handler, signed with the configured secret (as Stripe would sign it).
     let evt
     for (let i = 0; i < 10 && !evt; i++) {
-      const events = await stripe().events.list({ type: 'customer.subscription.created', limit: 10 })
+      const events = await stripe().events.list({
+        type: 'customer.subscription.created',
+        limit: 10,
+      })
       evt = events.data.find((e) => (e.data.object as { id: string }).id === created.id)
       if (!evt) await new Promise((r) => setTimeout(r, 1000))
     }
     expect(evt, 'Stripe did not emit customer.subscription.created').toBeTruthy()
     const payload = JSON.stringify(evt)
-    const header = stripe().webhooks.generateTestHeaderString({ payload, secret: process.env.STRIPE_WEBHOOK_SECRET! })
+    const header = stripe().webhooks.generateTestHeaderString({
+      payload,
+      secret: process.env.STRIPE_WEBHOOK_SECRET!,
+    })
     const res = await handleStripeWebhook(payload, header)
     expect(res.status).toBe(200)
 
-    const [row] = await db().select().from(subscriptions).where(eq(subscriptions.businessId, s.ctx.business.id))
+    const [row] = await db()
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.businessId, s.ctx.business.id))
     expect(row?.status).toBe('active')
     expect(row?.stripeSubscriptionId).toBe(created.id)
     expect(row?.currentPeriodEnd?.getTime()).toBeGreaterThan(Date.now())

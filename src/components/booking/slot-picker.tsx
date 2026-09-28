@@ -21,8 +21,16 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Alert } from '@/components/ui/feedback'
 import { messages, interpolate } from '@/lib/i18n/messages'
 
-export type AvailabilityDay = { date: PlainDate; slots: Array<{ start: string; staffIds?: string[] }> }
-export type AvailabilityResponse = { timezone: string; today: PlainDate; lastDate: PlainDate; days: AvailabilityDay[] }
+export type AvailabilityDay = {
+  date: PlainDate
+  slots: Array<{ start: string; staffIds?: string[] }>
+}
+export type AvailabilityResponse = {
+  timezone: string
+  today: PlainDate
+  lastDate: PlainDate
+  days: AvailabilityDay[]
+}
 
 type Fetcher = (from?: PlainDate, to?: PlainDate) => Promise<AvailabilityResponse>
 
@@ -49,7 +57,9 @@ export function SlotPicker({
   locale?: string
 }) {
   // Remount (via `key`) to refetch — e.g. after a slot was taken.
-  const [month, setMonth] = React.useState<PlainDate | null>(selectedDate ? monthStartPD(selectedDate) : null)
+  const [month, setMonth] = React.useState<PlainDate | null>(
+    selectedDate ? monthStartPD(selectedDate) : null,
+  )
   const [data, setData] = React.useState<Map<PlainDate, AvailabilityDay>>(new Map())
   const [bounds, setBounds] = React.useState<{ today: PlainDate; lastDate: PlainDate } | null>(null)
   const [loading, setLoading] = React.useState(true)
@@ -79,12 +89,16 @@ export function SlotPicker({
         setBounds({ today: res.today, lastDate: res.lastDate })
         merge(res.days)
         loaded.current = new Set([monthStartPD(res.today), monthStartPD(addMonthsPD(res.today, 1))])
-        const keep = selectedDate && res.days.find((d) => d.date === selectedDate && d.slots.length > 0)
+        const keep =
+          selectedDate && res.days.find((d) => d.date === selectedDate && d.slots.length > 0)
         const first = keep ? selectedDate : res.days.find((d) => d.slots.length > 0)?.date
         setMonth(monthStartPD(first ?? res.today))
         if (first && first !== selectedDate) onSelectDate(first)
       })
-      .catch((e: unknown) => !cancelled && setError(e instanceof Error ? e.message : messages.errors.internal))
+      .catch(
+        (e: unknown) =>
+          !cancelled && setError(e instanceof Error ? e.message : messages.errors.internal),
+      )
       .finally(() => !cancelled && setLoading(false))
     return () => {
       cancelled = true
@@ -106,7 +120,11 @@ export function SlotPicker({
   const tz = useViewerTz && viewerTz ? viewerTz : businessTimeZone
   const day = selectedDate ? data.get(selectedDate) : undefined
   const groups = React.useMemo(() => {
-    const g: Record<'morning' | 'afternoon' | 'evening', string[]> = { morning: [], afternoon: [], evening: [] }
+    const g: Record<'morning' | 'afternoon' | 'evening', string[]> = {
+      morning: [],
+      afternoon: [],
+      evening: [],
+    }
     for (const s of day?.slots ?? []) {
       const h = hourIn(s.start, tz)
       g[h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening'].push(s.start)
@@ -126,10 +144,22 @@ export function SlotPicker({
             {month ? formatMonth(month, locale) : <Skeleton className="h-5 w-32" />}
           </h3>
           <div className="flex gap-1">
-            <button type="button" onClick={() => month && goToMonth(addMonthsPD(month, -1))} disabled={!canPrev} className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30" aria-label="Previous month">
+            <button
+              type="button"
+              onClick={() => month && goToMonth(addMonthsPD(month, -1))}
+              disabled={!canPrev}
+              className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30"
+              aria-label="Previous month"
+            >
               <ChevronLeft className="size-4" />
             </button>
-            <button type="button" onClick={() => month && goToMonth(addMonthsPD(month, 1))} disabled={!canNext} className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30" aria-label="Next month">
+            <button
+              type="button"
+              onClick={() => month && goToMonth(addMonthsPD(month, 1))}
+              disabled={!canNext}
+              className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30"
+              aria-label="Next month"
+            >
               <ChevronRight className="size-4" />
             </button>
           </div>
@@ -137,7 +167,11 @@ export function SlotPicker({
         <div role="grid" aria-label="Choose a date" className="grid grid-cols-7 gap-1 text-center">
           <div role="row" className="contents">
             {weekdays.map((w) => (
-              <div key={w} role="columnheader" className="pb-1 text-[11px] font-medium tracking-wide text-subtle-foreground uppercase">
+              <div
+                key={w}
+                role="columnheader"
+                className="pb-1 text-[11px] font-medium tracking-wide text-subtle-foreground uppercase"
+              >
                 {w}
               </div>
             ))}
@@ -159,30 +193,47 @@ export function SlotPicker({
                         onClick={() => onSelectDate(d)}
                         aria-label={`${formatPlainDate(d, locale)}${available ? `, ${info!.slots.length} times available` : ', no times available'}`}
                         className={cn(
-                          'relative mx-auto grid aspect-square w-full max-w-11 place-items-center rounded-xl text-sm tabular transition-all duration-150',
+                          'tabular relative mx-auto grid aspect-square w-full max-w-11 place-items-center rounded-xl text-sm transition-all duration-150',
                           !inMonth && 'invisible',
-                          available ? 'font-semibold text-foreground hover:bg-primary-soft' : 'text-subtle-foreground/60 line-through decoration-transparent',
-                          selected && 'bg-primary text-primary-foreground shadow-sm hover:bg-primary',
+                          available
+                            ? 'font-semibold text-foreground hover:bg-primary-soft'
+                            : 'text-subtle-foreground/60 line-through decoration-transparent',
+                          selected &&
+                            'bg-primary text-primary-foreground shadow-sm hover:bg-primary',
                           isToday && !selected && 'ring-1 ring-border-strong',
                         )}
                       >
                         {Number(d.slice(8))}
-                        {available && !selected && <span className="absolute bottom-1.5 size-1 rounded-full bg-primary" aria-hidden />}
+                        {available && !selected && (
+                          <span
+                            className="absolute bottom-1.5 size-1 rounded-full bg-primary"
+                            aria-hidden
+                          />
+                        )}
                       </button>
                     </div>
                   )
                 })}
               </div>
             ))}
-          {!month && Array.from({ length: 35 }, (_, i) => <Skeleton key={i} className="mx-auto aspect-square w-full max-w-11 rounded-xl" />)}
+          {!month &&
+            Array.from({ length: 35 }, (_, i) => (
+              <Skeleton key={i} className="mx-auto aspect-square w-full max-w-11 rounded-xl" />
+            ))}
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
             <Globe2 className="size-3.5" aria-hidden />
-            {interpolate(messages.booking.timesShownIn, { tz: `${tz.replace(/_/g, ' ')} (${formatTimeZoneName(new Date(), tz, locale)})` })}
+            {interpolate(messages.booking.timesShownIn, {
+              tz: `${tz.replace(/_/g, ' ')} (${formatTimeZoneName(new Date(), tz, locale)})`,
+            })}
           </span>
           {viewerTz && (
-            <button type="button" onClick={() => setUseViewerTz((v) => !v)} className="font-medium text-primary hover:underline">
+            <button
+              type="button"
+              onClick={() => setUseViewerTz((v) => !v)}
+              className="font-medium text-primary hover:underline"
+            >
               {useViewerTz ? 'Show business time' : 'Show my time zone'}
             </button>
           )}
@@ -190,9 +241,15 @@ export function SlotPicker({
       </div>
 
       <div className="min-h-64" aria-live="polite">
-        {error && <Alert tone="danger" title="Couldn’t load available times">{error}</Alert>}
+        {error && (
+          <Alert tone="danger" title="Couldn’t load available times">
+            {error}
+          </Alert>
+        )}
         {!error && selectedDate && (
-          <h3 className="mb-3 font-sans text-[15px] font-semibold tracking-normal">{formatPlainDate(selectedDate, locale)}</h3>
+          <h3 className="mb-3 font-sans text-[15px] font-semibold tracking-normal">
+            {formatPlainDate(selectedDate, locale)}
+          </h3>
         )}
         {loading && !day && !error && (
           <div className="grid grid-cols-3 gap-2">
@@ -214,7 +271,14 @@ export function SlotPicker({
         )}
         <AnimatePresence mode="wait" initial={false}>
           {day && day.slots.length > 0 && (
-            <motion.div key={`${selectedDate}-${tz}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.18 }} className="grid gap-4">
+            <motion.div
+              key={`${selectedDate}-${tz}`}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.18 }}
+              className="grid gap-4"
+            >
               {(
                 [
                   ['morning', 'Morning', Sunrise],
@@ -227,7 +291,11 @@ export function SlotPicker({
                     <p className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                       <Icon className="size-3.5" aria-hidden /> {label}
                     </p>
-                    <div role="radiogroup" aria-label={`${label} times`} className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3">
+                    <div
+                      role="radiogroup"
+                      aria-label={`${label} times`}
+                      className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3"
+                    >
                       {groups[key].map((start) => {
                         const active = start === selectedStart
                         return (
@@ -238,7 +306,7 @@ export function SlotPicker({
                             aria-checked={active}
                             onClick={() => onSelectSlot(start)}
                             className={cn(
-                              'h-11 rounded-xl border text-sm font-medium tabular transition-all duration-150 active:scale-[0.97]',
+                              'tabular h-11 rounded-xl border text-sm font-medium transition-all duration-150 active:scale-[0.97]',
                               active
                                 ? 'border-primary bg-primary text-primary-foreground shadow-sm'
                                 : 'border-border-strong bg-surface hover:border-primary hover:bg-primary-soft hover:text-primary-soft-foreground',

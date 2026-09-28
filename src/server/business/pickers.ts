@@ -8,9 +8,26 @@ import type { TenantContext } from '@/server/tenancy/context'
 export async function pickerData(ctx: TenantContext) {
   const b = ctx.business.id
   const [svc, stf, links] = await Promise.all([
-    db().select({ id: services.id, name: services.name, durationMinutes: services.durationMinutes, color: services.color, isActive: services.isActive }).from(services).where(and(eq(services.businessId, b), isNull(services.deletedAt))).orderBy(asc(services.position), asc(services.name)),
-    db().select({ id: staff.id, name: staff.name, color: staff.color, isActive: staff.isActive }).from(staff).where(and(eq(staff.businessId, b), isNull(staff.deletedAt))).orderBy(asc(staff.position), asc(staff.name)),
-    db().select({ serviceId: staffServices.serviceId, staffId: staffServices.staffId }).from(staffServices).where(eq(staffServices.businessId, b)),
+    db()
+      .select({
+        id: services.id,
+        name: services.name,
+        durationMinutes: services.durationMinutes,
+        color: services.color,
+        isActive: services.isActive,
+      })
+      .from(services)
+      .where(and(eq(services.businessId, b), isNull(services.deletedAt)))
+      .orderBy(asc(services.position), asc(services.name)),
+    db()
+      .select({ id: staff.id, name: staff.name, color: staff.color, isActive: staff.isActive })
+      .from(staff)
+      .where(and(eq(staff.businessId, b), isNull(staff.deletedAt)))
+      .orderBy(asc(staff.position), asc(staff.name)),
+    db()
+      .select({ serviceId: staffServices.serviceId, staffId: staffServices.staffId })
+      .from(staffServices)
+      .where(eq(staffServices.businessId, b)),
   ])
   const by = new Map<string, string[]>()
   for (const l of links) by.set(l.serviceId, [...(by.get(l.serviceId) ?? []), l.staffId])

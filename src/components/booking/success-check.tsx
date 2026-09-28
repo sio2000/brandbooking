@@ -21,8 +21,28 @@ export function SuccessCheck({ pending = false }: { pending?: boolean }) {
       <svg viewBox="0 0 40 40" className="relative size-10 text-primary">
         {pending ? (
           <>
-            <motion.circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" strokeWidth="3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.25 }} />
-            <motion.path d="M20 12v8l5 4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.35, delay: 0.6 }} />
+            <motion.circle
+              cx="20"
+              cy="20"
+              r="14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            />
+            <motion.path
+              d="M20 12v8l5 4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.35, delay: 0.6 }}
+            />
           </>
         ) : (
           <motion.path

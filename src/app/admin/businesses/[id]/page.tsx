@@ -40,7 +40,12 @@ async function load(id: string) {
   }
 }
 
-const eventTone = { processed: 'success', processing: 'info', ignored: 'neutral', failed: 'danger' } as const
+const eventTone = {
+  processed: 'success',
+  processing: 'info',
+  ignored: 'neutral',
+  failed: 'danger',
+} as const
 
 export default async function AdminBusinessPage({ params }: PageProps<'/admin/businesses/[id]'>) {
   const { id } = await params
@@ -52,7 +57,12 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
 
   return (
     <>
-      <Button asChild variant="link" size="sm" className="mb-3 text-muted-foreground hover:text-foreground">
+      <Button
+        asChild
+        variant="link"
+        size="sm"
+        className="mb-3 text-muted-foreground hover:text-foreground"
+      >
         <Link href="/admin/businesses">
           <ArrowLeft aria-hidden />
           All businesses
@@ -103,7 +113,11 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
           </h2>
           <dl className="grid grid-cols-2 gap-2.5 md:grid-cols-4">
             <Kpi label="Appointments" value={formatNumber(data.counts.appointments)} />
-            <Kpi label="Customers" value={formatNumber(data.counts.customers)} hint="Count only — records stay private" />
+            <Kpi
+              label="Customers"
+              value={formatNumber(data.counts.customers)}
+              hint="Count only — records stay private"
+            />
             <Kpi label="Services" value={formatNumber(data.counts.services)} />
             <Kpi label="Staff" value={formatNumber(data.counts.staff)} />
           </dl>
@@ -126,16 +140,36 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
                   },
                   { label: 'Category', value: b.category ?? '—' },
                   { label: 'Contact email', value: b.email ?? '—' },
-                  { label: 'Location', value: [b.city, b.country].filter(Boolean).join(', ') || '—' },
+                  {
+                    label: 'Location',
+                    value: [b.city, b.country].filter(Boolean).join(', ') || '—',
+                  },
                   { label: 'Timezone', value: b.timezone },
                   { label: 'Locale · currency', value: `${b.locale} · ${b.currency}` },
-                  { label: 'Created', value: <><UtcTime value={b.createdAt} /> UTC</> },
-                  { label: 'Published', value: b.publishedAt ? <><UtcTime value={b.publishedAt} /> UTC</> : 'Never' },
+                  {
+                    label: 'Created',
+                    value: (
+                      <>
+                        <UtcTime value={b.createdAt} /> UTC
+                      </>
+                    ),
+                  },
+                  {
+                    label: 'Published',
+                    value: b.publishedAt ? (
+                      <>
+                        <UtcTime value={b.publishedAt} /> UTC
+                      </>
+                    ) : (
+                      'Never'
+                    ),
+                  },
                   {
                     label: 'Free trial',
                     value: b.trialEndsAt ? (
                       <>
-                        {isFuture(b.trialEndsAt) ? 'Ends' : 'Ended'} <UtcTime value={b.trialEndsAt} mode="date" />
+                        {isFuture(b.trialEndsAt) ? 'Ends' : 'Ended'}{' '}
+                        <UtcTime value={b.trialEndsAt} mode="date" />
                       </>
                     ) : (
                       '—'
@@ -152,7 +186,10 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
               {sub ? (
                 <DetailList
                   items={[
-                    { label: 'Status', value: <SubscriptionBadge status={sub.status} trialEndsAt={b.trialEndsAt} /> },
+                    {
+                      label: 'Status',
+                      value: <SubscriptionBadge status={sub.status} trialEndsAt={b.trialEndsAt} />,
+                    },
                     {
                       label: 'Current period ends',
                       value: sub.currentPeriodEnd ? (
@@ -182,7 +219,14 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
                     },
                     { label: 'Last webhook', value: <UtcTime value={sub.lastEventAt} /> },
                     { label: 'Stripe customer', value: <Mono>{sub.stripeCustomerId}</Mono> },
-                    { label: 'Stripe subscription', value: sub.stripeSubscriptionId ? <Mono>{sub.stripeSubscriptionId}</Mono> : '—' },
+                    {
+                      label: 'Stripe subscription',
+                      value: sub.stripeSubscriptionId ? (
+                        <Mono>{sub.stripeSubscriptionId}</Mono>
+                      ) : (
+                        '—'
+                      ),
+                    },
                   ]}
                 />
               ) : (
@@ -204,7 +248,12 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
         <Card className="overflow-hidden">
           <CardHeader title="Team members" description="Accounts with access to this business" />
           {data.members.length === 0 ? (
-            <EmptyState icon={Users} title="No members" description="This business has no team accounts. That usually means the owner account was deleted." className="py-8" />
+            <EmptyState
+              icon={Users}
+              title="No members"
+              description="This business has no team accounts. That usually means the owner account was deleted."
+              className="py-8"
+            />
           ) : (
             <TableWrap>
               <caption className="sr-only">Team members</caption>
@@ -224,11 +273,20 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
                     </th>
                     <td className="break-all text-muted-foreground">{m.email}</td>
                     <td>
-                      <Badge tone={m.role === 'owner' ? 'primary' : 'neutral'} className="capitalize">
+                      <Badge
+                        tone={m.role === 'owner' ? 'primary' : 'neutral'}
+                        className="capitalize"
+                      >
                         {m.role}
                       </Badge>
                     </td>
-                    <td>{m.verified ? <StatusText tone="ok">Verified</StatusText> : <StatusText tone="warning">Not verified</StatusText>}</td>
+                    <td>
+                      {m.verified ? (
+                        <StatusText tone="ok">Verified</StatusText>
+                      ) : (
+                        <StatusText tone="warning">Not verified</StatusText>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -237,9 +295,17 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
         </Card>
 
         <Card className="overflow-hidden">
-          <CardHeader title="Recent billing events" description="Latest 20 Stripe webhook events for this business (UTC)" />
+          <CardHeader
+            title="Recent billing events"
+            description="Latest 20 Stripe webhook events for this business (UTC)"
+          />
           {data.billingEvents.length === 0 ? (
-            <EmptyState icon={ReceiptText} title="No billing events" description="Stripe hasn’t sent any webhook events for this business yet." className="py-8" />
+            <EmptyState
+              icon={ReceiptText}
+              title="No billing events"
+              description="Stripe hasn’t sent any webhook events for this business yet."
+              className="py-8"
+            />
           ) : (
             <TableWrap>
               <caption className="sr-only">Recent billing events</caption>
@@ -262,7 +328,11 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
                       <Badge tone={eventTone[e.status] ?? 'neutral'} className="capitalize">
                         {e.status}
                       </Badge>
-                      {e.status === 'failed' && e.error && <p className="mt-1 max-w-xs text-xs break-words text-danger">{redactPII(e.error)}</p>}
+                      {e.status === 'failed' && e.error && (
+                        <p className="mt-1 max-w-xs text-xs break-words text-danger">
+                          {redactPII(e.error)}
+                        </p>
+                      )}
                     </td>
                     <td className="text-muted-foreground">
                       <UtcTime value={e.receivedAt} />
@@ -285,7 +355,12 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
             }
           />
           {data.audit.length === 0 ? (
-            <EmptyState icon={ScrollText} title="No audit entries" description="Security-relevant changes for this business will be listed here." className="py-8" />
+            <EmptyState
+              icon={ScrollText}
+              title="No audit entries"
+              description="Security-relevant changes for this business will be listed here."
+              className="py-8"
+            />
           ) : (
             <TableWrap>
               <caption className="sr-only">Recent audit log entries</caption>
@@ -309,7 +384,14 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
                     <td className="font-mono text-[13px]">{a.action}</td>
                     <td className="text-muted-foreground">
                       {a.entityType ?? '—'}
-                      {a.entityId && <span className="block max-w-48 truncate font-mono text-xs" title={a.entityId}>{a.entityId}</span>}
+                      {a.entityId && (
+                        <span
+                          className="block max-w-48 truncate font-mono text-xs"
+                          title={a.entityId}
+                        >
+                          {a.entityId}
+                        </span>
+                      )}
                     </td>
                   </tr>
                 ))}

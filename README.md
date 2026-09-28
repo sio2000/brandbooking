@@ -8,15 +8,15 @@ business signs up, sets its services, team and opening hours, and gets a public
 booking page (`/book/<slug>`) where customers book in under a minute without
 creating an account. One plan: **€10 / month per business**, with a free trial.
 
-| | |
-|---|---|
-| Stack | Next.js 16 (App Router, React 19, TypeScript strict), Tailwind CSS v4, Radix UI |
-| Data | PostgreSQL 16 via Drizzle ORM + postgres.js; plain-SQL migrations |
-| Auth | Own implementation on mature primitives: Argon2id (`@node-rs/argon2`), DB sessions with hashed tokens |
-| Billing | Stripe Billing (Checkout, Customer Portal, signed + idempotent webhooks) |
-| Email | Provider abstraction: SMTP (nodemailer) or Resend; transactional outbox with retries |
-| Storage | Local disk (dev) or any S3-compatible bucket (prod); images re-encoded with sharp |
-| Tests | Vitest (unit + integration on a real Postgres), Playwright (E2E) + axe (accessibility) |
+|         |                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------- |
+| Stack   | Next.js 16 (App Router, React 19, TypeScript strict), Tailwind CSS v4, Radix UI                       |
+| Data    | PostgreSQL 16 via Drizzle ORM + postgres.js; plain-SQL migrations                                     |
+| Auth    | Own implementation on mature primitives: Argon2id (`@node-rs/argon2`), DB sessions with hashed tokens |
+| Billing | Stripe Billing (Checkout, Customer Portal, signed + idempotent webhooks)                              |
+| Email   | Provider abstraction: SMTP (nodemailer) or Resend; transactional outbox with retries                  |
+| Storage | Local disk (dev) or any S3-compatible bucket (prod); images re-encoded with sharp                     |
+| Tests   | Vitest (unit + integration on a real Postgres), Playwright (E2E) + axe (accessibility)                |
 
 No Supabase, Firebase or other BaaS is used. The browser never talks to the
 database and never sees a secret.
@@ -44,9 +44,9 @@ npm run worker                  # optional: sends emails & reminders every minut
 
 Demo logins created by the seed (development only — the seed refuses to run in production):
 
-| Role | Email | Password |
-|---|---|---|
-| Business owner | `demo@hournook.dev` | `demo-password-2026` |
+| Role           | Email                | Password             |
+| -------------- | -------------------- | -------------------- |
+| Business owner | `demo@hournook.dev`  | `demo-password-2026` |
 | Platform admin | `admin@hournook.dev` | `demo-password-2026` |
 
 Public booking page: <http://localhost:3000/book/linden-studio>
@@ -57,18 +57,18 @@ set `DATABASE_URL`.
 
 ## Scripts
 
-| Command | What it does |
-|---|---|
-| `npm run dev` / `build` / `start` | Next.js dev server / production build / production server |
-| `npm run typecheck` / `lint` / `format` | TypeScript, ESLint, Prettier |
-| `npm run db:migrate` / `db:rollback` | Apply pending migrations / roll back the latest one |
-| `npm run db:seed` | Load demo data (refuses in production) |
-| `npm run db:reset` | Drop and recreate the local dev schema (refuses non-local/production) |
-| `npm run worker` | Long-running scheduler (alternative to calling `/api/cron/tick`) |
-| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin |
-| `npm test` | Unit + integration tests (integration uses `TEST_DATABASE_URL`, must end in `_test`) |
-| `npm run test:e2e` | Playwright end-to-end + accessibility tests (own `_e2e` database) |
-| `npm run test:stripe-live` | Optional tests against the real Stripe API in **test mode** |
+| Command                                   | What it does                                                                         |
+| ----------------------------------------- | ------------------------------------------------------------------------------------ |
+| `npm run dev` / `build` / `start`         | Next.js dev server / production build / production server                            |
+| `npm run typecheck` / `lint` / `format`   | TypeScript, ESLint, Prettier                                                         |
+| `npm run db:migrate` / `db:rollback`      | Apply pending migrations / roll back the latest one                                  |
+| `npm run db:seed`                         | Load demo data (refuses in production)                                               |
+| `npm run db:reset`                        | Drop and recreate the local dev schema (refuses non-local/production)                |
+| `npm run worker`                          | Long-running scheduler (alternative to calling `/api/cron/tick`)                     |
+| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin                                               |
+| `npm test`                                | Unit + integration tests (integration uses `TEST_DATABASE_URL`, must end in `_test`) |
+| `npm run test:e2e`                        | Playwright end-to-end + accessibility tests (own `_e2e` database)                    |
+| `npm run test:stripe-live`                | Optional tests against the real Stripe API in **test mode**                          |
 
 ## Documentation
 

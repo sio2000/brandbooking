@@ -1,7 +1,14 @@
 import 'server-only'
 import { and, eq } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { businessMembers, businesses, subscriptions, users, type Business, type Subscription } from '@/server/db/schema'
+import {
+  businessMembers,
+  businesses,
+  subscriptions,
+  users,
+  type Business,
+  type Subscription,
+} from '@/server/db/schema'
 import { env, appUrl } from '@/server/env'
 import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
@@ -10,11 +17,18 @@ import { stripe, type Stripe } from './stripe'
 import { logger } from '@/server/observability/logger'
 
 export async function getSubscription(businessId: string): Promise<Subscription | null> {
-  const [row] = await db().select().from(subscriptions).where(eq(subscriptions.businessId, businessId)).limit(1)
+  const [row] = await db()
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.businessId, businessId))
+    .limit(1)
   return row ?? null
 }
 
-export async function accessFor(business: Pick<Business, 'id' | 'status' | 'trialEndsAt'>, now = new Date()): Promise<Access> {
+export async function accessFor(
+  business: Pick<Business, 'id' | 'status' | 'trialEndsAt'>,
+  now = new Date(),
+): Promise<Access> {
   const sub = await getSubscription(business.id)
   return computeAccess({
     businessStatus: business.status,
@@ -64,7 +78,10 @@ async function ensureCustomer(business: Business): Promise<string> {
 const ACTIVE_LIKE = new Set(['active', 'trialing', 'past_due'])
 
 /** Start Stripe Checkout for the single €10/month plan. Returns the hosted URL. */
-export async function createCheckoutSession(business: Business, actorUserId: string): Promise<string> {
+export async function createCheckoutSession(
+  business: Business,
+  actorUserId: string,
+): Promise<string> {
   const e = env()
   const sub = await getSubscription(business.id)
   if (sub?.status && ACTIVE_LIKE.has(sub.status)) {
@@ -150,9 +167,12 @@ export async function paymentMethodSummary(businessId: string): Promise<string |
   const sub = await getSubscription(businessId)
   if (!sub?.stripeSubscriptionId) return null
   try {
-    const s = await stripe().subscriptions.retrieve(sub.stripeSubscriptionId, { expand: ['default_payment_method'] })
+    const s = await stripe().subscriptions.retrieve(sub.stripeSubscriptionId, {
+      expand: ['default_payment_method'],
+    })
     const pm = s.default_payment_method
-    if (pm && typeof pm === 'object' && pm.card) return `${pm.card.brand.toUpperCase()} •••• ${pm.card.last4}`
+    if (pm && typeof pm === 'object' && pm.card)
+      return `${pm.card.brand.toUpperCase()} •••• ${pm.card.last4}`
     return null
   } catch {
     return null
@@ -169,6 +189,10 @@ export async function businessIdForCustomer(customerId: string): Promise<string 
 }
 
 export async function businessExists(id: string) {
-  const [row] = await db().select({ id: businesses.id }).from(businesses).where(eq(businesses.id, id)).limit(1)
+  const [row] = await db()
+    .select({ id: businesses.id })
+    .from(businesses)
+    .where(eq(businesses.id, id))
+    .limit(1)
   return Boolean(row)
 }

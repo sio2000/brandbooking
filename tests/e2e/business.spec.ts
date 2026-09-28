@@ -4,7 +4,9 @@ import { businessBySlug, db, markEmailVerified, PASSWORD, userByEmail, USERS } f
 import { weeklyHours } from '@/server/db/schema'
 
 test.describe('business owner journey', () => {
-  test('signs up, completes onboarding, sets up and publishes, then signs out and back in', async ({ page }) => {
+  test('signs up, completes onboarding, sets up and publishes, then signs out and back in', async ({
+    page,
+  }) => {
     test.setTimeout(150_000)
     const tag = Date.now().toString(36)
     const email = `founder.${tag}@example.com`
@@ -28,7 +30,9 @@ test.describe('business owner journey', () => {
     await page.reload()
 
     // --- Onboarding wizard ---
-    await expect(page.getByRole('heading', { name: /Welcome, Jules\. Let’s set up your booking page\./ })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: /Welcome, Jules\. Let’s set up your booking page\./ }),
+    ).toBeVisible()
     await page.getByLabel('Business name').fill(businessName)
     const slugInput = page.getByLabel('Your booking link')
     await expect(slugInput).toHaveValue(new RegExp(`^juniper-wellness-${tag}`))
@@ -40,7 +44,10 @@ test.describe('business owner journey', () => {
 
     await expect(page.getByRole('heading', { name: 'When are you open?' })).toBeVisible()
     await page.getByRole('button', { name: 'Mon–Sat, 9:00–18:00' }).click()
-    await expect(page.getByRole('button', { name: 'Sat', exact: true })).toHaveAttribute('aria-pressed', 'true')
+    await expect(page.getByRole('button', { name: 'Sat', exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
     await page.getByRole('button', { name: 'Continue' }).click()
 
     await expect(page.getByRole('heading', { name: 'What can customers book?' })).toBeVisible()
@@ -95,7 +102,13 @@ test.describe('business owner journey', () => {
     const sundayRows = await db()
       .select()
       .from(weeklyHours)
-      .where(and(eq(weeklyHours.businessId, business.id), isNull(weeklyHours.staffId), eq(weeklyHours.weekday, 7)))
+      .where(
+        and(
+          eq(weeklyHours.businessId, business.id),
+          isNull(weeklyHours.staffId),
+          eq(weeklyHours.weekday, 7),
+        ),
+      )
     expect(sundayRows.map((r) => [r.startMinute, r.endMinute])).toEqual([[600, 840]])
 
     // --- Booking page: unpublish, then publish again from the dashboard ---
@@ -134,12 +147,15 @@ test.describe('business owner journey', () => {
     await page.getByLabel('Email').fill(USERS.ownerA.email)
     await page.getByLabel('Password', { exact: true }).fill(`${PASSWORD}-nope`)
     await page.getByRole('button', { name: 'Sign in' }).click()
-    await expect(page.getByRole('alert').filter({ hasText: /\S/ })).toHaveText("That email and password don't match. Check them and try again.")
+    await expect(page.getByRole('alert').filter({ hasText: /\S/ })).toHaveText(
+      "That email and password don't match. Check them and try again.",
+    )
     await expect(page).toHaveURL(/\/login/)
   })
 
   test('password reset request does not reveal whether an account exists', async ({ page }) => {
-    const message = /If an account exists for that email, we’ve sent a link to reset your password\. The link expires in 1 hour\./
+    const message =
+      /If an account exists for that email, we’ve sent a link to reset your password\. The link expires in 1 hour\./
     for (const email of [USERS.ownerA.email, `nobody.${Date.now()}@example.com`]) {
       await page.goto('/forgot-password')
       await page.getByLabel('Email').fill(email)

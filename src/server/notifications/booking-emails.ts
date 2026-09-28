@@ -1,11 +1,25 @@
 import 'server-only'
 import { and, eq } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { appointments, businesses, customers, services, staff, type Appointment, type Business } from '@/server/db/schema'
+import {
+  appointments,
+  businesses,
+  customers,
+  services,
+  staff,
+  type Appointment,
+  type Business,
+} from '@/server/db/schema'
 import { appUrl } from '@/server/env'
 import { signManageToken } from '@/server/booking/manage-token'
 import { assetUrl } from '@/server/storage/images'
-import { formatDateLong, formatDuration, formatMoney, formatTime, formatTimeZoneName } from '@/lib/format'
+import {
+  formatDateLong,
+  formatDuration,
+  formatMoney,
+  formatTime,
+  formatTimeZoneName,
+} from '@/lib/format'
 import { messages } from '@/lib/i18n/messages'
 import { renderEmail, type EmailBlock } from './layout'
 import type { EmailMessage } from './providers'
@@ -35,27 +49,55 @@ async function load(appointmentId: string): Promise<Loaded | null> {
       business: businesses,
       serviceName: services.name,
       staffName: staff.name,
-      customer: { firstName: customers.firstName, lastName: customers.lastName, email: customers.email, phone: customers.phone },
+      customer: {
+        firstName: customers.firstName,
+        lastName: customers.lastName,
+        email: customers.email,
+        phone: customers.phone,
+      },
     })
     .from(appointments)
     .innerJoin(businesses, eq(businesses.id, appointments.businessId))
-    .innerJoin(services, and(eq(services.id, appointments.serviceId), eq(services.businessId, appointments.businessId)))
-    .innerJoin(staff, and(eq(staff.id, appointments.staffId), eq(staff.businessId, appointments.businessId)))
-    .innerJoin(customers, and(eq(customers.id, appointments.customerId), eq(customers.businessId, appointments.businessId)))
+    .innerJoin(
+      services,
+      and(
+        eq(services.id, appointments.serviceId),
+        eq(services.businessId, appointments.businessId),
+      ),
+    )
+    .innerJoin(
+      staff,
+      and(eq(staff.id, appointments.staffId), eq(staff.businessId, appointments.businessId)),
+    )
+    .innerJoin(
+      customers,
+      and(
+        eq(customers.id, appointments.customerId),
+        eq(customers.businessId, appointments.businessId),
+      ),
+    )
     .where(eq(appointments.id, appointmentId))
     .limit(1)
   return rows[0] ?? null
 }
 
-function whenRows(a: Pick<Appointment, 'startsAt' | 'endsAt' | 'timezone'>, locale: string): Array<[string, string]> {
+function whenRows(
+  a: Pick<Appointment, 'startsAt' | 'endsAt' | 'timezone'>,
+  locale: string,
+): Array<[string, string]> {
   return [
     ['Date', formatDateLong(a.startsAt, a.timezone, locale)],
-    ['Time', `${formatTime(a.startsAt, a.timezone, locale)} – ${formatTime(a.endsAt, a.timezone, locale)} (${formatTimeZoneName(a.startsAt, a.timezone, locale)})`],
+    [
+      'Time',
+      `${formatTime(a.startsAt, a.timezone, locale)} – ${formatTime(a.endsAt, a.timezone, locale)} (${formatTimeZoneName(a.startsAt, a.timezone, locale)})`,
+    ],
   ]
 }
 
 function address(b: Business) {
-  return [b.addressLine1, b.addressLine2, [b.postalCode, b.city].filter(Boolean).join(' ')].filter(Boolean).join(', ')
+  return [b.addressLine1, b.addressLine2, [b.postalCode, b.city].filter(Boolean).join(' ')]
+    .filter(Boolean)
+    .join(', ')
 }
 
 function detailRows(d: Loaded, opts: { includeCustomer?: boolean } = {}): Array<[string, string]> {
@@ -97,7 +139,12 @@ function calendarLinks(d: Loaded) {
   ]
 }
 
-async function customerEmail(d: Loaded, subject: string, preheader: string, blocks: EmailBlock[]): Promise<EmailMessage> {
+async function customerEmail(
+  d: Loaded,
+  subject: string,
+  preheader: string,
+  blocks: EmailBlock[],
+): Promise<EmailMessage> {
   const b = d.business
   const logoUrl = await assetUrl(b.id, b.logoAssetId, 'sm')
   const { html, text } = renderEmail({
@@ -106,7 +153,10 @@ async function customerEmail(d: Loaded, subject: string, preheader: string, bloc
     brandColor: b.brandColor,
     logoUrl,
     blocks,
-    footer: [b.emailFooter || messages.email.footerDefault, `Sent by Hournook on behalf of ${b.name}.`].join(' '),
+    footer: [
+      b.emailFooter || messages.email.footerDefault,
+      `Sent by Hournook on behalf of ${b.name}.`,
+    ].join(' '),
   })
   return {
     to: d.customer.email!,
@@ -138,10 +188,15 @@ export async function renderBookingEmail(
   if (!d) return { skip: 'appointment_missing' }
   const { appt: a, business: b } = d
   const first = d.customer.firstName
-  const policy = b.bookingPolicy ? [{ type: 'text', muted: true, text: b.bookingPolicy } as EmailBlock] : []
+  const policy = b.bookingPolicy
+    ? [{ type: 'text', muted: true, text: b.bookingPolicy } as EmailBlock]
+    : []
   const manage = manageUrl(a)
   const isCustomerTemplate = template.startsWith('booking_')
-  if (isCustomerTemplate && (!d.customer.email || d.customer.email.toLowerCase() !== recipient.toLowerCase())) {
+  if (
+    isCustomerTemplate &&
+    (!d.customer.email || d.customer.email.toLowerCase() !== recipient.toLowerCase())
+  ) {
     return { skip: 'recipient_changed' }
   }
 
@@ -152,10 +207,17 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          pending ? `Booking request received — ${b.name}` : `Booking confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
-          pending ? `${b.name} will confirm your request shortly.` : `See you on ${formatDateLong(a.startsAt, a.timezone, b.locale)}.`,
+          pending
+            ? `Booking request received — ${b.name}`
+            : `Booking confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          pending
+            ? `${b.name} will confirm your request shortly.`
+            : `See you on ${formatDateLong(a.startsAt, a.timezone, b.locale)}.`,
           [
-            { type: 'heading', text: pending ? `Thanks, ${first} — request received` : `You're booked, ${first}!` },
+            {
+              type: 'heading',
+              text: pending ? `Thanks, ${first} — request received` : `You're booked, ${first}!`,
+            },
             {
               type: 'text',
               text: pending
@@ -173,14 +235,22 @@ export async function renderBookingEmail(
     case 'booking_confirmed': {
       if (a.status !== 'confirmed') return { skip: 'not_confirmed' }
       return {
-        message: await customerEmail(d, `Confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`, `${b.name} confirmed your booking.`, [
-          { type: 'heading', text: 'Your booking is confirmed' },
-          { type: 'text', text: `Good news, ${first} — ${b.name} has confirmed your appointment.` },
-          { type: 'details', rows: detailRows(d) },
-          { type: 'button', label: messages.email.manageCta, url: manage },
-          { type: 'links', links: calendarLinks(d) },
-          ...policy,
-        ]),
+        message: await customerEmail(
+          d,
+          `Confirmed — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          `${b.name} confirmed your booking.`,
+          [
+            { type: 'heading', text: 'Your booking is confirmed' },
+            {
+              type: 'text',
+              text: `Good news, ${first} — ${b.name} has confirmed your appointment.`,
+            },
+            { type: 'details', rows: detailRows(d) },
+            { type: 'button', label: messages.email.manageCta, url: manage },
+            { type: 'links', links: calendarLinks(d) },
+            ...policy,
+          ],
+        ),
       }
     }
     case 'booking_reminder': {
@@ -188,52 +258,98 @@ export async function renderBookingEmail(
       if (String(payload.startsAt) !== a.startsAt.toISOString()) return { skip: 'rescheduled' }
       if (a.startsAt.getTime() < Date.now()) return { skip: 'in_past' }
       return {
-        message: await customerEmail(d, `Reminder: ${d.serviceName} ${formatDateLong(a.startsAt, a.timezone, b.locale)} at ${formatTime(a.startsAt, a.timezone, b.locale)}`, `Your appointment with ${b.name} is coming up.`, [
-          { type: 'heading', text: 'See you soon' },
-          { type: 'text', text: `Hi ${first}, this is a friendly reminder of your upcoming appointment with ${b.name}.` },
-          { type: 'details', rows: detailRows(d) },
-          { type: 'button', label: messages.email.manageCta, url: manage },
-          ...policy,
-        ]),
+        message: await customerEmail(
+          d,
+          `Reminder: ${d.serviceName} ${formatDateLong(a.startsAt, a.timezone, b.locale)} at ${formatTime(a.startsAt, a.timezone, b.locale)}`,
+          `Your appointment with ${b.name} is coming up.`,
+          [
+            { type: 'heading', text: 'See you soon' },
+            {
+              type: 'text',
+              text: `Hi ${first}, this is a friendly reminder of your upcoming appointment with ${b.name}.`,
+            },
+            { type: 'details', rows: detailRows(d) },
+            { type: 'button', label: messages.email.manageCta, url: manage },
+            ...policy,
+          ],
+        ),
       }
     }
     case 'booking_rescheduled': {
       if (a.status === 'cancelled') return { skip: 'cancelled' }
-      const prev = typeof payload.previousStartsAt === 'string' ? new Date(payload.previousStartsAt) : null
-      const prevEnd = prev ? new Date(prev.getTime() + (a.endsAt.getTime() - a.startsAt.getTime())) : null
+      const prev =
+        typeof payload.previousStartsAt === 'string' ? new Date(payload.previousStartsAt) : null
+      const prevEnd = prev
+        ? new Date(prev.getTime() + (a.endsAt.getTime() - a.startsAt.getTime()))
+        : null
       return {
-        message: await customerEmail(d, `Rescheduled — ${d.serviceName} now ${formatDateLong(a.startsAt, a.timezone, b.locale)}`, 'Your appointment has a new time.', [
-          { type: 'heading', text: 'Your appointment has moved' },
-          { type: 'text', text: `Hi ${first}, your appointment with ${b.name} has been rescheduled.` },
-          ...(prev && prevEnd
-            ? [
-                { type: 'text', muted: true, text: 'Previous time' } as EmailBlock,
-                { type: 'details', strike: true, rows: whenRows({ startsAt: prev, endsAt: prevEnd, timezone: a.timezone }, b.locale) } as EmailBlock,
-              ]
-            : []),
-          { type: 'text', muted: true, text: 'New time' },
-          { type: 'details', rows: detailRows(d) },
-          { type: 'button', label: messages.email.manageCta, url: manage },
-          { type: 'links', links: calendarLinks(d) },
-        ]),
+        message: await customerEmail(
+          d,
+          `Rescheduled — ${d.serviceName} now ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          'Your appointment has a new time.',
+          [
+            { type: 'heading', text: 'Your appointment has moved' },
+            {
+              type: 'text',
+              text: `Hi ${first}, your appointment with ${b.name} has been rescheduled.`,
+            },
+            ...(prev && prevEnd
+              ? [
+                  { type: 'text', muted: true, text: 'Previous time' } as EmailBlock,
+                  {
+                    type: 'details',
+                    strike: true,
+                    rows: whenRows(
+                      { startsAt: prev, endsAt: prevEnd, timezone: a.timezone },
+                      b.locale,
+                    ),
+                  } as EmailBlock,
+                ]
+              : []),
+            { type: 'text', muted: true, text: 'New time' },
+            { type: 'details', rows: detailRows(d) },
+            { type: 'button', label: messages.email.manageCta, url: manage },
+            { type: 'links', links: calendarLinks(d) },
+          ],
+        ),
       }
     }
     case 'booking_cancelled': {
       if (a.status !== 'cancelled') return { skip: 'not_cancelled' }
       const byCustomer = payload.by === 'customer'
       return {
-        message: await customerEmail(d, `Cancelled — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`, 'Your appointment has been cancelled.', [
-          { type: 'heading', text: 'Appointment cancelled' },
-          {
-            type: 'text',
-            text: byCustomer
-              ? `Hi ${first}, as requested we've cancelled your appointment with ${b.name}.`
-              : `Hi ${first}, ${b.name} has cancelled your appointment. We're sorry for any inconvenience.`,
-          },
-          { type: 'details', strike: true, rows: detailRows(d) },
-          ...(a.cancellationReason && !byCustomer ? [{ type: 'notice', text: `Message from ${b.name}: ${a.cancellationReason}` } as EmailBlock] : []),
-          ...(b.publishStatus === 'published' ? [{ type: 'button', label: 'Book a new time', url: appUrl(`/book/${b.slug}`) } as EmailBlock] : []),
-        ]),
+        message: await customerEmail(
+          d,
+          `Cancelled — ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
+          'Your appointment has been cancelled.',
+          [
+            { type: 'heading', text: 'Appointment cancelled' },
+            {
+              type: 'text',
+              text: byCustomer
+                ? `Hi ${first}, as requested we've cancelled your appointment with ${b.name}.`
+                : `Hi ${first}, ${b.name} has cancelled your appointment. We're sorry for any inconvenience.`,
+            },
+            { type: 'details', strike: true, rows: detailRows(d) },
+            ...(a.cancellationReason && !byCustomer
+              ? [
+                  {
+                    type: 'notice',
+                    text: `Message from ${b.name}: ${a.cancellationReason}`,
+                  } as EmailBlock,
+                ]
+              : []),
+            ...(b.publishStatus === 'published'
+              ? [
+                  {
+                    type: 'button',
+                    label: 'Book a new time',
+                    url: appUrl(`/book/${b.slug}`),
+                  } as EmailBlock,
+                ]
+              : []),
+          ],
+        ),
       }
     }
     case 'member_booking_created':
@@ -260,8 +376,14 @@ export async function renderBookingEmail(
         message: memberEmail(d, recipient, title, [
           { type: 'heading', text: title },
           { type: 'text', text: intro },
-          { type: 'details', rows: detailRows(d, { includeCustomer: true }), strike: template === 'member_booking_cancelled' },
-          ...(a.customerMessage ? [{ type: 'notice', text: `Note from customer: ${a.customerMessage}` } as EmailBlock] : []),
+          {
+            type: 'details',
+            rows: detailRows(d, { includeCustomer: true }),
+            strike: template === 'member_booking_cancelled',
+          },
+          ...(a.customerMessage
+            ? [{ type: 'notice', text: `Note from customer: ${a.customerMessage}` } as EmailBlock]
+            : []),
           { type: 'button', label: 'Open in Hournook', url: appUrl(`/app/appointments/${a.id}`) },
         ]),
       }

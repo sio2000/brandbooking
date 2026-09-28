@@ -1,7 +1,17 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { ArrowLeft, CalendarPlus, Check, ChevronRight, Clock, Mail, MapPin, User2, Users } from 'lucide-react'
+import {
+  ArrowLeft,
+  CalendarPlus,
+  Check,
+  ChevronRight,
+  Clock,
+  Mail,
+  MapPin,
+  User2,
+  Users,
+} from 'lucide-react'
 import Link from 'next/link'
 import * as React from 'react'
 import { Avatar } from '@/components/ui/avatar'
@@ -10,16 +20,44 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input, Textarea } from '@/components/ui/input'
 import { Alert } from '@/components/ui/feedback'
 import { cn } from '@/lib/utils'
-import { formatDateLong, formatDuration, formatMoney, formatTime, formatTimeZoneName } from '@/lib/format'
+import {
+  formatDateLong,
+  formatDuration,
+  formatMoney,
+  formatTime,
+  formatTimeZoneName,
+} from '@/lib/format'
 import { interpolate, messages } from '@/lib/i18n/messages'
 import { googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
 import type { PlainDate } from '@/lib/plain-date'
 import { SlotPicker, type AvailabilityResponse } from './slot-picker'
 import { SuccessCheck } from './success-check'
 
-export type FlowService = { id: string; name: string; description: string | null; durationMinutes: number; priceCents: number | null; categoryId: string | null; staffIds: string[] }
-export type FlowStaff = { id: string; name: string; title: string | null; avatarUrl: string | null; color: string }
-export type FlowBusiness = { slug: string; name: string; timezone: string; locale: string; currency: string; address: string[]; bookingPolicy: string | null }
+export type FlowService = {
+  id: string
+  name: string
+  description: string | null
+  durationMinutes: number
+  priceCents: number | null
+  categoryId: string | null
+  staffIds: string[]
+}
+export type FlowStaff = {
+  id: string
+  name: string
+  title: string | null
+  avatarUrl: string | null
+  color: string
+}
+export type FlowBusiness = {
+  slug: string
+  name: string
+  timezone: string
+  locale: string
+  currency: string
+  address: string[]
+  bookingPolicy: string | null
+}
 export type FlowRules = {
   staffSelection: 'optional' | 'required' | 'hidden'
   phoneRequirement: 'required' | 'optional' | 'hidden'
@@ -29,10 +67,19 @@ export type FlowRules = {
 }
 
 type Step = 'service' | 'staff' | 'datetime' | 'details' | 'review' | 'done'
-type Attribution = { src: 'widget' | 'qr' | null; utmSource: string | null; utmMedium: string | null; utmCampaign: string | null }
+type Attribution = {
+  src: 'widget' | 'qr' | null
+  utmSource: string | null
+  utmMedium: string | null
+  utmCampaign: string | null
+}
 type Result = { reference: string; status: string; manageToken: string }
 
-const FUNNEL: Partial<Record<Step, string>> = { staff: 'staff', datetime: 'date', details: 'details' }
+const FUNNEL: Partial<Record<Step, string>> = {
+  staff: 'staff',
+  datetime: 'date',
+  details: 'details',
+}
 
 export function BookingFlow({
   business,
@@ -53,12 +100,20 @@ export function BookingFlow({
   preselectServiceId?: string | null
   compact?: boolean
 }) {
-  const initialService = services.find((s) => s.id === preselectServiceId) ?? (services.length === 1 ? services[0] : undefined)
+  const initialService =
+    services.find((s) => s.id === preselectServiceId) ??
+    (services.length === 1 ? services[0] : undefined)
   const [service, setService] = React.useState<FlowService | undefined>(initialService)
   const [staffId, setStaffId] = React.useState<string | null>(null)
   const [date, setDate] = React.useState<PlainDate | null>(null)
   const [start, setStart] = React.useState<string | null>(null)
-  const [details, setDetails] = React.useState({ firstName: '', lastName: '', email: '', phone: '', message: '' })
+  const [details, setDetails] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
   const [errors, setErrors] = React.useState<Record<string, string>>({})
   const [formError, setFormError] = React.useState<string | null>(null)
   const [slotNotice, setSlotNotice] = React.useState<string | null>(null)
@@ -72,20 +127,43 @@ export function BookingFlow({
   // unmounted by the time the booking is sent from the review step.
   const honeypot = React.useRef('')
 
-  const serviceStaff = React.useMemo(() => staff.filter((m) => service?.staffIds.includes(m.id)), [staff, service])
+  const serviceStaff = React.useMemo(
+    () => staff.filter((m) => service?.staffIds.includes(m.id)),
+    [staff, service],
+  )
   const showStaffStep = rules.staffSelection !== 'hidden' && serviceStaff.length > 1
-  const steps: Step[] = ['service', ...(showStaffStep ? (['staff'] as Step[]) : []), 'datetime', 'details', 'review']
-  const [step, setStep] = React.useState<Step>(initialService ? (showStaffStep ? 'staff' : 'datetime') : 'service')
+  const steps: Step[] = [
+    'service',
+    ...(showStaffStep ? (['staff'] as Step[]) : []),
+    'datetime',
+    'details',
+    'review',
+  ]
+  const [step, setStep] = React.useState<Step>(
+    initialService ? (showStaffStep ? 'staff' : 'datetime') : 'service',
+  )
 
   const track = React.useCallback(
     (s: string) => {
       if (sent.current.has(s)) return
       sent.current.add(s)
-      const body = JSON.stringify({ step: s, src: attribution.src, utmSource: attribution.utmSource, utmCampaign: attribution.utmCampaign, referrerHost: referrerHost() })
+      const body = JSON.stringify({
+        step: s,
+        src: attribution.src,
+        utmSource: attribution.utmSource,
+        utmCampaign: attribution.utmCampaign,
+        referrerHost: referrerHost(),
+      })
       try {
         const url = `/api/public/${business.slug}/events`
         const queued = navigator.sendBeacon?.(url, new Blob([body], { type: 'application/json' }))
-        if (!queued) void fetch(url, { method: 'POST', body, keepalive: true, headers: { 'content-type': 'application/json' } })
+        if (!queued)
+          void fetch(url, {
+            method: 'POST',
+            body,
+            keepalive: true,
+            headers: { 'content-type': 'application/json' },
+          })
       } catch {
         // analytics must never break booking
       }
@@ -99,7 +177,9 @@ export function BookingFlow({
     setStep(next)
     const f = FUNNEL[next]
     if (f) track(f)
-    requestAnimationFrame(() => topRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }))
+    requestAnimationFrame(() =>
+      topRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }),
+    )
   }
 
   const fetchRange = React.useCallback(
@@ -110,7 +190,9 @@ export function BookingFlow({
         p.set('from', from)
         p.set('to', to)
       }
-      const res = await fetch(`/api/public/${business.slug}/availability?${p}`, { cache: 'no-store' })
+      const res = await fetch(`/api/public/${business.slug}/availability?${p}`, {
+        cache: 'no-store',
+      })
       const json = await res.json()
       if (!json.ok) throw new Error(json.error ?? messages.errors.internal)
       return json.data
@@ -168,7 +250,9 @@ export function BookingFlow({
       }
       setFormError(json.error ?? messages.errors.internal)
     } catch {
-      setFormError('We couldn’t reach the server. Check your connection and try again — nothing has been booked yet.')
+      setFormError(
+        'We couldn’t reach the server. Check your connection and try again — nothing has been booked yet.',
+      )
     } finally {
       setSubmitting(false)
     }
@@ -178,9 +262,12 @@ export function BookingFlow({
     const e: Record<string, string> = {}
     if (!details.firstName.trim()) e.firstName = 'Enter your first name.'
     if (!details.lastName.trim()) e.lastName = 'Enter your last name.'
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(details.email.trim())) e.email = 'Enter a valid email address.'
-    if (rules.phoneRequirement === 'required' && !details.phone.trim()) e.phone = 'Enter your phone number.'
-    else if (details.phone.trim() && !/^[+()\d\s.-]{6,40}$/.test(details.phone.trim())) e.phone = 'Enter a valid phone number.'
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(details.email.trim()))
+      e.email = 'Enter a valid email address.'
+    if (rules.phoneRequirement === 'required' && !details.phone.trim())
+      e.phone = 'Enter your phone number.'
+    else if (details.phone.trim() && !/^[+()\d\s.-]{6,40}$/.test(details.phone.trim()))
+      e.phone = 'Enter a valid phone number.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -202,7 +289,9 @@ export function BookingFlow({
     return (
       <div className="rounded-2xl border border-dashed border-border-strong bg-surface p-8 text-center">
         <p className="font-medium">No services are available to book online right now.</p>
-        <p className="mt-1 text-sm text-muted-foreground">Please contact {business.name} directly.</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Please contact {business.name} directly.
+        </p>
       </div>
     )
   }
@@ -214,9 +303,22 @@ export function BookingFlow({
           <ol className="flex items-center gap-1.5">
             {steps.map((s, i) => (
               <li key={s} className="flex min-w-0 flex-1 flex-col gap-1.5">
-                <span className={cn('h-1 rounded-full transition-colors duration-300', i <= stepIndex ? 'bg-primary' : 'bg-surface-3')} />
-                <span className={cn('truncate text-[11px] font-medium sm:text-xs', i === stepIndex ? 'text-foreground' : 'text-subtle-foreground')} aria-current={i === stepIndex ? 'step' : undefined}>
-                  <span className="sr-only">Step {i + 1} of {steps.length}: </span>
+                <span
+                  className={cn(
+                    'h-1 rounded-full transition-colors duration-300',
+                    i <= stepIndex ? 'bg-primary' : 'bg-surface-3',
+                  )}
+                />
+                <span
+                  className={cn(
+                    'truncate text-[11px] font-medium sm:text-xs',
+                    i === stepIndex ? 'text-foreground' : 'text-subtle-foreground',
+                  )}
+                  aria-current={i === stepIndex ? 'step' : undefined}
+                >
+                  <span className="sr-only">
+                    Step {i + 1} of {steps.length}:{' '}
+                  </span>
                   {labels[s]}
                 </span>
               </li>
@@ -250,12 +352,16 @@ export function BookingFlow({
                   setDate(null)
                   setStart(null)
                   track('service')
-                  const hasStaffStep = rules.staffSelection !== 'hidden' && staff.filter((m) => s.staffIds.includes(m.id)).length > 1
+                  const hasStaffStep =
+                    rules.staffSelection !== 'hidden' &&
+                    staff.filter((m) => s.staffIds.includes(m.id)).length > 1
                   setDirection(1)
                   setStep(hasStaffStep ? 'staff' : 'datetime')
                   if (hasStaffStep) track('staff')
                   else track('date')
-                  requestAnimationFrame(() => topRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }))
+                  requestAnimationFrame(() =>
+                    topRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }),
+                  )
                 }}
               />
             </div>
@@ -265,7 +371,11 @@ export function BookingFlow({
             <div>
               <BackButton onClick={() => go('service')} />
               <StepTitle id="step-staff">Who would you like to see?</StepTitle>
-              <div role="radiogroup" aria-labelledby="step-staff" className="grid gap-2.5 sm:grid-cols-2">
+              <div
+                role="radiogroup"
+                aria-labelledby="step-staff"
+                className="grid gap-2.5 sm:grid-cols-2"
+              >
                 {rules.staffSelection !== 'required' && (
                   <ChoiceCard
                     checked={staffId === null}
@@ -274,7 +384,11 @@ export function BookingFlow({
                       setDate(null)
                       go('datetime')
                     }}
-                    icon={<span className="grid size-10 place-items-center rounded-full bg-primary-soft text-primary"><Users className="size-5" /></span>}
+                    icon={
+                      <span className="grid size-10 place-items-center rounded-full bg-primary-soft text-primary">
+                        <Users className="size-5" />
+                      </span>
+                    }
                     title={messages.booking.anyStaff}
                     subtitle={messages.booking.anyStaffHint}
                   />
@@ -288,7 +402,14 @@ export function BookingFlow({
                       setDate(null)
                       go('datetime')
                     }}
-                    icon={<Avatar name={m.name} src={m.avatarUrl} color={m.color} className="size-10 text-xs" />}
+                    icon={
+                      <Avatar
+                        name={m.name}
+                        src={m.avatarUrl}
+                        color={m.color}
+                        className="size-10 text-xs"
+                      />
+                    }
                     title={m.name}
                     subtitle={m.title ?? undefined}
                   />
@@ -325,7 +446,12 @@ export function BookingFlow({
                 locale={locale}
               />
               <StickyAction>
-                <Button size="lg" className="w-full sm:w-auto" disabled={!start} onClick={() => go('details')}>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  disabled={!start}
+                  onClick={() => go('details')}
+                >
                   Continue <ChevronRight />
                 </Button>
               </StickyAction>
@@ -337,7 +463,9 @@ export function BookingFlow({
               noValidate
               onSubmit={(e) => {
                 e.preventDefault()
-                honeypot.current = (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)?.value ?? ''
+                honeypot.current =
+                  (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)
+                    ?.value ?? ''
                 if (validateDetails()) go('review')
               }}
             >
@@ -345,21 +473,72 @@ export function BookingFlow({
               <StepTitle id="step-details">Your details</StepTitle>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="First name" htmlFor="firstName" error={errors.firstName}>
-                  <Input autoComplete="given-name" value={details.firstName} onChange={(e) => setDetails({ ...details, firstName: e.target.value })} maxLength={80} required />
+                  <Input
+                    autoComplete="given-name"
+                    value={details.firstName}
+                    onChange={(e) => setDetails({ ...details, firstName: e.target.value })}
+                    maxLength={80}
+                    required
+                  />
                 </Field>
                 <Field label="Last name" htmlFor="lastName" error={errors.lastName}>
-                  <Input autoComplete="family-name" value={details.lastName} onChange={(e) => setDetails({ ...details, lastName: e.target.value })} maxLength={80} required />
+                  <Input
+                    autoComplete="family-name"
+                    value={details.lastName}
+                    onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+                    maxLength={80}
+                    required
+                  />
                 </Field>
-                <Field label="Email" htmlFor="email" error={errors.email} hint="We’ll send your confirmation here." className="sm:col-span-2">
-                  <Input type="email" inputMode="email" autoComplete="email" value={details.email} onChange={(e) => setDetails({ ...details, email: e.target.value })} maxLength={254} required />
+                <Field
+                  label="Email"
+                  htmlFor="email"
+                  error={errors.email}
+                  hint="We’ll send your confirmation here."
+                  className="sm:col-span-2"
+                >
+                  <Input
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    value={details.email}
+                    onChange={(e) => setDetails({ ...details, email: e.target.value })}
+                    maxLength={254}
+                    required
+                  />
                 </Field>
                 {rules.phoneRequirement !== 'hidden' && (
-                  <Field label="Phone" htmlFor="phone" error={errors.phone} optional={rules.phoneRequirement === 'optional'} hint="Only used by the business if they need to reach you." className="sm:col-span-2">
-                    <Input type="tel" inputMode="tel" autoComplete="tel" value={details.phone} onChange={(e) => setDetails({ ...details, phone: e.target.value })} maxLength={40} required={rules.phoneRequirement === 'required'} />
+                  <Field
+                    label="Phone"
+                    htmlFor="phone"
+                    error={errors.phone}
+                    optional={rules.phoneRequirement === 'optional'}
+                    hint="Only used by the business if they need to reach you."
+                    className="sm:col-span-2"
+                  >
+                    <Input
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      value={details.phone}
+                      onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+                      maxLength={40}
+                      required={rules.phoneRequirement === 'required'}
+                    />
                   </Field>
                 )}
-                <Field label="Anything we should know?" htmlFor="message" optional className="sm:col-span-2">
-                  <Textarea value={details.message} onChange={(e) => setDetails({ ...details, message: e.target.value })} maxLength={1000} rows={3} />
+                <Field
+                  label="Anything we should know?"
+                  htmlFor="message"
+                  optional
+                  className="sm:col-span-2"
+                >
+                  <Textarea
+                    value={details.message}
+                    onChange={(e) => setDetails({ ...details, message: e.target.value })}
+                    maxLength={1000}
+                    rows={3}
+                  />
                 </Field>
                 {/* Honeypot: hidden from people and assistive tech; bots fill it. */}
                 <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -369,7 +548,11 @@ export function BookingFlow({
               </div>
               <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground">
                 {interpolate(messages.booking.privacyNote, { business: business.name })} See our{' '}
-                <Link href="/privacy" className="underline underline-offset-2" target={compact ? '_blank' : undefined}>
+                <Link
+                  href="/privacy"
+                  className="underline underline-offset-2"
+                  target={compact ? '_blank' : undefined}
+                >
                   privacy notice
                 </Link>
                 .
@@ -390,7 +573,9 @@ export function BookingFlow({
               <Summary
                 business={business}
                 service={service}
-                staffName={selectedStaff?.name ?? (serviceStaff.length === 1 ? serviceStaff[0]!.name : null)}
+                staffName={
+                  selectedStaff?.name ?? (serviceStaff.length === 1 ? serviceStaff[0]!.name : null)
+                }
                 start={start}
                 customer={`${details.firstName} ${details.lastName}`}
                 email={details.email}
@@ -399,14 +584,23 @@ export function BookingFlow({
                 <div className="mt-4 rounded-xl bg-surface-2 px-4 py-3 text-[13px] leading-relaxed text-muted-foreground">
                   {rules.allowCustomerCancel && (
                     <p>
-                      Free cancellation online until {cancelDeadlineText(rules.cancellationDeadlineMinutes)} before your appointment.
+                      Free cancellation online until{' '}
+                      {cancelDeadlineText(rules.cancellationDeadlineMinutes)} before your
+                      appointment.
                     </p>
                   )}
-                  {business.bookingPolicy && <p className="mt-1 whitespace-pre-line">{business.bookingPolicy}</p>}
+                  {business.bookingPolicy && (
+                    <p className="mt-1 whitespace-pre-line">{business.bookingPolicy}</p>
+                  )}
                 </div>
               )}
               <StickyAction>
-                <Button size="lg" className="w-full sm:w-auto" loading={submitting} onClick={submit}>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  loading={submitting}
+                  onClick={submit}
+                >
                   {rules.requiresConfirmation ? 'Request booking' : 'Confirm booking'}
                 </Button>
               </StickyAction>
@@ -462,7 +656,11 @@ function StepTitle({ id, children }: { id: string; children: React.ReactNode }) 
 
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
-    <button type="button" onClick={onClick} className="-ml-1 mb-2 inline-flex h-9 items-center gap-1 rounded-lg px-1.5 text-sm font-medium text-muted-foreground hover:text-foreground">
+    <button
+      type="button"
+      onClick={onClick}
+      className="mb-2 -ml-1 inline-flex h-9 items-center gap-1 rounded-lg px-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+    >
       <ArrowLeft className="size-4" /> Back
     </button>
   )
@@ -477,7 +675,19 @@ function StickyAction({ children }: { children: React.ReactNode }) {
   )
 }
 
-function ChoiceCard({ checked, onClick, icon, title, subtitle }: { checked: boolean; onClick: () => void; icon: React.ReactNode; title: string; subtitle?: string }) {
+function ChoiceCard({
+  checked,
+  onClick,
+  icon,
+  title,
+  subtitle,
+}: {
+  checked: boolean
+  onClick: () => void
+  icon: React.ReactNode
+  title: string
+  subtitle?: string
+}) {
   return (
     <button
       type="button"
@@ -492,7 +702,9 @@ function ChoiceCard({ checked, onClick, icon, title, subtitle }: { checked: bool
       {icon}
       <span className="min-w-0 flex-1">
         <span className="block font-medium">{title}</span>
-        {subtitle && <span className="block truncate text-[13px] text-muted-foreground">{subtitle}</span>}
+        {subtitle && (
+          <span className="block truncate text-[13px] text-muted-foreground">{subtitle}</span>
+        )}
       </span>
       <ChevronRight className="size-4 text-subtle-foreground transition-transform group-hover:translate-x-0.5" />
     </button>
@@ -515,14 +727,28 @@ function ServiceList({
   onSelect: (s: FlowService) => void
 }) {
   const groups = [
-    ...categories.map((c) => ({ id: c.id, name: c.name, items: services.filter((s) => s.categoryId === c.id) })),
-    { id: 'other', name: categories.length ? 'Other services' : '', items: services.filter((s) => !s.categoryId || !categories.some((c) => c.id === s.categoryId)) },
+    ...categories.map((c) => ({
+      id: c.id,
+      name: c.name,
+      items: services.filter((s) => s.categoryId === c.id),
+    })),
+    {
+      id: 'other',
+      name: categories.length ? 'Other services' : '',
+      items: services.filter(
+        (s) => !s.categoryId || !categories.some((c) => c.id === s.categoryId),
+      ),
+    },
   ].filter((g) => g.items.length > 0)
   return (
     <div className="grid gap-6">
       {groups.map((g) => (
         <div key={g.id}>
-          {g.name && <h3 className="mb-2.5 text-xs font-semibold tracking-wide text-muted-foreground uppercase">{g.name}</h3>}
+          {g.name && (
+            <h3 className="mb-2.5 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+              {g.name}
+            </h3>
+          )}
           <ul className="grid gap-2.5">
             {g.items.map((s) => (
               <li key={s.id}>
@@ -537,15 +763,24 @@ function ServiceList({
                 >
                   <span className="min-w-0 flex-1">
                     <span className="block font-semibold">{s.name}</span>
-                    {s.description && <span className="mt-0.5 line-clamp-2 block text-sm text-muted-foreground">{s.description}</span>}
+                    {s.description && (
+                      <span className="mt-0.5 line-clamp-2 block text-sm text-muted-foreground">
+                        {s.description}
+                      </span>
+                    )}
                     <span className="mt-2 flex items-center gap-3 text-[13px] text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
-                        <Clock className="size-3.5" aria-hidden /> {formatDuration(s.durationMinutes)}
+                        <Clock className="size-3.5" aria-hidden />{' '}
+                        {formatDuration(s.durationMinutes)}
                       </span>
                     </span>
                   </span>
                   <span className="flex shrink-0 flex-col items-end gap-2">
-                    {s.priceCents != null && <span className="font-semibold tabular">{s.priceCents === 0 ? 'Free' : formatMoney(s.priceCents, currency, locale)}</span>}
+                    {s.priceCents != null && (
+                      <span className="tabular font-semibold">
+                        {s.priceCents === 0 ? 'Free' : formatMoney(s.priceCents, currency, locale)}
+                      </span>
+                    )}
                     <span className="inline-flex h-8 items-center rounded-lg bg-primary-soft px-3 text-[13px] font-medium text-primary-soft-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       Book
                     </span>
@@ -560,16 +795,44 @@ function ServiceList({
   )
 }
 
-function Summary({ business, service, staffName, start, customer, email }: { business: FlowBusiness; service: FlowService; staffName: string | null; start: string; customer?: string; email?: string }) {
+function Summary({
+  business,
+  service,
+  staffName,
+  start,
+  customer,
+  email,
+}: {
+  business: FlowBusiness
+  service: FlowService
+  staffName: string | null
+  start: string
+  customer?: string
+  email?: string
+}) {
   const end = new Date(new Date(start).getTime() + service.durationMinutes * 60_000)
   const tz = business.timezone
   const rows: Array<[React.ReactNode, string, string]> = [
-    [<Check key="s" className="size-4" />, 'Service', `${service.name} · ${formatDuration(service.durationMinutes)}`],
-    [<CalendarPlus key="d" className="size-4" />, 'When', `${formatDateLong(start, tz, business.locale)}, ${formatTime(start, tz, business.locale)} – ${formatTime(end, tz, business.locale)} (${formatTimeZoneName(start, tz, business.locale)})`],
+    [
+      <Check key="s" className="size-4" />,
+      'Service',
+      `${service.name} · ${formatDuration(service.durationMinutes)}`,
+    ],
+    [
+      <CalendarPlus key="d" className="size-4" />,
+      'When',
+      `${formatDateLong(start, tz, business.locale)}, ${formatTime(start, tz, business.locale)} – ${formatTime(end, tz, business.locale)} (${formatTimeZoneName(start, tz, business.locale)})`,
+    ],
   ]
   if (staffName) rows.push([<User2 key="w" className="size-4" />, 'With', staffName])
-  if (customer?.trim()) rows.push([<Mail key="c" className="size-4" />, 'Booked for', `${customer.trim()}${email ? ` · ${email}` : ''}`])
-  if (business.address.length) rows.push([<MapPin key="a" className="size-4" />, 'Where', business.address.join(', ')])
+  if (customer?.trim())
+    rows.push([
+      <Mail key="c" className="size-4" />,
+      'Booked for',
+      `${customer.trim()}${email ? ` · ${email}` : ''}`,
+    ])
+  if (business.address.length)
+    rows.push([<MapPin key="a" className="size-4" />, 'Where', business.address.join(', ')])
   return (
     <dl className="divide-y divide-border rounded-2xl border border-border bg-surface shadow-xs">
       {rows.map(([icon, k, v]) => (
@@ -584,44 +847,99 @@ function Summary({ business, service, staffName, start, customer, email }: { bus
       {service.priceCents != null && service.priceCents > 0 && (
         <div className="flex items-center justify-between px-4 py-3">
           <dt className="text-sm text-muted-foreground">Price</dt>
-          <dd className="font-semibold tabular">{formatMoney(service.priceCents, business.currency, business.locale)}</dd>
+          <dd className="tabular font-semibold">
+            {formatMoney(service.priceCents, business.currency, business.locale)}
+          </dd>
         </div>
       )}
     </dl>
   )
 }
 
-function Success({ business, service, start, staffName, email, result, onBookAnother }: { business: FlowBusiness; service: FlowService; start: string; staffName: string | null; email: string; result: Result; onBookAnother: () => void }) {
+function Success({
+  business,
+  service,
+  start,
+  staffName,
+  email,
+  result,
+  onBookAnother,
+}: {
+  business: FlowBusiness
+  service: FlowService
+  start: string
+  staffName: string | null
+  email: string
+  result: Result
+  onBookAnother: () => void
+}) {
   const pending = result.status === 'pending'
   const end = new Date(new Date(start).getTime() + service.durationMinutes * 60_000)
-  const ev = { title: `${service.name} — ${business.name}`, start: new Date(start), end, location: business.address.join(', '), details: `Booking reference ${result.reference}` }
+  const ev = {
+    title: `${service.name} — ${business.name}`,
+    start: new Date(start),
+    end,
+    location: business.address.join(', '),
+    details: `Booking reference ${result.reference}`,
+  }
   const manageHref = `/manage/${result.manageToken}`
   return (
     <div className="flex flex-col items-center text-center">
       <SuccessCheck pending={pending} />
-      <motion.h2 initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-5 font-display text-2xl font-bold sm:text-3xl" tabIndex={-1}>
+      <motion.h2
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35 }}
+        className="mt-5 font-display text-2xl font-bold sm:text-3xl"
+        tabIndex={-1}
+      >
         {pending ? messages.booking.pendingTitle : messages.booking.confirmTitle}
       </motion.h2>
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="mt-2 max-w-md text-muted-foreground" role="status">
-        {pending ? interpolate(messages.booking.pendingBody, { business: business.name }) : interpolate(messages.booking.confirmedBody, { email })}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.45 }}
+        className="mt-2 max-w-md text-muted-foreground"
+        role="status"
+      >
+        {pending
+          ? interpolate(messages.booking.pendingBody, { business: business.name })
+          : interpolate(messages.booking.confirmedBody, { email })}
       </motion.p>
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }} className="mt-6 w-full max-w-lg text-left">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.55 }}
+        className="mt-6 w-full max-w-lg text-left"
+      >
         <Summary business={business} service={service} staffName={staffName} start={start} />
         <p className="mt-3 text-center text-[13px] text-muted-foreground">
-          Reference <span className="font-mono font-semibold text-foreground">{result.reference}</span>
+          Reference{' '}
+          <span className="font-mono font-semibold text-foreground">{result.reference}</span>
         </p>
       </motion.div>
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="mt-6 flex w-full max-w-lg flex-col gap-2.5">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7 }}
+        className="mt-6 flex w-full max-w-lg flex-col gap-2.5"
+      >
         {!pending && (
-          <p className="text-left text-xs font-medium text-muted-foreground">{messages.email.addToCalendar}</p>
+          <p className="text-left text-xs font-medium text-muted-foreground">
+            {messages.email.addToCalendar}
+          </p>
         )}
         {!pending && (
           <div className="grid grid-cols-3 gap-2">
             <Button asChild variant="secondary" size="sm">
-              <a href={googleCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">Google</a>
+              <a href={googleCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
+                Google
+              </a>
             </Button>
             <Button asChild variant="secondary" size="sm">
-              <a href={outlookCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">Outlook</a>
+              <a href={outlookCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
+                Outlook
+              </a>
             </Button>
             <Button asChild variant="secondary" size="sm">
               <a href={`${manageHref}/ics`}>Apple (.ics)</a>

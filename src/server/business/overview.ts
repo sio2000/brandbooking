@@ -17,9 +17,24 @@ export async function getOverview(ctx: TenantContext) {
   const staffScope = own ? sql`AND staff_id = ${own}` : sql``
 
   const [todays, upcoming, [week], attention, [newCustomers]] = await Promise.all([
-    listAppointments(ctx, { from: dayStart, to: dayEnd, statuses: ['pending', 'confirmed', 'completed', 'no_show', 'cancelled'] }),
-    listAppointments(ctx, { from: new Date(), to: new Date(Date.now() + 14 * 86_400_000), statuses: ['pending', 'confirmed'], limit: 8 }),
-    db().execute<{ bookings: number; cancelled: number; no_show: number; revenue_cents: number; created_today: number }>(sql`
+    listAppointments(ctx, {
+      from: dayStart,
+      to: dayEnd,
+      statuses: ['pending', 'confirmed', 'completed', 'no_show', 'cancelled'],
+    }),
+    listAppointments(ctx, {
+      from: new Date(),
+      to: new Date(Date.now() + 14 * 86_400_000),
+      statuses: ['pending', 'confirmed'],
+      limit: 8,
+    }),
+    db().execute<{
+      bookings: number
+      cancelled: number
+      no_show: number
+      revenue_cents: number
+      created_today: number
+    }>(sql`
       SELECT
         count(*) FILTER (WHERE status <> 'cancelled' AND starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()})::int AS bookings,
         count(*) FILTER (WHERE status = 'cancelled' AND starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()})::int AS cancelled,
@@ -35,27 +50,62 @@ export async function getOverview(ctx: TenantContext) {
       : db()
           .select({ n: sql<number>`count(*)::int` })
           .from(customers)
-          .where(and(eq(customers.businessId, ctx.business.id), gte(customers.createdAt, weekStart), lt(customers.createdAt, weekEnd))),
+          .where(
+            and(
+              eq(customers.businessId, ctx.business.id),
+              gte(customers.createdAt, weekStart),
+              lt(customers.createdAt, weekEnd),
+            ),
+          ),
   ])
-  return { now: Date.now(), today, todays, upcoming, week: week!, attention, newCustomersThisWeek: newCustomers?.n ?? 0 }
+  return {
+    now: Date.now(),
+    today,
+    todays,
+    upcoming,
+    week: week!,
+    attention,
+    newCustomersThisWeek: newCustomers?.n ?? 0,
+  }
 }
 
 export async function recentActivity(ctx: TenantContext, limit = 12) {
   const own = ownStaffFilter(ctx)
   if (own) {
     return db()
-      .select({ id: appointmentEvents.id, action: appointmentEvents.event, createdAt: appointmentEvents.createdAt, actor: appointmentEvents.actor, actorName: users.name, entityId: appointmentEvents.appointmentId })
+      .select({
+        id: appointmentEvents.id,
+        action: appointmentEvents.event,
+        createdAt: appointmentEvents.createdAt,
+        actor: appointmentEvents.actor,
+        actorName: users.name,
+        entityId: appointmentEvents.appointmentId,
+      })
       .from(appointmentEvents)
       .leftJoin(users, eq(users.id, appointmentEvents.actorUserId))
-      .where(and(eq(appointmentEvents.businessId, ctx.business.id), sql`${appointmentEvents.appointmentId} IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND staff_id = ${own})`))
+      .where(
+        and(
+          eq(appointmentEvents.businessId, ctx.business.id),
+          sql`${appointmentEvents.appointmentId} IN (SELECT id FROM appointments WHERE business_id = ${ctx.business.id} AND staff_id = ${own})`,
+        ),
+      )
       .orderBy(desc(appointmentEvents.createdAt))
       .limit(limit)
   }
   return db()
-    .select({ id: auditLogs.id, action: auditLogs.action, createdAt: auditLogs.createdAt, actor: auditLogs.actor, actorName: users.name, entityId: auditLogs.entityId })
+    .select({
+      id: auditLogs.id,
+      action: auditLogs.action,
+      createdAt: auditLogs.createdAt,
+      actor: auditLogs.actor,
+      actorName: users.name,
+      entityId: auditLogs.entityId,
+    })
     .from(auditLogs)
     .leftJoin(users, eq(users.id, auditLogs.actorUserId))
-    .where(and(eq(auditLogs.businessId, ctx.business.id), sql`${auditLogs.action} NOT LIKE 'user.%'`))
+    .where(
+      and(eq(auditLogs.businessId, ctx.business.id), sql`${auditLogs.action} NOT LIKE 'user.%'`),
+    )
     .orderBy(desc(auditLogs.createdAt))
     .limit(limit)
 }
@@ -71,15 +121,28 @@ export async function inbox(ctx: TenantContext, limit = 30) {
     db()
       .select({ n: sql<number>`count(*)::int` })
       .from(inboxItems)
-      .where(and(eq(inboxItems.businessId, ctx.business.id), eq(inboxItems.userId, ctx.user.id), sql`${inboxItems.readAt} IS NULL`)),
+      .where(
+        and(
+          eq(inboxItems.businessId, ctx.business.id),
+          eq(inboxItems.userId, ctx.user.id),
+          sql`${inboxItems.readAt} IS NULL`,
+        ),
+      ),
   ])
   return { items, unread: unread?.n ?? 0 }
 }
 
 export async function markInboxItemsRead(ctx: TenantContext, ids?: string[]) {
-  const conds = [eq(inboxItems.businessId, ctx.business.id), eq(inboxItems.userId, ctx.user.id), sql`${inboxItems.readAt} IS NULL`]
+  const conds = [
+    eq(inboxItems.businessId, ctx.business.id),
+    eq(inboxItems.userId, ctx.user.id),
+    sql`${inboxItems.readAt} IS NULL`,
+  ]
   if (ids?.length) conds.push(inArray(inboxItems.id, ids))
-  await db().update(inboxItems).set({ readAt: new Date() }).where(and(...conds))
+  await db()
+    .update(inboxItems)
+    .set({ readAt: new Date() })
+    .where(and(...conds))
 }
 
 /** Human-readable activity labels for the audit timeline. */

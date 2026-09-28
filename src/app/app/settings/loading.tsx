@@ -11,7 +11,10 @@ export default function Loading() {
       </div>
       <Card className="divide-y divide-border p-5">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="grid grid-cols-1 gap-4 py-6 first:pt-0 last:pb-0 md:grid-cols-[15rem_1fr] md:gap-8">
+          <div
+            key={i}
+            className="grid grid-cols-1 gap-4 py-6 first:pt-0 last:pb-0 md:grid-cols-[15rem_1fr] md:gap-8"
+          >
             <div className="grid grid-cols-1 content-start gap-2">
               <Skeleton className="h-4 w-28" />
               <Skeleton className="h-3 w-44" />

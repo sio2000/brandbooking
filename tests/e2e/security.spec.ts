@@ -1,12 +1,35 @@
+import http from 'node:http'
+import type { AddressInfo } from 'node:net'
 import { test, expect } from './support/test'
 import { and, eq } from 'drizzle-orm'
-import { appointmentById, appointments, appointmentsForEmail, BIZ_A, BIZ_B, book, businessBySlug, customerByEmail, CUSTOMER_B, db, freeSlot, loginAs, PASSWORD, serviceByName, SERVICES_A, uniqueCustomer, USERS } from './support/app'
-import { E2E_BASE_URL, E2E_PORT } from './support/env'
+import {
+  appointmentById,
+  appointments,
+  appointmentsForEmail,
+  BIZ_A,
+  BIZ_B,
+  businessBySlug,
+  customerByEmail,
+  CUSTOMER_B,
+  db,
+  freeSlot,
+  loginAs,
+  PASSWORD,
+  resetLoginState,
+  serviceByName,
+  SERVICES_A,
+  uniqueCustomer,
+  USERS,
+} from './support/app'
+import { E2E_BASE_URL } from './support/env'
 
 async function businessBFixtures() {
   const b = await businessBySlug(BIZ_B.slug)
   const customer = (await customerByEmail(b.id, CUSTOMER_B.email))!
-  const [appt] = await db().select().from(appointments).where(and(eq(appointments.businessId, b.id), eq(appointments.customerId, customer.id)))
+  const [appt] = await db()
+    .select()
+    .from(appointments)
+    .where(and(eq(appointments.businessId, b.id), eq(appointments.customerId, customer.id)))
   return { business: b, customer, appointment: appt! }
 }
 
@@ -19,7 +42,10 @@ test.describe('access control', () => {
     }
   })
 
-  test("an owner cannot open another business's appointment or customer by URL", async ({ page, context }) => {
+  test("an owner cannot open another business's appointment or customer by URL", async ({
+    page,
+    context,
+  }) => {
     const b = await businessBFixtures()
     await loginAs(context, USERS.ownerA.email)
     // These pages stream behind a loading.tsx boundary, so Next.js sends the
@@ -40,11 +66,19 @@ test.describe('access control', () => {
     await expectNotFound(`/app/customers/${b.customer.id}`)
   })
 
-  test("exports only ever contain the signed-in owner's own data", async ({ page, context, request }) => {
+  test("exports only ever contain the signed-in owner's own data", async ({
+    page,
+    context,
+    request,
+  }) => {
     const b = await businessBFixtures()
     await loginAs(context, USERS.ownerA.email)
     await context.addCookies([{ name: 'hn_business', value: b.business.id, url: E2E_BASE_URL }])
-    for (const path of ['/app/export/customers', '/app/export/appointments', '/app/export/business']) {
+    for (const path of [
+      '/app/export/customers',
+      '/app/export/appointments',
+      '/app/export/business',
+    ]) {
       const res = await page.request.get(path)
       expect(res.status(), path).toBe(200)
       const body = await res.text()
@@ -64,7 +98,9 @@ test.describe('access control', () => {
     const ownerPage = await owner.newPage()
     const res = await ownerPage.goto('/admin')
     expect(res?.status()).toBe(404)
-    await expect(ownerPage.getByRole('heading', { name: 'We couldn’t find that page' })).toBeVisible()
+    await expect(
+      ownerPage.getByRole('heading', { name: 'We couldn’t find that page' }),
+    ).toBeVisible()
     await owner.close()
 
     const admin = await browser.newContext()
@@ -78,7 +114,10 @@ test.describe('access control', () => {
 })
 
 test.describe('security headers', () => {
-  test('pages carry a nonce-based CSP and deny framing; the embed widget allows it', async ({ page, context }) => {
+  test('pages carry a nonce-based CSP and deny framing; the embed widget allows it', async ({
+    page,
+    context,
+  }) => {
     const res = await page.goto('/')
     const csp = res!.headers()['content-security-policy']!
     const nonce = csp.match(/'nonce-([^']+)'/)?.[1]
@@ -108,24 +147,31 @@ test.describe('security headers', () => {
   })
 
   test('a third-party site can frame the booking widget but not the app', async ({ page }) => {
-    // A different origin (127.0.0.1 vs localhost) standing in for a customer's
-    // website; loopback keeps Chrome's local-network protections out of the way.
-    const partner = `http://127.0.0.1:${E2E_PORT}/__partner-site__`
-    await page.route(partner, (route) =>
-      route.fulfill({
-        contentType: 'text/html',
-        body: `<!doctype html><title>Partner</title>
-          <iframe id="widget" title="Booking widget" src="${E2E_BASE_URL}/embed/${BIZ_A.slug}"></iframe>
-          <iframe id="login" title="Login" src="${E2E_BASE_URL}/login" onload="document.body.dataset.login='loaded'"></iframe>`,
-      }),
+    // A real server on another origin stands in for a customer's website.
+    const html = `<!doctype html><title>Partner</title>
+      <iframe id="widget" title="Booking widget" src="${E2E_BASE_URL}/embed/${BIZ_A.slug}" onload="document.body.dataset.widget='loaded'"></iframe>
+      <iframe id="login" title="Login" src="${E2E_BASE_URL}/login" onload="document.body.dataset.login='loaded'"></iframe>`
+    const server = http.createServer((_req, res) =>
+      res.writeHead(200, { 'content-type': 'text/html' }).end(html),
     )
-    await page.goto(partner, { waitUntil: 'domcontentloaded' })
-    await expect(page.frameLocator('#widget').getByRole('heading', { name: 'Choose a service' })).toBeVisible()
-    await expect(page.locator('body')).toHaveAttribute('data-login', 'loaded')
-    const loginFrame = page.frames().find((f) => f !== page.mainFrame() && !f.url().includes('/embed/'))
-    expect(loginFrame).toBeDefined()
-    expect(loginFrame!.url()).not.toContain('/login')
-    await expect(page.frameLocator('#login').getByRole('heading', { name: 'Welcome back' })).toHaveCount(0)
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+    try {
+      await page.goto(`http://127.0.0.1:${(server.address() as AddressInfo).port}/`)
+      await expect(
+        page.frameLocator('#widget').getByRole('heading', { name: 'Choose a service' }),
+      ).toBeVisible()
+      await expect(page.locator('body')).toHaveAttribute('data-login', 'loaded')
+      const loginFrame = page
+        .frames()
+        .find((f) => f !== page.mainFrame() && !f.url().includes('/embed/'))
+      expect(loginFrame).toBeDefined()
+      expect(loginFrame!.url()).not.toContain('/login')
+      await expect(
+        page.frameLocator('#login').getByRole('heading', { name: 'Welcome back' }),
+      ).toHaveCount(0)
+    } finally {
+      server.close()
+    }
   })
 
   test('the session cookie is HttpOnly and SameSite=Lax @mobile', async ({ page, context }) => {
@@ -151,25 +197,43 @@ test.describe('request forgery and abuse', () => {
     const svc = await serviceByName(business.id, SERVICES_A.trim)
     const { start } = await freeSlot(BIZ_A.slug, SERVICES_A.trim, { fromDaysAhead: 6 })
     const customer = uniqueCustomer('Eve')
-    const payload = { serviceId: svc.id, staffId: null, start: start.toISOString(), firstName: customer.firstName, lastName: customer.lastName, email: customer.email, phone: customer.phone }
+    const payload = {
+      serviceId: svc.id,
+      staffId: null,
+      start: start.toISOString(),
+      firstName: customer.firstName,
+      lastName: customer.lastName,
+      email: customer.email,
+      phone: customer.phone,
+    }
 
-    const foreign = await request.post(`/api/public/${BIZ_A.slug}/bookings`, { headers: { origin: 'https://evil.example' }, data: payload })
+    const foreign = await request.post(`/api/public/${BIZ_A.slug}/bookings`, {
+      headers: { origin: 'https://evil.example' },
+      data: payload,
+    })
     expect(foreign.status()).toBe(403)
     expect(await foreign.json()).toMatchObject({ ok: false, code: 'forbidden' })
     expect(await appointmentsForEmail(customer.email)).toHaveLength(0)
 
     // Same request from our own origin succeeds, so the Origin check is what blocked it.
-    const own = await request.post(`/api/public/${BIZ_A.slug}/bookings`, { headers: { origin: E2E_BASE_URL }, data: payload })
+    const own = await request.post(`/api/public/${BIZ_A.slug}/bookings`, {
+      headers: { origin: E2E_BASE_URL },
+      data: payload,
+    })
     expect(own.status()).toBe(201)
     const { data } = (await own.json()) as { data: { manageToken: string; appointmentId: string } }
 
-    const cancel = await request.post(`/api/manage/${data.manageToken}/cancel`, { headers: { origin: 'https://evil.example' }, data: { reason: null } })
+    const cancel = await request.post(`/api/manage/${data.manageToken}/cancel`, {
+      headers: { origin: 'https://evil.example' },
+      data: { reason: null },
+    })
     expect(cancel.status()).toBe(403)
     expect((await appointmentById(data.appointmentId))!.status).toBe('confirmed')
   })
 
   test('repeated failed sign-ins are throttled', async ({ page }) => {
     const email = USERS.lockout.email
+    await resetLoginState(email)
     await page.goto('/login')
     const alert = page.getByRole('alert').filter({ hasText: /\S/ })
     // Per-email limit: 8 attempts per 15 minutes; the 9th is refused before
@@ -177,10 +241,14 @@ test.describe('request forgery and abuse', () => {
     for (let attempt = 1; attempt <= 8; attempt++) {
       await page.getByLabel('Email').fill(email)
       await page.getByLabel('Password', { exact: true }).fill(`wrong-password-${attempt}`)
-      const submitted = page.waitForResponse((r) => r.request().method() === 'POST' && new URL(r.url()).pathname === '/login')
+      const submitted = page.waitForResponse(
+        (r) => r.request().method() === 'POST' && new URL(r.url()).pathname === '/login',
+      )
       await page.getByRole('button', { name: 'Sign in' }).click()
       await submitted
-      await expect(alert).toHaveText("That email and password don't match. Check them and try again.")
+      await expect(alert).toHaveText(
+        "That email and password don't match. Check them and try again.",
+      )
     }
     await page.getByLabel('Email').fill(email)
     await page.getByLabel('Password', { exact: true }).fill(PASSWORD)

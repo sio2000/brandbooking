@@ -8,7 +8,11 @@ import { ManageBooking } from '@/components/booking/manage-booking'
 import { brandStyle } from '@/lib/color'
 import { Logo } from '@/components/brand/logo'
 
-export const metadata: Metadata = { title: 'Your booking', robots: { index: false, follow: false }, referrer: 'no-referrer' }
+export const metadata: Metadata = {
+  title: 'Your booking',
+  robots: { index: false, follow: false },
+  referrer: 'no-referrer',
+}
 
 export default async function ManagePage({ params }: PageProps<'/manage/[token]'>) {
   const { token } = await params
@@ -27,13 +31,19 @@ export default async function ManagePage({ params }: PageProps<'/manage/[token]'
           <div className="mx-auto grid size-12 place-items-center rounded-2xl bg-warning-soft text-warning">
             <AlertTriangle className="size-5" aria-hidden />
           </div>
-          <h1 className="mt-4 text-2xl font-bold">{error?.code === 'token_expired' ? 'This link has expired' : 'We couldn’t find this booking'}</h1>
+          <h1 className="mt-4 text-2xl font-bold">
+            {error?.code === 'token_expired'
+              ? 'This link has expired'
+              : 'We couldn’t find this booking'}
+          </h1>
           <p className="mt-2 text-muted-foreground">
             {error?.code === 'rate_limited'
               ? error.message
               : 'Booking links stop working 30 days after the appointment, or if they’ve been copied incompletely. Contact the business directly if you need help with your appointment.'}
           </p>
-          <Link href="/" className="mt-8 inline-block"><Logo /></Link>
+          <Link href="/" className="mt-8 inline-block">
+            <Logo />
+          </Link>
         </div>
       </main>
     )

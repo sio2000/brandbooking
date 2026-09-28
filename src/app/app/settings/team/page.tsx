@@ -5,12 +5,20 @@ import { listTeam } from '@/server/business/team'
 import { listStaff } from '@/server/business/catalog'
 import { assignableRoles } from '@/server/tenancy/permissions'
 import { formatDateShort, formatRelative } from '@/lib/format'
-import { RolesExplainer, TeamManager, type PendingInvite, type TeamMember } from '@/components/settings/team-manager'
+import {
+  RolesExplainer,
+  TeamManager,
+  type PendingInvite,
+  type TeamMember,
+} from '@/components/settings/team-manager'
 import { SettingsIntro } from '@/components/settings/section'
 
 export const metadata: Metadata = { title: 'Team & access' }
 
-function describeInvites(invites: Awaited<ReturnType<typeof listTeam>>['invites'], now = new Date()): PendingInvite[] {
+function describeInvites(
+  invites: Awaited<ReturnType<typeof listTeam>>['invites'],
+  now = new Date(),
+): PendingInvite[] {
   return invites.map((i) => ({
     id: i.id,
     email: i.email,
@@ -40,7 +48,8 @@ export default async function TeamSettingsPage() {
         title="Team & access"
         description={
           <>
-            Invite colleagues to sign in with their own login. To add someone who just takes bookings (without a login), add them under{' '}
+            Invite colleagues to sign in with their own login. To add someone who just takes
+            bookings (without a login), add them under{' '}
             <Link href="/app/staff" className="font-medium text-primary hover:underline">
               Team
             </Link>{' '}
@@ -53,7 +62,9 @@ export default async function TeamSettingsPage() {
         invites={describeInvites(invites)}
         me={{ userId: ctx.user.id, role: ctx.membership.role }}
         assignable={assignableRoles(ctx.membership.role)}
-        staff={staff.filter((s) => !s.userId).map((s) => ({ id: s.id, name: s.name, title: s.title, email: s.email }))}
+        staff={staff
+          .filter((s) => !s.userId)
+          .map((s) => ({ id: s.id, name: s.name, title: s.title, email: s.email }))}
       />
       <RolesExplainer />
     </div>

@@ -43,8 +43,10 @@ describe('csvCell', () => {
   })
 
   it('neutralises and quotes a classic DDE / HYPERLINK payload', () => {
-    expect(csvCell('=HYPERLINK("http://evil.example","click")')).toBe(`"'=HYPERLINK(""http://evil.example"",""click"")"`)
-    expect(csvCell('=cmd|\' /C calc\'!A0')).toBe(`'=cmd|' /C calc'!A0`)
+    expect(csvCell('=HYPERLINK("http://evil.example","click")')).toBe(
+      `"'=HYPERLINK(""http://evil.example"",""click"")"`,
+    )
+    expect(csvCell("=cmd|' /C calc'!A0")).toBe(`'=cmd|' /C calc'!A0`)
   })
 
   it('does not alter formula characters that are not at the start', () => {
@@ -60,7 +62,13 @@ describe('csvCell', () => {
 
 describe('toCsv', () => {
   it('starts with a UTF-8 BOM, uses CRLF and ends with CRLF', () => {
-    const out = toCsv(['A', 'B'], [[1, 2], ['x', null]])
+    const out = toCsv(
+      ['A', 'B'],
+      [
+        [1, 2],
+        ['x', null],
+      ],
+    )
     expect(out.charCodeAt(0)).toBe(0xfeff)
     expect(out.slice(1)).toBe('A,B\r\n1,2\r\nx,\r\n')
   })

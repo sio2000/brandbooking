@@ -7,7 +7,10 @@ import { getSession } from '@/server/auth/session'
 import { safeRedirectPath } from '@/lib/utils'
 import { site } from '@/lib/site'
 
-export const metadata: Metadata = { title: 'Create your account', description: `Start your ${site.trialDays}-day free trial. No card required.` }
+export const metadata: Metadata = {
+  title: 'Create your account',
+  description: `Start your ${site.trialDays}-day free trial. No card required.`,
+}
 
 export default async function SignupPage({ searchParams }: PageProps<'/signup'>) {
   const sp = await searchParams
@@ -20,7 +23,10 @@ export default async function SignupPage({ searchParams }: PageProps<'/signup'>)
       footer={
         <>
           Already have an account?{' '}
-          <Link href={next ? `/login?next=${encodeURIComponent(next)}` : '/login'} className="font-medium text-primary hover:underline">
+          <Link
+            href={next ? `/login?next=${encodeURIComponent(next)}` : '/login'}
+            className="font-medium text-primary hover:underline"
+          >
             Sign in
           </Link>
         </>

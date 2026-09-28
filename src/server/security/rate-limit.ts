@@ -31,7 +31,10 @@ export const POLICIES = {
 
 export type RateLimitResult = { ok: boolean; remaining: number; resetAt: Date }
 
-export async function checkRateLimit(key: string, policy: RateLimitPolicy): Promise<RateLimitResult> {
+export async function checkRateLimit(
+  key: string,
+  policy: RateLimitPolicy,
+): Promise<RateLimitResult> {
   const rows = await db().execute<{ count: number; reset_at: Date }>(sql`
     INSERT INTO rate_limits (key, count, reset_at)
     VALUES (${key}, 1, now() + make_interval(secs => ${policy.windowSeconds}))
@@ -42,7 +45,11 @@ export async function checkRateLimit(key: string, policy: RateLimitPolicy): Prom
     RETURNING count, reset_at`)
   const row = rows[0]!
   const count = Number(row.count)
-  return { ok: count <= policy.limit, remaining: Math.max(0, policy.limit - count), resetAt: new Date(row.reset_at) }
+  return {
+    ok: count <= policy.limit,
+    remaining: Math.max(0, policy.limit - count),
+    resetAt: new Date(row.reset_at),
+  }
 }
 
 /** Throws AppError('rate_limited') when any of the given limits is exceeded. */

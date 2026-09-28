@@ -56,10 +56,15 @@ describe('brandStyle', () => {
     expect(brandStyle('#0f766e')).toEqual({ '--brand': '#0f766e', '--brand-fg': WHITE })
     expect(brandStyle('#FFFF00')).toEqual({ '--brand': '#FFFF00', '--brand-fg': DARK })
   })
-  it.each(['red', '#fff', '#0f766e;background:url(https://evil)', 'expression(alert(1))', '', '#gggggg', '#0f766e00'])(
-    'falls back to the default for invalid/unsafe %j',
-    (bad) => {
-      expect(brandStyle(bad)).toEqual({ '--brand': '#0f766e', '--brand-fg': WHITE })
-    },
-  )
+  it.each([
+    'red',
+    '#fff',
+    '#0f766e;background:url(https://evil)',
+    'expression(alert(1))',
+    '',
+    '#gggggg',
+    '#0f766e00',
+  ])('falls back to the default for invalid/unsafe %j', (bad) => {
+    expect(brandStyle(bad)).toEqual({ '--brand': '#0f766e', '--brand-fg': WHITE })
+  })
 })

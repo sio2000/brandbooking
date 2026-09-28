@@ -1,7 +1,17 @@
 import 'server-only'
 import { and, desc, eq, ilike, or, sql } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { auditLogs, billingEvents, businessMembers, businesses, featureFlags, notifications, platformSettings, subscriptions, users } from '@/server/db/schema'
+import {
+  auditLogs,
+  billingEvents,
+  businessMembers,
+  businesses,
+  featureFlags,
+  notifications,
+  platformSettings,
+  subscriptions,
+  users,
+} from '@/server/db/schema'
 import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
 import { env } from '@/server/env'
@@ -16,9 +26,18 @@ import type { RequestMeta } from '@/server/request'
 
 export async function platformMetrics() {
   const [row] = await db().execute<{
-    businesses: number; published: number; suspended: number; new_7d: number; users: number
-    active_subs: number; past_due: number; canceled: number; trialing_app: number
-    bookings_30d: number; bookings_total: number; customers: number
+    businesses: number
+    published: number
+    suspended: number
+    new_7d: number
+    users: number
+    active_subs: number
+    past_due: number
+    canceled: number
+    trialing_app: number
+    bookings_30d: number
+    bookings_total: number
+    customers: number
   }>(sql`
     SELECT
       (SELECT count(*) FROM businesses WHERE deleted_at IS NULL)::int AS businesses,
@@ -40,7 +59,12 @@ export async function platformMetrics() {
 
 export async function listBusinesses(q: string | undefined, page = 1) {
   const pageSize = 25
-  const where = q ? or(ilike(businesses.name, `%${q.replace(/[%_\\]/g, '')}%`), ilike(businesses.slug, `%${q.replace(/[%_\\]/g, '')}%`)) : undefined
+  const where = q
+    ? or(
+        ilike(businesses.name, `%${q.replace(/[%_\\]/g, '')}%`),
+        ilike(businesses.slug, `%${q.replace(/[%_\\]/g, '')}%`),
+      )
+    : undefined
   const rows = await db()
     .select({
       id: businesses.id,
@@ -56,7 +80,10 @@ export async function listBusinesses(q: string | undefined, page = 1) {
     })
     .from(businesses)
     .leftJoin(subscriptions, eq(subscriptions.businessId, businesses.id))
-    .leftJoin(businessMembers, and(eq(businessMembers.businessId, businesses.id), eq(businessMembers.role, 'owner')))
+    .leftJoin(
+      businessMembers,
+      and(eq(businessMembers.businessId, businesses.id), eq(businessMembers.role, 'owner')),
+    )
     .leftJoin(users, eq(users.id, businessMembers.userId))
     .where(where)
     .orderBy(desc(businesses.createdAt))
@@ -75,14 +102,34 @@ export async function getBusinessAdmin(id: string) {
   if (!row) throw new AppError('not_found')
   const [members, events, log] = await Promise.all([
     db()
-      .select({ name: users.name, email: users.email, role: businessMembers.role, verified: users.emailVerifiedAt })
+      .select({
+        name: users.name,
+        email: users.email,
+        role: businessMembers.role,
+        verified: users.emailVerifiedAt,
+      })
       .from(businessMembers)
       .innerJoin(users, eq(users.id, businessMembers.userId))
       .where(eq(businessMembers.businessId, id)),
-    db().select().from(billingEvents).where(eq(billingEvents.businessId, id)).orderBy(desc(billingEvents.receivedAt)).limit(20),
-    db().select().from(auditLogs).where(eq(auditLogs.businessId, id)).orderBy(desc(auditLogs.createdAt)).limit(30),
+    db()
+      .select()
+      .from(billingEvents)
+      .where(eq(billingEvents.businessId, id))
+      .orderBy(desc(billingEvents.receivedAt))
+      .limit(20),
+    db()
+      .select()
+      .from(auditLogs)
+      .where(eq(auditLogs.businessId, id))
+      .orderBy(desc(auditLogs.createdAt))
+      .limit(30),
   ])
-  const [counts] = await db().execute<{ appointments: number; customers: number; services: number; staff: number }>(sql`
+  const [counts] = await db().execute<{
+    appointments: number
+    customers: number
+    services: number
+    staff: number
+  }>(sql`
     SELECT (SELECT count(*) FROM appointments WHERE business_id = ${id})::int AS appointments,
       (SELECT count(*) FROM customers WHERE business_id = ${id})::int AS customers,
       (SELECT count(*) FROM services WHERE business_id = ${id} AND deleted_at IS NULL)::int AS services,
@@ -90,10 +137,20 @@ export async function getBusinessAdmin(id: string) {
   return { ...row, members, billingEvents: events, audit: log, counts: counts! }
 }
 
-export async function setBusinessSuspended(session: ValidatedSession, id: string, suspended: boolean, reason: string | null, meta: RequestMeta) {
+export async function setBusinessSuspended(
+  session: ValidatedSession,
+  id: string,
+  suspended: boolean,
+  reason: string | null,
+  meta: RequestMeta,
+) {
   const [row] = await db()
     .update(businesses)
-    .set(suspended ? { status: 'suspended', suspendedAt: new Date(), suspendedReason: reason } : { status: 'active', suspendedAt: null, suspendedReason: null })
+    .set(
+      suspended
+        ? { status: 'suspended', suspendedAt: new Date(), suspendedReason: reason }
+        : { status: 'active', suspendedAt: null, suspendedReason: null },
+    )
     .where(eq(businesses.id, id))
     .returning({ id: businesses.id })
   if (!row) throw new AppError('not_found')
@@ -114,17 +171,43 @@ export async function listFlags() {
   return db().select().from(featureFlags).orderBy(featureFlags.key)
 }
 
-export async function upsertFlag(session: ValidatedSession, input: { key: string; description: string; enabled: boolean; businessAllowlist: string[] }, meta: RequestMeta) {
+export async function upsertFlag(
+  session: ValidatedSession,
+  input: { key: string; description: string; enabled: boolean; businessAllowlist: string[] },
+  meta: RequestMeta,
+) {
   await db()
     .insert(featureFlags)
     .values(input)
-    .onConflictDoUpdate({ target: featureFlags.key, set: { description: input.description, enabled: input.enabled, businessAllowlist: input.businessAllowlist } })
-  await audit(db(), { actor: 'admin', actorUserId: session.user.id, action: 'platform.flag_updated', entityType: 'feature_flag', entityId: input.key, metadata: { enabled: input.enabled }, ip: meta.ip })
+    .onConflictDoUpdate({
+      target: featureFlags.key,
+      set: {
+        description: input.description,
+        enabled: input.enabled,
+        businessAllowlist: input.businessAllowlist,
+      },
+    })
+  await audit(db(), {
+    actor: 'admin',
+    actorUserId: session.user.id,
+    action: 'platform.flag_updated',
+    entityType: 'feature_flag',
+    entityId: input.key,
+    metadata: { enabled: input.enabled },
+    ip: meta.ip,
+  })
 }
 
 export async function deleteFlag(session: ValidatedSession, key: string, meta: RequestMeta) {
   await db().delete(featureFlags).where(eq(featureFlags.key, key))
-  await audit(db(), { actor: 'admin', actorUserId: session.user.id, action: 'platform.flag_deleted', entityType: 'feature_flag', entityId: key, ip: meta.ip })
+  await audit(db(), {
+    actor: 'admin',
+    actorUserId: session.user.id,
+    action: 'platform.flag_deleted',
+    entityType: 'feature_flag',
+    entityId: key,
+    ip: meta.ip,
+  })
 }
 
 export async function isFeatureEnabled(key: string, businessId?: string) {
@@ -134,7 +217,11 @@ export async function isFeatureEnabled(key: string, businessId?: string) {
 }
 
 export async function getSetting<T>(key: string): Promise<T | null> {
-  const [row] = await db().select().from(platformSettings).where(eq(platformSettings.key, key)).limit(1)
+  const [row] = await db()
+    .select()
+    .from(platformSettings)
+    .where(eq(platformSettings.key, key))
+    .limit(1)
   return (row?.value as T | undefined) ?? null
 }
 
@@ -159,7 +246,13 @@ export async function systemHealth() {
   const t0 = performance.now()
   await db().execute(sql`SELECT 1`)
   const dbLatencyMs = Math.round(performance.now() - t0)
-  const [row] = await db().execute<{ backlog: number; overdue: number; failed_24h: number; webhook_failed_24h: number; sent_24h: number }>(sql`
+  const [row] = await db().execute<{
+    backlog: number
+    overdue: number
+    failed_24h: number
+    webhook_failed_24h: number
+    sent_24h: number
+  }>(sql`
     SELECT
       (SELECT count(*) FROM notifications WHERE status IN ('pending','sending') AND send_after <= now())::int AS backlog,
       (SELECT count(*) FROM notifications WHERE status = 'pending' AND send_after <= now() - interval '10 minutes')::int AS overdue,
@@ -169,24 +262,45 @@ export async function systemHealth() {
   `)
   const lastCron = await getSetting<{ at: string; result: unknown }>('cron.last_run')
   const recentFailures = await db()
-    .select({ id: notifications.id, template: notifications.template, lastError: notifications.lastError, updatedAt: notifications.updatedAt, businessId: notifications.businessId })
+    .select({
+      id: notifications.id,
+      template: notifications.template,
+      lastError: notifications.lastError,
+      updatedAt: notifications.updatedAt,
+      businessId: notifications.businessId,
+    })
     .from(notifications)
     .where(eq(notifications.status, 'failed'))
     .orderBy(desc(notifications.updatedAt))
     .limit(10)
-  const recentWebhookFailures = await db().select().from(billingEvents).where(eq(billingEvents.status, 'failed')).orderBy(desc(billingEvents.receivedAt)).limit(10)
+  const recentWebhookFailures = await db()
+    .select()
+    .from(billingEvents)
+    .where(eq(billingEvents.status, 'failed'))
+    .orderBy(desc(billingEvents.receivedAt))
+    .limit(10)
   return { dbLatencyMs, ...row!, lastCron, recentFailures, recentWebhookFailures }
 }
 
 export async function recentSignups(limit = 10) {
   return db()
-    .select({ id: businesses.id, name: businesses.name, slug: businesses.slug, createdAt: businesses.createdAt, publishStatus: businesses.publishStatus })
+    .select({
+      id: businesses.id,
+      name: businesses.name,
+      slug: businesses.slug,
+      createdAt: businesses.createdAt,
+      publishStatus: businesses.publishStatus,
+    })
     .from(businesses)
     .orderBy(desc(businesses.createdAt))
     .limit(limit)
 }
 
 export async function grantAdmin(email: string) {
-  const [row] = await db().update(users).set({ isPlatformAdmin: true }).where(eq(users.email, email)).returning({ id: users.id })
+  const [row] = await db()
+    .update(users)
+    .set({ isPlatformAdmin: true })
+    .where(eq(users.email, email))
+    .returning({ id: users.id })
   return Boolean(row)
 }

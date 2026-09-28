@@ -34,7 +34,13 @@ test.describe('manage booking link', () => {
 
     // The same link keeps working and shows the new time.
     await page.getByRole('button', { name: 'View booking' }).click()
-    const newDate = new Intl.DateTimeFormat('en-US', { timeZone: BIZ_A.timezone, weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(moved.startsAt)
+    const newDate = new Intl.DateTimeFormat('en-US', {
+      timeZone: BIZ_A.timezone,
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(moved.startsAt)
     await expect(page.getByText(newDate)).toBeVisible()
   })
 
@@ -63,7 +69,9 @@ test.describe('manage booking link', () => {
     for (const bad of [tampered, 'not-a-real-token', `${id}.`]) {
       const res = await page.goto(`/manage/${encodeURIComponent(bad)}`)
       expect(res?.status()).toBeLessThan(500)
-      await expect(page.getByRole('heading', { name: 'We couldn’t find this booking' })).toBeVisible()
+      await expect(
+        page.getByRole('heading', { name: 'We couldn’t find this booking' }),
+      ).toBeVisible()
       await expect(page.getByText(SERVICES_A.cut)).toHaveCount(0)
       await expect(page.getByRole('button', { name: 'Cancel booking' })).toHaveCount(0)
     }
@@ -83,7 +91,9 @@ test.describe('manage booking link', () => {
     const res = await request.get(`/manage/${token}/ics`)
     expect(res.status()).toBe(200)
     expect(res.headers()['content-type']).toContain('text/calendar')
-    expect(res.headers()['content-disposition']).toContain(`appointment-${appointment.reference}.ics`)
+    expect(res.headers()['content-disposition']).toContain(
+      `appointment-${appointment.reference}.ics`,
+    )
     const ics = await res.text()
     expect(ics).toContain('BEGIN:VCALENDAR')
     expect(ics).toContain('BEGIN:VEVENT')

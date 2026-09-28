@@ -11,7 +11,14 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { Alert } from '@/components/ui/feedback'
 import { Textarea } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
-import { formatDateLong, formatDateTime, formatDuration, formatMoney, formatTime, formatTimeZoneName } from '@/lib/format'
+import {
+  formatDateLong,
+  formatDateTime,
+  formatDuration,
+  formatMoney,
+  formatTime,
+  formatTimeZoneName,
+} from '@/lib/format'
 import { googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
 import type { PlainDate } from '@/lib/plain-date'
 import { SlotPicker, type AvailabilityResponse } from './slot-picker'
@@ -20,7 +27,10 @@ import type { getManagedBooking } from '@/server/booking/public'
 
 type Data = Awaited<ReturnType<typeof getManagedBooking>>
 
-const STATUS: Record<string, { label: string; tone: 'success' | 'warning' | 'danger' | 'neutral' | 'info' }> = {
+const STATUS: Record<
+  string,
+  { label: string; tone: 'success' | 'warning' | 'danger' | 'neutral' | 'info' }
+> = {
   confirmed: { label: 'Confirmed', tone: 'success' },
   pending: { label: 'Awaiting confirmation', tone: 'warning' },
   cancelled: { label: 'Cancelled', tone: 'danger' },
@@ -42,20 +52,27 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
   const status = STATUS[a.status] ?? STATUS.confirmed!
   const tz = a.timezone
 
-  const fetchRange = React.useCallback(async (from?: string, to?: string): Promise<AvailabilityResponse> => {
-    const p = new URLSearchParams()
-    if (from && to) {
-      p.set('from', from)
-      p.set('to', to)
-    }
-    const res = await fetch(`/api/manage/${token}/availability?${p}`, { cache: 'no-store' })
-    const json = await res.json()
-    if (!json.ok) throw new Error(json.error)
-    return json.data
-  }, [token])
+  const fetchRange = React.useCallback(
+    async (from?: string, to?: string): Promise<AvailabilityResponse> => {
+      const p = new URLSearchParams()
+      if (from && to) {
+        p.set('from', from)
+        p.set('to', to)
+      }
+      const res = await fetch(`/api/manage/${token}/availability?${p}`, { cache: 'no-store' })
+      const json = await res.json()
+      if (!json.ok) throw new Error(json.error)
+      return json.data
+    },
+    [token],
+  )
 
   async function post(path: string, body: unknown) {
-    const res = await fetch(`/api/manage/${token}/${path}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+    const res = await fetch(`/api/manage/${token}/${path}`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    })
     return res.json()
   }
 
@@ -63,7 +80,10 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
     if (!start) return
     setBusy(true)
     setError(null)
-    const json = await post('reschedule', { start }).catch(() => ({ ok: false, error: 'Network error — nothing was changed. Please try again.' }))
+    const json = await post('reschedule', { start }).catch(() => ({
+      ok: false,
+      error: 'Network error — nothing was changed. Please try again.',
+    }))
     setBusy(false)
     if (json.ok) {
       setMode('rescheduled')
@@ -78,7 +98,10 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
   }
 
   async function cancel() {
-    const json = await post('cancel', { reason: reason || null }).catch(() => ({ ok: false, error: 'Network error — your booking was not cancelled. Please try again.' }))
+    const json = await post('cancel', { reason: reason || null }).catch(() => ({
+      ok: false,
+      error: 'Network error — your booking was not cancelled. Please try again.',
+    }))
     if (json.ok) {
       toast.success('Your booking has been cancelled')
       router.refresh()
@@ -88,16 +111,31 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
     }
   }
 
-  const ev = { title: `${a.serviceName} — ${b.name}`, start: new Date(a.startsAt), end: new Date(a.endsAt), location: b.address, details: `Reference ${a.reference}` }
+  const ev = {
+    title: `${a.serviceName} — ${b.name}`,
+    start: new Date(a.startsAt),
+    end: new Date(a.endsAt),
+    location: b.address,
+    details: `Reference ${a.reference}`,
+  }
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:py-14">
       <header className="flex items-center gap-3">
         {b.logoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={b.logoUrl} alt="" className="size-12 rounded-xl border border-border object-contain" />
+          <img
+            src={b.logoUrl}
+            alt=""
+            className="size-12 rounded-xl border border-border object-contain"
+          />
         ) : (
-          <div className="grid size-12 place-items-center rounded-xl bg-primary font-display text-lg font-bold text-primary-foreground" aria-hidden>{b.name[0]}</div>
+          <div
+            className="grid size-12 place-items-center rounded-xl bg-primary font-display text-lg font-bold text-primary-foreground"
+            aria-hidden
+          >
+            {b.name[0]}
+          </div>
         )}
         <div>
           <p className="text-sm text-muted-foreground">Your booking with</p>
@@ -106,11 +144,17 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
       </header>
 
       {mode === 'rescheduled' ? (
-        <motion.section initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-10 flex flex-col items-center text-center">
+        <motion.section
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-10 flex flex-col items-center text-center"
+        >
           <SuccessCheck />
           <h1 className="mt-5 text-2xl font-bold">Your appointment has moved</h1>
           <p className="mt-2 text-muted-foreground">We’ve emailed you the new time.</p>
-          <Button className="mt-6" onClick={() => setMode('view')}>View booking</Button>
+          <Button className="mt-6" onClick={() => setMode('view')}>
+            View booking
+          </Button>
         </motion.section>
       ) : (
         <section className="mt-8 rounded-2xl border border-border bg-surface shadow-sm">
@@ -121,17 +165,28 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
                 {formatDuration(a.durationMinutes)} · with {a.staffName}
               </p>
             </div>
-            <Badge tone={status.tone} className="text-[13px]">{status.label}</Badge>
+            <Badge tone={status.tone} className="text-[13px]">
+              {status.label}
+            </Badge>
           </div>
           <dl className="grid gap-4 p-5 sm:grid-cols-2">
             <div>
               <dt className="text-xs font-medium text-muted-foreground">Date</dt>
-              <dd className={`mt-0.5 font-semibold ${a.status === 'cancelled' ? 'line-through opacity-60' : ''}`}>{formatDateLong(a.startsAt, tz)}</dd>
+              <dd
+                className={`mt-0.5 font-semibold ${a.status === 'cancelled' ? 'line-through opacity-60' : ''}`}
+              >
+                {formatDateLong(a.startsAt, tz)}
+              </dd>
             </div>
             <div>
               <dt className="text-xs font-medium text-muted-foreground">Time</dt>
-              <dd className={`mt-0.5 font-semibold ${a.status === 'cancelled' ? 'line-through opacity-60' : ''}`}>
-                {formatTime(a.startsAt, tz)} – {formatTime(a.endsAt, tz)} <span className="font-normal text-muted-foreground">({formatTimeZoneName(a.startsAt, tz)})</span>
+              <dd
+                className={`mt-0.5 font-semibold ${a.status === 'cancelled' ? 'line-through opacity-60' : ''}`}
+              >
+                {formatTime(a.startsAt, tz)} – {formatTime(a.endsAt, tz)}{' '}
+                <span className="font-normal text-muted-foreground">
+                  ({formatTimeZoneName(a.startsAt, tz)})
+                </span>
               </dd>
             </div>
             {b.address && (
@@ -156,9 +211,21 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
             <div className="grid gap-3 border-t border-border p-5">
               {a.status === 'confirmed' && (
                 <div className="flex flex-wrap gap-2">
-                  <Button asChild variant="secondary" size="sm"><a href={googleCalendarUrl(ev)} target="_blank" rel="noopener noreferrer"><CalendarPlus /> Google</a></Button>
-                  <Button asChild variant="secondary" size="sm"><a href={outlookCalendarUrl(ev)} target="_blank" rel="noopener noreferrer"><CalendarPlus /> Outlook</a></Button>
-                  <Button asChild variant="secondary" size="sm"><a href={`/manage/${token}/ics`}><CalendarPlus /> Apple (.ics)</a></Button>
+                  <Button asChild variant="secondary" size="sm">
+                    <a href={googleCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
+                      <CalendarPlus /> Google
+                    </a>
+                  </Button>
+                  <Button asChild variant="secondary" size="sm">
+                    <a href={outlookCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
+                      <CalendarPlus /> Outlook
+                    </a>
+                  </Button>
+                  <Button asChild variant="secondary" size="sm">
+                    <a href={`/manage/${token}/ics`}>
+                      <CalendarPlus /> Apple (.ics)
+                    </a>
+                  </Button>
                 </div>
               )}
               <div className="flex flex-col gap-2 sm:flex-row">
@@ -169,15 +236,32 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
                 )}
                 {data.can.cancel && (
                   <ConfirmDialog
-                    trigger={<Button variant="danger-soft" className="sm:flex-1"><X /> Cancel booking</Button>}
+                    trigger={
+                      <Button variant="danger-soft" className="sm:flex-1">
+                        <X /> Cancel booking
+                      </Button>
+                    }
                     title="Cancel this booking?"
-                    description={<>Your {a.serviceName} on {formatDateTime(a.startsAt, tz)} will be cancelled and the time released. {b.name} will be notified.</>}
+                    description={
+                      <>
+                        Your {a.serviceName} on {formatDateTime(a.startsAt, tz)} will be cancelled
+                        and the time released. {b.name} will be notified.
+                      </>
+                    }
                     confirmLabel="Cancel booking"
                     onConfirm={cancel}
                   >
                     <div className="mt-4 grid gap-1.5">
-                      <label htmlFor="reason" className="text-sm font-medium">Reason <span className="font-normal text-muted-foreground">(optional)</span></label>
-                      <Textarea id="reason" rows={2} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} />
+                      <label htmlFor="reason" className="text-sm font-medium">
+                        Reason <span className="font-normal text-muted-foreground">(optional)</span>
+                      </label>
+                      <Textarea
+                        id="reason"
+                        rows={2}
+                        maxLength={500}
+                        value={reason}
+                        onChange={(e) => setReason(e.target.value)}
+                      />
                     </div>
                   </ConfirmDialog>
                 )}
@@ -199,10 +283,27 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
             <div className="border-t border-border p-5">
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-bold">Choose a new time</h2>
-                <Button variant="ghost" size="sm" onClick={() => setMode('view')}>Keep current time</Button>
+                <Button variant="ghost" size="sm" onClick={() => setMode('view')}>
+                  Keep current time
+                </Button>
               </div>
-              {error && <Alert tone="warning" className="mb-4">{error}</Alert>}
-              <SlotPicker key={refreshKey} fetchRange={fetchRange} businessTimeZone={tz} selectedDate={date} selectedStart={start} onSelectDate={(d) => { setDate(d); setStart(null) }} onSelectSlot={setStart} />
+              {error && (
+                <Alert tone="warning" className="mb-4">
+                  {error}
+                </Alert>
+              )}
+              <SlotPicker
+                key={refreshKey}
+                fetchRange={fetchRange}
+                businessTimeZone={tz}
+                selectedDate={date}
+                selectedStart={start}
+                onSelectDate={(d) => {
+                  setDate(d)
+                  setStart(null)
+                }}
+                onSelectSlot={setStart}
+              />
               <div className="mt-6 flex justify-end">
                 <Button size="lg" disabled={!start} loading={busy} onClick={reschedule}>
                   {start ? `Move to ${formatDateTime(start, tz)}` : 'Pick a time'}
@@ -214,17 +315,40 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
       )}
 
       {(b.phone || b.email) && (
-        <section className="mt-6 rounded-2xl bg-surface-2 p-5 text-sm" aria-label="Contact the business">
+        <section
+          className="mt-6 rounded-2xl bg-surface-2 p-5 text-sm"
+          aria-label="Contact the business"
+        >
           <p className="font-medium">Questions? Contact {b.name}</p>
           <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2 text-muted-foreground">
-            {b.phone && <a href={`tel:${b.phone.replace(/[^+\d]/g, '')}`} className="inline-flex items-center gap-1.5 hover:text-foreground"><Phone className="size-4" /> {b.phone}</a>}
-            {b.email && <a href={`mailto:${b.email}`} className="inline-flex items-center gap-1.5 hover:text-foreground"><Mail className="size-4" /> {b.email}</a>}
+            {b.phone && (
+              <a
+                href={`tel:${b.phone.replace(/[^+\d]/g, '')}`}
+                className="inline-flex items-center gap-1.5 hover:text-foreground"
+              >
+                <Phone className="size-4" /> {b.phone}
+              </a>
+            )}
+            {b.email && (
+              <a
+                href={`mailto:${b.email}`}
+                className="inline-flex items-center gap-1.5 hover:text-foreground"
+              >
+                <Mail className="size-4" /> {b.email}
+              </a>
+            )}
           </div>
         </section>
       )}
-      {b.bookingPolicy && <p className="mt-4 text-[13px] leading-relaxed whitespace-pre-line text-muted-foreground">{b.bookingPolicy}</p>}
+      {b.bookingPolicy && (
+        <p className="mt-4 text-[13px] leading-relaxed whitespace-pre-line text-muted-foreground">
+          {b.bookingPolicy}
+        </p>
+      )}
       <p className="mt-10 text-center text-sm">
-        <Link href={`/book/${b.slug}`} className="font-medium text-primary hover:underline">Book another appointment</Link>
+        <Link href={`/book/${b.slug}`} className="font-medium text-primary hover:underline">
+          Book another appointment
+        </Link>
       </p>
     </main>
   )

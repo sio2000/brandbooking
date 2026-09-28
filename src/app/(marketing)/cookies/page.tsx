@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   title: 'Cookie policy',
   description,
   alternates: { canonical: '/cookies' },
-  openGraph: { type: 'article', url: '/cookies', title: `Cookie policy · ${site.name}`, description },
+  openGraph: {
+    type: 'article',
+    url: '/cookies',
+    title: `Cookie policy · ${site.name}`,
+    description,
+  },
 }
 
 const cookieRows = [
@@ -22,8 +27,10 @@ const cookieRows = [
         </span>
       </>
     ),
-    purpose: 'Keeps you signed in. Holds a random session token only; it cannot be read by page scripts and is only sent over secure connections.',
-    duration: 'Up to 30 days without activity, renewed as you use the app. Removed when you sign out.',
+    purpose:
+      'Keeps you signed in. Holds a random session token only; it cannot be read by page scripts and is only sent over secure connections.',
+    duration:
+      'Up to 30 days without activity, renewed as you use the app. Removed when you sign out.',
     when: 'After you sign in',
   },
   {
@@ -41,9 +48,15 @@ export default function CookiesPage() {
       title: 'In short',
       body: (
         <ul>
-          <li>We only use cookies that are strictly necessary to sign you in and keep your session secure.</li>
+          <li>
+            We only use cookies that are strictly necessary to sign you in and keep your session
+            secure.
+          </li>
           <li>We do not use analytics, advertising or social-media tracking cookies.</li>
-          <li>Booking-page statistics are anonymous and cookieless — nothing is stored on your customers’ devices.</li>
+          <li>
+            Booking-page statistics are anonymous and cookieless — nothing is stored on your
+            customers’ devices.
+          </li>
         </ul>
       ),
     },
@@ -52,7 +65,10 @@ export default function CookiesPage() {
       title: 'Cookies we use',
       body: (
         <>
-          <p>These cookies are set by {site.name} itself (first-party). They are only set for people who sign in to a business account.</p>
+          <p>
+            These cookies are set by {site.name} itself (first-party). They are only set for people
+            who sign in to a business account.
+          </p>
           <div className="mt-5 overflow-x-auto rounded-xl border border-border">
             <table className="w-full min-w-[560px] border-collapse text-left text-[14px] leading-relaxed">
               <caption className="sr-only">Cookies set by {site.name}</caption>
@@ -86,7 +102,10 @@ export default function CookiesPage() {
               </tbody>
             </table>
           </div>
-          <p>We consider these cookies strictly necessary to provide the service you asked for, which is why we do not show a cookie banner.</p>
+          <p>
+            We consider these cookies strictly necessary to provide the service you asked for, which
+            is why we do not show a cookie banner.
+          </p>
         </>
       ),
     },
@@ -95,7 +114,8 @@ export default function CookiesPage() {
       title: 'Local storage',
       body: (
         <p>
-          If you choose a colour theme (light, dark or system), we remember that choice in your browser’s local storage under <code>hn-theme</code>. It stays on your device and is never
+          If you choose a colour theme (light, dark or system), we remember that choice in your
+          browser’s local storage under <code>hn-theme</code>. It stays on your device and is never
           sent to our servers. You can clear it at any time in your browser settings.
         </p>
       ),
@@ -106,11 +126,16 @@ export default function CookiesPage() {
       body: (
         <>
           <p>
-            When customers open a business’s booking page — directly, through a QR code or through the widget embedded on the business’s website — {site.name} does not set cookies for
-            analytics or advertising. To show businesses how their booking page performs, we count steps such as “page viewed” and “booking completed” anonymously, without cookies,
-            device identifiers or personal data.
+            When customers open a business’s booking page — directly, through a QR code or through
+            the widget embedded on the business’s website — {site.name} does not set cookies for
+            analytics or advertising. To show businesses how their booking page performs, we count
+            steps such as “page viewed” and “booking completed” anonymously, without cookies, device
+            identifiers or personal data.
           </p>
-          <p>A website that embeds the widget may use its own cookies. Those are controlled by that website, not by {site.name}.</p>
+          <p>
+            A website that embeds the widget may use its own cookies. Those are controlled by that
+            website, not by {site.name}.
+          </p>
         </>
       ),
     },
@@ -119,8 +144,9 @@ export default function CookiesPage() {
       title: 'Payments with Stripe',
       body: (
         <p>
-          When a business owner subscribes or manages billing, they are taken to pages hosted by Stripe. Stripe may set its own cookies there, for example to prevent fraud, under
-          Stripe’s own cookie and privacy policies.
+          When a business owner subscribes or manages billing, they are taken to pages hosted by
+          Stripe. Stripe may set its own cookies there, for example to prevent fraud, under Stripe’s
+          own cookie and privacy policies.
         </p>
       ),
     },
@@ -129,7 +155,8 @@ export default function CookiesPage() {
       title: 'Managing cookies',
       body: (
         <p>
-          You can block or delete cookies in your browser settings. If you block the session cookie, you will not be able to sign in to {site.name}; booking pages will keep working.
+          You can block or delete cookies in your browser settings. If you block the session cookie,
+          you will not be able to sign in to {site.name}; booking pages will keep working.
         </p>
       ),
     },
@@ -138,7 +165,8 @@ export default function CookiesPage() {
       title: 'Questions',
       body: (
         <p>
-          Contact us at <ContactEmail />. For more on how we handle personal data, see the <Link href="/privacy">privacy policy</Link>.
+          Contact us at <ContactEmail />. For more on how we handle personal data, see the{' '}
+          <Link href="/privacy">privacy policy</Link>.
         </p>
       ),
     },
@@ -147,7 +175,12 @@ export default function CookiesPage() {
   return (
     <LegalDocument
       title="Cookie policy"
-      intro={<p>{site.name} keeps cookies to the minimum needed to run a secure service. Here is everything we store in your browser, and why.</p>}
+      intro={
+        <p>
+          {site.name} keeps cookies to the minimum needed to run a secure service. Here is
+          everything we store in your browser, and why.
+        </p>
+      }
       sections={sections}
     />
   )

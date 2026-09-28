@@ -15,7 +15,8 @@ export const maxDuration = 60
 async function handle(req: Request) {
   const secret = env().CRON_SECRET
   const auth = req.headers.get('authorization') ?? ''
-  if (!secret || !safeEqual(auth, `Bearer ${secret}`)) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  if (!secret || !safeEqual(auth, `Bearer ${secret}`))
+    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   try {
     return NextResponse.json({ ok: true, ...(await runScheduledTick()) })
   } catch (err) {

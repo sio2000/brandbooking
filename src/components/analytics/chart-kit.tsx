@@ -68,14 +68,20 @@ export function ChartTooltip({
         'pointer-events-none absolute z-10 min-w-36 rounded-lg border border-border bg-elevated px-3 py-2 text-xs shadow-md transition-opacity duration-100',
         visible ? 'opacity-100' : 'opacity-0',
       )}
-      style={{ left: x, top: y, transform: `translate(${flip ? 'calc(-100% - 12px)' : '12px'}, -50%)` }}
+      style={{
+        left: x,
+        top: y,
+        transform: `translate(${flip ? 'calc(-100% - 12px)' : '12px'}, -50%)`,
+      }}
     >
       <p className="mb-1 font-medium text-muted-foreground">{title}</p>
       <ul className="space-y-0.5">
         {rows.map((r) => (
           <li key={r.key} className="flex items-center gap-2 whitespace-nowrap">
-            {r.color && <span className="h-0.5 w-3 shrink-0 rounded-full" style={{ background: r.color }} />}
-            <span className="text-sm font-semibold text-foreground tabular">{r.value}</span>
+            {r.color && (
+              <span className="h-0.5 w-3 shrink-0 rounded-full" style={{ background: r.color }} />
+            )}
+            <span className="tabular text-sm font-semibold text-foreground">{r.value}</span>
             <span className="text-muted-foreground">{r.label}</span>
           </li>
         ))}
@@ -85,10 +91,22 @@ export function ChartTooltip({
 }
 
 /** Legend entry: the swatch mirrors the mark (rect for bars/areas, line for lines); text stays in ink. */
-export function LegendItem({ color, label, shape = 'rect' }: { color: string; label: React.ReactNode; shape?: 'rect' | 'line' }) {
+export function LegendItem({
+  color,
+  label,
+  shape = 'rect',
+}: {
+  color: string
+  label: React.ReactNode
+  shape?: 'rect' | 'line'
+}) {
   return (
     <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-      {shape === 'rect' ? <span className="size-2.5 rounded-[3px]" style={{ background: color }} aria-hidden /> : <span className="h-0.5 w-3.5 rounded-full" style={{ background: color }} aria-hidden />}
+      {shape === 'rect' ? (
+        <span className="size-2.5 rounded-[3px]" style={{ background: color }} aria-hidden />
+      ) : (
+        <span className="h-0.5 w-3.5 rounded-full" style={{ background: color }} aria-hidden />
+      )}
       {label}
     </span>
   )
@@ -132,7 +150,11 @@ export function ChartCard({
               aria-controls={id}
               className="inline-flex h-8 items-center gap-1.5 rounded-md px-2 text-[13px] font-medium text-muted-foreground transition-colors outline-none hover:bg-surface-2 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
             >
-              {showTable ? <BarChart3 className="size-4" aria-hidden /> : <Table2 className="size-4" aria-hidden />}
+              {showTable ? (
+                <BarChart3 className="size-4" aria-hidden />
+              ) : (
+                <Table2 className="size-4" aria-hidden />
+              )}
               <span>{showTable ? 'Chart' : 'Table'}</span>
             </button>
           ) : undefined
@@ -140,22 +162,47 @@ export function ChartCard({
       />
       {headerExtra}
       <CardBody id={id} className="flex-1">
-        {showTable && table ? <div className="relative max-h-96 overflow-auto rounded-lg border border-border">{table}</div> : children}
+        {showTable && table ? (
+          <div className="relative max-h-96 overflow-auto rounded-lg border border-border">
+            {table}
+          </div>
+        ) : (
+          children
+        )}
       </CardBody>
-      {footer && <div className="border-t border-border px-5 py-3 text-[13px] text-muted-foreground">{footer}</div>}
+      {footer && (
+        <div className="border-t border-border px-5 py-3 text-[13px] text-muted-foreground">
+          {footer}
+        </div>
+      )}
     </Card>
   )
 }
 
 /** Simple data table used as the chart alternative. */
-export function DataTable({ caption, columns, rows }: { caption: string; columns: Array<{ key: string; label: string; numeric?: boolean }>; rows: Array<Record<string, React.ReactNode>> }) {
+export function DataTable({
+  caption,
+  columns,
+  rows,
+}: {
+  caption: string
+  columns: Array<{ key: string; label: string; numeric?: boolean }>
+  rows: Array<Record<string, React.ReactNode>>
+}) {
   return (
     <table className="w-full text-sm">
       <caption className="sr-only">{caption}</caption>
       <thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground">
         <tr>
           {columns.map((c) => (
-            <th key={c.key} scope="col" className={cn('px-3 py-2 font-medium whitespace-nowrap', c.numeric ? 'text-right' : 'text-left')}>
+            <th
+              key={c.key}
+              scope="col"
+              className={cn(
+                'px-3 py-2 font-medium whitespace-nowrap',
+                c.numeric ? 'text-right' : 'text-left',
+              )}
+            >
               {c.label}
             </th>
           ))}
@@ -166,11 +213,18 @@ export function DataTable({ caption, columns, rows }: { caption: string; columns
           <tr key={i} className="border-t border-border">
             {columns.map((c, j) =>
               j === 0 ? (
-                <th key={c.key} scope="row" className="px-3 py-1.5 text-left font-normal whitespace-nowrap">
+                <th
+                  key={c.key}
+                  scope="row"
+                  className="px-3 py-1.5 text-left font-normal whitespace-nowrap"
+                >
                   {r[c.key]}
                 </th>
               ) : (
-                <td key={c.key} className={cn('px-3 py-1.5 whitespace-nowrap', c.numeric && 'text-right tabular')}>
+                <td
+                  key={c.key}
+                  className={cn('px-3 py-1.5 whitespace-nowrap', c.numeric && 'tabular text-right')}
+                >
                   {r[c.key]}
                 </td>
               ),

@@ -15,14 +15,22 @@ export type ActionResult<T = undefined> =
  * serializable result for the form, reports unexpected errors, and never
  * leaks internals (stack traces, SQL) to the browser.
  */
-export async function runAction<T>(fn: () => Promise<T>, successMessage?: string): Promise<ActionResult<T>> {
+export async function runAction<T>(
+  fn: () => Promise<T>,
+  successMessage?: string,
+): Promise<ActionResult<T>> {
   try {
     const data = await fn()
     return { ok: true, data, message: successMessage }
   } catch (err) {
     unstable_rethrow(err) // let Next.js redirect()/notFound() propagate
     if (err instanceof ZodError) {
-      return { ok: false, code: 'validation', error: messages.errors.validation, fields: fieldErrors(err) }
+      return {
+        ok: false,
+        code: 'validation',
+        error: messages.errors.validation,
+        fields: fieldErrors(err),
+      }
     }
     if (isAppError(err)) {
       return { ok: false, code: err.code, error: err.message, fields: err.fields }

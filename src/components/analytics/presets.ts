@@ -17,7 +17,15 @@ export const RANGE_PRESETS = [
 export type RangePreset = (typeof RANGE_PRESETS)[number]['value']
 
 export const WEEKDAYS_SHORT = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const
-export const WEEKDAYS_LONG = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as const
+export const WEEKDAYS_LONG = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+] as const
 
 export const FUNNEL_LABELS: Record<string, string> = {
   view: 'Viewed booking page',
@@ -52,7 +60,12 @@ export function formatMoneyCompact(cents: number, currency: string, locale = 'en
   const key = `${locale}|${currency}|${digits}`
   let f = axisMoney.get(key)
   if (!f) {
-    f = new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: digits, maximumFractionDigits: digits })
+    f = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits,
+    })
     axisMoney.set(key, f)
   }
   if (!big) return f.format(n)
@@ -73,7 +86,13 @@ export function hourLabel(hour: number, locale = 'en') {
 }
 
 function shortDate(iso: string, withYear = true) {
-  return formatPlainDate(iso, undefined, withYear ? { day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'short' })
+  return formatPlainDate(
+    iso,
+    undefined,
+    withYear
+      ? { day: 'numeric', month: 'short', year: 'numeric' }
+      : { day: 'numeric', month: 'short' },
+  )
 }
 
 /** "3 – 9 Aug 2026", "28 Jul – 3 Aug 2026", or a single day. */
@@ -82,4 +101,3 @@ export function formatSpan(from: string, to: string) {
   const sameYear = from.slice(0, 4) === to.slice(0, 4)
   return `${shortDate(from, !sameYear)} – ${shortDate(to)}`
 }
-

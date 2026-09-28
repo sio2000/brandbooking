@@ -1,6 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { BadgeEuro, CreditCard, Infinity as InfinityIcon, LifeBuoy, ReceiptText } from 'lucide-react'
+import {
+  BadgeEuro,
+  CreditCard,
+  Infinity as InfinityIcon,
+  LifeBuoy,
+  ReceiptText,
+} from 'lucide-react'
 import { Faq, type FaqItem } from '@/components/marketing/faq'
 import { PricingCard } from '@/components/marketing/pricing-card'
 import { Reveal } from '@/components/marketing/reveal'
@@ -18,9 +24,21 @@ export const metadata: Metadata = {
 }
 
 const promises = [
-  { Icon: InfinityIcon, title: 'Unlimited bookings', text: 'Take as many appointments as you like.' },
-  { Icon: BadgeEuro, title: 'No per-booking fees', text: 'We never take a cut of what you charge.' },
-  { Icon: CreditCard, title: 'No card to start', text: `Try everything for ${site.trialDays} days first.` },
+  {
+    Icon: InfinityIcon,
+    title: 'Unlimited bookings',
+    text: 'Take as many appointments as you like.',
+  },
+  {
+    Icon: BadgeEuro,
+    title: 'No per-booking fees',
+    text: 'We never take a cut of what you charge.',
+  },
+  {
+    Icon: CreditCard,
+    title: 'No card to start',
+    text: `Try everything for ${site.trialDays} days first.`,
+  },
 ]
 
 const billingFaq: FaqItem[] = [
@@ -54,16 +72,26 @@ export default function PricingPage() {
   return (
     <>
       <section aria-labelledby="pricing-title" className="relative isolate overflow-hidden">
-        <div aria-hidden className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black_15%,transparent_65%)] opacity-70" />
-        <div aria-hidden className="absolute top-40 left-1/2 -z-10 h-80 w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div
+          aria-hidden
+          className="bg-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black_15%,transparent_65%)] opacity-70"
+        />
+        <div
+          aria-hidden
+          className="absolute top-40 left-1/2 -z-10 h-80 w-[min(900px,100%)] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
+        />
         <Container className="pt-14 pb-16 sm:pt-20 lg:pt-24">
           <div className="mx-auto max-w-3xl text-center">
             <Eyebrow className="justify-center">Pricing</Eyebrow>
-            <h1 id="pricing-title" className="mt-4 text-[2.35rem] leading-[1.05] font-bold tracking-[-0.03em] text-balance sm:text-6xl">
+            <h1
+              id="pricing-title"
+              className="mt-4 text-[2.35rem] leading-[1.05] font-bold tracking-[-0.03em] text-balance sm:text-6xl"
+            >
               Everything you need to accept bookings online.
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
-              One simple plan for {site.price.display} a month. Every feature included, whatever the size of your business.
+              One simple plan for {site.price.display} a month. Every feature included, whatever the
+              size of your business.
             </p>
           </div>
 
@@ -73,8 +101,14 @@ export default function PricingPage() {
 
           <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
             {promises.map(({ Icon, title, text }) => (
-              <li key={title} className="flex items-start gap-3 rounded-xl p-2 sm:flex-col sm:items-center sm:text-center">
-                <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary">
+              <li
+                key={title}
+                className="flex items-start gap-3 rounded-xl p-2 sm:flex-col sm:items-center sm:text-center"
+              >
+                <span
+                  aria-hidden
+                  className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary"
+                >
                   <Icon className="size-[18px]" />
                 </span>
                 <span>
@@ -84,11 +118,16 @@ export default function PricingPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-[13px] text-muted-foreground">Prices in euros. VAT may apply depending on your location.</p>
+          <p className="mt-8 text-center text-[13px] text-muted-foreground">
+            Prices in euros. VAT may apply depending on your location.
+          </p>
         </Container>
       </section>
 
-      <section aria-labelledby="billing-faq-title" className="border-t border-border bg-surface-2/50 py-20 sm:py-24">
+      <section
+        aria-labelledby="billing-faq-title"
+        className="border-t border-border bg-surface-2/50 py-20 sm:py-24"
+      >
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <SectionHeader
@@ -98,10 +137,16 @@ export default function PricingPage() {
               lead="Straight answers about trials, invoices and cancelling. Anything else, we’re happy to help."
             />
             <div className="mt-8 flex flex-col gap-2 text-[15px]">
-              <Link href="/support" className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline">
+              <Link
+                href="/support"
+                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline"
+              >
                 <LifeBuoy aria-hidden className="size-4" /> Visit support
               </Link>
-              <Link href="/terms#trial-and-billing" className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline">
+              <Link
+                href="/terms#trial-and-billing"
+                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline"
+              >
                 <ReceiptText aria-hidden className="size-4" /> Billing terms
               </Link>
             </div>

@@ -65,7 +65,9 @@ class LogProvider implements EmailProvider {
 }
 
 type Stored = EmailMessage & { id: string; from: string; at: Date }
-const mem = globalThis as unknown as { __hnMail?: { sent: Stored[]; failNext: number; failRetryable: boolean } }
+const mem = globalThis as unknown as {
+  __hnMail?: { sent: Stored[]; failNext: number; failRetryable: boolean }
+}
 export function memoryMailbox() {
   mem.__hnMail ??= { sent: [], failNext: 0, failRetryable: true }
   return mem.__hnMail
@@ -105,7 +107,10 @@ class SmtpProvider implements EmailProvider {
     } catch (err) {
       const code = (err as { responseCode?: number }).responseCode
       // 5xx SMTP replies are permanent (bad address, rejected); others retry.
-      throw new EmailSendError(err instanceof Error ? err.message : 'SMTP error', !(code && code >= 500 && code < 600))
+      throw new EmailSendError(
+        err instanceof Error ? err.message : 'SMTP error',
+        !(code && code >= 500 && code < 600),
+      )
     }
   }
 }
@@ -117,7 +122,10 @@ class ResendProvider implements EmailProvider {
     try {
       res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
-        headers: { authorization: `Bearer ${env().RESEND_API_KEY}`, 'content-type': 'application/json' },
+        headers: {
+          authorization: `Bearer ${env().RESEND_API_KEY}`,
+          'content-type': 'application/json',
+        },
         body: JSON.stringify({
           from: fromHeader(m.fromName),
           to: [m.to],

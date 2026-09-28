@@ -11,7 +11,18 @@ import './server-env'
 import { and, desc, eq, sql } from 'drizzle-orm'
 import type { BrowserContext } from '@playwright/test'
 import { closeDb, db } from '@/server/db/client'
-import { appointments, businesses, bookingRules, customers, notifications, services, staff, users, weeklyHours, type Business } from '@/server/db/schema'
+import {
+  appointments,
+  businesses,
+  bookingRules,
+  customers,
+  notifications,
+  services,
+  staff,
+  users,
+  weeklyHours,
+  type Business,
+} from '@/server/db/schema'
 import { hashPassword } from '@/server/auth/password'
 import { createSession, type SessionUser } from '@/server/auth/session'
 import { createBusiness } from '@/server/business/onboarding'
@@ -33,12 +44,24 @@ export const USERS = {
   newbie: { email: 'newbie@e2e.test', name: 'Nina Newcomer' },
   lockout: { email: 'lockout@e2e.test', name: 'Luca Locked' },
 } as const
-export const BIZ_A = { slug: 'aurora-studio', name: 'Aurora Studio', timezone: 'Europe/Athens' } as const
-export const BIZ_B = { slug: 'birch-clinic', name: 'Birch Clinic', timezone: 'Europe/Lisbon' } as const
+export const BIZ_A = {
+  slug: 'aurora-studio',
+  name: 'Aurora Studio',
+  timezone: 'Europe/Athens',
+} as const
+export const BIZ_B = {
+  slug: 'birch-clinic',
+  name: 'Birch Clinic',
+  timezone: 'Europe/Lisbon',
+} as const
 export const SERVICES_A = { cut: 'Signature Cut', trim: 'Quick Trim' } as const
 export const STAFF_A = { owner: USERS.ownerA.name, second: 'Sam Stylist' } as const
 export const SEEDED_CUSTOMERS_A = ['Nora Seeded', 'Theo Seeded', 'Iris Seeded'] as const
-export const CUSTOMER_B = { firstName: 'Bella', lastName: 'Birchwood', email: 'bella.birchwood@example.com' } as const
+export const CUSTOMER_B = {
+  firstName: 'Bella',
+  lastName: 'Birchwood',
+  email: 'bella.birchwood@example.com',
+} as const
 
 const meta = { ip: 'e2e-seed', userAgent: 'playwright', requestId: 'e2e-seed' }
 
@@ -46,7 +69,10 @@ const meta = { ip: 'e2e-seed', userAgent: 'playwright', requestId: 'e2e-seed' }
 // Seeding (global setup)
 // ---------------------------------------------------------------------------
 
-async function insertUser(u: { email: string; name: string }, opts: { admin?: boolean; verified?: boolean } = {}): Promise<SessionUser> {
+async function insertUser(
+  u: { email: string; name: string },
+  opts: { admin?: boolean; verified?: boolean } = {},
+): Promise<SessionUser> {
   const [row] = await db()
     .insert(users)
     .values({
@@ -57,26 +83,72 @@ async function insertUser(u: { email: string; name: string }, opts: { admin?: bo
       isPlatformAdmin: opts.admin ?? false,
     })
     .returning()
-  return { id: row!.id, email: row!.email, name: row!.name, emailVerified: row!.emailVerifiedAt !== null, isPlatformAdmin: row!.isPlatformAdmin }
+  return {
+    id: row!.id,
+    email: row!.email,
+    name: row!.name,
+    emailVerified: row!.emailVerifiedAt !== null,
+    isPlatformAdmin: row!.isPlatformAdmin,
+  }
 }
 
-async function publishedBusiness(owner: SessionUser, b: { slug: string; name: string; timezone: string }, extra: Partial<Business> = {}) {
-  const business = await createBusiness(owner, { name: b.name, slug: b.slug, category: 'Hair & beauty', timezone: b.timezone, currency: 'EUR' }, meta)
+async function publishedBusiness(
+  owner: SessionUser,
+  b: { slug: string; name: string; timezone: string },
+  extra: Partial<Business> = {},
+) {
+  const business = await createBusiness(
+    owner,
+    {
+      name: b.name,
+      slug: b.slug,
+      category: 'Hair & beauty',
+      timezone: b.timezone,
+      currency: 'EUR',
+    },
+    meta,
+  )
   await db()
     .update(businesses)
-    .set({ publishStatus: 'published', publishedAt: new Date(), onboardingCompletedAt: new Date(), ...extra })
+    .set({
+      publishStatus: 'published',
+      publishedAt: new Date(),
+      onboardingCompletedAt: new Date(),
+      ...extra,
+    })
     .where(eq(businesses.id, business.id))
   // Zero notice + every day 08:00–20:00, so bookable slots always exist.
-  await db().update(bookingRules).set({ minNoticeMinutes: 0, slotIntervalMinutes: 15 }).where(eq(bookingRules.businessId, business.id))
+  await db()
+    .update(bookingRules)
+    .set({ minNoticeMinutes: 0, slotIntervalMinutes: 15 })
+    .where(eq(bookingRules.businessId, business.id))
   await db().delete(weeklyHours).where(eq(weeklyHours.businessId, business.id))
   await db()
     .insert(weeklyHours)
-    .values([1, 2, 3, 4, 5, 6, 7].map((weekday) => ({ businessId: business.id, staffId: null, weekday, startMinute: 8 * 60, endMinute: 20 * 60 })))
+    .values(
+      [1, 2, 3, 4, 5, 6, 7].map((weekday) => ({
+        businessId: business.id,
+        staffId: null,
+        weekday,
+        startMinute: 8 * 60,
+        endMinute: 20 * 60,
+      })),
+    )
   const t = await loadTenant(owner.id, business.id)
-  return { business: t!.business, ctx: buildContext(owner, 'e2e-seed', t!.business, t!.membership), ownerStaffId: t!.membership.staffId! }
+  return {
+    business: t!.business,
+    ctx: buildContext(owner, 'e2e-seed', t!.business, t!.membership),
+    ownerStaffId: t!.membership.staffId!,
+  }
 }
 
-const serviceInput = (name: string, durationMinutes: number, price: number, staffIds: string[], description: string | null = null) => ({
+const serviceInput = (
+  name: string,
+  durationMinutes: number,
+  price: number,
+  staffIds: string[],
+  description: string | null = null,
+) => ({
   name,
   description,
   durationMinutes,
@@ -106,9 +178,39 @@ export async function seed() {
     city: 'Athens',
     postalCode: '117 42',
   })
-  const sam = await saveStaff(a.ctx, null, { name: STAFF_A.second, email: null, title: 'Stylist', bio: null, color: '#6d28d9', isActive: true, usesBusinessHours: true, serviceIds: [] }, meta)
-  const cut = await saveService(a.ctx, null, serviceInput(SERVICES_A.cut, 60, 4500, [a.ownerStaffId, sam.id], 'Consultation, wash, cut and finish.'), meta)
-  await saveService(a.ctx, null, serviceInput(SERVICES_A.trim, 30, 2000, [a.ownerStaffId, sam.id]), meta)
+  const sam = await saveStaff(
+    a.ctx,
+    null,
+    {
+      name: STAFF_A.second,
+      email: null,
+      title: 'Stylist',
+      bio: null,
+      color: '#6d28d9',
+      isActive: true,
+      usesBusinessHours: true,
+      serviceIds: [],
+    },
+    meta,
+  )
+  const cut = await saveService(
+    a.ctx,
+    null,
+    serviceInput(
+      SERVICES_A.cut,
+      60,
+      4500,
+      [a.ownerStaffId, sam.id],
+      'Consultation, wash, cut and finish.',
+    ),
+    meta,
+  )
+  await saveService(
+    a.ctx,
+    null,
+    serviceInput(SERVICES_A.trim, 30, 2000, [a.ownerStaffId, sam.id]),
+    meta,
+  )
   const today = todayIn(BIZ_A.timezone)
   for (const [i, full] of SEEDED_CUSTOMERS_A.entries()) {
     const [firstName, lastName] = full.split(' ') as [string, string]
@@ -117,7 +219,12 @@ export async function seed() {
       serviceId: cut.id,
       staffId: a.ownerStaffId,
       start: localToDate(addDays(today, i + 1), (10 + i) * 60, BIZ_A.timezone),
-      customer: { firstName, lastName, email: `${firstName.toLowerCase()}.seeded@example.com`, phone: '+30 690 000 000' },
+      customer: {
+        firstName,
+        lastName,
+        email: `${firstName.toLowerCase()}.seeded@example.com`,
+        phone: '+30 690 000 000',
+      },
       source: 'booking_page',
       actor: { type: 'customer' },
       enforceAvailability: false,
@@ -127,7 +234,12 @@ export async function seed() {
 
   // Business B: unrelated tenant for isolation checks.
   const b = await publishedBusiness(ownerB, BIZ_B)
-  const physio = await saveService(b.ctx, null, serviceInput('Physio Session', 45, 6000, [b.ownerStaffId]), meta)
+  const physio = await saveService(
+    b.ctx,
+    null,
+    serviceInput('Physio Session', 45, 6000, [b.ownerStaffId]),
+    meta,
+  )
   await bookAppointment({
     business: b.business,
     serviceId: physio.id,
@@ -140,7 +252,9 @@ export async function seed() {
     notifyCustomer: false,
   })
   // Seed data must never look like real outgoing mail.
-  await db().execute(sql`UPDATE notifications SET status = 'cancelled', last_error = 'e2e seed' WHERE status = 'pending'`)
+  await db().execute(
+    sql`UPDATE notifications SET status = 'cancelled', last_error = 'e2e seed' WHERE status = 'pending'`,
+  )
 }
 
 // ---------------------------------------------------------------------------
@@ -154,13 +268,19 @@ export async function businessBySlug(slug: string) {
 }
 
 export async function serviceByName(businessId: string, name: string) {
-  const [s] = await db().select().from(services).where(and(eq(services.businessId, businessId), eq(services.name, name)))
+  const [s] = await db()
+    .select()
+    .from(services)
+    .where(and(eq(services.businessId, businessId), eq(services.name, name)))
   if (!s) throw new Error(`No service ${name}`)
   return s
 }
 
 export async function staffByName(businessId: string, name: string) {
-  const [s] = await db().select().from(staff).where(and(eq(staff.businessId, businessId), eq(staff.name, name)))
+  const [s] = await db()
+    .select()
+    .from(staff)
+    .where(and(eq(staff.businessId, businessId), eq(staff.name, name)))
   if (!s) throw new Error(`No staff ${name}`)
   return s
 }
@@ -189,7 +309,10 @@ export async function notificationsFor(appointmentId: string) {
 }
 
 export async function customerByEmail(businessId: string, email: string) {
-  const [c] = await db().select().from(customers).where(and(eq(customers.businessId, businessId), eq(customers.email, email)))
+  const [c] = await db()
+    .select()
+    .from(customers)
+    .where(and(eq(customers.businessId, businessId), eq(customers.email, email)))
   return c ?? null
 }
 
@@ -202,6 +325,14 @@ export async function clearRateLimits() {
   await db().execute(sql`TRUNCATE rate_limits`)
 }
 
+/** Clears failed-login counters and any lock, so a lockout test starts from zero. */
+export async function resetLoginState(email: string) {
+  await db()
+    .update(users)
+    .set({ failedLoginCount: 0, lockedUntil: null })
+    .where(eq(users.email, email))
+}
+
 export async function markEmailVerified(email: string) {
   await db().update(users).set({ emailVerifiedAt: new Date() }).where(eq(users.email, email))
 }
@@ -211,7 +342,15 @@ export async function loginAs(context: BrowserContext, email: string) {
   const user = await userByEmail(email)
   if (!user) throw new Error(`No user ${email}`)
   const session = await createSession(user.id, { ip: 'e2e', userAgent: 'playwright' })
-  await context.addCookies([{ name: 'hn_session', value: session.token, url: E2E_BASE_URL, httpOnly: true, sameSite: 'Lax' }])
+  await context.addCookies([
+    {
+      name: 'hn_session',
+      value: session.token,
+      url: E2E_BASE_URL,
+      httpOnly: true,
+      sameSite: 'Lax',
+    },
+  ])
 }
 
 export async function manageTokenFor(appointmentId: string) {
@@ -221,12 +360,22 @@ export async function manageTokenFor(appointmentId: string) {
 }
 
 /** First bookable start (as the public page would offer it) at or after `fromDaysAhead`. */
-export async function freeSlot(slug: string, serviceName: string, opts: { staffName?: string; fromDaysAhead?: number; skip?: number } = {}) {
+export async function freeSlot(
+  slug: string,
+  serviceName: string,
+  opts: { staffName?: string; fromDaysAhead?: number; skip?: number } = {},
+) {
   const b = await businessBySlug(slug)
   const svc = await serviceByName(b.id, serviceName)
   const staffId = opts.staffName ? (await staffByName(b.id, opts.staffName)).id : null
   const from = addDays(todayIn(b.timezone), opts.fromDaysAhead ?? 0)
-  const days = await getAvailability({ business: b, serviceId: svc.id, staffId, from, to: addDays(from, 6) })
+  const days = await getAvailability({
+    business: b,
+    serviceId: svc.id,
+    staffId,
+    from,
+    to: addDays(from, 6),
+  })
   const slots = days.flatMap((d) => d.slots)
   const slot = slots[opts.skip ?? 0]
   if (!slot) throw new Error('No free slot')
@@ -236,11 +385,21 @@ export async function freeSlot(slug: string, serviceName: string, opts: { staffN
 /** Books through the same service as the public page; returns the appointment and its manage link token. */
 export async function book(
   slug: string,
-  p: { serviceName: string; start: Date; staffName?: string; customer: { firstName: string; lastName: string; email: string; phone?: string | null }; enforceAvailability?: boolean },
+  p: {
+    serviceName: string
+    start: Date
+    staffName?: string
+    customer: { firstName: string; lastName: string; email: string; phone?: string | null }
+    enforceAvailability?: boolean
+  },
 ) {
   const b = await businessBySlug(slug)
   const svc = await serviceByName(b.id, p.serviceName)
-  const staffId = p.staffName ? (await staffByName(b.id, p.staffName)).id : p.enforceAvailability === false ? (await staffByName(b.id, STAFF_A.owner)).id : null
+  const staffId = p.staffName
+    ? (await staffByName(b.id, p.staffName)).id
+    : p.enforceAvailability === false
+      ? (await staffByName(b.id, STAFF_A.owner)).id
+      : null
   const { appointment, manageNonce } = await bookAppointment({
     business: b,
     serviceId: svc.id,
@@ -260,7 +419,12 @@ let counter = 0
 export function uniqueCustomer(prefix = 'Casey') {
   counter++
   const tag = `${Date.now().toString(36)}${counter}`
-  return { firstName: prefix, lastName: `Tester${tag}`, email: `${prefix.toLowerCase()}.${tag}@example.com`, phone: '+30 690 123 4567' }
+  return {
+    firstName: prefix,
+    lastName: `Tester${tag}`,
+    email: `${prefix.toLowerCase()}.${tag}@example.com`,
+    phone: '+30 690 123 4567',
+  }
 }
 
 export { addDays, localToDate, todayIn }

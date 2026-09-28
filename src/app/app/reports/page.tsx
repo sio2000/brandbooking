@@ -11,7 +11,14 @@ import { addMonths } from '@/lib/tz'
 import { resolveMonth } from '@/components/analytics/range'
 import { formatSpan } from '@/components/analytics/presets'
 import { PrintButton } from '@/components/analytics/print-button'
-import { OutcomesReport, ReportKpis, ReportSection, ServicesReport, SourcesReport, StaffReport } from '@/components/analytics/report'
+import {
+  OutcomesReport,
+  ReportKpis,
+  ReportSection,
+  ServicesReport,
+  SourcesReport,
+  StaffReport,
+} from '@/components/analytics/report'
 
 export const metadata: Metadata = { title: 'Monthly report' }
 
@@ -96,20 +103,25 @@ export default async function ReportsPage({ searchParams }: PageProps<'/app/repo
           <h1 className="text-2xl font-bold sm:text-3xl">Monthly report · {monthName}</h1>
           <p className="text-sm text-muted-foreground">
             {formatSpan(data.range.from, data.range.to)}
-            {isCurrent && ' (month in progress)'} · compared with {formatSpan(data.previousRange.from, data.previousRange.to)}
+            {isCurrent && ' (month in progress)'} · compared with{' '}
+            {formatSpan(data.previousRange.from, data.previousRange.to)}
           </p>
         </header>
 
         <ReportSection title="Key figures">
           <ReportKpis data={data} currency={currency} />
           <p className="mt-2 text-xs text-muted-foreground">
-            Revenue is estimated from the service prices of completed appointments. Payments are taken outside Hournook, so this isn’t money collected. Rate changes are in percentage points.
+            Revenue is estimated from the service prices of completed appointments. Payments are
+            taken outside Hournook, so this isn’t money collected. Rate changes are in percentage
+            points.
           </p>
         </ReportSection>
 
         <ReportSection title="Insights">
           {data.insights.length === 0 ? (
-            <p className="text-sm text-muted-foreground">Not enough data yet for insights — they appear once you have a few weeks of bookings.</p>
+            <p className="text-sm text-muted-foreground">
+              Not enough data yet for insights — they appear once you have a few weeks of bookings.
+            </p>
           ) : (
             <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed marker:text-muted-foreground">
               {data.insights.map((i, idx) => (
@@ -133,7 +145,9 @@ export default async function ReportsPage({ searchParams }: PageProps<'/app/repo
 
         <ReportSection title="Booking sources">
           <SourcesReport sources={data.sources} />
-          <p className="mt-2 text-xs text-muted-foreground">Counted by the day the booking was made.</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Counted by the day the booking was made.
+          </p>
         </ReportSection>
 
         <footer className="border-t border-border pt-4 text-xs text-muted-foreground">

@@ -48,7 +48,9 @@ describe('redact: secrets by key name', () => {
 
   it('redacts nested and array-contained secrets', () => {
     const out = redact({
-      req: { headers: { authorization: 'Bearer abc', cookie: 'hn_session=xyz', 'user-agent': 'UA' } },
+      req: {
+        headers: { authorization: 'Bearer abc', cookie: 'hn_session=xyz', 'user-agent': 'UA' },
+      },
       list: [{ password: 'p1' }, { ok: 1 }],
     })
     expect(out).toEqual({
@@ -58,11 +60,19 @@ describe('redact: secrets by key name', () => {
   })
 
   it('keeps non-sensitive fields intact', () => {
-    expect(redact({ businessId: 'b1', status: 200, ms: 12, ok: true, nothing: null })).toEqual({ businessId: 'b1', status: 200, ms: 12, ok: true, nothing: null })
+    expect(redact({ businessId: 'b1', status: 200, ms: 12, ok: true, nothing: null })).toEqual({
+      businessId: 'b1',
+      status: 200,
+      ms: 12,
+      ok: true,
+      nothing: null,
+    })
   })
 
   it('never serialises a Headers instance (no header values leak)', () => {
-    const out = JSON.stringify(redact({ h: new Headers({ authorization: 'Bearer leak-me', cookie: 'a=leak-me' }) }))
+    const out = JSON.stringify(
+      redact({ h: new Headers({ authorization: 'Bearer leak-me', cookie: 'a=leak-me' }) }),
+    )
     expect(out).not.toContain('leak-me')
   })
 })
@@ -73,7 +83,16 @@ describe('redact: personal data', () => {
     expect(redact({ recipient: 'bob@example.org' })).toEqual({ recipient: 'b***@example.org' })
   })
   it('masks names, phones, notes and messages', () => {
-    expect(redact({ name: 'Olivia', firstName: 'Ann', last_name: 'Lee', phone: '+30 210 1234', notes: 'allergic', message: 'hi there' })).toEqual({
+    expect(
+      redact({
+        name: 'Olivia',
+        firstName: 'Ann',
+        last_name: 'Lee',
+        phone: '+30 210 1234',
+        notes: 'allergic',
+        message: 'hi there',
+      }),
+    ).toEqual({
       name: 'O***',
       firstName: 'A***',
       last_name: 'L***',
@@ -123,11 +142,20 @@ describe('logger output', () => {
 
   it('writes one JSON line with secrets redacted', () => {
     process.env.LOG_LEVEL = 'debug'
-    logger.error('login.failed', { email: 'eve@example.com', password: 'hunter2hunter2', headers: { authorization: 'Bearer sk_test_abc' } })
+    logger.error('login.failed', {
+      email: 'eve@example.com',
+      password: 'hunter2hunter2',
+      headers: { authorization: 'Bearer sk_test_abc' },
+    })
     expect(err).toHaveBeenCalledTimes(1)
     const line = String(err.mock.calls[0]![0])
     const parsed = JSON.parse(line)
-    expect(parsed).toMatchObject({ level: 'error', msg: 'login.failed', email: 'e***@example.com', password: '[redacted]' })
+    expect(parsed).toMatchObject({
+      level: 'error',
+      msg: 'login.failed',
+      email: 'e***@example.com',
+      password: '[redacted]',
+    })
     expect(line).not.toContain('hunter2')
     expect(line).not.toContain('sk_test_abc')
     expect(line).not.toContain('eve@')
@@ -138,7 +166,11 @@ describe('logger output', () => {
     logger.debug('hidden')
     logger.info('shown', { n: 1 })
     expect(log).toHaveBeenCalledTimes(1)
-    expect(JSON.parse(String(log.mock.calls[0]![0]))).toMatchObject({ level: 'info', msg: 'shown', n: 1 })
+    expect(JSON.parse(String(log.mock.calls[0]![0]))).toMatchObject({
+      level: 'info',
+      msg: 'shown',
+      n: 1,
+    })
     process.env.LOG_LEVEL = 'error'
     logger.warn('hidden too')
     expect(err).not.toHaveBeenCalled()
@@ -148,7 +180,12 @@ describe('logger output', () => {
 describe('logger line integrity', () => {
   it('fields cannot overwrite level, msg or ts', () => {
     const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    logger.error('real message', { level: 'debug', msg: 'forged', ts: 'x', stripeKey: 'sk_test_123' })
+    logger.error('real message', {
+      level: 'debug',
+      msg: 'forged',
+      ts: 'x',
+      stripeKey: 'sk_test_123',
+    })
     const line = JSON.parse(String(spy.mock.calls[0]![0]))
     spy.mockRestore()
     expect(line.level).toBe('error')

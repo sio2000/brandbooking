@@ -1,7 +1,12 @@
 import 'server-only'
 import { and, eq, sql } from 'drizzle-orm'
 import { db, type Tx } from '@/server/db/client'
-import { billingEvents, businesses, subscriptions, type SubscriptionStatus } from '@/server/db/schema'
+import {
+  billingEvents,
+  businesses,
+  subscriptions,
+  type SubscriptionStatus,
+} from '@/server/db/schema'
 import { env } from '@/server/env'
 import { audit } from '@/server/audit'
 import { logger } from '@/server/observability/logger'
@@ -51,11 +56,18 @@ export function verifyEvent(rawBody: string, signature: string | null): Stripe.E
   }
 }
 
-export async function handleStripeWebhook(rawBody: string, signature: string | null): Promise<WebhookOutcome> {
+export async function handleStripeWebhook(
+  rawBody: string,
+  signature: string | null,
+): Promise<WebhookOutcome> {
   if (rawBody.length > 512 * 1024) return { status: 400, result: 'invalid_payload' }
   const event = verifyEvent(rawBody, signature)
   if (!event) return { status: 400, result: 'invalid_signature' }
-  if (typeof event.id !== 'string' || typeof event.type !== 'string' || typeof event.created !== 'number') {
+  if (
+    typeof event.id !== 'string' ||
+    typeof event.type !== 'string' ||
+    typeof event.created !== 'number'
+  ) {
     return { status: 400, result: 'invalid_payload' }
   }
   return processEvent(event)
@@ -70,10 +82,17 @@ export async function processEvent(event: Stripe.Event): Promise<WebhookOutcome>
     .returning({ id: billingEvents.id })
 
   if (claimed.length === 0) {
-    const [existing] = await db().select().from(billingEvents).where(eq(billingEvents.id, event.id)).limit(1)
+    const [existing] = await db()
+      .select()
+      .from(billingEvents)
+      .where(eq(billingEvents.id, event.id))
+      .limit(1)
     if (!existing) return { status: 409, result: 'in_progress' }
-    if (existing.status === 'processed' || existing.status === 'ignored') return { status: 200, result: 'duplicate' }
-    const stale = existing.status === 'failed' || Date.now() - existing.receivedAt.getTime() > STALE_PROCESSING_MS
+    if (existing.status === 'processed' || existing.status === 'ignored')
+      return { status: 200, result: 'duplicate' }
+    const stale =
+      existing.status === 'failed' ||
+      Date.now() - existing.receivedAt.getTime() > STALE_PROCESSING_MS
     if (!stale) return { status: 409, result: 'in_progress' }
     // Re-claim a failed/abandoned event atomically.
     const reclaimed = await db()
@@ -97,7 +116,12 @@ export async function processEvent(event: Stripe.Event): Promise<WebhookOutcome>
       const { businessId, summary } = await dispatch(tx, event)
       await tx
         .update(billingEvents)
-        .set({ status: businessId ? 'processed' : 'ignored', processedAt: new Date(), businessId, summary })
+        .set({
+          status: businessId ? 'processed' : 'ignored',
+          processedAt: new Date(),
+          businessId,
+          summary,
+        })
         .where(eq(billingEvents.id, event.id))
     })
     return { status: 200, result: 'processed' }
@@ -113,10 +137,17 @@ export async function processEvent(event: Stripe.Event): Promise<WebhookOutcome>
 
 type Handled = { businessId: string | null; summary: Record<string, unknown> }
 
-async function resolveBusiness(tx: Tx, opts: { metadataBusinessId?: string | null; customerId?: string | null }) {
+async function resolveBusiness(
+  tx: Tx,
+  opts: { metadataBusinessId?: string | null; customerId?: string | null },
+) {
   const byMeta = opts.metadataBusinessId
   if (byMeta && /^[0-9a-f-]{36}$/i.test(byMeta)) {
-    const [b] = await tx.select({ id: businesses.id }).from(businesses).where(eq(businesses.id, byMeta)).limit(1)
+    const [b] = await tx
+      .select({ id: businesses.id })
+      .from(businesses)
+      .where(eq(businesses.id, byMeta))
+      .limit(1)
     if (b) return b.id
   }
   if (opts.customerId) {
@@ -130,25 +161,40 @@ async function resolveBusiness(tx: Tx, opts: { metadataBusinessId?: string | nul
   return null
 }
 
-const idOf = (v: string | { id: string } | null | undefined) => (typeof v === 'string' ? v : (v?.id ?? null))
+const idOf = (v: string | { id: string } | null | undefined) =>
+  typeof v === 'string' ? v : (v?.id ?? null)
 
 async function dispatch(tx: Tx, event: Stripe.Event): Promise<Handled> {
   switch (event.type) {
     case 'checkout.session.completed': {
       const s = event.data.object as Stripe.Checkout.Session
-      if (s.mode !== 'subscription') return { businessId: null, summary: { skipped: 'not_subscription' } }
+      if (s.mode !== 'subscription')
+        return { businessId: null, summary: { skipped: 'not_subscription' } }
       const customerId = idOf(s.customer)
-      const businessId = await resolveBusiness(tx, { metadataBusinessId: s.client_reference_id ?? s.metadata?.business_id, customerId })
-      if (!businessId || !customerId) return { businessId: null, summary: { skipped: 'unknown_business' } }
+      const businessId = await resolveBusiness(tx, {
+        metadataBusinessId: s.client_reference_id ?? s.metadata?.business_id,
+        customerId,
+      })
+      if (!businessId || !customerId)
+        return { businessId: null, summary: { skipped: 'unknown_business' } }
       const subscriptionId = idOf(s.subscription)
       await tx
         .insert(subscriptions)
         .values({ businessId, stripeCustomerId: customerId, stripeSubscriptionId: subscriptionId })
         .onConflictDoUpdate({
           target: subscriptions.businessId,
-          set: { stripeCustomerId: customerId, stripeSubscriptionId: sql`COALESCE(${subscriptions.stripeSubscriptionId}, ${subscriptionId})` },
+          set: {
+            stripeCustomerId: customerId,
+            stripeSubscriptionId: sql`COALESCE(${subscriptions.stripeSubscriptionId}, ${subscriptionId})`,
+          },
         })
-      await audit(tx, { businessId, actor: 'stripe', action: 'billing.checkout_completed', entityType: 'subscription', entityId: subscriptionId ?? undefined })
+      await audit(tx, {
+        businessId,
+        actor: 'stripe',
+        action: 'billing.checkout_completed',
+        entityType: 'subscription',
+        entityId: subscriptionId ?? undefined,
+      })
       return { businessId, summary: { subscriptionId } }
     }
 
@@ -169,8 +215,18 @@ async function dispatch(tx: Tx, event: Stripe.Event): Promise<Handled> {
         customerId: idOf(inv.customer),
       })
       if (!businessId) return { businessId: null, summary: { skipped: 'unknown_business' } }
-      await tx.update(subscriptions).set({ lastPaymentFailedAt: null }).where(eq(subscriptions.businessId, businessId))
-      await audit(tx, { businessId, actor: 'stripe', action: 'billing.invoice_paid', entityType: 'invoice', entityId: inv.id ?? undefined, metadata: { amount: inv.amount_paid, currency: inv.currency } })
+      await tx
+        .update(subscriptions)
+        .set({ lastPaymentFailedAt: null })
+        .where(eq(subscriptions.businessId, businessId))
+      await audit(tx, {
+        businessId,
+        actor: 'stripe',
+        action: 'billing.invoice_paid',
+        entityType: 'invoice',
+        entityId: inv.id ?? undefined,
+        metadata: { amount: inv.amount_paid, currency: inv.currency },
+      })
       return { businessId, summary: { invoice: inv.id, amount: inv.amount_paid } }
     }
 
@@ -184,16 +240,30 @@ async function dispatch(tx: Tx, event: Stripe.Event): Promise<Handled> {
       // Grace period counts from the first failure of a dunning cycle.
       await tx
         .update(subscriptions)
-        .set({ lastPaymentFailedAt: sql`COALESCE(${subscriptions.lastPaymentFailedAt}, ${new Date(event.created * 1000).toISOString()})` })
+        .set({
+          lastPaymentFailedAt: sql`COALESCE(${subscriptions.lastPaymentFailedAt}, ${new Date(event.created * 1000).toISOString()})`,
+        })
         .where(eq(subscriptions.businessId, businessId))
-      await audit(tx, { businessId, actor: 'stripe', action: 'billing.payment_failed', entityType: 'invoice', entityId: inv.id ?? undefined, metadata: { attempt: inv.attempt_count } })
-      const owners = await membersToNotify(tx, businessId, 'billing')
-      await addInboxItems(tx, businessId, owners.map((o) => o.userId), {
-        kind: 'billing',
-        title: 'Payment failed',
-        body: 'We couldn’t charge your card. Update your payment method to keep accepting bookings.',
-        href: '/app/billing',
+      await audit(tx, {
+        businessId,
+        actor: 'stripe',
+        action: 'billing.payment_failed',
+        entityType: 'invoice',
+        entityId: inv.id ?? undefined,
+        metadata: { attempt: inv.attempt_count },
       })
+      const owners = await membersToNotify(tx, businessId, 'billing')
+      await addInboxItems(
+        tx,
+        businessId,
+        owners.map((o) => o.userId),
+        {
+          kind: 'billing',
+          title: 'Payment failed',
+          body: 'We couldn’t charge your card. Update your payment method to keep accepting bookings.',
+          href: '/app/billing',
+        },
+      )
       for (const o of owners) {
         await enqueueEmail(tx, {
           template: 'billing_payment_failed',
@@ -208,18 +278,37 @@ async function dispatch(tx: Tx, event: Stripe.Event): Promise<Handled> {
   return { businessId: null, summary: {} }
 }
 
-export async function syncSubscription(tx: Tx, sub: Stripe.Subscription, eventAt: Date): Promise<Handled> {
+export async function syncSubscription(
+  tx: Tx,
+  sub: Stripe.Subscription,
+  eventAt: Date,
+): Promise<Handled> {
   const customerId = idOf(sub.customer)
-  const businessId = await resolveBusiness(tx, { metadataBusinessId: sub.metadata?.business_id, customerId })
-  if (!businessId || !customerId) return { businessId: null, summary: { skipped: 'unknown_business' } }
+  const businessId = await resolveBusiness(tx, {
+    metadataBusinessId: sub.metadata?.business_id,
+    customerId,
+  })
+  if (!businessId || !customerId)
+    return { businessId: null, summary: { skipped: 'unknown_business' } }
 
-  const [current] = await tx.select().from(subscriptions).where(eq(subscriptions.businessId, businessId)).for('update').limit(1)
+  const [current] = await tx
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.businessId, businessId))
+    .for('update')
+    .limit(1)
   // Ignore events older than what we've already applied (Stripe does not guarantee order).
   if (current?.lastEventAt && current.lastEventAt.getTime() > eventAt.getTime()) {
     return { businessId, summary: { skipped: 'out_of_order' } }
   }
   // A business has one live subscription; ignore stray updates for a replaced one.
-  if (current?.stripeSubscriptionId && current.stripeSubscriptionId !== sub.id && current.status && ['active', 'trialing', 'past_due'].includes(current.status) && sub.status === 'canceled') {
+  if (
+    current?.stripeSubscriptionId &&
+    current.stripeSubscriptionId !== sub.id &&
+    current.status &&
+    ['active', 'trialing', 'past_due'].includes(current.status) &&
+    sub.status === 'canceled'
+  ) {
     return { businessId, summary: { skipped: 'stale_subscription' } }
   }
 
@@ -252,7 +341,9 @@ export async function syncSubscription(tx: Tx, sub: Stripe.Subscription, eventAt
       entityId: sub.id,
       metadata: { from: previous, to: status },
     })
-    const becameActive = (status === 'active' || status === 'trialing') && !(previous === 'active' || previous === 'trialing')
+    const becameActive =
+      (status === 'active' || status === 'trialing') &&
+      !(previous === 'active' || previous === 'trialing')
     const ended = status === 'canceled' && previous !== 'canceled'
     if (becameActive || ended) {
       const owners = await membersToNotify(tx, businessId, 'billing')
@@ -264,12 +355,19 @@ export async function syncSubscription(tx: Tx, sub: Stripe.Subscription, eventAt
           dedupeKey: `${becameActive ? 'sub_active' : 'sub_canceled'}:${sub.id}:${o.userId}`,
         })
       }
-      await addInboxItems(tx, businessId, owners.map((o) => o.userId), {
-        kind: 'billing',
-        title: becameActive ? 'Subscription active' : 'Subscription ended',
-        body: becameActive ? 'Thanks! Your plan is active.' : 'Your booking page no longer accepts new bookings.',
-        href: '/app/billing',
-      })
+      await addInboxItems(
+        tx,
+        businessId,
+        owners.map((o) => o.userId),
+        {
+          kind: 'billing',
+          title: becameActive ? 'Subscription active' : 'Subscription ended',
+          body: becameActive
+            ? 'Thanks! Your plan is active.'
+            : 'Your booking page no longer accepts new bookings.',
+          href: '/app/billing',
+        },
+      )
     }
   }
   return { businessId, summary: { subscriptionId: sub.id, status, previous } }

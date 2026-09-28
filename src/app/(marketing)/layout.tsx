@@ -92,19 +92,22 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
                 {site.tagline} One simple plan for {site.price.display}/{site.price.period}.
               </p>
               <div className="mt-6 flex items-center gap-3">
-                <span className="text-xs font-medium text-muted-foreground">
-                  Theme
-                </span>
+                <span className="text-xs font-medium text-muted-foreground">Theme</span>
                 <ThemeSwitcher />
               </div>
             </div>
             {footerColumns.map((col) => (
               <nav key={col.title} aria-label={col.title}>
-                <h2 className="font-sans text-sm font-semibold tracking-normal text-foreground">{col.title}</h2>
+                <h2 className="font-sans text-sm font-semibold tracking-normal text-foreground">
+                  {col.title}
+                </h2>
                 <ul className="mt-3 space-y-0.5">
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="-mx-1 inline-flex min-h-10 items-center rounded-md px-1 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      <Link
+                        href={l.href}
+                        className="-mx-1 inline-flex min-h-10 items-center rounded-md px-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
                         {l.label}
                       </Link>
                     </li>

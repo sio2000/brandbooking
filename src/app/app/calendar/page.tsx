@@ -6,7 +6,15 @@ import { pickerData } from '@/server/business/pickers'
 import { db } from '@/server/db/client'
 import { weeklyHours } from '@/server/db/schema'
 import { CalendarView, type CalView } from '@/components/dashboard/calendar/calendar-view'
-import { addDays, endOfMonth, isPlainDate, localToDate, startOfMonth, startOfWeek, todayIn } from '@/lib/tz'
+import {
+  addDays,
+  endOfMonth,
+  isPlainDate,
+  localToDate,
+  startOfMonth,
+  startOfWeek,
+  todayIn,
+} from '@/lib/tz'
 
 export const metadata: Metadata = { title: 'Calendar' }
 
@@ -18,7 +26,8 @@ export default async function CalendarPage({ searchParams }: PageProps<'/app/cal
   const tz = ctx.business.timezone
   const view = VIEWS.includes(sp.view as CalView) ? (sp.view as CalView) : 'week'
   const date = typeof sp.date === 'string' && isPlainDate(sp.date) ? sp.date : todayIn(tz)
-  const staffFilter = typeof sp.staff === 'string' && /^[0-9a-f-]{36}$/i.test(sp.staff) ? sp.staff : null
+  const staffFilter =
+    typeof sp.staff === 'string' && /^[0-9a-f-]{36}$/i.test(sp.staff) ? sp.staff : null
 
   const [from, to] =
     view === 'day'
@@ -31,9 +40,17 @@ export default async function CalendarPage({ searchParams }: PageProps<'/app/cal
   void endOfMonth
 
   const [rows, pickers, hours] = await Promise.all([
-    listAppointments(ctx, { from: localToDate(from, 0, tz), to: localToDate(addDays(to, 1), 0, tz), staffId: staffFilter, limit: 2000 }),
+    listAppointments(ctx, {
+      from: localToDate(from, 0, tz),
+      to: localToDate(addDays(to, 1), 0, tz),
+      staffId: staffFilter,
+      limit: 2000,
+    }),
     pickerData(ctx),
-    db().select().from(weeklyHours).where(and(eq(weeklyHours.businessId, ctx.business.id), isNull(weeklyHours.staffId))),
+    db()
+      .select()
+      .from(weeklyHours)
+      .where(and(eq(weeklyHours.businessId, ctx.business.id), isNull(weeklyHours.staffId))),
   ])
 
   return (
@@ -54,7 +71,11 @@ export default async function CalendarPage({ searchParams }: PageProps<'/app/cal
         staffName: r.staffName,
         customerName: `${r.customerFirstName} ${r.customerLastName}`.trim(),
       }))}
-      businessHours={hours.map((h) => ({ weekday: h.weekday, start: h.startMinute, end: h.endMinute }))}
+      businessHours={hours.map((h) => ({
+        weekday: h.weekday,
+        start: h.startMinute,
+        end: h.endMinute,
+      }))}
       staff={pickers.allStaff.filter((s) => s.isActive)}
       services={pickers.services}
       pickerStaff={pickers.staff}

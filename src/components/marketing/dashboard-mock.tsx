@@ -1,4 +1,14 @@
-import { BarChart3, CalendarDays, CalendarRange, Clock3, LayoutGrid, ListChecks, Settings, Tags, Users } from 'lucide-react'
+import {
+  BarChart3,
+  CalendarDays,
+  CalendarRange,
+  Clock3,
+  LayoutGrid,
+  ListChecks,
+  Settings,
+  Tags,
+  Users,
+} from 'lucide-react'
 import { LogoMark } from '@/components/brand/logo'
 import { cn } from '@/lib/utils'
 
@@ -31,13 +41,62 @@ const week = [
 ]
 
 const today = [
-  { t: '09:00', s: 'Colour refresh', c: 'Maya R.', st: 'Done', tone: 'neutral', color: 'var(--chart-3)' },
-  { t: '11:00', s: 'Cut & finish', c: 'Jonas K.', st: 'Done', tone: 'neutral', color: 'var(--chart-1)' },
-  { t: '13:30', s: 'Cut & finish', c: 'Alex M.', st: 'New', tone: 'primary', color: 'var(--chart-1)' },
-  { t: '14:30', s: 'Balayage', c: 'Ines T.', st: 'Confirmed', tone: 'success', color: 'var(--chart-4)' },
-  { t: '15:30', s: 'Beard trim', c: 'Sam O.', st: 'Confirmed', tone: 'success', color: 'var(--chart-2)' },
-  { t: '16:15', s: 'Cut & finish', c: 'Priya D.', st: 'Confirmed', tone: 'success', color: 'var(--chart-1)' },
-  { t: '17:00', s: 'Colour consult', c: 'Elena P.', st: 'Confirmed', tone: 'success', color: 'var(--chart-5)' },
+  {
+    t: '09:00',
+    s: 'Colour refresh',
+    c: 'Maya R.',
+    st: 'Done',
+    tone: 'neutral',
+    color: 'var(--chart-3)',
+  },
+  {
+    t: '11:00',
+    s: 'Cut & finish',
+    c: 'Jonas K.',
+    st: 'Done',
+    tone: 'neutral',
+    color: 'var(--chart-1)',
+  },
+  {
+    t: '13:30',
+    s: 'Cut & finish',
+    c: 'Alex M.',
+    st: 'New',
+    tone: 'primary',
+    color: 'var(--chart-1)',
+  },
+  {
+    t: '14:30',
+    s: 'Balayage',
+    c: 'Ines T.',
+    st: 'Confirmed',
+    tone: 'success',
+    color: 'var(--chart-4)',
+  },
+  {
+    t: '15:30',
+    s: 'Beard trim',
+    c: 'Sam O.',
+    st: 'Confirmed',
+    tone: 'success',
+    color: 'var(--chart-2)',
+  },
+  {
+    t: '16:15',
+    s: 'Cut & finish',
+    c: 'Priya D.',
+    st: 'Confirmed',
+    tone: 'success',
+    color: 'var(--chart-1)',
+  },
+  {
+    t: '17:00',
+    s: 'Colour consult',
+    c: 'Elena P.',
+    st: 'Confirmed',
+    tone: 'success',
+    color: 'var(--chart-5)',
+  },
 ] as const
 
 const sources = [
@@ -61,7 +120,10 @@ export function DashboardMock() {
   const max = Math.max(...week.map((w) => w.v))
   return (
     <figure className="m-0">
-      <div aria-hidden className="overflow-hidden rounded-2xl border border-border bg-surface shadow-lg ring-1 ring-black/[0.02] select-none">
+      <div
+        aria-hidden
+        className="overflow-hidden rounded-2xl border border-border bg-surface shadow-lg ring-1 ring-black/[0.02] select-none"
+      >
         {/* Window chrome */}
         <div className="flex items-center gap-3 border-b border-border bg-surface-2/70 px-4 py-2.5">
           <span className="flex gap-1.5">
@@ -69,7 +131,9 @@ export function DashboardMock() {
             <span className="size-2.5 rounded-full bg-border-strong" />
             <span className="size-2.5 rounded-full bg-border-strong" />
           </span>
-          <span className="mx-auto hidden h-6 w-64 items-center justify-center rounded-md bg-surface px-3 text-[11px] text-subtle-foreground sm:flex">Overview · Studio Linden</span>
+          <span className="mx-auto hidden h-6 w-64 items-center justify-center rounded-md bg-surface px-3 text-[11px] text-subtle-foreground sm:flex">
+            Overview · Studio Linden
+          </span>
           <span className="hidden w-[42px] sm:block" />
         </div>
 
@@ -84,7 +148,12 @@ export function DashboardMock() {
               {nav.map(({ label, Icon, active }) => (
                 <li
                   key={label}
-                  className={cn('flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[12.5px]', active ? 'bg-surface font-semibold text-foreground shadow-xs' : 'text-muted-foreground')}
+                  className={cn(
+                    'flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[12.5px]',
+                    active
+                      ? 'bg-surface font-semibold text-foreground shadow-xs'
+                      : 'text-muted-foreground',
+                  )}
                 >
                   <Icon className={cn('size-3.5', active && 'text-primary')} />
                   {label}
@@ -98,17 +167,30 @@ export function DashboardMock() {
             <div className="flex flex-wrap items-end justify-between gap-2">
               <div>
                 <p className="text-[11px] font-medium text-muted-foreground sm:text-xs">Thursday</p>
-                <p className="font-display text-lg leading-tight font-bold sm:text-xl">Good morning, Anna</p>
+                <p className="font-display text-lg leading-tight font-bold sm:text-xl">
+                  Good morning, Anna
+                </p>
               </div>
-              <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[10.5px] font-semibold text-accent-soft-foreground">Sample data</span>
+              <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[10.5px] font-semibold text-accent-soft-foreground">
+                Sample data
+              </span>
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
               {kpis.map((k) => (
-                <div key={k.label} className="rounded-xl border border-border bg-surface p-2.5 sm:p-3">
-                  <p className="truncate text-[10.5px] font-medium text-muted-foreground sm:text-[11.5px]">{k.label}</p>
-                  <p className="tabular mt-0.5 font-display text-xl leading-tight font-bold sm:text-2xl">{k.value}</p>
-                  <p className="truncate text-[10px] text-subtle-foreground sm:text-[11px]">{k.sub}</p>
+                <div
+                  key={k.label}
+                  className="rounded-xl border border-border bg-surface p-2.5 sm:p-3"
+                >
+                  <p className="truncate text-[10.5px] font-medium text-muted-foreground sm:text-[11.5px]">
+                    {k.label}
+                  </p>
+                  <p className="tabular mt-0.5 font-display text-xl leading-tight font-bold sm:text-2xl">
+                    {k.value}
+                  </p>
+                  <p className="truncate text-[10px] text-subtle-foreground sm:text-[11px]">
+                    {k.sub}
+                  </p>
                 </div>
               ))}
             </div>
@@ -123,13 +205,27 @@ export function DashboardMock() {
                 <ul className="divide-y divide-border">
                   {today.map((a) => (
                     <li key={a.t} className="flex items-center gap-2.5 px-3 py-2 sm:px-3.5">
-                      <span className="tabular w-9 shrink-0 text-[11px] font-semibold text-muted-foreground">{a.t}</span>
-                      <span className="h-7 w-[3px] shrink-0 rounded-full" style={{ background: a.color }} />
+                      <span className="tabular w-9 shrink-0 text-[11px] font-semibold text-muted-foreground">
+                        {a.t}
+                      </span>
+                      <span
+                        className="h-7 w-[3px] shrink-0 rounded-full"
+                        style={{ background: a.color }}
+                      />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-[12px] font-medium">{a.s}</span>
-                        <span className="block truncate text-[10.5px] text-muted-foreground">{a.c}</span>
+                        <span className="block truncate text-[10.5px] text-muted-foreground">
+                          {a.c}
+                        </span>
                       </span>
-                      <span className={cn('shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium', toneCls[a.tone])}>{a.st}</span>
+                      <span
+                        className={cn(
+                          'shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium',
+                          toneCls[a.tone],
+                        )}
+                      >
+                        {a.st}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -144,12 +240,29 @@ export function DashboardMock() {
                   </div>
                   <div className="mt-3 flex h-24 items-end gap-1.5 sm:gap-2">
                     {week.map((w) => (
-                      <div key={w.d} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                      <div
+                        key={w.d}
+                        className="flex h-full flex-1 flex-col items-center justify-end gap-1"
+                      >
                         <div
-                          className={cn('w-full rounded-t-[4px]', w.d === 'Thu' ? 'bg-primary' : 'bg-[color-mix(in_oklab,var(--chart-1)_32%,var(--surface))]')}
+                          className={cn(
+                            'w-full rounded-t-[4px]',
+                            w.d === 'Thu'
+                              ? 'bg-primary'
+                              : 'bg-[color-mix(in_oklab,var(--chart-1)_32%,var(--surface))]',
+                          )}
                           style={{ height: `${Math.max(4, (w.v / max) * 100)}%` }}
                         />
-                        <span className={cn('text-[9.5px]', w.d === 'Thu' ? 'font-semibold text-foreground' : 'text-subtle-foreground')}>{w.d}</span>
+                        <span
+                          className={cn(
+                            'text-[9.5px]',
+                            w.d === 'Thu'
+                              ? 'font-semibold text-foreground'
+                              : 'text-subtle-foreground',
+                          )}
+                        >
+                          {w.d}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -165,7 +278,10 @@ export function DashboardMock() {
                           <span className="tabular font-medium">{s.v}%</span>
                         </div>
                         <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-surface-2">
-                          <div className="h-full rounded-full" style={{ width: `${s.v}%`, background: `var(--chart-${i + 1})` }} />
+                          <div
+                            className="h-full rounded-full"
+                            style={{ width: `${s.v}%`, background: `var(--chart-${i + 1})` }}
+                          />
                         </div>
                       </li>
                     ))}
@@ -176,7 +292,9 @@ export function DashboardMock() {
           </div>
         </div>
       </div>
-      <figcaption className="mt-4 text-center text-[13px] text-muted-foreground">Illustration of the Hournook dashboard with sample data.</figcaption>
+      <figcaption className="mt-4 text-center text-[13px] text-muted-foreground">
+        Illustration of the Hournook dashboard with sample data.
+      </figcaption>
     </figure>
   )
 }

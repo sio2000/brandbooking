@@ -11,7 +11,11 @@ import { openBillingPortalAction, startCheckoutAction } from '@/app/app/_actions
  * Sends the owner to a Stripe-hosted page (Checkout or the billing portal).
  * The button keeps spinning while the browser navigates away.
  */
-export function StripeButton({ kind, children, ...props }: Omit<ButtonProps, 'onClick'> & { kind: 'checkout' | 'portal' }) {
+export function StripeButton({
+  kind,
+  children,
+  ...props
+}: Omit<ButtonProps, 'onClick'> & { kind: 'checkout' | 'portal' }) {
   const [pending, setPending] = React.useState(false)
   return (
     <Button
@@ -21,7 +25,8 @@ export function StripeButton({ kind, children, ...props }: Omit<ButtonProps, 'on
       onClick={async () => {
         setPending(true)
         try {
-          const r = kind === 'checkout' ? await startCheckoutAction() : await openBillingPortalAction()
+          const r =
+            kind === 'checkout' ? await startCheckoutAction() : await openBillingPortalAction()
           if (r && !r.ok) {
             toast.error(r.error)
             setPending(false)
@@ -42,7 +47,13 @@ export function RefreshButton({ label = 'Refresh' }: { label?: string }) {
   const router = useRouter()
   const [pending, startTransition] = React.useTransition()
   return (
-    <Button type="button" variant="secondary" size="sm" loading={pending} onClick={() => startTransition(() => router.refresh())}>
+    <Button
+      type="button"
+      variant="secondary"
+      size="sm"
+      loading={pending}
+      onClick={() => startTransition(() => router.refresh())}
+    >
       <RefreshCw /> {label}
     </Button>
   )

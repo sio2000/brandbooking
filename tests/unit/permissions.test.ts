@@ -11,8 +11,18 @@ import {
 import type { MemberRole } from '@/server/db/schema'
 
 const ROLES: MemberRole[] = ['owner', 'manager', 'staff']
-const OWNER_ONLY: Permission[] = ['billing.manage', 'business.delete', 'business.export', 'customers.erase']
-const STAFF: Permission[] = ['appointments.view_own', 'appointments.manage_own', 'customers.view', 'availability.manage_own']
+const OWNER_ONLY: Permission[] = [
+  'billing.manage',
+  'business.delete',
+  'business.export',
+  'customers.erase',
+]
+const STAFF: Permission[] = [
+  'appointments.view_own',
+  'appointments.manage_own',
+  'customers.view',
+  'availability.manage_own',
+]
 
 describe('role matrix', () => {
   it('owner holds every permission', () => {
@@ -93,7 +103,18 @@ describe('permissions while suspended', () => {
     for (const p of ALLOWED_WHILE_SUSPENDED) expect(PERMISSIONS).toContain(p)
   })
   it('keeps read, export, billing and deletion available (data is never held hostage)', () => {
-    for (const p of ['billing.view', 'billing.manage', 'business.export', 'business.delete', 'appointments.view_all', 'appointments.view_own', 'customers.view', 'customers.export', 'analytics.view', 'audit.view'] as const) {
+    for (const p of [
+      'billing.view',
+      'billing.manage',
+      'business.export',
+      'business.delete',
+      'appointments.view_all',
+      'appointments.view_own',
+      'customers.view',
+      'customers.export',
+      'analytics.view',
+      'audit.view',
+    ] as const) {
       expect(ALLOWED_WHILE_SUSPENDED.has(p), p).toBe(true)
     }
   })

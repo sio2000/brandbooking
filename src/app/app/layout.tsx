@@ -10,13 +10,24 @@ import { CommandPaletteProvider } from '@/components/dashboard/command-palette'
 import { AccountBanner } from '@/components/dashboard/banners'
 import { ROLE_LABELS } from '@/server/tenancy/permissions'
 
-export const metadata: Metadata = { title: { default: 'Dashboard', template: '%s · Hournook' }, robots: { index: false, follow: false } }
+export const metadata: Metadata = {
+  title: { default: 'Dashboard', template: '%s · Hournook' },
+  robots: { index: false, follow: false },
+}
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const ctx = await requireTenantPage()
-  const [memberships, box, access] = await Promise.all([listMemberships(ctx.user.id), inbox(ctx, 1), accessFor(ctx.business)])
-  const groups = NAV_GROUPS.map((g) => ({ ...g, items: g.items.filter((i) => !i.any || i.any.some((p) => ctx.can(p))) })).filter((g) => g.items.length)
-  const bookingUrl = ctx.business.publishStatus === 'draft' ? null : appUrl(`/book/${ctx.business.slug}`)
+  const [memberships, box, access] = await Promise.all([
+    listMemberships(ctx.user.id),
+    inbox(ctx, 1),
+    accessFor(ctx.business),
+  ])
+  const groups = NAV_GROUPS.map((g) => ({
+    ...g,
+    items: g.items.filter((i) => !i.any || i.any.some((p) => ctx.can(p))),
+  })).filter((g) => g.items.length)
+  const bookingUrl =
+    ctx.business.publishStatus === 'draft' ? null : appUrl(`/book/${ctx.business.slug}`)
   const can = {
     createAppointment: ctx.can('appointments.manage_all') || ctx.can('appointments.manage_own'),
     services: ctx.can('services.manage'),
@@ -29,7 +40,10 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   }
   return (
     <CommandPaletteProvider bookingUrl={bookingUrl} timezone={ctx.business.timezone} can={can}>
-      <a href="#main" className="sr-only z-50 rounded-md bg-primary px-3 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-md bg-primary px-3 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+      >
         Skip to content
       </a>
       <div className="flex min-h-dvh">
@@ -47,14 +61,22 @@ export default async function AppLayout({ children }: { children: React.ReactNod
               emailVerified: ctx.user.emailVerified,
               email: ctx.user.email,
               suspended: ctx.business.status === 'suspended',
-              access: { state: access.state, trialDaysLeft: access.trialDaysLeft, canAcceptBookings: access.canAcceptBookings },
+              access: {
+                state: access.state,
+                trialDaysLeft: access.trialDaysLeft,
+                canAcceptBookings: access.canAcceptBookings,
+              },
               canBilling: ctx.can('billing.manage'),
             }}
           />
           <Topbar
             user={{ name: ctx.user.name, email: ctx.user.email }}
             business={{ id: ctx.business.id, name: ctx.business.name }}
-            memberships={memberships.map((m) => ({ businessId: m.businessId, name: m.name, role: m.role }))}
+            memberships={memberships.map((m) => ({
+              businessId: m.businessId,
+              name: m.name,
+              role: m.role,
+            }))}
             initialUnread={box.unread}
             bookingUrl={bookingUrl}
             canCreate={can.createAppointment}

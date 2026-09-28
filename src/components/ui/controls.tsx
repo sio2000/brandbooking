@@ -20,14 +20,27 @@ export function Switch({ className, ...props }: React.ComponentProps<typeof S.Ro
 }
 
 /** Labelled switch row: the most common settings control. */
-export function SwitchRow({ id, label, description, ...props }: React.ComponentProps<typeof S.Root> & { id: string; label: React.ReactNode; description?: React.ReactNode }) {
+export function SwitchRow({
+  id,
+  label,
+  description,
+  ...props
+}: React.ComponentProps<typeof S.Root> & {
+  id: string
+  label: React.ReactNode
+  description?: React.ReactNode
+}) {
   return (
     <div className="flex items-start justify-between gap-4 py-3">
       <div className="min-w-0">
         <label htmlFor={id} className="text-sm font-medium">
           {label}
         </label>
-        {description && <p id={`${id}-desc`} className="mt-0.5 text-[13px] leading-snug text-muted-foreground">{description}</p>}
+        {description && (
+          <p id={`${id}-desc`} className="mt-0.5 text-[13px] leading-snug text-muted-foreground">
+            {description}
+          </p>
+        )}
       </div>
       <Switch id={id} aria-describedby={description ? `${id}-desc` : undefined} {...props} />
     </div>
@@ -43,8 +56,12 @@ export function Checkbox({ className, ...props }: React.ComponentProps<typeof C.
       )}
       {...props}
     >
-      <C.Indicator className="animate-in zoom-in-50 duration-150">
-        {props.checked === 'indeterminate' ? <Minus className="size-3.5" strokeWidth={3} /> : <Check className="size-3.5" strokeWidth={3} />}
+      <C.Indicator className="animate-in duration-150 zoom-in-50">
+        {props.checked === 'indeterminate' ? (
+          <Minus className="size-3.5" strokeWidth={3} />
+        ) : (
+          <Check className="size-3.5" strokeWidth={3} />
+        )}
       </C.Indicator>
     </C.Root>
   )
@@ -67,7 +84,12 @@ export function RadioCard({ className, children, ...props }: React.ComponentProp
 
 export const Tabs = T.Root
 export function TabsList({ className, ...props }: React.ComponentProps<typeof T.List>) {
-  return <T.List className={cn('inline-flex items-center gap-1 rounded-xl bg-surface-2 p-1', className)} {...props} />
+  return (
+    <T.List
+      className={cn('inline-flex items-center gap-1 rounded-xl bg-surface-2 p-1', className)}
+      {...props}
+    />
+  )
 }
 export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof T.Trigger>) {
   return (
@@ -83,9 +105,25 @@ export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof
 export const TabsContent = T.Content
 
 /** Segmented control for 2–5 mutually exclusive options (URL-friendly). */
-export function Segmented<T extends string>({ value, onChange, options, label, className }: { value: T; onChange: (v: T) => void; options: Array<{ value: T; label: React.ReactNode }>; label: string; className?: string }) {
+export function Segmented<T extends string>({
+  value,
+  onChange,
+  options,
+  label,
+  className,
+}: {
+  value: T
+  onChange: (v: T) => void
+  options: Array<{ value: T; label: React.ReactNode }>
+  label: string
+  className?: string
+}) {
   return (
-    <div role="radiogroup" aria-label={label} className={cn('inline-flex items-center gap-1 rounded-xl bg-surface-2 p-1', className)}>
+    <div
+      role="radiogroup"
+      aria-label={label}
+      className={cn('inline-flex items-center gap-1 rounded-xl bg-surface-2 p-1', className)}
+    >
       {options.map((o) => (
         <button
           key={o.value}
@@ -95,7 +133,9 @@ export function Segmented<T extends string>({ value, onChange, options, label, c
           onClick={() => onChange(o.value)}
           className={cn(
             'inline-flex h-8 items-center justify-center rounded-lg px-3 text-[13px] font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-2 focus-visible:ring-ring',
-            value === o.value ? 'bg-surface text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground',
+            value === o.value
+              ? 'bg-surface text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground',
           )}
         >
           {o.label}

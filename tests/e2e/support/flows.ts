@@ -6,8 +6,10 @@ import { expect, type Locator, type Page } from '@playwright/test'
  */
 
 export const dateGrid = (page: Page) => page.getByRole('grid', { name: 'Choose a date' })
-export const availableDays = (page: Page) => dateGrid(page).getByRole('button', { name: /, \d+ times available$/ })
-export const timeRadios = (page: Page) => page.getByRole('radiogroup', { name: /^(Morning|Afternoon|Evening) times$/ }).getByRole('radio')
+export const availableDays = (page: Page) =>
+  dateGrid(page).getByRole('button', { name: /, \d+ times available$/ })
+export const timeRadios = (page: Page) =>
+  page.getByRole('radiogroup', { name: /^(Morning|Afternoon|Evening) times$/ }).getByRole('radio')
 
 export async function chooseService(page: Page, name: string) {
   await expect(page.getByRole('heading', { name: 'Choose a service' })).toBeVisible()
@@ -27,12 +29,18 @@ export async function chooseStaff(page: Page, name: string) {
  * for the old list to be gone before anyone reads or clicks a time.
  */
 export async function chooseLaterDay(page: Page) {
-  await expect(page.getByRole('heading', { name: 'Pick a date and time' }).or(page.getByRole('heading', { name: 'Choose a new time' }))).toBeVisible()
+  await expect(
+    page
+      .getByRole('heading', { name: 'Pick a date and time' })
+      .or(page.getByRole('heading', { name: 'Choose a new time' })),
+  ).toBeVisible()
   await expect(availableDays(page).first()).toBeVisible()
   // The picker auto-selects the first bookable day; wait for its times.
   await expect(timeRadios(page).first()).toBeVisible()
   const previous = await timeRadios(page).first().elementHandle()
-  const selected = (await dateGrid(page).getByRole('gridcell', { selected: true }).innerText()).trim()
+  const selected = (
+    await dateGrid(page).getByRole('gridcell', { selected: true }).innerText()
+  ).trim()
   const today = await dateGrid(page).evaluate(() => new Date().getDate())
   const days = availableDays(page)
   const count = await days.count()
@@ -52,7 +60,10 @@ export async function chooseLaterDay(page: Page) {
   await expect(timeRadios(page).first()).toBeVisible()
 }
 
-export async function chooseTime(page: Page, index = 0): Promise<{ label: string; radio: Locator }> {
+export async function chooseTime(
+  page: Page,
+  index = 0,
+): Promise<{ label: string; radio: Locator }> {
   const radio = timeRadios(page).nth(index)
   await expect(radio).toBeVisible()
   const label = (await radio.innerText()).trim()
@@ -66,7 +77,10 @@ export async function continueToDetails(page: Page) {
   await expect(page.getByRole('heading', { name: 'Your details' })).toBeVisible()
 }
 
-export async function fillDetails(page: Page, c: { firstName: string; lastName: string; email: string; phone?: string }) {
+export async function fillDetails(
+  page: Page,
+  c: { firstName: string; lastName: string; email: string; phone?: string },
+) {
   await page.getByLabel('First name').fill(c.firstName)
   await page.getByLabel('Last name').fill(c.lastName)
   await page.getByLabel('Email').fill(c.email)
@@ -80,5 +94,11 @@ export async function toReview(page: Page) {
 
 /** Wait until CSS/WAAPI animations (step transitions, dialogs) have finished. */
 export async function settle(page: Page) {
-  await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity))
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every(
+        (a) => a.playState !== 'running' || a.effect?.getComputedTiming().iterations === Infinity,
+      ),
+  )
 }

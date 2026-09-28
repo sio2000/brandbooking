@@ -16,7 +16,11 @@ export function redact(value: unknown, depth = 0): unknown {
   if (depth > 6) return '[depth]'
   if (value === null || value === undefined) return value
   if (value instanceof Error) {
-    return { name: value.name, message: value.message, stack: value.stack?.split('\n').slice(0, 8).join('\n') }
+    return {
+      name: value.name,
+      message: value.message,
+      stack: value.stack?.split('\n').slice(0, 8).join('\n'),
+    }
   }
   if (Array.isArray(value)) return value.slice(0, 50).map((v) => redact(v, depth + 1))
   if (typeof value === 'object') {
@@ -39,13 +43,20 @@ function maskPii(v: string): string {
 }
 
 function threshold(): number {
-  const lvl = (process.env.LOG_LEVEL as Level | undefined) ?? (process.env.NODE_ENV === 'test' ? 'warn' : 'info')
+  const lvl =
+    (process.env.LOG_LEVEL as Level | undefined) ??
+    (process.env.NODE_ENV === 'test' ? 'warn' : 'info')
   return ORDER[lvl] ?? ORDER.info
 }
 
 function write(level: Level, msg: string, fields?: Record<string, unknown>) {
   if (ORDER[level] < threshold()) return
-  const line = JSON.stringify({ ...(redact(fields ?? {}) as object), ts: new Date().toISOString(), level, msg })
+  const line = JSON.stringify({
+    ...(redact(fields ?? {}) as object),
+    ts: new Date().toISOString(),
+    level,
+    msg,
+  })
   if (level === 'error' || level === 'warn') console.error(line)
   // eslint-disable-next-line no-console
   else console.log(line)

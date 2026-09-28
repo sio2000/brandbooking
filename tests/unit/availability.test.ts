@@ -21,7 +21,10 @@ const everyWeekday = (ranges: { start: number; end: number }[]): Schedule['weekl
 
 const emptySchedule = (): Schedule => ({ weekly: {}, special: {}, closures: [] })
 
-function staffMember(id: string, over: Partial<StaffAvailabilityInput> = {}): StaffAvailabilityInput {
+function staffMember(
+  id: string,
+  over: Partial<StaffAvailabilityInput> = {},
+): StaffAvailabilityInput {
   return { id, usesBusinessHours: true, schedule: emptySchedule(), busy: [], ...over }
 }
 
@@ -31,7 +34,12 @@ function base(over: Partial<AvailabilityInput> = {}): AvailabilityInput {
     business: { weekly: everyWeekday([{ start: h(9), end: h(17) }]), special: {}, closures: [] },
     staff: [staffMember('s1')],
     service: { durationMinutes: 60, bufferBeforeMinutes: 0, bufferAfterMinutes: 0 },
-    rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 30, maxBookingsPerDay: null },
+    rules: {
+      minNoticeMinutes: 0,
+      maxAdvanceDays: 365,
+      slotIntervalMinutes: 30,
+      maxBookingsPerDay: null,
+    },
     // A Sunday night well before the tested dates.
     now: new Date('2026-06-01T00:00:00Z'),
     from: '2026-06-10',
@@ -89,7 +97,9 @@ describe('computeAvailability — basics', () => {
   })
 
   it('returns no slots on a day the business is closed', () => {
-    const input = base({ business: { weekly: { 1: [{ start: h(9), end: h(17) }] }, special: {}, closures: [] } })
+    const input = base({
+      business: { weekly: { 1: [{ start: h(9), end: h(17) }] }, special: {}, closures: [] },
+    })
     // 2026-06-10 is a Wednesday
     expect(localTimes(input)).toEqual([])
   })
@@ -99,7 +109,9 @@ describe('computeAvailability — basics', () => {
   })
 
   it('uses custom durations that are not multiples of the interval', () => {
-    const input = base({ service: { durationMinutes: 50, bufferBeforeMinutes: 0, bufferAfterMinutes: 0 } })
+    const input = base({
+      service: { durationMinutes: 50, bufferBeforeMinutes: 0, bufferAfterMinutes: 0 },
+    })
     const times = localTimes(input)
     expect(times.at(-1)).toBe('16:00') // 16:00-16:50
     expect(times).not.toContain('16:30')
@@ -124,7 +136,12 @@ describe('computeAvailability — existing bookings and buffers', () => {
 
   it('applies buffer before/after of the requested service', () => {
     const input = base({
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 15, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 15,
+        maxBookingsPerDay: null,
+      },
       service: { durationMinutes: 60, bufferBeforeMinutes: 15, bufferAfterMinutes: 15 },
       staff: [staffMember('s1', { busy: [{ start: at(10), end: at(11, 15) }] })],
     })
@@ -161,7 +178,9 @@ describe('computeAvailability — existing bookings and buffers', () => {
     })
     const day = computeAvailability(input)[0]!
     expect(day.slots[0]!.staffIds).toEqual(['b'])
-    expect(day.slots.find((s) => epochToLocalMinute(s.start, tz) === h(10))!.staffIds.sort()).toEqual(['a', 'b'])
+    expect(
+      day.slots.find((s) => epochToLocalMinute(s.start, tz) === h(10))!.staffIds.sort(),
+    ).toEqual(['a', 'b'])
   })
 })
 
@@ -170,7 +189,12 @@ describe('computeAvailability — booking rules', () => {
     // 2026-06-10 09:40 Athens = 06:40Z; 60 min notice -> 10:40 -> first slot 11:00
     const input = base({
       now: new Date('2026-06-10T06:40:00Z'),
-      rules: { minNoticeMinutes: 60, maxAdvanceDays: 365, slotIntervalMinutes: 30, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 60,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 30,
+        maxBookingsPerDay: null,
+      },
     })
     expect(localTimes(input)[0]).toBe('11:00')
   })
@@ -183,7 +207,12 @@ describe('computeAvailability — booking rules', () => {
   it('enforces maximum advance booking window', () => {
     const input = base({
       now: new Date('2026-06-01T08:00:00Z'),
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 7, slotIntervalMinutes: 30, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 7,
+        slotIntervalMinutes: 30,
+        maxBookingsPerDay: null,
+      },
       from: '2026-06-07',
       to: '2026-06-12',
     })
@@ -193,7 +222,12 @@ describe('computeAvailability — booking rules', () => {
 
   it('enforces maximum bookings per day', () => {
     const input = base({
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 30, maxBookingsPerDay: 3 },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 30,
+        maxBookingsPerDay: 3,
+      },
       bookingsPerDay: { '2026-06-10': 3 },
     })
     expect(localTimes(input)).toEqual([])
@@ -241,7 +275,11 @@ describe('computeAvailability — closures and special hours', () => {
       staff: [
         staffMember('s1', {
           usesBusinessHours: false,
-          schedule: { weekly: everyWeekday([{ start: h(7), end: h(11) }]), special: {}, closures: [] },
+          schedule: {
+            weekly: everyWeekday([{ start: h(7), end: h(11) }]),
+            special: {},
+            closures: [],
+          },
         }),
       ],
     })
@@ -252,7 +290,11 @@ describe('computeAvailability — closures and special hours', () => {
     const input = base({
       staff: [
         staffMember('s1', {
-          schedule: { weekly: {}, special: {}, closures: [{ startsOn: '2026-06-10', endsOn: '2026-06-10', recurringYearly: false }] },
+          schedule: {
+            weekly: {},
+            special: {},
+            closures: [{ startsOn: '2026-06-10', endsOn: '2026-06-10', recurringYearly: false }],
+          },
         }),
         staffMember('s2'),
       ],
@@ -274,7 +316,12 @@ describe('computeAvailability — timezones and DST', () => {
       timeZone: 'Europe/Berlin',
       now: new Date('2026-03-01T00:00:00Z'),
       business: { weekly: everyWeekday([{ start: h(0), end: h(6) }]), special: {}, closures: [] },
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 60, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 60,
+        maxBookingsPerDay: null,
+      },
       from: '2026-03-29',
       to: '2026-03-29',
     })
@@ -290,12 +337,25 @@ describe('computeAvailability — timezones and DST', () => {
       timeZone: 'Europe/Berlin',
       now: new Date('2026-10-01T00:00:00Z'),
       business: { weekly: everyWeekday([{ start: h(0), end: h(6) }]), special: {}, closures: [] },
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 60, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 60,
+        maxBookingsPerDay: null,
+      },
       from: '2026-10-25',
       to: '2026-10-25',
     })
     // 7 real hours: 02:00 occurs twice (CEST then CET).
-    expect(localTimes(input)).toEqual(['00:00', '01:00', '02:00', '02:00', '03:00', '04:00', '05:00'])
+    expect(localTimes(input)).toEqual([
+      '00:00',
+      '01:00',
+      '02:00',
+      '02:00',
+      '03:00',
+      '04:00',
+      '05:00',
+    ])
   })
 
   it('keeps normal business hours correct across US DST (America/New_York, 2026-03-08)', () => {
@@ -334,11 +394,16 @@ describe('computeAvailability — timezones and DST', () => {
         closures: [],
       },
       service: { durationMinutes: 120, bufferBeforeMinutes: 0, bufferAfterMinutes: 0 },
-      rules: { minNoticeMinutes: 0, maxAdvanceDays: 365, slotIntervalMinutes: 60, maxBookingsPerDay: null },
+      rules: {
+        minNoticeMinutes: 0,
+        maxAdvanceDays: 365,
+        slotIntervalMinutes: 60,
+        maxBookingsPerDay: null,
+      },
       from: '2026-06-12', // Friday
       to: '2026-06-13',
     })
-    expect(localTimes(input, '2026-06-12')).toEqual(['20:00', '21:00', '22:00', '23:00', ])
+    expect(localTimes(input, '2026-06-12')).toEqual(['20:00', '21:00', '22:00', '23:00'])
     expect(localTimes(input, '2026-06-13')).toEqual(['00:00'])
   })
 
@@ -354,7 +419,9 @@ describe('computeAvailability — timezones and DST', () => {
 
 describe('helpers', () => {
   it('intersects ranges', () => {
-    expect(intersectRanges([{ start: 0, end: 100 }], [{ start: 50, end: 150 }])).toEqual([{ start: 50, end: 100 }])
+    expect(intersectRanges([{ start: 0, end: 100 }], [{ start: 50, end: 150 }])).toEqual([
+      { start: 50, end: 100 },
+    ])
     expect(
       intersectRanges(
         [
@@ -390,8 +457,17 @@ describe('helpers', () => {
   })
 
   it('computes blocked intervals including buffers', () => {
-    const b = blockedInterval(0, { durationMinutes: 30, bufferBeforeMinutes: 10, bufferAfterMinutes: 5 })
-    expect(b).toEqual({ startsAt: 0, endsAt: 30 * 60_000, blockedFrom: -10 * 60_000, blockedUntil: 35 * 60_000 })
+    const b = blockedInterval(0, {
+      durationMinutes: 30,
+      bufferBeforeMinutes: 10,
+      bufferAfterMinutes: 5,
+    })
+    expect(b).toEqual({
+      startsAt: 0,
+      endsAt: 30 * 60_000,
+      blockedFrom: -10 * 60_000,
+      blockedUntil: 35 * 60_000,
+    })
   })
 
   it('picks the least-loaded staff member deterministically', () => {

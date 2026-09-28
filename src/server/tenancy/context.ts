@@ -32,7 +32,12 @@ export type MembershipSummary = { businessId: string; name: string; slug: string
 
 export const listMemberships = cache(async (userId: string): Promise<MembershipSummary[]> => {
   return db()
-    .select({ businessId: businesses.id, name: businesses.name, slug: businesses.slug, role: businessMembers.role })
+    .select({
+      businessId: businesses.id,
+      name: businesses.name,
+      slug: businesses.slug,
+      role: businessMembers.role,
+    })
     .from(businessMembers)
     .innerJoin(businesses, eq(businesses.id, businessMembers.businessId))
     .where(and(eq(businessMembers.userId, userId), isNull(businesses.deletedAt)))
@@ -42,10 +47,23 @@ export const listMemberships = cache(async (userId: string): Promise<MembershipS
 /** Load a membership + business for (user, business) or null. */
 export async function loadTenant(userId: string, businessId: string) {
   const rows = await db()
-    .select({ business: businesses, membership: { id: businessMembers.id, role: businessMembers.role, staffId: businessMembers.staffId } })
+    .select({
+      business: businesses,
+      membership: {
+        id: businessMembers.id,
+        role: businessMembers.role,
+        staffId: businessMembers.staffId,
+      },
+    })
     .from(businessMembers)
     .innerJoin(businesses, eq(businesses.id, businessMembers.businessId))
-    .where(and(eq(businessMembers.userId, userId), eq(businessMembers.businessId, businessId), isNull(businesses.deletedAt)))
+    .where(
+      and(
+        eq(businessMembers.userId, userId),
+        eq(businessMembers.businessId, businessId),
+        isNull(businesses.deletedAt),
+      ),
+    )
     .limit(1)
   return rows[0] ?? null
 }
@@ -61,7 +79,9 @@ export function buildContext(
     sessionId,
     business,
     membership,
-    can: (p) => roleCan(membership.role, p) && (business.status === 'active' || ALLOWED_WHILE_SUSPENDED.has(p)),
+    can: (p) =>
+      roleCan(membership.role, p) &&
+      (business.status === 'active' || ALLOWED_WHILE_SUSPENDED.has(p)),
   }
 }
 
@@ -70,7 +90,10 @@ const resolveTenant = cache(async (): Promise<TenantContext | 'no-session' | 'no
   if (!session) return 'no-session'
   const jar = await cookies()
   const preferred = jar.get(BUSINESS_COOKIE)?.value
-  let loaded = preferred && /^[0-9a-f-]{36}$/i.test(preferred) ? await loadTenant(session.user.id, preferred) : null
+  let loaded =
+    preferred && /^[0-9a-f-]{36}$/i.test(preferred)
+      ? await loadTenant(session.user.id, preferred)
+      : null
   if (!loaded) {
     const [first] = await listMemberships(session.user.id)
     if (first) loaded = await loadTenant(session.user.id, first.businessId)
@@ -86,7 +109,9 @@ export async function requireUserPage(next?: string) {
 }
 
 /** For pages/layouts: redirects to login/onboarding and 404s on missing permission. */
-export async function requireTenantPage(permission?: Permission | Permission[]): Promise<TenantContext> {
+export async function requireTenantPage(
+  permission?: Permission | Permission[],
+): Promise<TenantContext> {
   const r = await resolveTenant()
   if (r === 'no-session') redirect('/login')
   if (r === 'no-business') redirect('/onboarding')
@@ -98,7 +123,9 @@ export async function requireTenantPage(permission?: Permission | Permission[]):
 }
 
 /** For server actions and route handlers: throws AppError instead of redirecting. */
-export async function requireTenantAction(permission?: Permission | Permission[]): Promise<TenantContext> {
+export async function requireTenantAction(
+  permission?: Permission | Permission[],
+): Promise<TenantContext> {
   const r = await resolveTenant()
   if (r === 'no-session') throw new AppError('unauthenticated')
   if (r === 'no-business') throw new AppError('forbidden')

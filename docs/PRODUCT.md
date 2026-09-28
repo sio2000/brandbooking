@@ -2,11 +2,11 @@
 
 ## Brand
 
-**Name:** Hournook — *hour* + *nook*: a small, calm corner where your hours get
+**Name:** Hournook — _hour_ + _nook_: a small, calm corner where your hours get
 booked. Short (8 letters), easy to spell after hearing it once, no meaning
 clash in major European languages, and not tied to one industry.
 
-**Tagline:** *Booking, without the back-and-forth.*
+**Tagline:** _Booking, without the back-and-forth._
 
 **Logo concept:** an arched "nook" (a doorway/alcove shape) containing clock
 hands — the hour inside the nook. It works as a solid app icon at 16 px and as a
@@ -46,13 +46,13 @@ free trial without a card — against tools that charge per seat or take a cut.
 
 ## Users and roles
 
-| Role | Can |
-|---|---|
-| Customer (no account) | Book, receive confirmations/reminders, reschedule/cancel via secure link, add to calendar |
-| Staff | See and manage their own calendar and appointments, update their notification preferences |
-| Manager | Everything operational: all appointments, customers, services, team profiles, hours, booking page, analytics; invite staff |
-| Owner | Everything, plus billing, team roles, ownership transfer, data export and business deletion |
-| Platform admin | Businesses list/search, suspend/unsuspend with reason, audit log, feature flags, system health |
+| Role                  | Can                                                                                                                        |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Customer (no account) | Book, receive confirmations/reminders, reschedule/cancel via secure link, add to calendar                                  |
+| Staff                 | See and manage their own calendar and appointments, update their notification preferences                                  |
+| Manager               | Everything operational: all appointments, customers, services, team profiles, hours, booking page, analytics; invite staff |
+| Owner                 | Everything, plus billing, team roles, ownership transfer, data export and business deletion                                |
+| Platform admin        | Businesses list/search, suspend/unsuspend with reason, audit log, feature flags, system health                             |
 
 ## Feature inventory
 

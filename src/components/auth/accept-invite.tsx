@@ -11,7 +11,16 @@ export function AcceptInvite({ token }: { token: string }) {
   return (
     <div className="grid gap-3">
       <FormError message={error} />
-      <Button size="lg" loading={pending} onClick={() => start(async () => { const r = await acceptInvitationAction(token); if (r && !r.ok) setError(r.error) })}>
+      <Button
+        size="lg"
+        loading={pending}
+        onClick={() =>
+          start(async () => {
+            const r = await acceptInvitationAction(token)
+            if (r && !r.ok) setError(r.error)
+          })
+        }
+      >
         Accept invitation
       </Button>
     </div>

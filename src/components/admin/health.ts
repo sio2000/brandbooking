@@ -28,7 +28,12 @@ export function assessHealth(h: HealthInput, now = Date.now()): HealthCheck[] {
       key: 'db',
       label: 'Database latency',
       value: `${h.dbLatencyMs} ms`,
-      tone: h.dbLatencyMs >= T.dbLatencyDangerMs ? 'danger' : h.dbLatencyMs >= T.dbLatencyWarnMs ? 'warning' : 'ok',
+      tone:
+        h.dbLatencyMs >= T.dbLatencyDangerMs
+          ? 'danger'
+          : h.dbLatencyMs >= T.dbLatencyWarnMs
+            ? 'warning'
+            : 'ok',
       note: h.dbLatencyMs >= T.dbLatencyWarnMs ? 'Slow' : 'Healthy',
     },
     {
@@ -36,7 +41,12 @@ export function assessHealth(h: HealthInput, now = Date.now()): HealthCheck[] {
       label: 'Email backlog',
       value: String(h.backlog),
       tone: h.overdue > 0 ? 'warning' : h.backlog >= T.backlogWarn ? 'warning' : 'ok',
-      note: h.overdue > 0 ? `${h.overdue} overdue (> 10 min)` : h.backlog >= T.backlogWarn ? 'Large backlog' : 'On time',
+      note:
+        h.overdue > 0
+          ? `${h.overdue} overdue (> 10 min)`
+          : h.backlog >= T.backlogWarn
+            ? 'Large backlog'
+            : 'On time',
     },
     {
       key: 'failed',
@@ -57,7 +67,12 @@ export function assessHealth(h: HealthInput, now = Date.now()): HealthCheck[] {
       label: 'Last scheduler run',
       value: h.lastCron ? h.lastCron.at : 'Never',
       tone: cronAgeMin === null ? 'warning' : cronAgeMin > T.cronStaleMinutes ? 'warning' : 'ok',
-      note: cronAgeMin === null ? 'Has not run yet' : cronAgeMin > T.cronStaleMinutes ? `Stale (> ${T.cronStaleMinutes} min)` : 'Running',
+      note:
+        cronAgeMin === null
+          ? 'Has not run yet'
+          : cronAgeMin > T.cronStaleMinutes
+            ? `Stale (> ${T.cronStaleMinutes} min)`
+            : 'Running',
     },
   ]
 }

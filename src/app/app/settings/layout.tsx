@@ -7,7 +7,11 @@ export default async function SettingsLayout({ children }: LayoutProps<'/app/set
   const ctx = await requireTenantPage()
   return (
     <PageContainer className="max-w-5xl">
-      <PageHeader title="Settings" description={`Manage ${ctx.business.name}, your team and your own account.`} className="mb-5 sm:mb-6" />
+      <PageHeader
+        title="Settings"
+        description={`Manage ${ctx.business.name}, your team and your own account.`}
+        className="mb-5 sm:mb-6"
+      />
       <SettingsNav items={visibleSettingsItems(ctx.can)} />
       {children}
     </PageContainer>

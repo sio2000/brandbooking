@@ -12,7 +12,12 @@ import { Alert } from '@/components/ui/feedback'
 import { Field, FormError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
-import { changePasswordAction, deleteAccountAction, leaveBusinessAction, updateAccountNameAction } from '@/app/app/_actions/settings'
+import {
+  changePasswordAction,
+  deleteAccountAction,
+  leaveBusinessAction,
+  updateAccountNameAction,
+} from '@/app/app/_actions/settings'
 import { PASSWORD_MIN } from '@/lib/validation/password'
 import { useActionForm } from './use-action-form'
 
@@ -34,12 +39,23 @@ function PasswordInput(props: React.ComponentProps<typeof Input>) {
   )
 }
 
-export function AccountProfileForm({ name, email, verified }: { name: string; email: string; verified: boolean }) {
+export function AccountProfileForm({
+  name,
+  email,
+  verified,
+}: {
+  name: string
+  email: string
+  verified: boolean
+}) {
   const form = useActionForm({ name }, updateAccountNameAction)
   return (
     <form onSubmit={form.submit} noValidate>
       <Card>
-        <CardHeader title="Your profile" description="How you appear to your team. Customers never see your account details." />
+        <CardHeader
+          title="Your profile"
+          description="How you appear to your team. Customers never see your account details."
+        />
         <CardBody className="grid items-start gap-4 sm:grid-cols-2">
           {form.formError && (
             <div className="sm:col-span-2">
@@ -47,7 +63,12 @@ export function AccountProfileForm({ name, email, verified }: { name: string; em
             </div>
           )}
           <Field label="Your name" htmlFor="account-name" error={form.errors.name}>
-            <Input value={form.values.name} onChange={(e) => form.set('name', e.target.value)} autoComplete="name" maxLength={120} />
+            <Input
+              value={form.values.name}
+              onChange={(e) => form.set('name', e.target.value)}
+              autoComplete="name"
+              maxLength={120}
+            />
           </Field>
           <div className="grid grid-cols-1 content-start gap-1.5">
             <p className="text-sm font-medium">Email</p>
@@ -63,11 +84,19 @@ export function AccountProfileForm({ name, email, verified }: { name: string; em
                 </Badge>
               )}
             </p>
-            <p className="text-[13px] text-muted-foreground">Used to sign in. Contact support to change it.</p>
+            <p className="text-[13px] text-muted-foreground">
+              Used to sign in. Contact support to change it.
+            </p>
           </div>
         </CardBody>
         <CardFooter>
-          <Button type="submit" size="sm" loading={form.pending} success={form.saved} disabled={!form.dirty && !form.pending}>
+          <Button
+            type="submit"
+            size="sm"
+            loading={form.pending}
+            success={form.saved}
+            disabled={!form.dirty && !form.pending}
+          >
             Save
           </Button>
         </CardFooter>
@@ -80,7 +109,10 @@ export function ChangePasswordForm() {
   const empty = { currentPassword: '', newPassword: '' }
   const [confirm, setConfirm] = React.useState('')
   const [mismatch, setMismatch] = React.useState(false)
-  const form = useActionForm(empty, changePasswordAction, { resetOnSuccess: true, onSuccess: () => setConfirm('') })
+  const form = useActionForm(empty, changePasswordAction, {
+    resetOnSuccess: true,
+    onSuccess: () => setConfirm(''),
+  })
   const { values: v, set, errors: e } = form
 
   return (
@@ -97,17 +129,42 @@ export function ChangePasswordForm() {
       noValidate
     >
       <Card>
-        <CardHeader title="Password" description="Changing your password signs you out on every other device." />
+        <CardHeader
+          title="Password"
+          description="Changing your password signs you out on every other device."
+        />
         <CardBody className="grid grid-cols-1 gap-4">
           <FormError message={form.formError} />
-          <Field label="Current password" htmlFor="currentPassword" error={e.currentPassword} className="sm:max-w-sm">
-            <PasswordInput autoComplete="current-password" value={v.currentPassword} onChange={(ev) => set('currentPassword', ev.target.value)} />
+          <Field
+            label="Current password"
+            htmlFor="currentPassword"
+            error={e.currentPassword}
+            className="sm:max-w-sm"
+          >
+            <PasswordInput
+              autoComplete="current-password"
+              value={v.currentPassword}
+              onChange={(ev) => set('currentPassword', ev.target.value)}
+            />
           </Field>
           <div className="grid items-start gap-4 sm:grid-cols-2">
-            <Field label="New password" htmlFor="newPassword" error={e.newPassword} hint={`At least ${PASSWORD_MIN} characters. A short phrase works well.`}>
-              <PasswordInput autoComplete="new-password" value={v.newPassword} onChange={(ev) => set('newPassword', ev.target.value)} />
+            <Field
+              label="New password"
+              htmlFor="newPassword"
+              error={e.newPassword}
+              hint={`At least ${PASSWORD_MIN} characters. A short phrase works well.`}
+            >
+              <PasswordInput
+                autoComplete="new-password"
+                value={v.newPassword}
+                onChange={(ev) => set('newPassword', ev.target.value)}
+              />
             </Field>
-            <Field label="Repeat new password" htmlFor="confirmPassword" error={mismatch ? 'The passwords don’t match.' : undefined}>
+            <Field
+              label="Repeat new password"
+              htmlFor="confirmPassword"
+              error={mismatch ? 'The passwords don’t match.' : undefined}
+            >
               <PasswordInput
                 autoComplete="new-password"
                 value={confirm}
@@ -120,7 +177,12 @@ export function ChangePasswordForm() {
           </div>
         </CardBody>
         <CardFooter>
-          <Button type="submit" size="sm" loading={form.pending} disabled={!v.currentPassword || !v.newPassword || !confirm}>
+          <Button
+            type="submit"
+            size="sm"
+            loading={form.pending}
+            disabled={!v.currentPassword || !v.newPassword || !confirm}
+          >
             Change password
           </Button>
         </CardFooter>
@@ -132,7 +194,10 @@ export function ChangePasswordForm() {
 export function LeaveBusinessCard({ businessName }: { businessName: string }) {
   return (
     <Card>
-      <CardHeader title={`Leave ${businessName}`} description="You’ll lose access to this business. Your appointments and profile stay with the business." />
+      <CardHeader
+        title={`Leave ${businessName}`}
+        description="You’ll lose access to this business. Your appointments and profile stay with the business."
+      />
       <CardFooter className="justify-start">
         <ConfirmDialog
           trigger={
@@ -158,19 +223,29 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
   const blocked = ownedBusinesses.length > 0
   return (
     <Card className="border-danger/30">
-      <CardHeader title="Delete your account" description="Permanently removes your login and personal details. This can’t be undone." />
+      <CardHeader
+        title="Delete your account"
+        description="Permanently removes your login and personal details. This can’t be undone."
+      />
       <CardBody className="grid grid-cols-1 gap-3">
         {blocked ? (
           <Alert tone="warning" title="You still own a business">
-            Owners must delete their businesses — or make someone else the owner under Settings → Team — before deleting their account, so customers and bookings are never left without an owner. You own{' '}
-            <strong>{ownedBusinesses.join(', ')}</strong>. Delete it under{' '}
-            <Link href="/app/settings/privacy#danger" className="font-semibold underline underline-offset-2">
+            Owners must delete their businesses — or make someone else the owner under Settings →
+            Team — before deleting their account, so customers and bookings are never left without
+            an owner. You own <strong>{ownedBusinesses.join(', ')}</strong>. Delete it under{' '}
+            <Link
+              href="/app/settings/privacy#danger"
+              className="font-semibold underline underline-offset-2"
+            >
               Privacy &amp; data
             </Link>{' '}
             first.
           </Alert>
         ) : (
-          <p className="text-sm text-muted-foreground">You’ll be removed from every business you belong to. Appointments you handled stay with those businesses.</p>
+          <p className="text-sm text-muted-foreground">
+            You’ll be removed from every business you belong to. Appointments you handled stay with
+            those businesses.
+          </p>
         )}
       </CardBody>
       <CardFooter className="justify-start">
@@ -178,7 +253,11 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
           <Button variant="danger" size="sm" disabled={blocked} onClick={() => setOpen(true)}>
             <Trash2 /> Delete account…
           </Button>
-          <DialogContent title="Delete your account?" description="Enter your password to confirm. This can’t be undone." size="sm">
+          <DialogContent
+            title="Delete your account?"
+            description="Enter your password to confirm. This can’t be undone."
+            size="sm"
+          >
             <DeleteAccountForm onCancel={() => setOpen(false)} />
           </DialogContent>
         </Dialog>
@@ -194,14 +273,24 @@ function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
       <DialogBody className="grid grid-cols-1 gap-4">
         <FormError message={form.formError} />
         <Field label="Password" htmlFor="delete-password" error={form.errors.password}>
-          <PasswordInput autoComplete="current-password" value={form.values.password} onChange={(e) => form.set('password', e.target.value)} autoFocus />
+          <PasswordInput
+            autoComplete="current-password"
+            value={form.values.password}
+            onChange={(e) => form.set('password', e.target.value)}
+            autoFocus
+          />
         </Field>
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" variant="danger" loading={form.pending} disabled={!form.values.password}>
+        <Button
+          type="submit"
+          variant="danger"
+          loading={form.pending}
+          disabled={!form.values.password}
+        >
           Delete my account
         </Button>
       </DialogFooter>

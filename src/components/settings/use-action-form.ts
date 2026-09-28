@@ -71,7 +71,9 @@ export function useActionForm<T extends Record<string, unknown>, R>(
         if (Object.keys(fields).length && !fields._form) {
           // Inline errors are shown next to each field; move focus to the first
           // one. Only fall back to a message when no matching field is on screen.
-          const target = Object.keys(fields).map((k) => document.getElementById(k)).find(Boolean)
+          const target = Object.keys(fields)
+            .map((k) => document.getElementById(k))
+            .find(Boolean)
           if (target) requestAnimationFrame(() => target.focus())
           else {
             setFormError(Object.values(fields)[0] ?? r.error)

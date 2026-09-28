@@ -15,11 +15,25 @@ import { AppError } from '@/server/errors'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import { updateProfile } from '@/server/business/profile'
 import { saveBookingRules } from '@/server/business/availability-admin'
-import { changeRole, inviteMember, leaveBusiness, removeMember, revokeInvitation, saveMyPrefs, transferOwnership } from '@/server/business/team'
+import {
+  changeRole,
+  inviteMember,
+  leaveBusiness,
+  removeMember,
+  revokeInvitation,
+  saveMyPrefs,
+  transferOwnership,
+} from '@/server/business/team'
 import { deleteBusiness } from '@/server/business/deletion'
 import { changePassword, deleteAccount } from '@/server/auth/service'
 import { clearSessionCookie } from '@/server/auth/session'
-import { bookingRulesSchema, inviteSchema, memberPrefsSchema, notificationSettingsSchema, profileSchema } from '@/lib/validation/business'
+import {
+  bookingRulesSchema,
+  inviteSchema,
+  memberPrefsSchema,
+  notificationSettingsSchema,
+  profileSchema,
+} from '@/lib/validation/business'
 import { changePasswordSchema } from '@/lib/validation/auth'
 import { PASSWORD_MAX } from '@/lib/validation/password'
 
@@ -28,10 +42,18 @@ import { PASSWORD_MAX } from '@/lib/validation/password'
 /* ------------------------------------------------------------------------ */
 
 /** Updates only the two email-branding columns of the caller's own business. */
-async function updateEmailSettings(ctx: TenantContext, input: z.infer<typeof notificationSettingsSchema>, meta: RequestMeta) {
+async function updateEmailSettings(
+  ctx: TenantContext,
+  input: z.infer<typeof notificationSettingsSchema>,
+  meta: RequestMeta,
+) {
   await db()
     .update(businesses)
-    .set({ emailSenderName: input.emailSenderName, emailFooter: input.emailFooter, updatedAt: new Date() })
+    .set({
+      emailSenderName: input.emailSenderName,
+      emailFooter: input.emailFooter,
+      updatedAt: new Date(),
+    })
     .where(eq(businesses.id, ctx.business.id))
   await audit(db(), {
     businessId: ctx.business.id,
@@ -49,7 +71,15 @@ async function updateEmailSettings(ctx: TenantContext, input: z.infer<typeof not
 /** Renames the signed-in user only (never another account). */
 async function updateOwnName(ctx: TenantContext, name: string, meta: RequestMeta) {
   await db().update(users).set({ name, updatedAt: new Date() }).where(eq(users.id, ctx.user.id))
-  await audit(db(), { actor: 'user', actorUserId: ctx.user.id, action: 'user.profile_updated', entityType: 'user', entityId: ctx.user.id, ip: meta.ip, requestId: meta.requestId })
+  await audit(db(), {
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'user.profile_updated',
+    entityType: 'user',
+    entityId: ctx.user.id,
+    ip: meta.ip,
+    requestId: meta.requestId,
+  })
 }
 
 async function forgetBusinessCookie() {
@@ -158,7 +188,10 @@ export async function transferOwnershipAction(memberId: unknown) {
 export async function updateAccountNameAction(input: unknown) {
   return runAction(async () => {
     const ctx = await requireTenantAction()
-    const v = parse(z.object({ name: z.string().trim().min(1, 'Enter your name.').max(120) }), input)
+    const v = parse(
+      z.object({ name: z.string().trim().min(1, 'Enter your name.').max(120) }),
+      input,
+    )
     await updateOwnName(ctx, v.name, await requestMeta())
     revalidatePath('/app', 'layout')
     return { name: v.name }
@@ -170,7 +203,13 @@ export async function changePasswordAction(input: unknown) {
     const ctx = await requireTenantAction()
     const v = parse(changePasswordSchema, input)
     await enforceRateLimits([[`password-change:user:${ctx.user.id}`, POLICIES.loginByEmail]])
-    await changePassword(ctx.user.id, ctx.sessionId, v.currentPassword, v.newPassword, await requestMeta())
+    await changePassword(
+      ctx.user.id,
+      ctx.sessionId,
+      v.currentPassword,
+      v.newPassword,
+      await requestMeta(),
+    )
     return null
   }, 'Password changed. Other devices have been signed out.')
 }
@@ -189,7 +228,10 @@ export async function leaveBusinessAction() {
 export async function deleteAccountAction(input: unknown) {
   return runAction(async () => {
     const ctx = await requireTenantAction()
-    const v = parse(z.object({ password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX) }), input)
+    const v = parse(
+      z.object({ password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX) }),
+      input,
+    )
     await enforceRateLimits([[`account-delete:user:${ctx.user.id}`, POLICIES.loginByEmail]])
     await deleteAccount(ctx.user.id, v.password, await requestMeta())
     await clearSessionCookie()

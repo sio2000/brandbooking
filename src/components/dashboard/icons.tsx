@@ -1,4 +1,16 @@
-import { BarChart3, Calendar, Clock, CreditCard, Globe, Home, List, Scissors, Settings, UserCog, Users } from 'lucide-react'
+import {
+  BarChart3,
+  Calendar,
+  Clock,
+  CreditCard,
+  Globe,
+  Home,
+  List,
+  Scissors,
+  Settings,
+  UserCog,
+  Users,
+} from 'lucide-react'
 
 export const NAV_ICONS = {
   home: Home,

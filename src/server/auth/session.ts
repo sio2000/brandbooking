@@ -32,16 +32,21 @@ export function sessionCookieName(): string {
   return env().APP_URL.startsWith('https://') ? '__Host-hn_session' : 'hn_session'
 }
 
-export async function createSession(userId: string, meta: { ip?: string | null; userAgent?: string | null } = {}) {
+export async function createSession(
+  userId: string,
+  meta: { ip?: string | null; userAgent?: string | null } = {},
+) {
   const token = generateToken()
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS)
-  await db().insert(sessions).values({
-    id: hashToken(token),
-    userId,
-    expiresAt,
-    ip: meta.ip ?? null,
-    userAgent: meta.userAgent ?? null,
-  })
+  await db()
+    .insert(sessions)
+    .values({
+      id: hashToken(token),
+      userId,
+      expiresAt,
+      ip: meta.ip ?? null,
+      userAgent: meta.userAgent ?? null,
+    })
   return { token, expiresAt }
 }
 
@@ -73,7 +78,10 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
   let expiresAt = row.expiresAt
   if (now - row.lastSeenAt.getTime() > REFRESH_AFTER_MS) {
     expiresAt = new Date(now + SESSION_TTL_MS)
-    await db().update(sessions).set({ expiresAt, lastSeenAt: new Date(now) }).where(eq(sessions.id, id))
+    await db()
+      .update(sessions)
+      .set({ expiresAt, lastSeenAt: new Date(now) })
+      .where(eq(sessions.id, id))
   }
   return {
     sessionId: id,
@@ -95,7 +103,11 @@ export async function invalidateSession(sessionId: string) {
 export async function invalidateUserSessions(userId: string, exceptSessionId?: string) {
   await db()
     .delete(sessions)
-    .where(exceptSessionId ? and(eq(sessions.userId, userId), sql`${sessions.id} <> ${exceptSessionId}`) : eq(sessions.userId, userId))
+    .where(
+      exceptSessionId
+        ? and(eq(sessions.userId, userId), sql`${sessions.id} <> ${exceptSessionId}`)
+        : eq(sessions.userId, userId),
+    )
 }
 
 export async function purgeExpiredSessions() {

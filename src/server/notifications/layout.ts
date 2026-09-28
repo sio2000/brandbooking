@@ -65,7 +65,10 @@ function renderBlock(b: EmailBlock, color: string): string {
       return `<tr><td style="padding:16px 0 8px;"><a href="${esc(safeUrl(b.url))}" style="display:inline-block;background:${color};color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 22px;border-radius:10px;">${esc(b.label)}</a></td></tr>`
     case 'links':
       return `<tr><td style="padding:4px 0 8px;font-size:14px;">${b.links
-        .map((l) => `<a href="${esc(safeUrl(l.url))}" style="color:${color};text-decoration:underline;margin-right:16px;">${esc(l.label)}</a>`)
+        .map(
+          (l) =>
+            `<a href="${esc(safeUrl(l.url))}" style="color:${color};text-decoration:underline;margin-right:16px;">${esc(l.label)}</a>`,
+        )
         .join('')}</td></tr>`
     case 'divider':
       return `<tr><td style="padding:12px 0;"><div style="border-top:1px solid ${BORDER};"></div></td></tr>`
@@ -113,6 +116,8 @@ ${layout.blocks.map((b) => renderBlock(b, color)).join('\n')}
 </table></td></tr>
 <tr><td style="padding:16px 8px;font-size:12px;line-height:1.6;color:${MUTED};">${esc(layout.footer)}</td></tr>
 </table></td></tr></table></body></html>`
-  const text = [layout.brandName, '', ...layout.blocks.map(blockText), '', '--', layout.footer].join('\n\n').replace(/\n{3,}/g, '\n\n')
+  const text = [layout.brandName, '', ...layout.blocks.map(blockText), '', '--', layout.footer]
+    .join('\n\n')
+    .replace(/\n{3,}/g, '\n\n')
   return { html, text }
 }

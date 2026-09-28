@@ -1,6 +1,11 @@
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import { HeaderSkeleton, KpiSkeleton, LoadingPage, TableSkeleton } from '@/components/admin/skeletons'
+import {
+  HeaderSkeleton,
+  KpiSkeleton,
+  LoadingPage,
+  TableSkeleton,
+} from '@/components/admin/skeletons'
 
 export default function Loading() {
   return (

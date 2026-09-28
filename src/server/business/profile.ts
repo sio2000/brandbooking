@@ -1,7 +1,14 @@
 import 'server-only'
 import { and, count, eq, isNull } from 'drizzle-orm'
 import { db, pgErrorCode, PgErrorCode } from '@/server/db/client'
-import { businesses, services, staffServices, type AssetKind, type Business, type SocialLinks } from '@/server/db/schema'
+import {
+  businesses,
+  services,
+  staffServices,
+  type AssetKind,
+  type Business,
+  type SocialLinks,
+} from '@/server/db/schema'
 import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
 import type { TenantContext } from '@/server/tenancy/context'
@@ -12,7 +19,13 @@ import type { z } from 'zod'
 import type { brandingSchema, profileSchema, seoSchema } from '@/lib/validation/business'
 import { localToDate } from '@/lib/tz'
 
-async function update(ctx: TenantContext, values: Partial<Business>, action: string, meta: RequestMeta, metadata: Record<string, unknown> = {}) {
+async function update(
+  ctx: TenantContext,
+  values: Partial<Business>,
+  action: string,
+  meta: RequestMeta,
+  metadata: Record<string, unknown> = {},
+) {
   const [row] = await db()
     .update(businesses)
     .set(values)
@@ -32,18 +45,31 @@ async function update(ctx: TenantContext, values: Partial<Business>, action: str
   return row!
 }
 
-export function updateProfile(ctx: TenantContext, input: z.infer<typeof profileSchema>, meta: RequestMeta) {
+export function updateProfile(
+  ctx: TenantContext,
+  input: z.infer<typeof profileSchema>,
+  meta: RequestMeta,
+) {
   return update(ctx, input, 'business.profile_updated', meta, { fields: Object.keys(input) })
 }
 
-export function updateBranding(ctx: TenantContext, input: z.infer<typeof brandingSchema>, meta: RequestMeta) {
+export function updateBranding(
+  ctx: TenantContext,
+  input: z.infer<typeof brandingSchema>,
+  meta: RequestMeta,
+) {
   const socialLinks: SocialLinks = {}
   for (const k of ['instagram', 'facebook', 'tiktok', 'x', 'linkedin', 'youtube'] as const) {
     if (input[k]) socialLinks[k] = input[k]
   }
   return update(
     ctx,
-    { brandColor: input.brandColor, bookingPolicy: input.bookingPolicy, showStaffOnPage: input.showStaffOnPage, socialLinks },
+    {
+      brandColor: input.brandColor,
+      bookingPolicy: input.bookingPolicy,
+      showStaffOnPage: input.showStaffOnPage,
+      socialLinks,
+    },
     'business.branding_updated',
     meta,
   )
@@ -55,9 +81,13 @@ export function updateSeo(ctx: TenantContext, input: z.infer<typeof seoSchema>, 
 
 export async function changeSlug(ctx: TenantContext, slug: string, meta: RequestMeta) {
   try {
-    return await update(ctx, { slug }, 'business.slug_changed', meta, { from: ctx.business.slug, to: slug })
+    return await update(ctx, { slug }, 'business.slug_changed', meta, {
+      from: ctx.business.slug,
+      to: slug,
+    })
   } catch (err) {
-    if (pgErrorCode(err) === PgErrorCode.uniqueViolation) throw new AppError('slug_taken', { fields: { slug: 'That booking link is already taken.' } })
+    if (pgErrorCode(err) === PgErrorCode.uniqueViolation)
+      throw new AppError('slug_taken', { fields: { slug: 'That booking link is already taken.' } })
     throw err
   }
 }
@@ -67,21 +97,42 @@ export async function canPublish(b: Business) {
     db()
       .select({ n: count() })
       .from(services)
-      .innerJoin(staffServices, and(eq(staffServices.serviceId, services.id), eq(staffServices.businessId, services.businessId)))
-      .where(and(eq(services.businessId, b.id), isNull(services.deletedAt), eq(services.isActive, true), eq(services.isVisible, true))),
+      .innerJoin(
+        staffServices,
+        and(
+          eq(staffServices.serviceId, services.id),
+          eq(staffServices.businessId, services.businessId),
+        ),
+      )
+      .where(
+        and(
+          eq(services.businessId, b.id),
+          isNull(services.deletedAt),
+          eq(services.isActive, true),
+          eq(services.isVisible, true),
+        ),
+      ),
   ])
   return (svc?.n ?? 0) > 0
 }
 
 export async function setPublishState(
   ctx: TenantContext,
-  input: { action: 'publish' | 'pause' | 'unpublish'; pausedMessage: string | null; pausedUntil: string | null },
+  input: {
+    action: 'publish' | 'pause' | 'unpublish'
+    pausedMessage: string | null
+    pausedUntil: string | null
+  },
   meta: RequestMeta,
 ) {
   if (input.action === 'publish') {
     if (!ctx.user.emailVerified) throw new AppError('email_not_verified')
     if (!(await canPublish(ctx.business))) {
-      throw new AppError('validation', { fields: { _form: 'Add at least one active service with a team member assigned before publishing.' } })
+      throw new AppError('validation', {
+        fields: {
+          _form: 'Add at least one active service with a team member assigned before publishing.',
+        },
+      })
     }
     return update(
       ctx,
@@ -101,7 +152,9 @@ export async function setPublishState(
       {
         publishStatus: 'paused',
         pausedMessage: input.pausedMessage,
-        pausedUntil: input.pausedUntil ? localToDate(input.pausedUntil, 0, ctx.business.timezone) : null,
+        pausedUntil: input.pausedUntil
+          ? localToDate(input.pausedUntil, 0, ctx.business.timezone)
+          : null,
       },
       'business.paused',
       meta,
@@ -111,18 +164,37 @@ export async function setPublishState(
   return update(ctx, { publishStatus: 'draft' }, 'business.unpublished', meta)
 }
 
-export async function uploadBusinessImage(ctx: TenantContext, kind: Extract<AssetKind, 'logo' | 'cover'>, file: File, meta: RequestMeta) {
+export async function uploadBusinessImage(
+  ctx: TenantContext,
+  kind: Extract<AssetKind, 'logo' | 'cover'>,
+  file: File,
+  meta: RequestMeta,
+) {
   await enforceRateLimits([[`upload:user:${ctx.user.id}`, POLICIES.uploadByUser]])
   const image = await validateImage(file, kind)
   const asset = await storeImage(ctx.business.id, kind, image, ctx.user.id)
   const previous = kind === 'logo' ? ctx.business.logoAssetId : ctx.business.coverAssetId
-  await update(ctx, kind === 'logo' ? { logoAssetId: asset.id } : { coverAssetId: asset.id }, `business.${kind}_uploaded`, meta)
+  await update(
+    ctx,
+    kind === 'logo' ? { logoAssetId: asset.id } : { coverAssetId: asset.id },
+    `business.${kind}_uploaded`,
+    meta,
+  )
   if (previous) await deleteAsset(ctx.business.id, previous)
   return asset
 }
 
-export async function removeBusinessImage(ctx: TenantContext, kind: 'logo' | 'cover', meta: RequestMeta) {
+export async function removeBusinessImage(
+  ctx: TenantContext,
+  kind: 'logo' | 'cover',
+  meta: RequestMeta,
+) {
   const previous = kind === 'logo' ? ctx.business.logoAssetId : ctx.business.coverAssetId
-  await update(ctx, kind === 'logo' ? { logoAssetId: null } : { coverAssetId: null }, `business.${kind}_removed`, meta)
+  await update(
+    ctx,
+    kind === 'logo' ? { logoAssetId: null } : { coverAssetId: null },
+    `business.${kind}_removed`,
+    meta,
+  )
   if (previous) await deleteAsset(ctx.business.id, previous)
 }

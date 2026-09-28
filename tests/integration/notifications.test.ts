@@ -17,13 +17,30 @@ async function book(email = 'nina@example.com', minute = 600, ip = '203.0.113.9'
   const date = futureDate(TZ, 3)
   return createPublicBooking(
     s.ctx.business.slug,
-    { serviceId: s.serviceId, staffId: null, start: localToDate(date, minute, TZ).toISOString(), firstName: 'Nina', lastName: '<script>alert(1)</script>', email, phone: '+30 1234567', message: 'Window seat please', src: null, utmSource: null, utmMedium: null, utmCampaign: null, referrerHost: null, website: null },
+    {
+      serviceId: s.serviceId,
+      staffId: null,
+      start: localToDate(date, minute, TZ).toISOString(),
+      firstName: 'Nina',
+      lastName: '<script>alert(1)</script>',
+      email,
+      phone: '+30 1234567',
+      message: 'Window seat please',
+      src: null,
+      utmSource: null,
+      utmMedium: null,
+      utmCampaign: null,
+      referrerHost: null,
+      website: null,
+    },
     meta(ip),
   )
 }
 
 async function makeDue() {
-  await db().execute(sql`UPDATE notifications SET send_after = now() - interval '1 second' WHERE status = 'pending'`)
+  await db().execute(
+    sql`UPDATE notifications SET send_after = now() - interval '1 second' WHERE status = 'pending'`,
+  )
 }
 
 beforeEach(async () => {
@@ -84,10 +101,16 @@ describe('outbox delivery', () => {
     expect(res.status).toBe('confirmed')
     const r1 = await dispatchDue()
     expect(r1.retry).toBe(1)
-    const [pending] = await db().select().from(notifications).where(and(eq(notifications.status, 'pending'), sql`last_error IS NOT NULL`))
+    const [pending] = await db()
+      .select()
+      .from(notifications)
+      .where(and(eq(notifications.status, 'pending'), sql`last_error IS NOT NULL`))
     expect(pending!.sendAfter.getTime()).toBeGreaterThan(Date.now())
     expect(pending!.attempts).toBe(1)
-    await db().update(notifications).set({ sendAfter: new Date(Date.now() - 1000) }).where(eq(notifications.id, pending!.id))
+    await db()
+      .update(notifications)
+      .set({ sendAfter: new Date(Date.now() - 1000) })
+      .where(eq(notifications.id, pending!.id))
     const r2 = await dispatchDue()
     expect(r2.sent).toBeGreaterThanOrEqual(1)
   })
@@ -104,9 +127,14 @@ describe('outbox delivery', () => {
   })
 
   it('does not email members who opted out, but still records the inbox item', async () => {
-    await db().execute(sql`UPDATE business_members SET notification_prefs = '{"booking_created": false}'::jsonb WHERE business_id = ${s.ctx.business.id}`)
+    await db().execute(
+      sql`UPDATE business_members SET notification_prefs = '{"booking_created": false}'::jsonb WHERE business_id = ${s.ctx.business.id}`,
+    )
     await book()
-    const memberMails = await db().select().from(notifications).where(eq(notifications.template, 'member_booking_created'))
+    const memberMails = await db()
+      .select()
+      .from(notifications)
+      .where(eq(notifications.template, 'member_booking_created'))
     expect(memberMails).toHaveLength(0)
     void businesses
   })

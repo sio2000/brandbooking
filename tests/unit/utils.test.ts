@@ -39,10 +39,20 @@ describe('safeRedirectPath', () => {
   })
 
   it('never returns something a browser would treat as another origin', () => {
-    const attempts = ['/.//evil.com', '/./\\evil.com', '/%2e/%2e//evil.com', '/..\\\\evil.com', '/a/b/../..//evil.com', '/%5C%5Cevil.com', '/%2F%2Fevil.com']
+    const attempts = [
+      '/.//evil.com',
+      '/./\\evil.com',
+      '/%2e/%2e//evil.com',
+      '/..\\\\evil.com',
+      '/a/b/../..//evil.com',
+      '/%5C%5Cevil.com',
+      '/%2F%2Fevil.com',
+    ]
     for (const a of attempts) {
       const out = safeRedirectPath(a)
-      expect(new URL(out, 'https://app.example').origin, `${a} -> ${out}`).toBe('https://app.example')
+      expect(new URL(out, 'https://app.example').origin, `${a} -> ${out}`).toBe(
+        'https://app.example',
+      )
       expect(out.startsWith('//'), a).toBe(false)
       expect(out.startsWith('/\\'), a).toBe(false)
     }

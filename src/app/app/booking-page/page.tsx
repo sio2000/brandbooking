@@ -12,10 +12,18 @@ export const metadata: Metadata = { title: 'Booking page' }
 export default async function BookingPageSettings() {
   const ctx = await requireTenantPage('booking_page.manage')
   const b = ctx.business
-  const [logoUrl, coverUrl, publishable, access] = await Promise.all([assetUrl(b.id, b.logoAssetId, 'sm'), assetUrl(b.id, b.coverAssetId, 'sm'), canPublish(b), accessFor(b)])
+  const [logoUrl, coverUrl, publishable, access] = await Promise.all([
+    assetUrl(b.id, b.logoAssetId, 'sm'),
+    assetUrl(b.id, b.coverAssetId, 'sm'),
+    canPublish(b),
+    accessFor(b),
+  ])
   return (
     <PageContainer>
-      <PageHeader title="Booking page" description="Your public page where customers book. Publish it, share it everywhere, and make it look like you." />
+      <PageHeader
+        title="Booking page"
+        description="Your public page where customers book. Publish it, share it everywhere, and make it look like you."
+      />
       <BookingPageView
         business={{
           name: b.name,

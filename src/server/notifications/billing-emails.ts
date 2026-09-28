@@ -7,8 +7,16 @@ import { renderEmail } from './layout'
 import type { RenderResult } from './booking-emails'
 import type { TemplateId } from './outbox'
 
-export async function renderBillingEmail(template: TemplateId, businessId: string, recipient: string): Promise<RenderResult> {
-  const [b] = await db().select({ name: businesses.name }).from(businesses).where(eq(businesses.id, businessId)).limit(1)
+export async function renderBillingEmail(
+  template: TemplateId,
+  businessId: string,
+  recipient: string,
+): Promise<RenderResult> {
+  const [b] = await db()
+    .select({ name: businesses.name })
+    .from(businesses)
+    .where(eq(businesses.id, businessId))
+    .limit(1)
   if (!b) return { skip: 'business_missing' }
   const billingUrl = appUrl('/app/billing')
   const content = {

@@ -14,20 +14,56 @@ export default async function AvailabilityPage({ searchParams }: PageProps<'/app
   const ownId = ctx.membership.staffId
   const staff = manageAll ? s.staff : s.staff.filter((m) => m.id === ownId)
   const requested = typeof sp.staff === 'string' ? sp.staff : null
-  const selected = requested && staff.some((m) => m.id === requested) ? requested : manageAll ? null : (ownId ?? null)
+  const selected =
+    requested && staff.some((m) => m.id === requested)
+      ? requested
+      : manageAll
+        ? null
+        : (ownId ?? null)
   return (
     <PageContainer>
-      <PageHeader title="Availability" description="When customers can book. Opening hours apply to everyone; team members can follow them or have their own schedule within them." />
+      <PageHeader
+        title="Availability"
+        description="When customers can book. Opening hours apply to everyone; team members can follow them or have their own schedule within them."
+      />
       <AvailabilityView
         key={selected ?? 'business'}
         timezone={ctx.business.timezone}
         manageAll={manageAll}
-        staff={staff.map((m) => ({ id: m.id, name: m.name, usesBusinessHours: m.usesBusinessHours, color: m.color }))}
+        staff={staff.map((m) => ({
+          id: m.id,
+          name: m.name,
+          usesBusinessHours: m.usesBusinessHours,
+          color: m.color,
+        }))}
         selectedStaffId={selected}
-        weekly={s.weekly.map((w) => ({ staffId: w.staffId, weekday: w.weekday, start: w.startMinute, end: w.endMinute }))}
-        special={s.special.map((x) => ({ staffId: x.staffId, date: x.onDate, start: x.startMinute, end: x.endMinute }))}
-        closures={s.closures.map((c) => ({ id: c.id, staffId: c.staffId, startsOn: c.startsOn, endsOn: c.endsOn, label: c.label, recurringYearly: c.recurringYearly }))}
-        blocks={s.blocks.map((b) => ({ id: b.id, staffId: b.staffId, startsAt: b.startsAt.toISOString(), endsAt: b.endsAt.toISOString(), reason: b.reason }))}
+        weekly={s.weekly.map((w) => ({
+          staffId: w.staffId,
+          weekday: w.weekday,
+          start: w.startMinute,
+          end: w.endMinute,
+        }))}
+        special={s.special.map((x) => ({
+          staffId: x.staffId,
+          date: x.onDate,
+          start: x.startMinute,
+          end: x.endMinute,
+        }))}
+        closures={s.closures.map((c) => ({
+          id: c.id,
+          staffId: c.staffId,
+          startsOn: c.startsOn,
+          endsOn: c.endsOn,
+          label: c.label,
+          recurringYearly: c.recurringYearly,
+        }))}
+        blocks={s.blocks.map((b) => ({
+          id: b.id,
+          staffId: b.staffId,
+          startsAt: b.startsAt.toISOString(),
+          endsAt: b.endsAt.toISOString(),
+          reason: b.reason,
+        }))}
       />
     </PageContainer>
   )

@@ -25,11 +25,21 @@ export function formatTime(d: D, timeZone: string, locale = DEFAULT_LOCALE) {
 }
 
 export function formatDate(d: D, timeZone: string, locale = DEFAULT_LOCALE) {
-  return dtf(locale, timeZone, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(toDate(d))
+  return dtf(locale, timeZone, {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(toDate(d))
 }
 
 export function formatDateLong(d: D, timeZone: string, locale = DEFAULT_LOCALE) {
-  return dtf(locale, timeZone, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(toDate(d))
+  return dtf(locale, timeZone, {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(toDate(d))
 }
 
 export function formatDateShort(d: D, timeZone: string, locale = DEFAULT_LOCALE) {
@@ -70,7 +80,9 @@ export function formatPlainDate(
 export function formatMinutesOfDay(minute: number, locale = DEFAULT_LOCALE) {
   const h = Math.floor(minute / 60) % 24
   const m = minute % 60
-  return dtf(locale, 'UTC', { hour: 'numeric', minute: '2-digit' }).format(new Date(Date.UTC(2000, 0, 1, h, m)))
+  return dtf(locale, 'UTC', { hour: 'numeric', minute: '2-digit' }).format(
+    new Date(Date.UTC(2000, 0, 1, h, m)),
+  )
 }
 
 export function formatDuration(minutes: number) {
@@ -88,7 +100,12 @@ export function formatMoney(cents: number, currency: string, locale = DEFAULT_LO
   const key = `${locale}|${currency}|${minDigits}`
   let f = moneyCache.get(key)
   if (!f) {
-    f = new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: minDigits, maximumFractionDigits: 2 })
+    f = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: minDigits,
+      maximumFractionDigits: 2,
+    })
     moneyCache.set(key, f)
   }
   return f.format(cents / 100)
@@ -99,7 +116,9 @@ export function formatNumber(n: number, locale = DEFAULT_LOCALE, opts?: Intl.Num
 }
 
 export function formatPercent(ratio: number, locale = DEFAULT_LOCALE, digits = 0) {
-  return new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: digits }).format(ratio)
+  return new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: digits }).format(
+    ratio,
+  )
 }
 
 export function formatRelative(d: D, now: Date = new Date(), locale = DEFAULT_LOCALE) {

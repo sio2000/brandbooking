@@ -27,9 +27,12 @@ afterAll(async () => {
 })
 
 describe('assertSafeKey', () => {
-  it.each(['biz/abc/logo.webp', 'b1/2/cover-640.webp', 'ab', 'a_b.c-d/e.png'])('accepts %s', (key) => {
-    expect(() => assertSafeKey(key)).not.toThrow()
-  })
+  it.each(['biz/abc/logo.webp', 'b1/2/cover-640.webp', 'ab', 'a_b.c-d/e.png'])(
+    'accepts %s',
+    (key) => {
+      expect(() => assertSafeKey(key)).not.toThrow()
+    },
+  )
 
   it.each([
     ['empty', ''],
@@ -61,7 +64,10 @@ describe('local storage driver', () => {
     await s.put('biz1/a/logo.webp', Buffer.from('webp-bytes'), 'image/webp')
     await s.put('biz1/a/raw.png', Buffer.from('png-bytes'), 'image/png')
     await s.put('biz1/a/unknown.bin', Buffer.from('x'), 'application/x')
-    expect(await s.get('biz1/a/logo.webp')).toEqual({ body: Buffer.from('webp-bytes'), contentType: 'image/webp' })
+    expect(await s.get('biz1/a/logo.webp')).toEqual({
+      body: Buffer.from('webp-bytes'),
+      contentType: 'image/webp',
+    })
     expect((await s.get('biz1/a/raw.png'))?.contentType).toBe('image/png')
     expect((await s.get('biz1/a/unknown.bin'))?.contentType).toBe('application/octet-stream')
   })
@@ -89,12 +95,18 @@ describe('local storage driver', () => {
 
   it('refuses to write or delete outside the root', async () => {
     const rel = path.relative(root, path.join(outside, 'pwned.webp'))
-    await expect(storage().put(rel, Buffer.from('x'), 'image/webp')).rejects.toThrow('Invalid storage key')
-    await expect(storage().delete(path.relative(root, path.join(outside, 'secret.txt')))).rejects.toThrow('Invalid storage key')
+    await expect(storage().put(rel, Buffer.from('x'), 'image/webp')).rejects.toThrow(
+      'Invalid storage key',
+    )
+    await expect(
+      storage().delete(path.relative(root, path.join(outside, 'secret.txt'))),
+    ).rejects.toThrow('Invalid storage key')
     expect((await readdir(outside)).sort()).toEqual(['secret.txt'])
   })
 
   it('builds public URLs through the /media proxy on APP_URL', () => {
-    expect(storage().publicUrl('biz1/a/logo.webp')).toBe('https://book.example.com/media/biz1/a/logo.webp')
+    expect(storage().publicUrl('biz1/a/logo.webp')).toBe(
+      'https://book.example.com/media/biz1/a/logo.webp',
+    )
   })
 })

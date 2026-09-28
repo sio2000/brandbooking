@@ -28,9 +28,16 @@ export function sendVerificationEmail(to: string, name: string, url: string) {
     brandName: BRAND,
     blocks: [
       { type: 'heading', text: `Welcome, ${name.split(' ')[0]}` },
-      { type: 'text', text: 'Confirm your email address so we can send you booking notifications and keep your account secure.' },
+      {
+        type: 'text',
+        text: 'Confirm your email address so we can send you booking notifications and keep your account secure.',
+      },
       { type: 'button', label: 'Confirm email address', url },
-      { type: 'text', muted: true, text: 'This link expires in 24 hours. If you did not create a Hournook account, you can ignore this email.' },
+      {
+        type: 'text',
+        muted: true,
+        text: 'This link expires in 24 hours. If you did not create a Hournook account, you can ignore this email.',
+      },
     ],
     footer: 'Hournook — online booking for small businesses.',
   })
@@ -43,22 +50,38 @@ export function sendPasswordResetEmail(to: string, url: string) {
     brandName: BRAND,
     blocks: [
       { type: 'heading', text: 'Reset your password' },
-      { type: 'text', text: 'We received a request to reset the password for your account. Use the button below to choose a new one.' },
+      {
+        type: 'text',
+        text: 'We received a request to reset the password for your account. Use the button below to choose a new one.',
+      },
       { type: 'button', label: 'Choose a new password', url },
-      { type: 'text', muted: true, text: 'This link expires in 1 hour and can be used once. If you did not ask for this, you can safely ignore this email — your password will not change.' },
+      {
+        type: 'text',
+        muted: true,
+        text: 'This link expires in 1 hour and can be used once. If you did not ask for this, you can safely ignore this email — your password will not change.',
+      },
     ],
     footer: 'Hournook — online booking for small businesses.',
   })
   return deliver({ to, subject: 'Reset your Hournook password', html, text })
 }
 
-export function sendInvitationEmail(to: string, businessName: string, inviterName: string, role: string, url: string) {
+export function sendInvitationEmail(
+  to: string,
+  businessName: string,
+  inviterName: string,
+  role: string,
+  url: string,
+) {
   const { html, text } = renderEmail({
     preheader: `${inviterName} invited you to join ${businessName} on Hournook.`,
     brandName: BRAND,
     blocks: [
       { type: 'heading', text: `Join ${businessName}` },
-      { type: 'text', text: `${inviterName} invited you to join ${businessName} on Hournook as ${role === 'manager' ? 'a manager' : 'a team member'}. You'll be able to see your appointments and manage your availability.` },
+      {
+        type: 'text',
+        text: `${inviterName} invited you to join ${businessName} on Hournook as ${role === 'manager' ? 'a manager' : 'a team member'}. You'll be able to see your appointments and manage your availability.`,
+      },
       { type: 'button', label: 'Accept invitation', url },
       { type: 'text', muted: true, text: 'This invitation expires in 7 days.' },
     ],

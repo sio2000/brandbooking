@@ -11,15 +11,29 @@ export const DropdownMenu = M.Root
 export const DropdownMenuTrigger = M.Trigger
 export const DropdownMenuGroup = M.Group
 
-export function DropdownMenuContent({ className, sideOffset = 6, align = 'end', ...props }: React.ComponentProps<typeof M.Content>) {
+export function DropdownMenuContent({
+  className,
+  sideOffset = 6,
+  align = 'end',
+  ...props
+}: React.ComponentProps<typeof M.Content>) {
   return (
     <M.Portal>
-      <M.Content sideOffset={sideOffset} align={align} className={cn(panel, className)} {...props} />
+      <M.Content
+        sideOffset={sideOffset}
+        align={align}
+        className={cn(panel, className)}
+        {...props}
+      />
     </M.Portal>
   )
 }
 
-export function DropdownMenuItem({ className, tone, ...props }: React.ComponentProps<typeof M.Item> & { tone?: 'danger' }) {
+export function DropdownMenuItem({
+  className,
+  tone,
+  ...props
+}: React.ComponentProps<typeof M.Item> & { tone?: 'danger' }) {
   return (
     <M.Item
       className={cn(
@@ -33,7 +47,12 @@ export function DropdownMenuItem({ className, tone, ...props }: React.ComponentP
 }
 
 export function DropdownMenuLabel({ className, ...props }: React.ComponentProps<typeof M.Label>) {
-  return <M.Label className={cn('px-2.5 py-1.5 text-xs font-medium text-muted-foreground', className)} {...props} />
+  return (
+    <M.Label
+      className={cn('px-2.5 py-1.5 text-xs font-medium text-muted-foreground', className)}
+      {...props}
+    />
+  )
 }
 
 export function DropdownMenuSeparator() {
@@ -43,16 +62,34 @@ export function DropdownMenuSeparator() {
 export const Popover = P.Root
 export const PopoverTrigger = P.Trigger
 export const PopoverAnchor = P.Anchor
-export function PopoverContent({ className, sideOffset = 8, align = 'start', ...props }: React.ComponentProps<typeof P.Content>) {
+export function PopoverContent({
+  className,
+  sideOffset = 8,
+  align = 'start',
+  ...props
+}: React.ComponentProps<typeof P.Content>) {
   return (
     <P.Portal>
-      <P.Content sideOffset={sideOffset} align={align} className={cn(panel, 'p-3', className)} {...props} />
+      <P.Content
+        sideOffset={sideOffset}
+        align={align}
+        className={cn(panel, 'p-3', className)}
+        {...props}
+      />
     </P.Portal>
   )
 }
 
 export const TooltipProvider = T.Provider
-export function Tooltip({ content, children, side = 'top' }: { content: React.ReactNode; children: React.ReactNode; side?: 'top' | 'bottom' | 'left' | 'right' }) {
+export function Tooltip({
+  content,
+  children,
+  side = 'top',
+}: {
+  content: React.ReactNode
+  children: React.ReactNode
+  side?: 'top' | 'bottom' | 'left' | 'right'
+}) {
   return (
     <T.Root delayDuration={250}>
       <T.Trigger asChild>{children}</T.Trigger>

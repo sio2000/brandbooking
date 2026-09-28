@@ -18,9 +18,19 @@ import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import type { RequestMeta } from '@/server/request'
 import { deriveSource, type PublicBookingInput } from '@/lib/validation/booking'
 import { addDays, addMonths, endOfMonth, isPlainDate, todayIn } from '@/lib/tz'
-import { bookAppointment, cancelAppointment, getAvailability, rescheduleAppointment } from './booking-service'
+import {
+  bookAppointment,
+  cancelAppointment,
+  getAvailability,
+  rescheduleAppointment,
+} from './booking-service'
 import { getOrCreateRules } from './loader'
-import { LINK_VALID_AFTER_END_MS, parseManageToken, signManageToken, verifyManageToken } from './manage-token'
+import {
+  LINK_VALID_AFTER_END_MS,
+  parseManageToken,
+  signManageToken,
+  verifyManageToken,
+} from './manage-token'
 import { customerCanCancel, customerCanReschedule, deadlineFor } from './transitions'
 
 /**
@@ -46,9 +56,15 @@ export function isPubliclyVisible(b: Business) {
   return b.status === 'active' && (b.publishStatus === 'published' || b.publishStatus === 'paused')
 }
 
-export async function bookingState(b: Business, now = new Date()): Promise<PublicAvailabilityState> {
+export async function bookingState(
+  b: Business,
+  now = new Date(),
+): Promise<PublicAvailabilityState> {
   if (b.status !== 'active') return { accepting: false, reason: 'unavailable' }
-  if (b.publishStatus === 'paused' && !(b.pausedUntil && b.pausedUntil.getTime() <= now.getTime())) {
+  if (
+    b.publishStatus === 'paused' &&
+    !(b.pausedUntil && b.pausedUntil.getTime() <= now.getTime())
+  ) {
     return { accepting: false, reason: 'paused', message: b.pausedMessage }
   }
   if (b.publishStatus === 'draft') return { accepting: false, reason: 'unavailable' }
@@ -63,11 +79,29 @@ export async function getPublicPageData(b: Business) {
     db()
       .select()
       .from(services)
-      .where(and(eq(services.businessId, b.id), eq(services.isActive, true), eq(services.isVisible, true), isNull(services.deletedAt)))
+      .where(
+        and(
+          eq(services.businessId, b.id),
+          eq(services.isActive, true),
+          eq(services.isVisible, true),
+          isNull(services.deletedAt),
+        ),
+      )
       .orderBy(asc(services.position), asc(services.name)),
-    db().select().from(serviceCategories).where(eq(serviceCategories.businessId, b.id)).orderBy(asc(serviceCategories.position)),
     db()
-      .select({ id: staff.id, name: staff.name, title: staff.title, bio: staff.bio, avatarAssetId: staff.avatarAssetId, color: staff.color })
+      .select()
+      .from(serviceCategories)
+      .where(eq(serviceCategories.businessId, b.id))
+      .orderBy(asc(serviceCategories.position)),
+    db()
+      .select({
+        id: staff.id,
+        name: staff.name,
+        title: staff.title,
+        bio: staff.bio,
+        avatarAssetId: staff.avatarAssetId,
+        color: staff.color,
+      })
       .from(staff)
       .where(and(eq(staff.businessId, b.id), eq(staff.isActive, true), isNull(staff.deletedAt)))
       .orderBy(asc(staff.position), asc(staff.name)),
@@ -82,8 +116,15 @@ export async function getPublicPageData(b: Business) {
     if (!activeStaff.has(l.staffId)) continue
     staffByService.set(l.serviceId, [...(staffByService.get(l.serviceId) ?? []), l.staffId])
   }
-  const avatars = await assetUrls(b.id, staffRows.map((s) => s.avatarAssetId), 'sm')
-  const [logoUrl, coverUrl] = await Promise.all([assetUrl(b.id, b.logoAssetId), assetUrl(b.id, b.coverAssetId)])
+  const avatars = await assetUrls(
+    b.id,
+    staffRows.map((s) => s.avatarAssetId),
+    'sm',
+  )
+  const [logoUrl, coverUrl] = await Promise.all([
+    assetUrl(b.id, b.logoAssetId),
+    assetUrl(b.id, b.coverAssetId),
+  ])
   const bookableServices = svcRows.filter((s) => (staffByService.get(s.id)?.length ?? 0) > 0)
   return {
     business: {
@@ -98,7 +139,11 @@ export async function getPublicPageData(b: Business) {
       email: b.email,
       phone: b.phone,
       website: b.website,
-      address: [b.addressLine1, b.addressLine2, [b.postalCode, b.city].filter(Boolean).join(' ')].filter((x): x is string => Boolean(x)),
+      address: [
+        b.addressLine1,
+        b.addressLine2,
+        [b.postalCode, b.city].filter(Boolean).join(' '),
+      ].filter((x): x is string => Boolean(x)),
       country: b.country,
       socialLinks: b.socialLinks,
       brandColor: b.brandColor,
@@ -118,7 +163,14 @@ export async function getPublicPageData(b: Business) {
       staffIds: staffByService.get(s.id) ?? [],
     })),
     staff: b.showStaffOnPage
-      ? staffRows.map((s) => ({ id: s.id, name: s.name, title: s.title, bio: s.bio, avatarUrl: s.avatarAssetId ? (avatars.get(s.avatarAssetId) ?? null) : null, color: s.color }))
+      ? staffRows.map((s) => ({
+          id: s.id,
+          name: s.name,
+          title: s.title,
+          bio: s.bio,
+          avatarUrl: s.avatarAssetId ? (avatars.get(s.avatarAssetId) ?? null) : null,
+          color: s.color,
+        }))
       : [],
     rules: {
       staffSelection: b.showStaffOnPage ? rules.staffSelection : ('hidden' as const),
@@ -149,7 +201,8 @@ async function requireAccepting(slug: string) {
   const b = await findPublicBusiness(slug)
   if (!b || !isPubliclyVisible(b)) throw new AppError('booking_page_unavailable')
   const state = await bookingState(b)
-  if (!state.accepting) throw new AppError(state.reason === 'paused' ? 'bookings_paused' : 'booking_page_unavailable')
+  if (!state.accepting)
+    throw new AppError(state.reason === 'paused' ? 'bookings_paused' : 'booking_page_unavailable')
   return b
 }
 
@@ -162,7 +215,13 @@ export async function publicAvailability(
   const b = await requireAccepting(slug)
   const { from, to } = defaultRange(b.timezone, q)
   const rules = await getOrCreateRules(db(), b.id)
-  const days = await getAvailability({ business: b, serviceId: q.serviceId, staffId: q.staffId, from, to })
+  const days = await getAvailability({
+    business: b,
+    serviceId: q.serviceId,
+    staffId: q.staffId,
+    from,
+    to,
+  })
   const exposeStaff = b.showStaffOnPage && rules.staffSelection !== 'hidden'
   return {
     timezone: b.timezone,
@@ -170,12 +229,19 @@ export async function publicAvailability(
     lastDate: addDays(todayIn(b.timezone), rules.maxAdvanceDays),
     days: days.map((d) => ({
       date: d.date,
-      slots: d.slots.map((s) => ({ start: new Date(s.start).toISOString(), ...(exposeStaff ? { staffIds: s.staffIds } : {}) })),
+      slots: d.slots.map((s) => ({
+        start: new Date(s.start).toISOString(),
+        ...(exposeStaff ? { staffIds: s.staffIds } : {}),
+      })),
     })),
   }
 }
 
-export async function createPublicBooking(slug: string, input: PublicBookingInput, meta: RequestMeta) {
+export async function createPublicBooking(
+  slug: string,
+  input: PublicBookingInput,
+  meta: RequestMeta,
+) {
   const b = await requireAccepting(slug)
   await enforceRateLimits([
     [`book:ip:${meta.ip}`, POLICIES.bookingByIp],
@@ -230,10 +296,15 @@ async function loadByToken(token: string) {
     .limit(1)
   const row = rows[0]
   // Verify even when missing (against a dummy) to keep timing uniform.
-  const ok = verifyManageToken(parsed.signature, parsed.appointmentId, row?.appt.manageNonce ?? 'x'.repeat(24))
+  const ok = verifyManageToken(
+    parsed.signature,
+    parsed.appointmentId,
+    row?.appt.manageNonce ?? 'x'.repeat(24),
+  )
   if (!row || !ok) throw new AppError('token_invalid')
   if (row.business.deletedAt) throw new AppError('token_invalid')
-  if (Date.now() > row.appt.endsAt.getTime() + LINK_VALID_AFTER_END_MS) throw new AppError('token_expired')
+  if (Date.now() > row.appt.endsAt.getTime() + LINK_VALID_AFTER_END_MS)
+    throw new AppError('token_expired')
   return row
 }
 
@@ -252,9 +323,24 @@ export async function getManagedBooking(token: string, meta: RequestMeta) {
       phone: customers.phone,
     })
     .from(appointments)
-    .innerJoin(services, and(eq(services.id, appointments.serviceId), eq(services.businessId, appointments.businessId)))
-    .innerJoin(staff, and(eq(staff.id, appointments.staffId), eq(staff.businessId, appointments.businessId)))
-    .innerJoin(customers, and(eq(customers.id, appointments.customerId), eq(customers.businessId, appointments.businessId)))
+    .innerJoin(
+      services,
+      and(
+        eq(services.id, appointments.serviceId),
+        eq(services.businessId, appointments.businessId),
+      ),
+    )
+    .innerJoin(
+      staff,
+      and(eq(staff.id, appointments.staffId), eq(staff.businessId, appointments.businessId)),
+    )
+    .innerJoin(
+      customers,
+      and(
+        eq(customers.id, appointments.customerId),
+        eq(customers.businessId, appointments.businessId),
+      ),
+    )
     .where(eq(appointments.id, appt.id))
     .limit(1)
   const rules = await getOrCreateRules(db(), business.id)
@@ -274,7 +360,12 @@ export async function getManagedBooking(token: string, meta: RequestMeta) {
       serviceId: details!.serviceId,
       serviceName: details!.serviceName,
       staffName: details!.staffName,
-      customer: { firstName: details!.firstName, lastName: details!.lastName, email: details!.email, phone: details!.phone },
+      customer: {
+        firstName: details!.firstName,
+        lastName: details!.lastName,
+        email: details!.email,
+        phone: details!.phone,
+      },
       customerMessage: appt.customerMessage,
     },
     business: {
@@ -284,12 +375,21 @@ export async function getManagedBooking(token: string, meta: RequestMeta) {
       logoUrl,
       email: business.email,
       phone: business.phone,
-      address: [business.addressLine1, business.addressLine2, [business.postalCode, business.city].filter(Boolean).join(' ')].filter(Boolean).join(', '),
+      address: [
+        business.addressLine1,
+        business.addressLine2,
+        [business.postalCode, business.city].filter(Boolean).join(' '),
+      ]
+        .filter(Boolean)
+        .join(', '),
       bookingPolicy: business.bookingPolicy,
     },
     can: {
       cancel: customerCanCancel(appt.status, appt.startsAt, rules, now),
-      reschedule: customerCanReschedule(appt.status, appt.startsAt, rules, now) && details!.serviceActive && state.accepting,
+      reschedule:
+        customerCanReschedule(appt.status, appt.startsAt, rules, now) &&
+        details!.serviceActive &&
+        state.accepting,
     },
     deadlines: {
       cancel: deadlineFor(appt.startsAt, rules.cancellationDeadlineMinutes).toISOString(),
@@ -300,12 +400,18 @@ export async function getManagedBooking(token: string, meta: RequestMeta) {
   }
 }
 
-export async function cancelManagedBooking(token: string, reason: string | null, meta: RequestMeta) {
+export async function cancelManagedBooking(
+  token: string,
+  reason: string | null,
+  meta: RequestMeta,
+) {
   await enforceRateLimits([[`manage:ip:${meta.ip}`, POLICIES.manageByIp]])
   const { appt, business } = await loadByToken(token)
   const rules = await getOrCreateRules(db(), business.id)
   if (!customerCanCancel(appt.status, appt.startsAt, rules, new Date())) {
-    throw new AppError(appt.status === 'cancelled' ? 'appointment_not_active' : 'cancellation_not_allowed')
+    throw new AppError(
+      appt.status === 'cancelled' ? 'appointment_not_active' : 'cancellation_not_allowed',
+    )
   }
   await cancelAppointment({
     business,
@@ -315,11 +421,16 @@ export async function cancelManagedBooking(token: string, reason: string | null,
   })
 }
 
-export async function managedAvailability(token: string, q: { from?: string; to?: string; staffId: string | null }, meta: RequestMeta) {
+export async function managedAvailability(
+  token: string,
+  q: { from?: string; to?: string; staffId: string | null },
+  meta: RequestMeta,
+) {
   await enforceRateLimits([[`avail:ip:${meta.ip}`, POLICIES.availabilityByIp]])
   const { appt, business } = await loadByToken(token)
   const rules = await getOrCreateRules(db(), business.id)
-  if (!customerCanReschedule(appt.status, appt.startsAt, rules, new Date())) throw new AppError('reschedule_not_allowed')
+  if (!customerCanReschedule(appt.status, appt.startsAt, rules, new Date()))
+    throw new AppError('reschedule_not_allowed')
   const { from, to } = defaultRange(business.timezone, q)
   const days = await getAvailability({
     business,
@@ -333,7 +444,10 @@ export async function managedAvailability(token: string, q: { from?: string; to?
     timezone: business.timezone,
     today: todayIn(business.timezone),
     lastDate: addDays(todayIn(business.timezone), rules.maxAdvanceDays),
-    days: days.map((d) => ({ date: d.date, slots: d.slots.map((s) => ({ start: new Date(s.start).toISOString() })) })),
+    days: days.map((d) => ({
+      date: d.date,
+      slots: d.slots.map((s) => ({ start: new Date(s.start).toISOString() })),
+    })),
   }
 }
 
@@ -342,7 +456,9 @@ export async function rescheduleManagedBooking(token: string, start: Date, meta:
   const { appt, business } = await loadByToken(token)
   const rules = await getOrCreateRules(db(), business.id)
   if (!customerCanReschedule(appt.status, appt.startsAt, rules, new Date())) {
-    throw new AppError(appt.status === 'cancelled' ? 'appointment_not_active' : 'reschedule_not_allowed')
+    throw new AppError(
+      appt.status === 'cancelled' ? 'appointment_not_active' : 'reschedule_not_allowed',
+    )
   }
   const state = await bookingState(business)
   if (!state.accepting) throw new AppError('bookings_paused')

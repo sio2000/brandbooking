@@ -17,7 +17,13 @@ const inter = localFont({
 })
 
 const bricolage = localFont({
-  src: [{ path: './fonts/bricolage-grotesque-latin-wght-normal.woff2', weight: '200 800', style: 'normal' }],
+  src: [
+    {
+      path: './fonts/bricolage-grotesque-latin-wght-normal.woff2',
+      weight: '200 800',
+      style: 'normal',
+    },
+  ],
   variable: '--font-bricolage',
   display: 'swap',
 })
@@ -27,7 +33,12 @@ export const metadata: Metadata = {
   title: { default: `${site.name} — ${site.tagline}`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  openGraph: { type: 'website', siteName: site.name, title: `${site.name} — ${site.tagline}`, description: site.description },
+  openGraph: {
+    type: 'website',
+    siteName: site.name,
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+  },
   twitter: { card: 'summary_large_image' },
 }
 

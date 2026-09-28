@@ -23,23 +23,53 @@ import { addDays, epochToLocalDate, startOfLocalDayMs, type PlainDateString } fr
  */
 
 export async function getOrCreateRules(tx: DbOrTx, businessId: string): Promise<BookingRules> {
-  const [row] = await tx.select().from(bookingRules).where(eq(bookingRules.businessId, businessId)).limit(1)
+  const [row] = await tx
+    .select()
+    .from(bookingRules)
+    .where(eq(bookingRules.businessId, businessId))
+    .limit(1)
   if (row) return row
-  const [created] = await tx.insert(bookingRules).values({ businessId }).onConflictDoNothing().returning()
+  const [created] = await tx
+    .insert(bookingRules)
+    .values({ businessId })
+    .onConflictDoNothing()
+    .returning()
   if (created) return created
-  const [again] = await tx.select().from(bookingRules).where(eq(bookingRules.businessId, businessId)).limit(1)
+  const [again] = await tx
+    .select()
+    .from(bookingRules)
+    .where(eq(bookingRules.businessId, businessId))
+    .limit(1)
   return again!
 }
 
-export async function loadService(tx: DbOrTx, businessId: string, serviceId: string, opts: { bookableOnly: boolean }) {
-  const conditions = [eq(services.businessId, businessId), eq(services.id, serviceId), isNull(services.deletedAt)]
+export async function loadService(
+  tx: DbOrTx,
+  businessId: string,
+  serviceId: string,
+  opts: { bookableOnly: boolean },
+) {
+  const conditions = [
+    eq(services.businessId, businessId),
+    eq(services.id, serviceId),
+    isNull(services.deletedAt),
+  ]
   if (opts.bookableOnly) conditions.push(eq(services.isActive, true), eq(services.isVisible, true))
-  const [row] = await tx.select().from(services).where(and(...conditions)).limit(1)
+  const [row] = await tx
+    .select()
+    .from(services)
+    .where(and(...conditions))
+    .limit(1)
   return row ?? null
 }
 
 /** Active staff assigned to the service (optionally a single one), in display order. */
-export async function loadEligibleStaff(tx: DbOrTx, businessId: string, serviceId: string, staffId?: string | null) {
+export async function loadEligibleStaff(
+  tx: DbOrTx,
+  businessId: string,
+  serviceId: string,
+  staffId?: string | null,
+) {
   const conditions = [
     eq(staff.businessId, businessId),
     eq(staff.isActive, true),
@@ -48,9 +78,17 @@ export async function loadEligibleStaff(tx: DbOrTx, businessId: string, serviceI
   ]
   if (staffId) conditions.push(eq(staff.id, staffId))
   return tx
-    .select({ id: staff.id, name: staff.name, usesBusinessHours: staff.usesBusinessHours, position: staff.position })
+    .select({
+      id: staff.id,
+      name: staff.name,
+      usesBusinessHours: staff.usesBusinessHours,
+      position: staff.position,
+    })
     .from(staff)
-    .innerJoin(staffServices, and(eq(staffServices.staffId, staff.id), eq(staffServices.businessId, staff.businessId)))
+    .innerJoin(
+      staffServices,
+      and(eq(staffServices.staffId, staff.id), eq(staffServices.businessId, staff.businessId)),
+    )
     .where(and(...conditions))
     .orderBy(asc(staff.position), asc(staff.name))
 }
@@ -62,7 +100,12 @@ function emptySchedule(): Schedule {
 }
 
 /** Business schedule plus per-staff schedules for the given date range. */
-export async function loadSchedules(tx: DbOrTx, businessId: string, staffIds: string[], range: Range) {
+export async function loadSchedules(
+  tx: DbOrTx,
+  businessId: string,
+  staffIds: string[],
+  range: Range,
+) {
   const lo = addDays(range.from, -1)
   const hi = addDays(range.to, 1)
   const staffCond = staffIds.length
@@ -70,7 +113,10 @@ export async function loadSchedules(tx: DbOrTx, businessId: string, staffIds: st
     : isNull(weeklyHours.staffId)
 
   const [weekly, special, closed] = await Promise.all([
-    tx.select().from(weeklyHours).where(and(eq(weeklyHours.businessId, businessId), staffCond)),
+    tx
+      .select()
+      .from(weeklyHours)
+      .where(and(eq(weeklyHours.businessId, businessId), staffCond)),
     tx
       .select()
       .from(specialHours)
@@ -79,7 +125,9 @@ export async function loadSchedules(tx: DbOrTx, businessId: string, staffIds: st
           eq(specialHours.businessId, businessId),
           gte(specialHours.onDate, lo),
           lte(specialHours.onDate, hi),
-          staffIds.length ? or(isNull(specialHours.staffId), inArray(specialHours.staffId, staffIds)) : isNull(specialHours.staffId),
+          staffIds.length
+            ? or(isNull(specialHours.staffId), inArray(specialHours.staffId, staffIds))
+            : isNull(specialHours.staffId),
         ),
       ),
     tx
@@ -88,8 +136,13 @@ export async function loadSchedules(tx: DbOrTx, businessId: string, staffIds: st
       .where(
         and(
           eq(closures.businessId, businessId),
-          or(eq(closures.recurringYearly, true), and(lte(closures.startsOn, hi), gte(closures.endsOn, lo))),
-          staffIds.length ? or(isNull(closures.staffId), inArray(closures.staffId, staffIds)) : isNull(closures.staffId),
+          or(
+            eq(closures.recurringYearly, true),
+            and(lte(closures.startsOn, hi), gte(closures.endsOn, lo)),
+          ),
+          staffIds.length
+            ? or(isNull(closures.staffId), inArray(closures.staffId, staffIds))
+            : isNull(closures.staffId),
         ),
       ),
   ])
@@ -106,7 +159,10 @@ export async function loadSchedules(tx: DbOrTx, businessId: string, staffIds: st
   for (const sp of special) {
     const s = target(sp.staffId)
     if (!s) continue
-    ;(s.special[sp.onDate] ??= []).push({ start: sp.startMinute, end: sp.endMinute } satisfies MinuteRange)
+    ;(s.special[sp.onDate] ??= []).push({
+      start: sp.startMinute,
+      end: sp.endMinute,
+    } satisfies MinuteRange)
   }
   for (const c of closed) {
     const s = target(c.staffId)
@@ -142,11 +198,19 @@ export async function loadBusy(
 
   const [appts, blocks] = await Promise.all([
     tx
-      .select({ staffId: appointments.staffId, from: appointments.blockedFrom, until: appointments.blockedUntil })
+      .select({
+        staffId: appointments.staffId,
+        from: appointments.blockedFrom,
+        until: appointments.blockedUntil,
+      })
       .from(appointments)
       .where(and(...apptConds)),
     tx
-      .select({ staffId: timeBlocks.staffId, startsAt: timeBlocks.startsAt, endsAt: timeBlocks.endsAt })
+      .select({
+        staffId: timeBlocks.staffId,
+        startsAt: timeBlocks.startsAt,
+        endsAt: timeBlocks.endsAt,
+      })
       .from(timeBlocks)
       .where(
         and(
@@ -156,7 +220,8 @@ export async function loadBusy(
         ),
       ),
   ])
-  for (const a of appts) busy.get(a.staffId)?.push({ start: a.from.getTime(), end: a.until.getTime() })
+  for (const a of appts)
+    busy.get(a.staffId)?.push({ start: a.from.getTime(), end: a.until.getTime() })
   for (const b of blocks) {
     const iv = { start: b.startsAt.getTime(), end: b.endsAt.getTime() }
     if (b.staffId) busy.get(b.staffId)?.push(iv)

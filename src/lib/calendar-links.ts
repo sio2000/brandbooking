@@ -1,8 +1,19 @@
 /** "Add to calendar" helpers: Google/Outlook deep links and RFC 5545 .ics files. */
 
-export type CalendarEvent = { title: string; start: Date; end: Date; location?: string; details?: string; uid?: string }
+export type CalendarEvent = {
+  title: string
+  start: Date
+  end: Date
+  location?: string
+  details?: string
+  uid?: string
+}
 
-const utcStamp = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+const utcStamp = (d: Date) =>
+  d
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}/, '')
 
 export function googleCalendarUrl(e: CalendarEvent): string {
   const p = new URLSearchParams({
@@ -51,7 +62,13 @@ function fold(line: string) {
   return out.join('\r\n')
 }
 
-export function buildIcs(e: CalendarEvent & { uid: string; status?: 'CONFIRMED' | 'TENTATIVE' | 'CANCELLED'; sequence?: number }): string {
+export function buildIcs(
+  e: CalendarEvent & {
+    uid: string
+    status?: 'CONFIRMED' | 'TENTATIVE' | 'CANCELLED'
+    sequence?: number
+  },
+): string {
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',

@@ -70,7 +70,7 @@ Rules enforced by structure:
 A **business** is the tenant. Users belong to businesses through
 `business_members` with a role (`owner` | `manager` | `staff`). One user may
 belong to several businesses; the active one is stored in the `hn_business`
-cookie, but the cookie is only a *preference*: `loadTenant()` re-checks the
+cookie, but the cookie is only a _preference_: `loadTenant()` re-checks the
 membership on every request and falls back to the first valid membership.
 
 Every dashboard entry point calls `requireTenantPage(permission)` or
@@ -92,16 +92,16 @@ Defense in depth at the database level:
 28 tables, defined in `src/server/db/migrations/0001_init.sql` (mirrored in
 `src/server/db/schema.ts`; a test fails if the two drift apart).
 
-| Area | Tables |
-|---|---|
-| Identity | `users`, `sessions` (SHA-256 of token as id), `auth_tokens` (hashed, single-use, expiring) |
-| Tenancy | `businesses`, `business_members` (one owner per business, partial unique index), `invitations` |
-| Catalog | `service_categories`, `services`, `staff`, `staff_services` |
-| Availability | `weekly_hours`, `special_hours`, `closures` (incl. yearly recurring), `time_blocks`, `booking_rules` |
-| Bookings | `customers`, `appointments`, `appointment_events` (status history) |
-| Messaging | `notifications` (email outbox), `inbox_items` (in-app notifications) |
-| Billing | `subscriptions`, `billing_events` (Stripe event ids, idempotency) |
-| Platform | `audit_logs`, `uploaded_assets`, `feature_flags`, `platform_settings`, `rate_limits`, `booking_page_events` |
+| Area         | Tables                                                                                                      |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| Identity     | `users`, `sessions` (SHA-256 of token as id), `auth_tokens` (hashed, single-use, expiring)                  |
+| Tenancy      | `businesses`, `business_members` (one owner per business, partial unique index), `invitations`              |
+| Catalog      | `service_categories`, `services`, `staff`, `staff_services`                                                 |
+| Availability | `weekly_hours`, `special_hours`, `closures` (incl. yearly recurring), `time_blocks`, `booking_rules`        |
+| Bookings     | `customers`, `appointments`, `appointment_events` (status history)                                          |
+| Messaging    | `notifications` (email outbox), `inbox_items` (in-app notifications)                                        |
+| Billing      | `subscriptions`, `billing_events` (Stripe event ids, idempotency)                                           |
+| Platform     | `audit_logs`, `uploaded_assets`, `feature_flags`, `platform_settings`, `rate_limits`, `booking_page_events` |
 
 Notable constraints:
 
@@ -165,7 +165,7 @@ Rotating `APP_SECRET` revokes every outstanding link.
 - **Outbox**: booking-related emails are rows in `notifications`, written in the
   same transaction as the change that caused them, with a unique `dedupe_key`
   (so a reminder for a given appointment start time is enqueued once).
-- **Rendering at send time**: templates render from the *current* database
+- **Rendering at send time**: templates render from the _current_ database
   state, so a rescheduled appointment never sends a stale time; reminders for
   cancelled appointments are skipped.
 - **Dispatcher**: claims due rows with `FOR UPDATE SKIP LOCKED` and a lease, so

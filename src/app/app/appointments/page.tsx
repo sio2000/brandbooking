@@ -17,15 +17,23 @@ export default async function AppointmentsPage({ searchParams }: PageProps<'/app
   const ctx = await requireTenantPage(['appointments.view_all', 'appointments.view_own'])
   const sp = await searchParams
   const str = (k: string) => (typeof sp[k] === 'string' ? (sp[k] as string) : undefined)
-  const view = (VIEWS as readonly string[]).includes(str('view') ?? '') ? (str('view') as (typeof VIEWS)[number]) : 'upcoming'
-  const status = STATUSES.includes(str('status') as AppointmentStatus) ? (str('status') as AppointmentStatus) : undefined
+  const view = (VIEWS as readonly string[]).includes(str('view') ?? '')
+    ? (str('view') as (typeof VIEWS)[number])
+    : 'upcoming'
+  const status = STATUSES.includes(str('status') as AppointmentStatus)
+    ? (str('status') as AppointmentStatus)
+    : undefined
   const page = Math.max(1, Number(str('page') ?? 1) || 1)
   const tz = ctx.business.timezone
   const today = todayIn(tz)
   const now = new Date()
   const range =
     view === 'today'
-      ? { from: localToDate(today, 0, tz), to: localToDate(addDays(today, 1), 0, tz), order: 'asc' as const }
+      ? {
+          from: localToDate(today, 0, tz),
+          to: localToDate(addDays(today, 1), 0, tz),
+          order: 'asc' as const,
+        }
       : view === 'past'
         ? { from: undefined, to: now, order: 'desc' as const }
         : view === 'upcoming'
@@ -47,9 +55,17 @@ export default async function AppointmentsPage({ searchParams }: PageProps<'/app
   ])
   return (
     <PageContainer wide>
-      <PageHeader title="Appointments" description="Every booking in one place. Filter, update statuses in bulk, or export to a spreadsheet." />
+      <PageHeader
+        title="Appointments"
+        description="Every booking in one place. Filter, update statuses in bulk, or export to a spreadsheet."
+      />
       <AppointmentsView
-        rows={rows.slice(0, PAGE_SIZE).map((r) => ({ ...r, startsAt: r.startsAt.toISOString(), endsAt: r.endsAt.toISOString(), createdAt: r.createdAt.toISOString() }))}
+        rows={rows.slice(0, PAGE_SIZE).map((r) => ({
+          ...r,
+          startsAt: r.startsAt.toISOString(),
+          endsAt: r.endsAt.toISOString(),
+          createdAt: r.createdAt.toISOString(),
+        }))}
         hasMore={rows.length > PAGE_SIZE}
         page={page}
         view={view}

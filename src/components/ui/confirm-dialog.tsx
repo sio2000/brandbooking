@@ -40,11 +40,17 @@ export function ConfirmDialog({
   const [pending, setPending] = React.useState(false)
   const ready = !confirmText || typed.trim() === confirmText.trim()
   return (
-    <A.Root open={isOpen} onOpenChange={(o) => { setOpen(o); if (!o) setTyped('') }}>
+    <A.Root
+      open={isOpen}
+      onOpenChange={(o) => {
+        setOpen(o)
+        if (!o) setTyped('')
+      }}
+    >
       {trigger && <A.Trigger asChild>{trigger}</A.Trigger>}
       <A.Portal>
-        <A.Overlay className="fixed inset-0 z-50 bg-overlay backdrop-blur-[2px] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0" />
-        <A.Content className="fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border bg-elevated p-5 shadow-lg data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.97] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.97] duration-200">
+        <A.Overlay className="fixed inset-0 z-50 bg-overlay backdrop-blur-[2px] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0" />
+        <A.Content className="fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border bg-elevated p-5 shadow-lg duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.97] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.97]">
           <A.Title className="font-sans text-base font-semibold tracking-normal">{title}</A.Title>
           <A.Description asChild>
             <div className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</div>
@@ -53,9 +59,15 @@ export function ConfirmDialog({
           {confirmText && (
             <div className="mt-4 grid gap-1.5">
               <label htmlFor="confirm-text" className="text-sm">
-                Type <strong className="font-semibold text-foreground">{confirmText}</strong> to confirm
+                Type <strong className="font-semibold text-foreground">{confirmText}</strong> to
+                confirm
               </label>
-              <Input id="confirm-text" value={typed} onChange={(e) => setTyped(e.target.value)} autoComplete="off" />
+              <Input
+                id="confirm-text"
+                value={typed}
+                onChange={(e) => setTyped(e.target.value)}
+                autoComplete="off"
+              />
             </div>
           )}
           <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">

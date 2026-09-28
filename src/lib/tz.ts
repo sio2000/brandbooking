@@ -61,7 +61,10 @@ export function startOfLocalDayMs(date: PlainDateString, timeZone: string): numb
 }
 
 export function epochToLocalDate(ms: number, timeZone: string): PlainDateString {
-  return Temporal.Instant.fromEpochMilliseconds(ms).toZonedDateTimeISO(timeZone).toPlainDate().toString()
+  return Temporal.Instant.fromEpochMilliseconds(ms)
+    .toZonedDateTimeISO(timeZone)
+    .toPlainDate()
+    .toString()
 }
 
 export function epochToLocalMinute(ms: number, timeZone: string): number {
@@ -120,5 +123,7 @@ export function endOfMonth(date: PlainDateString): PlainDateString {
 
 /** Offset in minutes (local - UTC) at an instant, e.g. +120 for CEST. */
 export function offsetMinutesAt(ms: number, timeZone: string): number {
-  return Temporal.Instant.fromEpochMilliseconds(ms).toZonedDateTimeISO(timeZone).offsetNanoseconds / 60e9
+  return (
+    Temporal.Instant.fromEpochMilliseconds(ms).toZonedDateTimeISO(timeZone).offsetNanoseconds / 60e9
+  )
 }

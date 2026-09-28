@@ -6,7 +6,13 @@ import { Check, Copy } from 'lucide-react'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { toast } from '@/components/ui/toaster'
 
-export function CopyButton({ value, label = 'Copy link', copiedLabel = 'Copied', toastMessage = 'Link copied to clipboard', ...props }: ButtonProps & { value: string; label?: string; copiedLabel?: string; toastMessage?: string }) {
+export function CopyButton({
+  value,
+  label = 'Copy link',
+  copiedLabel = 'Copied',
+  toastMessage = 'Link copied to clipboard',
+  ...props
+}: ButtonProps & { value: string; label?: string; copiedLabel?: string; toastMessage?: string }) {
   const [copied, setCopied] = React.useState(false)
   return (
     <Button
@@ -24,7 +30,14 @@ export function CopyButton({ value, label = 'Copy link', copiedLabel = 'Copied',
       }}
     >
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span key={copied ? 'y' : 'n'} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} transition={{ duration: 0.12 }} className="inline-flex items-center gap-2">
+        <motion.span
+          key={copied ? 'y' : 'n'}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.12 }}
+          className="inline-flex items-center gap-2"
+        >
           {copied ? <Check /> : <Copy />} {copied ? copiedLabel : label}
         </motion.span>
       </AnimatePresence>

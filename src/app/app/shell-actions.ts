@@ -14,8 +14,14 @@ import { env } from '@/server/env'
 export async function switchBusinessAction(businessId: string) {
   const session = await getSession()
   if (!session) redirect('/login')
-  if (!z.uuid().safeParse(businessId).success || !(await loadTenant(session.user.id, businessId))) throw new AppError('forbidden')
-  ;(await cookies()).set(BUSINESS_COOKIE, businessId, { httpOnly: true, sameSite: 'lax', path: '/', secure: env().APP_URL.startsWith('https://') })
+  if (!z.uuid().safeParse(businessId).success || !(await loadTenant(session.user.id, businessId)))
+    throw new AppError('forbidden')
+  ;(await cookies()).set(BUSINESS_COOKIE, businessId, {
+    httpOnly: true,
+    sameSite: 'lax',
+    path: '/',
+    secure: env().APP_URL.startsWith('https://'),
+  })
   redirect('/app')
 }
 

@@ -29,7 +29,9 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 10_000 },
   outputDir: 'test-results',
-  reporter: CI ? [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]] : [['list']],
+  reporter: CI
+    ? [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]
+    : [['list']],
   use: {
     baseURL: E2E_BASE_URL,
     trace: CI ? 'on-first-retry' : 'retain-on-failure',

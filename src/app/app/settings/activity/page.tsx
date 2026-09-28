@@ -1,7 +1,21 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { desc, eq } from 'drizzle-orm'
-import { Activity, Building2, CalendarDays, ChevronLeft, ChevronRight, Clock, CreditCard, Download, Scissors, Settings2, ShieldAlert, UserRound, Users } from 'lucide-react'
+import {
+  Activity,
+  Building2,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  CreditCard,
+  Download,
+  Scissors,
+  Settings2,
+  ShieldAlert,
+  UserRound,
+  Users,
+} from 'lucide-react'
 import { requireTenantPage } from '@/server/tenancy/context'
 import { db } from '@/server/db/client'
 import { auditLogs, users, type ActorType } from '@/server/db/schema'
@@ -27,7 +41,11 @@ const EXTRA_LABELS: Record<string, string> = {
 }
 
 const CATEGORY: Array<{ prefix: string; icon: typeof Activity; tone: string }> = [
-  { prefix: 'appointment.', icon: CalendarDays, tone: 'bg-primary-soft text-primary-soft-foreground' },
+  {
+    prefix: 'appointment.',
+    icon: CalendarDays,
+    tone: 'bg-primary-soft text-primary-soft-foreground',
+  },
   { prefix: 'customer.', icon: UserRound, tone: 'bg-info-soft text-info-soft-foreground' },
   { prefix: 'team.', icon: Users, tone: 'bg-accent-soft text-accent-soft-foreground' },
   { prefix: 'staff.', icon: Users, tone: 'bg-accent-soft text-accent-soft-foreground' },
@@ -37,12 +55,21 @@ const CATEGORY: Array<{ prefix: string; icon: typeof Activity; tone: string }> =
   { prefix: 'billing.', icon: CreditCard, tone: 'bg-success-soft text-success-soft-foreground' },
   { prefix: 'export.', icon: Download, tone: 'bg-surface-3 text-foreground' },
   { prefix: 'business.exported', icon: Download, tone: 'bg-surface-3 text-foreground' },
-  { prefix: 'business.suspended', icon: ShieldAlert, tone: 'bg-danger-soft text-danger-soft-foreground' },
+  {
+    prefix: 'business.suspended',
+    icon: ShieldAlert,
+    tone: 'bg-danger-soft text-danger-soft-foreground',
+  },
   { prefix: 'business.', icon: Building2, tone: 'bg-surface-3 text-foreground' },
 ]
 
 function categoryFor(action: string) {
-  return CATEGORY.find((c) => action.startsWith(c.prefix)) ?? { icon: Activity, tone: 'bg-surface-3 text-foreground' }
+  return (
+    CATEGORY.find((c) => action.startsWith(c.prefix)) ?? {
+      icon: Activity,
+      tone: 'bg-surface-3 text-foreground',
+    }
+  )
 }
 
 function labelFor(action: string) {
@@ -67,7 +94,8 @@ function actorFor(actor: ActorType, name: string | null) {
   }
 }
 
-const roleName = (r: unknown) => (typeof r === 'string' && r in ROLE_LABELS ? ROLE_LABELS[r as keyof typeof ROLE_LABELS] : null)
+const roleName = (r: unknown) =>
+  typeof r === 'string' && r in ROLE_LABELS ? ROLE_LABELS[r as keyof typeof ROLE_LABELS] : null
 
 function detailFor(action: string, m: Record<string, unknown>): string | null {
   switch (action) {
@@ -82,7 +110,9 @@ function detailFor(action: string, m: Record<string, unknown>): string | null {
     case 'export.customers':
       return typeof m.count === 'number' ? `${m.count} row${m.count === 1 ? '' : 's'}` : null
     case 'billing.invoice_paid':
-      return typeof m.amount === 'number' && typeof m.currency === 'string' ? formatMoney(m.amount, m.currency.toUpperCase()) : null
+      return typeof m.amount === 'number' && typeof m.currency === 'string'
+        ? formatMoney(m.amount, m.currency.toUpperCase())
+        : null
     case 'billing.subscription_status_changed':
       return typeof m.to === 'string' ? `now ${m.to.replaceAll('_', ' ')}` : null
     case 'billing.payment_failed':
@@ -97,7 +127,13 @@ function dayHeading(date: string, tz: string) {
   if (date === today) return 'Today'
   if (date === addDays(today, -1)) return 'Yesterday'
   const sameYear = date.slice(0, 4) === today.slice(0, 4)
-  return formatPlainDate(date, 'en', sameYear ? { weekday: 'long', day: 'numeric', month: 'long' } : { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  return formatPlainDate(
+    date,
+    'en',
+    sameYear
+      ? { weekday: 'long', day: 'numeric', month: 'long' }
+      : { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' },
+  )
 }
 
 export default async function ActivityPage({ searchParams }: PageProps<'/app/settings/activity'>) {
@@ -134,14 +170,21 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
 
   return (
     <div>
-      <SettingsIntro title="Activity" description={`A record of important changes in ${ctx.business.name} — who did what, and when. Times are shown in ${tz.replaceAll('_', ' ')}.`} />
+      <SettingsIntro
+        title="Activity"
+        description={`A record of important changes in ${ctx.business.name} — who did what, and when. Times are shown in ${tz.replaceAll('_', ' ')}.`}
+      />
 
       {items.length === 0 ? (
         <Card>
           <EmptyState
             icon={Activity}
             title={page > 1 ? 'No more activity' : 'No activity yet'}
-            description={page > 1 ? 'You’ve reached the beginning of your history.' : 'Changes to your business, bookings and team will be listed here.'}
+            description={
+              page > 1
+                ? 'You’ve reached the beginning of your history.'
+                : 'Changes to your business, bookings and team will be listed here.'
+            }
             action={
               page > 1 ? (
                 <Button asChild variant="secondary" size="sm">
@@ -155,7 +198,10 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
         <div className="grid grid-cols-1 gap-6">
           {days.map((d) => (
             <section key={d.date} aria-labelledby={`day-${d.date}`}>
-              <h3 id={`day-${d.date}`} className="sticky top-14 z-[1] sm:top-16 mb-2 flex w-fit rounded-full bg-background/90 py-1 pr-3 font-sans text-[13px] font-semibold tracking-normal text-muted-foreground backdrop-blur">
+              <h3
+                id={`day-${d.date}`}
+                className="sticky top-14 z-[1] mb-2 flex w-fit rounded-full bg-background/90 py-1 pr-3 font-sans text-[13px] font-semibold tracking-normal text-muted-foreground backdrop-blur sm:top-16"
+              >
                 {dayHeading(d.date, tz)}
               </h3>
               <Card>
@@ -165,8 +211,17 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
                     const Icon = cat.icon
                     const detail = detailFor(r.action, r.metadata)
                     return (
-                      <li key={r.id} className="flex items-start gap-3 px-4 py-3 sm:items-center sm:px-5">
-                        <span className={cn('grid size-8 shrink-0 place-items-center rounded-lg', cat.tone)} aria-hidden>
+                      <li
+                        key={r.id}
+                        className="flex items-start gap-3 px-4 py-3 sm:items-center sm:px-5"
+                      >
+                        <span
+                          className={cn(
+                            'grid size-8 shrink-0 place-items-center rounded-lg',
+                            cat.tone,
+                          )}
+                          aria-hidden
+                        >
                           <Icon className="size-4" />
                         </span>
                         <div className="min-w-0 flex-1">
@@ -175,10 +230,18 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
                             {detail && <span className="text-muted-foreground"> · {detail}</span>}
                           </p>
                           <p className="text-[13px] text-muted-foreground">
-                            by <span className={cn(r.actor === 'user' && r.actorName && 'text-foreground')}>{actorFor(r.actor, r.actorName)}</span>
+                            by{' '}
+                            <span
+                              className={cn(r.actor === 'user' && r.actorName && 'text-foreground')}
+                            >
+                              {actorFor(r.actor, r.actorName)}
+                            </span>
                           </p>
                         </div>
-                        <time dateTime={r.createdAt.toISOString()} className="shrink-0 pt-0.5 text-[13px] text-subtle-foreground tabular sm:pt-0">
+                        <time
+                          dateTime={r.createdAt.toISOString()}
+                          className="tabular shrink-0 pt-0.5 text-[13px] text-subtle-foreground sm:pt-0"
+                        >
                           {formatTime(r.createdAt, tz)}
                         </time>
                       </li>
@@ -195,7 +258,11 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
         <nav aria-label="Pagination" className="mt-6 flex items-center justify-between gap-3">
           {page > 1 ? (
             <Button asChild variant="secondary" size="sm">
-              <Link href={page === 2 ? '/app/settings/activity' : `/app/settings/activity?page=${page - 1}`}>
+              <Link
+                href={
+                  page === 2 ? '/app/settings/activity' : `/app/settings/activity?page=${page - 1}`
+                }
+              >
                 <ChevronLeft /> Newer
               </Link>
             </Button>

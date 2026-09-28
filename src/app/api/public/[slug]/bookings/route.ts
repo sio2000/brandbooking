@@ -14,7 +14,11 @@ export async function POST(req: Request, ctx: RouteContext<'/api/public/[slug]/b
     const result = await createPublicBooking(slug, input, meta)
     // Send confirmation emails right after responding; the cron dispatcher
     // retries anything that fails, so the booking never waits on email.
-    after(() => dispatchForAppointment(result.appointmentId).catch((err) => logger.warn('dispatch.after_failed', { err })))
+    after(() =>
+      dispatchForAppointment(result.appointmentId).catch((err) =>
+        logger.warn('dispatch.after_failed', { err }),
+      ),
+    )
     return NextResponse.json({ ok: true, data: result }, { status: 201 })
   } catch (err) {
     return jsonError(err, meta.requestId)

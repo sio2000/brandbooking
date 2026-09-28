@@ -8,7 +8,12 @@ import type { AddressInfo } from 'node:net'
  * the HTTP host is swapped. Live test-mode tests (tests/stripe-live) exercise
  * the real API when STRIPE_TEST_* credentials are provided.
  */
-export type RecordedRequest = { method: string; path: string; params: URLSearchParams; idempotencyKey?: string }
+export type RecordedRequest = {
+  method: string
+  path: string
+  params: URLSearchParams
+  idempotencyKey?: string
+}
 
 export async function startFakeStripe() {
   const requests: RecordedRequest[] = []
@@ -19,7 +24,12 @@ export async function startFakeStripe() {
     req.on('end', () => {
       const path = (req.url ?? '').split('?')[0]!
       const params = new URLSearchParams(body)
-      requests.push({ method: req.method ?? 'GET', path, params, idempotencyKey: req.headers['idempotency-key'] as string | undefined })
+      requests.push({
+        method: req.method ?? 'GET',
+        path,
+        params,
+        idempotencyKey: req.headers['idempotency-key'] as string | undefined,
+      })
       const id = ++counter
       const json = (status: number, obj: unknown) => {
         res.writeHead(status, { 'content-type': 'application/json', 'request-id': `req_${id}` })
@@ -29,13 +39,27 @@ export async function startFakeStripe() {
         return json(401, { error: { type: 'invalid_request_error', message: 'Invalid API Key' } })
       }
       if (req.method === 'POST' && path === '/v1/customers') {
-        return json(200, { id: `cus_test_${id}`, object: 'customer', email: params.get('email'), metadata: { business_id: params.get('metadata[business_id]') } })
+        return json(200, {
+          id: `cus_test_${id}`,
+          object: 'customer',
+          email: params.get('email'),
+          metadata: { business_id: params.get('metadata[business_id]') },
+        })
       }
       if (req.method === 'POST' && path === '/v1/checkout/sessions') {
-        return json(200, { id: `cs_test_${id}`, object: 'checkout.session', mode: params.get('mode'), url: `https://checkout.stripe.com/c/pay/cs_test_${id}` })
+        return json(200, {
+          id: `cs_test_${id}`,
+          object: 'checkout.session',
+          mode: params.get('mode'),
+          url: `https://checkout.stripe.com/c/pay/cs_test_${id}`,
+        })
       }
       if (req.method === 'POST' && path === '/v1/billing_portal/sessions') {
-        return json(200, { id: `bps_test_${id}`, object: 'billing_portal.session', url: `https://billing.stripe.com/p/session/test_${id}` })
+        return json(200, {
+          id: `bps_test_${id}`,
+          object: 'billing_portal.session',
+          url: `https://billing.stripe.com/p/session/test_${id}`,
+        })
       }
       if (req.method === 'GET' && path === '/v1/invoices') {
         return json(200, { object: 'list', data: [], has_more: false, url: '/v1/invoices' })
@@ -43,7 +67,9 @@ export async function startFakeStripe() {
       if (req.method === 'DELETE' && path.startsWith('/v1/subscriptions/')) {
         return json(200, { id: path.split('/').pop(), object: 'subscription', status: 'canceled' })
       }
-      json(404, { error: { type: 'invalid_request_error', message: `No fake for ${req.method} ${path}` } })
+      json(404, {
+        error: { type: 'invalid_request_error', message: `No fake for ${req.method} ${path}` },
+      })
     })
   })
   await new Promise<void>((r) => server.listen(0, '127.0.0.1', r))

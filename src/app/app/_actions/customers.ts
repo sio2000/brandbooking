@@ -10,13 +10,16 @@ import { customerSchema } from '@/lib/validation/business'
 import { eraseCustomer, saveCustomer } from '@/server/business/customers-admin'
 
 export async function saveCustomerAction(id: string | null, input: unknown) {
-  return runAction(async () => {
-    const ctx = await requireTenantAction('customers.manage')
-    const cid = id ? z.uuid().parse(id) : null
-    const row = await saveCustomer(ctx, cid, parse(customerSchema, input), await requestMeta())
-    revalidatePath('/app/customers', 'layout')
-    return { id: row.id }
-  }, id ? 'Customer updated' : 'Customer added')
+  return runAction(
+    async () => {
+      const ctx = await requireTenantAction('customers.manage')
+      const cid = id ? z.uuid().parse(id) : null
+      const row = await saveCustomer(ctx, cid, parse(customerSchema, input), await requestMeta())
+      revalidatePath('/app/customers', 'layout')
+      return { id: row.id }
+    },
+    id ? 'Customer updated' : 'Customer added',
+  )
 }
 
 export async function eraseCustomerAction(id: string) {

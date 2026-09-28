@@ -4,14 +4,27 @@ import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { CalendarPlus, CheckCheck, ChevronLeft, ChevronRight, Download, ListFilter, UserX, CalendarX2 } from 'lucide-react'
+import {
+  CalendarPlus,
+  CheckCheck,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  ListFilter,
+  UserX,
+  CalendarX2,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Checkbox, Segmented } from '@/components/ui/controls'
 import { NativeSelect } from '@/components/ui/input'
 import { EmptyState } from '@/components/ui/feedback'
 import { toast } from '@/components/ui/toaster'
 import { StatusBadge, SOURCE_LABELS } from './status'
-import { NewAppointmentDialog, type PickerService, type PickerStaff } from './new-appointment-dialog'
+import {
+  NewAppointmentDialog,
+  type PickerService,
+  type PickerStaff,
+} from './new-appointment-dialog'
 import { bulkStatusAction } from '@/app/app/_actions/appointments'
 import { formatDate, formatMoney, formatTime } from '@/lib/format'
 import { cn } from '@/lib/utils'
@@ -90,7 +103,9 @@ export function AppointmentsView(props: {
     const r = await bulkStatusAction({ ids: [...selected], transition })
     setBusy(false)
     if (r.ok) {
-      toast.success(`${r.data.updated} updated${r.data.skipped ? `, ${r.data.skipped} skipped (not eligible)` : ''}`)
+      toast.success(
+        `${r.data.updated} updated${r.data.skipped ? `, ${r.data.skipped} skipped (not eligible)` : ''}`,
+      )
       setSelected(new Set())
       router.refresh()
     } else toast.error(r.error)
@@ -124,7 +139,12 @@ export function AppointmentsView(props: {
         <div className="flex flex-wrap items-center gap-2">
           <ListFilter className="size-4 text-muted-foreground" aria-hidden />
           <div className="w-36">
-            <NativeSelect aria-label="Filter by status" value={props.status ?? ''} onChange={(e) => setParam({ status: e.target.value || null })} className="h-9">
+            <NativeSelect
+              aria-label="Filter by status"
+              value={props.status ?? ''}
+              onChange={(e) => setParam({ status: e.target.value || null })}
+              className="h-9"
+            >
               <option value="">Any status</option>
               <option value="pending">Pending</option>
               <option value="confirmed">Confirmed</option>
@@ -135,37 +155,74 @@ export function AppointmentsView(props: {
           </div>
           {!props.lockedStaffId && props.allStaff.length > 1 && (
             <div className="w-40">
-              <NativeSelect aria-label="Filter by team member" value={props.staffFilter ?? ''} onChange={(e) => setParam({ staff: e.target.value || null })} className="h-9">
+              <NativeSelect
+                aria-label="Filter by team member"
+                value={props.staffFilter ?? ''}
+                onChange={(e) => setParam({ staff: e.target.value || null })}
+                className="h-9"
+              >
                 <option value="">Everyone</option>
-                {props.allStaff.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+                {props.allStaff.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
               </NativeSelect>
             </div>
           )}
           <div className="w-44">
-            <NativeSelect aria-label="Filter by service" value={props.serviceFilter ?? ''} onChange={(e) => setParam({ service: e.target.value || null })} className="h-9">
+            <NativeSelect
+              aria-label="Filter by service"
+              value={props.serviceFilter ?? ''}
+              onChange={(e) => setParam({ service: e.target.value || null })}
+              className="h-9"
+            >
               <option value="">All services</option>
-              {props.allServices.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
+              {props.allServices.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))}
             </NativeSelect>
           </div>
           {props.canExport && (
             <Button asChild variant="secondary" size="sm">
-              <a href="/app/export/appointments"><Download /> Export CSV</a>
+              <a href="/app/export/appointments">
+                <Download /> Export CSV
+              </a>
             </Button>
           )}
           {props.canManage && (
-            <Button size="sm" onClick={() => setNewOpen(true)}><CalendarPlus /> New</Button>
+            <Button size="sm" onClick={() => setNewOpen(true)}>
+              <CalendarPlus /> New
+            </Button>
           )}
         </div>
       </div>
 
       <AnimatePresence>
         {selected.size > 0 && (
-          <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="sticky top-16 z-20 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-elevated p-2 pl-4 shadow-md" role="region" aria-label="Bulk actions">
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            className="sticky top-16 z-20 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-elevated p-2 pl-4 shadow-md"
+            role="region"
+            aria-label="Bulk actions"
+          >
             <span className="mr-auto text-sm font-medium">{selected.size} selected</span>
-            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('confirm')}>Confirm</Button>
-            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('complete')}><CheckCheck /> Mark completed</Button>
-            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('no_show')}><UserX /> No-show</Button>
-            <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>Clear</Button>
+            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('confirm')}>
+              Confirm
+            </Button>
+            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('complete')}>
+              <CheckCheck /> Mark completed
+            </Button>
+            <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('no_show')}>
+              <UserX /> No-show
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
+              Clear
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -174,16 +231,36 @@ export function AppointmentsView(props: {
         <div className="rounded-xl border border-border bg-surface">
           <EmptyState
             icon={CalendarX2}
-            title={props.view === 'upcoming' ? 'No upcoming appointments' : 'No appointments match these filters'}
-            description={props.view === 'upcoming' ? 'When customers book through your page, their appointments appear here instantly. You can also add one yourself.' : 'Try a different view or clear the filters.'}
-            action={props.canManage ? <Button onClick={() => setNewOpen(true)}><CalendarPlus /> New appointment</Button> : undefined}
+            title={
+              props.view === 'upcoming'
+                ? 'No upcoming appointments'
+                : 'No appointments match these filters'
+            }
+            description={
+              props.view === 'upcoming'
+                ? 'When customers book through your page, their appointments appear here instantly. You can also add one yourself.'
+                : 'Try a different view or clear the filters.'
+            }
+            action={
+              props.canManage ? (
+                <Button onClick={() => setNewOpen(true)}>
+                  <CalendarPlus /> New appointment
+                </Button>
+              ) : undefined
+            }
           />
         </div>
       ) : (
         <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-xs">
           {props.canManage && (
             <div className="flex items-center gap-3 border-b border-border bg-surface-2/60 px-4 py-2 text-xs font-medium text-muted-foreground">
-              <Checkbox aria-label="Select all on this page" checked={allSelected ? true : selected.size > 0 ? 'indeterminate' : false} onCheckedChange={() => setSelected(allSelected ? new Set() : new Set(props.rows.map((r) => r.id)))} />
+              <Checkbox
+                aria-label="Select all on this page"
+                checked={allSelected ? true : selected.size > 0 ? 'indeterminate' : false}
+                onCheckedChange={() =>
+                  setSelected(allSelected ? new Set() : new Set(props.rows.map((r) => r.id)))
+                }
+              />
               <span>Select all</span>
             </div>
           )}
@@ -194,21 +271,59 @@ export function AppointmentsView(props: {
               </h2>
               <ul className="divide-y divide-border">
                 {rows.map((r) => (
-                  <li key={r.id} className={cn('flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2/60', selected.has(r.id) && 'bg-primary-soft/40')}>
-                    {props.canManage && <Checkbox aria-label={`Select ${r.customerFirstName} ${r.customerLastName} at ${formatTime(r.startsAt, tz)}`} checked={selected.has(r.id)} onCheckedChange={() => toggle(r.id)} />}
-                    <Link href={`/app/appointments/${r.id}`} className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
+                  <li
+                    key={r.id}
+                    className={cn(
+                      'flex items-center gap-3 px-4 py-3 transition-colors hover:bg-surface-2/60',
+                      selected.has(r.id) && 'bg-primary-soft/40',
+                    )}
+                  >
+                    {props.canManage && (
+                      <Checkbox
+                        aria-label={`Select ${r.customerFirstName} ${r.customerLastName} at ${formatTime(r.startsAt, tz)}`}
+                        checked={selected.has(r.id)}
+                        onCheckedChange={() => toggle(r.id)}
+                      />
+                    )}
+                    <Link
+                      href={`/app/appointments/${r.id}`}
+                      className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4"
+                    >
                       <div className="w-16 shrink-0 sm:w-20">
-                        <p className="text-sm font-semibold whitespace-nowrap tabular">{formatTime(r.startsAt, tz)}</p>
-                        <p className="text-xs whitespace-nowrap text-muted-foreground tabular">{formatTime(r.endsAt, tz)}</p>
+                        <p className="tabular text-sm font-semibold whitespace-nowrap">
+                          {formatTime(r.startsAt, tz)}
+                        </p>
+                        <p className="tabular text-xs whitespace-nowrap text-muted-foreground">
+                          {formatTime(r.endsAt, tz)}
+                        </p>
                       </div>
-                      <span className="h-9 w-1 shrink-0 rounded-full" style={{ background: r.serviceColor }} aria-hidden />
+                      <span
+                        className="h-9 w-1 shrink-0 rounded-full"
+                        style={{ background: r.serviceColor }}
+                        aria-hidden
+                      />
                       <div className="min-w-0 flex-1">
-                        <p className={cn('truncate font-medium', r.status === 'cancelled' && 'text-muted-foreground line-through')}>{r.customerFirstName} {r.customerLastName}</p>
-                        <p className="truncate text-[13px] text-muted-foreground">{r.serviceName} · {r.staffName}</p>
+                        <p
+                          className={cn(
+                            'truncate font-medium',
+                            r.status === 'cancelled' && 'text-muted-foreground line-through',
+                          )}
+                        >
+                          {r.customerFirstName} {r.customerLastName}
+                        </p>
+                        <p className="truncate text-[13px] text-muted-foreground">
+                          {r.serviceName} · {r.staffName}
+                        </p>
                       </div>
-                      <div className="hidden w-32 shrink-0 text-[13px] text-muted-foreground md:block">{SOURCE_LABELS[r.source] ?? r.source}</div>
-                      <div className="hidden w-20 shrink-0 text-right text-sm tabular sm:block">{r.priceCents != null ? formatMoney(r.priceCents, r.currency) : '—'}</div>
-                      <div className="shrink-0"><StatusBadge status={r.status} /></div>
+                      <div className="hidden w-32 shrink-0 text-[13px] text-muted-foreground md:block">
+                        {SOURCE_LABELS[r.source] ?? r.source}
+                      </div>
+                      <div className="tabular hidden w-20 shrink-0 text-right text-sm sm:block">
+                        {r.priceCents != null ? formatMoney(r.priceCents, r.currency) : '—'}
+                      </div>
+                      <div className="shrink-0">
+                        <StatusBadge status={r.status} />
+                      </div>
                     </Link>
                   </li>
                 ))}
@@ -219,13 +334,34 @@ export function AppointmentsView(props: {
       )}
       {(props.page > 1 || props.hasMore) && (
         <nav aria-label="Pagination" className="mt-4 flex items-center justify-between">
-          <Button variant="secondary" size="sm" disabled={props.page <= 1} onClick={() => setParam({ page: String(props.page - 1) })}><ChevronLeft /> Previous</Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            disabled={props.page <= 1}
+            onClick={() => setParam({ page: String(props.page - 1) })}
+          >
+            <ChevronLeft /> Previous
+          </Button>
           <span className="text-sm text-muted-foreground">Page {props.page}</span>
-          <Button variant="secondary" size="sm" disabled={!props.hasMore} onClick={() => setParam({ page: String(props.page + 1) })}>Next <ChevronRight /></Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            disabled={!props.hasMore}
+            onClick={() => setParam({ page: String(props.page + 1) })}
+          >
+            Next <ChevronRight />
+          </Button>
         </nav>
       )}
       {props.canManage && (
-        <NewAppointmentDialog open={newOpen} onOpenChange={setNewOpen} services={props.services} staff={props.staff} timezone={tz} lockedStaffId={props.lockedStaffId} />
+        <NewAppointmentDialog
+          open={newOpen}
+          onOpenChange={setNewOpen}
+          services={props.services}
+          staff={props.staff}
+          timezone={tz}
+          lockedStaffId={props.lockedStaffId}
+        />
       )}
     </div>
   )

@@ -46,7 +46,10 @@ export const appointmentSource = pgEnum('appointment_source', [
   'api',
 ])
 export const actorType = pgEnum('actor_type', ['user', 'customer', 'system', 'admin', 'stripe'])
-export const authTokenPurpose = pgEnum('auth_token_purpose', ['email_verification', 'password_reset'])
+export const authTokenPurpose = pgEnum('auth_token_purpose', [
+  'email_verification',
+  'password_reset',
+])
 export const notificationStatus = pgEnum('notification_status', [
   'pending',
   'sending',
@@ -177,7 +180,10 @@ export const staff = pgTable('staff', {
 export type Staff = typeof staff.$inferSelect
 
 export type NotificationPrefs = Partial<
-  Record<'booking_created' | 'booking_cancelled' | 'booking_rescheduled' | 'billing' | 'team', boolean>
+  Record<
+    'booking_created' | 'booking_cancelled' | 'booking_rescheduled' | 'billing' | 'team',
+    boolean
+  >
 >
 
 export const businessMembers = pgTable('business_members', {
@@ -297,7 +303,10 @@ export const bookingRules = pgTable('booking_rules', {
   allowCustomerReschedule: boolean('allow_customer_reschedule').notNull().default(true),
   requiresConfirmation: boolean('requires_confirmation').notNull().default(false),
   maxBookingsPerDay: integer('max_bookings_per_day'),
-  reminderOffsetsMinutes: integer('reminder_offsets_minutes').array().notNull().default([1440, 120]),
+  reminderOffsetsMinutes: integer('reminder_offsets_minutes')
+    .array()
+    .notNull()
+    .default([1440, 120]),
   staffSelection: staffSelectionMode('staff_selection').notNull().default('optional'),
   phoneRequirement: fieldRequirement('phone_requirement').notNull().default('required'),
   updatedAt: tstz('updated_at').notNull().defaultNow(),
@@ -360,7 +369,14 @@ export const appointmentEvents = pgTable('appointment_events', {
   appointmentId: uuid('appointment_id').notNull(),
   event: text('event')
     .$type<
-      'created' | 'confirmed' | 'rescheduled' | 'cancelled' | 'completed' | 'no_show' | 'edited' | 'reopened'
+      | 'created'
+      | 'confirmed'
+      | 'rescheduled'
+      | 'cancelled'
+      | 'completed'
+      | 'no_show'
+      | 'edited'
+      | 'reopened'
     >()
     .notNull(),
   fromStatus: appointmentStatus('from_status'),

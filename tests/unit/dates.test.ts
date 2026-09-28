@@ -52,8 +52,16 @@ describe('tz: validation', () => {
     expect(isPlainDate(null)).toBe(false)
   })
   it('isValidTimeZone accepts IANA names and rejects junk', () => {
-    for (const tz of ['UTC', 'Europe/Athens', 'America/New_York', 'Asia/Kolkata', 'Australia/Lord_Howe']) expect(isValidTimeZone(tz), tz).toBe(true)
-    for (const tz of ['', 'Mars/Olympus', 'Europe/Nowhere', 'x'.repeat(80)]) expect(isValidTimeZone(tz), tz).toBe(false)
+    for (const tz of [
+      'UTC',
+      'Europe/Athens',
+      'America/New_York',
+      'Asia/Kolkata',
+      'Australia/Lord_Howe',
+    ])
+      expect(isValidTimeZone(tz), tz).toBe(true)
+    for (const tz of ['', 'Mars/Olympus', 'Europe/Nowhere', 'x'.repeat(80)])
+      expect(isValidTimeZone(tz), tz).toBe(false)
     // Cached results stay consistent.
     expect(isValidTimeZone('Mars/Olympus')).toBe(false)
   })
@@ -64,7 +72,9 @@ describe('tz: local wall clock to instant', () => {
     expect(iso(localToEpochMs('2026-01-15', 9 * 60, ATH))).toBe('2026-01-15T07:00:00.000Z')
     expect(iso(localToEpochMs('2026-07-15', 9 * 60, ATH))).toBe('2026-07-15T06:00:00.000Z')
     expect(iso(localToEpochMs('2026-01-15', 9 * 60, NY))).toBe('2026-01-15T14:00:00.000Z')
-    expect(iso(localToEpochMs('2026-01-15', 9 * 60 + 15, 'Asia/Kolkata'))).toBe('2026-01-15T03:45:00.000Z')
+    expect(iso(localToEpochMs('2026-01-15', 9 * 60 + 15, 'Asia/Kolkata'))).toBe(
+      '2026-01-15T03:45:00.000Z',
+    )
   })
 
   it('moves times in the spring-forward gap forward by the gap length', () => {
@@ -82,23 +92,33 @@ describe('tz: local wall clock to instant', () => {
   })
 
   it('a DST day has 23 or 25 real hours between local midnights', () => {
-    expect(startOfLocalDayMs('2026-03-30', ATH) - startOfLocalDayMs('2026-03-29', ATH)).toBe(23 * 3_600_000)
-    expect(startOfLocalDayMs('2026-10-26', ATH) - startOfLocalDayMs('2026-10-25', ATH)).toBe(25 * 3_600_000)
+    expect(startOfLocalDayMs('2026-03-30', ATH) - startOfLocalDayMs('2026-03-29', ATH)).toBe(
+      23 * 3_600_000,
+    )
+    expect(startOfLocalDayMs('2026-10-26', ATH) - startOfLocalDayMs('2026-10-25', ATH)).toBe(
+      25 * 3_600_000,
+    )
   })
 
   it('rolls minutes past midnight into the next (or previous) day', () => {
-    expect(iso(localToEpochMs('2026-01-31', 1440, ATH))).toBe(iso(localToEpochMs('2026-02-01', 0, ATH)))
+    expect(iso(localToEpochMs('2026-01-31', 1440, ATH))).toBe(
+      iso(localToEpochMs('2026-02-01', 0, ATH)),
+    )
     expect(iso(localToEpochMs('2026-12-31', 1440 + 60, 'UTC'))).toBe('2027-01-01T01:00:00.000Z')
     expect(iso(localToEpochMs('2026-03-01', -60, 'UTC'))).toBe('2026-02-28T23:00:00.000Z')
   })
 
   it('localToDate matches localToEpochMs', () => {
-    expect(localToDate('2026-05-05', 600, ATH).getTime()).toBe(localToEpochMs('2026-05-05', 600, ATH))
+    expect(localToDate('2026-05-05', 600, ATH).getTime()).toBe(
+      localToEpochMs('2026-05-05', 600, ATH),
+    )
   })
 
   it('startOfLocalDayMs handles zones where midnight did not exist', () => {
     // Brazil 2018-11-04: clocks jumped 00:00 -> 01:00 (-02:00).
-    expect(iso(startOfLocalDayMs('2018-11-04', 'America/Sao_Paulo'))).toBe('2018-11-04T03:00:00.000Z')
+    expect(iso(startOfLocalDayMs('2018-11-04', 'America/Sao_Paulo'))).toBe(
+      '2018-11-04T03:00:00.000Z',
+    )
   })
 })
 
@@ -165,7 +185,12 @@ describe('tz: calendar arithmetic', () => {
     expect(daysBetween('2026-04-01', '2026-03-01')).toBe(-31)
     expect(compareDates('2026-01-02', '2026-01-10')).toBe(-1)
     expect(compareDates('2026-01-10', '2026-01-10')).toBe(0)
-    expect(eachDate('2024-02-27', '2024-03-01')).toEqual(['2024-02-27', '2024-02-28', '2024-02-29', '2024-03-01'])
+    expect(eachDate('2024-02-27', '2024-03-01')).toEqual([
+      '2024-02-27',
+      '2024-02-28',
+      '2024-02-29',
+      '2024-03-01',
+    ])
     expect(eachDate('2026-01-02', '2026-01-01')).toEqual([])
     expect(eachDate('2026-01-01', '2026-01-01')).toEqual(['2026-01-01'])
   })

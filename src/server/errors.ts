@@ -9,7 +9,10 @@ export class AppError extends Error {
   readonly status: number
   readonly fields?: Record<string, string>
 
-  constructor(code: ErrorCode, opts: { status?: number; fields?: Record<string, string>; cause?: unknown } = {}) {
+  constructor(
+    code: ErrorCode,
+    opts: { status?: number; fields?: Record<string, string>; cause?: unknown } = {},
+  ) {
     super(messages.errors[code], { cause: opts.cause })
     this.name = 'AppError'
     this.code = code

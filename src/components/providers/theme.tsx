@@ -11,7 +11,8 @@ const KEY = 'hn-theme'
 export const themeScript = `(function(){try{var t=localStorage.getItem('${KEY}')||'system';var d=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d)}catch(e){}})()`
 
 function apply(theme: Theme) {
-  const dark = theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)
+  const dark =
+    theme === 'dark' || (theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches)
   document.documentElement.classList.toggle('dark', dark)
 }
 
@@ -58,7 +59,11 @@ export function ThemeSwitcher({ className }: { className?: string }) {
     { v: 'system', label: 'System', Icon: Monitor },
   ]
   return (
-    <div role="radiogroup" aria-label="Colour theme" className={cn('inline-flex rounded-lg bg-surface-2 p-0.5', className)}>
+    <div
+      role="radiogroup"
+      aria-label="Colour theme"
+      className={cn('inline-flex rounded-lg bg-surface-2 p-0.5', className)}
+    >
       {opts.map(({ v, label, Icon }) => (
         <button
           key={v}
@@ -68,7 +73,12 @@ export function ThemeSwitcher({ className }: { className?: string }) {
           aria-label={label}
           title={label}
           onClick={() => setTheme(v)}
-          className={cn('grid size-7 place-items-center rounded-md transition-colors', theme === v ? 'bg-surface text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')}
+          className={cn(
+            'grid size-7 place-items-center rounded-md transition-colors',
+            theme === v
+              ? 'bg-surface text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground',
+          )}
         >
           <Icon className="size-3.5" />
         </button>

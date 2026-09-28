@@ -1,19 +1,65 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { ArrowLeft, CalendarDays, Check, ChevronRight, Clock3, Mail, RotateCcw, Scissors, Sparkles, UserRound } from 'lucide-react'
+import {
+  ArrowLeft,
+  CalendarDays,
+  Check,
+  ChevronRight,
+  Clock3,
+  Mail,
+  RotateCcw,
+  Scissors,
+  Sparkles,
+  UserRound,
+} from 'lucide-react'
 import * as React from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-type Service = { id: string; name: string; detail: string; mins: number; price: string; Icon: typeof Scissors }
+type Service = {
+  id: string
+  name: string
+  detail: string
+  mins: number
+  price: string
+  Icon: typeof Scissors
+}
 
 const services: Service[] = [
-  { id: 'cut', name: 'Cut & finish', detail: 'Wash, cut and blow-dry', mins: 45, price: '€38', Icon: Scissors },
-  { id: 'colour', name: 'Colour refresh', detail: 'Roots or all-over colour', mins: 90, price: '€72', Icon: Sparkles },
-  { id: 'beard', name: 'Beard trim', detail: 'Shape-up and hot towel', mins: 20, price: '€18', Icon: Scissors },
-  { id: 'consult', name: 'Consultation', detail: 'Talk through what you’d like', mins: 15, price: 'Free', Icon: UserRound },
+  {
+    id: 'cut',
+    name: 'Cut & finish',
+    detail: 'Wash, cut and blow-dry',
+    mins: 45,
+    price: '€38',
+    Icon: Scissors,
+  },
+  {
+    id: 'colour',
+    name: 'Colour refresh',
+    detail: 'Roots or all-over colour',
+    mins: 90,
+    price: '€72',
+    Icon: Sparkles,
+  },
+  {
+    id: 'beard',
+    name: 'Beard trim',
+    detail: 'Shape-up and hot towel',
+    mins: 20,
+    price: '€18',
+    Icon: Scissors,
+  },
+  {
+    id: 'consult',
+    name: 'Consultation',
+    detail: 'Talk through what you’d like',
+    mins: 15,
+    price: 'Free',
+    Icon: UserRound,
+  },
 ]
 
 type Step = 'service' | 'time' | 'review' | 'done'
@@ -28,7 +74,8 @@ const ease = [0.22, 1, 0.36, 1] as const
 
 const fmtWeekday = new Intl.DateTimeFormat('en-GB', { weekday: 'short' })
 const fmtLong = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })
-const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`
+const hhmm = (m: number) =>
+  `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`
 
 /** Called from event handlers only (never during render). */
 function currentTime() {
@@ -52,7 +99,10 @@ function slotsFor(day: Date, dayIndex: number, service: Service): number[] {
   const out: number[] = []
   for (let m = OPEN, i = 0; m + service.mins <= CLOSE; m += 30, i++) {
     // Cheap deterministic pseudo-random so each day looks different.
-    const r = Math.abs(Math.sin((i + 1) * 12.9898 + (dayIndex + 1) * 78.233 + serviceIndex * 37.719) * 43758.5453) % 1
+    const r =
+      Math.abs(
+        Math.sin((i + 1) * 12.9898 + (dayIndex + 1) * 78.233 + serviceIndex * 37.719) * 43758.5453,
+      ) % 1
     if (r < 0.2 + (dayIndex % 3) * 0.15) continue
     out.push(m)
   }
@@ -129,36 +179,62 @@ export function BookingDemo() {
 
       {/* Business header */}
       <div className="flex items-center gap-3 px-4 pt-5 sm:px-6">
-        <span aria-hidden className="grid size-11 shrink-0 place-items-center rounded-full bg-accent-soft font-display text-sm font-bold text-accent-soft-foreground">
+        <span
+          aria-hidden
+          className="grid size-11 shrink-0 place-items-center rounded-full bg-accent-soft font-display text-sm font-bold text-accent-soft-foreground"
+        >
           SL
         </span>
         <div className="min-w-0">
           <p className="truncate font-semibold">Studio Linden</p>
-          <p className="truncate text-[13px] text-muted-foreground">Hair studio · example business</p>
+          <p className="truncate text-[13px] text-muted-foreground">
+            Hair studio · example business
+          </p>
         </div>
       </div>
 
       {/* Stepper */}
-      <ol className="mt-5 flex items-center justify-between gap-2 px-4 sm:justify-start sm:px-6" aria-label="Booking steps">
+      <ol
+        className="mt-5 flex items-center justify-between gap-2 px-4 sm:justify-start sm:px-6"
+        aria-label="Booking steps"
+      >
         {stepList.map((s, i) => {
           const done = i < stepIndex
           const current = i === stepIndex
           return (
-            <li key={s.id} className="flex min-w-0 items-center gap-2 sm:flex-1" aria-current={current ? 'step' : undefined}>
+            <li
+              key={s.id}
+              className="flex min-w-0 items-center gap-2 sm:flex-1"
+              aria-current={current ? 'step' : undefined}
+            >
               <span
                 className={cn(
                   'grid size-6 shrink-0 place-items-center rounded-full text-[11px] font-bold transition-colors',
-                  done ? 'bg-primary text-primary-foreground' : current ? 'bg-primary-soft text-primary-soft-foreground ring-1 ring-primary' : 'bg-surface-2 text-muted-foreground',
+                  done
+                    ? 'bg-primary text-primary-foreground'
+                    : current
+                      ? 'bg-primary-soft text-primary-soft-foreground ring-1 ring-primary'
+                      : 'bg-surface-2 text-muted-foreground',
                 )}
               >
                 {done ? <Check className="size-3.5" strokeWidth={3} aria-hidden /> : i + 1}
               </span>
-              <span className={cn('truncate text-[13px] font-medium', current || done ? 'text-foreground' : 'text-muted-foreground')}>
+              <span
+                className={cn(
+                  'truncate text-[13px] font-medium',
+                  current || done ? 'text-foreground' : 'text-muted-foreground',
+                )}
+              >
                 <span className="sm:hidden">{s.short}</span>
                 <span className="hidden sm:inline">{s.label}</span>
                 {done && <span className="sr-only"> (done)</span>}
               </span>
-              {i < stepList.length - 1 && <span aria-hidden className={cn('hidden h-px flex-1 sm:block', done ? 'bg-primary' : 'bg-border')} />}
+              {i < stepList.length - 1 && (
+                <span
+                  aria-hidden
+                  className={cn('hidden h-px flex-1 sm:block', done ? 'bg-primary' : 'bg-border')}
+                />
+              )}
             </li>
           )
         })}
@@ -179,7 +255,11 @@ export function BookingDemo() {
           >
             {step === 'service' && (
               <div>
-                <h3 ref={headingRef} tabIndex={-1} className="font-sans text-base font-semibold tracking-normal outline-none">
+                <h3
+                  ref={headingRef}
+                  tabIndex={-1}
+                  className="font-sans text-base font-semibold tracking-normal outline-none"
+                >
                   Choose a service
                 </h3>
                 <ul className="mt-3 space-y-2">
@@ -190,7 +270,10 @@ export function BookingDemo() {
                         onClick={() => chooseService(s)}
                         className="group flex min-h-14 w-full items-center gap-3 rounded-xl border border-border bg-surface px-3 py-2.5 text-left transition-[border-color,background-color,box-shadow] hover:border-primary/50 hover:bg-primary-soft/30 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:px-3.5"
                       >
-                        <span aria-hidden className="grid size-9 shrink-0 place-items-center rounded-lg bg-surface-2 text-primary transition-colors group-hover:bg-primary-soft">
+                        <span
+                          aria-hidden
+                          className="grid size-9 shrink-0 place-items-center rounded-lg bg-surface-2 text-primary transition-colors group-hover:bg-primary-soft"
+                        >
                           <s.Icon className="size-4" />
                         </span>
                         <span className="min-w-0 flex-1">
@@ -200,7 +283,10 @@ export function BookingDemo() {
                           </span>
                         </span>
                         <span className="text-sm font-semibold">{s.price}</span>
-                        <ChevronRight aria-hidden className="size-4 shrink-0 text-subtle-foreground transition-transform group-hover:translate-x-0.5" />
+                        <ChevronRight
+                          aria-hidden
+                          className="size-4 shrink-0 text-subtle-foreground transition-transform group-hover:translate-x-0.5"
+                        />
                       </button>
                     </li>
                   ))}
@@ -211,18 +297,27 @@ export function BookingDemo() {
             {step === 'time' && service && (
               <div>
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 ref={headingRef} tabIndex={-1} className="font-sans text-base font-semibold tracking-normal outline-none">
+                  <h3
+                    ref={headingRef}
+                    tabIndex={-1}
+                    className="font-sans text-base font-semibold tracking-normal outline-none"
+                  >
                     Pick a day
                   </h3>
                   <p className="truncate text-[13px] text-muted-foreground">
                     {service.name} · {service.mins} min
                   </p>
                 </div>
-                <div role="group" aria-label="Day" className="mt-3 grid grid-cols-4 gap-1.5 sm:grid-cols-7">
+                <div
+                  role="group"
+                  aria-label="Day"
+                  className="mt-3 grid grid-cols-4 gap-1.5 sm:grid-cols-7"
+                >
                   {days.map((d, i) => {
                     const count = slotsFor(d, i, service).length
                     const selected = i === dayIndex
-                    const status = d.getDay() === 0 ? 'Closed' : count === 0 ? 'Full' : `${count} free`
+                    const status =
+                      d.getDay() === 0 ? 'Closed' : count === 0 ? 'Full' : `${count} free`
                     return (
                       <button
                         key={d.toDateString()}
@@ -241,16 +336,30 @@ export function BookingDemo() {
                             : 'border-border bg-surface hover:border-primary/50 disabled:cursor-not-allowed disabled:border-dashed disabled:bg-surface-2/60 disabled:text-subtle-foreground',
                         )}
                       >
-                        <span className="text-[11px] font-medium opacity-80">{fmtWeekday.format(d)}</span>
-                        <span className="tabular font-display text-lg leading-tight font-bold">{d.getDate()}</span>
-                        <span className={cn('text-[10px]', selected ? 'opacity-90' : 'text-muted-foreground')}>{status}</span>
+                        <span className="text-[11px] font-medium opacity-80">
+                          {fmtWeekday.format(d)}
+                        </span>
+                        <span className="tabular font-display text-lg leading-tight font-bold">
+                          {d.getDate()}
+                        </span>
+                        <span
+                          className={cn(
+                            'text-[10px]',
+                            selected ? 'opacity-90' : 'text-muted-foreground',
+                          )}
+                        >
+                          {status}
+                        </span>
                       </button>
                     )
                   })}
                 </div>
 
                 <h4 className="mt-5 text-sm font-semibold">
-                  Available times <span className="font-normal text-muted-foreground">· {day ? fmtLong.format(day) : ''}</span>
+                  Available times{' '}
+                  <span className="font-normal text-muted-foreground">
+                    · {day ? fmtLong.format(day) : ''}
+                  </span>
                 </h4>
                 <ul className="mt-2.5 grid grid-cols-3 gap-1.5 min-[400px]:grid-cols-4 sm:grid-cols-5">
                   {times.map((m) => (
@@ -267,7 +376,12 @@ export function BookingDemo() {
                   ))}
                 </ul>
                 <div className="mt-5">
-                  <Button variant="ghost" size="md" className="-ml-2 h-11" onClick={() => go('service', 'Step 1 of 3: choose a service.')}>
+                  <Button
+                    variant="ghost"
+                    size="md"
+                    className="-ml-2 h-11"
+                    onClick={() => go('service', 'Step 1 of 3: choose a service.')}
+                  >
                     <ArrowLeft aria-hidden /> Back
                   </Button>
                 </div>
@@ -276,7 +390,11 @@ export function BookingDemo() {
 
             {step === 'review' && service && day && time !== null && (
               <div>
-                <h3 ref={headingRef} tabIndex={-1} className="font-sans text-base font-semibold tracking-normal outline-none">
+                <h3
+                  ref={headingRef}
+                  tabIndex={-1}
+                  className="font-sans text-base font-semibold tracking-normal outline-none"
+                >
                   Review your booking
                 </h3>
                 <dl className="mt-3 divide-y divide-border rounded-xl border border-border bg-surface-2/40 text-sm">
@@ -286,13 +404,23 @@ export function BookingDemo() {
                   <SummaryRow label="With" value="First available stylist" />
                 </dl>
                 <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
-                  On a real booking page, customers add their name, email and phone here — no account or app needed.
+                  On a real booking page, customers add their name, email and phone here — no
+                  account or app needed.
                 </p>
                 <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <Button variant="ghost" className="-ml-2 h-11 self-start" onClick={() => go('time', 'Step 2 of 3: choose a date and time.')}>
+                  <Button
+                    variant="ghost"
+                    className="-ml-2 h-11 self-start"
+                    onClick={() => go('time', 'Step 2 of 3: choose a date and time.')}
+                  >
                     <ArrowLeft aria-hidden /> Back
                   </Button>
-                  <Button size="lg" onClick={() => go('done', 'Booked! This was a demo, so no real appointment was made.')}>
+                  <Button
+                    size="lg"
+                    onClick={() =>
+                      go('done', 'Booked! This was a demo, so no real appointment was made.')
+                    }
+                  >
                     <Check aria-hidden /> Confirm booking
                   </Button>
                 </div>
@@ -319,7 +447,10 @@ export function BookingDemo() {
                 <ul className="mt-5 w-full max-w-sm space-y-2 text-left text-[13px]">
                   <li className="flex items-start gap-2.5 rounded-lg bg-surface-2/60 px-3 py-2.5">
                     <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-primary" />
-                    <span>A confirmation email goes out straight away, with a link to reschedule or cancel.</span>
+                    <span>
+                      A confirmation email goes out straight away, with a link to reschedule or
+                      cancel.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2.5 rounded-lg bg-surface-2/60 px-3 py-2.5">
                     <Clock3 aria-hidden className="mt-0.5 size-4 shrink-0 text-primary" />
@@ -330,7 +461,9 @@ export function BookingDemo() {
                     <span>The business sees it in their calendar immediately.</span>
                   </li>
                 </ul>
-                <p className="mt-4 text-xs text-subtle-foreground">This was a demo — nothing was booked and no data was sent.</p>
+                <p className="mt-4 text-xs text-subtle-foreground">
+                  This was a demo — nothing was booked and no data was sent.
+                </p>
                 <Button variant="secondary" className="mt-4 h-11" onClick={reset}>
                   <RotateCcw aria-hidden /> Try it again
                 </Button>

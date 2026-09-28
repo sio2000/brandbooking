@@ -13,9 +13,25 @@ export default async function StaffPage({ searchParams }: PageProps<'/app/staff'
   const [members, { services }] = await Promise.all([listStaff(ctx), listServices(ctx)])
   return (
     <PageContainer>
-      <PageHeader title="Team" description="The people customers can book. Each team member has their own services, schedule and calendar." />
+      <PageHeader
+        title="Team"
+        description="The people customers can book. Each team member has their own services, schedule and calendar."
+      />
       <StaffView
-        staff={members.map((m) => ({ id: m.id, name: m.name, email: m.email, title: m.title, bio: m.bio, color: m.color, isActive: m.isActive, usesBusinessHours: m.usesBusinessHours, serviceIds: m.serviceIds, upcomingCount: m.upcomingCount, avatarUrl: m.avatarUrl, loginRole: m.member ? ROLE_LABELS[m.member.role] : null }))}
+        staff={members.map((m) => ({
+          id: m.id,
+          name: m.name,
+          email: m.email,
+          title: m.title,
+          bio: m.bio,
+          color: m.color,
+          isActive: m.isActive,
+          usesBusinessHours: m.usesBusinessHours,
+          serviceIds: m.serviceIds,
+          upcomingCount: m.upcomingCount,
+          avatarUrl: m.avatarUrl,
+          loginRole: m.member ? ROLE_LABELS[m.member.role] : null,
+        }))}
         services={services.map((s) => ({ id: s.id, name: s.name }))}
         canInvite={ctx.can('team.manage')}
         openNew={sp.new === '1'}

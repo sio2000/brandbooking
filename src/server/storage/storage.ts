@@ -19,10 +19,16 @@ export interface ObjectStorage {
 const KEY_RE = /^[a-z0-9][a-z0-9/_.-]{1,200}$/
 
 export function assertSafeKey(key: string) {
-  if (!KEY_RE.test(key) || key.includes('..') || key.includes('//')) throw new Error('Invalid storage key')
+  if (!KEY_RE.test(key) || key.includes('..') || key.includes('//'))
+    throw new Error('Invalid storage key')
 }
 
-const CONTENT_TYPES: Record<string, string> = { webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg' }
+const CONTENT_TYPES: Record<string, string> = {
+  webp: 'image/webp',
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+}
 
 class LocalStorage implements ObjectStorage {
   constructor(private readonly root: string) {}
@@ -74,7 +80,10 @@ class S3Storage implements ObjectStorage {
     const res = await this.client.fetch(this.url(key), {
       method: 'PUT',
       body: new Uint8Array(body),
-      headers: { 'content-type': contentType, 'cache-control': 'public, max-age=31536000, immutable' },
+      headers: {
+        'content-type': contentType,
+        'cache-control': 'public, max-age=31536000, immutable',
+      },
     })
     if (!res.ok) throw new Error(`Storage upload failed (${res.status})`)
   }
@@ -82,7 +91,10 @@ class S3Storage implements ObjectStorage {
     const res = await this.client.fetch(this.url(key))
     if (res.status === 404) return null
     if (!res.ok) throw new Error(`Storage read failed (${res.status})`)
-    return { body: Buffer.from(await res.arrayBuffer()), contentType: res.headers.get('content-type') ?? 'application/octet-stream' }
+    return {
+      body: Buffer.from(await res.arrayBuffer()),
+      contentType: res.headers.get('content-type') ?? 'application/octet-stream',
+    }
   }
   async delete(key: string) {
     const res = await this.client.fetch(this.url(key), { method: 'DELETE' })
@@ -90,7 +102,9 @@ class S3Storage implements ObjectStorage {
   }
   publicUrl(key: string) {
     // Serve directly from a public bucket/CDN when configured; otherwise proxy via /media.
-    return this.publicBase ? `${this.publicBase.replace(/\/$/, '')}/${key}` : appUrl(`/media/${key}`)
+    return this.publicBase
+      ? `${this.publicBase.replace(/\/$/, '')}/${key}`
+      : appUrl(`/media/${key}`)
   }
 }
 
@@ -100,7 +114,14 @@ export function storage(): ObjectStorage {
   const e = env()
   instance =
     e.STORAGE_DRIVER === 's3'
-      ? new S3Storage(e.S3_ENDPOINT!, e.S3_BUCKET!, e.S3_REGION, e.S3_ACCESS_KEY_ID!, e.S3_SECRET_ACCESS_KEY!, e.S3_PUBLIC_URL)
+      ? new S3Storage(
+          e.S3_ENDPOINT!,
+          e.S3_BUCKET!,
+          e.S3_REGION,
+          e.S3_ACCESS_KEY_ID!,
+          e.S3_SECRET_ACCESS_KEY!,
+          e.S3_PUBLIC_URL,
+        )
       : new LocalStorage(path.resolve(/*turbopackIgnore: true*/ process.cwd(), e.STORAGE_LOCAL_DIR))
   return instance
 }

@@ -4,7 +4,11 @@ import { AuthShell } from '@/components/auth/auth-shell'
 import { ResetPasswordForm } from '@/components/auth/forms'
 import { Alert } from '@/components/ui/feedback'
 
-export const metadata: Metadata = { title: 'Choose a new password', robots: { index: false }, referrer: 'no-referrer' }
+export const metadata: Metadata = {
+  title: 'Choose a new password',
+  robots: { index: false },
+  referrer: 'no-referrer',
+}
 
 export default async function ResetPasswordPage({ searchParams }: PageProps<'/reset-password'>) {
   const { token } = await searchParams
@@ -14,7 +18,11 @@ export default async function ResetPasswordPage({ searchParams }: PageProps<'/re
         <ResetPasswordForm token={token} />
       ) : (
         <Alert tone="warning" title="This link is incomplete">
-          Open the link from your email again, or <Link href="/forgot-password" className="underline">request a new one</Link>.
+          Open the link from your email again, or{' '}
+          <Link href="/forgot-password" className="underline">
+            request a new one
+          </Link>
+          .
         </Alert>
       )}
     </AuthShell>

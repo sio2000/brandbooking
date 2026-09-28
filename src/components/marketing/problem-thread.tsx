@@ -26,16 +26,23 @@ export function ProblemThread({ className }: { className?: string }) {
         </div>
         <ul className="mt-4 space-y-2.5">
           {thread.map((m) => (
-            <li key={m.at} className={cn('flex flex-col', m.from === 'me' ? 'items-end' : 'items-start')}>
+            <li
+              key={m.at}
+              className={cn('flex flex-col', m.from === 'me' ? 'items-end' : 'items-start')}
+            >
               <span
                 className={cn(
                   'max-w-[85%] rounded-2xl px-3.5 py-2 text-[13.5px] leading-snug',
-                  m.from === 'me' ? 'rounded-br-md bg-primary-soft text-primary-soft-foreground' : 'rounded-bl-md bg-surface-2 text-foreground',
+                  m.from === 'me'
+                    ? 'rounded-br-md bg-primary-soft text-primary-soft-foreground'
+                    : 'rounded-bl-md bg-surface-2 text-foreground',
                 )}
               >
                 {m.text}
               </span>
-              <span className="tabular mt-0.5 px-1 text-[10.5px] text-subtle-foreground">{m.at}</span>
+              <span className="tabular mt-0.5 px-1 text-[10.5px] text-subtle-foreground">
+                {m.at}
+              </span>
             </li>
           ))}
         </ul>

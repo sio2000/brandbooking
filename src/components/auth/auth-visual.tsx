@@ -16,7 +16,12 @@ export function AuthVisual() {
       <div className="absolute -top-24 -right-24 size-96 rounded-full bg-primary/15 blur-3xl" />
       <div className="absolute -bottom-32 -left-20 size-96 rounded-full bg-accent/15 blur-3xl" />
       <div className="relative w-full max-w-md">
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="rounded-2xl border border-border bg-surface p-5 shadow-lg">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="rounded-2xl border border-border bg-surface p-5 shadow-lg"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-muted-foreground">Today</p>
@@ -56,7 +61,9 @@ export function AuthVisual() {
           <Sparkles className="size-4 text-accent" /> Booked while you slept
         </motion.div>
       </div>
-      <p className="absolute right-0 bottom-16 left-0 text-center text-sm text-muted-foreground">Your booking page works around the clock — you just show up.</p>
+      <p className="absolute right-0 bottom-16 left-0 text-center text-sm text-muted-foreground">
+        Your booking page works around the clock — you just show up.
+      </p>
     </div>
   )
 }

@@ -21,7 +21,11 @@ export function VerifyEmail({ token }: { token: string }) {
   }, [])
   if (result?.ok) {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} className="grid gap-5">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="grid gap-5"
+      >
         <div className="flex items-center gap-3 rounded-xl border border-success/25 bg-success-soft p-4 text-success-soft-foreground">
           <CheckCircle2 className="size-6" />
           <p className="font-medium">Your email address is confirmed.</p>

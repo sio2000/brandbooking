@@ -4,7 +4,8 @@
  */
 export const E2E_PORT = Number(process.env.E2E_PORT ?? 3100)
 export const E2E_BASE_URL = `http://localhost:${E2E_PORT}`
-export const E2E_DATABASE_URL = process.env.E2E_DATABASE_URL ?? 'postgres://hournook:hournook@localhost:5432/hournook_e2e'
+export const E2E_DATABASE_URL =
+  process.env.E2E_DATABASE_URL ?? 'postgres://hournook:hournook@localhost:5432/hournook_e2e'
 
 /** Environment for both the Next.js server under test and in-process helpers. */
 export const E2E_SERVER_ENV: Record<string, string> = {
@@ -33,5 +34,6 @@ export const E2E_SERVER_ENV: Record<string, string> = {
 
 export function assertE2eDatabase(url = E2E_DATABASE_URL) {
   const name = new URL(url).pathname.slice(1)
-  if (!name.endsWith('_e2e')) throw new Error(`Refusing to run E2E setup against non-E2E database "${name}"`)
+  if (!name.endsWith('_e2e'))
+    throw new Error(`Refusing to run E2E setup against non-E2E database "${name}"`)
 }

@@ -24,13 +24,40 @@ import { listAppointments } from './appointments-admin'
 import { listCustomers } from './customers-admin'
 import type { Segment } from './customers-admin'
 
-export async function exportAppointmentsCsv(ctx: TenantContext, range: { from: Date; to: Date }, meta: RequestMeta) {
+export async function exportAppointmentsCsv(
+  ctx: TenantContext,
+  range: { from: Date; to: Date },
+  meta: RequestMeta,
+) {
   await enforceRateLimits([[`export:user:${ctx.user.id}`, POLICIES.exportByUser]])
   const rows = await listAppointments(ctx, { from: range.from, to: range.to, limit: 2000 })
   const tz = ctx.business.timezone
-  await audit(db(), { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'export.appointments', metadata: { count: rows.length }, ip: meta.ip })
+  await audit(db(), {
+    businessId: ctx.business.id,
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'export.appointments',
+    metadata: { count: rows.length },
+    ip: meta.ip,
+  })
   return toCsv(
-    ['Reference', 'Date', 'Start', 'End', 'Timezone', 'Status', 'Service', 'Team member', 'Customer', 'Email', 'Phone', 'Price', 'Currency', 'Source', 'Booked at'],
+    [
+      'Reference',
+      'Date',
+      'Start',
+      'End',
+      'Timezone',
+      'Status',
+      'Service',
+      'Team member',
+      'Customer',
+      'Email',
+      'Phone',
+      'Price',
+      'Currency',
+      'Source',
+      'Booked at',
+    ],
     rows.map((r) => [
       r.reference,
       formatDate(r.startsAt, tz),
@@ -54,9 +81,30 @@ export async function exportAppointmentsCsv(ctx: TenantContext, range: { from: D
 export async function exportCustomersCsv(ctx: TenantContext, segment: Segment, meta: RequestMeta) {
   await enforceRateLimits([[`export:user:${ctx.user.id}`, POLICIES.exportByUser]])
   const { rows } = await listCustomers(ctx, { segment, pageSize: 5000, sort: 'name' })
-  await audit(db(), { businessId: ctx.business.id, actor: 'user', actorUserId: ctx.user.id, action: 'export.customers', metadata: { count: rows.length, segment }, ip: meta.ip })
+  await audit(db(), {
+    businessId: ctx.business.id,
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'export.customers',
+    metadata: { count: rows.length, segment },
+    ip: meta.ip,
+  })
   return toCsv(
-    ['First name', 'Last name', 'Email', 'Phone', 'Appointments', 'Completed', 'Cancelled', 'No-shows', 'Revenue', 'First visit', 'Last visit', 'Next appointment', 'Customer since'],
+    [
+      'First name',
+      'Last name',
+      'Email',
+      'Phone',
+      'Appointments',
+      'Completed',
+      'Cancelled',
+      'No-shows',
+      'Revenue',
+      'First visit',
+      'Last visit',
+      'Next appointment',
+      'Customer since',
+    ],
     rows.map((c) => [
       c.first_name,
       c.last_name,
@@ -76,10 +124,32 @@ export async function exportCustomersCsv(ctx: TenantContext, segment: Segment, m
 }
 
 export async function exportServicesCsv(ctx: TenantContext) {
-  const rows = await db().select().from(services).where(and(eq(services.businessId, ctx.business.id), sql`${services.deletedAt} IS NULL`)).orderBy(asc(services.position))
+  const rows = await db()
+    .select()
+    .from(services)
+    .where(and(eq(services.businessId, ctx.business.id), sql`${services.deletedAt} IS NULL`))
+    .orderBy(asc(services.position))
   return toCsv(
-    ['Name', 'Description', 'Duration (min)', 'Price', 'Buffer before', 'Buffer after', 'Active', 'Visible'],
-    rows.map((s) => [s.name, s.description, s.durationMinutes, s.priceCents != null ? (s.priceCents / 100).toFixed(2) : '', s.bufferBeforeMinutes, s.bufferAfterMinutes, s.isActive, s.isVisible]),
+    [
+      'Name',
+      'Description',
+      'Duration (min)',
+      'Price',
+      'Buffer before',
+      'Buffer after',
+      'Active',
+      'Visible',
+    ],
+    rows.map((s) => [
+      s.name,
+      s.description,
+      s.durationMinutes,
+      s.priceCents != null ? (s.priceCents / 100).toFixed(2) : '',
+      s.bufferBeforeMinutes,
+      s.bufferAfterMinutes,
+      s.isActive,
+      s.isVisible,
+    ]),
   )
 }
 
@@ -87,20 +157,27 @@ export async function exportServicesCsv(ctx: TenantContext) {
 export async function exportBusinessJson(ctx: TenantContext, meta: RequestMeta) {
   await enforceRateLimits([[`export:user:${ctx.user.id}`, POLICIES.exportByUser]])
   const b = ctx.business.id
-  const [svc, cats, stf, links, cust, appts, hours, special, closed, rules, log] = await Promise.all([
-    db().select().from(services).where(eq(services.businessId, b)),
-    db().select().from(serviceCategories).where(eq(serviceCategories.businessId, b)),
-    db().select().from(staff).where(eq(staff.businessId, b)),
-    db().select().from(staffServices).where(eq(staffServices.businessId, b)),
-    db().select().from(customers).where(eq(customers.businessId, b)),
-    db().select().from(appointments).where(eq(appointments.businessId, b)),
-    db().select().from(weeklyHours).where(eq(weeklyHours.businessId, b)),
-    db().select().from(specialHours).where(eq(specialHours.businessId, b)),
-    db().select().from(closures).where(eq(closures.businessId, b)),
-    db().select().from(bookingRules).where(eq(bookingRules.businessId, b)),
-    db().select().from(auditLogs).where(eq(auditLogs.businessId, b)).limit(10_000),
-  ])
-  await audit(db(), { businessId: b, actor: 'user', actorUserId: ctx.user.id, action: 'business.exported', ip: meta.ip })
+  const [svc, cats, stf, links, cust, appts, hours, special, closed, rules, log] =
+    await Promise.all([
+      db().select().from(services).where(eq(services.businessId, b)),
+      db().select().from(serviceCategories).where(eq(serviceCategories.businessId, b)),
+      db().select().from(staff).where(eq(staff.businessId, b)),
+      db().select().from(staffServices).where(eq(staffServices.businessId, b)),
+      db().select().from(customers).where(eq(customers.businessId, b)),
+      db().select().from(appointments).where(eq(appointments.businessId, b)),
+      db().select().from(weeklyHours).where(eq(weeklyHours.businessId, b)),
+      db().select().from(specialHours).where(eq(specialHours.businessId, b)),
+      db().select().from(closures).where(eq(closures.businessId, b)),
+      db().select().from(bookingRules).where(eq(bookingRules.businessId, b)),
+      db().select().from(auditLogs).where(eq(auditLogs.businessId, b)).limit(10_000),
+    ])
+  await audit(db(), {
+    businessId: b,
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'business.exported',
+    ip: meta.ip,
+  })
   // Strip internal secrets (manage-link nonces) from the export.
   const safeAppts = appts.map(({ manageNonce: _n, ...rest }) => rest)
   const { ...business } = ctx.business

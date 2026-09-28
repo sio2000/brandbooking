@@ -6,7 +6,14 @@ import { transferOwnership } from '@/server/business/team'
 import { deleteAccount } from '@/server/auth/service'
 import { AppError } from '@/server/errors'
 import { resetDatabase } from '../helpers/db'
-import { addMember, ctxFor, meta, setupBusiness, TEST_PASSWORD, type Setup } from '../helpers/factory'
+import {
+  addMember,
+  ctxFor,
+  meta,
+  setupBusiness,
+  TEST_PASSWORD,
+  type Setup,
+} from '../helpers/factory'
 
 let s: Setup
 beforeEach(async () => {
@@ -16,7 +23,12 @@ beforeEach(async () => {
 afterAll(() => closeDb())
 
 async function roleOf(userId: string) {
-  const [m] = await db().select().from(businessMembers).where(and(eq(businessMembers.businessId, s.ctx.business.id), eq(businessMembers.userId, userId)))
+  const [m] = await db()
+    .select()
+    .from(businessMembers)
+    .where(
+      and(eq(businessMembers.businessId, s.ctx.business.id), eq(businessMembers.userId, userId)),
+    )
   return m?.role
 }
 
@@ -26,14 +38,26 @@ describe('ownership transfer', () => {
     await transferOwnership(s.ctx, ctx.membership.id, meta())
     expect(await roleOf(user.id)).toBe('owner')
     expect(await roleOf(s.owner.id)).toBe('manager')
-    const owners = await db().select().from(businessMembers).where(and(eq(businessMembers.businessId, s.ctx.business.id), eq(businessMembers.role, 'owner')))
+    const owners = await db()
+      .select()
+      .from(businessMembers)
+      .where(
+        and(eq(businessMembers.businessId, s.ctx.business.id), eq(businessMembers.role, 'owner')),
+      )
     expect(owners).toHaveLength(1)
-    const [log] = await db().select().from(auditLogs).where(eq(auditLogs.action, 'team.ownership_transferred'))
+    const [log] = await db()
+      .select()
+      .from(auditLogs)
+      .where(eq(auditLogs.action, 'team.ownership_transferred'))
     expect(log?.actorUserId).toBe(s.owner.id)
-    expect(await db().select().from(inboxItems).where(eq(inboxItems.userId, user.id))).toHaveLength(1)
+    expect(await db().select().from(inboxItems).where(eq(inboxItems.userId, user.id))).toHaveLength(
+      1,
+    )
 
     // The former owner can now delete their account; the new owner cannot.
-    await expect(deleteAccount(user.id, TEST_PASSWORD, meta())).rejects.toMatchObject({ code: 'last_owner' })
+    await expect(deleteAccount(user.id, TEST_PASSWORD, meta())).rejects.toMatchObject({
+      code: 'last_owner',
+    })
     await deleteAccount(s.owner.id, TEST_PASSWORD, meta())
     expect(await db().select().from(users).where(eq(users.id, s.owner.id))).toHaveLength(0)
   })
@@ -41,8 +65,12 @@ describe('ownership transfer', () => {
   it('only the owner can transfer, and not to themselves', async () => {
     const manager = await addMember(s.ctx, 'manager')
     const staff = await addMember(s.ctx, 'staff')
-    await expect(transferOwnership(manager.ctx, staff.ctx.membership.id, meta())).rejects.toMatchObject({ code: 'forbidden' })
-    await expect(transferOwnership(s.ctx, s.ctx.membership.id, meta())).rejects.toMatchObject({ code: 'forbidden' })
+    await expect(
+      transferOwnership(manager.ctx, staff.ctx.membership.id, meta()),
+    ).rejects.toMatchObject({ code: 'forbidden' })
+    await expect(transferOwnership(s.ctx, s.ctx.membership.id, meta())).rejects.toMatchObject({
+      code: 'forbidden',
+    })
     expect(await roleOf(s.owner.id)).toBe('owner')
   })
 
@@ -58,7 +86,9 @@ describe('ownership transfer', () => {
   it('cannot target a member of another business', async () => {
     const other = await setupBusiness()
     const foreign = await addMember(other.ctx, 'manager')
-    await expect(transferOwnership(s.ctx, foreign.ctx.membership.id, meta())).rejects.toMatchObject({ code: 'not_found' })
+    await expect(transferOwnership(s.ctx, foreign.ctx.membership.id, meta())).rejects.toMatchObject(
+      { code: 'not_found' },
+    )
     expect(await roleOf(s.owner.id)).toBe('owner')
     // Sanity: the owner context still resolves normally.
     expect((await ctxFor(s.owner, s.ctx.business.id)).membership.role).toBe('owner')

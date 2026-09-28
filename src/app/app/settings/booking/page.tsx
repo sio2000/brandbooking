@@ -12,7 +12,10 @@ export default async function BookingSettingsPage() {
   const r = await getOrCreateRules(db(), ctx.business.id)
   return (
     <>
-      <SettingsIntro title="Booking rules" description="Decide when and how customers can book, change and cancel — these apply to your whole booking page." />
+      <SettingsIntro
+        title="Booking rules"
+        description="Decide when and how customers can book, change and cancel — these apply to your whole booking page."
+      />
       <BookingRulesForm
         initial={{
           minNoticeMinutes: r.minNoticeMinutes,
