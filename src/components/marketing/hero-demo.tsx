@@ -101,14 +101,13 @@ function IndustryTabs({ index, onChoose }: { index: number; onChoose: (i: number
             tabIndex={active ? 0 : -1}
             onClick={() => onChoose(i)}
             className={cn(
-              'relative inline-flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] font-medium transition-colors',
+              'inline-flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] font-medium',
               active
-                ? 'text-primary-foreground'
-                : 'text-muted-foreground hover:bg-surface-2 hover:text-foreground',
+                ? 'bg-foreground text-background'
+                : 'text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground',
             )}
           >
-            {active && <span aria-hidden className="absolute inset-0 rounded-full bg-foreground" />}
-            <span className={cn('relative', active && 'text-background')}>{it.short}</span>
+            {it.short}
           </button>
         )
       })}

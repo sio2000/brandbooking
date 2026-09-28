@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import { BeforeAfter } from '@/components/marketing/before-after'
@@ -169,9 +168,7 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
-          <Suspense>
-            <HeroDemo />
-          </Suspense>
+          <HeroDemo />
         </Container>
 
         {/* Who it's for */}
@@ -196,278 +193,249 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Each section below hydrates in its own Suspense boundary, so React can
-          split hydration into short tasks instead of one long main-thread block. */}
-
       {/* 01 Problem → solution */}
-      <Suspense>
-        <section
-          id="problem"
-          aria-labelledby="problem-title"
-          className="scroll-mt-20 py-20 sm:py-28"
-        >
-          <Container>
-            <Reveal>
-              <SectionIntro
-                id="problem-title"
-                index="01"
-                kicker="The problem"
-                title="Every booking shouldn’t take five messages."
-                lead="When appointments live in DMs, phone calls and a paper diary, you end up doing reception work between clients — and still get the odd double booking."
-              />
-            </Reveal>
-            <Reveal className="mt-12" delay={0.05}>
-              <BeforeAfter />
-            </Reveal>
-            <Reveal>
-              <p className="mx-auto mt-14 max-w-2xl text-center text-h3">
-                One link. Your real availability. <span className="text-primary">Booked.</span>
-              </p>
-            </Reveal>
-          </Container>
-        </section>
-      </Suspense>
+      <section id="problem" aria-labelledby="problem-title" className="scroll-mt-20 py-20 sm:py-28">
+        <Container>
+          <Reveal>
+            <SectionIntro
+              id="problem-title"
+              index="01"
+              kicker="The problem"
+              title="Every booking shouldn’t take five messages."
+              lead="When appointments live in DMs, phone calls and a paper diary, you end up doing reception work between clients — and still get the odd double booking."
+            />
+          </Reveal>
+          <Reveal className="mt-12" delay={0.05}>
+            <BeforeAfter />
+          </Reveal>
+          <Reveal>
+            <p className="mx-auto mt-14 max-w-2xl text-center text-h3">
+              One link. Your real availability. <span className="text-primary">Booked.</span>
+            </p>
+          </Reveal>
+        </Container>
+      </section>
 
       {/* 02 How it works */}
-      <Suspense>
-        <section
-          id="how"
-          aria-labelledby="how-title"
-          className="scroll-mt-20 border-t border-border py-20 sm:py-28"
-        >
-          <Container>
-            <Reveal>
-              <SectionIntro
-                id="how-title"
-                index="02"
-                kicker="How it works"
-                title="Set it up once. Then just show up."
-                lead="Three steps, done once. After that, bookings run themselves."
-              />
-            </Reveal>
-            <div className="mt-12 lg:mt-4">
-              <HowItWorks />
-            </div>
-          </Container>
-        </section>
-      </Suspense>
+      <section
+        id="how"
+        aria-labelledby="how-title"
+        className="scroll-mt-20 border-t border-border py-20 sm:py-28"
+      >
+        <Container>
+          <Reveal>
+            <SectionIntro
+              id="how-title"
+              index="02"
+              kicker="How it works"
+              title="Set it up once. Then just show up."
+              lead="Three steps, done once. After that, bookings run themselves."
+            />
+          </Reveal>
+          <div className="mt-12 lg:mt-4">
+            <HowItWorks />
+          </div>
+        </Container>
+      </section>
 
       {/* 03 Customer experience */}
-      <Suspense>
-        <section
-          id="demo"
-          aria-labelledby="demo-title"
-          className="scroll-mt-20 border-y border-border bg-surface-2/50 py-20 sm:py-28"
-        >
-          <Container className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
-            <Reveal className="lg:sticky lg:top-28">
-              <SectionIntro
-                id="demo-title"
-                index="03"
-                kicker="Booking preview"
-                title="See it from your customer’s side."
-                lead="This is the flow your customers get. Pick a business type, a service, a day and a time — it runs right here in your browser, and nothing is actually booked."
-              />
-              <ul className="mt-8 space-y-3 text-[15px]">
-                {[
-                  'No account or app for customers',
-                  'Only genuinely free times are shown',
-                  'Confirmation and reminder by email',
-                  'Reschedule or cancel from a secure link',
-                ].map((t) => (
-                  <li key={t} className="flex items-center gap-3">
-                    <span
-                      aria-hidden
-                      className="grid size-6 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"
-                    >
-                      <Check className="size-3.5" strokeWidth={3} />
-                    </span>
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <BookingDemo />
-            </Reveal>
-          </Container>
-        </section>
-      </Suspense>
+      <section
+        id="demo"
+        aria-labelledby="demo-title"
+        className="scroll-mt-20 border-y border-border bg-surface-2/50 py-20 sm:py-28"
+      >
+        <Container className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+          <Reveal className="lg:sticky lg:top-28">
+            <SectionIntro
+              id="demo-title"
+              index="03"
+              kicker="Booking preview"
+              title="See it from your customer’s side."
+              lead="This is the flow your customers get. Pick a business type, a service, a day and a time — it runs right here in your browser, and nothing is actually booked."
+            />
+            <ul className="mt-8 space-y-3 text-[15px]">
+              {[
+                'No account or app for customers',
+                'Only genuinely free times are shown',
+                'Confirmation and reminder by email',
+                'Reschedule or cancel from a secure link',
+              ].map((t) => (
+                <li key={t} className="flex items-center gap-3">
+                  <span
+                    aria-hidden
+                    className="grid size-6 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"
+                  >
+                    <Check className="size-3.5" strokeWidth={3} />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <BookingDemo />
+          </Reveal>
+        </Container>
+      </section>
 
       {/* 04 One system */}
-      <Suspense>
-        <section id="system" aria-labelledby="system-title" className="scroll-mt-20 py-20 sm:py-28">
-          <Container>
-            <Reveal>
-              <SectionIntro
-                id="system-title"
-                index="04"
-                kicker="One system"
-                title="One booking. Your whole business stays in sync."
-                lead="A booking doesn’t just fill a slot. Your calendar, the customer’s record and your numbers update together — no copying between apps, no spreadsheet."
-              />
-            </Reveal>
-            <div className="mt-12">
-              <SyncStory />
-            </div>
-          </Container>
-        </section>
-      </Suspense>
+      <section id="system" aria-labelledby="system-title" className="scroll-mt-20 py-20 sm:py-28">
+        <Container>
+          <Reveal>
+            <SectionIntro
+              id="system-title"
+              index="04"
+              kicker="One system"
+              title="One booking. Your whole business stays in sync."
+              lead="A booking doesn’t just fill a slot. Your calendar, the customer’s record and your numbers update together — no copying between apps, no spreadsheet."
+            />
+          </Reveal>
+          <div className="mt-12">
+            <SyncStory />
+          </div>
+        </Container>
+      </section>
 
       {/* 05–07 Business management */}
-      <Suspense>
-        <CalendarShowcase />
-      </Suspense>
-      <Suspense>
-        <CustomersShowcase />
-      </Suspense>
-      <Suspense>
-        <AnalyticsShowcase />
-      </Suspense>
+      <CalendarShowcase />
+      <CustomersShowcase />
+      <AnalyticsShowcase />
 
       {/* 08 Everything included */}
-      <Suspense>
-        <section
-          id="features"
-          aria-labelledby="features-title"
-          className="scroll-mt-20 py-20 sm:py-28"
-        >
-          <Container>
-            <Reveal>
-              <SectionIntro
-                id="features-title"
-                index="08"
-                kicker="Everything included"
-                title="Everything you need to run on appointments. Nothing you don’t."
-                lead="Every feature is in the one plan — no add-ons, no upgrade walls, no per-seat pricing."
-              />
-            </Reveal>
-            <div className="mt-14">
-              <FeatureIndex />
-            </div>
-          </Container>
-        </section>
-      </Suspense>
+      <section
+        id="features"
+        aria-labelledby="features-title"
+        className="scroll-mt-20 py-20 sm:py-28"
+      >
+        <Container>
+          <Reveal>
+            <SectionIntro
+              id="features-title"
+              index="08"
+              kicker="Everything included"
+              title="Everything you need to run on appointments. Nothing you don’t."
+              lead="Every feature is in the one plan — no add-ons, no upgrade walls, no per-seat pricing."
+            />
+          </Reveal>
+          <div className="mt-14">
+            <FeatureIndex />
+          </div>
+        </Container>
+      </section>
 
       {/* Pricing */}
-      <Suspense>
-        <section
-          id="pricing"
-          aria-labelledby="pricing-title"
-          className="scroll-mt-20 border-y border-border bg-surface-2/50 py-20 sm:py-28"
-        >
-          <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-20">
-            <Reveal>
-              <SectionIntro
-                id="pricing-title"
-                kicker="Pricing"
-                title={`One plan. ${site.price.display} a month. Everything included.`}
-                lead="No tiers to compare and no features held back. Whether you take five bookings a month or five hundred, the price is the same."
-              />
-              <ul className="mt-8 grid gap-3 text-[15px] sm:grid-cols-2">
-                {[
-                  'No per-booking fees or commission',
-                  'No setup fees',
-                  `${site.trialDays}-day free trial, no card needed`,
-                  'Cancel any time from the billing portal',
-                  'Unlimited team members',
-                  'Unlimited customers and bookings',
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-2.5">
-                    <Check
-                      aria-hidden
-                      className="mt-0.5 size-4 shrink-0 text-primary"
-                      strokeWidth={2.75}
-                    />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-[13px] text-muted-foreground">
-                VAT may be added depending on where your business is based.
-              </p>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <PricingCard compact />
-            </Reveal>
-          </Container>
-        </section>
-      </Suspense>
+      <section
+        id="pricing"
+        aria-labelledby="pricing-title"
+        className="scroll-mt-20 border-y border-border bg-surface-2/50 py-20 sm:py-28"
+      >
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-20">
+          <Reveal>
+            <SectionIntro
+              id="pricing-title"
+              kicker="Pricing"
+              title={`One plan. ${site.price.display} a month. Everything included.`}
+              lead="No tiers to compare and no features held back. Whether you take five bookings a month or five hundred, the price is the same."
+            />
+            <ul className="mt-8 grid gap-3 text-[15px] sm:grid-cols-2">
+              {[
+                'No per-booking fees or commission',
+                'No setup fees',
+                `${site.trialDays}-day free trial, no card needed`,
+                'Cancel any time from the billing portal',
+                'Unlimited team members',
+                'Unlimited customers and bookings',
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2.5">
+                  <Check
+                    aria-hidden
+                    className="mt-0.5 size-4 shrink-0 text-primary"
+                    strokeWidth={2.75}
+                  />
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-[13px] text-muted-foreground">
+              VAT may be added depending on where your business is based.
+            </p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <PricingCard compact />
+          </Reveal>
+        </Container>
+      </section>
 
       {/* FAQ */}
-      <Suspense>
-        <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 py-20 sm:py-28">
-          <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-            <Reveal>
-              <SectionIntro
-                id="faq-title"
-                kicker="FAQ"
-                title="Questions, answered."
-                lead={
-                  <>
-                    Something else?{' '}
-                    <Link
-                      href="/support"
-                      className="font-semibold text-primary underline-offset-4 hover:underline"
-                    >
-                      Visit support
-                    </Link>
-                    .
-                  </>
-                }
-              />
-            </Reveal>
-            <Reveal delay={0.05}>
-              <Faq items={faq} />
-            </Reveal>
-          </Container>
-        </section>
-      </Suspense>
+      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 py-20 sm:py-28">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+          <Reveal>
+            <SectionIntro
+              id="faq-title"
+              kicker="FAQ"
+              title="Questions, answered."
+              lead={
+                <>
+                  Something else?{' '}
+                  <Link
+                    href="/support"
+                    className="font-semibold text-primary underline-offset-4 hover:underline"
+                  >
+                    Visit support
+                  </Link>
+                  .
+                </>
+              }
+            />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Faq items={faq} />
+          </Reveal>
+        </Container>
+      </section>
 
       {/* Final CTA */}
-      <Suspense>
-        <section aria-labelledby="cta-title" className="px-3 pb-3 sm:px-4 sm:pb-4">
-          <div className="relative isolate overflow-hidden rounded-[28px] bg-ink px-6 py-20 text-center text-ink-foreground sm:py-28">
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10 [background-image:linear-gradient(to_right,rgb(255_255_255/0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.045)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] [background-size:48px_48px]"
-            />
-            <Kicker tone="ink" className="justify-center">
-              Ready when you are
-            </Kicker>
-            <h2 id="cta-title" className="mx-auto mt-5 max-w-3xl text-h2">
-              Let your booking page answer the “when are you free?”
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lead text-ink-muted">
-              Set it up today and share your link tonight. {site.trialDays} days free, then{' '}
-              {site.price.display}/month — no card to start, no per-booking fees.
-            </p>
-            <div className="mt-10 flex flex-col justify-center gap-3 min-[420px]:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="group h-12 bg-ink-foreground px-6 text-[15px] text-ink hover:bg-white"
-              >
-                <Link href="/signup">
-                  Start free
-                  <ArrowRight
-                    aria-hidden
-                    className="transition-transform duration-200 group-hover:translate-x-0.5"
-                  />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="ghost"
-                className="h-12 px-6 text-[15px] text-ink-foreground ring-1 ring-ink-border hover:bg-ink-3 hover:text-ink-foreground"
-              >
-                <Link href="#demo">Try the booking preview</Link>
-              </Button>
-            </div>
+      <section aria-labelledby="cta-title" className="px-3 pb-3 sm:px-4 sm:pb-4">
+        <div className="relative isolate overflow-hidden rounded-[28px] bg-ink px-6 py-20 text-center text-ink-foreground sm:py-28">
+          <div
+            aria-hidden
+            className="absolute inset-0 -z-10 [background-image:linear-gradient(to_right,rgb(255_255_255/0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.045)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)] [background-size:48px_48px]"
+          />
+          <Kicker tone="ink" className="justify-center">
+            Ready when you are
+          </Kicker>
+          <h2 id="cta-title" className="mx-auto mt-5 max-w-3xl text-h2">
+            Let your booking page answer the “when are you free?”
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lead text-ink-muted">
+            Set it up today and share your link tonight. {site.trialDays} days free, then{' '}
+            {site.price.display}/month — no card to start, no per-booking fees.
+          </p>
+          <div className="mt-10 flex flex-col justify-center gap-3 min-[420px]:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="group h-12 bg-ink-foreground px-6 text-[15px] text-ink hover:bg-white"
+            >
+              <Link href="/signup">
+                Start free
+                <ArrowRight
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="ghost"
+              className="h-12 px-6 text-[15px] text-ink-foreground ring-1 ring-ink-border hover:bg-ink-3 hover:text-ink-foreground"
+            >
+              <Link href="#demo">Try the booking preview</Link>
+            </Button>
           </div>
-        </section>
-      </Suspense>
+        </div>
+      </section>
     </>
   )
 }
