@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import { headers } from 'next/headers'
 import { AppProviders } from '@/components/providers/app-providers'
 import { themeScript } from '@/components/providers/theme'
@@ -43,10 +44,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const nonce = (await headers()).get('x-nonce') ?? undefined
   return (
     <html lang="en" className={`${inter.variable} ${bricolage.variable}`} suppressHydrationWarning>
-      <head>
-        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-dvh">
+        <Script id="theme" strategy="beforeInteractive" nonce={nonce}>
+          {themeScript}
+        </Script>
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

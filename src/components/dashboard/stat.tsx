@@ -42,8 +42,8 @@ export function Stat({
           </Tooltip>
         )}
       </div>
-      <div className="mt-2 flex items-baseline gap-2">
-        <span className="font-display text-[1.75rem] leading-none font-bold tabular">{value}</span>
+      <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <span className="min-w-0 font-display text-[1.6rem] leading-none font-bold break-words tabular sm:text-[1.75rem]">{value}</span>
         {showDelta && (
           <span className={cn('inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-xs font-semibold', good && 'bg-success-soft text-success-soft-foreground', bad && 'bg-danger-soft text-danger-soft-foreground', !good && !bad && 'bg-surface-2 text-muted-foreground')}>
             {up ? <ArrowUpRight className="size-3" aria-hidden /> : down ? <ArrowDownRight className="size-3" aria-hidden /> : <Minus className="size-3" aria-hidden />}

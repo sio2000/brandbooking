@@ -2,7 +2,7 @@
   "name": "hournook",
   "version": "1.0.0",
   "private": true,
-  "description": "Hournook — online appointment booking for small businesses.",
+  "description": "Hournook \u2014 online appointment booking for small businesses.",
   "engines": {
     "node": ">=22.12"
   },
@@ -23,7 +23,9 @@
     "test:integration": "vitest run --project integration",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:stripe-live": "vitest run --project stripe-live"
+    "test:stripe-live": "vitest run --project stripe-live",
+    "admin:grant": "tsx scripts/grant-admin.ts",
+    "db:rollback": "tsx scripts/migrate.ts --down"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.2.1",

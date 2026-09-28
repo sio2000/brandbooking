@@ -116,7 +116,7 @@ export default async function OverviewPage() {
         <Stat label="New customers" icon={Users} value={ov.newCustomersThisWeek} hint={`${ov.week.cancelled} cancelled · ${ov.week.no_show} no-shows this week`} />
       </FadeIn>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <FadeIn delay={0.1}>
           <Card>
             <CardHeader title="Today’s schedule" description={formatDateLong(new Date(), tz)} action={<Button asChild variant="ghost" size="sm"><Link href="/app/calendar?view=day">Open calendar <ArrowRight /></Link></Button>} />
@@ -189,7 +189,7 @@ export default async function OverviewPage() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <FadeIn delay={0.16}>
           <Card>
             <CardHeader title="Coming up" description="Next 14 days" action={<Button asChild variant="ghost" size="sm"><Link href="/app/appointments">All <ArrowRight /></Link></Button>} />

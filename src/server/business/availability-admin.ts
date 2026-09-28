@@ -68,7 +68,7 @@ export async function saveWeeklyHours(ctx: TenantContext, input: z.infer<typeof 
   })
 }
 
-export async function useBusinessHours(ctx: TenantContext, staffId: string, meta: RequestMeta) {
+export async function followBusinessHours(ctx: TenantContext, staffId: string, meta: RequestMeta) {
   assertScheduleAccess(ctx, staffId)
   await assertStaffInBusiness(ctx, staffId)
   await db().transaction(async (tx) => {
