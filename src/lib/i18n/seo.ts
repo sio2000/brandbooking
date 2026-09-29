@@ -27,6 +27,8 @@ export function hreflangLinks(path: string): Record<string, string> {
 /** Open Graph locale (`el_GR`, `ar_AR`) for `openGraph.locale`. */
 export function openGraphLocale(locale: Locale): string {
   const [lang, region] = LOCALE_META[locale].tag.split('-')
+  // English is formatted with the plain 'en' tag; the site's English is British.
+  if (locale === 'en') return 'en_GB'
   return `${lang}_${region ?? lang!.toUpperCase()}`
 }
 
