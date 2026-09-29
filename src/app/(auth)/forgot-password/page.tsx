@@ -2,17 +2,22 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AuthShell } from '@/components/auth/auth-shell'
 import { ForgotPasswordForm } from '@/components/auth/forms'
+import { getT } from '@/server/i18n'
 
-export const metadata: Metadata = { title: 'Reset your password', robots: { index: false } }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('auth')
+  return { title: t('forgot.metaTitle'), robots: { index: false } }
+}
 
-export default function ForgotPasswordPage() {
+export default async function ForgotPasswordPage() {
+  const t = await getT('auth')
   return (
     <AuthShell
-      title="Reset your password"
-      subtitle="Enter your account email and we’ll send you a secure link."
+      title={t('forgot.title')}
+      subtitle={t('forgot.subtitle')}
       footer={
         <Link href="/login" className="font-medium text-primary hover:underline">
-          Back to sign in
+          {t('forgot.backToSignIn')}
         </Link>
       }
     >

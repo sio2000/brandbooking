@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Saisissez une adresse e-mail valide."
+  },
+  "phone": {
+    "invalid": "Saisissez un numéro de téléphone valide.",
+    "required": "Saisissez votre numéro de téléphone."
+  },
+  "color": {
+    "invalid": "Utilisez une couleur hexadécimale, par exemple #0f766e."
+  },
+  "date": {
+    "invalid": "Utilisez une date valide.",
+    "endBeforeStart": "La date de fin doit être identique ou postérieure à la date de début."
+  },
+  "url": {
+    "invalid": "Saisissez une adresse web valide."
+  },
+  "text": {
+    "tooShort": "Utilisez au moins {min} caractères.",
+    "tooLong": "Utilisez au maximum {max} caractères."
+  },
+  "name": {
+    "yours": "Saisissez votre nom.",
+    "any": "Saisissez un nom.",
+    "firstName": "Saisissez votre prénom.",
+    "lastName": "Saisissez votre nom de famille.",
+    "customerFirstName": "Saisissez un prénom.",
+    "business": "Saisissez le nom de votre établissement.",
+    "service": "Saisissez le nom de la prestation."
+  },
+  "terms": {
+    "required": "Acceptez les conditions pour continuer."
+  },
+  "password": {
+    "required": "Saisissez votre mot de passe.",
+    "common": "Ce mot de passe est trop courant. Choisissez-en un plus difficile à deviner.",
+    "repeated": "Évitez de répéter un seul caractère.",
+    "containsEmail": "Votre mot de passe ne doit pas contenir votre adresse e-mail.",
+    "currentIncorrect": "Votre mot de passe actuel est incorrect.",
+    "incorrect": "Votre mot de passe est incorrect."
+  },
+  "slug": {
+    "format": "Utilisez des lettres minuscules, des chiffres et des tirets.",
+    "reserved": "Ce lien est réservé. Essayez-en un autre.",
+    "doubleDash": "Évitez les doubles tirets.",
+    "taken": "Ce lien de réservation est déjà pris.",
+    "invalid": "Lien non valide"
+  },
+  "timezone": {
+    "invalid": "Choisissez un fuseau horaire valide."
+  },
+  "currency": {
+    "invalid": "Utilisez un code de devise à 3 lettres."
+  },
+  "country": {
+    "invalid": "Utilisez un code pays à 2 lettres."
+  },
+  "locale": {
+    "invalid": "Choisissez une langue dans la liste."
+  },
+  "service": {
+    "durationMin": "Au moins 5 minutes.",
+    "durationMax": "Au maximum 12 heures.",
+    "price": "Saisissez un prix valide.",
+    "atLeastOne": "Ajoutez au moins une prestation.",
+    "check": "Vérifiez cette prestation.",
+    "needed": "Ajoutez au moins une prestation active avec un membre de l’équipe affecté avant de publier."
+  },
+  "time": {
+    "endAfterStart": "L’heure de fin doit être postérieure à l’heure de début.",
+    "interval": "Choisissez un intervalle valide."
+  },
+  "number": {
+    "between": "Saisissez un nombre entre {min} et {max}."
+  },
+  "form": {
+    "honeypot": "Envoi non valide.",
+    "tooLarge": "Requête trop volumineuse",
+    "invalidJson": "Données non valides",
+    "chooseImage": "Choisissez une image."
+  },
+  "account": {
+    "emailTaken": "Un compte existe déjà avec cet e-mail.",
+    "alreadyMember": "Vous êtes déjà membre de cet établissement.",
+    "profileLinked": "Ce profil d’équipe est déjà lié à un autre compte. Demandez une nouvelle invitation."
+  },
+  "team": {
+    "hasAccount": "Ce membre de l’équipe a déjà un compte.",
+    "alreadyOnTeam": "Cette personne fait déjà partie de votre équipe.",
+    "choose": "Choisissez un membre de l’équipe.",
+    "upcoming": "Ce membre de l’équipe a {count, plural, one {# rendez-vous à venir} other {# rendez-vous à venir}}. Déplacez-les ou annulez-les d’abord.",
+    "ownerMustVerify": "{name} doit confirmer son adresse e-mail avant de pouvoir devenir propriétaire."
+  },
+  "customer": {
+    "emailTaken": "Un client existe déjà avec cet e-mail.",
+    "chooseOrName": "Choisissez un client existant ou saisissez un nom."
+  },
+  "business": {
+    "confirmName": "Saisissez exactement le nom de l’établissement pour confirmer."
+  },
+  "generic": {
+    "required": "Ce champ est obligatoire.",
+    "invalid": "Cette valeur n’est pas valide.",
+    "chooseOption": "Choisissez l’une des options.",
+    "numberMin": "Saisissez un nombre d’au moins {min}.",
+    "numberMax": "Saisissez un nombre inférieur ou égal à {max}.",
+    "tooFew": "Ajoutez-en au moins {min}.",
+    "tooMany": "Choisissez-en au maximum {max}."
+  }
+}

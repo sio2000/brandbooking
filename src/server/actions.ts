@@ -3,8 +3,8 @@ import { unstable_rethrow } from 'next/navigation'
 import { ZodError, type z } from 'zod'
 import { AppError, isAppError } from '@/server/errors'
 import { reportError } from '@/server/observability/errors'
-import { fieldErrors } from '@/lib/validation/common'
-import { messages, type ErrorCode } from '@/lib/i18n/messages'
+import type { ErrorCode } from '@/lib/i18n/messages'
+import { errorTranslator } from '@/server/i18n-errors'
 
 export type ActionResult<T = undefined> =
   | { ok: true; data: T; message?: string }
@@ -13,7 +13,8 @@ export type ActionResult<T = undefined> =
 /**
  * Wraps a server action body: converts validation/domain errors into a
  * serializable result for the form, reports unexpected errors, and never
- * leaks internals (stack traces, SQL) to the browser.
+ * leaks internals (stack traces, SQL) to the browser. Error and field
+ * messages are in the request's language; codes never change.
  */
 export async function runAction<T>(
   fn: () => Promise<T>,
@@ -25,18 +26,19 @@ export async function runAction<T>(
   } catch (err) {
     unstable_rethrow(err) // let Next.js redirect()/notFound() propagate
     if (err instanceof ZodError) {
+      const t = await errorTranslator()
       return {
         ok: false,
         code: 'validation',
-        error: messages.errors.validation,
-        fields: fieldErrors(err),
+        error: t.message('validation'),
+        fields: t.zodFields(err),
       }
     }
     if (isAppError(err)) {
-      return { ok: false, code: err.code, error: err.message, fields: err.fields }
+      return { ok: false, ...(await errorTranslator()).appError(err) }
     }
     reportError(err, { message: 'server_action.failed' })
-    return { ok: false, code: 'internal', error: messages.errors.internal }
+    return { ok: false, code: 'internal', error: (await errorTranslator()).message('internal') }
   }
 }
 

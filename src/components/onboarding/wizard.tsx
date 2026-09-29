@@ -30,10 +30,13 @@ import {
 } from '@/components/ui/menu'
 import { DeleteAccountForm } from '@/components/settings/account-settings'
 import { toast } from '@/components/ui/toaster'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { LanguageSwitcher } from '@/components/i18n/language-switcher'
 import { cn } from '@/lib/utils'
-import { formatDuration } from '@/lib/format'
+import { formatDuration, formatMoney } from '@/lib/format'
+import type { Locale } from '@/lib/i18n/config'
 import { BUSINESS_CATEGORIES } from '@/lib/validation/business'
-import { serviceSuggestions } from '@/lib/service-suggestions'
+import { CATEGORY_KEYS, categoryKey, serviceSuggestions } from '@/lib/service-suggestions'
 import { SuccessCheck } from '@/components/booking/success-check'
 import { CopyButton } from '@/components/dashboard/copy-button'
 import { ColorPicker } from '@/components/dashboard/color-picker'
@@ -49,15 +52,9 @@ import {
 import { saveWeeklyHoursAction } from '@/app/app/_actions/availability'
 import { brandingAction, uploadImageAction } from '@/app/app/_actions/booking-page'
 import { resendVerificationAction, signOutAction } from '@/app/(auth)/actions'
+import { LanguageSelect } from './language-select'
 
-const STEPS = [
-  'Your business',
-  'Opening hours',
-  'Services',
-  'Booking rules',
-  'Branding',
-  'Go live',
-] as const
+const STEPS = ['business', 'hours', 'services', 'rules', 'branding', 'publish'] as const
 const CURRENCIES = [
   'EUR',
   'USD',
@@ -77,6 +74,27 @@ const CURRENCIES = [
 ]
 const noop = () => () => {}
 
+type Biz = { name: string; slug: string; category: string | null; currency: string }
+
+/** Locale for formatDuration: English keeps its compact "1 h 30 min". */
+function useDurationLocale() {
+  const { locale, tag } = useLocale()
+  return locale === 'en' ? 'en' : tag
+}
+
+/** The currency's symbol in the page language ("€" for EUR). */
+function currencySymbol(currency: string, tag: string) {
+  try {
+    return (
+      new Intl.NumberFormat(tag, { style: 'currency', currency })
+        .formatToParts(0)
+        .find((p) => p.type === 'currency')?.value ?? currency
+    )
+  } catch {
+    return currency
+  }
+}
+
 export function OnboardingWizard({
   userName,
   emailVerified,
@@ -95,19 +113,26 @@ export function OnboardingWizard({
     slug: string
     step: number
     category: string | null
+    currency: string
     services: AddedService[]
   } | null
   origin: string
   trialDays: number
 }) {
+  const t = useT('onboarding')
   const router = useRouter()
   const [step, setStep] = React.useState(resume?.step ?? 1)
   const [dir, setDir] = React.useState(1)
-  const [biz, setBiz] = React.useState<{
-    name: string
-    slug: string
-    category: string | null
-  } | null>(resume ? { name: resume.name, slug: resume.slug, category: resume.category } : null)
+  const [biz, setBiz] = React.useState<Biz | null>(
+    resume
+      ? {
+          name: resume.name,
+          slug: resume.slug,
+          category: resume.category,
+          currency: resume.currency,
+        }
+      : null,
+  )
   const [addedServices, setAddedServices] = React.useState<AddedService[]>(resume?.services ?? [])
   const go = (n: number) => {
     setDir(n > step ? 1 : -1)
@@ -121,17 +146,22 @@ export function OnboardingWizard({
         <div className="flex items-center gap-4 text-sm font-medium text-muted-foreground">
           {biz && (
             <Link href="/app" className="hover:text-foreground">
-              Finish later
+              {t('header.finishLater')}
             </Link>
           )}
+          <LanguageSwitcher mode="account" compact className="-mx-2.5" />
           <OnboardingAccountMenu />
         </div>
       </header>
       <main className="mx-auto max-w-2xl px-5 pb-20">
         {step <= STEPS.length && (
-          <nav aria-label="Setup progress" className="mb-8">
+          <nav aria-label={t('progress.label')} className="mb-8">
             <p className="mb-2 text-sm font-medium text-muted-foreground">
-              Step {step} of {STEPS.length} · {STEPS[step - 1]}
+              {t('progress.step', {
+                step,
+                total: STEPS.length,
+                name: t(`steps.${STEPS[step - 1]!}`),
+              })}
             </p>
             <div className="flex gap-1.5" aria-hidden>
               {STEPS.map((_, i) => (
@@ -164,12 +194,11 @@ export function OnboardingWizard({
                 }}
               />
             )}
-            {step === 2 && (
-              <StepHours onBack={resume ? undefined : undefined} onDone={() => go(3)} />
-            )}
+            {step === 2 && <StepHours onDone={() => go(3)} />}
             {step === 3 && (
               <StepServices
                 category={biz?.category ?? null}
+                currency={biz?.currency ?? 'EUR'}
                 added={addedServices}
                 onAdded={setAddedServices}
                 onBack={() => go(2)}
@@ -231,11 +260,12 @@ function Nav({
   pending?: boolean
   disabled?: boolean
 }) {
+  const t = useT('onboarding')
   return (
     <div className="mt-8 flex items-center justify-between gap-3">
       {onBack ? (
         <Button type="button" variant="ghost" onClick={onBack}>
-          <ArrowLeft /> Back
+          <ArrowLeft className="rtl:-scale-x-100" /> {t('nav.back')}
         </Button>
       ) : (
         <span />
@@ -243,11 +273,11 @@ function Nav({
       <div className="flex gap-2">
         {onSkip && (
           <Button type="button" variant="ghost" onClick={onSkip}>
-            Skip for now
+            {t('nav.skip')}
           </Button>
         )}
         <Button type="submit" size="lg" loading={pending} disabled={disabled}>
-          {next} <ArrowRight />
+          {next} <ArrowRight className="rtl:-scale-x-100" />
         </Button>
       </div>
     </div>
@@ -261,8 +291,10 @@ function StepBusiness({
 }: {
   userName: string
   origin: string
-  onDone: (b: { name: string; slug: string; category: string | null }) => void
+  onDone: (b: Biz) => void
 }) {
+  const t = useT('onboarding')
+  const { locale } = useLocale()
   const detectedTz = React.useSyncExternalStore(
     noop,
     () => Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -282,6 +314,7 @@ function StepBusiness({
     timezone: '',
     currency: 'EUR',
   })
+  const [language, setLanguage] = React.useState<Locale>(locale)
   const [slugTouched, setSlugTouched] = React.useState(false)
   const [slugState, setSlugState] = React.useState<{
     slug: string
@@ -295,19 +328,19 @@ function StepBusiness({
 
   React.useEffect(() => {
     if (slugTouched || v.name.trim().length < 2) return
-    const t = setTimeout(async () => {
+    const timer = setTimeout(async () => {
       const r = await suggestSlugAction(v.name)
       if (r.ok) setV((x) => ({ ...x, slug: r.data }))
     }, 350)
-    return () => clearTimeout(t)
+    return () => clearTimeout(timer)
   }, [v.name, slugTouched])
   React.useEffect(() => {
     if (v.slug.length < 3) return
-    const t = setTimeout(async () => {
+    const timer = setTimeout(async () => {
       const r = await checkSlugAction(v.slug)
       if (r.ok) setSlugState({ slug: v.slug, ...r.data })
     }, 300)
-    return () => clearTimeout(t)
+    return () => clearTimeout(timer)
   }, [v.slug])
   const slugStatus = slugState?.slug === v.slug ? slugState : null
 
@@ -317,9 +350,23 @@ function StepBusiness({
       onSubmit={async (e) => {
         e.preventDefault()
         setPending(true)
-        const r = await createBusinessAction({ ...v, timezone })
+        const r = await createBusinessAction({ ...v, timezone, locale: language })
+        if (r.ok && r.data.reload) {
+          // Another language was chosen: continue onboarding in it (the page
+          // resumes at the next step for the business just created). A full
+          // load re-renders everything, <html lang> included, in the new language.
+          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+          window.location.assign('/onboarding')
+          return
+        }
         setPending(false)
-        if (r.ok) onDone({ name: v.name, slug: r.data.slug, category: v.category || null })
+        if (r.ok)
+          onDone({
+            name: v.name,
+            slug: r.data.slug,
+            category: v.category || null,
+            currency: v.currency,
+          })
         else {
           setErrors(r.fields ?? {})
           setError(r.fields && Object.keys(r.fields).length ? null : r.error)
@@ -327,30 +374,30 @@ function StepBusiness({
       }}
     >
       <Heading
-        title={`Welcome, ${userName.split(' ')[0]}. Let’s set up your booking page.`}
-        subtitle="It takes about three minutes. You can change everything later."
+        title={t('business.title', { name: userName.split(' ')[0] })}
+        subtitle={t('business.subtitle')}
       />
       <div className="grid gap-5">
         <FormError message={error} />
-        <Field label="Business name" htmlFor="ob-name" error={errors.name}>
+        <Field label={t('business.name')} htmlFor="ob-name" error={errors.name}>
           <Input
             value={v.name}
             onChange={(e) => setV({ ...v, name: e.target.value })}
-            placeholder="e.g. Linden Hair Studio"
+            placeholder={t('business.namePlaceholder')}
             autoFocus
             maxLength={120}
           />
         </Field>
         <Field
-          label="Your booking link"
+          label={t('business.link')}
           htmlFor="ob-slug"
           error={
             errors.slug ??
             (slugStatus && !slugStatus.available
-              ? (slugStatus.reason ?? 'That link is taken.')
+              ? (slugStatus.reason ?? t('business.linkTaken'))
               : undefined)
           }
-          hint={slugStatus?.available ? '✓ Available' : 'Lowercase letters, numbers and dashes.'}
+          hint={slugStatus?.available ? t('business.available') : t('business.linkHint')}
         >
           <InputGroup
             prefix={`${origin.replace(/^https?:\/\//, '')}/book/`}
@@ -360,26 +407,27 @@ function StepBusiness({
               setV({ ...v, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })
             }}
             maxLength={48}
+            dir="ltr"
           />
         </Field>
-        <Field label="What kind of business?" htmlFor="ob-cat" optional>
+        <Field label={t('business.category')} htmlFor="ob-cat" optional>
           <NativeSelect
             value={v.category}
             onChange={(e) => setV({ ...v, category: e.target.value })}
           >
-            <option value="">Choose a category</option>
+            <option value="">{t('business.categoryPlaceholder')}</option>
             {BUSINESS_CATEGORIES.map((c) => (
               <option key={c} value={c}>
-                {c}
+                {t(`categories.${CATEGORY_KEYS[c]}`)}
               </option>
             ))}
           </NativeSelect>
         </Field>
         <div className="grid gap-5 sm:grid-cols-[1fr_140px]">
           <Field
-            label="Time zone"
+            label={t('business.timezone')}
             htmlFor="ob-tz"
-            hint="Detected from your device. Customers always see times in this zone."
+            hint={t('business.timezoneHint')}
             error={errors.timezone}
           >
             <NativeSelect
@@ -393,7 +441,7 @@ function StepBusiness({
               ))}
             </NativeSelect>
           </Field>
-          <Field label="Currency" htmlFor="ob-cur">
+          <Field label={t('business.currency')} htmlFor="ob-cur">
             <NativeSelect
               value={v.currency}
               onChange={(e) => setV({ ...v, currency: e.target.value })}
@@ -404,9 +452,17 @@ function StepBusiness({
             </NativeSelect>
           </Field>
         </div>
+        <Field
+          label={t('business.language')}
+          htmlFor="ob-lang"
+          hint={t('business.languageHint')}
+          error={errors.locale}
+        >
+          <LanguageSelect value={language} onChange={setLanguage} className="sm:max-w-72" />
+        </Field>
       </div>
       <Nav
-        next="Continue"
+        next={t('nav.continue')}
         pending={pending}
         disabled={!v.name.trim() || v.slug.length < 3 || slugStatus?.available === false}
       />
@@ -415,35 +471,28 @@ function StepBusiness({
 }
 
 const PRESETS = [
-  {
-    id: 'weekdays',
-    label: 'Mon–Fri, 9:00–17:00',
-    days: [1, 2, 3, 4, 5],
-    start: '09:00',
-    end: '17:00',
-  },
-  {
-    id: 'six',
-    label: 'Mon–Sat, 9:00–18:00',
-    days: [1, 2, 3, 4, 5, 6],
-    start: '09:00',
-    end: '18:00',
-  },
-  {
-    id: 'salon',
-    label: 'Tue–Sat, 10:00–19:00',
-    days: [2, 3, 4, 5, 6],
-    start: '10:00',
-    end: '19:00',
-  },
-]
-const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-const toMin = (t: string) => {
-  const [h, m] = t.split(':').map(Number)
+  { id: 'weekdays', days: [1, 2, 3, 4, 5], start: '09:00', end: '17:00' },
+  { id: 'six', days: [1, 2, 3, 4, 5, 6], start: '09:00', end: '18:00' },
+  { id: 'salon', days: [2, 3, 4, 5, 6], start: '10:00', end: '19:00' },
+] as const
+const toMin = (x: string) => {
+  const [h, m] = x.split(':').map(Number)
   return (h ?? 0) * 60 + (m ?? 0)
 }
 
-function StepHours({ onDone }: { onBack?: () => void; onDone: () => void }) {
+/** Short weekday names Monday…Sunday in the page language ("Mon" … "Sun"). */
+function useWeekdays() {
+  const { tag } = useLocale()
+  return React.useMemo(() => {
+    const f = new Intl.DateTimeFormat(tag, { weekday: 'short', timeZone: 'UTC' })
+    // 2024-01-01 was a Monday.
+    return [0, 1, 2, 3, 4, 5, 6].map((i) => f.format(new Date(Date.UTC(2024, 0, 1 + i))))
+  }, [tag])
+}
+
+function StepHours({ onDone }: { onDone: () => void }) {
+  const t = useT('onboarding')
+  const weekdays = useWeekdays()
   const [days, setDays] = React.useState<number[]>([1, 2, 3, 4, 5])
   const [start, setStart] = React.useState('09:00')
   const [end, setEnd] = React.useState('17:00')
@@ -455,7 +504,7 @@ function StepHours({ onDone }: { onBack?: () => void; onDone: () => void }) {
       noValidate
       onSubmit={async (e) => {
         e.preventDefault()
-        if (toMin(end) <= toMin(start)) return setError('Closing time must be after opening time.')
+        if (toMin(end) <= toMin(start)) return setError(t('hours.closeAfterOpen'))
         setPending(true)
         const ranges =
           lunch && toMin(end) - toMin(start) > 240
@@ -476,10 +525,7 @@ function StepHours({ onDone }: { onBack?: () => void; onDone: () => void }) {
         else setError(r.error)
       }}
     >
-      <Heading
-        title="When are you open?"
-        subtitle="Customers can only book during these hours. Fine-tune each day, breaks and holidays later under Availability."
-      />
+      <Heading title={t('hours.title')} subtitle={t('hours.subtitle')} />
       <FormError message={error} />
       <div className="grid gap-2 sm:grid-cols-3">
         {PRESETS.map((p) => (
@@ -487,36 +533,36 @@ function StepHours({ onDone }: { onBack?: () => void; onDone: () => void }) {
             key={p.id}
             type="button"
             onClick={() => {
-              setDays(p.days)
+              setDays([...p.days])
               setStart(p.start)
               setEnd(p.end)
             }}
             className={cn(
-              'rounded-xl border p-3 text-left text-sm font-medium transition-colors',
+              'rounded-xl border p-3 text-start text-sm font-medium transition-colors',
               JSON.stringify(days) === JSON.stringify(p.days) && start === p.start && end === p.end
                 ? 'border-primary bg-primary-soft/50 ring-1 ring-primary'
                 : 'border-border hover:border-border-strong',
             )}
           >
-            {p.label}
+            {t(`hours.presets.${p.id}`)}
           </button>
         ))}
       </div>
       <fieldset className="mt-6">
-        <legend className="mb-2 text-sm font-medium">Open on</legend>
+        <legend className="mb-2 text-sm font-medium">{t('hours.openOn')}</legend>
         <div className="flex flex-wrap gap-2">
-          {DAYS.map((d, i) => {
+          {weekdays.map((d, i) => {
             const on = days.includes(i + 1)
             return (
               <button
-                key={d}
+                key={i}
                 type="button"
                 aria-pressed={on}
                 onClick={() =>
                   setDays(on ? days.filter((x) => x !== i + 1) : [...days, i + 1].sort())
                 }
                 className={cn(
-                  'h-11 w-14 rounded-xl border text-sm font-semibold transition-colors',
+                  'h-11 min-w-14 rounded-xl border px-2 text-sm font-semibold transition-colors',
                   on
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border-strong text-muted-foreground hover:border-primary',
@@ -529,18 +575,18 @@ function StepHours({ onDone }: { onBack?: () => void; onDone: () => void }) {
         </div>
       </fieldset>
       <div className="mt-6 grid max-w-sm grid-cols-2 gap-4">
-        <Field label="Opens" htmlFor="ob-open">
+        <Field label={t('hours.opens')} htmlFor="ob-open">
           <Input type="time" step={900} value={start} onChange={(e) => setStart(e.target.value)} />
         </Field>
-        <Field label="Closes" htmlFor="ob-close">
+        <Field label={t('hours.closes')} htmlFor="ob-close">
           <Input type="time" step={900} value={end} onChange={(e) => setEnd(e.target.value)} />
         </Field>
       </div>
       <label className="mt-4 flex items-center gap-2.5 text-sm">
-        <Checkbox checked={lunch} onCheckedChange={(c) => setLunch(c === true)} /> Closed for lunch
-        13:00–14:00
+        <Checkbox checked={lunch} onCheckedChange={(c) => setLunch(c === true)} />{' '}
+        {t('hours.lunch')}
       </label>
-      <Nav next="Continue" pending={pending} disabled={days.length === 0} />
+      <Nav next={t('nav.continue')} pending={pending} disabled={days.length === 0} />
     </form>
   )
 }
@@ -554,17 +600,22 @@ const nextDraftKey = () => ++draftSeq
 
 function StepServices({
   category,
+  currency,
   added,
   onAdded,
   onBack,
   onDone,
 }: {
   category: string | null
+  currency: string
   added: AddedService[]
   onAdded: (s: AddedService[]) => void
   onBack: () => void
   onDone: () => void
 }) {
+  const t = useT('onboarding')
+  const { tag } = useLocale()
+  const durLocale = useDurationLocale()
   const blank = (over: Partial<DraftService> = {}): DraftService => ({
     key: nextDraftKey(),
     name: '',
@@ -581,8 +632,11 @@ function StepServices({
   const taken = new Set(
     [...added, ...drafts].map((s) => s.name.trim().toLowerCase()).filter(Boolean),
   )
-  const suggestions = serviceSuggestions(category).filter((s) => !taken.has(s.name.toLowerCase()))
+  const suggestions = serviceSuggestions(category)
+    .map((s) => ({ ...s, name: t(`suggestions.${s.id}`) }))
+    .filter((s) => !taken.has(s.name.toLowerCase()))
   const filled = drafts.filter((d) => d.name.trim())
+  const catKey = categoryKey(category)
 
   const update = (key: number, patch: Partial<DraftService>) =>
     setDrafts((ds) => ds.map((d) => (d.key === key ? { ...d, ...patch } : d)))
@@ -610,7 +664,7 @@ function StepServices({
         setFormError(null)
         if (filled.length === 0) {
           if (added.length > 0) return onDone()
-          setErrors({ 'services.0.name': 'Add at least one service.' })
+          setErrors({ 'services.0.name': t('services.atLeastOne') })
           return
         }
         setPending(true)
@@ -638,14 +692,11 @@ function StepServices({
         } else setFormError(r.error)
       }}
     >
-      <Heading
-        title="What can customers book?"
-        subtitle="Add the services you offer. Customers pick the one they want, and you can fine-tune everything later."
-      />
+      <Heading title={t('services.title')} subtitle={t('services.subtitle')} />
       <FormError message={formError} />
 
       {added.length > 0 && (
-        <ul className="mb-4 grid gap-2" aria-label="Services already added">
+        <ul className="mb-4 grid gap-2" aria-label={t('services.alreadyAdded')}>
           {added.map((s) => (
             <li
               key={s.id}
@@ -654,9 +705,8 @@ function StepServices({
               <Check className="size-4 shrink-0 text-primary" aria-hidden />
               <span className="min-w-0 flex-1 truncate font-medium">{s.name}</span>
               <span className="shrink-0 text-muted-foreground">
-                {formatDuration(s.durationMinutes)}
-                {s.priceCents != null &&
-                  ` · €${(s.priceCents / 100).toFixed(s.priceCents % 100 ? 2 : 0)}`}
+                {formatDuration(s.durationMinutes, durLocale)}
+                {s.priceCents != null && ` · ${formatMoney(s.priceCents, currency, tag)}`}
               </span>
             </li>
           ))}
@@ -675,10 +725,12 @@ function StepServices({
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="rounded-2xl border border-border bg-surface p-4 sm:p-5"
             >
-              <legend className="sr-only">Service {added.length + i + 1}</legend>
+              <legend className="sr-only">
+                {t('services.legend', { n: added.length + i + 1 })}
+              </legend>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-[minmax(0,1fr)_9rem_8rem]">
                 <Field
-                  label="Service name"
+                  label={t('services.name')}
                   htmlFor={`svc-name-${d.key}`}
                   error={errors[`${d.key}.name`]}
                 >
@@ -686,32 +738,32 @@ function StepServices({
                     data-service-name
                     value={d.name}
                     onChange={(e) => update(d.key, { name: e.target.value })}
-                    placeholder="e.g. Manicure, Consultation, Haircut"
+                    placeholder={t('services.namePlaceholder')}
                     maxLength={120}
                     autoFocus={i === 0 && added.length === 0}
                   />
                 </Field>
-                <Field label="Duration" htmlFor={`svc-dur-${d.key}`}>
+                <Field label={t('services.duration')} htmlFor={`svc-dur-${d.key}`}>
                   <NativeSelect
                     value={String(d.durationMinutes)}
                     onChange={(e) => update(d.key, { durationMinutes: Number(e.target.value) })}
                   >
                     {DURATIONS.map((m) => (
                       <option key={m} value={m}>
-                        {formatDuration(m)}
+                        {formatDuration(m, durLocale)}
                       </option>
                     ))}
                   </NativeSelect>
                 </Field>
                 <Field
-                  label="Price"
+                  label={t('services.price')}
                   htmlFor={`svc-price-${d.key}`}
                   optional
                   error={errors[`${d.key}.price`]}
                 >
                   <InputGroup
                     inputMode="decimal"
-                    prefix="€"
+                    prefix={currencySymbol(currency, tag)}
                     value={d.price}
                     onChange={(e) => update(d.key, { price: e.target.value })}
                     placeholder="0.00"
@@ -725,9 +777,13 @@ function StepServices({
                     variant="ghost"
                     size="sm"
                     onClick={() => setDrafts((ds) => ds.filter((x) => x.key !== d.key))}
-                    aria-label={`Remove ${d.name.trim() || `service ${added.length + i + 1}`}`}
+                    aria-label={
+                      d.name.trim()
+                        ? t('services.removeNamed', { name: d.name.trim() })
+                        : t('services.removeNumbered', { n: added.length + i + 1 })
+                    }
                   >
-                    <Trash2 /> Remove
+                    <Trash2 /> {t('services.remove')}
                   </Button>
                 </div>
               )}
@@ -737,26 +793,27 @@ function StepServices({
       </div>
 
       <Button type="button" variant="secondary" className="mt-3 w-full" onClick={() => addRow()}>
-        <Plus /> Add another service
+        <Plus /> {t('services.addAnother')}
       </Button>
 
       {suggestions.length > 0 && (
         <div className="mt-6">
           <p className="text-sm font-medium" id="svc-suggest">
-            Popular for{' '}
-            {category && category !== 'Other' ? category.toLowerCase() : 'businesses like yours'}
+            {catKey && catKey !== 'other'
+              ? t('services.popularFor', { category: t(`categoryPhrases.${catKey}`) })
+              : t('services.popularGeneric')}
           </p>
           <div className="mt-2 flex flex-wrap gap-2" role="group" aria-labelledby="svc-suggest">
             {suggestions.map((sug) => (
               <button
-                key={sug.name}
+                key={sug.id}
                 type="button"
                 onClick={() => addRow({ name: sug.name, durationMinutes: sug.durationMinutes })}
                 className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border-strong bg-surface px-3.5 text-sm transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 <Plus className="size-3.5" aria-hidden /> {sug.name}
                 <span className="text-muted-foreground">
-                  · {formatDuration(sug.durationMinutes)}
+                  · {formatDuration(sug.durationMinutes, durLocale)}
                 </span>
               </button>
             ))}
@@ -768,10 +825,10 @@ function StepServices({
         onBack={onBack}
         next={
           filled.length > 1
-            ? `Save ${filled.length} services`
+            ? t('services.saveMany', { count: filled.length })
             : filled.length === 1
-              ? 'Save & continue'
-              : 'Continue'
+              ? t('services.saveOne')
+              : t('nav.continue')
         }
         pending={pending}
         disabled={filled.length === 0 && added.length === 0}
@@ -781,6 +838,7 @@ function StepServices({
 }
 
 function StepRules({ onBack, onDone }: { onBack: () => void; onDone: () => void }) {
+  const t = useT('onboarding')
   const [notice, setNotice] = React.useState('120')
   const [cancel, setCancel] = React.useState(true)
   const [confirm, setConfirm] = React.useState<'instant' | 'approve'>('instant')
@@ -802,69 +860,56 @@ function StepRules({ onBack, onDone }: { onBack: () => void; onDone: () => void 
         else setError(r.error)
       }}
     >
-      <Heading
-        title="How should booking work?"
-        subtitle="Sensible defaults. Change anything later in Settings → Booking."
-      />
+      <Heading title={t('rules.title')} subtitle={t('rules.subtitle')} />
       <FormError message={error} />
       <div className="grid gap-6">
-        <Field
-          label="How much notice do you need?"
-          htmlFor="ob-notice"
-          hint="Customers can’t book closer to the start than this."
-        >
+        <Field label={t('rules.notice')} htmlFor="ob-notice" hint={t('rules.noticeHint')}>
           <NativeSelect
             value={notice}
             onChange={(e) => setNotice(e.target.value)}
             containerClassName="max-w-64"
           >
-            <option value="0">No notice needed</option>
-            <option value="60">1 hour</option>
-            <option value="120">2 hours</option>
-            <option value="240">4 hours</option>
-            <option value="1440">1 day</option>
-            <option value="2880">2 days</option>
+            <option value="0">{t('rules.noticeNone')}</option>
+            <option value="60">{t('rules.noticeHours', { count: 1 })}</option>
+            <option value="120">{t('rules.noticeHours', { count: 2 })}</option>
+            <option value="240">{t('rules.noticeHours', { count: 4 })}</option>
+            <option value="1440">{t('rules.noticeDays', { count: 1 })}</option>
+            <option value="2880">{t('rules.noticeDays', { count: 2 })}</option>
           </NativeSelect>
         </Field>
         <div>
-          <span className="text-sm font-medium">When someone books…</span>
+          <span className="text-sm font-medium">{t('rules.whenBooks')}</span>
           <RadioGroup
             value={confirm}
             onValueChange={(x) => setConfirm(x as 'instant' | 'approve')}
             className="mt-2 grid gap-2 sm:grid-cols-2"
           >
             <RadioCard value="instant">
-              <p className="font-medium">Confirm instantly</p>
-              <p className="mt-0.5 text-[13px] text-muted-foreground">
-                Best for most businesses. No back-and-forth.
-              </p>
+              <p className="font-medium">{t('rules.instant')}</p>
+              <p className="mt-0.5 text-[13px] text-muted-foreground">{t('rules.instantHint')}</p>
             </RadioCard>
             <RadioCard value="approve">
-              <p className="font-medium">I’ll approve each request</p>
-              <p className="mt-0.5 text-[13px] text-muted-foreground">
-                You confirm or decline from your dashboard.
-              </p>
+              <p className="font-medium">{t('rules.approve')}</p>
+              <p className="mt-0.5 text-[13px] text-muted-foreground">{t('rules.approveHint')}</p>
             </RadioCard>
           </RadioGroup>
         </div>
         <SwitchRow
           id="ob-cancel"
-          label="Let customers cancel or reschedule online"
-          description="Up to 24 hours before (adjustable). Reduces no-shows and saves you calls."
+          label={t('rules.cancel')}
+          description={t('rules.cancelHint')}
           checked={cancel}
           onCheckedChange={setCancel}
         />
-        <Alert tone="info">
-          Customers automatically get a confirmation email and reminders 24 hours and 2 hours
-          before.
-        </Alert>
+        <Alert tone="info">{t('rules.reminders')}</Alert>
       </div>
-      <Nav onBack={onBack} next="Continue" pending={pending} />
+      <Nav onBack={onBack} next={t('nav.continue')} pending={pending} />
     </form>
   )
 }
 
 function StepBranding({ onBack, onDone }: { onBack: () => void; onDone: () => void }) {
+  const t = useT('onboarding')
   const [color, setColor] = React.useState('#0b8a7b')
   const [logo, setLogo] = React.useState<string | null>(null)
   const [pending, setPending] = React.useState(false)
@@ -886,16 +931,17 @@ function StepBranding({ onBack, onDone }: { onBack: () => void; onDone: () => vo
         else toast.error(r.error)
       }}
     >
-      <Heading
-        title="Make it yours"
-        subtitle="Add your logo and pick a colour. Optional, you can skip this."
-      />
+      <Heading title={t('branding.title')} subtitle={t('branding.subtitle')} />
       <div className="grid gap-6">
         <div className="flex items-center gap-4">
           <div className="grid size-20 place-items-center overflow-hidden rounded-2xl border border-border bg-surface">
             {logo ? (
               // eslint-disable-next-line @next/next/no-img-element -- local preview of the uploaded file
-              <img src={logo} alt="Your logo preview" className="size-full object-contain" />
+              <img
+                src={logo}
+                alt={t('branding.logoPreview')}
+                className="size-full object-contain"
+              />
             ) : (
               <ImageUp className="size-6 text-muted-foreground" aria-hidden />
             )}
@@ -907,7 +953,7 @@ function StepBranding({ onBack, onDone }: { onBack: () => void; onDone: () => vo
               accept="image/jpeg,image/png,image/webp"
               className="sr-only"
               id="ob-logo"
-              aria-label="Upload logo"
+              aria-label={t('branding.uploadLogo')}
               onChange={async (e) => {
                 const file = e.target.files?.[0]
                 if (!file) return
@@ -927,19 +973,19 @@ function StepBranding({ onBack, onDone }: { onBack: () => void; onDone: () => vo
               loading={uploading}
               onClick={() => ref.current?.click()}
             >
-              <ImageUp /> Upload logo
+              <ImageUp /> {t('branding.uploadLogo')}
             </Button>
-            <p className="mt-1 text-xs text-muted-foreground">JPG, PNG or WebP, up to 5 MB.</p>
+            <p className="mt-1 text-xs text-muted-foreground">{t('branding.formats')}</p>
           </div>
         </div>
         <div>
-          <span className="text-sm font-medium">Brand colour</span>
+          <span className="text-sm font-medium">{t('branding.brandColour')}</span>
           <div className="mt-2">
-            <ColorPicker value={color} onChange={setColor} label="Brand colour" />
+            <ColorPicker value={color} onChange={setColor} label={t('branding.brandColour')} />
           </div>
         </div>
       </div>
-      <Nav onBack={onBack} onSkip={onDone} next="Continue" pending={pending} />
+      <Nav onBack={onBack} onSkip={onDone} next={t('nav.continue')} pending={pending} />
     </form>
   )
 }
@@ -963,6 +1009,7 @@ function StepPublish({
   onBack: () => void
   onDone: () => void
 }) {
+  const t = useT('onboarding')
   const [pending, setPending] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [sent, setSent] = React.useState(false)
@@ -979,29 +1026,26 @@ function StepPublish({
         else setError(r.fields?._form ?? r.error)
       }}
     >
-      <Heading
-        title="Ready to go live?"
-        subtitle={`Your ${trialDays}-day free trial starts now. No card needed until you decide to stay.`}
-      />
+      <Heading title={t('publish.title')} subtitle={t('publish.subtitle', { days: trialDays })} />
       <div className="grid gap-4">
         <div className="flex items-center justify-between gap-3 rounded-2xl border border-border bg-surface p-4">
           <div className="min-w-0">
-            <p className="text-sm text-muted-foreground">Your booking page</p>
-            <p className="truncate font-semibold">{url.replace(/^https?:\/\//, '')}</p>
+            <p className="text-sm text-muted-foreground">{t('publish.yourPage')}</p>
+            <p className="truncate font-semibold" dir="ltr">
+              {url.replace(/^https?:\/\//, '')}
+            </p>
           </div>
           <Button asChild variant="secondary" size="sm">
             <a href={url} target="_blank" rel="noopener noreferrer">
-              Preview <ExternalLink />
+              {t('publish.preview')} <ExternalLink />
             </a>
           </Button>
         </div>
         {!emailVerified && (
-          <Alert tone="warning" title="Confirm your email to publish">
+          <Alert tone="warning" title={t('publish.confirmTitle')}>
             <span className="flex items-start gap-2">
               <MailWarning className="mt-0.5 size-4 shrink-0" />
-              {emailSimulated
-                ? `Email sending isn’t connected on this site yet, so the confirmation link for ${email} was written to the server log. Connect an email provider (Resend or SMTP) to receive it in your inbox.`
-                : `We sent a link to ${email}. Click it, then come back and publish.`}
+              {emailSimulated ? t('publish.simulated', { email }) : t('publish.sentTo', { email })}
             </span>
             {!emailSimulated && (
               <button
@@ -1012,11 +1056,11 @@ function StepPublish({
                   const r = await resendVerificationAction()
                   if (r.ok) {
                     setSent(true)
-                    toast.success('Sent. Check your inbox')
+                    toast.success(t('publish.resentToast'))
                   } else toast.error(r.error)
                 }}
               >
-                {sent ? 'Link sent' : 'Resend link'}
+                {sent ? t('publish.linkSent') : t('publish.resend')}
               </button>
             )}
           </Alert>
@@ -1025,14 +1069,14 @@ function StepPublish({
       </div>
       <div className="mt-8 flex flex-col-reverse items-stretch justify-between gap-3 sm:flex-row sm:items-center">
         <Button type="button" variant="ghost" onClick={onBack}>
-          <ArrowLeft /> Back
+          <ArrowLeft className="rtl:-scale-x-100" /> {t('nav.back')}
         </Button>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Button asChild variant="secondary">
-            <Link href="/app">Go to dashboard</Link>
+            <Link href="/app">{t('publish.dashboard')}</Link>
           </Button>
           <Button type="submit" size="lg" loading={pending} disabled={!emailVerified}>
-            <Check /> Publish my page
+            <Check /> {t('publish.publish')}
           </Button>
         </div>
       </div>
@@ -1049,32 +1093,38 @@ function Done({
   origin: string
   onFinish: () => void
 }) {
+  const t = useT('onboarding')
   const url = `${origin}/book/${biz.slug}`
   return (
     <div className="flex flex-col items-center py-10 text-center">
       <SuccessCheck />
-      <h1 className="mt-6 text-3xl font-bold">Your booking page is live.</h1>
+      <h1 className="mt-6 text-3xl font-bold">{t('done.title')}</h1>
       <p className="mt-2 max-w-md text-muted-foreground">
-        Share your link and let customers book {biz.name} any time. You’ll get an email for every
-        new booking.
+        {t('done.body', { business: biz.name })}
       </p>
-      <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-2xl border border-border bg-surface p-2 pl-4">
-        <span className="min-w-0 flex-1 truncate text-left text-sm font-medium">
+      <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-2xl border border-border bg-surface p-2 ps-4">
+        <span className="min-w-0 flex-1 truncate text-start text-sm font-medium" dir="ltr">
           {url.replace(/^https?:\/\//, '')}
         </span>
-        <CopyButton value={url} label="Copy booking link" size="sm" />
+        <CopyButton
+          value={url}
+          label={t('done.copy')}
+          copiedLabel={t('done.copied')}
+          toastMessage={t('done.copiedToast')}
+          size="sm"
+        />
       </div>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         <Button asChild variant="secondary">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            Preview booking page
+            {t('done.preview')}
           </a>
         </Button>
         <Button asChild variant="secondary">
-          <a href="/app/qr?format=png&download=1">Download QR code</a>
+          <a href="/app/qr?format=png&download=1">{t('done.qr')}</a>
         </Button>
         <Button onClick={onFinish}>
-          Go to my dashboard <ArrowRight />
+          {t('done.dashboard')} <ArrowRight className="rtl:-scale-x-100" />
         </Button>
       </div>
     </div>
@@ -1083,26 +1133,27 @@ function Done({
 
 /** Sign out or delete the account, even before a business exists. */
 function OnboardingAccountMenu() {
+  const t = useT('onboarding')
   const [deleting, setDeleting] = React.useState(false)
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger className="rounded-md hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
-          Account
+          {t('header.account')}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuItem onSelect={() => void signOutAction()}>
-            <LogOut /> Sign out
+            <LogOut /> {t('header.signOut')}
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={() => setDeleting(true)} className="text-danger">
-            <Trash2 /> Delete account…
+            <Trash2 /> {t('header.deleteAccount')}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <Dialog open={deleting} onOpenChange={setDeleting}>
         <DialogContent
-          title="Delete your account?"
-          description="Enter your password to confirm. This can’t be undone."
+          title={t('header.deleteTitle')}
+          description={t('header.deleteDescription')}
           size="sm"
         >
           <DeleteAccountForm onCancel={() => setDeleting(false)} />

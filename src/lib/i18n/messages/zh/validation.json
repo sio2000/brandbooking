@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "请输入有效的邮箱地址。"
+  },
+  "phone": {
+    "invalid": "请输入有效的电话号码。",
+    "required": "请输入您的电话号码。"
+  },
+  "color": {
+    "invalid": "请使用十六进制颜色，例如 #0f766e。"
+  },
+  "date": {
+    "invalid": "请使用有效的日期。",
+    "endBeforeStart": "结束日期不能早于开始日期。"
+  },
+  "url": {
+    "invalid": "请输入有效的网址。"
+  },
+  "text": {
+    "tooShort": "请至少输入 {min} 个字符。",
+    "tooLong": "最多只能输入 {max} 个字符。"
+  },
+  "name": {
+    "yours": "请输入您的姓名。",
+    "any": "请输入名称。",
+    "firstName": "请输入您的名字。",
+    "lastName": "请输入您的姓氏。",
+    "customerFirstName": "请输入名字。",
+    "business": "请输入您的商家名称。",
+    "service": "请输入服务名称。"
+  },
+  "terms": {
+    "required": "请同意条款后继续。"
+  },
+  "password": {
+    "required": "请输入密码。",
+    "common": "此密码过于常见，请换一个更难猜到的密码。",
+    "repeated": "请勿只重复同一个字符。",
+    "containsEmail": "密码不应包含您的邮箱地址。",
+    "currentIncorrect": "当前密码不正确。",
+    "incorrect": "密码不正确。"
+  },
+  "slug": {
+    "format": "请使用小写字母、数字和连字符。",
+    "reserved": "此链接为保留链接，请换一个。",
+    "doubleDash": "请避免使用连续的连字符。",
+    "taken": "该预约链接已被占用。",
+    "invalid": "链接无效"
+  },
+  "timezone": {
+    "invalid": "请选择有效的时区。"
+  },
+  "currency": {
+    "invalid": "请使用 3 个字母的货币代码。"
+  },
+  "country": {
+    "invalid": "请使用 2 个字母的国家代码。"
+  },
+  "locale": {
+    "invalid": "请从列表中选择一种语言。"
+  },
+  "service": {
+    "durationMin": "至少 5 分钟。",
+    "durationMax": "最多 12 小时。",
+    "price": "请输入有效的价格。",
+    "atLeastOne": "请至少添加一项服务。",
+    "check": "请检查此服务。",
+    "needed": "发布前，请至少添加一项已分配团队成员的有效服务。"
+  },
+  "time": {
+    "endAfterStart": "结束时间必须晚于开始时间。",
+    "interval": "请选择有效的间隔。"
+  },
+  "number": {
+    "between": "请输入 {min} 到 {max} 之间的数字。"
+  },
+  "form": {
+    "honeypot": "提交无效。",
+    "tooLarge": "请求内容过大",
+    "invalidJson": "数据无效",
+    "chooseImage": "请选择一张图片。"
+  },
+  "account": {
+    "emailTaken": "该邮箱已注册账户。",
+    "alreadyMember": "您已是该商家的成员。",
+    "profileLinked": "此团队档案已关联到其他账户。请申请新的邀请。"
+  },
+  "team": {
+    "hasAccount": "该团队成员已有账户。",
+    "alreadyOnTeam": "此人已在您的团队中。",
+    "choose": "请选择一位团队成员。",
+    "upcoming": "该团队成员还有 {count} 个即将到来的预约。请先将其改期或取消。",
+    "ownerMustVerify": "{name} 需要先验证邮箱地址，才能成为所有者。"
+  },
+  "customer": {
+    "emailTaken": "已存在使用该邮箱的客户。",
+    "chooseOrName": "请选择现有客户或输入姓名。"
+  },
+  "business": {
+    "confirmName": "请准确输入商家名称以确认。"
+  },
+  "generic": {
+    "required": "此项为必填项。",
+    "invalid": "此值无效。",
+    "chooseOption": "请选择其中一个选项。",
+    "numberMin": "请输入不小于 {min} 的数字。",
+    "numberMax": "请输入不大于 {max} 的数字。",
+    "tooFew": "请至少添加 {min} 项。",
+    "tooMany": "最多选择 {max} 项。"
+  }
+}

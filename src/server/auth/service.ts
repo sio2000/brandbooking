@@ -16,6 +16,7 @@ import {
 import { passwordProblem } from '@/lib/validation/password'
 import { LEGAL_VERSION } from '@/lib/legal'
 import type { RequestMeta } from '@/server/request'
+import type { Locale } from '@/lib/i18n/config'
 
 const VERIFY_TTL_MS = 24 * 60 * 60 * 1000
 const RESET_TTL_MS = 60 * 60 * 1000
@@ -70,7 +71,8 @@ async function consumeToken(token: string, purpose: 'email_verification' | 'pass
 }
 
 export async function signUp(
-  input: { name: string; email: string; password: string },
+  /** `locale`: the language the visitor signed up in (users.locale); English when absent. */
+  input: { name: string; email: string; password: string; locale?: Locale },
   meta: RequestMeta,
 ) {
   await enforceRateLimits([[`signup:ip:${meta.ip}`, POLICIES.signupByIp]])
@@ -88,6 +90,7 @@ export async function signUp(
         // Sign-up requires ticking "I agree to the Terms" (validated upstream).
         termsAcceptedAt: new Date(),
         termsVersion: LEGAL_VERSION,
+        ...(input.locale ? { locale: input.locale } : {}),
       })
       .returning({ id: users.id })
     userId = u!.id
@@ -169,7 +172,7 @@ export async function signIn(input: { email: string; password: string }, meta: R
     ip: meta.ip,
     requestId: meta.requestId,
   })
-  return { userId: user.id, session }
+  return { userId: user.id, session, locale: user.locale }
 }
 
 export async function resendVerification(userId: string, meta: RequestMeta) {

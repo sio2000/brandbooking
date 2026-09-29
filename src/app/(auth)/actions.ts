@@ -28,16 +28,22 @@ import { acceptInvitation } from '@/server/business/team'
 import { BUSINESS_COOKIE } from '@/server/tenancy/context'
 import { safeRedirectPath } from '@/lib/utils'
 import { AppError } from '@/server/errors'
+import { getLocale, getT } from '@/server/i18n'
+import { setLocaleCookie } from '@/server/locale-cookie'
 
 export async function signUpAction(
   _: ActionResult<null> | null,
   form: FormData,
 ): Promise<ActionResult<null>> {
   const next = safeRedirectPath(form.get('next'), '/onboarding')
+  // The language the visitor is using now becomes the account's language
+  // (emails, onboarding and the dashboard follow it).
+  const locale = await getLocale()
   const result = await runAction(async () => {
     const input = parse(signUpSchema, form)
-    const { session } = await signUp(input, await requestMeta())
+    const { session } = await signUp({ ...input, locale }, await requestMeta())
     await setSessionCookie(session.token, session.expiresAt)
+    await setLocaleCookie(locale)
     return null
   })
   if (result.ok) redirect(next)
@@ -51,8 +57,10 @@ export async function signInAction(
   const next = safeRedirectPath(form.get('next'), '/app')
   const result = await runAction(async () => {
     const input = parse(signInSchema, form)
-    const { session } = await signIn(input, await requestMeta())
+    const { session, locale } = await signIn(input, await requestMeta())
     await setSessionCookie(session.token, session.expiresAt)
+    // Pages outside the account (sign-in, marketing) follow the account's language too.
+    await setLocaleCookie(locale)
     return null
   })
   if (result.ok) redirect(next)
@@ -71,11 +79,14 @@ export async function forgotPasswordAction(
   _: ActionResult<null> | null,
   form: FormData,
 ): Promise<ActionResult<null>> {
-  return runAction(async () => {
-    const { email } = parse(forgotPasswordSchema, form)
-    await requestPasswordReset(email, await requestMeta())
-    return null
-  }, 'If an account exists for that email, we’ve sent a link to reset your password.')
+  return runAction(
+    async () => {
+      const { email } = parse(forgotPasswordSchema, form)
+      await requestPasswordReset(email, await requestMeta())
+      return null
+    },
+    (await getT('auth'))('forgot.sent'),
+  )
 }
 
 export async function resetPasswordAction(
@@ -99,11 +110,14 @@ export async function verifyEmailAction(token: string): Promise<ActionResult<nul
 }
 
 export async function resendVerificationAction(): Promise<ActionResult<{ sent: boolean }>> {
-  return runAction(async () => {
-    const session = await getSession()
-    if (!session) throw new AppError('unauthenticated')
-    return resendVerification(session.user.id, await requestMeta())
-  }, 'We’ve sent you a new verification link.')
+  return runAction(
+    async () => {
+      const session = await getSession()
+      if (!session) throw new AppError('unauthenticated')
+      return resendVerification(session.user.id, await requestMeta())
+    },
+    (await getT('auth'))('verify.resent'),
+  )
 }
 
 export async function acceptInvitationAction(token: string): Promise<ActionResult<null>> {

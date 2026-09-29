@@ -5,7 +5,6 @@ import { and, eq, inArray } from 'drizzle-orm'
 import { db } from '@/server/db/client'
 import { uploadedAssets, type AssetKind, type AssetVariants } from '@/server/db/schema'
 import { AppError } from '@/server/errors'
-import { interpolate, messages } from '@/lib/i18n/messages'
 import { storage } from './storage'
 
 /**
@@ -75,11 +74,8 @@ export async function validateImage(file: File, kind: AssetKind): Promise<Valida
     throw new AppError('upload_invalid')
   const spec = IMAGE_SPECS[kind]
   if (meta.width < spec.minWidth || meta.height < spec.minHeight) {
-    const err = new AppError('upload_too_small')
-    ;(err as { message: string }).message = interpolate(messages.errors.upload_too_small, {
-      min: spec.minWidth,
-    })
-    throw err
+    // Translated for the browser from the code and { min } (src/server/actions.ts).
+    throw new AppError('upload_too_small', { vars: { min: spec.minWidth } })
   }
   if (meta.width > 12_000 || meta.height > 12_000) throw new AppError('upload_invalid')
   return { buffer, width: meta.width, height: meta.height }

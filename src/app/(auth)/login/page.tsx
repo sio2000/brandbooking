@@ -4,31 +4,36 @@ import { redirect } from 'next/navigation'
 import { AuthShell } from '@/components/auth/auth-shell'
 import { SignInForm } from '@/components/auth/forms'
 import { getSession } from '@/server/auth/session'
+import { getT } from '@/server/i18n'
 import { safeRedirectPath } from '@/lib/utils'
 
-export const metadata: Metadata = { title: 'Sign in', robots: { index: false } }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('auth')
+  return { title: t('login.metaTitle'), robots: { index: false } }
+}
 
 export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const sp = await searchParams
   const next = typeof sp.next === 'string' ? safeRedirectPath(sp.next) : undefined
   if (await getSession()) redirect(next ?? '/app')
+  const t = await getT('auth')
   const notice = sp.reset
-    ? 'Your password was changed. Sign in with your new password.'
+    ? t('login.noticeReset')
     : sp.signed_out
-      ? 'You’ve been signed out.'
+      ? t('login.noticeSignedOut')
       : null
   return (
     <AuthShell
-      title="Welcome back"
-      subtitle="Sign in to manage your bookings."
+      title={t('login.title')}
+      subtitle={t('login.subtitle')}
       footer={
         <>
-          New to Hournook?{' '}
+          {t('login.newHere')}{' '}
           <Link
             href={next ? `/signup?next=${encodeURIComponent(next)}` : '/signup'}
             className="font-medium text-primary hover:underline"
           >
-            Create an account
+            {t('login.createAccount')}
           </Link>
         </>
       }

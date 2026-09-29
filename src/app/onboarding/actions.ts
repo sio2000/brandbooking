@@ -16,6 +16,9 @@ import { setPublishState } from '@/server/business/profile'
 import { db } from '@/server/db/client'
 import { businesses } from '@/server/db/schema'
 import { env } from '@/server/env'
+import { getLocale, getT } from '@/server/i18n'
+import { setLocaleCookie } from '@/server/locale-cookie'
+import { localizeMessage, vmsg } from '@/lib/validation/messages'
 
 export async function suggestSlugAction(name: string) {
   return runAction(async () => {
@@ -28,28 +31,36 @@ export async function checkSlugAction(slug: string) {
   return runAction(async () => {
     if (!(await getSession())) throw new AppError('unauthenticated')
     const p = slugSchema.safeParse(slug)
-    if (!p.success)
-      return { available: false, reason: p.error.issues[0]?.message ?? 'Invalid link' }
+    if (!p.success) {
+      const reason = p.error.issues[0]?.message ?? vmsg('slug.invalid')
+      return { available: false, reason: localizeMessage(reason, await getT('validation')) }
+    }
     return { available: await isSlugAvailable(p.data), reason: null }
   })
 }
 
+/**
+ * Creates the business. The language picked next to the time zone becomes the
+ * owner's account language and the booking page's default language; when it
+ * differs from the page's language, `reload` tells the wizard to reload so the
+ * rest of onboarding continues in it.
+ */
 export async function createBusinessAction(input: unknown) {
   return runAction(async () => {
     const session = await getSession()
     if (!session) throw new AppError('unauthenticated')
-    const b = await createBusiness(
-      session.user,
-      parse(createBusinessSchema, input),
-      await requestMeta(),
-    )
+    const current = await getLocale()
+    const v = parse(createBusinessSchema, input)
+    const locale = v.locale ?? current
+    const b = await createBusiness(session.user, { ...v, locale }, await requestMeta())
     ;(await cookies()).set(BUSINESS_COOKIE, b.id, {
       httpOnly: true,
       sameSite: 'lax',
       path: '/',
       secure: env().APP_URL.startsWith('https://'),
     })
-    return { id: b.id, slug: b.slug }
+    await setLocaleCookie(locale)
+    return { id: b.id, slug: b.slug, locale, reload: locale !== current }
   })
 }
 
@@ -117,7 +128,7 @@ export async function finishOnboardingAction() {
 }
 
 const firstServiceSchema = z.object({
-  name: z.string().trim().min(1, 'Enter a service name.').max(120),
+  name: z.string().trim().min(1, vmsg('name.service')).max(120),
   durationMinutes: z.coerce.number().int().min(5).max(720),
   price: z.string().trim().max(20).optional().default(''),
 })
@@ -132,7 +143,7 @@ export async function createServicesAction(input: unknown) {
     const ctx = await requireTenantAction('services.manage')
     const v = parse(
       z.object({
-        services: z.array(firstServiceSchema).min(1, 'Add at least one service.').max(20),
+        services: z.array(firstServiceSchema).min(1, vmsg('service.atLeastOne')).max(20),
       }),
       input,
     )
@@ -156,7 +167,7 @@ export async function createServicesAction(input: unknown) {
         throw new AppError('validation', {
           fields: {
             [`services.${i}.${String(issue?.path[0] ?? 'name')}`]:
-              issue?.message ?? 'Check this service.',
+              issue?.message ?? vmsg('service.check'),
           },
         })
       }

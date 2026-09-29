@@ -4,30 +4,37 @@ import { redirect } from 'next/navigation'
 import { AuthShell } from '@/components/auth/auth-shell'
 import { SignUpForm } from '@/components/auth/forms'
 import { getSession } from '@/server/auth/session'
+import { getFormatLocale, getT } from '@/server/i18n'
+import { getPlanPrice } from '@/server/pricing'
 import { safeRedirectPath } from '@/lib/utils'
 import { site } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Create your account',
-  description: `Start your ${site.trialDays}-day free trial. No card required.`,
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('auth')
+  return {
+    title: t('signup.metaTitle'),
+    description: t('signup.metaDescription', { days: site.trialDays }),
+  }
 }
 
 export default async function SignupPage({ searchParams }: PageProps<'/signup'>) {
   const sp = await searchParams
   const next = typeof sp.next === 'string' ? safeRedirectPath(sp.next, '/onboarding') : undefined
   if (await getSession()) redirect(next ?? '/app')
+  const t = await getT('auth')
+  const price = await getPlanPrice(await getFormatLocale())
   return (
     <AuthShell
-      title="Start taking bookings"
-      subtitle={`${site.trialDays} days free, then ${site.price.display}/${site.price.period}. No card needed to start.`}
+      title={t('signup.title')}
+      subtitle={t('signup.subtitle', { days: site.trialDays, price: price.display })}
       footer={
         <>
-          Already have an account?{' '}
+          {t('signup.haveAccount')}{' '}
           <Link
             href={next ? `/login?next=${encodeURIComponent(next)}` : '/login'}
             className="font-medium text-primary hover:underline"
           >
-            Sign in
+            {t('signup.signIn')}
           </Link>
         </>
       }

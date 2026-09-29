@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Enter a valid email address."
+  },
+  "phone": {
+    "invalid": "Enter a valid phone number.",
+    "required": "Enter your phone number."
+  },
+  "color": {
+    "invalid": "Use a hex colour like #0f766e."
+  },
+  "date": {
+    "invalid": "Use a valid date.",
+    "endBeforeStart": "The end date must be on or after the start date."
+  },
+  "url": {
+    "invalid": "Enter a valid web address."
+  },
+  "text": {
+    "tooShort": "Use at least {min} characters.",
+    "tooLong": "Use at most {max} characters."
+  },
+  "name": {
+    "yours": "Enter your name.",
+    "any": "Enter a name.",
+    "firstName": "Enter your first name.",
+    "lastName": "Enter your last name.",
+    "customerFirstName": "Enter a first name.",
+    "business": "Enter your business name.",
+    "service": "Enter a service name."
+  },
+  "terms": {
+    "required": "Please accept the terms to continue."
+  },
+  "password": {
+    "required": "Enter your password.",
+    "common": "This password is too common. Choose something harder to guess.",
+    "repeated": "Avoid repeating a single character.",
+    "containsEmail": "Your password should not contain your email address.",
+    "currentIncorrect": "Your current password is incorrect.",
+    "incorrect": "Your password is incorrect."
+  },
+  "slug": {
+    "format": "Use lowercase letters, numbers and dashes.",
+    "reserved": "This link is reserved. Try another one.",
+    "doubleDash": "Avoid double dashes.",
+    "taken": "That booking link is already taken.",
+    "invalid": "Invalid link"
+  },
+  "timezone": {
+    "invalid": "Choose a valid timezone."
+  },
+  "currency": {
+    "invalid": "Use a 3-letter currency code."
+  },
+  "country": {
+    "invalid": "Use a 2-letter country code."
+  },
+  "locale": {
+    "invalid": "Choose a language from the list."
+  },
+  "service": {
+    "durationMin": "At least 5 minutes.",
+    "durationMax": "At most 12 hours.",
+    "price": "Enter a valid price.",
+    "atLeastOne": "Add at least one service.",
+    "check": "Check this service.",
+    "needed": "Add at least one active service with a team member assigned before publishing."
+  },
+  "time": {
+    "endAfterStart": "End time must be after start time.",
+    "interval": "Choose a valid interval."
+  },
+  "number": {
+    "between": "Enter a number between {min} and {max}."
+  },
+  "form": {
+    "honeypot": "Invalid submission.",
+    "tooLarge": "Request too large",
+    "invalidJson": "Invalid JSON",
+    "chooseImage": "Choose an image."
+  },
+  "account": {
+    "emailTaken": "An account with this email already exists.",
+    "alreadyMember": "You are already a member of this business.",
+    "profileLinked": "This team profile is already linked to another account. Ask for a new invitation."
+  },
+  "team": {
+    "hasAccount": "This team member already has an account.",
+    "alreadyOnTeam": "This person is already on your team.",
+    "choose": "Choose a team member.",
+    "upcoming": "This team member has {count} upcoming appointment(s). Reschedule or cancel them first.",
+    "ownerMustVerify": "{name} needs to verify their email address before they can become the owner."
+  },
+  "customer": {
+    "emailTaken": "A customer with this email already exists.",
+    "chooseOrName": "Choose an existing customer or enter a name."
+  },
+  "business": {
+    "confirmName": "Type the business name exactly to confirm."
+  },
+  "generic": {
+    "required": "This field is required.",
+    "invalid": "This value isn’t valid.",
+    "chooseOption": "Choose one of the options.",
+    "numberMin": "Enter a number of at least {min}.",
+    "numberMax": "Enter a number no greater than {max}.",
+    "tooFew": "Add at least {min}.",
+    "tooMany": "Choose at most {max}."
+  }
+}

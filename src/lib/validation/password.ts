@@ -1,3 +1,5 @@
+import { vmsg } from './messages'
+
 /** Password policy (NIST 800-63B style: length over composition rules). */
 const COMMON = new Set([
   'password',
@@ -34,14 +36,14 @@ export const PASSWORD_MIN = 10
 export const PASSWORD_MAX = 128
 
 export function passwordProblem(password: string, email?: string): string | null {
-  if (password.length < PASSWORD_MIN) return `Use at least ${PASSWORD_MIN} characters.`
-  if (password.length > PASSWORD_MAX) return `Use at most ${PASSWORD_MAX} characters.`
+  if (password.length < PASSWORD_MIN) return vmsg('text.tooShort', { min: PASSWORD_MIN })
+  if (password.length > PASSWORD_MAX) return vmsg('text.tooLong', { max: PASSWORD_MAX })
   const lower = password.toLowerCase()
-  if (COMMON.has(lower)) return 'This password is too common. Choose something harder to guess.'
-  if (/^(.)\1+$/.test(password)) return 'Avoid repeating a single character.'
+  if (COMMON.has(lower)) return vmsg('password.common')
+  if (/^(.)\1+$/.test(password)) return vmsg('password.repeated')
   const local = email?.split('@')[0]?.toLowerCase()
   if (local && local.length >= 4 && lower.includes(local)) {
-    return 'Your password should not contain your email address.'
+    return vmsg('password.containsEmail')
   }
   return null
 }
