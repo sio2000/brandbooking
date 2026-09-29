@@ -142,7 +142,7 @@ export function Topbar({
           {isPlatformAdmin && (
             <DropdownMenuItem asChild>
               <Link href="/admin">
-                <ShieldCheck /> Admin
+                <ShieldCheck /> Admin {/* i18n-ignore: the admin area is English only */}
               </Link>
             </DropdownMenuItem>
           )}
