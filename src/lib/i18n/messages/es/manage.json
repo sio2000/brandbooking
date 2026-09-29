@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Tu reserva"
+  },
+  "error": {
+    "expired": "Este enlace ha caducado",
+    "notFound": "No hemos encontrado esta reserva",
+    "body": "Los enlaces de reserva dejan de funcionar 30 días después de la cita o si se han copiado de forma incompleta. Contacta directamente con el negocio si necesitas ayuda con tu cita."
+  },
+  "status": {
+    "confirmed": "Confirmada",
+    "pending": "Pendiente de confirmación",
+    "cancelled": "Cancelada",
+    "completed": "Completada",
+    "no_show": "No se presentó"
+  },
+  "bookingWith": "Tu reserva con",
+  "withStaff": "{duration} · con {name}",
+  "labels": {
+    "date": "Fecha",
+    "time": "Hora",
+    "price": "Precio",
+    "reference": "Referencia"
+  },
+  "moved": {
+    "title": "Tu cita ha cambiado de hora",
+    "body": "Te hemos enviado la nueva hora por email.",
+    "view": "Ver reserva"
+  },
+  "actions": {
+    "reschedule": "Cambiar la hora",
+    "cancel": "Cancelar reserva"
+  },
+  "cancelDialog": {
+    "title": "¿Cancelar esta reserva?",
+    "description": "Tu cita de {service} del {date} se cancelará y la hora quedará libre. Avisaremos a {business}.",
+    "reason": "Motivo",
+    "optional": "(opcional)",
+    "keep": "Volver",
+    "cancelled": "Tu reserva se ha cancelado"
+  },
+  "deadlines": {
+    "personal": "{business} gestiona los cambios en persona. Ponte en contacto con ellos.",
+    "passed": "Los cambios online eran posibles hasta el {date}. Para hacer cambios ahora, contacta con {business}."
+  },
+  "reschedule": {
+    "title": "Elige una nueva hora",
+    "keep": "Mantener la hora actual",
+    "moveTo": "Mover al {date}",
+    "pick": "Elige una hora"
+  },
+  "network": {
+    "reschedule": "Error de red. No se ha cambiado nada. Inténtalo de nuevo.",
+    "cancel": "Error de red. Tu reserva no se ha cancelado. Inténtalo de nuevo."
+  },
+  "contact": {
+    "label": "Contactar con el negocio",
+    "title": "¿Dudas? Contacta con {business}"
+  },
+  "bookAnother": "Reservar otra cita"
+}

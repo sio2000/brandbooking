@@ -39,6 +39,12 @@ export type EmailLayout = {
   logoUrl?: string | null
   blocks: EmailBlock[]
   footer: string
+  /** BCP 47 tag of the email's language (`<html lang>`). */
+  lang?: string
+  /** Writing direction: Arabic emails are right to left. */
+  dir?: 'ltr' | 'rtl'
+  /** Suffix for struck-through detail rows in the plain-text part. */
+  previousLabel?: string
 }
 
 const INK = '#1c1917'
@@ -46,7 +52,7 @@ const MUTED = '#6b645c'
 const BORDER = '#e7e2da'
 const BG = '#f6f4ef'
 
-function renderBlock(b: EmailBlock, color: string): string {
+function renderBlock(b: EmailBlock, color: string, rtl = false): string {
   switch (b.type) {
     case 'heading':
       return `<tr><td style="padding:8px 0 4px;font-size:22px;line-height:1.3;font-weight:700;color:${INK};">${esc(b.text)}</td></tr>`
@@ -56,7 +62,7 @@ function renderBlock(b: EmailBlock, color: string): string {
       const rows = b.rows
         .map(
           ([k, v]) =>
-            `<tr><td style="padding:6px 12px 6px 0;font-size:13px;color:${MUTED};white-space:nowrap;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;font-size:15px;color:${INK};font-weight:600;${b.strike ? 'text-decoration:line-through;color:' + MUTED + ';' : ''}">${esc(v)}</td></tr>`,
+            `<tr><td style="padding:${rtl ? '6px 0 6px 12px' : '6px 12px 6px 0'};font-size:13px;color:${MUTED};white-space:nowrap;vertical-align:top;">${esc(k)}</td><td style="padding:6px 0;font-size:15px;color:${INK};font-weight:600;${b.strike ? 'text-decoration:line-through;color:' + MUTED + ';' : ''}">${esc(v)}</td></tr>`,
         )
         .join('')
       return `<tr><td style="padding:12px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${BORDER};border-radius:12px;padding:12px 16px;background:#fff;">${rows}</table></td></tr>`
@@ -67,7 +73,7 @@ function renderBlock(b: EmailBlock, color: string): string {
       return `<tr><td style="padding:4px 0 8px;font-size:14px;">${b.links
         .map(
           (l) =>
-            `<a href="${esc(safeUrl(l.url))}" style="color:${color};text-decoration:underline;margin-right:16px;">${esc(l.label)}</a>`,
+            `<a href="${esc(safeUrl(l.url))}" style="color:${color};text-decoration:underline;${rtl ? 'margin-left' : 'margin-right'}:16px;">${esc(l.label)}</a>`,
         )
         .join('')}</td></tr>`
     case 'divider':
@@ -79,7 +85,7 @@ function renderBlock(b: EmailBlock, color: string): string {
   }
 }
 
-function blockText(b: EmailBlock): string {
+function blockText(b: EmailBlock, previous = '(previous)'): string {
   switch (b.type) {
     case 'heading':
       return `${b.text}\n${'='.repeat(Math.min(b.text.length, 60))}`
@@ -87,7 +93,7 @@ function blockText(b: EmailBlock): string {
     case 'notice':
       return b.text
     case 'details':
-      return b.rows.map(([k, v]) => `${k}: ${v}${b.strike ? ' (previous)' : ''}`).join('\n')
+      return b.rows.map(([k, v]) => `${k}: ${v}${b.strike ? ` ${previous}` : ''}`).join('\n')
     case 'button':
       return `${b.label}: ${safeUrl(b.url)}`
     case 'links':
@@ -99,24 +105,34 @@ function blockText(b: EmailBlock): string {
 
 export function renderEmail(layout: EmailLayout): { html: string; text: string } {
   const color = /^#[0-9a-fA-F]{6}$/.test(layout.brandColor ?? '') ? layout.brandColor! : '#0f766e'
+  const rtl = layout.dir === 'rtl'
+  const dir = rtl ? 'rtl' : 'ltr'
+  const lang = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(layout.lang ?? '') ? layout.lang! : 'en'
   const header = layout.logoUrl
     ? `<img src="${esc(safeUrl(layout.logoUrl))}" alt="${esc(layout.brandName)}" height="40" style="height:40px;max-width:220px;border-radius:8px;display:block;">`
     : `<span style="font-size:17px;font-weight:700;color:${INK};">${esc(layout.brandName)}</span>`
   const html = `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(layout.preheader)}</title></head>
-<body style="margin:0;padding:0;background:${BG};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+<html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>${esc(layout.preheader)}</title></head>
+<body dir="${dir}" style="margin:0;padding:0;background:${BG};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${esc(layout.preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BG};padding:24px 12px;">
+<table role="presentation" dir="${dir}" width="100%" cellpadding="0" cellspacing="0" style="background:${BG};padding:24px 12px;${rtl ? 'text-align:right;' : ''}">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
 <tr><td style="padding:8px 4px 16px;">${header}</td></tr>
 <tr><td style="background:#ffffff;border:1px solid ${BORDER};border-radius:16px;padding:24px 24px 20px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-${layout.blocks.map((b) => renderBlock(b, color)).join('\n')}
+${layout.blocks.map((b) => renderBlock(b, color, rtl)).join('\n')}
 </table></td></tr>
 <tr><td style="padding:16px 8px;font-size:12px;line-height:1.6;color:${MUTED};">${esc(layout.footer)}</td></tr>
 </table></td></tr></table></body></html>`
-  const text = [layout.brandName, '', ...layout.blocks.map(blockText), '', '--', layout.footer]
+  const text = [
+    layout.brandName,
+    '',
+    ...layout.blocks.map((b) => blockText(b, layout.previousLabel)),
+    '',
+    '--',
+    layout.footer,
+  ]
     .join('\n\n')
     .replace(/\n{3,}/g, '\n\n')
   return { html, text }

@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Rezervasyon onaylandı: {service}, {date}",
+    "subjectPending": "Rezervasyon talebiniz alındı: {business}",
+    "preheader": "{date} tarihinde görüşmek üzere.",
+    "preheaderPending": "{business} talebinizi kısa süre içinde onaylayacak.",
+    "heading": "Randevunuz alındı, {name}!",
+    "headingPending": "Teşekkürler, {name}. Talebiniz alındı",
+    "body": "{business} randevunuz onaylandı. Ayrıntılar:",
+    "bodyPending": "{business} talebinizi inceleyip kısa süre içinde onaylayacak. Onaylandığında size bir e-posta daha göndereceğiz."
+  },
+  "confirmed": {
+    "subject": "Onaylandı: {service}, {date}",
+    "preheader": "{business} rezervasyonunuzu onayladı.",
+    "heading": "Rezervasyonunuz onaylandı",
+    "body": "Güzel haber, {name}! {business} randevunuzu onayladı."
+  },
+  "reminder": {
+    "subject": "Hatırlatma: {service}, {date} saat {time}",
+    "preheader": "{business} randevunuz yaklaşıyor.",
+    "heading": "Yakında görüşmek üzere",
+    "body": "Merhaba {name}, {business} ile yaklaşan randevunuzu hatırlatmak isteriz."
+  },
+  "rescheduled": {
+    "subject": "Yeniden planlandı: {service}, yeni tarih {date}",
+    "preheader": "Randevunuzun saati değişti.",
+    "heading": "Randevunuz yeniden planlandı",
+    "body": "Merhaba {name}, {business} randevunuz yeniden planlandı.",
+    "previousTime": "Önceki saat",
+    "newTime": "Yeni saat"
+  },
+  "cancelled": {
+    "subject": "İptal edildi: {service}, {date}",
+    "preheader": "Randevunuz iptal edildi.",
+    "heading": "Randevu iptal edildi",
+    "byCustomer": "Merhaba {name}, isteğiniz üzerine {business} randevunuzu iptal ettik.",
+    "byBusiness": "Merhaba {name}, {business} randevunuzu iptal etti. Yaşattığımız rahatsızlık için özür dileriz.",
+    "message": "{business} mesajı: {reason}",
+    "bookAgain": "Yeni saat seç"
+  },
+  "member": {
+    "createdTitle": "Yeni rezervasyon: {customer}",
+    "createdPendingTitle": "Yeni rezervasyon talebi: {customer}",
+    "cancelledTitle": "İptal: {customer}, {date}",
+    "rescheduledTitle": "Yeniden planlandı: {customer}",
+    "createdIntro": "{customer}, {service} için randevu aldı.",
+    "createdPendingIntro": "{customer}, {service} için talepte bulundu. Panelinizden onaylayın veya reddedin.",
+    "cancelledIntro": "{customer} randevusunu iptal etti. Saat yeniden müsait.",
+    "rescheduledIntro": "{customer} randevusunu yeni bir saate taşıdı.",
+    "note": "Müşteri notu: {message}",
+    "open": "Hournook’ta aç",
+    "footer": "Bu e-postayı Hournook’ta {business} ekibinin üyesi olduğunuz için alıyorsunuz. Bildirim tercihlerinizi Ayarlar’dan değiştirebilirsiniz."
+  }
+}

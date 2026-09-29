@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "الخدمة",
+    "staff": "عضو الفريق",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "datetime": "التاريخ والوقت",
+    "details": "بياناتك",
+    "confirm": "التأكيد",
+    "done": "تم"
+  },
+  "anyStaff": "أي عضو متاح",
+  "anyStaffHint": "سنحجز لك مع أول من يكون متاحًا.",
+  "noSlots": "لا توجد أوقات متاحة في هذا اليوم.",
+  "noSlotsHint": "جرّب تاريخًا آخر. الأيام المتاحة مميّزة.",
+  "timesShownIn": "الأوقات معروضة بتوقيت {tz}",
+  "confirmTitle": "تم الحجز!",
+  "pendingTitle": "تم استلام الطلب",
+  "pendingBody": "سيؤكد {business} موعدك قريبًا. أرسلنا إليك التفاصيل بالبريد الإلكتروني.",
+  "confirmedBody": "أرسلنا رسالة التأكيد إلى {email}.",
+  "pausedTitle": "الحجز عبر الإنترنت متوقف مؤقتًا",
+  "pausedDefault": "لا نستقبل حجوزات عبر الإنترنت حاليًا.",
+  "privacyNote": "لا تُشارَك بياناتك إلا مع {business} لإدارة موعدك.",
+  "privacyLink": "اطّلع على <link>إشعار الخصوصية</link>.",
+  "meta": {
+    "notFoundTitle": "صفحة الحجز غير موجودة",
+    "title": "{business} · الحجز عبر الإنترنت",
+    "description": "احجز موعدًا لدى {business} عبر الإنترنت."
+  },
+  "page": {
+    "previewBanner": "معاينة: لم تُنشر هذه الصفحة بعد، ولا يراها أحد غيرك.",
+    "publish": "نشر",
+    "reopensOn": "يُستأنف الحجز في {date}.",
+    "contactDirectly": "لا يزال بإمكانك التواصل مع {business} مباشرةً عبر بيانات الاتصال في هذه الصفحة.",
+    "poweredBy": "الحجز عبر الإنترنت بواسطة <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "صفحة الحجز هذه غير موجودة",
+    "body": "تحقّق من الرابط، أو اطلب من النشاط التجاري رابط الحجز الحالي.",
+    "home": "الانتقال إلى Hournook"
+  },
+  "hero": {
+    "logoAlt": "شعار {business}",
+    "contact": "معلومات الاتصال",
+    "bookingPolicy": "سياسة الحجز"
+  },
+  "categories": {
+    "hairBeauty": "تصفيف الشعر والتجميل",
+    "barbershop": "حلاقة رجالية",
+    "nails": "العناية بالأظافر",
+    "spaMassage": "سبا وتدليك",
+    "healthTherapy": "الصحة والعلاج",
+    "fitnessCoaching": "اللياقة والتدريب",
+    "medicalDental": "الطب وطب الأسنان",
+    "consulting": "الاستشارات",
+    "educationTutoring": "التعليم والدروس الخصوصية",
+    "photography": "التصوير",
+    "petServices": "خدمات الحيوانات الأليفة",
+    "automotive": "خدمات السيارات",
+    "homeServices": "الخدمات المنزلية",
+    "other": "أخرى"
+  },
+  "flow": {
+    "noServices": "لا توجد خدمات متاحة للحجز عبر الإنترنت حاليًا.",
+    "contactBusiness": "يُرجى التواصل مع {business} مباشرةً.",
+    "progress": "مراحل الحجز",
+    "stepOf": "الخطوة {current} من {total}:",
+    "chooseService": "اختر خدمة",
+    "chooseStaff": "مع من تريد الحجز؟",
+    "pickDateTime": "اختر التاريخ والوقت",
+    "withStaff": "مع {name}",
+    "continue": "متابعة",
+    "reviewBooking": "مراجعة الحجز",
+    "confirmTitle": "أكّد حجزك",
+    "freeCancellationStart": "الإلغاء مجاني عبر الإنترنت حتى بداية موعدك.",
+    "freeCancellation": "الإلغاء مجاني عبر الإنترنت حتى {deadline} قبل موعدك.",
+    "deadlineDays": "{count, plural, zero {# يوم} one {يوم واحد} two {يومين} few {# أيام} many {# يومًا} other {# يوم}}",
+    "deadlineHours": "{count, plural, zero {# ساعة} one {ساعة واحدة} two {ساعتين} few {# ساعات} many {# ساعة} other {# ساعة}}",
+    "deadlineMinutes": "{count, plural, zero {# دقيقة} one {دقيقة واحدة} two {دقيقتين} few {# دقائق} many {# دقيقة} other {# دقيقة}}",
+    "previewNote": "هذه معاينة. انشر صفحة الحجز لتبدأ في استقبال حجوزات حقيقية. سيرى العملاء هذه الخطوات نفسها تمامًا.",
+    "previewDisabled": "الحجز غير متاح في المعاينة",
+    "requestBooking": "طلب الحجز",
+    "confirmBooking": "تأكيد الحجز",
+    "networkError": "تعذّر الاتصال بالخادم. تحقّق من اتصالك وحاول مرة أخرى. لم يتم أي حجز بعد.",
+    "back": "رجوع",
+    "otherServices": "خدمات أخرى",
+    "free": "مجانًا",
+    "book": "احجز"
+  },
+  "details": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "emailHint": "سنرسل إليك رسالة التأكيد هنا.",
+    "phone": "الهاتف",
+    "phoneHint": "لا يستخدمه النشاط التجاري إلا إذا احتاج إلى التواصل معك.",
+    "message": "هل هناك ما يجب أن نعرفه؟",
+    "optional": "اختياري",
+    "honeypot": "الموقع الإلكتروني",
+    "errors": {
+      "firstName": "أدخل اسمك الأول.",
+      "lastName": "أدخل اسم العائلة.",
+      "email": "أدخل عنوان بريد إلكتروني صالحًا.",
+      "phoneRequired": "أدخل رقم هاتفك.",
+      "phoneInvalid": "أدخل رقم هاتف صالحًا.",
+      "staffId": "اختر عضوًا من الفريق."
+    }
+  },
+  "summary": {
+    "service": "الخدمة",
+    "when": "الموعد",
+    "with": "مع",
+    "bookedFor": "الحجز باسم",
+    "where": "المكان",
+    "price": "السعر"
+  },
+  "success": {
+    "reference": "رقم الحجز",
+    "manage": "عرض الحجز أو تغيير موعده أو إلغاؤه",
+    "bookAnother": "احجز موعدًا آخر"
+  },
+  "slots": {
+    "previousMonth": "الشهر السابق",
+    "nextMonth": "الشهر التالي",
+    "chooseDate": "اختر تاريخًا",
+    "dayAvailable": "{date}، {count, plural, zero {لا أوقات متاحة} one {وقت واحد متاح} two {وقتان متاحان} few {# أوقات متاحة} many {# وقتًا متاحًا} other {# وقت متاح}}",
+    "dayUnavailable": "{date}، لا أوقات متاحة",
+    "showBusinessTime": "عرض توقيت النشاط التجاري",
+    "showMyTime": "العرض بمنطقتي الزمنية",
+    "loadError": "تعذّر تحميل الأوقات المتاحة",
+    "noDates": "لا توجد تواريخ متاحة في هذه الفترة. جرّب الشهر التالي.",
+    "morning": "الصباح",
+    "afternoon": "بعد الظهر",
+    "evening": "المساء",
+    "morningTimes": "أوقات الصباح",
+    "afternoonTimes": "أوقات بعد الظهر",
+    "eveningTimes": "أوقات المساء"
+  }
+}

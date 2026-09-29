@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "A sua reserva"
+  },
+  "error": {
+    "expired": "Esta ligação expirou",
+    "notFound": "Não encontrámos esta reserva",
+    "body": "As ligações de reserva deixam de funcionar 30 dias após a marcação ou se tiverem sido copiadas de forma incompleta. Contacte diretamente o negócio se precisar de ajuda com a sua marcação."
+  },
+  "status": {
+    "confirmed": "Confirmada",
+    "pending": "A aguardar confirmação",
+    "cancelled": "Cancelada",
+    "completed": "Concluída",
+    "no_show": "Não compareceu"
+  },
+  "bookingWith": "A sua reserva em",
+  "withStaff": "{duration} · com {name}",
+  "labels": {
+    "date": "Data",
+    "time": "Hora",
+    "price": "Preço",
+    "reference": "Referência"
+  },
+  "moved": {
+    "title": "A sua marcação foi reagendada",
+    "body": "Enviámos-lhe a nova hora por email.",
+    "view": "Ver reserva"
+  },
+  "actions": {
+    "reschedule": "Reagendar",
+    "cancel": "Cancelar reserva"
+  },
+  "cancelDialog": {
+    "title": "Cancelar esta reserva?",
+    "description": "A sua marcação de {service} de {date} será cancelada e o horário ficará livre. {business} será notificado.",
+    "reason": "Motivo",
+    "optional": "(opcional)",
+    "keep": "Voltar",
+    "cancelled": "A sua reserva foi cancelada"
+  },
+  "deadlines": {
+    "personal": "As alterações são tratadas diretamente por {business}. Entre em contacto com o negócio.",
+    "passed": "As alterações online eram possíveis até {date}. Para alterar agora, contacte {business}."
+  },
+  "reschedule": {
+    "title": "Escolha uma nova hora",
+    "keep": "Manter a hora atual",
+    "moveTo": "Mudar para {date}",
+    "pick": "Escolha uma hora"
+  },
+  "network": {
+    "reschedule": "Erro de rede. Nada foi alterado. Tente novamente.",
+    "cancel": "Erro de rede. A sua reserva não foi cancelada. Tente novamente."
+  },
+  "contact": {
+    "label": "Contactar o negócio",
+    "title": "Dúvidas? Contacte {business}"
+  },
+  "bookAnother": "Fazer outra marcação"
+}

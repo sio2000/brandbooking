@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Sie erhalten diese E-Mail, weil Sie einen Termin gebucht haben.",
+  "manageCta": "Buchung verwalten",
+  "addToCalendar": "Zum Kalender hinzufügen",
+  "sentOnBehalf": "Gesendet von Hournook im Auftrag von {business}.",
+  "previous": "(bisher)",
+  "rows": {
+    "service": "Leistung",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "with": "Bei",
+    "price": "Preis",
+    "where": "Wo",
+    "customer": "Kunde",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "reference": "Buchungsnummer"
+  },
+  "calendar": {
+    "title": "{service} bei {business}",
+    "bookingReference": "Buchungsnummer {reference}",
+    "reference": "Buchungsnummer {reference}",
+    "manage": "Buchung verwalten: {url}",
+    "referenceAndManage": "Buchungsnummer {reference}. Buchung verwalten: {url}",
+    "google": "Google Kalender",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Termin"
+  }
+}

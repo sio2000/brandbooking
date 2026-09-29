@@ -1,0 +1,30 @@
+{
+  "footerDefault": "आपको यह ईमेल इसलिए मिला क्योंकि आपने अपॉइंटमेंट बुक किया है।",
+  "manageCta": "बुकिंग मैनेज करें",
+  "addToCalendar": "कैलेंडर में जोड़ें",
+  "sentOnBehalf": "{business} की ओर से Hournook द्वारा भेजा गया।",
+  "previous": "(पिछला)",
+  "rows": {
+    "service": "सेवा",
+    "date": "तारीख",
+    "time": "समय",
+    "with": "किसके साथ",
+    "price": "कीमत",
+    "where": "कहाँ",
+    "customer": "ग्राहक",
+    "email": "ईमेल",
+    "phone": "फ़ोन",
+    "reference": "बुकिंग नंबर"
+  },
+  "calendar": {
+    "title": "{service} – {business}",
+    "bookingReference": "बुकिंग नंबर {reference}",
+    "reference": "नंबर {reference}",
+    "manage": "अपनी बुकिंग मैनेज करें: {url}",
+    "referenceAndManage": "नंबर {reference}। अपनी बुकिंग मैनेज करें: {url}",
+    "google": "Google Calendar",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "अपॉइंटमेंट"
+  }
+}

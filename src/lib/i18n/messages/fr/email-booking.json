@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Réservation confirmée : {service} le {date}",
+    "subjectPending": "Demande de réservation reçue : {business}",
+    "preheader": "À bientôt, le {date}.",
+    "preheaderPending": "{business} va confirmer votre demande sous peu.",
+    "heading": "C’est réservé, {name} !",
+    "headingPending": "Merci, {name}. Demande reçue",
+    "body": "Votre rendez-vous chez {business} est confirmé. Voici les détails :",
+    "bodyPending": "{business} va examiner votre demande et la confirmer sous peu. Vous recevrez un autre e-mail dès qu’elle sera confirmée."
+  },
+  "confirmed": {
+    "subject": "Confirmé : {service} le {date}",
+    "preheader": "{business} a confirmé votre réservation.",
+    "heading": "Votre réservation est confirmée",
+    "body": "Bonne nouvelle, {name} ! {business} a confirmé votre rendez-vous."
+  },
+  "reminder": {
+    "subject": "Rappel : {service} le {date} à {time}",
+    "preheader": "Votre rendez-vous chez {business} approche.",
+    "heading": "À très bientôt",
+    "body": "Bonjour {name}, nous vous rappelons votre prochain rendez-vous chez {business}."
+  },
+  "rescheduled": {
+    "subject": "Déplacé : {service}, désormais le {date}",
+    "preheader": "Votre rendez-vous a un nouvel horaire.",
+    "heading": "Votre rendez-vous a été déplacé",
+    "body": "Bonjour {name}, votre rendez-vous chez {business} a été déplacé.",
+    "previousTime": "Ancien horaire",
+    "newTime": "Nouvel horaire"
+  },
+  "cancelled": {
+    "subject": "Annulé : {service} le {date}",
+    "preheader": "Votre rendez-vous a été annulé.",
+    "heading": "Rendez-vous annulé",
+    "byCustomer": "Bonjour {name}, comme demandé, nous avons annulé votre rendez-vous chez {business}.",
+    "byBusiness": "Bonjour {name}, {business} a annulé votre rendez-vous. Nous sommes désolés pour la gêne occasionnée.",
+    "message": "Message de {business} : {reason}",
+    "bookAgain": "Réserver un autre créneau"
+  },
+  "member": {
+    "createdTitle": "Nouvelle réservation : {customer}",
+    "createdPendingTitle": "Nouvelle demande de réservation : {customer}",
+    "cancelledTitle": "Annulé : {customer}, {date}",
+    "rescheduledTitle": "Déplacé : {customer}",
+    "createdIntro": "{customer} a réservé {service}.",
+    "createdPendingIntro": "{customer} a demandé {service}. Confirmez ou refusez la demande depuis votre tableau de bord.",
+    "cancelledIntro": "{customer} a annulé son rendez-vous. Le créneau est de nouveau disponible.",
+    "rescheduledIntro": "{customer} a déplacé son rendez-vous à un nouvel horaire.",
+    "note": "Note du client : {message}",
+    "open": "Ouvrir dans Hournook",
+    "footer": "Vous recevez cet e-mail car vous êtes membre de {business} sur Hournook. Modifiez vos préférences de notification dans les Paramètres."
+  }
+}

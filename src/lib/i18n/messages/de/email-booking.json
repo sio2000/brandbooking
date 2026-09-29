@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Buchung bestätigt: {service} am {date}",
+    "subjectPending": "Buchungsanfrage erhalten: {business}",
+    "preheader": "Bis {date}!",
+    "preheaderPending": "{business} bestätigt Ihre Anfrage in Kürze.",
+    "heading": "Ihr Termin ist gebucht, {name}!",
+    "headingPending": "Danke, {name}. Ihre Anfrage ist eingegangen",
+    "body": "Ihr Termin bei {business} ist bestätigt. Hier sind die Details:",
+    "bodyPending": "{business} prüft Ihre Anfrage und bestätigt sie in Kürze. Sie erhalten eine weitere E-Mail, sobald sie bestätigt ist."
+  },
+  "confirmed": {
+    "subject": "Bestätigt: {service} am {date}",
+    "preheader": "{business} hat Ihre Buchung bestätigt.",
+    "heading": "Ihre Buchung ist bestätigt",
+    "body": "Gute Nachrichten, {name}! {business} hat Ihren Termin bestätigt."
+  },
+  "reminder": {
+    "subject": "Erinnerung: {service} am {date} um {time}",
+    "preheader": "Ihr Termin bei {business} steht bald an.",
+    "heading": "Bis bald",
+    "body": "Hallo {name}, wir möchten Sie an Ihren bevorstehenden Termin bei {business} erinnern."
+  },
+  "rescheduled": {
+    "subject": "Verschoben: {service}, neu am {date}",
+    "preheader": "Ihr Termin hat eine neue Uhrzeit.",
+    "heading": "Ihr Termin wurde verschoben",
+    "body": "Hallo {name}, Ihr Termin bei {business} wurde verschoben.",
+    "previousTime": "Bisherige Uhrzeit",
+    "newTime": "Neue Uhrzeit"
+  },
+  "cancelled": {
+    "subject": "Storniert: {service} am {date}",
+    "preheader": "Ihr Termin wurde storniert.",
+    "heading": "Termin storniert",
+    "byCustomer": "Hallo {name}, wie gewünscht haben wir Ihren Termin bei {business} storniert.",
+    "byBusiness": "Hallo {name}, {business} hat Ihren Termin storniert. Wir bitten um Entschuldigung für die Unannehmlichkeiten.",
+    "message": "Nachricht von {business}: {reason}",
+    "bookAgain": "Neuen Termin buchen"
+  },
+  "member": {
+    "createdTitle": "Neue Buchung: {customer}",
+    "createdPendingTitle": "Neue Buchungsanfrage: {customer}",
+    "cancelledTitle": "Storniert: {customer}, {date}",
+    "rescheduledTitle": "Verschoben: {customer}",
+    "createdIntro": "{customer} hat {service} gebucht.",
+    "createdPendingIntro": "{customer} hat {service} angefragt. Bestätigen oder lehnen Sie die Anfrage in Ihrem Dashboard ab.",
+    "cancelledIntro": "{customer} hat den Termin storniert. Die Zeit ist wieder frei.",
+    "rescheduledIntro": "{customer} hat den Termin auf eine neue Uhrzeit verschoben.",
+    "note": "Nachricht vom Kunden: {message}",
+    "open": "In Hournook öffnen",
+    "footer": "Sie erhalten diese E-Mail, weil Sie Mitglied von {business} auf Hournook sind. Benachrichtigungen können Sie in den Einstellungen ändern."
+  }
+}

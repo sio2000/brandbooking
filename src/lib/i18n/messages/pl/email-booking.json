@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Rezerwacja potwierdzona: {service}, {date}",
+    "subjectPending": "Otrzymaliśmy prośbę o rezerwację: {business}",
+    "preheader": "Do zobaczenia: {date}.",
+    "preheaderPending": "{business} wkrótce potwierdzi Twoją prośbę.",
+    "heading": "Zarezerwowane, {name}!",
+    "headingPending": "Dziękujemy, {name}. Prośba otrzymana",
+    "body": "Twoja wizyta w {business} jest potwierdzona. Oto szczegóły:",
+    "bodyPending": "{business} rozpatrzy Twoją prośbę i wkrótce ją potwierdzi. Po potwierdzeniu wyślemy Ci kolejną wiadomość."
+  },
+  "confirmed": {
+    "subject": "Potwierdzona: {service}, {date}",
+    "preheader": "{business} potwierdza Twoją rezerwację.",
+    "heading": "Twoja rezerwacja jest potwierdzona",
+    "body": "Dobra wiadomość, {name}! {business} potwierdza Twoją wizytę."
+  },
+  "reminder": {
+    "subject": "Przypomnienie: {service}, {date}, godz. {time}",
+    "preheader": "Zbliża się Twoja wizyta w {business}.",
+    "heading": "Do zobaczenia wkrótce",
+    "body": "Cześć {name}, przypominamy o Twojej nadchodzącej wizycie w {business}."
+  },
+  "rescheduled": {
+    "subject": "Zmiana terminu: {service}, teraz {date}",
+    "preheader": "Twoja wizyta ma nowy termin.",
+    "heading": "Termin wizyty został zmieniony",
+    "body": "Cześć {name}, termin Twojej wizyty w {business} został zmieniony.",
+    "previousTime": "Poprzedni termin",
+    "newTime": "Nowy termin"
+  },
+  "cancelled": {
+    "subject": "Anulowana: {service}, {date}",
+    "preheader": "Twoja wizyta została anulowana.",
+    "heading": "Wizyta anulowana",
+    "byCustomer": "Cześć {name}, zgodnie z Twoją prośbą anulowaliśmy wizytę w {business}.",
+    "byBusiness": "Cześć {name}, {business} anuluje Twoją wizytę. Przepraszamy za niedogodności.",
+    "message": "Wiadomość od {business}: {reason}",
+    "bookAgain": "Zarezerwuj nowy termin"
+  },
+  "member": {
+    "createdTitle": "Nowa rezerwacja: {customer}",
+    "createdPendingTitle": "Nowa prośba o rezerwację: {customer}",
+    "cancelledTitle": "Anulowana: {customer}, {date}",
+    "rescheduledTitle": "Zmiana terminu: {customer}",
+    "createdIntro": "Nowa rezerwacja: {customer}, usługa {service}.",
+    "createdPendingIntro": "Nowa prośba: {customer}, usługa {service}. Potwierdź ją lub odrzuć w panelu.",
+    "cancelledIntro": "Klient {customer} anulował wizytę. Termin jest znów wolny.",
+    "rescheduledIntro": "Klient {customer} przeniósł wizytę na inny termin.",
+    "note": "Uwaga od klienta: {message}",
+    "open": "Otwórz w Hournook",
+    "footer": "Otrzymujesz tę wiadomość, ponieważ należysz do zespołu {business} w Hournook. Powiadomienia zmienisz w Ustawieniach."
+  }
+}

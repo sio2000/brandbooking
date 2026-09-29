@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "Prestation",
+    "staff": "Membre de l’équipe",
+    "date": "Date",
+    "time": "Heure",
+    "datetime": "Date et heure",
+    "details": "Vos coordonnées",
+    "confirm": "Confirmation",
+    "done": "Terminé"
+  },
+  "anyStaff": "Peu importe",
+  "anyStaffHint": "Nous vous attribuerons la personne disponible.",
+  "noSlots": "Aucun créneau libre ce jour-là.",
+  "noSlotsHint": "Essayez une autre date. Les jours disponibles sont mis en évidence.",
+  "timesShownIn": "Horaires affichés en {tz}",
+  "confirmTitle": "C’est réservé !",
+  "pendingTitle": "Demande reçue",
+  "pendingBody": "{business} va confirmer votre rendez-vous sous peu. Nous vous avons envoyé les détails par e-mail.",
+  "confirmedBody": "Nous avons envoyé une confirmation à {email}.",
+  "pausedTitle": "La réservation en ligne est suspendue",
+  "pausedDefault": "Nous n’acceptons pas de réservations en ligne pour le moment.",
+  "privacyNote": "Vos coordonnées sont uniquement partagées avec {business} pour gérer votre rendez-vous.",
+  "privacyLink": "Consultez notre <link>politique de confidentialité</link>.",
+  "meta": {
+    "notFoundTitle": "Page de réservation introuvable",
+    "title": "{business} · Réservation en ligne",
+    "description": "Prenez rendez-vous en ligne avec {business}."
+  },
+  "page": {
+    "previewBanner": "Aperçu : cette page n’est pas encore publiée. Vous seul pouvez la voir.",
+    "publish": "Publier",
+    "reopensOn": "Les réservations rouvrent le {date}.",
+    "contactDirectly": "Vous pouvez toujours joindre {business} directement grâce aux coordonnées indiquées sur cette page.",
+    "poweredBy": "Réservation en ligne par <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "Cette page de réservation n’existe pas",
+    "body": "Vérifiez le lien ou demandez à l’établissement son lien de réservation actuel.",
+    "home": "Aller sur Hournook"
+  },
+  "hero": {
+    "logoAlt": "Logo de {business}",
+    "contact": "Coordonnées",
+    "bookingPolicy": "Conditions de réservation"
+  },
+  "categories": {
+    "hairBeauty": "Coiffure et beauté",
+    "barbershop": "Barbier",
+    "nails": "Ongles",
+    "spaMassage": "Spa et massage",
+    "healthTherapy": "Santé et thérapie",
+    "fitnessCoaching": "Sport et coaching",
+    "medicalDental": "Médical et dentaire",
+    "consulting": "Conseil",
+    "educationTutoring": "Enseignement et soutien scolaire",
+    "photography": "Photographie",
+    "petServices": "Services pour animaux",
+    "automotive": "Automobile",
+    "homeServices": "Services à domicile",
+    "other": "Autre"
+  },
+  "flow": {
+    "noServices": "Aucune prestation n’est réservable en ligne pour le moment.",
+    "contactBusiness": "Veuillez contacter {business} directement.",
+    "progress": "Progression de la réservation",
+    "stepOf": "Étape {current} sur {total} :",
+    "chooseService": "Choisissez une prestation",
+    "chooseStaff": "Avec qui souhaitez-vous prendre rendez-vous ?",
+    "pickDateTime": "Choisissez une date et une heure",
+    "withStaff": "avec {name}",
+    "continue": "Continuer",
+    "reviewBooking": "Vérifier la réservation",
+    "confirmTitle": "Confirmez votre réservation",
+    "freeCancellationStart": "Annulation gratuite en ligne jusqu’au début de votre rendez-vous.",
+    "freeCancellation": "Annulation gratuite en ligne jusqu’à {deadline} avant votre rendez-vous.",
+    "deadlineDays": "{count, plural, one {# jour} other {# jours}}",
+    "deadlineHours": "{count, plural, one {# heure} other {# heures}}",
+    "deadlineMinutes": "{count, plural, one {# minute} other {# minutes}}",
+    "previewNote": "Ceci est un aperçu. Publiez votre page de réservation pour commencer à recevoir de vraies réservations. Vos clients verront exactement ce parcours.",
+    "previewDisabled": "Réservation désactivée en aperçu",
+    "requestBooking": "Demander la réservation",
+    "confirmBooking": "Confirmer la réservation",
+    "networkError": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez. Rien n’a encore été réservé.",
+    "back": "Retour",
+    "otherServices": "Autres prestations",
+    "free": "Gratuit",
+    "book": "Réserver"
+  },
+  "details": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "emailHint": "Nous vous enverrons la confirmation à cette adresse.",
+    "phone": "Téléphone",
+    "phoneHint": "Utilisé uniquement par l’établissement s’il a besoin de vous joindre.",
+    "message": "Quelque chose à nous signaler ?",
+    "optional": "Facultatif",
+    "honeypot": "Site web",
+    "errors": {
+      "firstName": "Saisissez votre prénom.",
+      "lastName": "Saisissez votre nom.",
+      "email": "Saisissez une adresse e-mail valide.",
+      "phoneRequired": "Saisissez votre numéro de téléphone.",
+      "phoneInvalid": "Saisissez un numéro de téléphone valide.",
+      "staffId": "Choisissez un membre de l’équipe."
+    }
+  },
+  "summary": {
+    "service": "Prestation",
+    "when": "Quand",
+    "with": "Avec",
+    "bookedFor": "Au nom de",
+    "where": "Où",
+    "price": "Prix"
+  },
+  "success": {
+    "reference": "Référence",
+    "manage": "Voir, déplacer ou annuler",
+    "bookAnother": "Prendre un autre rendez-vous"
+  },
+  "slots": {
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "chooseDate": "Choisissez une date",
+    "dayAvailable": "{date}, {count, plural, one {# créneau disponible} other {# créneaux disponibles}}",
+    "dayUnavailable": "{date}, aucun créneau disponible",
+    "showBusinessTime": "Afficher l’heure de l’établissement",
+    "showMyTime": "Afficher dans mon fuseau horaire",
+    "loadError": "Impossible de charger les créneaux disponibles",
+    "noDates": "Aucune date disponible sur cette période. Essayez le mois suivant.",
+    "morning": "Matin",
+    "afternoon": "Après-midi",
+    "evening": "Soir",
+    "morningTimes": "Créneaux du matin",
+    "afternoonTimes": "Créneaux de l’après-midi",
+    "eveningTimes": "Créneaux du soir"
+  }
+}

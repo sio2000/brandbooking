@@ -20,16 +20,26 @@ import {
   formatTime,
   formatTimeZoneName,
 } from '@/lib/format'
-import { messages } from '@/lib/i18n/messages'
+import type { Locale } from '@/lib/i18n/config'
+import { translator } from '@/lib/i18n/load'
+import { asLocale, bookingFormatLocale } from '@/lib/booking-locale'
 import { renderEmail, type EmailBlock } from './layout'
 import type { EmailMessage } from './providers'
 import type { TemplateId } from './outbox'
+import { accountLocale, emailLang } from './i18n'
 import { googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
 
 /**
  * Renders outbox rows into emails from *current* database state, so a
  * reminder always shows the latest time and a cancelled booking never gets a
  * reminder. Returns { skip } when the email no longer makes sense.
+ *
+ * Language: emails to the customer use the language they booked in
+ * (`appointments.locale`); emails to team members use the recipient's account
+ * language (`users.locale`). Both are read at send time, so queued emails
+ * (reminders) are rendered in the right language. Dates and times use the
+ * business's time zone. Business-written text (service names, the custom
+ * email footer, the booking policy) is shown as written.
  */
 
 export type RenderResult = { message: EmailMessage } | { skip: string }
@@ -40,6 +50,23 @@ type Loaded = {
   serviceName: string
   staffName: string
   customer: { firstName: string; lastName: string; email: string | null; phone: string | null }
+}
+
+/** Everything an email in one language needs. */
+type Lang = {
+  locale: Locale
+  /** Intl locale for dates, times, durations and prices. */
+  fmt: string
+  t: Awaited<ReturnType<typeof translator<'email-booking'>>>
+  common: Awaited<ReturnType<typeof translator<'email'>>>
+}
+
+async function lang(locale: Locale): Promise<Lang> {
+  const [t, common] = await Promise.all([
+    translator(locale, 'email-booking'),
+    translator(locale, 'email'),
+  ])
+  return { locale, fmt: bookingFormatLocale(locale), t, common }
 }
 
 async function load(appointmentId: string): Promise<Loaded | null> {
@@ -83,13 +110,13 @@ async function load(appointmentId: string): Promise<Loaded | null> {
 
 function whenRows(
   a: Pick<Appointment, 'startsAt' | 'endsAt' | 'timezone'>,
-  locale: string,
+  l: Lang,
 ): Array<[string, string]> {
   return [
-    ['Date', formatDateLong(a.startsAt, a.timezone, locale)],
+    [l.common('rows.date'), formatDateLong(a.startsAt, a.timezone, l.fmt)],
     [
-      'Time',
-      `${formatTime(a.startsAt, a.timezone, locale)} – ${formatTime(a.endsAt, a.timezone, locale)} (${formatTimeZoneName(a.startsAt, a.timezone, locale)})`,
+      l.common('rows.time'),
+      `${formatTime(a.startsAt, a.timezone, l.fmt)} – ${formatTime(a.endsAt, a.timezone, l.fmt)} (${formatTimeZoneName(a.startsAt, a.timezone, l.fmt)})`,
     ],
   ]
 }
@@ -100,22 +127,28 @@ function address(b: Business) {
     .join(', ')
 }
 
-function detailRows(d: Loaded, opts: { includeCustomer?: boolean } = {}): Array<[string, string]> {
+function detailRows(
+  d: Loaded,
+  l: Lang,
+  opts: { includeCustomer?: boolean } = {},
+): Array<[string, string]> {
   const { appt: a, business: b } = d
+  const c = l.common
   const rows: Array<[string, string]> = [
-    ['Service', `${d.serviceName} · ${formatDuration(a.durationMinutes)}`],
-    ...whenRows(a, b.locale),
-    ['With', d.staffName],
+    [c('rows.service'), `${d.serviceName} · ${formatDuration(a.durationMinutes, l.fmt)}`],
+    ...whenRows(a, l),
+    [c('rows.with'), d.staffName],
   ]
-  if (a.priceCents != null) rows.push(['Price', formatMoney(a.priceCents, a.currency, b.locale)])
+  if (a.priceCents != null)
+    rows.push([c('rows.price'), formatMoney(a.priceCents, a.currency, l.fmt)])
   const addr = address(b)
-  if (addr) rows.push(['Where', addr])
+  if (addr) rows.push([c('rows.where'), addr])
   if (opts.includeCustomer) {
-    rows.push(['Customer', `${d.customer.firstName} ${d.customer.lastName}`.trim()])
-    if (d.customer.email) rows.push(['Email', d.customer.email])
-    if (d.customer.phone) rows.push(['Phone', d.customer.phone])
+    rows.push([c('rows.customer'), `${d.customer.firstName} ${d.customer.lastName}`.trim()])
+    if (d.customer.email) rows.push([c('rows.email'), d.customer.email])
+    if (d.customer.phone) rows.push([c('rows.phone'), d.customer.phone])
   }
-  rows.push(['Reference', a.reference])
+  rows.push([c('rows.reference'), a.reference])
   return rows
 }
 
@@ -123,24 +156,29 @@ function manageUrl(a: Appointment) {
   return appUrl(`/manage/${signManageToken(a.id, a.manageNonce)}`)
 }
 
-function calendarLinks(d: Loaded) {
+function calendarLinks(d: Loaded, l: Lang) {
   const a = d.appt
+  const c = l.common
   const ev = {
-    title: `${d.serviceName} at ${d.business.name}`,
+    title: c('calendar.title', { service: d.serviceName, business: d.business.name }),
     start: a.startsAt,
     end: a.endsAt,
     location: address(d.business),
-    details: `Manage your booking: ${manageUrl(a)}`,
+    details: c('calendar.manage', { url: manageUrl(a) }),
   }
   return [
-    { label: 'Google Calendar', url: googleCalendarUrl(ev) },
-    { label: 'Outlook', url: outlookCalendarUrl(ev) },
-    { label: 'Apple / .ics', url: appUrl(`/manage/${signManageToken(a.id, a.manageNonce)}/ics`) },
+    { label: c('calendar.google'), url: googleCalendarUrl(ev) },
+    { label: c('calendar.outlook'), url: outlookCalendarUrl(ev) },
+    {
+      label: c('calendar.apple'),
+      url: appUrl(`/manage/${signManageToken(a.id, a.manageNonce)}/ics`),
+    },
   ]
 }
 
 async function customerEmail(
   d: Loaded,
+  l: Lang,
   subject: string,
   preheader: string,
   blocks: EmailBlock[],
@@ -154,9 +192,11 @@ async function customerEmail(
     logoUrl,
     blocks,
     footer: [
-      b.emailFooter || messages.email.footerDefault,
-      `Sent by Hournook on behalf of ${b.name}.`,
+      b.emailFooter || l.common('footerDefault'),
+      l.common('sentOnBehalf', { business: b.name }),
     ].join(' '),
+    previousLabel: l.common('previous'),
+    ...emailLang(l.locale),
   })
   return {
     to: d.customer.email!,
@@ -168,12 +208,20 @@ async function customerEmail(
   }
 }
 
-function memberEmail(d: Loaded, to: string, subject: string, blocks: EmailBlock[]): EmailMessage {
+function memberEmail(
+  d: Loaded,
+  l: Lang,
+  to: string,
+  subject: string,
+  blocks: EmailBlock[],
+): EmailMessage {
   const { html, text } = renderEmail({
     preheader: subject,
     brandName: 'Hournook',
     blocks,
-    footer: `You're receiving this because you're a member of ${d.business.name} on Hournook. Change notification preferences in Settings.`,
+    footer: l.t('member.footer', { business: d.business.name }),
+    previousLabel: l.common('previous'),
+    ...emailLang(l.locale),
   })
   return { to, subject, html, text }
 }
@@ -199,6 +247,13 @@ export async function renderBookingEmail(
   ) {
     return { skip: 'recipient_changed' }
   }
+  const l = await lang(
+    isCustomerTemplate ? asLocale(a.locale) : await accountLocale(recipient, b.locale),
+  )
+  const { t } = l
+  const date = formatDateLong(a.startsAt, a.timezone, l.fmt)
+  const vars = { business: b.name, service: d.serviceName, name: first, date }
+  const manageButton: EmailBlock = { type: 'button', label: l.common('manageCta'), url: manage }
 
   switch (template) {
     case 'booking_received': {
@@ -207,26 +262,21 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          pending
-            ? `Booking request received: ${b.name}`
-            : `Booking confirmed: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
-          pending
-            ? `${b.name} will confirm your request shortly.`
-            : `See you on ${formatDateLong(a.startsAt, a.timezone, b.locale)}.`,
+          l,
+          pending ? t('received.subjectPending', vars) : t('received.subject', vars),
+          pending ? t('received.preheaderPending', vars) : t('received.preheader', vars),
           [
             {
               type: 'heading',
-              text: pending ? `Thanks, ${first}. Request received` : `You're booked, ${first}!`,
+              text: pending ? t('received.headingPending', vars) : t('received.heading', vars),
             },
             {
               type: 'text',
-              text: pending
-                ? `${b.name} will review your request and confirm it shortly. You'll get another email once it's confirmed.`
-                : `Your appointment with ${b.name} is confirmed. Here are the details:`,
+              text: pending ? t('received.bodyPending', vars) : t('received.body', vars),
             },
-            { type: 'details', rows: detailRows(d) },
-            { type: 'button', label: messages.email.manageCta, url: manage },
-            ...(pending ? [] : [{ type: 'links', links: calendarLinks(d) } as EmailBlock]),
+            { type: 'details', rows: detailRows(d, l) },
+            manageButton,
+            ...(pending ? [] : [{ type: 'links', links: calendarLinks(d, l) } as EmailBlock]),
             ...policy,
           ],
         ),
@@ -237,17 +287,15 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Confirmed: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
-          `${b.name} confirmed your booking.`,
+          l,
+          t('confirmed.subject', vars),
+          t('confirmed.preheader', vars),
           [
-            { type: 'heading', text: 'Your booking is confirmed' },
-            {
-              type: 'text',
-              text: `Good news, ${first}! ${b.name} has confirmed your appointment.`,
-            },
-            { type: 'details', rows: detailRows(d) },
-            { type: 'button', label: messages.email.manageCta, url: manage },
-            { type: 'links', links: calendarLinks(d) },
+            { type: 'heading', text: t('confirmed.heading', vars) },
+            { type: 'text', text: t('confirmed.body', vars) },
+            { type: 'details', rows: detailRows(d, l) },
+            manageButton,
+            { type: 'links', links: calendarLinks(d, l) },
             ...policy,
           ],
         ),
@@ -260,16 +308,14 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Reminder: ${d.serviceName} ${formatDateLong(a.startsAt, a.timezone, b.locale)} at ${formatTime(a.startsAt, a.timezone, b.locale)}`,
-          `Your appointment with ${b.name} is coming up.`,
+          l,
+          t('reminder.subject', { ...vars, time: formatTime(a.startsAt, a.timezone, l.fmt) }),
+          t('reminder.preheader', vars),
           [
-            { type: 'heading', text: 'See you soon' },
-            {
-              type: 'text',
-              text: `Hi ${first}, this is a friendly reminder of your upcoming appointment with ${b.name}.`,
-            },
-            { type: 'details', rows: detailRows(d) },
-            { type: 'button', label: messages.email.manageCta, url: manage },
+            { type: 'heading', text: t('reminder.heading', vars) },
+            { type: 'text', text: t('reminder.body', vars) },
+            { type: 'details', rows: detailRows(d, l) },
+            manageButton,
             ...policy,
           ],
         ),
@@ -285,31 +331,26 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Rescheduled: ${d.serviceName} now ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
-          'Your appointment has a new time.',
+          l,
+          t('rescheduled.subject', vars),
+          t('rescheduled.preheader', vars),
           [
-            { type: 'heading', text: 'Your appointment has moved' },
-            {
-              type: 'text',
-              text: `Hi ${first}, your appointment with ${b.name} has been rescheduled.`,
-            },
+            { type: 'heading', text: t('rescheduled.heading', vars) },
+            { type: 'text', text: t('rescheduled.body', vars) },
             ...(prev && prevEnd
               ? [
-                  { type: 'text', muted: true, text: 'Previous time' } as EmailBlock,
+                  { type: 'text', muted: true, text: t('rescheduled.previousTime') } as EmailBlock,
                   {
                     type: 'details',
                     strike: true,
-                    rows: whenRows(
-                      { startsAt: prev, endsAt: prevEnd, timezone: a.timezone },
-                      b.locale,
-                    ),
+                    rows: whenRows({ startsAt: prev, endsAt: prevEnd, timezone: a.timezone }, l),
                   } as EmailBlock,
                 ]
               : []),
-            { type: 'text', muted: true, text: 'New time' },
-            { type: 'details', rows: detailRows(d) },
-            { type: 'button', label: messages.email.manageCta, url: manage },
-            { type: 'links', links: calendarLinks(d) },
+            { type: 'text', muted: true, text: t('rescheduled.newTime') },
+            { type: 'details', rows: detailRows(d, l) },
+            manageButton,
+            { type: 'links', links: calendarLinks(d, l) },
           ],
         ),
       }
@@ -320,22 +361,24 @@ export async function renderBookingEmail(
       return {
         message: await customerEmail(
           d,
-          `Cancelled: ${d.serviceName} on ${formatDateLong(a.startsAt, a.timezone, b.locale)}`,
-          'Your appointment has been cancelled.',
+          l,
+          t('cancelled.subject', vars),
+          t('cancelled.preheader', vars),
           [
-            { type: 'heading', text: 'Appointment cancelled' },
+            { type: 'heading', text: t('cancelled.heading', vars) },
             {
               type: 'text',
-              text: byCustomer
-                ? `Hi ${first}, as requested we've cancelled your appointment with ${b.name}.`
-                : `Hi ${first}, ${b.name} has cancelled your appointment. We're sorry for any inconvenience.`,
+              text: byCustomer ? t('cancelled.byCustomer', vars) : t('cancelled.byBusiness', vars),
             },
-            { type: 'details', strike: true, rows: detailRows(d) },
+            { type: 'details', strike: true, rows: detailRows(d, l) },
             ...(a.cancellationReason && !byCustomer
               ? [
                   {
                     type: 'notice',
-                    text: `Message from ${b.name}: ${a.cancellationReason}`,
+                    text: t('cancelled.message', {
+                      business: b.name,
+                      reason: a.cancellationReason,
+                    }),
                   } as EmailBlock,
                 ]
               : []),
@@ -343,7 +386,7 @@ export async function renderBookingEmail(
               ? [
                   {
                     type: 'button',
-                    label: 'Book a new time',
+                    label: t('cancelled.bookAgain'),
                     url: appUrl(`/book/${b.slug}`),
                   } as EmailBlock,
                 ]
@@ -356,35 +399,45 @@ export async function renderBookingEmail(
     case 'member_booking_cancelled':
     case 'member_booking_rescheduled': {
       const who = `${d.customer.firstName} ${d.customer.lastName}`.trim()
+      const mv = { customer: who, service: d.serviceName, date }
       const title =
         template === 'member_booking_created'
           ? a.status === 'pending'
-            ? `New booking request: ${who}`
-            : `New booking: ${who}`
+            ? t('member.createdPendingTitle', mv)
+            : t('member.createdTitle', mv)
           : template === 'member_booking_cancelled'
-            ? `Cancelled: ${who}, ${formatDateLong(a.startsAt, a.timezone, b.locale)}`
-            : `Rescheduled: ${who}`
+            ? t('member.cancelledTitle', mv)
+            : t('member.rescheduledTitle', mv)
       const intro =
         template === 'member_booking_created'
           ? a.status === 'pending'
-            ? `${who} requested ${d.serviceName}. Confirm or decline it in your dashboard.`
-            : `${who} booked ${d.serviceName}.`
+            ? t('member.createdPendingIntro', mv)
+            : t('member.createdIntro', mv)
           : template === 'member_booking_cancelled'
-            ? `${who} cancelled their appointment. The time is available again.`
-            : `${who} moved their appointment to a new time.`
+            ? t('member.cancelledIntro', mv)
+            : t('member.rescheduledIntro', mv)
       return {
-        message: memberEmail(d, recipient, title, [
+        message: memberEmail(d, l, recipient, title, [
           { type: 'heading', text: title },
           { type: 'text', text: intro },
           {
             type: 'details',
-            rows: detailRows(d, { includeCustomer: true }),
+            rows: detailRows(d, l, { includeCustomer: true }),
             strike: template === 'member_booking_cancelled',
           },
           ...(a.customerMessage
-            ? [{ type: 'notice', text: `Note from customer: ${a.customerMessage}` } as EmailBlock]
+            ? [
+                {
+                  type: 'notice',
+                  text: t('member.note', { message: a.customerMessage }),
+                } as EmailBlock,
+              ]
             : []),
-          { type: 'button', label: 'Open in Hournook', url: appUrl(`/app/appointments/${a.id}`) },
+          {
+            type: 'button',
+            label: t('member.open'),
+            url: appUrl(`/app/appointments/${a.id}`),
+          },
         ]),
       }
     }

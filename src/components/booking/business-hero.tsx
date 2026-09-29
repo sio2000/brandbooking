@@ -1,5 +1,6 @@
 import { Globe, Mail, MapPin, Phone } from 'lucide-react'
 import type { PublicPageData } from '@/server/booking/public'
+import { getT } from '@/server/i18n'
 import { cn } from '@/lib/utils'
 
 const SOCIAL_LABELS: Record<string, string> = {
@@ -11,8 +12,29 @@ const SOCIAL_LABELS: Record<string, string> = {
   youtube: 'YouTube',
 }
 
-export function BusinessHero({ data, compact }: { data: PublicPageData; compact?: boolean }) {
+/** Categories offered in onboarding are stored in English; they are shown in the page's language. */
+const CATEGORY_KEYS: Record<string, string> = {
+  'Hair & beauty': 'hairBeauty',
+  Barbershop: 'barbershop',
+  Nails: 'nails',
+  'Spa & massage': 'spaMassage',
+  'Health & therapy': 'healthTherapy',
+  'Fitness & coaching': 'fitnessCoaching',
+  'Medical & dental': 'medicalDental',
+  Consulting: 'consulting',
+  'Education & tutoring': 'educationTutoring',
+  Photography: 'photography',
+  'Pet services': 'petServices',
+  Automotive: 'automotive',
+  'Home services': 'homeServices',
+  Other: 'other',
+}
+
+export async function BusinessHero({ data, compact }: { data: PublicPageData; compact?: boolean }) {
+  const t = await getT('booking')
   const b = data.business
+  const categoryKey = b.category ? CATEGORY_KEYS[b.category] : undefined
+  const category = categoryKey ? t(`categories.${categoryKey}`) : b.category
   return (
     <header className={cn('relative', compact ? 'mb-4' : 'mb-8')}>
       {!compact && (
@@ -44,7 +66,7 @@ export function BusinessHero({ data, compact }: { data: PublicPageData; compact?
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={b.logoUrl}
-            alt={`${b.name} logo`}
+            alt={t('hero.logoAlt', { business: b.name })}
             className={cn(
               'shrink-0 rounded-2xl border-4 border-background bg-surface object-contain shadow-md',
               compact ? 'size-12' : 'size-20 sm:size-24',
@@ -70,11 +92,14 @@ export function BusinessHero({ data, compact }: { data: PublicPageData; compact?
           >
             {b.name}
           </h1>
-          {b.category && <p className="mt-0.5 text-sm text-muted-foreground">{b.category}</p>}
+          {category && <p className="mt-0.5 text-sm text-muted-foreground">{category}</p>}
         </div>
       </div>
       {!compact && b.description && (
-        <p className="mt-3 max-w-2xl px-4 text-[15px] leading-relaxed whitespace-pre-line text-muted-foreground sm:px-6">
+        <p
+          dir="auto"
+          className="mt-3 max-w-2xl px-4 text-[15px] leading-relaxed whitespace-pre-line text-muted-foreground sm:px-6"
+        >
           {b.description}
         </p>
       )}
@@ -82,7 +107,8 @@ export function BusinessHero({ data, compact }: { data: PublicPageData; compact?
   )
 }
 
-export function BusinessContact({ data }: { data: PublicPageData }) {
+export async function BusinessContact({ data }: { data: PublicPageData }) {
+  const t = await getT('booking')
   const b = data.business
   const socials = Object.entries(b.socialLinks ?? {}).filter(([, v]) => v)
   const items = [
@@ -107,7 +133,7 @@ export function BusinessContact({ data }: { data: PublicPageData }) {
   return (
     <aside
       className="grid min-w-0 gap-5 rounded-2xl border border-border bg-surface p-5 shadow-xs"
-      aria-label="Contact information"
+      aria-label={t('hero.contact')}
     >
       {items.length > 0 && (
         <ul className="grid min-w-0 gap-3 text-sm">
@@ -121,7 +147,13 @@ export function BusinessContact({ data }: { data: PublicPageData }) {
               >
                 <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden />
                 {/* Long emails and web addresses have no spaces: allow breaks anywhere. */}
-                <span className="min-w-0 [overflow-wrap:anywhere]">{label}</span>
+                <span
+                  // Phone numbers, emails and web addresses read left to right in every language.
+                  dir={Icon === MapPin ? 'auto' : 'ltr'}
+                  className="min-w-0 [overflow-wrap:anywhere]"
+                >
+                  {label}
+                </span>
               </a>
             </li>
           ))}
@@ -145,7 +177,7 @@ export function BusinessContact({ data }: { data: PublicPageData }) {
       {b.bookingPolicy && (
         <div>
           <h2 className="font-sans text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-            Booking policy
+            {t('hero.bookingPolicy')}
           </h2>
           <p className="mt-1.5 text-[13px] leading-relaxed whitespace-pre-line text-muted-foreground">
             {b.bookingPolicy}

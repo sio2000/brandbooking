@@ -361,6 +361,8 @@ export const appointments = pgTable('appointments', {
   cancelledBy: actorType('cancelled_by'),
   cancellationReason: text('cancellation_reason'),
   rescheduleCount: integer('reschedule_count').notNull().default(0),
+  /** Language the customer booked in: their emails and manage page use it. */
+  locale: text('locale').notNull().default('en'),
   createdAt: tstz('created_at').notNull().defaultNow(),
   updatedAt: tstz('updated_at').notNull().defaultNow(),
 })

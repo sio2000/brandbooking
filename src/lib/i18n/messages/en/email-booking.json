@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Booking confirmed: {service} on {date}",
+    "subjectPending": "Booking request received: {business}",
+    "preheader": "See you on {date}.",
+    "preheaderPending": "{business} will confirm your request shortly.",
+    "heading": "You're booked, {name}!",
+    "headingPending": "Thanks, {name}. Request received",
+    "body": "Your appointment with {business} is confirmed. Here are the details:",
+    "bodyPending": "{business} will review your request and confirm it shortly. You'll get another email once it's confirmed."
+  },
+  "confirmed": {
+    "subject": "Confirmed: {service} on {date}",
+    "preheader": "{business} confirmed your booking.",
+    "heading": "Your booking is confirmed",
+    "body": "Good news, {name}! {business} has confirmed your appointment."
+  },
+  "reminder": {
+    "subject": "Reminder: {service} {date} at {time}",
+    "preheader": "Your appointment with {business} is coming up.",
+    "heading": "See you soon",
+    "body": "Hi {name}, this is a friendly reminder of your upcoming appointment with {business}."
+  },
+  "rescheduled": {
+    "subject": "Rescheduled: {service} now {date}",
+    "preheader": "Your appointment has a new time.",
+    "heading": "Your appointment has moved",
+    "body": "Hi {name}, your appointment with {business} has been rescheduled.",
+    "previousTime": "Previous time",
+    "newTime": "New time"
+  },
+  "cancelled": {
+    "subject": "Cancelled: {service} on {date}",
+    "preheader": "Your appointment has been cancelled.",
+    "heading": "Appointment cancelled",
+    "byCustomer": "Hi {name}, as requested we've cancelled your appointment with {business}.",
+    "byBusiness": "Hi {name}, {business} has cancelled your appointment. We're sorry for any inconvenience.",
+    "message": "Message from {business}: {reason}",
+    "bookAgain": "Book a new time"
+  },
+  "member": {
+    "createdTitle": "New booking: {customer}",
+    "createdPendingTitle": "New booking request: {customer}",
+    "cancelledTitle": "Cancelled: {customer}, {date}",
+    "rescheduledTitle": "Rescheduled: {customer}",
+    "createdIntro": "{customer} booked {service}.",
+    "createdPendingIntro": "{customer} requested {service}. Confirm or decline it in your dashboard.",
+    "cancelledIntro": "{customer} cancelled their appointment. The time is available again.",
+    "rescheduledIntro": "{customer} moved their appointment to a new time.",
+    "note": "Note from customer: {message}",
+    "open": "Open in Hournook",
+    "footer": "You're receiving this because you're a member of {business} on Hournook. Change notification preferences in Settings."
+  }
+}

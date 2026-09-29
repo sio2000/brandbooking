@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Rezervasyonunuz"
+  },
+  "error": {
+    "expired": "Bu bağlantının süresi doldu",
+    "notFound": "Bu rezervasyonu bulamadık",
+    "body": "Rezervasyon bağlantıları randevudan 30 gün sonra veya eksik kopyalandıklarında çalışmaz. Randevunuzla ilgili yardıma ihtiyacınız varsa doğrudan işletmeyle iletişime geçin."
+  },
+  "status": {
+    "confirmed": "Onaylandı",
+    "pending": "Onay bekleniyor",
+    "cancelled": "İptal edildi",
+    "completed": "Tamamlandı",
+    "no_show": "Gelmedi"
+  },
+  "bookingWith": "Rezervasyonunuz:",
+  "withStaff": "{duration} · {name} ile",
+  "labels": {
+    "date": "Tarih",
+    "time": "Saat",
+    "price": "Fiyat",
+    "reference": "Rezervasyon kodu"
+  },
+  "moved": {
+    "title": "Randevunuz yeniden planlandı",
+    "body": "Yeni saati size e-postayla gönderdik.",
+    "view": "Rezervasyonu görüntüle"
+  },
+  "actions": {
+    "reschedule": "Yeniden planla",
+    "cancel": "Rezervasyonu iptal et"
+  },
+  "cancelDialog": {
+    "title": "Bu rezervasyon iptal edilsin mi?",
+    "description": "{date} tarihindeki {service} randevunuz iptal edilecek ve saat boşa çıkacak. {business} bilgilendirilecek.",
+    "reason": "Neden",
+    "optional": "(isteğe bağlı)",
+    "keep": "Vazgeç",
+    "cancelled": "Rezervasyonunuz iptal edildi"
+  },
+  "deadlines": {
+    "personal": "{business} değişiklikleri kendisi yapıyor. Lütfen işletmeyle iletişime geçin.",
+    "passed": "Online değişiklik {date} tarihine kadar mümkündü. Şimdi değişiklik için lütfen {business} ile iletişime geçin."
+  },
+  "reschedule": {
+    "title": "Yeni saat seçin",
+    "keep": "Mevcut saati koru",
+    "moveTo": "{date} tarihine taşı",
+    "pick": "Saat seçin"
+  },
+  "network": {
+    "reschedule": "Ağ hatası. Hiçbir şey değişmedi. Lütfen tekrar deneyin.",
+    "cancel": "Ağ hatası. Rezervasyonunuz iptal edilmedi. Lütfen tekrar deneyin."
+  },
+  "contact": {
+    "label": "İşletmeyle iletişime geçin",
+    "title": "Sorunuz mu var? {business} ile iletişime geçin"
+  },
+  "bookAnother": "Başka randevu al"
+}

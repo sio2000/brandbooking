@@ -15,6 +15,7 @@ export function Field({
   hint,
   error,
   optional,
+  optionalLabel = 'Optional',
   className,
   children,
 }: {
@@ -23,6 +24,8 @@ export function Field({
   hint?: React.ReactNode
   error?: string
   optional?: boolean
+  /** Translated "Optional" marker. */
+  optionalLabel?: string
   className?: string
   children: React.ReactElement<Record<string, unknown>>
 }) {
@@ -38,7 +41,7 @@ export function Field({
     <div className={cn('grid gap-1.5', className)}>
       <div className="flex items-baseline justify-between gap-2">
         <Label htmlFor={htmlFor}>{label}</Label>
-        {optional && <span className="text-xs text-subtle-foreground">Optional</span>}
+        {optional && <span className="text-xs text-subtle-foreground">{optionalLabel}</span>}
       </div>
       {control}
       {hint && !error && (

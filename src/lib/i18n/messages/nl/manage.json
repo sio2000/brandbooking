@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Je boeking"
+  },
+  "error": {
+    "expired": "Deze link is verlopen",
+    "notFound": "We konden deze boeking niet vinden",
+    "body": "Boekingslinks werken tot 30 dagen na de afspraak, en alleen als ze volledig zijn gekopieerd. Neem rechtstreeks contact op met het bedrijf als je hulp nodig hebt met je afspraak."
+  },
+  "status": {
+    "confirmed": "Bevestigd",
+    "pending": "Wacht op bevestiging",
+    "cancelled": "Geannuleerd",
+    "completed": "Afgerond",
+    "no_show": "Niet verschenen"
+  },
+  "bookingWith": "Je boeking bij",
+  "withStaff": "{duration} · bij {name}",
+  "labels": {
+    "date": "Datum",
+    "time": "Tijd",
+    "price": "Prijs",
+    "reference": "Boekingsnummer"
+  },
+  "moved": {
+    "title": "Je afspraak is verzet",
+    "body": "We hebben je de nieuwe tijd gemaild.",
+    "view": "Boeking bekijken"
+  },
+  "actions": {
+    "reschedule": "Verzetten",
+    "cancel": "Boeking annuleren"
+  },
+  "cancelDialog": {
+    "title": "Deze boeking annuleren?",
+    "description": "Je afspraak voor {service} op {date} wordt geannuleerd en de tijd komt weer vrij. {business} krijgt hiervan bericht.",
+    "reason": "Reden",
+    "optional": "(optioneel)",
+    "keep": "Terug",
+    "cancelled": "Je boeking is geannuleerd"
+  },
+  "deadlines": {
+    "personal": "{business} regelt wijzigingen persoonlijk. Neem contact met ze op.",
+    "passed": "Online wijzigen kon tot {date}. Neem voor wijzigingen nu contact op met {business}."
+  },
+  "reschedule": {
+    "title": "Kies een nieuwe tijd",
+    "keep": "Huidige tijd houden",
+    "moveTo": "Verzetten naar {date}",
+    "pick": "Kies een tijd"
+  },
+  "network": {
+    "reschedule": "Netwerkfout. Er is niets gewijzigd. Probeer het opnieuw.",
+    "cancel": "Netwerkfout. Je boeking is niet geannuleerd. Probeer het opnieuw."
+  },
+  "contact": {
+    "label": "Contact met het bedrijf",
+    "title": "Vragen? Neem contact op met {business}"
+  },
+  "bookAnother": "Nog een afspraak boeken"
+}

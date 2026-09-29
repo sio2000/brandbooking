@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "您的预订"
+  },
+  "error": {
+    "expired": "该链接已过期",
+    "notFound": "找不到该预订",
+    "body": "预订链接会在预约结束 30 天后失效，复制不完整的链接也无法使用。如需帮助，请直接联系商家。"
+  },
+  "status": {
+    "confirmed": "已确认",
+    "pending": "待确认",
+    "cancelled": "已取消",
+    "completed": "已完成",
+    "no_show": "未到场"
+  },
+  "bookingWith": "您在以下商家的预订",
+  "withStaff": "{duration} · 服务人员：{name}",
+  "labels": {
+    "date": "日期",
+    "time": "时间",
+    "price": "价格",
+    "reference": "预订编号"
+  },
+  "moved": {
+    "title": "您的预约已改期",
+    "body": "新的时间已发送到您的邮箱。",
+    "view": "查看预订"
+  },
+  "actions": {
+    "reschedule": "改期",
+    "cancel": "取消预订"
+  },
+  "cancelDialog": {
+    "title": "要取消此预订吗？",
+    "description": "您在 {date} 的「{service}」预约将被取消，该时段将重新开放。我们会通知 {business}。",
+    "reason": "原因",
+    "optional": "（选填）",
+    "keep": "返回",
+    "cancelled": "您的预订已取消"
+  },
+  "deadlines": {
+    "personal": "{business} 由人工处理变更，请直接联系商家。",
+    "passed": "在线变更截止时间为 {date}。如需变更，请联系 {business}。"
+  },
+  "reschedule": {
+    "title": "选择新的时间",
+    "keep": "保留当前时间",
+    "moveTo": "改到 {date}",
+    "pick": "选择时间"
+  },
+  "network": {
+    "reschedule": "网络错误，未做任何更改。请重试。",
+    "cancel": "网络错误，您的预订未取消。请重试。"
+  },
+  "contact": {
+    "label": "联系商家",
+    "title": "有疑问？请联系 {business}"
+  },
+  "bookAnother": "再预约一次"
+}

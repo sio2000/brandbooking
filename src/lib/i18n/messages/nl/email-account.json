@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, online boeken voor kleine bedrijven.",
+  "verify": {
+    "subject": "Bevestig je e-mailadres",
+    "preheader": "Bevestig je e-mailadres om het instellen van Hournook af te ronden.",
+    "heading": "Welkom, {name}",
+    "body": "Bevestig je e-mailadres zodat we je boekingsmeldingen kunnen sturen en je account veilig kunnen houden.",
+    "cta": "E-mailadres bevestigen",
+    "expiry": "Deze link verloopt over 24 uur. Heb je geen Hournook-account aangemaakt? Dan kun je deze e-mail negeren."
+  },
+  "reset": {
+    "subject": "Stel je Hournook-wachtwoord opnieuw in",
+    "preheader": "Stel je Hournook-wachtwoord opnieuw in.",
+    "heading": "Wachtwoord opnieuw instellen",
+    "body": "We hebben een verzoek ontvangen om het wachtwoord van je account opnieuw in te stellen. Kies met de knop hieronder een nieuw wachtwoord.",
+    "cta": "Nieuw wachtwoord kiezen",
+    "expiry": "Deze link verloopt over 1 uur en werkt maar één keer. Heb je dit niet aangevraagd? Dan kun je deze e-mail negeren. Je wachtwoord blijft hetzelfde."
+  },
+  "invite": {
+    "subject": "Je bent uitgenodigd voor {business}",
+    "preheader": "{inviter} heeft je uitgenodigd voor {business} op Hournook.",
+    "heading": "Word lid van {business}",
+    "body": "{inviter} heeft je uitgenodigd voor {business} op Hournook als {role}. Je kunt dan je afspraken zien en je beschikbaarheid beheren.",
+    "roleManager": "manager",
+    "roleMember": "teamlid",
+    "cta": "Uitnodiging accepteren",
+    "expiry": "Deze uitnodiging verloopt over 7 dagen."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Actie nodig: betaling mislukt voor {business}",
+      "heading": "We konden je betaling niet verwerken",
+      "text": "Je laatste Hournook-betaling voor {business} is niet gelukt. We proberen het automatisch opnieuw, maar werk je betaalmethode bij zodat je boekingspagina niet wordt gepauzeerd.",
+      "cta": "Betaalmethode bijwerken"
+    },
+    "active": {
+      "subject": "Je Hournook-abonnement is actief",
+      "heading": "Bedankt, alles is geregeld",
+      "text": "Je abonnement voor {business} is actief. Je boekingspagina blijft zonder onderbreking boekingen aannemen.",
+      "cta": "Facturatie bekijken"
+    },
+    "canceled": {
+      "subject": "Je Hournook-abonnement is beëindigd",
+      "heading": "Je abonnement is beëindigd",
+      "text": "Het abonnement voor {business} is opgezegd. Je gegevens zijn veilig en je dashboard blijft beschikbaar, maar je boekingspagina neemt geen nieuwe boekingen meer aan. Je kunt op elk moment opnieuw een abonnement nemen.",
+      "cta": "Opnieuw abonneren"
+    }
+  }
+}

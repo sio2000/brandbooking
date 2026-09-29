@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Votre réservation"
+  },
+  "error": {
+    "expired": "Ce lien a expiré",
+    "notFound": "Nous n’avons pas trouvé cette réservation",
+    "body": "Les liens de réservation cessent de fonctionner 30 jours après le rendez-vous, ou s’ils ont été copiés de manière incomplète. Contactez directement l’établissement si vous avez besoin d’aide pour votre rendez-vous."
+  },
+  "status": {
+    "confirmed": "Confirmé",
+    "pending": "En attente de confirmation",
+    "cancelled": "Annulé",
+    "completed": "Terminé",
+    "no_show": "Manqué"
+  },
+  "bookingWith": "Votre réservation chez",
+  "withStaff": "{duration} · avec {name}",
+  "labels": {
+    "date": "Date",
+    "time": "Heure",
+    "price": "Prix",
+    "reference": "Référence"
+  },
+  "moved": {
+    "title": "Votre rendez-vous a été déplacé",
+    "body": "Nous vous avons envoyé le nouvel horaire par e-mail.",
+    "view": "Voir la réservation"
+  },
+  "actions": {
+    "reschedule": "Déplacer",
+    "cancel": "Annuler la réservation"
+  },
+  "cancelDialog": {
+    "title": "Annuler cette réservation ?",
+    "description": "Votre rendez-vous {service} du {date} sera annulé et le créneau libéré. {business} en sera informé.",
+    "reason": "Motif",
+    "optional": "(facultatif)",
+    "keep": "Retour",
+    "cancelled": "Votre réservation a été annulée"
+  },
+  "deadlines": {
+    "personal": "{business} gère les modifications directement. Veuillez prendre contact avec l’établissement.",
+    "passed": "Les modifications en ligne étaient possibles jusqu’au {date}. Pour toute modification, contactez désormais {business}."
+  },
+  "reschedule": {
+    "title": "Choisissez un nouvel horaire",
+    "keep": "Garder l’horaire actuel",
+    "moveTo": "Déplacer au {date}",
+    "pick": "Choisissez un horaire"
+  },
+  "network": {
+    "reschedule": "Erreur réseau. Rien n’a été modifié. Veuillez réessayer.",
+    "cancel": "Erreur réseau. Votre réservation n’a pas été annulée. Veuillez réessayer."
+  },
+  "contact": {
+    "label": "Contacter l’établissement",
+    "title": "Des questions ? Contactez {business}"
+  },
+  "bookAnother": "Prendre un autre rendez-vous"
+}

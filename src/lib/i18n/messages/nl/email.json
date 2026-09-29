@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Je ontvangt deze e-mail omdat je een afspraak hebt geboekt.",
+  "manageCta": "Boeking beheren",
+  "addToCalendar": "Aan agenda toevoegen",
+  "sentOnBehalf": "Verstuurd door Hournook namens {business}.",
+  "previous": "(vorige)",
+  "rows": {
+    "service": "Dienst",
+    "date": "Datum",
+    "time": "Tijd",
+    "with": "Bij",
+    "price": "Prijs",
+    "where": "Waar",
+    "customer": "Klant",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "reference": "Boekingsnummer"
+  },
+  "calendar": {
+    "title": "{service} bij {business}",
+    "bookingReference": "Boekingsnummer {reference}",
+    "reference": "Boekingsnummer {reference}",
+    "manage": "Beheer je boeking: {url}",
+    "referenceAndManage": "Boekingsnummer {reference}. Beheer je boeking: {url}",
+    "google": "Google Agenda",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Afspraak"
+  }
+}

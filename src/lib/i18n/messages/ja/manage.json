@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "ご予約内容"
+  },
+  "error": {
+    "expired": "このリンクは有効期限が切れています",
+    "notFound": "この予約が見つかりません",
+    "body": "予約リンクは予約日から 30 日後、またはリンクが途中までしかコピーされていない場合に使えなくなります。ご予約についてお困りの場合は、店舗に直接お問い合わせください。"
+  },
+  "status": {
+    "confirmed": "確定済み",
+    "pending": "確認待ち",
+    "cancelled": "キャンセル済み",
+    "completed": "完了",
+    "no_show": "未来店"
+  },
+  "bookingWith": "ご予約先",
+  "withStaff": "{duration} · 担当：{name}",
+  "labels": {
+    "date": "日付",
+    "time": "時間",
+    "price": "料金",
+    "reference": "予約番号"
+  },
+  "moved": {
+    "title": "予約日時を変更しました",
+    "body": "新しい日時をメールでお送りしました。",
+    "view": "予約を表示"
+  },
+  "actions": {
+    "reschedule": "日時を変更",
+    "cancel": "予約をキャンセル"
+  },
+  "cancelDialog": {
+    "title": "この予約をキャンセルしますか？",
+    "description": "{date} の「{service}」の予約がキャンセルされ、枠が解放されます。{business} にも通知されます。",
+    "reason": "理由",
+    "optional": "（任意）",
+    "keep": "戻る",
+    "cancelled": "予約をキャンセルしました"
+  },
+  "deadlines": {
+    "personal": "{business} では変更を直接受け付けています。店舗にお問い合わせください。",
+    "passed": "オンラインでの変更は {date} まででした。変更をご希望の場合は {business} にお問い合わせください。"
+  },
+  "reschedule": {
+    "title": "新しい日時を選択",
+    "keep": "現在の日時のままにする",
+    "moveTo": "{date} に変更",
+    "pick": "時間を選択"
+  },
+  "network": {
+    "reschedule": "ネットワークエラーです。変更は行われていません。もう一度お試しください。",
+    "cancel": "ネットワークエラーです。予約はキャンセルされていません。もう一度お試しください。"
+  },
+  "contact": {
+    "label": "店舗へのお問い合わせ",
+    "title": "ご不明な点は {business} へお問い合わせください"
+  },
+  "bookAnother": "別の予約をする"
+}

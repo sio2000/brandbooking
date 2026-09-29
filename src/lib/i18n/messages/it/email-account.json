@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, prenotazioni online per piccole attività.",
+  "verify": {
+    "subject": "Conferma il tuo indirizzo email",
+    "preheader": "Conferma il tuo indirizzo email per completare la configurazione di Hournook.",
+    "heading": "Benvenuto, {name}",
+    "body": "Conferma il tuo indirizzo email così potremo inviarti le notifiche delle prenotazioni e proteggere il tuo account.",
+    "cta": "Conferma indirizzo email",
+    "expiry": "Questo link scade tra 24 ore. Se non hai creato un account Hournook, puoi ignorare questa email."
+  },
+  "reset": {
+    "subject": "Reimposta la password di Hournook",
+    "preheader": "Reimposta la tua password di Hournook.",
+    "heading": "Reimposta la password",
+    "body": "Abbiamo ricevuto una richiesta di reimpostazione della password del tuo account. Usa il pulsante qui sotto per sceglierne una nuova.",
+    "cta": "Scegli una nuova password",
+    "expiry": "Questo link scade tra 1 ora e può essere usato una sola volta. Se non l’hai richiesto tu, puoi ignorare questa email. La tua password non cambierà."
+  },
+  "invite": {
+    "subject": "Sei invitato a unirti a {business}",
+    "preheader": "{inviter} ti ha invitato a unirti a {business} su Hournook.",
+    "heading": "Unisciti a {business}",
+    "body": "{inviter} ti ha invitato a unirti a {business} su Hournook come {role}. Potrai vedere i tuoi appuntamenti e gestire la tua disponibilità.",
+    "roleManager": "manager",
+    "roleMember": "membro del team",
+    "cta": "Accetta l’invito",
+    "expiry": "Questo invito scade tra 7 giorni."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Azione richiesta: pagamento non riuscito per {business}",
+      "heading": "Non è stato possibile elaborare il tuo pagamento",
+      "text": "Il tuo ultimo pagamento Hournook per {business} non è andato a buon fine. Riproveremo automaticamente, ma aggiorna il metodo di pagamento per evitare che la tua pagina di prenotazione venga sospesa.",
+      "cta": "Aggiorna il metodo di pagamento"
+    },
+    "active": {
+      "subject": "Il tuo abbonamento Hournook è attivo",
+      "heading": "Grazie, è tutto pronto",
+      "text": "Il tuo abbonamento per {business} è attivo. La tua pagina di prenotazione continuerà ad accettare prenotazioni senza interruzioni.",
+      "cta": "Visualizza la fatturazione"
+    },
+    "canceled": {
+      "subject": "Il tuo abbonamento Hournook è terminato",
+      "heading": "Il tuo abbonamento è terminato",
+      "text": "L’abbonamento per {business} è stato annullato. I tuoi dati sono al sicuro e la dashboard resta disponibile, ma la tua pagina di prenotazione non accetta più nuove prenotazioni. Puoi abbonarti di nuovo in qualsiasi momento.",
+      "cta": "Abbonati di nuovo"
+    }
+  }
+}

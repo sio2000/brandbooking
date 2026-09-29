@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, küçük işletmeler için online rezervasyon.",
+  "verify": {
+    "subject": "E-posta adresinizi doğrulayın",
+    "preheader": "Hournook kurulumunu tamamlamak için e-posta adresinizi doğrulayın.",
+    "heading": "Hoş geldiniz, {name}",
+    "body": "Size rezervasyon bildirimleri gönderebilmemiz ve hesabınızı güvende tutabilmemiz için e-posta adresinizi doğrulayın.",
+    "cta": "E-posta adresini doğrula",
+    "expiry": "Bu bağlantı 24 saat geçerlidir. Hournook hesabı oluşturmadıysanız bu e-postayı yok sayabilirsiniz."
+  },
+  "reset": {
+    "subject": "Hournook şifrenizi sıfırlayın",
+    "preheader": "Hournook şifrenizi sıfırlayın.",
+    "heading": "Şifrenizi sıfırlayın",
+    "body": "Hesabınızın şifresini sıfırlamak için bir talep aldık. Yeni bir şifre belirlemek için aşağıdaki düğmeyi kullanın.",
+    "cta": "Yeni şifre belirle",
+    "expiry": "Bu bağlantı 1 saat geçerlidir ve yalnızca bir kez kullanılabilir. Bu talebi siz yapmadıysanız bu e-postayı yok sayabilirsiniz. Şifreniz değişmeyecek."
+  },
+  "invite": {
+    "subject": "{business} ekibine davet edildiniz",
+    "preheader": "{inviter} sizi Hournook’ta {business} ekibine davet etti.",
+    "heading": "{business} ekibine katılın",
+    "body": "{inviter} sizi Hournook’ta {business} ekibine {role} olarak davet etti. Randevularınızı görebilecek ve müsaitliğinizi yönetebileceksiniz.",
+    "roleManager": "yönetici",
+    "roleMember": "ekip üyesi",
+    "cta": "Daveti kabul et",
+    "expiry": "Bu davet 7 gün geçerlidir."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "İşlem gerekli: {business} için ödeme başarısız oldu",
+      "heading": "Ödemenizi işleyemedik",
+      "text": "{business} için son Hournook ödemeniz gerçekleşmedi. Otomatik olarak yeniden deneyeceğiz, ancak rezervasyon sayfanızın duraklatılmaması için lütfen ödeme yönteminizi güncelleyin.",
+      "cta": "Ödeme yöntemini güncelle"
+    },
+    "active": {
+      "subject": "Hournook aboneliğiniz aktif",
+      "heading": "Teşekkürler, her şey hazır",
+      "text": "{business} aboneliğiniz aktif. Rezervasyon sayfanız kesintisiz olarak rezervasyon kabul etmeye devam edecek.",
+      "cta": "Faturalandırmayı görüntüle"
+    },
+    "canceled": {
+      "subject": "Hournook aboneliğiniz sona erdi",
+      "heading": "Aboneliğiniz sona erdi",
+      "text": "{business} aboneliği iptal edildi. Verileriniz güvende ve panelinize erişmeye devam edebilirsiniz, ancak rezervasyon sayfanız artık yeni rezervasyon kabul etmiyor. İstediğiniz zaman yeniden abone olabilirsiniz.",
+      "cta": "Yeniden abone ol"
+    }
+  }
+}

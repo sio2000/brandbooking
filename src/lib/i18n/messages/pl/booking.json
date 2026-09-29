@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "Usługa",
+    "staff": "Członek zespołu",
+    "date": "Data",
+    "time": "Godzina",
+    "datetime": "Data i godzina",
+    "details": "Twoje dane",
+    "confirm": "Potwierdzenie",
+    "done": "Gotowe"
+  },
+  "anyStaff": "Dowolna osoba",
+  "anyStaffHint": "Przydzielimy Cię do osoby, która ma wolny termin.",
+  "noSlots": "Brak wolnych terminów tego dnia.",
+  "noSlotsHint": "Wybierz inną datę. Dni z wolnymi terminami są wyróżnione.",
+  "timesShownIn": "Godziny w strefie {tz}",
+  "confirmTitle": "Zarezerwowane!",
+  "pendingTitle": "Prośba otrzymana",
+  "pendingBody": "{business} wkrótce potwierdzi Twoją wizytę. Szczegóły wysłaliśmy Ci e-mailem.",
+  "confirmedBody": "Wysłaliśmy potwierdzenie na adres {email}.",
+  "pausedTitle": "Rezerwacje online są wstrzymane",
+  "pausedDefault": "Obecnie nie przyjmujemy rezerwacji online.",
+  "privacyNote": "Twoje dane otrzymuje wyłącznie {business} w celu obsługi Twojej wizyty.",
+  "privacyLink": "Zobacz naszą <link>informację o prywatności</link>.",
+  "meta": {
+    "notFoundTitle": "Nie znaleziono strony rezerwacji",
+    "title": "{business} · Rezerwacje online",
+    "description": "Zarezerwuj wizytę w {business} online."
+  },
+  "page": {
+    "previewBanner": "Podgląd: ta strona nie jest jeszcze opublikowana. Widzisz ją tylko Ty.",
+    "publish": "Opublikuj",
+    "reopensOn": "Rezerwacje ruszą ponownie: {date}.",
+    "contactDirectly": "Nadal możesz skontaktować się bezpośrednio z {business}, korzystając z danych kontaktowych na tej stronie.",
+    "poweredBy": "Rezerwacje online dzięki <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "Ta strona rezerwacji nie istnieje",
+    "body": "Sprawdź link lub poproś firmę o aktualny link do rezerwacji.",
+    "home": "Przejdź do Hournook"
+  },
+  "hero": {
+    "logoAlt": "Logo {business}",
+    "contact": "Dane kontaktowe",
+    "bookingPolicy": "Zasady rezerwacji"
+  },
+  "categories": {
+    "hairBeauty": "Fryzjerstwo i uroda",
+    "barbershop": "Barber",
+    "nails": "Paznokcie",
+    "spaMassage": "Spa i masaż",
+    "healthTherapy": "Zdrowie i terapia",
+    "fitnessCoaching": "Fitness i coaching",
+    "medicalDental": "Medycyna i stomatologia",
+    "consulting": "Doradztwo",
+    "educationTutoring": "Edukacja i korepetycje",
+    "photography": "Fotografia",
+    "petServices": "Usługi dla zwierząt",
+    "automotive": "Motoryzacja",
+    "homeServices": "Usługi domowe",
+    "other": "Inne"
+  },
+  "flow": {
+    "noServices": "Obecnie żadna usługa nie jest dostępna do rezerwacji online.",
+    "contactBusiness": "Skontaktuj się bezpośrednio z {business}.",
+    "progress": "Postęp rezerwacji",
+    "stepOf": "Krok {current} z {total}:",
+    "chooseService": "Wybierz usługę",
+    "chooseStaff": "Do kogo chcesz się zapisać?",
+    "pickDateTime": "Wybierz datę i godzinę",
+    "withStaff": "u: {name}",
+    "continue": "Dalej",
+    "reviewBooking": "Sprawdź rezerwację",
+    "confirmTitle": "Potwierdź rezerwację",
+    "freeCancellationStart": "Bezpłatne anulowanie online do rozpoczęcia wizyty.",
+    "freeCancellation": "Bezpłatne anulowanie online najpóźniej {deadline} przed wizytą.",
+    "deadlineDays": "{count, plural, one {# dzień} few {# dni} many {# dni} other {# dnia}}",
+    "deadlineHours": "{count, plural, one {# godzinę} few {# godziny} many {# godzin} other {# godziny}}",
+    "deadlineMinutes": "{count, plural, one {# minutę} few {# minuty} many {# minut} other {# minuty}}",
+    "previewNote": "To jest podgląd. Opublikuj stronę rezerwacji, aby zacząć przyjmować prawdziwe rezerwacje. Klienci zobaczą dokładnie ten proces.",
+    "previewDisabled": "Rezerwacja wyłączona w podglądzie",
+    "requestBooking": "Wyślij prośbę o rezerwację",
+    "confirmBooking": "Potwierdź rezerwację",
+    "networkError": "Nie udało się połączyć z serwerem. Sprawdź połączenie i spróbuj ponownie. Nic nie zostało jeszcze zarezerwowane.",
+    "back": "Wstecz",
+    "otherServices": "Pozostałe usługi",
+    "free": "Bezpłatnie",
+    "book": "Zarezerwuj"
+  },
+  "details": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "E-mail",
+    "emailHint": "Tu wyślemy potwierdzenie.",
+    "phone": "Telefon",
+    "phoneHint": "Firma użyje go tylko wtedy, gdy będzie musiała się z Tobą skontaktować.",
+    "message": "Coś, o czym powinniśmy wiedzieć?",
+    "optional": "Opcjonalnie",
+    "honeypot": "Strona internetowa",
+    "errors": {
+      "firstName": "Wpisz swoje imię.",
+      "lastName": "Wpisz swoje nazwisko.",
+      "email": "Wpisz poprawny adres e-mail.",
+      "phoneRequired": "Wpisz swój numer telefonu.",
+      "phoneInvalid": "Wpisz poprawny numer telefonu.",
+      "staffId": "Wybierz członka zespołu."
+    }
+  },
+  "summary": {
+    "service": "Usługa",
+    "when": "Kiedy",
+    "with": "U kogo",
+    "bookedFor": "Rezerwacja dla",
+    "where": "Gdzie",
+    "price": "Cena"
+  },
+  "success": {
+    "reference": "Numer rezerwacji",
+    "manage": "Zobacz, zmień termin lub anuluj",
+    "bookAnother": "Zarezerwuj kolejną wizytę"
+  },
+  "slots": {
+    "previousMonth": "Poprzedni miesiąc",
+    "nextMonth": "Następny miesiąc",
+    "chooseDate": "Wybierz datę",
+    "dayAvailable": "{date}, {count, plural, one {# wolny termin} few {# wolne terminy} many {# wolnych terminów} other {# wolnego terminu}}",
+    "dayUnavailable": "{date}, brak wolnych terminów",
+    "showBusinessTime": "Pokaż czas firmy",
+    "showMyTime": "Pokaż w mojej strefie czasowej",
+    "loadError": "Nie udało się wczytać wolnych terminów",
+    "noDates": "Brak wolnych dat w tym okresie. Sprawdź następny miesiąc.",
+    "morning": "Rano",
+    "afternoon": "Po południu",
+    "evening": "Wieczorem",
+    "morningTimes": "Terminy poranne",
+    "afternoonTimes": "Terminy popołudniowe",
+    "eveningTimes": "Terminy wieczorne"
+  }
+}

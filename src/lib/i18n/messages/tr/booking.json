@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "Hizmet",
+    "staff": "Ekip üyesi",
+    "date": "Tarih",
+    "time": "Saat",
+    "datetime": "Tarih ve saat",
+    "details": "Bilgileriniz",
+    "confirm": "Onay",
+    "done": "Tamamlandı"
+  },
+  "anyStaff": "Fark etmez",
+  "anyStaffHint": "Sizi müsait olan kişiyle eşleştiririz.",
+  "noSlots": "Bu gün için boş saat yok.",
+  "noSlotsHint": "Başka bir tarih deneyin. Müsait günler vurgulanmıştır.",
+  "timesShownIn": "Saatler {tz} saat dilimine göre gösterilir",
+  "confirmTitle": "Randevunuz alındı!",
+  "pendingTitle": "Talebiniz alındı",
+  "pendingBody": "{business} randevunuzu kısa süre içinde onaylayacak. Ayrıntıları size e-postayla gönderdik.",
+  "confirmedBody": "Onayı {email} adresine gönderdik.",
+  "pausedTitle": "Online rezervasyon duraklatıldı",
+  "pausedDefault": "Şu anda online rezervasyon kabul etmiyoruz.",
+  "privacyNote": "Bilgileriniz yalnızca randevunuzu yönetmek için {business} ile paylaşılır.",
+  "privacyLink": "<link>Gizlilik bildirimimize</link> göz atın.",
+  "meta": {
+    "notFoundTitle": "Rezervasyon sayfası bulunamadı",
+    "title": "{business} · Online rezervasyon",
+    "description": "{business} için online randevu alın."
+  },
+  "page": {
+    "previewBanner": "Önizleme: Bu sayfa henüz yayınlanmadı. Yalnızca siz görebilirsiniz.",
+    "publish": "Yayınla",
+    "reopensOn": "Rezervasyonlar {date} tarihinde yeniden açılıyor.",
+    "contactDirectly": "Bu sayfadaki iletişim bilgileriyle {business} ile doğrudan iletişime geçebilirsiniz.",
+    "poweredBy": "Online rezervasyon: <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "Bu rezervasyon sayfası mevcut değil",
+    "body": "Bağlantıyı kontrol edin veya işletmeden güncel rezervasyon bağlantısını isteyin.",
+    "home": "Hournook’a git"
+  },
+  "hero": {
+    "logoAlt": "{business} logosu",
+    "contact": "İletişim bilgileri",
+    "bookingPolicy": "Rezervasyon koşulları"
+  },
+  "categories": {
+    "hairBeauty": "Kuaför ve güzellik",
+    "barbershop": "Berber",
+    "nails": "Tırnak bakımı",
+    "spaMassage": "Spa ve masaj",
+    "healthTherapy": "Sağlık ve terapi",
+    "fitnessCoaching": "Fitness ve koçluk",
+    "medicalDental": "Tıp ve diş sağlığı",
+    "consulting": "Danışmanlık",
+    "educationTutoring": "Eğitim ve özel ders",
+    "photography": "Fotoğrafçılık",
+    "petServices": "Evcil hayvan hizmetleri",
+    "automotive": "Otomotiv",
+    "homeServices": "Ev hizmetleri",
+    "other": "Diğer"
+  },
+  "flow": {
+    "noServices": "Şu anda online randevu alınabilecek hizmet yok.",
+    "contactBusiness": "Lütfen doğrudan {business} ile iletişime geçin.",
+    "progress": "Rezervasyon adımları",
+    "stepOf": "Adım {current}/{total}:",
+    "chooseService": "Hizmet seçin",
+    "chooseStaff": "Kimden randevu almak istersiniz?",
+    "pickDateTime": "Tarih ve saat seçin",
+    "withStaff": "{name} ile",
+    "continue": "Devam",
+    "reviewBooking": "Rezervasyonu gözden geçir",
+    "confirmTitle": "Rezervasyonunuzu onaylayın",
+    "freeCancellationStart": "Randevunuz başlayana kadar online ücretsiz iptal.",
+    "freeCancellation": "Randevunuzdan {deadline} öncesine kadar online ücretsiz iptal.",
+    "deadlineDays": "{count, plural, one {# gün} other {# gün}}",
+    "deadlineHours": "{count, plural, one {# saat} other {# saat}}",
+    "deadlineMinutes": "{count, plural, one {# dakika} other {# dakika}}",
+    "previewNote": "Bu bir önizlemedir. Gerçek rezervasyon almaya başlamak için rezervasyon sayfanızı yayınlayın. Müşterileriniz tam olarak bu akışı görecek.",
+    "previewDisabled": "Önizlemede rezervasyon kapalı",
+    "requestBooking": "Rezervasyon talep et",
+    "confirmBooking": "Rezervasyonu onayla",
+    "networkError": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin. Henüz rezervasyon yapılmadı.",
+    "back": "Geri",
+    "otherServices": "Diğer hizmetler",
+    "free": "Ücretsiz",
+    "book": "Randevu al"
+  },
+  "details": {
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "emailHint": "Onayınızı bu adrese göndereceğiz.",
+    "phone": "Telefon",
+    "phoneHint": "Yalnızca işletmenin size ulaşması gerekirse kullanılır.",
+    "message": "Bilmemiz gereken bir şey var mı?",
+    "optional": "İsteğe bağlı",
+    "honeypot": "Web sitesi",
+    "errors": {
+      "firstName": "Adınızı girin.",
+      "lastName": "Soyadınızı girin.",
+      "email": "Geçerli bir e-posta adresi girin.",
+      "phoneRequired": "Telefon numaranızı girin.",
+      "phoneInvalid": "Geçerli bir telefon numarası girin.",
+      "staffId": "Bir ekip üyesi seçin."
+    }
+  },
+  "summary": {
+    "service": "Hizmet",
+    "when": "Ne zaman",
+    "with": "Kiminle",
+    "bookedFor": "Rezervasyon sahibi",
+    "where": "Nerede",
+    "price": "Fiyat"
+  },
+  "success": {
+    "reference": "Rezervasyon kodu",
+    "manage": "Görüntüle, yeniden planla veya iptal et",
+    "bookAnother": "Başka randevu al"
+  },
+  "slots": {
+    "previousMonth": "Önceki ay",
+    "nextMonth": "Sonraki ay",
+    "chooseDate": "Tarih seçin",
+    "dayAvailable": "{date}, {count, plural, one {# müsait saat} other {# müsait saat}}",
+    "dayUnavailable": "{date}, müsait saat yok",
+    "showBusinessTime": "İşletme saatini göster",
+    "showMyTime": "Kendi saat dilimimde göster",
+    "loadError": "Müsait saatler yüklenemedi",
+    "noDates": "Bu dönemde müsait tarih yok. Sonraki ayı deneyin.",
+    "morning": "Sabah",
+    "afternoon": "Öğleden sonra",
+    "evening": "Akşam",
+    "morningTimes": "Sabah saatleri",
+    "afternoonTimes": "Öğleden sonra saatleri",
+    "eveningTimes": "Akşam saatleri"
+  }
+}

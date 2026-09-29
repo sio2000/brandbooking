@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook，为小商家打造的在线预约工具。",
+  "verify": {
+    "subject": "请验证您的电子邮箱地址",
+    "preheader": "验证电子邮箱地址，完成 Hournook 的设置。",
+    "heading": "欢迎，{name}",
+    "body": "请验证您的电子邮箱地址，以便我们向您发送预约通知并保护您的账户安全。",
+    "cta": "验证电子邮箱",
+    "expiry": "此链接将在 24 小时后失效。如果您没有注册 Hournook 账户，请忽略此邮件。"
+  },
+  "reset": {
+    "subject": "重置您的 Hournook 密码",
+    "preheader": "重置您的 Hournook 密码。",
+    "heading": "重置密码",
+    "body": "我们收到了重置您账户密码的请求。请点击下方按钮设置新密码。",
+    "cta": "设置新密码",
+    "expiry": "此链接将在 1 小时后失效，且只能使用一次。如果这不是您本人的操作，请忽略此邮件，您的密码不会更改。"
+  },
+  "invite": {
+    "subject": "邀请您加入 {business}",
+    "preheader": "{inviter} 邀请您在 Hournook 上加入 {business}。",
+    "heading": "加入 {business}",
+    "body": "{inviter} 邀请您以{role}身份在 Hournook 上加入 {business}。加入后，您可以查看自己的预约并管理可预约时间。",
+    "roleManager": "经理",
+    "roleMember": "团队成员",
+    "cta": "接受邀请",
+    "expiry": "此邀请将在 7 天后失效。"
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "需要处理：{business} 付款失败",
+      "heading": "无法处理您的付款",
+      "text": "您为 {business} 支付的最近一笔 Hournook 费用未能成功。我们会自动重试，但请更新您的付款方式，以免预约页面被暂停。",
+      "cta": "更新付款方式"
+    },
+    "active": {
+      "subject": "您的 Hournook 订阅已生效",
+      "heading": "谢谢，一切就绪",
+      "text": "{business} 的订阅已生效。您的预约页面将持续接受预订，不会中断。",
+      "cta": "查看账单"
+    },
+    "canceled": {
+      "subject": "您的 Hournook 订阅已结束",
+      "heading": "您的订阅已结束",
+      "text": "{business} 的订阅已取消。您的数据安全无虞，仪表板仍可使用，但预约页面将不再接受新的预订。您可以随时重新订阅。",
+      "cta": "重新订阅"
+    }
+  }
+}

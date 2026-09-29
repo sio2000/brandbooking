@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Вы получили это письмо, потому что записались на приём.",
+  "manageCta": "Управление записью",
+  "addToCalendar": "Добавить в календарь",
+  "sentOnBehalf": "Отправлено Hournook от имени {business}.",
+  "previous": "(прежнее)",
+  "rows": {
+    "service": "Услуга",
+    "date": "Дата",
+    "time": "Время",
+    "with": "Специалист",
+    "price": "Цена",
+    "where": "Где",
+    "customer": "Клиент",
+    "email": "Эл. почта",
+    "phone": "Телефон",
+    "reference": "Номер записи"
+  },
+  "calendar": {
+    "title": "{service} — {business}",
+    "bookingReference": "Номер записи {reference}",
+    "reference": "Номер {reference}",
+    "manage": "Управление записью: {url}",
+    "referenceAndManage": "Номер {reference}. Управление записью: {url}",
+    "google": "Google Календарь",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Запись"
+  }
+}

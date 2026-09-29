@@ -2,6 +2,7 @@
  * Usage:
  *   <script src="https://YOUR-HOURNOOK-DOMAIN/embed.js" data-business="your-slug" async></script>
  *   Optional: data-label="Book now" data-color="#0f766e" data-mode="button|inline" data-target="#css-selector"
+ *             data-lang="el" (language of the widget; otherwise the business's booking-page language)
  * The booking flow runs inside an isolated iframe on the Hournook domain, so it
  * never conflicts with your site's CSS and never exposes any API to your page.
  */
@@ -12,17 +13,43 @@
   var origin = new URL(script.src).origin
   var slug = (script.getAttribute('data-business') || '').replace(/[^a-z0-9-]/gi, '')
   if (!slug) return
-  var label = script.getAttribute('data-label') || 'Book an appointment'
+  // The button's own words, in the widget's language (data-lang, else the host page's language).
+  var TEXT = {
+    en: ['Book an appointment', 'Close'],
+    el: ['Κλείστε ραντεβού', 'Κλείσιμο'],
+    es: ['Reservar cita', 'Cerrar'],
+    fr: ['Prendre rendez-vous', 'Fermer'],
+    de: ['Termin buchen', 'Schließen'],
+    it: ['Prenota un appuntamento', 'Chiudi'],
+    pt: ['Fazer marcação', 'Fechar'],
+    ru: ['Записаться', 'Закрыть'],
+    tr: ['Randevu al', 'Kapat'],
+    pl: ['Zarezerwuj wizytę', 'Zamknij'],
+    nl: ['Afspraak boeken', 'Sluiten'],
+    zh: ['立即预约', '关闭'],
+    ja: ['予約する', '閉じる'],
+    hi: ['अपॉइंटमेंट बुक करें', 'बंद करें'],
+    ar: ['احجز موعدًا', 'إغلاق'],
+  }
+  var asked = (script.getAttribute('data-lang') || '').toLowerCase()
+  var pageLang = (document.documentElement.lang || '').toLowerCase().split('-')[0]
+  var lang = TEXT[asked] ? asked : TEXT[pageLang] ? pageLang : 'en'
+  var label = script.getAttribute('data-label') || TEXT[lang][0]
   var color = /^#[0-9a-f]{6}$/i.test(script.getAttribute('data-color') || '')
     ? script.getAttribute('data-color')
     : '#0f766e'
   var mode = script.getAttribute('data-mode') === 'inline' ? 'inline' : 'button'
-  var src = origin + '/embed/' + encodeURIComponent(slug) + '?src=widget'
+  var src =
+    origin +
+    '/embed/' +
+    encodeURIComponent(slug) +
+    '?src=widget' +
+    (TEXT[asked] ? '&lang=' + asked : '')
 
   function frame(height) {
     var f = document.createElement('iframe')
     f.src = src
-    f.title = 'Book an appointment'
+    f.title = TEXT[lang][0]
     f.loading = 'lazy'
     f.style.cssText =
       'width:100%;border:0;border-radius:16px;background:transparent;height:' + height
@@ -59,7 +86,7 @@
     overlay = document.createElement('div')
     overlay.setAttribute('role', 'dialog')
     overlay.setAttribute('aria-modal', 'true')
-    overlay.setAttribute('aria-label', 'Book an appointment')
+    overlay.setAttribute('aria-label', TEXT[lang][0])
     overlay.style.cssText =
       'position:fixed;inset:0;z-index:2147483647;background:rgba(20,18,16,.5);display:flex;align-items:center;justify-content:center;padding:16px'
     var box = document.createElement('div')
@@ -67,10 +94,12 @@
       'position:relative;width:100%;max-width:760px;height:min(88vh,860px);background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)'
     var x = document.createElement('button')
     x.type = 'button'
-    x.setAttribute('aria-label', 'Close')
+    x.setAttribute('aria-label', TEXT[lang][1])
     x.textContent = '×'
     x.style.cssText =
-      'all:initial;position:absolute;top:8px;right:10px;z-index:1;font:400 28px/1 system-ui;color:#444;cursor:pointer;padding:4px 8px'
+      'all:initial;position:absolute;top:8px;' +
+      (lang === 'ar' ? 'left' : 'right') +
+      ':10px;z-index:1;font:400 28px/1 system-ui;color:#444;cursor:pointer;padding:4px 8px'
     x.addEventListener('click', close)
     var f = frame('100%')
     f.style.borderRadius = '0'

@@ -163,6 +163,8 @@ export type BookParams = {
   existingCustomerId?: string | null
   /** Send the customer a confirmation email (default true). */
   notifyCustomer?: boolean
+  /** Language the customer booked in (default: the business's booking-page language). */
+  locale?: string
   now?: Date
 }
 
@@ -344,6 +346,7 @@ export async function bookAppointment(p: BookParams): Promise<BookResult> {
               manageNonce,
               createdByUserId: p.actor.type === 'user' ? (p.actor.userId ?? null) : null,
               confirmedAt: status === 'confirmed' ? now : null,
+              locale: p.locale ?? p.business.locale,
             })
             .returning()
           appointment = row!

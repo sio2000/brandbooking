@@ -3,7 +3,8 @@ import { cache } from 'react'
 import { cookies, headers } from 'next/headers'
 import { eq } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { businesses } from '@/server/db/schema'
+import { appointments, businesses } from '@/server/db/schema'
+import { parseManageToken } from '@/server/booking/manage-token'
 import { getSession } from '@/server/auth/session'
 import {
   DEFAULT_LOCALE,
@@ -22,11 +23,13 @@ export const LOCALE_HEADER = 'x-hn-locale'
 export const PATH_HEADER = 'x-hn-path'
 
 const bookingSlug = (path: string) => path.match(/^\/(?:book|embed)\/([^/?#]+)/)?.[1]
+const manageToken = (path: string) => path.match(/^\/manage\/([^/?#]+)/)?.[1]
 
 /**
  * The language of this request, decided once per request:
  *  1. the proxy's decision (marketing URL prefix, or a booking page's ?lang / cookie),
- *  2. on booking pages, the business's booking-page language,
+ *  2. on booking pages, the business's booking-page language; on a manage-booking
+ *     link, the language the customer booked in,
  *  3. the signed-in user's language,
  *  4. the language cookie, then the browser's Accept-Language,
  *  5. English.
@@ -44,6 +47,16 @@ export const getLocale = cache(async (): Promise<Locale> => {
       .where(eq(businesses.slug, decodeURIComponent(slug).toLowerCase()))
       .limit(1)
     return isLocale(row?.locale) ? row.locale : DEFAULT_LOCALE
+  }
+  const token = manageToken(h.get(PATH_HEADER) ?? '')
+  const appointmentId = token ? parseManageToken(token)?.appointmentId : undefined
+  if (appointmentId) {
+    const [row] = await db()
+      .select({ locale: appointments.locale })
+      .from(appointments)
+      .where(eq(appointments.id, appointmentId))
+      .limit(1)
+    if (isLocale(row?.locale)) return row.locale
   }
 
   const session = await getSession()

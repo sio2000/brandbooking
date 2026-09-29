@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "Serviço",
+    "staff": "Membro da equipa",
+    "date": "Data",
+    "time": "Hora",
+    "datetime": "Data e hora",
+    "details": "Os seus dados",
+    "confirm": "Confirmar",
+    "done": "Concluído"
+  },
+  "anyStaff": "Qualquer pessoa disponível",
+  "anyStaffHint": "Será atendido por quem estiver livre.",
+  "noSlots": "Não há horários livres neste dia.",
+  "noSlotsHint": "Experimente outra data. Os dias com disponibilidade estão destacados.",
+  "timesShownIn": "Horários apresentados em {tz}",
+  "confirmTitle": "Reserva feita!",
+  "pendingTitle": "Pedido recebido",
+  "pendingBody": "{business} vai confirmar a sua marcação em breve. Enviámos-lhe os detalhes por email.",
+  "confirmedBody": "Enviámos uma confirmação para {email}.",
+  "pausedTitle": "As reservas online estão em pausa",
+  "pausedDefault": "De momento, não aceitamos reservas online.",
+  "privacyNote": "Os seus dados são partilhados apenas com {business} para gerir a sua marcação.",
+  "privacyLink": "Consulte o nosso <link>aviso de privacidade</link>.",
+  "meta": {
+    "notFoundTitle": "Página de reservas não encontrada",
+    "title": "{business} · Reservas online",
+    "description": "Faça uma marcação online com {business}."
+  },
+  "page": {
+    "previewBanner": "Pré-visualização: esta página ainda não foi publicada. Só o próprio a pode ver.",
+    "publish": "Publicar",
+    "reopensOn": "As reservas reabrem a {date}.",
+    "contactDirectly": "Pode continuar a contactar {business} diretamente através dos contactos indicados nesta página.",
+    "poweredBy": "Reservas online com <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "Esta página de reservas não existe",
+    "body": "Verifique a ligação ou peça ao negócio a ligação de reservas atual.",
+    "home": "Ir para o Hournook"
+  },
+  "hero": {
+    "logoAlt": "Logótipo de {business}",
+    "contact": "Contactos",
+    "bookingPolicy": "Política de reservas"
+  },
+  "categories": {
+    "hairBeauty": "Cabeleireiro e estética",
+    "barbershop": "Barbearia",
+    "nails": "Unhas",
+    "spaMassage": "Spa e massagens",
+    "healthTherapy": "Saúde e terapia",
+    "fitnessCoaching": "Fitness e coaching",
+    "medicalDental": "Medicina e medicina dentária",
+    "consulting": "Consultoria",
+    "educationTutoring": "Ensino e explicações",
+    "photography": "Fotografia",
+    "petServices": "Serviços para animais",
+    "automotive": "Automóvel",
+    "homeServices": "Serviços domésticos",
+    "other": "Outro"
+  },
+  "flow": {
+    "noServices": "De momento, não há serviços disponíveis para reserva online.",
+    "contactBusiness": "Contacte {business} diretamente.",
+    "progress": "Progresso da reserva",
+    "stepOf": "Passo {current} de {total}:",
+    "chooseService": "Escolha um serviço",
+    "chooseStaff": "Com quem pretende a marcação?",
+    "pickDateTime": "Escolha a data e a hora",
+    "withStaff": "com {name}",
+    "continue": "Continuar",
+    "reviewBooking": "Rever reserva",
+    "confirmTitle": "Confirme a sua reserva",
+    "freeCancellationStart": "Cancelamento gratuito online até ao início da sua marcação.",
+    "freeCancellation": "Cancelamento gratuito online até {deadline} antes da sua marcação.",
+    "deadlineDays": "{count, plural, one {# dia} other {# dias}}",
+    "deadlineHours": "{count, plural, one {# hora} other {# horas}}",
+    "deadlineMinutes": "{count, plural, one {# minuto} other {# minutos}}",
+    "previewNote": "Isto é uma pré-visualização. Publique a sua página de reservas para começar a aceitar reservas reais. Os clientes verão exatamente este processo.",
+    "previewDisabled": "Reservas desativadas na pré-visualização",
+    "requestBooking": "Pedir reserva",
+    "confirmBooking": "Confirmar reserva",
+    "networkError": "Não foi possível contactar o servidor. Verifique a ligação e tente novamente. Ainda não foi reservado nada.",
+    "back": "Voltar",
+    "otherServices": "Outros serviços",
+    "free": "Grátis",
+    "book": "Reservar"
+  },
+  "details": {
+    "firstName": "Nome próprio",
+    "lastName": "Apelido",
+    "email": "Email",
+    "emailHint": "Enviaremos a confirmação para este endereço.",
+    "phone": "Telefone",
+    "phoneHint": "Usado apenas pelo negócio, caso precise de o contactar.",
+    "message": "Há algo que devamos saber?",
+    "optional": "Opcional",
+    "honeypot": "Site",
+    "errors": {
+      "firstName": "Introduza o seu nome próprio.",
+      "lastName": "Introduza o seu apelido.",
+      "email": "Introduza um endereço de email válido.",
+      "phoneRequired": "Introduza o seu número de telefone.",
+      "phoneInvalid": "Introduza um número de telefone válido.",
+      "staffId": "Escolha um membro da equipa."
+    }
+  },
+  "summary": {
+    "service": "Serviço",
+    "when": "Quando",
+    "with": "Com",
+    "bookedFor": "Em nome de",
+    "where": "Onde",
+    "price": "Preço"
+  },
+  "success": {
+    "reference": "Referência",
+    "manage": "Ver, reagendar ou cancelar",
+    "bookAnother": "Fazer outra marcação"
+  },
+  "slots": {
+    "previousMonth": "Mês anterior",
+    "nextMonth": "Mês seguinte",
+    "chooseDate": "Escolha uma data",
+    "dayAvailable": "{date}, {count, plural, one {# horário disponível} other {# horários disponíveis}}",
+    "dayUnavailable": "{date}, sem horários disponíveis",
+    "showBusinessTime": "Mostrar a hora do negócio",
+    "showMyTime": "Mostrar no meu fuso horário",
+    "loadError": "Não foi possível carregar os horários disponíveis",
+    "noDates": "Não há datas disponíveis neste período. Experimente o mês seguinte.",
+    "morning": "Manhã",
+    "afternoon": "Tarde",
+    "evening": "Noite",
+    "morningTimes": "Horários da manhã",
+    "afternoonTimes": "Horários da tarde",
+    "eveningTimes": "Horários da noite"
+  }
+}

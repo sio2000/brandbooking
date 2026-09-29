@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, Online-Buchung für kleine Unternehmen.",
+  "verify": {
+    "subject": "Bestätigen Sie Ihre E-Mail-Adresse",
+    "preheader": "Bestätigen Sie Ihre E-Mail-Adresse, um die Einrichtung von Hournook abzuschließen.",
+    "heading": "Willkommen, {name}",
+    "body": "Bestätigen Sie Ihre E-Mail-Adresse, damit wir Ihnen Buchungsbenachrichtigungen senden und Ihr Konto schützen können.",
+    "cta": "E-Mail-Adresse bestätigen",
+    "expiry": "Dieser Link ist 24 Stunden gültig. Wenn Sie kein Hournook-Konto erstellt haben, können Sie diese E-Mail ignorieren."
+  },
+  "reset": {
+    "subject": "Setzen Sie Ihr Hournook-Passwort zurück",
+    "preheader": "Setzen Sie Ihr Hournook-Passwort zurück.",
+    "heading": "Passwort zurücksetzen",
+    "body": "Wir haben eine Anfrage erhalten, das Passwort für Ihr Konto zurückzusetzen. Über die Schaltfläche unten können Sie ein neues wählen.",
+    "cta": "Neues Passwort wählen",
+    "expiry": "Dieser Link ist 1 Stunde gültig und kann einmal verwendet werden. Wenn Sie das nicht angefordert haben, können Sie diese E-Mail ignorieren. Ihr Passwort bleibt unverändert."
+  },
+  "invite": {
+    "subject": "Einladung zu {business}",
+    "preheader": "{inviter} hat Sie eingeladen, {business} auf Hournook beizutreten.",
+    "heading": "Treten Sie {business} bei",
+    "body": "{inviter} hat Sie eingeladen, {business} auf Hournook als {role} beizutreten. Sie können dann Ihre Termine sehen und Ihre Verfügbarkeit verwalten.",
+    "roleManager": "Manager",
+    "roleMember": "Teammitglied",
+    "cta": "Einladung annehmen",
+    "expiry": "Diese Einladung ist 7 Tage gültig."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Handlung erforderlich: Zahlung für {business} fehlgeschlagen",
+      "heading": "Ihre Zahlung konnte nicht verarbeitet werden",
+      "text": "Ihre letzte Hournook-Zahlung für {business} ist fehlgeschlagen. Wir versuchen es automatisch erneut, aber bitte aktualisieren Sie Ihre Zahlungsmethode, damit Ihre Buchungsseite nicht pausiert wird.",
+      "cta": "Zahlungsmethode aktualisieren"
+    },
+    "active": {
+      "subject": "Ihr Hournook-Abonnement ist aktiv",
+      "heading": "Danke, alles ist eingerichtet",
+      "text": "Ihr Abonnement für {business} ist aktiv. Ihre Buchungsseite nimmt weiterhin ohne Unterbrechung Buchungen an.",
+      "cta": "Abrechnung ansehen"
+    },
+    "canceled": {
+      "subject": "Ihr Hournook-Abonnement ist beendet",
+      "heading": "Ihr Abonnement ist beendet",
+      "text": "Das Abonnement für {business} wurde gekündigt. Ihre Daten sind sicher und Ihr Dashboard bleibt verfügbar, aber Ihre Buchungsseite nimmt keine neuen Buchungen mehr an. Sie können jederzeit ein neues Abonnement abschließen.",
+      "cta": "Erneut abonnieren"
+    }
+  }
+}
