@@ -33,6 +33,8 @@ export async function getOverview(ctx: TenantContext) {
       cancelled: number
       no_show: number
       revenue_cents: number
+      expected_cents: number
+      expected_count: number
       created_today: number
     }>(sql`
       SELECT
@@ -40,6 +42,8 @@ export async function getOverview(ctx: TenantContext) {
         count(*) FILTER (WHERE status = 'cancelled' AND starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()})::int AS cancelled,
         count(*) FILTER (WHERE status = 'no_show' AND starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()})::int AS no_show,
         coalesce(sum(price_cents) FILTER (WHERE status = 'completed' AND starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()}), 0)::int AS revenue_cents,
+        coalesce(sum(price_cents) FILTER (WHERE status IN ('pending','confirmed') AND ends_at > now() AND starts_at < ${weekEnd.toISOString()}), 0)::int AS expected_cents,
+        count(*) FILTER (WHERE status IN ('pending','confirmed') AND ends_at > now() AND starts_at < ${weekEnd.toISOString()})::int AS expected_count,
         count(*) FILTER (WHERE created_at >= ${dayStart.toISOString()} AND created_at < ${dayEnd.toISOString()})::int AS created_today
       FROM appointments WHERE business_id = ${ctx.business.id} ${staffScope}
         AND ((starts_at >= ${weekStart.toISOString()} AND starts_at < ${weekEnd.toISOString()}) OR (created_at >= ${dayStart.toISOString()} AND created_at < ${dayEnd.toISOString()}))

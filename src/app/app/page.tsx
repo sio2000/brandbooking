@@ -233,17 +233,21 @@ export default async function OverviewPage() {
           hint="Appointments scheduled"
         />
         <Stat
-          label="Revenue this week"
+          label="Earned this week"
           icon={CreditCard}
           value={formatMoney(ov.week.revenue_cents, b.currency)}
-          hint="From completed appointments"
-          definition="Sum of service prices for appointments marked completed this week. Payments are taken outside Hournook."
+          hint={
+            ov.week.expected_count > 0
+              ? `+ ${formatMoney(ov.week.expected_cents, b.currency)} expected from ${ov.week.expected_count} upcoming`
+              : 'No more bookings expected this week'
+          }
+          definition="Service prices of this week’s appointments that have taken place. Appointments count automatically once they end, unless cancelled or marked as a no-show. Customers pay you directly; Hournook does not handle the money."
         />
         <Stat
           label="New customers"
           icon={Users}
           value={ov.newCustomersThisWeek}
-          hint={`${ov.week.cancelled} cancelled · ${ov.week.no_show} no-shows this week`}
+          hint={`Joined this week · ${ov.week.cancelled} cancelled · ${ov.week.no_show} no-shows`}
         />
       </FadeIn>
 

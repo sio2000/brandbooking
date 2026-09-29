@@ -26,7 +26,9 @@ const ALLOWED: Record<string, AppointmentStatus> = {
   'confirmed:complete': 'completed',
   'confirmed:no_show': 'no_show',
   'completed:reopen': 'confirmed',
+  'completed:no_show': 'no_show',
   'no_show:reopen': 'confirmed',
+  'no_show:complete': 'completed',
 }
 
 describe('checkTransition', () => {
@@ -91,7 +93,7 @@ describe('availableTransitions', () => {
       'no_show',
     ])
     expect(availableTransitions('pending', start, after)).toEqual(['confirm', 'cancel'])
-    expect(availableTransitions('completed', start, after)).toEqual(['reopen'])
+    expect(availableTransitions('completed', start, after)).toEqual(['no_show', 'reopen'])
     expect(availableTransitions('no_show', start, before)).toEqual(['reopen'])
   })
 })

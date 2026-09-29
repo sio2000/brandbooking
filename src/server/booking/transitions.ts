@@ -21,8 +21,10 @@ const TARGET: Record<Transition, AppointmentStatus> = {
 const ALLOWED: Record<AppointmentStatus, Transition[]> = {
   pending: ['confirm', 'cancel'],
   confirmed: ['cancel', 'complete', 'no_show'],
-  completed: ['reopen'],
-  no_show: ['reopen'],
+  // Past appointments complete automatically, so the owner can switch a
+  // completed visit to a no-show (and back) directly.
+  completed: ['no_show', 'reopen'],
+  no_show: ['complete', 'reopen'],
   cancelled: [],
 }
 

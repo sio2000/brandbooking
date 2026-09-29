@@ -154,7 +154,40 @@ describe('runMaintenance', () => {
       audits: 0,
       auditIps: 0,
       accountEmails: 0,
+      completed: 0,
     })
+  })
+
+  it('completes appointments automatically once they have ended (never pending or future ones)', async () => {
+    const past = await book(600, 'past@example.com')
+    const pending = await book(720, 'pending@example.com')
+    const future = await book(840, 'future@example.com')
+    const shift = (id: string, hours: number) =>
+      db().execute(sql`UPDATE appointments SET
+        blocked_from = blocked_from - (starts_at - (now() - make_interval(hours => ${hours}))),
+        blocked_until = blocked_until - (starts_at - (now() - make_interval(hours => ${hours}))),
+        ends_at = ends_at - (starts_at - (now() - make_interval(hours => ${hours}))),
+        starts_at = now() - make_interval(hours => ${hours})
+        WHERE id = ${id}`)
+    await shift(past.appointmentId, 5)
+    await shift(pending.appointmentId, 10)
+    await db().execute(
+      sql`UPDATE appointments SET status = 'pending' WHERE id = ${pending.appointmentId}`,
+    )
+    expect(await runMaintenance()).toMatchObject({ completed: 1 })
+    const rows = await db().execute<{ id: string; status: string; completed_at: Date | null }>(
+      sql`SELECT id, status, completed_at FROM appointments WHERE id IN (${past.appointmentId}, ${pending.appointmentId}, ${future.appointmentId})`,
+    )
+    const byId = new Map(rows.map((r) => [r.id, r]))
+    expect(byId.get(past.appointmentId)!.status).toBe('completed')
+    expect(byId.get(past.appointmentId)!.completed_at).not.toBeNull()
+    expect(byId.get(pending.appointmentId)!.status).toBe('pending')
+    expect(byId.get(future.appointmentId)!.status).toBe('confirmed')
+    const events = await db().execute<{ actor: string }>(
+      sql`SELECT actor FROM appointment_events WHERE appointment_id = ${past.appointmentId} AND event = 'completed'`,
+    )
+    expect(events.map((e) => e.actor)).toEqual(['system'])
+    expect(await runMaintenance()).toMatchObject({ completed: 0 }) // idempotent
   })
 
   it('deletes old account emails but keeps appointment email records', async () => {
@@ -194,7 +227,7 @@ describe('runMaintenance', () => {
     ])
   })
 
-  it('leaves appointments alone (outcomes are recorded by the business)', async () => {
+  it('completes past manual appointments too, so nothing is left unresolved', async () => {
     const past = await createManualAppointment(
       s.ctx,
       {
@@ -212,10 +245,11 @@ describe('runMaintenance', () => {
       },
       meta(),
     )
+    expect((await attentionCounts(s.ctx)).unresolved).toBe(1)
     await runMaintenance()
     const [a] = await db().select().from(appointments).where(eq(appointments.id, past.id))
-    expect(a!.status).toBe('confirmed')
-    expect((await attentionCounts(s.ctx)).unresolved).toBe(1)
+    expect(a!.status).toBe('completed')
+    expect((await attentionCounts(s.ctx)).unresolved).toBe(0)
   })
 })
 

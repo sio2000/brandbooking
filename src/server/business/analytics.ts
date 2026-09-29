@@ -19,7 +19,7 @@ export const METRIC_DEFINITIONS = {
   cancellationRate: 'Cancelled ÷ all appointments scheduled in the period.',
   noShowRate: 'No-shows ÷ appointments that reached an outcome (completed + no-show).',
   revenue:
-    'Sum of service prices for completed appointments. Payments are taken outside Hournook, so this is an estimate of earned revenue, not money collected.',
+    'Sum of service prices for completed appointments. Appointments complete automatically once they end, unless cancelled or marked as a no-show. Customers pay you directly, so this is earned revenue as booked, not money collected by Hournook.',
   bookedValue: 'Sum of service prices for all non-cancelled appointments in the period.',
   avgValue: 'Average service price of completed appointments that have a price.',
   newCustomers: 'Customers whose first (non-cancelled) appointment falls in the period.',

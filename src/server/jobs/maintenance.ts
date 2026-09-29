@@ -16,6 +16,7 @@ export async function runMaintenance() {
     audits: number
     auditIps: number
     accountEmails: number
+    completed: number
   }>(sql`
     WITH
       s AS (DELETE FROM sessions WHERE expires_at < now() RETURNING 1),
@@ -27,12 +28,19 @@ export async function runMaintenance() {
       -- after 180 days and entries deleted after two years.
       -- Account emails (verification, password reset, invitations) are not tied
       -- to an appointment; their records go entirely after 180 days.
+      -- Appointments complete themselves once they have ended, so revenue,
+      -- history and reports stay right without manual bookkeeping. The owner
+      -- can still mark one as a no-show afterwards.
+      done AS (UPDATE appointments SET status = 'completed', completed_at = ends_at
+        WHERE status = 'confirmed' AND ends_at <= now() RETURNING id, business_id),
+      done_events AS (INSERT INTO appointment_events (business_id, appointment_id, event, from_status, to_status, actor)
+        SELECT business_id, id, 'completed', 'confirmed', 'completed', 'system' FROM done RETURNING 1),
       m AS (DELETE FROM notifications WHERE appointment_id IS NULL AND status IN ('sent','cancelled','failed') AND created_at < now() - interval '180 days' RETURNING 1),
       a AS (DELETE FROM audit_logs WHERE created_at < now() - interval '730 days' RETURNING 1),
       ai AS (UPDATE audit_logs SET ip = NULL WHERE ip IS NOT NULL AND created_at < now() - interval '180 days' AND created_at >= now() - interval '730 days' RETURNING 1)
     SELECT (SELECT count(*) FROM s)::int AS sessions, (SELECT count(*) FROM t)::int AS tokens,
       (SELECT count(*) FROM r)::int AS limits, (SELECT count(*) FROM e)::int AS events, (SELECT count(*) FROM n)::int AS scrubbed,
-      (SELECT count(*) FROM a)::int AS audits, (SELECT count(*) FROM ai)::int AS "auditIps", (SELECT count(*) FROM m)::int AS "accountEmails"
+      (SELECT count(*) FROM a)::int AS audits, (SELECT count(*) FROM ai)::int AS "auditIps", (SELECT count(*) FROM m)::int AS "accountEmails", (SELECT count(*) FROM done_events)::int AS completed
   `)
   return results[0]
 }
