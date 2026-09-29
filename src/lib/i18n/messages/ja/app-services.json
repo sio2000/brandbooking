@@ -1,0 +1,84 @@
+{
+  "title": "サービス",
+  "description": "お客様が予約できるメニューです。所要時間、料金、前後の準備時間、担当者を設定します。",
+  "list": {
+    "count": "{count, plural, other {#件のサービス}} · ドラッグして予約ページでの表示順を変更",
+    "export": "エクスポート",
+    "add": "サービスを追加",
+    "buffer": "+ 準備時間{count}分",
+    "upcoming": "今後の予約 {count}件",
+    "free": "無料",
+    "actions": "{name} の操作",
+    "edit": "編集",
+    "pause": "予約受付を一時停止",
+    "resume": "予約受付を再開"
+  },
+  "empty": {
+    "title": "まだサービスが登録されていません",
+    "description": "最初のサービスを追加すると、お客様が予約できるようになります。所要時間、料金（任意）、担当者を設定できます。",
+    "add": "最初のサービスを追加"
+  },
+  "badges": {
+    "paused": "一時停止中",
+    "hidden": "ページで非表示",
+    "unassigned": "担当者なし"
+  },
+  "toasts": {
+    "paused": "サービスを一時停止しました。予約できません",
+    "resumed": "サービスを再開しました",
+    "saved": "保存しました",
+    "deleted": "削除しました"
+  },
+  "delete": {
+    "menu": "削除",
+    "title": "「{name}」を削除しますか？",
+    "withUpcoming": "このサービスには<b>{count, plural, other {#件の今後の予約}}</b>があります。これらの予約はそのまま残りますが、今後このサービスは予約できなくなります。過去の予約の履歴は保持されます。",
+    "body": "お客様はこのサービスを予約できなくなります。過去の予約の履歴は保持されます。",
+    "confirm": "サービスを削除"
+  },
+  "form": {
+    "addTitle": "サービスを追加",
+    "editTitle": "サービスを編集",
+    "description": "お客様には名前、説明、所要時間、料金が表示されます。",
+    "fixFields": "ハイライトされた項目を修正してください。",
+    "name": "サービス名",
+    "namePlaceholder": "例：カット＆ブロー",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "内容、対象となる方、事前の準備など。",
+    "duration": "所要時間",
+    "custom": "カスタム",
+    "customLabel": "所要時間（分）を指定",
+    "minSuffix": "分",
+    "price": "料金",
+    "priceHint": "空欄にすると料金は表示されません。無料の場合は 0 を入力してください。",
+    "category": "カテゴリ",
+    "categoryHint": "予約ページでサービスをグループ分けします。",
+    "categoryPlaceholder": "例：カラー",
+    "noCategory": "カテゴリなし",
+    "existingCategory": "既存のカテゴリを選択",
+    "newCategory": "+ 新しいカテゴリ",
+    "staff": "担当者",
+    "noStaff": "先にスタッフを追加してください。",
+    "nobodyAssigned": "担当者が割り当てられていないため、お客様はこのサービスを予約できません。",
+    "bufferBefore": "前の準備時間",
+    "bufferBeforeHint": "準備のための時間で、カレンダー上でブロックされます。",
+    "bufferAfter": "後の準備時間",
+    "bufferAfterHint": "次の予約までの片付けの時間です。",
+    "none": "なし",
+    "minutes": "{count}分",
+    "colour": "カレンダーの色",
+    "colourPicker": "色",
+    "bookable": "予約受付",
+    "bookableHint": "オフにすると、削除せずにこのサービスを一時停止できます。",
+    "visible": "予約ページに表示",
+    "visibleHint": "非表示のサービスもチームからは予約できます。",
+    "cancel": "キャンセル",
+    "save": "変更を保存"
+  },
+  "actions": {
+    "added": "サービスを追加しました",
+    "saved": "サービスを保存しました",
+    "removed": "サービスを削除しました。過去の予約の履歴は保持されます。",
+    "categoryRemoved": "カテゴリを削除しました"
+  }
+}

@@ -32,6 +32,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/menu'
 import { toast } from '@/components/ui/toaster'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
 import { cn } from '@/lib/utils'
 import { formatDuration, formatMoney } from '@/lib/format'
 import {
@@ -76,6 +78,8 @@ export function ServicesView({
   editId: string | null
 }) {
   const router = useRouter()
+  const t = useT('app-services')
+  const { tag } = useLocale()
   const [editing, setEditing] = React.useState<ServiceItem | 'new' | null>(
     openNew ? 'new' : (services.find((s) => s.id === editId) ?? null),
   )
@@ -106,10 +110,10 @@ export function ServicesView({
     if (r.ok) {
       toast.success(
         patch.isActive === false
-          ? 'Service paused. It can’t be booked'
+          ? t('toasts.paused')
           : patch.isActive
-            ? 'Service active again'
-            : 'Saved',
+            ? t('toasts.resumed')
+            : t('toasts.saved'),
       )
       router.refresh()
     } else toast.error(r.error)
@@ -119,17 +123,16 @@ export function ServicesView({
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted-foreground">
-          {services.length} service{services.length === 1 ? '' : 's'} · drag to change the order on
-          your booking page
+          {t('list.count', { count: services.length })}
         </p>
         <div className="flex gap-2">
           <Button asChild variant="secondary" size="sm">
             <a href="/app/export/services">
-              <Download /> Export
+              <Download /> {t('list.export')}
             </a>
           </Button>
           <Button onClick={() => setEditing('new')}>
-            <Plus /> Add service
+            <Plus /> {t('list.add')}
           </Button>
         </div>
       </div>
@@ -137,11 +140,11 @@ export function ServicesView({
         <div className="rounded-xl border border-border bg-surface">
           <EmptyState
             icon={Scissors}
-            title="You haven’t added any services yet"
-            description="Add your first service so customers can start booking. You can set a duration, an optional price and who performs it."
+            title={t('empty.title')}
+            description={t('empty.description')}
             action={
               <Button onClick={() => setEditing('new')}>
-                <Plus /> Add your first service
+                <Plus /> {t('empty.add')}
               </Button>
             }
           />
@@ -178,7 +181,7 @@ export function ServicesView({
               <button
                 type="button"
                 onClick={() => setEditing(s)}
-                className="min-w-0 flex-1 text-left"
+                className="min-w-0 flex-1 text-start"
               >
                 <span className="flex flex-wrap items-center gap-2">
                   <span className={cn('font-semibold', !s.isActive && 'text-muted-foreground')}>
@@ -187,49 +190,58 @@ export function ServicesView({
                   {catName(s.categoryId) && <Badge>{catName(s.categoryId)}</Badge>}
                   {!s.isActive && (
                     <Badge tone="warning">
-                      <Pause /> Paused
+                      <Pause /> {t('badges.paused')}
                     </Badge>
                   )}
                   {s.isActive && !s.isVisible && (
                     <Badge tone="info">
-                      <EyeOff /> Hidden from page
+                      <EyeOff /> {t('badges.hidden')}
                     </Badge>
                   )}
-                  {s.staffIds.length === 0 && <Badge tone="danger">No one assigned</Badge>}
+                  {s.staffIds.length === 0 && <Badge tone="danger">{t('badges.unassigned')}</Badge>}
                 </span>
                 <span className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-muted-foreground">
                   <span className="inline-flex items-center gap-1">
-                    <Clock className="size-3.5" aria-hidden /> {formatDuration(s.durationMinutes)}
+                    <Clock className="size-3.5" aria-hidden />{' '}
+                    {formatDuration(s.durationMinutes, tag)}
                   </span>
                   {(s.bufferBeforeMinutes > 0 || s.bufferAfterMinutes > 0) && (
-                    <span>+ {s.bufferBeforeMinutes + s.bufferAfterMinutes} min buffer</span>
+                    <span>
+                      {t('list.buffer', { count: s.bufferBeforeMinutes + s.bufferAfterMinutes })}
+                    </span>
                   )}
                   <span className="inline-flex items-center gap-1">
                     <Users className="size-3.5" aria-hidden />{' '}
                     {s.staffIds.map(staffName).filter(Boolean).join(', ') || '—'}
                   </span>
-                  {s.upcomingCount > 0 && <span>{s.upcomingCount} upcoming</span>}
+                  {s.upcomingCount > 0 && (
+                    <span>{t('list.upcoming', { count: s.upcomingCount })}</span>
+                  )}
                 </span>
               </button>
               <span className="tabular hidden shrink-0 font-semibold sm:block">
                 {s.priceCents == null
                   ? ''
                   : s.priceCents === 0
-                    ? 'Free'
-                    : formatMoney(s.priceCents, currency)}
+                    ? t('list.free')
+                    : formatMoney(s.priceCents, currency, tag)}
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon-sm" aria-label={`Actions for ${s.name}`}>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label={t('list.actions', { name: s.name })}
+                  >
                     <MoreHorizontal />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem onSelect={() => setEditing(s)}>
-                    <Pencil /> Edit
+                    <Pencil /> {t('list.edit')}
                   </DropdownMenuItem>
                   <DropdownMenuItem onSelect={() => quickToggle(s, { isActive: !s.isActive })}>
-                    <Pause /> {s.isActive ? 'Pause bookings' : 'Resume bookings'}
+                    <Pause /> {s.isActive ? t('list.pause') : t('list.resume')}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DeleteService service={s} />
@@ -241,8 +253,8 @@ export function ServicesView({
       )}
       <Dialog open={editing !== null} onOpenChange={(o) => !o && setEditing(null)}>
         <SheetContent
-          title={editing === 'new' ? 'Add a service' : 'Edit service'}
-          description="Customers see the name, description, duration and price."
+          title={editing === 'new' ? t('form.addTitle') : t('form.editTitle')}
+          description={t('form.description')}
         >
           {editing && (
             <ServiceForm
@@ -265,6 +277,7 @@ export function ServicesView({
 
 function DeleteService({ service }: { service: ServiceItem }) {
   const router = useRouter()
+  const t = useT('app-services')
   const [open, setOpen] = React.useState(false)
   return (
     <>
@@ -275,31 +288,24 @@ function DeleteService({ service }: { service: ServiceItem }) {
           setOpen(true)
         }}
       >
-        <Trash2 /> Delete
+        <Trash2 /> {t('delete.menu')}
       </DropdownMenuItem>
       <ConfirmDialog
         open={open}
         onOpenChange={setOpen}
-        title={`Delete “${service.name}”?`}
+        title={t('delete.title', { name: service.name })}
         description={
-          service.upcomingCount > 0 ? (
-            <>
-              This service has{' '}
-              <strong>
-                {service.upcomingCount} upcoming appointment{service.upcomingCount === 1 ? '' : 's'}
-              </strong>
-              . They will stay booked; the service just can’t be booked again. Past appointments
-              keep their history.
-            </>
-          ) : (
-            'Customers will no longer be able to book it. Past appointments keep their history.'
-          )
+          service.upcomingCount > 0
+            ? rich(t('delete.withUpcoming', { count: service.upcomingCount }), {
+                b: (c) => <strong>{c}</strong>,
+              })
+            : t('delete.body')
         }
-        confirmLabel="Delete service"
+        confirmLabel={t('delete.confirm')}
         onConfirm={async () => {
           const r = await deleteServiceAction(service.id)
           if (r.ok) {
-            toast.success(r.message ?? 'Deleted')
+            toast.success(r.message ?? t('toasts.deleted'))
             router.refresh()
           } else {
             toast.error(r.error)
@@ -324,6 +330,8 @@ function ServiceForm({
   currency: string
   onDone: () => void
 }) {
+  const t = useT('app-services')
+  const { tag } = useLocale()
   const [v, setV] = React.useState({
     name: service?.name ?? '',
     description: service?.description ?? '',
@@ -351,13 +359,11 @@ function ServiceForm({
     const r = await saveServiceAction(service?.id ?? null, v)
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Saved')
+      toast.success(r.message ?? t('toasts.saved'))
       onDone()
     } else {
       setErrors(r.fields ?? {})
-      setError(
-        r.fields && Object.keys(r.fields).length ? 'Please fix the highlighted fields.' : r.error,
-      )
+      setError(r.fields && Object.keys(r.fields).length ? t('form.fixFields') : r.error)
     }
   }
 
@@ -365,27 +371,32 @@ function ServiceForm({
     <form onSubmit={submit} noValidate className="flex min-h-full flex-col">
       <DialogBody className="grid flex-1 gap-5">
         <FormError message={error} />
-        <Field label="Service name" htmlFor="s-name" error={errors.name}>
+        <Field label={t('form.name')} htmlFor="s-name" error={errors.name}>
           <Input
             value={v.name}
             onChange={(e) => setV({ ...v, name: e.target.value })}
-            placeholder="e.g. Haircut & finish"
+            placeholder={t('form.namePlaceholder')}
             maxLength={120}
             required
           />
         </Field>
-        <Field label="Description" htmlFor="s-desc" optional error={errors.description}>
+        <Field
+          label={t('form.descriptionLabel')}
+          htmlFor="s-desc"
+          optional
+          error={errors.description}
+        >
           <Textarea
             rows={3}
             value={v.description}
             onChange={(e) => setV({ ...v, description: e.target.value })}
             maxLength={1000}
-            placeholder="What’s included, who it’s for, anything to prepare."
+            placeholder={t('form.descriptionPlaceholder')}
           />
         </Field>
         <div className="grid gap-1.5">
           <span className="text-sm font-medium" id="dur-label">
-            Duration
+            {t('form.duration')}
           </span>
           <div role="radiogroup" aria-labelledby="dur-label" className="flex flex-wrap gap-1.5">
             {DURATIONS.map((d) => (
@@ -405,7 +416,7 @@ function ServiceForm({
                     : 'border-border-strong hover:border-primary',
                 )}
               >
-                {formatDuration(d)}
+                {formatDuration(d, tag)}
               </button>
             ))}
             <button
@@ -420,20 +431,20 @@ function ServiceForm({
                   : 'border-border-strong hover:border-primary',
               )}
             >
-              Custom
+              {t('form.custom')}
             </button>
           </div>
           {customDuration && (
             <div className="mt-1 w-40">
               <InputGroup
-                aria-label="Custom duration in minutes"
+                aria-label={t('form.customLabel')}
                 type="number"
                 min={5}
                 max={720}
                 step={5}
                 value={v.durationMinutes}
                 onChange={(e) => setV({ ...v, durationMinutes: Number(e.target.value) })}
-                suffix="min"
+                suffix={t('form.minSuffix')}
               />
             </div>
           )}
@@ -442,10 +453,10 @@ function ServiceForm({
           )}
         </div>
         <Field
-          label="Price"
+          label={t('form.price')}
           htmlFor="s-price"
           optional
-          hint="Leave empty to hide the price; enter 0 for free."
+          hint={t('form.priceHint')}
           error={errors.price}
         >
           <InputGroup
@@ -459,25 +470,25 @@ function ServiceForm({
         <div className="grid gap-1.5">
           {addingCategory || categories.length === 0 ? (
             <Field
-              label="Category"
+              label={t('form.category')}
               htmlFor="s-newcat"
               optional
-              hint="Groups services on your booking page."
+              hint={t('form.categoryHint')}
             >
               <Input
                 value={v.newCategory}
                 onChange={(e) => setV({ ...v, newCategory: e.target.value, categoryId: '' })}
-                placeholder="e.g. Colour"
+                placeholder={t('form.categoryPlaceholder')}
                 maxLength={80}
               />
             </Field>
           ) : (
-            <Field label="Category" htmlFor="s-cat" optional>
+            <Field label={t('form.category')} htmlFor="s-cat" optional>
               <NativeSelect
                 value={v.categoryId}
                 onChange={(e) => setV({ ...v, categoryId: e.target.value })}
               >
-                <option value="">No category</option>
+                <option value="">{t('form.noCategory')}</option>
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
@@ -492,13 +503,13 @@ function ServiceForm({
               className="justify-self-start text-[13px] font-medium text-primary hover:underline"
               onClick={() => setAddingCategory((a) => !a)}
             >
-              {addingCategory ? 'Choose an existing category' : '+ New category'}
+              {addingCategory ? t('form.existingCategory') : t('form.newCategory')}
             </button>
           )}
         </div>
         <fieldset className="grid gap-2">
-          <legend className="mb-1.5 text-sm font-medium">Who performs it</legend>
-          {staff.length === 0 && <Alert tone="warning">Add a team member first.</Alert>}
+          <legend className="mb-1.5 text-sm font-medium">{t('form.staff')}</legend>
+          {staff.length === 0 && <Alert tone="warning">{t('form.noStaff')}</Alert>}
           {staff.map((m) => (
             <label
               key={m.id}
@@ -517,53 +528,55 @@ function ServiceForm({
             </label>
           ))}
           {v.staffIds.length === 0 && staff.length > 0 && (
-            <p className="text-[13px] text-warning">
-              Nobody is assigned, so customers won’t be able to book this service.
-            </p>
+            <p className="text-[13px] text-warning">{t('form.nobodyAssigned')}</p>
           )}
         </fieldset>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Buffer before" htmlFor="s-bb" hint="Prep time, blocked in your calendar.">
+          <Field label={t('form.bufferBefore')} htmlFor="s-bb" hint={t('form.bufferBeforeHint')}>
             <NativeSelect
               value={v.bufferBeforeMinutes}
               onChange={(e) => setV({ ...v, bufferBeforeMinutes: Number(e.target.value) })}
             >
               {BUFFERS.map((b) => (
                 <option key={b} value={b}>
-                  {b === 0 ? 'None' : `${b} min`}
+                  {b === 0 ? t('form.none') : t('form.minutes', { count: b })}
                 </option>
               ))}
             </NativeSelect>
           </Field>
-          <Field label="Buffer after" htmlFor="s-ba" hint="Clean-up time before the next booking.">
+          <Field label={t('form.bufferAfter')} htmlFor="s-ba" hint={t('form.bufferAfterHint')}>
             <NativeSelect
               value={v.bufferAfterMinutes}
               onChange={(e) => setV({ ...v, bufferAfterMinutes: Number(e.target.value) })}
             >
               {BUFFERS.map((b) => (
                 <option key={b} value={b}>
-                  {b === 0 ? 'None' : `${b} min`}
+                  {b === 0 ? t('form.none') : t('form.minutes', { count: b })}
                 </option>
               ))}
             </NativeSelect>
           </Field>
         </div>
         <div className="grid gap-1.5">
-          <span className="text-sm font-medium">Calendar colour</span>
-          <ColorPicker value={v.color} onChange={(color) => setV({ ...v, color })} />
+          <span className="text-sm font-medium">{t('form.colour')}</span>
+          <ColorPicker
+            value={v.color}
+            onChange={(color) => setV({ ...v, color })}
+            label={t('form.colourPicker')}
+          />
         </div>
         <div className="divide-y divide-border rounded-xl border border-border px-4">
           <SwitchRow
             id="s-active"
-            label="Bookable"
-            description="Turn off to pause this service without deleting it."
+            label={t('form.bookable')}
+            description={t('form.bookableHint')}
             checked={v.isActive}
             onCheckedChange={(c) => setV({ ...v, isActive: c })}
           />
           <SwitchRow
             id="s-visible"
-            label="Show on booking page"
-            description="Hidden services can still be booked by your team."
+            label={t('form.visible')}
+            description={t('form.visibleHint')}
             checked={v.isVisible}
             onCheckedChange={(c) => setV({ ...v, isVisible: c })}
           />
@@ -571,10 +584,10 @@ function ServiceForm({
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onDone}>
-          Cancel
+          {t('form.cancel')}
         </Button>
         <Button type="submit" loading={pending}>
-          {service ? 'Save changes' : 'Add service'}
+          {service ? t('form.save') : t('list.add')}
         </Button>
       </DialogFooter>
     </form>

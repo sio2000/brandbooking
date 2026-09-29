@@ -1,5 +1,6 @@
 import { PageContainer } from '@/components/dashboard/page-header'
 import { Card } from '@/components/ui/card'
+import { getT } from '@/server/i18n'
 import { Skeleton } from '@/components/ui/skeleton'
 
 function ChartSkeleton({ className }: { className?: string }) {
@@ -16,10 +17,11 @@ function ChartSkeleton({ className }: { className?: string }) {
   )
 }
 
-export default function AnalyticsLoading() {
+export default async function AnalyticsLoading() {
+  const t = await getT('app-analytics')
   return (
     <PageContainer wide>
-      <div role="status" aria-label="Loading analytics">
+      <div role="status" aria-label={t('loading')}>
         <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="space-y-2">
             <Skeleton className="h-8 w-40" />
@@ -60,7 +62,7 @@ export default function AnalyticsLoading() {
           </div>
           <ChartSkeleton />
         </div>
-        <span className="sr-only">Loading analytics…</span>
+        <span className="sr-only">{t('loadingText')}</span>
       </div>
     </PageContainer>
   )

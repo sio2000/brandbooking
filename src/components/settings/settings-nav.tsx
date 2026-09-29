@@ -6,6 +6,7 @@ import { motion } from 'motion/react'
 import { Activity, Bell, Building2, CalendarCog, ShieldCheck, UserRound, Users } from 'lucide-react'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
 
 const ICONS = {
   business: Building2,
@@ -17,7 +18,7 @@ const ICONS = {
   activity: Activity,
 }
 
-export type SettingsNavItem = { href: string; label: string; icon: keyof typeof ICONS }
+export type SettingsNavItem = { href: string; icon: keyof typeof ICONS }
 
 function isActive(pathname: string, href: string) {
   return href === '/app/settings'
@@ -28,6 +29,7 @@ function isActive(pathname: string, href: string) {
 /** Underlined tabs on desktop; a horizontally scrolling row of pills on phones. */
 export function SettingsNav({ items }: { items: SettingsNavItem[] }) {
   const pathname = usePathname()
+  const t = useT('app-settings')
   const listRef = React.useRef<HTMLUListElement>(null)
   const activeRef = React.useRef<HTMLLIElement>(null)
 
@@ -37,11 +39,17 @@ export function SettingsNav({ items }: { items: SettingsNavItem[] }) {
     const ul = listRef.current
     const li = activeRef.current
     if (!ul || !li || ul.scrollWidth <= ul.clientWidth) return
-    ul.scrollTo({ left: li.offsetLeft - ul.clientWidth / 2 + li.offsetWidth / 2 })
+    // Relative scroll from on-screen positions, so it works the same in RTL.
+    const a = ul.getBoundingClientRect()
+    const b = li.getBoundingClientRect()
+    ul.scrollBy({ left: b.left + b.width / 2 - (a.left + a.width / 2) })
   }, [pathname])
 
   return (
-    <nav aria-label="Settings" className="-mx-4 mb-6 sm:mx-0 md:mb-8 md:border-b md:border-border">
+    <nav
+      aria-label={t('nav.label')}
+      className="-mx-4 mb-6 sm:mx-0 md:mb-8 md:border-b md:border-border"
+    >
       <ul
         ref={listRef}
         className="relative flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-1 sm:px-0 md:gap-1 md:overflow-visible md:pb-0"
@@ -63,7 +71,7 @@ export function SettingsNav({ items }: { items: SettingsNavItem[] }) {
                 )}
               >
                 <Icon className={cn('size-4', active && 'md:text-primary')} aria-hidden />
-                {item.label}
+                {t(`nav.${item.icon}`)}
               </Link>
               {active && (
                 <motion.span

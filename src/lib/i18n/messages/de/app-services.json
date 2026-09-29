@@ -1,0 +1,84 @@
+{
+  "title": "Leistungen",
+  "description": "Was Kunden buchen können. Legen Sie Dauer, Preis, Pufferzeiten und die ausführenden Personen für jede Leistung fest.",
+  "list": {
+    "count": "{count, plural, one {# Leistung} other {# Leistungen}} · ziehen, um die Reihenfolge auf Ihrer Buchungsseite zu ändern",
+    "export": "Exportieren",
+    "add": "Leistung hinzufügen",
+    "buffer": "+ {count} Min. Puffer",
+    "upcoming": "{count} anstehend",
+    "free": "Kostenlos",
+    "actions": "Aktionen für {name}",
+    "edit": "Bearbeiten",
+    "pause": "Buchungen pausieren",
+    "resume": "Buchungen fortsetzen"
+  },
+  "empty": {
+    "title": "Sie haben noch keine Leistungen angelegt",
+    "description": "Legen Sie Ihre erste Leistung an, damit Kunden buchen können. Sie können eine Dauer, einen optionalen Preis und die ausführende Person festlegen.",
+    "add": "Erste Leistung hinzufügen"
+  },
+  "badges": {
+    "paused": "Pausiert",
+    "hidden": "Auf der Seite ausgeblendet",
+    "unassigned": "Niemand zugewiesen"
+  },
+  "toasts": {
+    "paused": "Leistung pausiert. Sie kann nicht gebucht werden",
+    "resumed": "Leistung wieder aktiv",
+    "saved": "Gespeichert",
+    "deleted": "Gelöscht"
+  },
+  "delete": {
+    "menu": "Löschen",
+    "title": "„{name}“ löschen?",
+    "withUpcoming": "Für diese Leistung gibt es <b>{count, plural, one {# anstehenden Termin} other {# anstehende Termine}}</b>. Diese bleiben gebucht; die Leistung kann nur nicht mehr neu gebucht werden. Vergangene Termine behalten ihre Historie.",
+    "body": "Kunden können sie dann nicht mehr buchen. Vergangene Termine behalten ihre Historie.",
+    "confirm": "Leistung löschen"
+  },
+  "form": {
+    "addTitle": "Leistung hinzufügen",
+    "editTitle": "Leistung bearbeiten",
+    "description": "Kunden sehen Name, Beschreibung, Dauer und Preis.",
+    "fixFields": "Bitte korrigieren Sie die markierten Felder.",
+    "name": "Name der Leistung",
+    "namePlaceholder": "z. B. Haarschnitt & Styling",
+    "descriptionLabel": "Beschreibung",
+    "descriptionPlaceholder": "Was enthalten ist, für wen sie gedacht ist, was vorzubereiten ist.",
+    "duration": "Dauer",
+    "custom": "Individuell",
+    "customLabel": "Individuelle Dauer in Minuten",
+    "minSuffix": "Min.",
+    "price": "Preis",
+    "priceHint": "Leer lassen, um keinen Preis anzuzeigen; 0 für kostenlos.",
+    "category": "Kategorie",
+    "categoryHint": "Gruppiert Leistungen auf Ihrer Buchungsseite.",
+    "categoryPlaceholder": "z. B. Farbe",
+    "noCategory": "Keine Kategorie",
+    "existingCategory": "Bestehende Kategorie wählen",
+    "newCategory": "+ Neue Kategorie",
+    "staff": "Wer sie ausführt",
+    "noStaff": "Fügen Sie zuerst ein Teammitglied hinzu.",
+    "nobodyAssigned": "Niemand ist zugewiesen, daher können Kunden diese Leistung nicht buchen.",
+    "bufferBefore": "Puffer davor",
+    "bufferBeforeHint": "Vorbereitungszeit, im Kalender blockiert.",
+    "bufferAfter": "Puffer danach",
+    "bufferAfterHint": "Zeit zum Aufräumen vor der nächsten Buchung.",
+    "none": "Keiner",
+    "minutes": "{count} Min.",
+    "colour": "Kalenderfarbe",
+    "colourPicker": "Farbe",
+    "bookable": "Buchbar",
+    "bookableHint": "Ausschalten, um die Leistung zu pausieren, ohne sie zu löschen.",
+    "visible": "Auf der Buchungsseite anzeigen",
+    "visibleHint": "Ausgeblendete Leistungen kann Ihr Team weiterhin buchen.",
+    "cancel": "Abbrechen",
+    "save": "Änderungen speichern"
+  },
+  "actions": {
+    "added": "Leistung hinzugefügt",
+    "saved": "Leistung gespeichert",
+    "removed": "Leistung entfernt. Vergangene Termine behalten ihre Historie.",
+    "categoryRemoved": "Kategorie entfernt"
+  }
+}

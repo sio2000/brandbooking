@@ -1,0 +1,127 @@
+{
+  "title": "Faturalandırma",
+  "description": "Her şeyin dahil olduğu tek ve basit bir plan. Rezervasyon başına ücret yok, sürpriz yok.",
+  "loading": "Faturalandırma yükleniyor",
+  "price": {
+    "perMonth": "{price}/ay",
+    "periodSuffix": "/ ay",
+    "note": "Tüm ekibiniz için her şey dahil. İşletmenizin bulunduğu yere göre KDV eklenebilir."
+  },
+  "checkout": {
+    "successTitle": "Teşekkürler, her şey hazır!",
+    "successBody": "Aboneliğiniz etkin. Makbuzunuz gelen kutunuza gönderiliyor.",
+    "pending": "Teşekkürler! Aboneliğiniz, Stripe ödemeyi onaylar onaylamaz (genellikle birkaç saniye içinde) etkinleşir. Güncellenmezse sayfayı yenileyin.",
+    "refresh": "Yenile",
+    "cancelledTitle": "Ödeme iptal edildi",
+    "cancelledBody": "Sorun değil, sizden ücret alınmadı.",
+    "cancelledTrialBody": "Sorun değil, sizden ücret alınmadı. Ücretsiz denemeniz normal şekilde devam ediyor."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Askıya alındı",
+      "title": "Hesabınız askıya alındı",
+      "body": "Hournook destek ekibi bu hesabı askıya aldı; bu yüzden rezervasyon sayfanız çevrim dışı. Çözmek için destekle iletişime geçin. Verileriniz güvende ve hâlâ dışa aktarabilirsiniz."
+    },
+    "ending": {
+      "badge": "Yakında sona eriyor",
+      "title": "Aboneliğinizin bitiş tarihi: {date}",
+      "dateFallback": "bu dönemin sonu",
+      "body": "Sizden tekrar ücret alınmayacak. O zamana kadar her şey çalışmaya devam eder; sonrasında rezervasyon sayfanız yeni rezervasyon almayı bırakır. Fikrinizi mi değiştirdiniz? Faturalandırma portalından sürdürebilirsiniz."
+    },
+    "trialing": {
+      "badge": "Abone",
+      "title": "Abonesiniz",
+      "body": "Ücretsiz denemeniz şu tarihe kadar sürüyor: {date}. İlk {price} ödemeniz o zaman alınır.",
+      "dateFallback": "denemenin sonu"
+    },
+    "active": {
+      "badge": "Etkin",
+      "title": "Aboneliğiniz etkin",
+      "renews": "{date} tarihinde {price} karşılığında otomatik olarak yenilenir.",
+      "billed": "Ücret: {price}."
+    },
+    "pastDue": {
+      "badge": "Ödeme başarısız",
+      "title": "Son ödemeniz gerçekleşmedi",
+      "body": "Stripe otomatik olarak yeniden deneyecek, ancak rezervasyon almaya devam etmek için lütfen ödeme yönteminizi güncelleyin. Son tarih: {date}.",
+      "dateFallback": "ek sürenin sonu"
+    },
+    "trial": {
+      "badge": "Ücretsiz deneme",
+      "title": "{count, plural, one {Ücretsiz denemenizin bitmesine # gün kaldı} other {Ücretsiz denemenizin bitmesine # gün kaldı}}",
+      "body": "Denemeniz {date} tarihinde sona erer. İstediğiniz zaman abone olun. İkiden fazla gün kaldıysa bu günler devredilir ve ilk ödemeniz deneme bittiğinde alınır."
+    },
+    "overdue": {
+      "badge": "Ödeme gecikti",
+      "title": "Rezervasyon sayfanız yeni rezervasyonları durdurdu",
+      "body": "Son ödemenizi tahsil edemedik. Online rezervasyonu hemen yeniden açmak için ödeme yönteminizi güncelleyin ve açık faturayı ödeyin. Hiçbir şey silinmedi."
+    },
+    "canceled": {
+      "badge": "İptal edildi",
+      "title": "Aboneliğiniz sona erdi",
+      "body": "Rezervasyon sayfanız yeni rezervasyon almıyor. Tüm verileriniz hâlâ burada. Anında yeniden açmak için tekrar abone olun."
+    },
+    "noPlan": {
+      "badge": "Plan yok",
+      "title": "Ücretsiz denemeniz sona erdi",
+      "body": "Rezervasyon sayfanız şu anda yeni rezervasyon almıyor, ancak ayarladığınız her şey hâlâ burada. Anında yeniden açmak için abone olun.",
+      "bodyEnded": "{date} tarihinde sona erdi. Rezervasyon sayfanız şu anda yeni rezervasyon almıyor, ancak ayarladığınız her şey hâlâ burada. Anında yeniden açmak için abone olun."
+    }
+  },
+  "notConfigured": {
+    "title": "Faturalandırma bu sunucuda henüz ayarlanmadı",
+    "bodyTrial": "Bu Hournook kurulumunda online ödemeler yapılandırılmadığı için burada abonelik başlatılamaz veya değiştirilemez. Ücretsiz denemeniz yukarıda açıklandığı gibi çalışmaya devam eder.",
+    "bodyAccount": "Bu Hournook kurulumunda online ödemeler yapılandırılmadığı için burada abonelik başlatılamaz veya değiştirilemez. Hesabınız yukarıda açıklandığı gibi çalışmaya devam eder."
+  },
+  "ownerOnly": "Yalnızca işletme sahibi abone olabilir, ödeme yöntemini değiştirebilir veya iptal edebilir.",
+  "cta": {
+    "subscribe": "{price} ile abone ol",
+    "updatePayment": "Ödeme yöntemini güncelle",
+    "resume": "Aboneliği sürdür",
+    "manage": "Faturalandırmayı yönet",
+    "updateCard": "Kartı güncelle",
+    "cancel": "Aboneliği iptal et",
+    "secure": "Stripe’ın ödeme sayfasında güvenle ödeme yapıp doğrudan buraya dönersiniz."
+  },
+  "included": {
+    "title": "Neler dahil",
+    "page": "Kendi rezervasyon sayfanız, QR kod ve web sitesi widget’ı",
+    "unlimited": "Sınırsız rezervasyon, müşteri ve hizmet",
+    "team": "Tüm ekibiniz, kullanıcı başına ücret yok",
+    "calendar": "Takvim, müsaitlik, tatiller ve izinler",
+    "emails": "E-posta onayları ve otomatik hatırlatmalar",
+    "analytics": "İstatistikler, dışa aktarımlar ve etkinlik kaydı"
+  },
+  "paymentMethod": {
+    "title": "Ödeme yöntemi",
+    "notConfigured": "Faturalandırma ayarlanana kadar kullanılamaz.",
+    "loadFailed": "Kart bilgileriniz şu anda yüklenemedi.",
+    "none": "Kayıtlı kart yok. Abone olduğunuzda bir kart ekleyeceksiniz."
+  },
+  "invoices": {
+    "title": "Faturalar",
+    "description": "Her ödemeden sonra makbuzlar size e-postayla da gönderilir.",
+    "notConfigured": "Faturalandırma ayarlandığında faturalar burada görünür.",
+    "unavailableTitle": "Faturalar şu anda kullanılamıyor",
+    "unavailableBody": "Faturalarınızı yüklemek için Stripe’a ulaşılamadı. Biraz sonra tekrar deneyin; aboneliğiniz etkilenmez.",
+    "empty": "Henüz fatura yok. İlk ödemenizden sonra burada görünür.",
+    "invoice": "Fatura",
+    "view": "Görüntüle",
+    "viewFrom": "{date} tarihli fatura",
+    "status": {
+      "paid": "Ödendi",
+      "open": "Ödenecek",
+      "void": "Geçersiz",
+      "uncollectible": "Ödenmedi",
+      "draft": "Taslak"
+    }
+  },
+  "goodToKnow": {
+    "title": "Bilmenizde fayda var",
+    "fees": "<b>Rezervasyon başına ücret yok.</b> <muted>Ne kadar yoğun olursanız olun, tek sabit fiyat.</muted>",
+    "cancel": "<b>İstediğiniz zaman iptal edin.</b> <muted>Ödediğiniz dönemin sonuna kadar erişiminiz devam eder.</muted>",
+    "vat": "<b>KDV uygulanabilir</b> <muted>(konumunuza bağlı olarak). Faturanızda gösterilir.</muted>",
+    "data": "<b>Verileriniz sizin kalır.</b> <muted>Planınız sona ererse hiçbir şey silinmez. Yine giriş yapıp dışa aktarabilirsiniz.</muted>"
+  },
+  "stripeUnreachable": "Stripe’a ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin."
+}

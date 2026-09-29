@@ -19,8 +19,8 @@ import {
 import { requireTenantPage } from '@/server/tenancy/context'
 import { db } from '@/server/db/client'
 import { auditLogs, users, type ActorType } from '@/server/db/schema'
-import { ACTIVITY_LABELS } from '@/server/business/overview'
-import { ROLE_LABELS } from '@/server/tenancy/permissions'
+import { getFormatLocale, getT } from '@/server/i18n'
+import { rich } from '@/components/i18n/rich'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/feedback'
@@ -29,16 +29,16 @@ import { formatMoney, formatPlainDate, formatTime } from '@/lib/format'
 import { addDays, epochToLocalDate, todayIn } from '@/lib/tz'
 import { cn } from '@/lib/utils'
 
-export const metadata: Metadata = { title: 'Activity' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-settings')
+  return { title: t('activity.metaTitle') }
+}
 
 const PAGE_SIZE = 50
 
-const EXTRA_LABELS: Record<string, string> = {
-  'export.appointments': 'Appointments exported',
-  'export.customers': 'Customers exported',
-  'export.services': 'Services exported',
-  'settings.notifications_updated': 'Customer email settings changed',
-}
+type T = Awaited<ReturnType<typeof getT<'app-settings'>>>
+
+const camel = (s: string) => s.replace(/_([a-z])/g, (_, c: string) => c.toUpperCase())
 
 const CATEGORY: Array<{ prefix: string; icon: typeof Activity; tone: string }> = [
   {
@@ -72,64 +72,73 @@ function categoryFor(action: string) {
   )
 }
 
-function labelFor(action: string) {
-  const known = ACTIVITY_LABELS[action] ?? EXTRA_LABELS[action]
-  if (known) return known
+/** Event name from `activity.events.<category>.<event>`; unknown events fall back to their id. */
+function labelFor(action: string, t: T) {
+  const [category, ...rest] = action.split('.')
+  const key = `activity.events.${category}.${camel(rest.join('_'))}`
+  if (t.has(key)) return t(key)
   const words = action.split('.').pop()!.replaceAll('_', ' ')
   return words.charAt(0).toUpperCase() + words.slice(1)
 }
 
-function actorFor(actor: ActorType, name: string | null) {
+function actorFor(actor: ActorType, name: string | null, t: T) {
   switch (actor) {
     case 'user':
-      return name ?? 'A former team member'
+      return name ?? t('activity.actors.formerMember')
     case 'customer':
-      return 'Customer'
+      return t('activity.actors.customer')
     case 'stripe':
-      return 'Stripe'
+      return 'Stripe' // i18n-ignore (brand)
     case 'admin':
-      return 'Hournook support'
+      return t('activity.actors.support')
     default:
-      return 'System'
+      return t('activity.actors.system')
   }
 }
 
-const roleName = (r: unknown) =>
-  typeof r === 'string' && r in ROLE_LABELS ? ROLE_LABELS[r as keyof typeof ROLE_LABELS] : null
+const isRole = (r: unknown): r is 'owner' | 'manager' | 'staff' =>
+  r === 'owner' || r === 'manager' || r === 'staff'
 
-function detailFor(action: string, m: Record<string, unknown>): string | null {
+function detailFor(action: string, m: Record<string, unknown>, t: T, tag: string): string | null {
   switch (action) {
     case 'team.role_changed':
-      return roleName(m.from) && roleName(m.to) ? `${roleName(m.from)} → ${roleName(m.to)}` : null
+      return isRole(m.from) && isRole(m.to)
+        ? `${t(`team.roles.${m.from}`)} → ${t(`team.roles.${m.to}`)}`
+        : null
     case 'team.member_invited':
     case 'team.member_joined':
-      return roleName(m.role) ? `as ${roleName(m.role)!.toLowerCase()}` : null
+      return isRole(m.role) ? t('activity.detail.asRole', { role: m.role }) : null
     case 'business.slug_changed':
       return typeof m.from === 'string' && typeof m.to === 'string' ? `/${m.from} → /${m.to}` : null
     case 'export.appointments':
     case 'export.customers':
-      return typeof m.count === 'number' ? `${m.count} row${m.count === 1 ? '' : 's'}` : null
+      return typeof m.count === 'number' ? t('activity.detail.rows', { count: m.count }) : null
     case 'billing.invoice_paid':
       return typeof m.amount === 'number' && typeof m.currency === 'string'
-        ? formatMoney(m.amount, m.currency.toUpperCase())
+        ? formatMoney(m.amount, m.currency.toUpperCase(), tag)
         : null
-    case 'billing.subscription_status_changed':
-      return typeof m.to === 'string' ? `now ${m.to.replaceAll('_', ' ')}` : null
+    case 'billing.subscription_status_changed': {
+      if (typeof m.to !== 'string') return null
+      const key = `activity.subscriptionStatus.${camel(m.to)}`
+      return t('activity.detail.statusNow', {
+        status: t.has(key) ? t(key) : m.to.replaceAll('_', ' '),
+      })
+    }
     case 'billing.payment_failed':
-      return typeof m.attempt === 'number' ? `attempt ${m.attempt}` : null
+      return typeof m.attempt === 'number' ? t('activity.detail.attempt', { n: m.attempt }) : null
     default:
       return null
   }
 }
 
-function dayHeading(date: string, tz: string) {
+function dayHeading(date: string, tz: string, t: T, tag: string) {
   const today = todayIn(tz)
-  if (date === today) return 'Today'
-  if (date === addDays(today, -1)) return 'Yesterday'
+  if (date === today) return t('activity.today')
+  if (date === addDays(today, -1)) return t('activity.yesterday')
   const sameYear = date.slice(0, 4) === today.slice(0, 4)
   return formatPlainDate(
     date,
-    'en',
+    tag,
     sameYear
       ? { weekday: 'long', day: 'numeric', month: 'long' }
       : { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' },
@@ -138,6 +147,7 @@ function dayHeading(date: string, tz: string) {
 
 export default async function ActivityPage({ searchParams }: PageProps<'/app/settings/activity'>) {
   const ctx = await requireTenantPage('audit.view')
+  const [t, tag] = await Promise.all([getT('app-settings'), getFormatLocale()])
   const sp = await searchParams
   const page = Math.max(1, Math.min(10_000, Number(typeof sp.page === 'string' ? sp.page : 1) || 1))
   const tz = ctx.business.timezone
@@ -171,24 +181,25 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
   return (
     <div>
       <SettingsIntro
-        title="Activity"
-        description={`A record of important changes in ${ctx.business.name}: who did what, and when. Times are shown in ${tz.replaceAll('_', ' ')}.`}
+        title={t('activity.title')}
+        description={t('activity.description', {
+          business: ctx.business.name,
+          tz: tz.replaceAll('_', ' '),
+        })}
       />
 
       {items.length === 0 ? (
         <Card>
           <EmptyState
             icon={Activity}
-            title={page > 1 ? 'No more activity' : 'No activity yet'}
+            title={page > 1 ? t('activity.emptyMore') : t('activity.empty')}
             description={
-              page > 1
-                ? 'You’ve reached the beginning of your history.'
-                : 'Changes to your business, bookings and team will be listed here.'
+              page > 1 ? t('activity.emptyMoreDescription') : t('activity.emptyDescription')
             }
             action={
               page > 1 ? (
                 <Button asChild variant="secondary" size="sm">
-                  <Link href="/app/settings/activity">Back to latest</Link>
+                  <Link href="/app/settings/activity">{t('activity.backToLatest')}</Link>
                 </Button>
               ) : undefined
             }
@@ -200,16 +211,16 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
             <section key={d.date} aria-labelledby={`day-${d.date}`}>
               <h3
                 id={`day-${d.date}`}
-                className="sticky top-14 z-[1] mb-2 flex w-fit rounded-full bg-background/90 py-1 pr-3 font-sans text-[13px] font-semibold tracking-normal text-muted-foreground backdrop-blur sm:top-16"
+                className="sticky top-14 z-[1] mb-2 flex w-fit rounded-full bg-background/90 py-1 pe-3 font-sans text-[13px] font-semibold tracking-normal text-muted-foreground backdrop-blur sm:top-16"
               >
-                {dayHeading(d.date, tz)}
+                {dayHeading(d.date, tz, t, tag)}
               </h3>
               <Card>
                 <ol className="divide-y divide-border">
                   {d.items.map((r) => {
                     const cat = categoryFor(r.action)
                     const Icon = cat.icon
-                    const detail = detailFor(r.action, r.metadata)
+                    const detail = detailFor(r.action, r.metadata, t, tag)
                     return (
                       <li
                         key={r.id}
@@ -226,23 +237,28 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
                         </span>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm">
-                            <span className="font-medium">{labelFor(r.action)}</span>
+                            <span className="font-medium">{labelFor(r.action, t)}</span>
                             {detail && <span className="text-muted-foreground"> · {detail}</span>}
                           </p>
                           <p className="text-[13px] text-muted-foreground">
-                            by{' '}
-                            <span
-                              className={cn(r.actor === 'user' && r.actorName && 'text-foreground')}
-                            >
-                              {actorFor(r.actor, r.actorName)}
-                            </span>
+                            {rich(t('activity.by', { actor: actorFor(r.actor, r.actorName, t) }), {
+                              actor: (c) => (
+                                <span
+                                  className={cn(
+                                    r.actor === 'user' && r.actorName && 'text-foreground',
+                                  )}
+                                >
+                                  {c}
+                                </span>
+                              ),
+                            })}
                           </p>
                         </div>
                         <time
                           dateTime={r.createdAt.toISOString()}
                           className="tabular shrink-0 pt-0.5 text-[13px] text-subtle-foreground sm:pt-0"
                         >
-                          {formatTime(r.createdAt, tz)}
+                          {formatTime(r.createdAt, tz, tag)}
                         </time>
                       </li>
                     )
@@ -255,7 +271,10 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
       )}
 
       {(page > 1 || hasMore) && (
-        <nav aria-label="Pagination" className="mt-6 flex items-center justify-between gap-3">
+        <nav
+          aria-label={t('activity.pagination')}
+          className="mt-6 flex items-center justify-between gap-3"
+        >
           {page > 1 ? (
             <Button asChild variant="secondary" size="sm">
               <Link
@@ -263,17 +282,17 @@ export default async function ActivityPage({ searchParams }: PageProps<'/app/set
                   page === 2 ? '/app/settings/activity' : `/app/settings/activity?page=${page - 1}`
                 }
               >
-                <ChevronLeft /> Newer
+                <ChevronLeft className="rtl:-scale-x-100" /> {t('activity.newer')}
               </Link>
             </Button>
           ) : (
             <span />
           )}
-          <span className="text-[13px] text-muted-foreground">Page {page}</span>
+          <span className="text-[13px] text-muted-foreground">{t('activity.page', { page })}</span>
           {hasMore ? (
             <Button asChild variant="secondary" size="sm">
               <Link href={`/app/settings/activity?page=${page + 1}`}>
-                Older <ChevronRight />
+                {t('activity.older')} <ChevronRight className="rtl:-scale-x-100" />
               </Link>
             </Button>
           ) : (

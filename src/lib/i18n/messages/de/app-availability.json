@@ -1,0 +1,91 @@
+{
+  "title": "Verfügbarkeit",
+  "description": "Wann Kunden buchen können. Die Öffnungszeiten gelten für alle; Teammitglieder können ihnen folgen oder innerhalb davon einen eigenen Plan haben.",
+  "allTimesIn": "Alle Zeiten in {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Wessen Plan",
+    "business": "Öffnungszeiten"
+  },
+  "weekly": {
+    "title": "Öffnungszeiten",
+    "description": "Ihre regulären Wochenzeiten. Fügen Sie einen zweiten Zeitraum für die Mittagspause oder geteilte Schichten hinzu.",
+    "staffTitle": "Wochenplan von {name}",
+    "staffDescription": "Die buchbaren Zeiten pro Woche (immer innerhalb der Öffnungszeiten).",
+    "followsTitle": "Folgt Ihren Öffnungszeiten",
+    "followsBody": "{name} ist buchbar, wann immer das Unternehmen geöffnet ist. Legen Sie einen eigenen Plan fest, wenn die Person weniger Stunden arbeitet.",
+    "followsNote": "Starten Sie mit den Öffnungszeiten und passen Sie sie an. Zeiten außerhalb der Öffnungszeiten sind nicht buchbar.",
+    "useBusiness": "Öffnungszeiten übernehmen",
+    "endAfterStart": "Das Ende muss nach dem Beginn liegen.",
+    "overlap": "Die Zeiträume überschneiden sich.",
+    "fixDays": "Korrigieren Sie zuerst die markierten Tage.",
+    "dayOpen": "{day} geöffnet",
+    "closed": "Geschlossen",
+    "rangeStart": "{day}, Zeitraum {n}, Beginn",
+    "rangeEnd": "{day}, Zeitraum {n}, Ende",
+    "removeRange": "Zeitraum {n} am {day} entfernen",
+    "addRange": "Zeiten hinzufügen (nach einer Pause)",
+    "copyWeekdays": "Auf Mo–Fr kopieren",
+    "unsaved": "Ungespeicherte Änderungen",
+    "save": "Zeiten speichern"
+  },
+  "closures": {
+    "title": "Feiertage & Schließtage",
+    "description": "Ganze Tage, an denen Sie geschlossen haben. Wiederkehrende Feiertage wiederholen sich jedes Jahr.",
+    "staffTitle": "Freie Tage von {name}",
+    "staffDescription": "Urlaub, Krankheit, Fortbildung.",
+    "from": "Von",
+    "to": "Bis",
+    "label": "Bezeichnung",
+    "placeholder": "z. B. Weihnachten",
+    "staffPlaceholder": "z. B. Urlaub",
+    "yearly": "Wiederholt sich jedes Jahr",
+    "add": "Schließtag hinzufügen",
+    "empty": "Keine anstehenden Schließtage.",
+    "closed": "Geschlossen",
+    "yearlyBadge": "Jährlich",
+    "remove": "Schließtag entfernen",
+    "removeNamed": "{label} entfernen"
+  },
+  "special": {
+    "title": "Sonderöffnungszeiten",
+    "description": "Abweichende Zeiten an einem bestimmten Datum, etwa ein langer Abend oder ein kurzer Tag.",
+    "date": "Datum",
+    "opens": "Öffnet",
+    "closes": "Schließt",
+    "add": "Sonderzeiten festlegen",
+    "empty": "Keine anstehenden Sonderöffnungszeiten.",
+    "remove": "Sonderzeiten am {date} entfernen"
+  },
+  "blocks": {
+    "title": "Blockierte Zeit",
+    "description": "Blockieren Sie einen Teil des Tages für ein Meeting, eine Besorgung oder eine Lieferung. Bestehende Buchungen sind nicht betroffen.",
+    "date": "Datum",
+    "from": "Von",
+    "until": "Bis",
+    "reason": "Grund",
+    "add": "Zeit blockieren",
+    "addForEveryone": "Zeit für alle blockieren",
+    "empty": "Keine anstehenden blockierten Zeiten.",
+    "blocked": "Blockiert",
+    "everyone": "alle",
+    "remove": "Blockierung entfernen"
+  },
+  "toasts": {
+    "saved": "Gespeichert",
+    "added": "Hinzugefügt",
+    "blocked": "Blockiert",
+    "removed": "Entfernt",
+    "failed": "Fehlgeschlagen"
+  },
+  "actions": {
+    "hoursSaved": "Arbeitszeiten gespeichert",
+    "following": "Folgt jetzt den Öffnungszeiten",
+    "closureAdded": "Schließtag hinzugefügt",
+    "closureRemoved": "Schließtag entfernt",
+    "specialSaved": "Sonderzeiten gespeichert",
+    "specialRemoved": "Sonderzeiten entfernt",
+    "blocked": "Zeit blockiert",
+    "blockRemoved": "Blockierung entfernt"
+  }
+}

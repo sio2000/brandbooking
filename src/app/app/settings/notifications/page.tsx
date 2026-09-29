@@ -4,10 +4,15 @@ import { BellRing } from 'lucide-react'
 import { requireTenantPage } from '@/server/tenancy/context'
 import { getMyPrefs } from '@/server/business/team'
 import { env } from '@/server/env'
+import { getT } from '@/server/i18n'
+import { rich } from '@/components/i18n/rich'
 import { EmailSettingsForm, MyNotificationPrefs } from '@/components/settings/notification-settings'
 import { SettingsIntro } from '@/components/settings/section'
 
-export const metadata: Metadata = { title: 'Notifications' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-settings')
+  return { title: t('notifications.metaTitle') }
+}
 
 function senderAddress() {
   const configured = env().EMAIL_FROM
@@ -16,15 +21,15 @@ function senderAddress() {
 
 export default async function NotificationSettingsPage() {
   const ctx = await requireTenantPage()
-  const prefs = await getMyPrefs(ctx)
+  const [prefs, t] = await Promise.all([getMyPrefs(ctx), getT('app-settings')])
   const canManage = ctx.can('settings.manage')
   const b = ctx.business
   return (
     <div className="grid grid-cols-1 gap-8">
       <section>
         <SettingsIntro
-          title="Your notifications"
-          description="Choose what we tell you about. This only affects you; each team member sets their own."
+          title={t('notifications.mine.title')}
+          description={t('notifications.mine.description')}
         />
         <MyNotificationPrefs
           role={ctx.membership.role}
@@ -39,13 +44,12 @@ export default async function NotificationSettingsPage() {
         {!canManage && (
           <p className="mt-3 flex items-center gap-2 text-[13px] text-muted-foreground">
             <BellRing className="size-3.5 shrink-0" aria-hidden />
-            Reminder emails to customers are set up by an owner or manager under Booking settings.
+            {t('notifications.mine.remindersByManager')}
           </p>
         )}
         {!ctx.user.emailVerified && (
           <p className="mt-3 text-[13px] text-muted-foreground">
-            Verify your email address to receive notification emails. Until then they only appear in
-            your inbox.
+            {t('notifications.mine.verifyEmail')}
           </p>
         )}
       </section>
@@ -53,8 +57,8 @@ export default async function NotificationSettingsPage() {
       {canManage && (
         <section>
           <SettingsIntro
-            title="Customer emails"
-            description="How your automatic emails to customers look."
+            title={t('notifications.customers.title')}
+            description={t('notifications.customers.description')}
           />
           <EmailSettingsForm
             initial={{ emailSenderName: b.emailSenderName ?? '', emailFooter: b.emailFooter ?? '' }}
@@ -65,14 +69,16 @@ export default async function NotificationSettingsPage() {
           <p className="mt-3 flex items-center gap-2 text-[13px] text-muted-foreground">
             <BellRing className="size-3.5 shrink-0" aria-hidden />
             <span>
-              Looking for appointment reminders? They’re set under{' '}
-              <Link
-                href="/app/settings/booking#reminders"
-                className="font-medium text-primary hover:underline"
-              >
-                Booking rules
-              </Link>
-              .
+              {rich(t('notifications.customers.remindersLink'), {
+                link: (c) => (
+                  <Link
+                    href="/app/settings/booking#reminders"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {c}
+                  </Link>
+                ),
+              })}
             </span>
           </p>
         </section>

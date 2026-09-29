@@ -1,0 +1,71 @@
+{
+  "title": "Zespół",
+  "description": "Osoby, do których klienci mogą się umówić. Każdy członek zespołu ma własne usługi, grafik i kalendarz.",
+  "list": {
+    "count": "{count, plural, one {# członek zespołu} few {# członków zespołu} many {# członków zespołu} other {# członka zespołu}}",
+    "logins": "Loginy i role",
+    "add": "Dodaj członka zespołu"
+  },
+  "empty": {
+    "title": "Brak członków zespołu",
+    "description": "Dodaj osoby, do których klienci mogą się umawiać."
+  },
+  "card": {
+    "defaultTitle": "Członek zespołu",
+    "notBookable": "Niedostępny do rezerwacji",
+    "login": "{role, select, owner {Login właściciela} manager {Login menedżera} other {Login członka zespołu}}",
+    "noLogin": "Bez loginu",
+    "services": "Usługi",
+    "servicesCount": "{count} z {total}",
+    "hours": "Godziny",
+    "businessHours": "Godziny otwarcia firmy",
+    "ownSchedule": "Własny grafik",
+    "upcoming": "Nadchodzące",
+    "edit": "Edytuj",
+    "hoursLink": "Godziny"
+  },
+  "form": {
+    "editTitle": "Edytuj członka zespołu",
+    "description": "Imię, zdjęcie i stanowisko są widoczne na stronie rezerwacji, jeśli pokazujesz swój zespół.",
+    "fixFields": "Popraw zaznaczone pola.",
+    "uploadPhoto": "Prześlij zdjęcie",
+    "photoHint": "JPG, PNG lub WebP, co najmniej 96 px, maks. 5 MB.",
+    "name": "Imię i nazwisko",
+    "title": "Stanowisko",
+    "titleHint": "np. Starszy stylista",
+    "email": "E-mail",
+    "emailHint": "Do Twojej ewidencji. Aby dać tej osobie login, zaproś ją w Ustawienia → Zespół.",
+    "bio": "Krótki opis",
+    "services": "Wykonywane usługi",
+    "noServices": "Brak usług.",
+    "colour": "Kolor w kalendarzu",
+    "colourPicker": "Kolor",
+    "bookable": "Dostępny do rezerwacji",
+    "bookableHint": "Wyłącz na czas dłuższej nieobecności. Istniejące wizyty pozostaną.",
+    "businessHours": "Pracuje w godzinach otwarcia firmy",
+    "businessHoursHint": "Wyłącz, aby ustawić własny tygodniowy grafik w sekcji Dostępność.",
+    "cancel": "Anuluj",
+    "save": "Zapisz zmiany"
+  },
+  "remove": {
+    "button": "Usuń członka zespołu",
+    "title": "Usunąć: {name}?",
+    "withUpcoming": "{name} ma {count, plural, one {# nadchodzącą wizytę} few {# nadchodzące wizyty} many {# nadchodzących wizyt} other {# nadchodzącej wizyty}}. Najpierw zmień ich termin lub je odwołaj.",
+    "body": "Ta osoba nie będzie już widoczna na stronie rezerwacji. Przeszłe wizyty zachowają historię.",
+    "confirm": "Usuń"
+  },
+  "toasts": {
+    "saved": "Zapisano",
+    "removed": "Usunięto"
+  },
+  "errors": {
+    "hasUpcoming": "Ten członek zespołu ma {count, plural, one {# nadchodzącą wizytę} few {# nadchodzące wizyty} many {# nadchodzących wizyt} other {# nadchodzącej wizyty}}. Najpierw zmień ich termin lub je odwołaj."
+  },
+  "actions": {
+    "added": "Dodano członka zespołu",
+    "saved": "Zapisano członka zespołu",
+    "removed": "Usunięto członka zespołu",
+    "photoUpdated": "Zaktualizowano zdjęcie",
+    "chooseImage": "Wybierz obraz."
+  }
+}

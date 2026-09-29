@@ -1,0 +1,84 @@
+{
+  "title": "Usługi",
+  "description": "To, co klienci mogą zarezerwować. Ustaw czas trwania, cenę, przerwy i to, kto wykonuje każdą usługę.",
+  "list": {
+    "count": "{count, plural, one {# usługa} few {# usługi} many {# usług} other {# usługi}} · przeciągnij, aby zmienić kolejność na stronie rezerwacji",
+    "export": "Eksportuj",
+    "add": "Dodaj usługę",
+    "buffer": "+ {count} min przerwy",
+    "upcoming": "Nadchodzące: {count}",
+    "free": "Bezpłatnie",
+    "actions": "Działania dla: {name}",
+    "edit": "Edytuj",
+    "pause": "Wstrzymaj rezerwacje",
+    "resume": "Wznów rezerwacje"
+  },
+  "empty": {
+    "title": "Nie masz jeszcze żadnych usług",
+    "description": "Dodaj pierwszą usługę, aby klienci mogli zacząć rezerwować. Możesz ustawić czas trwania, opcjonalną cenę i to, kto ją wykonuje.",
+    "add": "Dodaj pierwszą usługę"
+  },
+  "badges": {
+    "paused": "Wstrzymana",
+    "hidden": "Ukryta na stronie",
+    "unassigned": "Nikt nieprzypisany"
+  },
+  "toasts": {
+    "paused": "Usługa wstrzymana. Nie można jej zarezerwować",
+    "resumed": "Usługa znów aktywna",
+    "saved": "Zapisano",
+    "deleted": "Usunięto"
+  },
+  "delete": {
+    "menu": "Usuń",
+    "title": "Usunąć „{name}”?",
+    "withUpcoming": "Ta usługa ma <b>{count, plural, one {# nadchodzącą wizytę} few {# nadchodzące wizyty} many {# nadchodzących wizyt} other {# nadchodzącej wizyty}}</b>. Pozostaną zarezerwowane; usługi po prostu nie będzie można zarezerwować ponownie. Przeszłe wizyty zachowają historię.",
+    "body": "Klienci nie będą już mogli jej zarezerwować. Przeszłe wizyty zachowają historię.",
+    "confirm": "Usuń usługę"
+  },
+  "form": {
+    "addTitle": "Dodaj usługę",
+    "editTitle": "Edytuj usługę",
+    "description": "Klienci widzą nazwę, opis, czas trwania i cenę.",
+    "fixFields": "Popraw zaznaczone pola.",
+    "name": "Nazwa usługi",
+    "namePlaceholder": "np. Strzyżenie i modelowanie",
+    "descriptionLabel": "Opis",
+    "descriptionPlaceholder": "Co obejmuje, dla kogo jest, jak się przygotować.",
+    "duration": "Czas trwania",
+    "custom": "Własny",
+    "customLabel": "Własny czas trwania w minutach",
+    "minSuffix": "min",
+    "price": "Cena",
+    "priceHint": "Zostaw puste, aby ukryć cenę; wpisz 0, jeśli usługa jest bezpłatna.",
+    "category": "Kategoria",
+    "categoryHint": "Grupuje usługi na stronie rezerwacji.",
+    "categoryPlaceholder": "np. Koloryzacja",
+    "noCategory": "Bez kategorii",
+    "existingCategory": "Wybierz istniejącą kategorię",
+    "newCategory": "+ Nowa kategoria",
+    "staff": "Kto wykonuje",
+    "noStaff": "Najpierw dodaj członka zespołu.",
+    "nobodyAssigned": "Nikt nie jest przypisany, więc klienci nie będą mogli zarezerwować tej usługi.",
+    "bufferBefore": "Przerwa przed",
+    "bufferBeforeHint": "Czas na przygotowanie, blokowany w kalendarzu.",
+    "bufferAfter": "Przerwa po",
+    "bufferAfterHint": "Czas na sprzątanie przed kolejną rezerwacją.",
+    "none": "Brak",
+    "minutes": "{count} min",
+    "colour": "Kolor w kalendarzu",
+    "colourPicker": "Kolor",
+    "bookable": "Dostępna do rezerwacji",
+    "bookableHint": "Wyłącz, aby wstrzymać usługę bez jej usuwania.",
+    "visible": "Pokaż na stronie rezerwacji",
+    "visibleHint": "Ukryte usługi nadal może rezerwować Twój zespół.",
+    "cancel": "Anuluj",
+    "save": "Zapisz zmiany"
+  },
+  "actions": {
+    "added": "Dodano usługę",
+    "saved": "Zapisano usługę",
+    "removed": "Usunięto usługę. Przeszłe wizyty zachowają historię.",
+    "categoryRemoved": "Usunięto kategorię"
+  }
+}

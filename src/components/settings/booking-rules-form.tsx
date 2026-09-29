@@ -9,17 +9,18 @@ import { Input, NativeSelect } from '@/components/ui/input'
 import { RadioCard, RadioGroup, SwitchRow } from '@/components/ui/controls'
 import { saveBookingRulesAction } from '@/app/app/_actions/settings'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
 import { SaveBar, SettingsGroup } from './section'
 import { useActionForm } from './use-action-form'
 import {
-  CHANGE_DEADLINES,
-  MAX_ADVANCE,
-  MIN_NOTICE,
+  MAX_ADVANCE_DAYS,
   REMINDER_OFFSETS,
-  SLOT_INTERVALS,
+  changeDeadlineOptions,
   humanDays,
   humanMinutes,
+  minNoticeOptions,
   reminderLabel,
+  slotIntervalOptions,
   withCurrent,
   type DurationOption,
 } from './durations'
@@ -41,29 +42,11 @@ export type RulesValues = {
 
 const MAX_REMINDERS = 3
 
-const STAFF_MODES = [
-  {
-    value: 'optional',
-    title: 'Customer may choose',
-    body: 'Customers can pick a team member or choose “Any available”.',
-  },
-  {
-    value: 'required',
-    title: 'Customer must choose',
-    body: 'Customers always pick a specific team member.',
-  },
-  {
-    value: 'hidden',
-    title: 'Don’t ask',
-    body: 'We assign whoever is free. Customers never see a choice.',
-  },
-] as const
+/** Titles and explanations: `booking.form.staffModes.<value>` / `booking.form.phoneModes.<value>`. */
+const STAFF_MODES = ['optional', 'required', 'hidden'] as const
+const PHONE_MODES = ['required', 'optional', 'hidden'] as const
 
-const PHONE_MODES = [
-  { value: 'required', title: 'Required', body: 'Best if you call or text customers.' },
-  { value: 'optional', title: 'Optional', body: 'Customers can leave it empty.' },
-  { value: 'hidden', title: 'Don’t ask', body: 'The field isn’t shown at all.' },
-] as const
+type T = ReturnType<typeof useT<'app-settings'>>
 
 function DurationSelect({
   id,
@@ -94,15 +77,23 @@ function DurationSelect({
   )
 }
 
-function summary(v: RulesValues) {
+function summary(v: RulesValues, t: T) {
   const notice =
     v.minNoticeMinutes === 0
-      ? 'right up to the last minute'
-      : `at least ${humanMinutes(v.minNoticeMinutes)} ahead`
-  return `Customers can book ${notice}, and up to ${humanDays(v.maxAdvanceDays)} in advance. Start times are offered ${v.slotIntervalMinutes === 60 ? 'on the hour' : `every ${v.slotIntervalMinutes} minutes`}.`
+      ? t('booking.summary.lastMinute')
+      : t('booking.summary.notice', { duration: humanMinutes(v.minNoticeMinutes, t) })
+  return t('booking.summary.text', {
+    notice,
+    days: humanDays(v.maxAdvanceDays, t),
+    interval:
+      v.slotIntervalMinutes === 60
+        ? t('booking.summary.onTheHour')
+        : t('booking.summary.everyMinutes', { count: v.slotIntervalMinutes }),
+  })
 }
 
 export function BookingRulesForm({ initial }: { initial: RulesValues }) {
+  const t = useT('app-settings')
   const form = useActionForm(initial, saveBookingRulesAction)
   const { values: v, set, errors: e } = form
   const limitOn = v.maxBookingsPerDay !== ''
@@ -126,69 +117,79 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
         aria-live="polite"
       >
         <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
-        <span>{summary(v)}</span>
+        <span>{summary(v, t)}</span>
       </p>
       <Card>
         <CardBody className="divide-y divide-border pt-5">
           <SettingsGroup
             id="window"
-            title="When customers can book"
-            description="Protect your time: stop last-minute surprises and decide how far ahead your calendar opens."
+            title={t('booking.window.title')}
+            description={t('booking.window.description')}
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field
-                label="Minimum notice"
+                label={t('booking.window.minNotice')}
                 htmlFor="minNoticeMinutes"
                 error={e.minNoticeMinutes}
-                hint="How soon before an appointment someone can still book it online."
+                hint={t('booking.window.minNoticeHint')}
               >
                 <DurationSelect
                   id="minNoticeMinutes"
                   value={v.minNoticeMinutes}
-                  options={withCurrent(MIN_NOTICE, v.minNoticeMinutes, humanMinutes)}
+                  options={withCurrent(
+                    minNoticeOptions(t),
+                    v.minNoticeMinutes,
+                    (m) => humanMinutes(m, t),
+                    t,
+                  )}
                   onChange={(x) => set('minNoticeMinutes', x)}
                 />
               </Field>
               <Field
-                label="Book up to"
+                label={t('booking.window.maxAdvance')}
                 htmlFor="maxAdvanceDays"
                 error={e.maxAdvanceDays}
-                hint="How far into the future customers can see free times."
+                hint={t('booking.window.maxAdvanceHint')}
               >
                 <DurationSelect
                   id="maxAdvanceDays"
                   value={v.maxAdvanceDays}
-                  options={withCurrent(MAX_ADVANCE, v.maxAdvanceDays, humanDays).map((o) => ({
-                    ...o,
-                    label: o.label.endsWith('(current)') ? o.label : `${o.label} ahead`,
-                  }))}
+                  options={withCurrent(
+                    MAX_ADVANCE_DAYS.map((d) => ({
+                      value: d,
+                      label: t('duration.ahead', { duration: humanDays(d, t) }),
+                    })),
+                    v.maxAdvanceDays,
+                    (d) => humanDays(d, t),
+                    t,
+                  )}
                   onChange={(x) => set('maxAdvanceDays', x)}
                 />
               </Field>
               <Field
-                label="Start times"
+                label={t('booking.window.startTimes')}
                 htmlFor="slotIntervalMinutes"
                 error={e.slotIntervalMinutes}
-                hint="With every 15 minutes, customers see 9:00, 9:15, 9:30… Longer steps keep your day tidier."
+                hint={t('booking.window.startTimesHint')}
               >
                 <DurationSelect
                   id="slotIntervalMinutes"
                   value={v.slotIntervalMinutes}
-                  options={SLOT_INTERVALS}
+                  options={slotIntervalOptions(t)}
                   onChange={(x) => set('slotIntervalMinutes', x)}
                 />
               </Field>
               <div className="grid grid-cols-1 content-start gap-1.5">
                 <SwitchRow
                   id="limitPerDay"
-                  label="Limit online bookings per day"
-                  description="Once the limit is reached, that day shows as full. You can still add appointments yourself."
+                  label={t('booking.window.limit')}
+                  description={t('booking.window.limitDescription')}
                   checked={limitOn}
                   onCheckedChange={(c) => set('maxBookingsPerDay', c ? '8' : '')}
                 />
                 {limitOn && (
                   <Field
-                    label="Maximum per day"
+                    label={t('booking.window.maxPerDay')}
                     htmlFor="maxBookingsPerDay"
                     error={e.maxBookingsPerDay}
                   >
@@ -209,16 +210,16 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
 
           <SettingsGroup
             id="confirm"
-            title="Confirmation"
-            description="Choose whether new bookings are final straight away."
+            title={t('booking.confirm.title')}
+            description={t('booking.confirm.description')}
           >
             <SwitchRow
               id="requiresConfirmation"
-              label="Review each booking before it’s confirmed"
+              label={t('booking.confirm.review')}
               description={
                 v.requiresConfirmation
-                  ? 'New online bookings arrive as requests. The time is held, and the customer gets a confirmation email once you accept it.'
-                  : 'Bookings are confirmed instantly and the customer gets their confirmation email right away.'
+                  ? t('booking.confirm.reviewOn')
+                  : t('booking.confirm.reviewOff')
               }
               checked={v.requiresConfirmation}
               onCheckedChange={(c) => set('requiresConfirmation', c)}
@@ -227,36 +228,37 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
 
           <SettingsGroup
             id="changes"
-            title="Cancelling & rescheduling"
-            description="Every confirmation email has a link customers can use to manage their booking. Decide what they can do themselves."
+            title={t('booking.changes.title')}
+            description={t('booking.changes.description')}
           >
             <div className="grid grid-cols-1 gap-2">
               <SwitchRow
                 id="allowCustomerCancel"
-                label="Customers can cancel online"
+                label={t('booking.changes.cancel')}
                 description={
                   v.allowCustomerCancel
-                    ? 'Freed-up times become bookable again automatically.'
-                    : 'Customers need to contact you to cancel.'
+                    ? t('booking.changes.cancelOn')
+                    : t('booking.changes.cancelOff')
                 }
                 checked={v.allowCustomerCancel}
                 onCheckedChange={(c) => set('allowCustomerCancel', c)}
               />
               {v.allowCustomerCancel && (
                 <Field
-                  label="Cancellation deadline"
+                  label={t('booking.changes.cancelDeadline')}
                   htmlFor="cancellationDeadlineMinutes"
                   error={e.cancellationDeadlineMinutes}
-                  hint="After this point the cancel button disappears and customers are asked to contact you."
+                  hint={t('booking.changes.cancelDeadlineHint')}
                   className="mb-3 sm:max-w-xs"
                 >
                   <DurationSelect
                     id="cancellationDeadlineMinutes"
                     value={v.cancellationDeadlineMinutes}
                     options={withCurrent(
-                      CHANGE_DEADLINES,
+                      changeDeadlineOptions(t),
                       v.cancellationDeadlineMinutes,
-                      (m) => `${humanMinutes(m)} before`,
+                      (m) => reminderLabel(m, t),
+                      t,
                     )}
                     onChange={(x) => set('cancellationDeadlineMinutes', x)}
                   />
@@ -265,30 +267,31 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
               <div className="border-t border-border" aria-hidden />
               <SwitchRow
                 id="allowCustomerReschedule"
-                label="Customers can reschedule online"
+                label={t('booking.changes.reschedule')}
                 description={
                   v.allowCustomerReschedule
-                    ? 'They pick a new free time; the old one is released.'
-                    : 'Customers need to contact you to move a booking.'
+                    ? t('booking.changes.rescheduleOn')
+                    : t('booking.changes.rescheduleOff')
                 }
                 checked={v.allowCustomerReschedule}
                 onCheckedChange={(c) => set('allowCustomerReschedule', c)}
               />
               {v.allowCustomerReschedule && (
                 <Field
-                  label="Rescheduling deadline"
+                  label={t('booking.changes.rescheduleDeadline')}
                   htmlFor="rescheduleDeadlineMinutes"
                   error={e.rescheduleDeadlineMinutes}
-                  hint="How close to the appointment customers can still move it."
+                  hint={t('booking.changes.rescheduleDeadlineHint')}
                   className="sm:max-w-xs"
                 >
                   <DurationSelect
                     id="rescheduleDeadlineMinutes"
                     value={v.rescheduleDeadlineMinutes}
                     options={withCurrent(
-                      CHANGE_DEADLINES,
+                      changeDeadlineOptions(t),
                       v.rescheduleDeadlineMinutes,
-                      (m) => `${humanMinutes(m)} before`,
+                      (m) => reminderLabel(m, t),
+                      t,
                     )}
                     onChange={(x) => set('rescheduleDeadlineMinutes', x)}
                   />
@@ -299,11 +302,11 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
 
           <SettingsGroup
             id="reminders"
-            title="Reminder emails"
-            description={`Automatic reminders cut no-shows. Pick up to ${MAX_REMINDERS}. Customers without an email address won’t get them.`}
+            title={t('booking.reminders.title')}
+            description={t('booking.reminders.description', { max: MAX_REMINDERS })}
           >
             <fieldset>
-              <legend className="sr-only">Send reminders</legend>
+              <legend className="sr-only">{t('booking.reminders.legend')}</legend>
               <div className="flex flex-wrap gap-2">
                 {REMINDER_OFFSETS.map((m) => {
                   const on = v.reminderOffsetsMinutes.includes(m)
@@ -329,15 +332,21 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
                       ) : (
                         <Bell className="size-3.5 text-muted-foreground" aria-hidden />
                       )}
-                      {reminderLabel(m)}
+                      {reminderLabel(m, t)}
                     </button>
                   )
                 })}
               </div>
               <p className="mt-3 text-[13px] text-muted-foreground" aria-live="polite">
                 {v.reminderOffsetsMinutes.length === 0
-                  ? 'No reminders will be sent.'
-                  : `${v.reminderOffsetsMinutes.length} of ${MAX_REMINDERS} selected: ${v.reminderOffsetsMinutes.map(reminderLabel).join(', ')}. Changes apply to future bookings.`}
+                  ? t('booking.reminders.none')
+                  : t('booking.reminders.selected', {
+                      count: v.reminderOffsetsMinutes.length,
+                      max: MAX_REMINDERS,
+                      list: v.reminderOffsetsMinutes
+                        .map((m) => reminderLabel(m, t))
+                        .join(t('common.listSeparator')),
+                    })}
               </p>
               {e.reminderOffsetsMinutes && (
                 <p className="mt-1 text-[13px] font-medium text-danger">
@@ -349,57 +358,61 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
 
           <SettingsGroup
             id="form"
-            title="Booking form"
-            description="What customers are asked when they book."
+            title={t('booking.form.title')}
+            description={t('booking.form.description')}
           >
             <div className="grid grid-cols-1 gap-6">
               <fieldset>
-                <legend className="mb-2 text-sm font-medium">Choosing a team member</legend>
+                <legend className="mb-2 text-sm font-medium">{t('booking.form.staff')}</legend>
                 <RadioGroup
                   value={v.staffSelection}
                   onValueChange={(x) => set('staffSelection', x as RulesValues['staffSelection'])}
                   className="grid grid-cols-1 gap-2 sm:grid-cols-3"
-                  aria-label="Choosing a team member"
+                  aria-label={t('booking.form.staff')}
                 >
                   {STAFF_MODES.map((m) => (
                     <RadioCard
-                      key={m.value}
-                      value={m.value}
+                      key={m}
+                      value={m}
                       className="flex flex-col items-start justify-start"
                     >
-                      <span className="block text-sm font-semibold">{m.title}</span>
+                      <span className="block text-sm font-semibold">
+                        {t(`booking.form.staffModes.${m}.title`)}
+                      </span>
                       <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground">
-                        {m.body}
+                        {t(`booking.form.staffModes.${m}.body`)}
                       </span>
                     </RadioCard>
                   ))}
                 </RadioGroup>
               </fieldset>
               <fieldset>
-                <legend className="mb-2 text-sm font-medium">Phone number</legend>
+                <legend className="mb-2 text-sm font-medium">{t('booking.form.phone')}</legend>
                 <RadioGroup
                   value={v.phoneRequirement}
                   onValueChange={(x) =>
                     set('phoneRequirement', x as RulesValues['phoneRequirement'])
                   }
                   className="grid grid-cols-1 gap-2 sm:grid-cols-3"
-                  aria-label="Phone number"
+                  aria-label={t('booking.form.phone')}
                 >
                   {PHONE_MODES.map((m) => (
                     <RadioCard
-                      key={m.value}
-                      value={m.value}
+                      key={m}
+                      value={m}
                       className="flex flex-col items-start justify-start"
                     >
-                      <span className="block text-sm font-semibold">{m.title}</span>
+                      <span className="block text-sm font-semibold">
+                        {t(`booking.form.phoneModes.${m}.title`)}
+                      </span>
                       <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground">
-                        {m.body}
+                        {t(`booking.form.phoneModes.${m}.body`)}
                       </span>
                     </RadioCard>
                   ))}
                 </RadioGroup>
                 <p className="mt-2 text-[13px] text-muted-foreground">
-                  Name and email are always asked for, so we can send confirmations.
+                  {t('booking.form.alwaysAsked')}
                 </p>
               </fieldset>
             </div>
@@ -407,7 +420,10 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
         </CardBody>
       </Card>
 
-      <SaveBar dirty={form.dirty}>
+      <SaveBar
+        dirty={form.dirty}
+        labels={{ unsaved: t('saveBar.unsaved'), saved: t('saveBar.saved') }}
+      >
         {form.dirty && (
           <Button
             type="button"
@@ -416,7 +432,7 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
             onClick={() => form.reset()}
             disabled={form.pending}
           >
-            Discard
+            {t('saveBar.discard')}
           </Button>
         )}
         <Button
@@ -426,7 +442,7 @@ export function BookingRulesForm({ initial }: { initial: RulesValues }) {
           success={form.saved}
           disabled={!form.dirty && !form.pending}
         >
-          Save changes
+          {t('saveBar.save')}
         </Button>
       </SaveBar>
     </form>

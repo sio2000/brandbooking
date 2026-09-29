@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
 import { requireTenantPage } from '@/server/tenancy/context'
 import { getAnalytics } from '@/server/business/analytics'
+import { getFormatLocale, getT } from '@/server/i18n'
 import { PageContainer } from '@/components/dashboard/page-header'
 import { Button } from '@/components/ui/button'
 import { Alert } from '@/components/ui/feedback'
@@ -11,6 +12,8 @@ import { addMonths } from '@/lib/tz'
 import { resolveMonth } from '@/components/analytics/range'
 import { formatSpan } from '@/components/analytics/presets'
 import { PrintButton } from '@/components/analytics/print-button'
+import { Translations } from '@/components/i18n/translations'
+import { insightText } from '@/components/analytics/sections'
 import {
   OutcomesReport,
   ReportKpis,
@@ -20,7 +23,10 @@ import {
   StaffReport,
 } from '@/components/analytics/report'
 
-export const metadata: Metadata = { title: 'Monthly report' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-analytics')
+  return { title: t('report.metaTitle') }
+}
 
 /*
  * Print rules scoped to this page: hide the app chrome (sidebar, top bar,
@@ -47,12 +53,13 @@ const PRINT_CSS = `
 
 export default async function ReportsPage({ searchParams }: PageProps<'/app/reports'>) {
   const ctx = await requireTenantPage('analytics.view')
+  const [t, tag] = await Promise.all([getT('app-analytics'), getFormatLocale()])
   const sp = await searchParams
   const tz = ctx.business.timezone
   const currency = ctx.business.currency
   const m = resolveMonth(typeof sp.month === 'string' ? sp.month : undefined, tz)
   const data = await getAnalytics(ctx, { from: m.from, to: m.to })
-  const monthName = formatPlainDate(m.from, undefined, { month: 'long', year: 'numeric' })
+  const monthName = formatPlainDate(m.from, tag, { month: 'long', year: 'numeric' })
   const prevMonth = addMonths(m.from, -1).slice(0, 7)
   const nextMonth = addMonths(m.from, 1).slice(0, 7)
   const isCurrent = m.month === m.current
@@ -64,94 +71,91 @@ export default async function ReportsPage({ searchParams }: PageProps<'/app/repo
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
         <Button asChild variant="ghost" size="sm">
           <Link href="/app/analytics">
-            <ArrowLeft aria-hidden /> Analytics
+            <ArrowLeft aria-hidden className="rtl:-scale-x-100" /> {t('report.back')}
           </Link>
         </Button>
         <div className="flex flex-wrap items-center gap-2">
-          <nav aria-label="Choose month" className="flex items-center gap-1">
-            <Button asChild variant="secondary" size="icon" aria-label="Previous month">
+          <nav aria-label={t('report.chooseMonth')} className="flex items-center gap-1">
+            <Button asChild variant="secondary" size="icon" aria-label={t('report.prevMonth')}>
               <Link href={`/app/reports?month=${prevMonth}`}>
-                <ChevronLeft aria-hidden />
+                <ChevronLeft aria-hidden className="rtl:-scale-x-100" />
               </Link>
             </Button>
             <span className="min-w-32 text-center text-sm font-medium">{monthName}</span>
             {m.month < m.current ? (
-              <Button asChild variant="secondary" size="icon" aria-label="Next month">
+              <Button asChild variant="secondary" size="icon" aria-label={t('report.nextMonth')}>
                 <Link href={`/app/reports?month=${nextMonth}`}>
-                  <ChevronRight aria-hidden />
+                  <ChevronRight aria-hidden className="rtl:-scale-x-100" />
                 </Link>
               </Button>
             ) : (
-              <Button variant="secondary" size="icon" disabled aria-label="Next month">
-                <ChevronRight aria-hidden />
+              <Button variant="secondary" size="icon" disabled aria-label={t('report.nextMonth')}>
+                <ChevronRight aria-hidden className="rtl:-scale-x-100" />
               </Button>
             )}
           </nav>
-          <PrintButton />
+          <Translations ns={['app-analytics']}>
+            <PrintButton />
+          </Translations>
         </div>
       </div>
 
       {m.invalid && (
         <Alert tone="warning" className="no-print mb-6">
-          That month couldn’t be read, so this report shows {monthName}. Use the format YYYY-MM.
+          {t('report.invalidMonth', { month: monthName })}
         </Alert>
       )}
 
       <article className="space-y-8 rounded-xl border border-border bg-surface p-5 sm:p-8 print:border-0 print:p-0">
         <header className="flex flex-col gap-1 border-b border-border pb-5">
           <p className="text-sm font-medium text-muted-foreground">{ctx.business.name}</p>
-          <h1 className="text-2xl font-bold sm:text-3xl">Monthly report · {monthName}</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">
+            {t('report.heading', { month: monthName })}
+          </h1>
           <p className="text-sm text-muted-foreground">
-            {formatSpan(data.range.from, data.range.to)}
-            {isCurrent && ' (month in progress)'} · compared with{' '}
-            {formatSpan(data.previousRange.from, data.previousRange.to)}
+            {t(isCurrent ? 'report.spanInProgress' : 'report.span', {
+              span: formatSpan(data.range.from, data.range.to, tag),
+              previous: formatSpan(data.previousRange.from, data.previousRange.to, tag),
+            })}
           </p>
         </header>
 
-        <ReportSection title="Key figures">
+        <ReportSection title={t('kpi.heading')}>
           <ReportKpis data={data} currency={currency} />
-          <p className="mt-2 text-xs text-muted-foreground">
-            Revenue is estimated from the service prices of completed appointments. Payments are
-            taken outside Hournook, so this isn’t money collected. Rate changes are in percentage
-            points.
-          </p>
+          <p className="mt-2 text-xs text-muted-foreground">{t('report.revenueNote')}</p>
         </ReportSection>
 
-        <ReportSection title="Insights">
+        <ReportSection title={t('insights.title')}>
           {data.insights.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              Not enough data yet for insights. They appear once you have a few weeks of bookings.
-            </p>
+            <p className="text-sm text-muted-foreground">{t('insights.empty')}</p>
           ) : (
-            <ul className="list-disc space-y-1.5 pl-5 text-sm leading-relaxed marker:text-muted-foreground">
+            <ul className="list-disc space-y-1.5 ps-5 text-sm leading-relaxed marker:text-muted-foreground">
               {data.insights.map((i, idx) => (
-                <li key={idx}>{i.text}</li>
+                <li key={idx}>{insightText(i, t, tag)}</li>
               ))}
             </ul>
           )}
         </ReportSection>
 
-        <ReportSection title="Cancellations & no-shows">
+        <ReportSection title={t('report.outcomesTitle')}>
           <OutcomesReport data={data} />
         </ReportSection>
 
-        <ReportSection title="Bookings by service">
+        <ReportSection title={t('report.byService')}>
           <ServicesReport services={data.services} currency={currency} />
         </ReportSection>
 
-        <ReportSection title="By team member">
+        <ReportSection title={t('report.byTeamMemberTitle')}>
           <StaffReport staff={data.staff} currency={currency} />
         </ReportSection>
 
-        <ReportSection title="Booking sources">
+        <ReportSection title={t('sources.title')}>
           <SourcesReport sources={data.sources} />
-          <p className="mt-2 text-xs text-muted-foreground">
-            Counted by the day the booking was made.
-          </p>
+          <p className="mt-2 text-xs text-muted-foreground">{t('report.sourcesNote')}</p>
         </ReportSection>
 
         <footer className="border-t border-border pt-4 text-xs text-muted-foreground">
-          Generated {formatDateTime(new Date(), tz)} by Hournook. Times are in {tz}.
+          {t('report.generated', { date: formatDateTime(new Date(), tz, tag), tz })}
         </footer>
       </article>
     </PageContainer>

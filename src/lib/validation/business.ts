@@ -8,6 +8,10 @@ import {
   urlSchema,
 } from './common'
 import { isValidTimeZone } from '../tz'
+import { LOCALES } from '../i18n/config'
+
+/** One of the 15 supported languages (account language, booking-page language). */
+export const localeSchema = z.enum(LOCALES, { error: 'Choose one of the supported languages.' })
 
 /** HTML checkbox / JSON boolean: "on" | "true" | true => true; absent => false. */
 export const checkbox = z
@@ -122,6 +126,8 @@ export const profileSchema = z.object({
     .optional()
     .transform((v) => v || null)
     .refine((v) => v === null || /^[A-Z]{2}$/.test(v), 'Use a 2-letter country code.'),
+  /** Default booking-page language; left unchanged when omitted. */
+  locale: localeSchema.optional(),
 })
 
 const socialUrl = urlSchema.optional().transform((v) => v || undefined)

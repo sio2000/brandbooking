@@ -1,0 +1,91 @@
+{
+  "title": "空き状況",
+  "description": "お客様が予約できる時間です。営業時間は全員に適用され、スタッフは営業時間に従うか、その範囲内で個別のスケジュールを設定できます。",
+  "allTimesIn": "時刻はすべて {tz} です。",
+  "listSeparator": "、",
+  "tabs": {
+    "label": "スケジュールの対象",
+    "business": "ビジネスの営業時間"
+  },
+  "weekly": {
+    "title": "営業時間",
+    "description": "毎週の通常の営業時間です。昼休みや分割勤務には2つ目の時間帯を追加してください。",
+    "staffTitle": "{name} さんの週間スケジュール",
+    "staffDescription": "毎週の予約可能な時間です（常にビジネスの営業時間内）。",
+    "followsTitle": "ビジネスの営業時間に従う",
+    "followsBody": "{name} さんはビジネスの営業中はいつでも予約できます。勤務時間が短い場合は個別のスケジュールを設定してください。",
+    "followsNote": "ビジネスの営業時間をもとに調整してください。営業時間外の時間は予約できません。",
+    "useBusiness": "ビジネスの営業時間を使用",
+    "endAfterStart": "終了時刻は開始時刻より後にしてください。",
+    "overlap": "時間帯が重なっています。",
+    "fixDays": "先にハイライトされた曜日を修正してください。",
+    "dayOpen": "{day}は営業",
+    "closed": "休業",
+    "rangeStart": "{day}の時間帯{n}の開始",
+    "rangeEnd": "{day}の時間帯{n}の終了",
+    "removeRange": "{day}の時間帯{n}を削除",
+    "addRange": "時間帯を追加（休憩後）",
+    "copyWeekdays": "月〜金にコピー",
+    "unsaved": "未保存の変更があります",
+    "save": "営業時間を保存"
+  },
+  "closures": {
+    "title": "休日・休業日",
+    "description": "終日休業する日です。毎年の祝日は毎年繰り返されます。",
+    "staffTitle": "{name} さんの休み",
+    "staffDescription": "休暇、病欠、研修など。",
+    "from": "開始日",
+    "to": "終了日",
+    "label": "名前",
+    "placeholder": "例：年末年始",
+    "staffPlaceholder": "例：休暇",
+    "yearly": "毎年繰り返す",
+    "add": "休業日を追加",
+    "empty": "今後の休業日はありません。",
+    "closed": "休業",
+    "yearlyBadge": "毎年",
+    "remove": "休業日を削除",
+    "removeNamed": "「{label}」を削除"
+  },
+  "special": {
+    "title": "特別営業時間",
+    "description": "特定の日だけ営業時間を変更します。遅くまで営業する日や短縮営業の日など。",
+    "date": "日付",
+    "opens": "開店",
+    "closes": "閉店",
+    "add": "特別営業時間を設定",
+    "empty": "今後の特別営業時間はありません。",
+    "remove": "{date}の特別営業時間を削除"
+  },
+  "blocks": {
+    "title": "ブロックした時間",
+    "description": "会議や用事、配達などのために一日の一部をブロックします。既存の予約には影響しません。",
+    "date": "日付",
+    "from": "開始",
+    "until": "終了",
+    "reason": "理由",
+    "add": "時間をブロック",
+    "addForEveryone": "全員の時間をブロック",
+    "empty": "今後ブロックされた時間はありません。",
+    "blocked": "ブロック済み",
+    "everyone": "全員",
+    "remove": "ブロックを解除"
+  },
+  "toasts": {
+    "saved": "保存しました",
+    "added": "追加しました",
+    "blocked": "ブロックしました",
+    "removed": "削除しました",
+    "failed": "失敗しました"
+  },
+  "actions": {
+    "hoursSaved": "営業時間を保存しました",
+    "following": "ビジネスの営業時間に従うようになりました",
+    "closureAdded": "休業日を追加しました",
+    "closureRemoved": "休業日を削除しました",
+    "specialSaved": "特別営業時間を保存しました",
+    "specialRemoved": "特別営業時間を削除しました",
+    "blocked": "時間をブロックしました",
+    "blockRemoved": "ブロックを解除しました"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "title": "Boekingspagina",
+  "description": "Je openbare pagina waar klanten boeken. Publiceer hem, deel hem overal en geef hem jouw uitstraling.",
+  "publish": {
+    "live": "Je boekingspagina staat online",
+    "paused": "Online boeken is gepauzeerd",
+    "draft": "Je boekingspagina is een concept",
+    "badgeLive": "Online",
+    "badgePaused": "Gepauzeerd",
+    "badgeDraft": "Concept",
+    "noSubscription": "Boekingen staan op dit moment uit omdat er geen actief abonnement is.",
+    "preview": "Voorbeeld",
+    "resume": "Boekingen hervatten",
+    "publish": "Publiceren",
+    "verifyEmail": "Bevestig eerst je e-mailadres. De link staat in je inbox.",
+    "needsService": "Voeg minstens één actieve dienst met een toegewezen teamlid toe en publiceer daarna."
+  },
+  "pause": {
+    "summary": "Online boeken pauzeren (vakantiemodus)",
+    "message": "Bericht voor klanten",
+    "messageHint": "Staat op je boekingspagina zolang die gepauzeerd is.",
+    "messagePlaceholder": "We zijn op vakantie tot 3 september. Tot snel!",
+    "until": "Automatisch weer openen op",
+    "pause": "Boekingen pauzeren",
+    "unpublish": "Publicatie intrekken"
+  },
+  "celebrate": {
+    "title": "Je boekingspagina staat online.",
+    "body": "Deel de link op Instagram, in je Google-bedrijfsprofiel of via WhatsApp, of print de QR-code voor bij de balie.",
+    "dismiss": "Sluiten"
+  },
+  "copy": {
+    "copy": "Kopiëren",
+    "link": "Link kopiëren",
+    "bookingLink": "Boekingslink kopiëren",
+    "copied": "Gekopieerd",
+    "linkCopied": "Link gekopieerd naar klembord"
+  },
+  "share": {
+    "title": "Delen",
+    "description": "Zet je link overal waar klanten je vinden.",
+    "linkLabel": "Boekingslink",
+    "email": "E-mail",
+    "qrAlt": "QR-code die linkt naar {url}",
+    "qr": "QR-code",
+    "qrDescription": "Voor bij de balie, op flyers of visitekaartjes. Boekingen via deze code worden bijgehouden als “QR-code”.",
+    "print": "Afdrukken",
+    "campaigns": "Campagnelinks (zie waar boekingen vandaan komen)",
+    "campaignsBody": "Voeg UTM-parameters toe en boekingen tonen de campagne in Statistieken:"
+  },
+  "embed": {
+    "title": "Boeken toevoegen aan je website",
+    "description": "Plak één regel in je site. Het boekingsproces opent in een beveiligd, apart venster, dus het botst niet met het ontwerp van je site.",
+    "button": "Boekingsknop",
+    "inline": "Ingesloten",
+    "buttonDescription": "Een knop die het boeken opent in een pop-up.",
+    "inlineDescription": "Het volledige boekingsproces precies waar je de code plaatst.",
+    "code": "Insluitcode",
+    "copy": "Code kopiëren",
+    "copied": "Code gekopieerd"
+  },
+  "branding": {
+    "title": "Huisstijl",
+    "description": "Je logo, omslagfoto en kleur. Het voorbeeld wordt bijgewerkt terwijl je bewerkt.",
+    "preview": "Live voorbeeld",
+    "sampleService": "Voorbeelddienst",
+    "sampleBook": "Boeken",
+    "sampleConfirm": "Boeking bevestigen",
+    "logo": "Logo",
+    "logoHint": "Vierkant, minstens 64 px.",
+    "cover": "Omslagfoto",
+    "coverHint": "Breed, minstens 800×200 px.",
+    "colour": "Merkkleur",
+    "customColour": "Eigen merkkleur",
+    "custom": "Eigen kleur",
+    "policy": "Boekingsvoorwaarden",
+    "policyHint": "Staan op je pagina en in bevestigingsmails, bijv. over te laat komen, aanbetalingen of annuleren.",
+    "showStaff": "Teamleden tonen op je pagina",
+    "showStaffHint": "Laat klanten kiezen bij wie ze willen komen.",
+    "social": "Sociale media",
+    "save": "Huisstijl opslaan"
+  },
+  "upload": {
+    "uploadLogo": "Logo uploaden",
+    "uploadCover": "Omslagfoto uploaden",
+    "removeLogo": "Logo verwijderen",
+    "removeCover": "Omslagfoto verwijderen",
+    "tooLarge": "Dat bestand is groter dan 5 MB.",
+    "uploaded": "Geüpload",
+    "replace": "Vervangen",
+    "upload": "Uploaden",
+    "formats": "JPG, PNG of WebP tot 5 MB."
+  },
+  "seo": {
+    "title": "Weergave in zoekmachines en sociale media",
+    "description": "Hoe je pagina eruitziet in Google en als hij wordt gedeeld.",
+    "preview": "Voorbeeld van zoekresultaat",
+    "pageTitle": "Paginatitel",
+    "pageDescription": "Omschrijving",
+    "indexing": "Zoekmachines mogen deze pagina tonen",
+    "indexingHint": "Zet uit als je de link alleen privé deelt.",
+    "save": "Opslaan"
+  },
+  "link": {
+    "title": "Boekingslink",
+    "description": "Als je hem wijzigt, werken links die je al hebt gedeeld niet meer (ook geprinte QR-codes niet).",
+    "available": "Beschikbaar",
+    "taken": "Al in gebruik",
+    "invalid": "Ongeldig",
+    "change": "Link wijzigen"
+  },
+  "customer": {
+    "embedLabel": "Nu boeken",
+    "seoTitle": "{name} · Online boeken",
+    "seoDescription": "Boek online een afspraak bij {name}.",
+    "shareText": "Boek een afspraak bij {name}: {url}",
+    "shareSubject": "Boeken bij {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "QR-code afdrukken",
+    "bookOnline": "Online boeken",
+    "scan": "Scan om je volgende afspraak te boeken",
+    "print": "Afdrukken"
+  },
+  "toasts": {
+    "saved": "Opgeslagen"
+  },
+  "errors": {
+    "slugTaken": "Die boekingslink is al in gebruik.",
+    "cannotPublish": "Voeg minstens één actieve dienst met een toegewezen teamlid toe voordat je publiceert."
+  },
+  "actions": {
+    "published": "Je boekingspagina staat online 🎉",
+    "paused": "Online boeken gepauzeerd",
+    "unpublished": "Publicatie van boekingspagina ingetrokken",
+    "brandingSaved": "Huisstijl opgeslagen",
+    "seoSaved": "Zoekinstellingen opgeslagen",
+    "linkUpdated": "Boekingslink bijgewerkt",
+    "imageUpdated": "Afbeelding bijgewerkt",
+    "imageRemoved": "Afbeelding verwijderd",
+    "chooseImage": "Kies een afbeelding."
+  }
+}

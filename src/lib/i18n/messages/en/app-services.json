@@ -1,0 +1,84 @@
+{
+  "title": "Services",
+  "description": "What customers can book. Set duration, price, buffers and who performs each service.",
+  "list": {
+    "count": "{count, plural, one {# service} other {# services}} · drag to change the order on your booking page",
+    "export": "Export",
+    "add": "Add service",
+    "buffer": "+ {count} min buffer",
+    "upcoming": "{count} upcoming",
+    "free": "Free",
+    "actions": "Actions for {name}",
+    "edit": "Edit",
+    "pause": "Pause bookings",
+    "resume": "Resume bookings"
+  },
+  "empty": {
+    "title": "You haven’t added any services yet",
+    "description": "Add your first service so customers can start booking. You can set a duration, an optional price and who performs it.",
+    "add": "Add your first service"
+  },
+  "badges": {
+    "paused": "Paused",
+    "hidden": "Hidden from page",
+    "unassigned": "No one assigned"
+  },
+  "toasts": {
+    "paused": "Service paused. It can’t be booked",
+    "resumed": "Service active again",
+    "saved": "Saved",
+    "deleted": "Deleted"
+  },
+  "delete": {
+    "menu": "Delete",
+    "title": "Delete “{name}”?",
+    "withUpcoming": "This service has <b>{count, plural, one {# upcoming appointment} other {# upcoming appointments}}</b>. They will stay booked; the service just can’t be booked again. Past appointments keep their history.",
+    "body": "Customers will no longer be able to book it. Past appointments keep their history.",
+    "confirm": "Delete service"
+  },
+  "form": {
+    "addTitle": "Add a service",
+    "editTitle": "Edit service",
+    "description": "Customers see the name, description, duration and price.",
+    "fixFields": "Please fix the highlighted fields.",
+    "name": "Service name",
+    "namePlaceholder": "e.g. Haircut & finish",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "What’s included, who it’s for, anything to prepare.",
+    "duration": "Duration",
+    "custom": "Custom",
+    "customLabel": "Custom duration in minutes",
+    "minSuffix": "min",
+    "price": "Price",
+    "priceHint": "Leave empty to hide the price; enter 0 for free.",
+    "category": "Category",
+    "categoryHint": "Groups services on your booking page.",
+    "categoryPlaceholder": "e.g. Colour",
+    "noCategory": "No category",
+    "existingCategory": "Choose an existing category",
+    "newCategory": "+ New category",
+    "staff": "Who performs it",
+    "noStaff": "Add a team member first.",
+    "nobodyAssigned": "Nobody is assigned, so customers won’t be able to book this service.",
+    "bufferBefore": "Buffer before",
+    "bufferBeforeHint": "Prep time, blocked in your calendar.",
+    "bufferAfter": "Buffer after",
+    "bufferAfterHint": "Clean-up time before the next booking.",
+    "none": "None",
+    "minutes": "{count} min",
+    "colour": "Calendar colour",
+    "colourPicker": "Colour",
+    "bookable": "Bookable",
+    "bookableHint": "Turn off to pause this service without deleting it.",
+    "visible": "Show on booking page",
+    "visibleHint": "Hidden services can still be booked by your team.",
+    "cancel": "Cancel",
+    "save": "Save changes"
+  },
+  "actions": {
+    "added": "Service added",
+    "saved": "Service saved",
+    "removed": "Service removed. Past appointments keep their history.",
+    "categoryRemoved": "Category removed"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "可预约时间",
+  "description": "客户可以预约的时间。营业时间适用于所有人；团队成员可以遵循营业时间，也可以在其范围内设置自己的排班。",
+  "allTimesIn": "所有时间均为 {tz}。",
+  "listSeparator": "、",
+  "tabs": {
+    "label": "查看谁的排班",
+    "business": "商家营业时间"
+  },
+  "weekly": {
+    "title": "营业时间",
+    "description": "您每周的常规时间。可添加第二个时间段，用于午休或分段排班。",
+    "staffTitle": "{name} 的每周排班",
+    "staffDescription": "其每周可被预约的时间（始终在商家营业时间范围内）。",
+    "followsTitle": "遵循商家营业时间",
+    "followsBody": "只要商家营业，{name} 就可被预约。如果其工作时间较少，请为其设置单独的排班。",
+    "followsNote": "以商家营业时间为基础进行调整。营业时间以外的时段不可预约。",
+    "useBusiness": "使用商家营业时间",
+    "endAfterStart": "结束时间必须晚于开始时间。",
+    "overlap": "时间段有重叠。",
+    "fixDays": "请先修正标出的日期。",
+    "dayOpen": "{day}营业",
+    "closed": "休息",
+    "rangeStart": "{day}第 {n} 个时间段开始",
+    "rangeEnd": "{day}第 {n} 个时间段结束",
+    "removeRange": "移除{day}第 {n} 个时间段",
+    "addRange": "添加时间段（休息之后）",
+    "copyWeekdays": "复制到周一至周五",
+    "unsaved": "有未保存的更改",
+    "save": "保存时间"
+  },
+  "closures": {
+    "title": "假期与休息日",
+    "description": "全天不营业的日子。每年重复的假期会自动重复。",
+    "staffTitle": "{name} 的休假",
+    "staffDescription": "休假、病假、培训。",
+    "from": "开始",
+    "to": "结束",
+    "label": "名称",
+    "placeholder": "例如：春节",
+    "staffPlaceholder": "例如：年假",
+    "yearly": "每年重复",
+    "add": "添加休息日",
+    "empty": "没有即将到来的休息日。",
+    "closed": "休息",
+    "yearlyBadge": "每年",
+    "remove": "移除休息日",
+    "removeNamed": "移除“{label}”"
+  },
+  "special": {
+    "title": "特殊营业时间",
+    "description": "某个特定日期的不同营业时间，例如延长营业或提前关门。",
+    "date": "日期",
+    "opens": "开门",
+    "closes": "关门",
+    "add": "设置特殊时间",
+    "empty": "没有即将到来的特殊营业时间。",
+    "remove": "移除 {date} 的特殊营业时间"
+  },
+  "blocks": {
+    "title": "屏蔽时间",
+    "description": "为会议、外出办事或收货屏蔽一天中的部分时间。已有预订不受影响。",
+    "date": "日期",
+    "from": "开始",
+    "until": "结束",
+    "reason": "原因",
+    "add": "屏蔽时间",
+    "addForEveryone": "为所有人屏蔽时间",
+    "empty": "没有即将到来的屏蔽时间。",
+    "blocked": "已屏蔽",
+    "everyone": "所有人",
+    "remove": "移除屏蔽"
+  },
+  "toasts": {
+    "saved": "已保存",
+    "added": "已添加",
+    "blocked": "已屏蔽",
+    "removed": "已移除",
+    "failed": "失败"
+  },
+  "actions": {
+    "hoursSaved": "营业时间已保存",
+    "following": "现在遵循商家营业时间",
+    "closureAdded": "休息日已添加",
+    "closureRemoved": "休息日已移除",
+    "specialSaved": "特殊营业时间已保存",
+    "specialRemoved": "特殊营业时间已移除",
+    "blocked": "时间已屏蔽",
+    "blockRemoved": "屏蔽已移除"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Team",
+  "description": "De mensen bij wie klanten kunnen boeken. Elk teamlid heeft eigen diensten, een eigen rooster en een eigen agenda.",
+  "list": {
+    "count": "{count, plural, one {# teamlid} other {# teamleden}}",
+    "logins": "Logins en rollen",
+    "add": "Teamlid toevoegen"
+  },
+  "empty": {
+    "title": "Nog geen teamleden",
+    "description": "Voeg de mensen toe bij wie klanten kunnen boeken."
+  },
+  "card": {
+    "defaultTitle": "Teamlid",
+    "notBookable": "Niet boekbaar",
+    "login": "{role, select, owner {Login als eigenaar} manager {Login als manager} other {Login als teamlid}}",
+    "noLogin": "Geen login",
+    "services": "Diensten",
+    "servicesCount": "{count} van {total}",
+    "hours": "Tijden",
+    "businessHours": "Openingstijden",
+    "ownSchedule": "Eigen rooster",
+    "upcoming": "Gepland",
+    "edit": "Bewerken",
+    "hoursLink": "Tijden"
+  },
+  "form": {
+    "editTitle": "Teamlid bewerken",
+    "description": "Naam, foto en functie staan op je boekingspagina als je je team laat zien.",
+    "fixFields": "Corrigeer de gemarkeerde velden.",
+    "uploadPhoto": "Foto uploaden",
+    "photoHint": "JPG, PNG of WebP, minstens 96 px, max. 5 MB.",
+    "name": "Naam",
+    "title": "Functie",
+    "titleHint": "bijv. Senior stylist",
+    "email": "E-mail",
+    "emailHint": "Voor je eigen administratie. Wil je dit teamlid een login geven? Nodig het dan uit via Instellingen → Team.",
+    "bio": "Korte bio",
+    "services": "Diensten die dit teamlid uitvoert",
+    "noServices": "Nog geen diensten.",
+    "colour": "Agendakleur",
+    "colourPicker": "Kleur",
+    "bookable": "Boekbaar",
+    "bookableHint": "Zet uit bij langere afwezigheid. Bestaande afspraken blijven staan.",
+    "businessHours": "Volgt de openingstijden",
+    "businessHoursHint": "Zet uit om een eigen weekrooster in te stellen onder Beschikbaarheid.",
+    "cancel": "Annuleren",
+    "save": "Wijzigingen opslaan"
+  },
+  "remove": {
+    "button": "Teamlid verwijderen",
+    "title": "{name} verwijderen?",
+    "withUpcoming": "{name} heeft {count, plural, one {# geplande afspraak} other {# geplande afspraken}}. Verzet of annuleer die eerst.",
+    "body": "Dit teamlid staat dan niet meer op je boekingspagina. Eerdere afspraken behouden hun geschiedenis.",
+    "confirm": "Verwijderen"
+  },
+  "toasts": {
+    "saved": "Opgeslagen",
+    "removed": "Verwijderd"
+  },
+  "errors": {
+    "hasUpcoming": "Dit teamlid heeft {count, plural, one {# geplande afspraak} other {# geplande afspraken}}. Verzet of annuleer die eerst."
+  },
+  "actions": {
+    "added": "Teamlid toegevoegd",
+    "saved": "Teamlid opgeslagen",
+    "removed": "Teamlid verwijderd",
+    "photoUpdated": "Foto bijgewerkt",
+    "chooseImage": "Kies een afbeelding."
+  }
+}

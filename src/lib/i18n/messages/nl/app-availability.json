@@ -1,0 +1,91 @@
+{
+  "title": "Beschikbaarheid",
+  "description": "Wanneer klanten kunnen boeken. Openingstijden gelden voor iedereen; teamleden kunnen die volgen of binnen die tijden een eigen rooster hebben.",
+  "allTimesIn": "Alle tijden in {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Wiens rooster",
+    "business": "Openingstijden"
+  },
+  "weekly": {
+    "title": "Openingstijden",
+    "description": "Je vaste tijden per week. Voeg een tweede tijdvak toe voor een lunchpauze of gebroken dienst.",
+    "staffTitle": "Weekrooster van {name}",
+    "staffDescription": "De boekbare uren per week (altijd binnen de openingstijden van het bedrijf).",
+    "followsTitle": "Volgt de openingstijden",
+    "followsBody": "{name} is boekbaar zolang het bedrijf open is. Geef een eigen rooster als er minder uren worden gewerkt.",
+    "followsNote": "Begin bij de openingstijden en pas ze aan. Uren buiten de openingstijden zijn niet boekbaar.",
+    "useBusiness": "Openingstijden gebruiken",
+    "endAfterStart": "De eindtijd moet na de begintijd liggen.",
+    "overlap": "Tijdvakken overlappen.",
+    "fixDays": "Corrigeer eerst de gemarkeerde dagen.",
+    "dayOpen": "{day} open",
+    "closed": "Gesloten",
+    "rangeStart": "{day} tijdvak {n} begin",
+    "rangeEnd": "{day} tijdvak {n} einde",
+    "removeRange": "{day} tijdvak {n} verwijderen",
+    "addRange": "Tijden toevoegen (na een pauze)",
+    "copyWeekdays": "Kopiëren naar ma–vr",
+    "unsaved": "Niet-opgeslagen wijzigingen",
+    "save": "Tijden opslaan"
+  },
+  "closures": {
+    "title": "Feestdagen en sluitingen",
+    "description": "Hele dagen waarop je gesloten bent. Terugkerende feestdagen herhalen zich elk jaar.",
+    "staffTitle": "Vrije dagen van {name}",
+    "staffDescription": "Vakantie, ziekte, training.",
+    "from": "Van",
+    "to": "Tot en met",
+    "label": "Omschrijving",
+    "placeholder": "bijv. Kerst",
+    "staffPlaceholder": "bijv. Vakantie",
+    "yearly": "Elk jaar herhalen",
+    "add": "Sluiting toevoegen",
+    "empty": "Geen geplande sluitingen.",
+    "closed": "Gesloten",
+    "yearlyBadge": "Jaarlijks",
+    "remove": "Sluiting verwijderen",
+    "removeNamed": "{label} verwijderen"
+  },
+  "special": {
+    "title": "Afwijkende openingstijden",
+    "description": "Andere tijden op een specifieke datum, zoals een koopavond of een korte dag.",
+    "date": "Datum",
+    "opens": "Opent",
+    "closes": "Sluit",
+    "add": "Afwijkende tijden instellen",
+    "empty": "Geen afwijkende tijden gepland.",
+    "remove": "Afwijkende tijden op {date} verwijderen"
+  },
+  "blocks": {
+    "title": "Geblokkeerde tijd",
+    "description": "Blokkeer een deel van een dag voor een vergadering, boodschap of levering. Bestaande boekingen veranderen niet.",
+    "date": "Datum",
+    "from": "Van",
+    "until": "Tot",
+    "reason": "Reden",
+    "add": "Tijd blokkeren",
+    "addForEveryone": "Tijd blokkeren voor iedereen",
+    "empty": "Geen geblokkeerde tijd gepland.",
+    "blocked": "Geblokkeerd",
+    "everyone": "iedereen",
+    "remove": "Blokkering verwijderen"
+  },
+  "toasts": {
+    "saved": "Opgeslagen",
+    "added": "Toegevoegd",
+    "blocked": "Geblokkeerd",
+    "removed": "Verwijderd",
+    "failed": "Mislukt"
+  },
+  "actions": {
+    "hoursSaved": "Werktijden opgeslagen",
+    "following": "Volgt nu de openingstijden",
+    "closureAdded": "Sluiting toegevoegd",
+    "closureRemoved": "Sluiting verwijderd",
+    "specialSaved": "Afwijkende tijden opgeslagen",
+    "specialRemoved": "Afwijkende tijden verwijderd",
+    "blocked": "Tijd geblokkeerd",
+    "blockRemoved": "Blokkering verwijderd"
+  }
+}

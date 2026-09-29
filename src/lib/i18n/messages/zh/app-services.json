@@ -1,0 +1,84 @@
+{
+  "title": "服务",
+  "description": "客户可以预约的项目。设置时长、价格、缓冲时间以及每项服务由谁提供。",
+  "list": {
+    "count": "{count, plural, other {# 项服务}} · 拖动以更改在预约页面上的顺序",
+    "export": "导出",
+    "add": "添加服务",
+    "buffer": "+ {count} 分钟缓冲",
+    "upcoming": "{count} 个即将到来",
+    "free": "免费",
+    "actions": "{name} 的操作",
+    "edit": "编辑",
+    "pause": "暂停预约",
+    "resume": "恢复预约"
+  },
+  "empty": {
+    "title": "您还没有添加任何服务",
+    "description": "添加第一项服务，客户就可以开始预约了。您可以设置时长、可选的价格以及提供服务的人员。",
+    "add": "添加第一项服务"
+  },
+  "badges": {
+    "paused": "已暂停",
+    "hidden": "在页面上隐藏",
+    "unassigned": "未分配人员"
+  },
+  "toasts": {
+    "paused": "服务已暂停，暂不可预约",
+    "resumed": "服务已重新启用",
+    "saved": "已保存",
+    "deleted": "已删除"
+  },
+  "delete": {
+    "menu": "删除",
+    "title": "要删除“{name}”吗？",
+    "withUpcoming": "此服务有 <b>{count, plural, other {# 个即将到来的预约}}</b>。这些预约仍然有效，只是此服务无法再被预约。过往预约会保留其记录。",
+    "body": "客户将无法再预约此服务。过往预约会保留其记录。",
+    "confirm": "删除服务"
+  },
+  "form": {
+    "addTitle": "添加服务",
+    "editTitle": "编辑服务",
+    "description": "客户可以看到名称、描述、时长和价格。",
+    "fixFields": "请修正标出的字段。",
+    "name": "服务名称",
+    "namePlaceholder": "例如：剪发与造型",
+    "descriptionLabel": "描述",
+    "descriptionPlaceholder": "包含哪些内容、适合谁、需要做什么准备。",
+    "duration": "时长",
+    "custom": "自定义",
+    "customLabel": "自定义时长（分钟）",
+    "minSuffix": "分钟",
+    "price": "价格",
+    "priceHint": "留空则隐藏价格；免费请输入 0。",
+    "category": "类别",
+    "categoryHint": "在预约页面上对服务进行分组。",
+    "categoryPlaceholder": "例如：染发",
+    "noCategory": "无类别",
+    "existingCategory": "选择现有类别",
+    "newCategory": "+ 新类别",
+    "staff": "服务人员",
+    "noStaff": "请先添加团队成员。",
+    "nobodyAssigned": "尚未分配人员，客户将无法预约此服务。",
+    "bufferBefore": "前置缓冲",
+    "bufferBeforeHint": "准备时间，会在日历中占用。",
+    "bufferAfter": "后置缓冲",
+    "bufferAfterHint": "下一个预约前的整理时间。",
+    "none": "无",
+    "minutes": "{count} 分钟",
+    "colour": "日历颜色",
+    "colourPicker": "颜色",
+    "bookable": "可预约",
+    "bookableHint": "关闭后可暂停此服务，而无需删除。",
+    "visible": "在预约页面上显示",
+    "visibleHint": "隐藏的服务仍可由您的团队代为预约。",
+    "cancel": "取消",
+    "save": "保存更改"
+  },
+  "actions": {
+    "added": "服务已添加",
+    "saved": "服务已保存",
+    "removed": "服务已移除。过往预约会保留其记录。",
+    "categoryRemoved": "类别已移除"
+  }
+}

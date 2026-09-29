@@ -1,0 +1,84 @@
+{
+  "title": "Serviços",
+  "description": "O que os clientes podem reservar. Defina a duração, o preço, as margens e quem realiza cada serviço.",
+  "list": {
+    "count": "{count, plural, one {# serviço} other {# serviços}} · arraste para mudar a ordem na sua página de reservas",
+    "export": "Exportar",
+    "add": "Adicionar serviço",
+    "buffer": "+ {count} min de margem",
+    "upcoming": "{count} futuras",
+    "free": "Grátis",
+    "actions": "Ações para {name}",
+    "edit": "Editar",
+    "pause": "Pausar reservas",
+    "resume": "Retomar reservas"
+  },
+  "empty": {
+    "title": "Ainda não adicionou nenhum serviço",
+    "description": "Adicione o seu primeiro serviço para que os clientes possam começar a reservar. Pode definir uma duração, um preço opcional e quem o realiza.",
+    "add": "Adicionar o primeiro serviço"
+  },
+  "badges": {
+    "paused": "Em pausa",
+    "hidden": "Oculto na página",
+    "unassigned": "Ninguém atribuído"
+  },
+  "toasts": {
+    "paused": "Serviço em pausa. Não pode ser reservado",
+    "resumed": "Serviço novamente ativo",
+    "saved": "Guardado",
+    "deleted": "Eliminado"
+  },
+  "delete": {
+    "menu": "Eliminar",
+    "title": "Eliminar “{name}”?",
+    "withUpcoming": "Este serviço tem <b>{count, plural, one {# marcação futura} other {# marcações futuras}}</b>. Essas marcações mantêm-se; o serviço apenas deixa de poder ser reservado. As marcações anteriores mantêm o histórico.",
+    "body": "Os clientes deixarão de o poder reservar. As marcações anteriores mantêm o histórico.",
+    "confirm": "Eliminar serviço"
+  },
+  "form": {
+    "addTitle": "Adicionar um serviço",
+    "editTitle": "Editar serviço",
+    "description": "Os clientes veem o nome, a descrição, a duração e o preço.",
+    "fixFields": "Corrija os campos assinalados.",
+    "name": "Nome do serviço",
+    "namePlaceholder": "p. ex. Corte e brushing",
+    "descriptionLabel": "Descrição",
+    "descriptionPlaceholder": "O que inclui, a quem se destina, o que preparar.",
+    "duration": "Duração",
+    "custom": "Personalizada",
+    "customLabel": "Duração personalizada em minutos",
+    "minSuffix": "min",
+    "price": "Preço",
+    "priceHint": "Deixe em branco para ocultar o preço; introduza 0 se for gratuito.",
+    "category": "Categoria",
+    "categoryHint": "Agrupa os serviços na sua página de reservas.",
+    "categoryPlaceholder": "p. ex. Coloração",
+    "noCategory": "Sem categoria",
+    "existingCategory": "Escolha uma categoria existente",
+    "newCategory": "+ Nova categoria",
+    "staff": "Quem o realiza",
+    "noStaff": "Adicione primeiro um membro da equipa.",
+    "nobodyAssigned": "Ninguém está atribuído, por isso os clientes não poderão reservar este serviço.",
+    "bufferBefore": "Margem antes",
+    "bufferBeforeHint": "Tempo de preparação, bloqueado na sua agenda.",
+    "bufferAfter": "Margem depois",
+    "bufferAfterHint": "Tempo para arrumar antes da reserva seguinte.",
+    "none": "Nenhuma",
+    "minutes": "{count} min",
+    "colour": "Cor na agenda",
+    "colourPicker": "Cor",
+    "bookable": "Reservável",
+    "bookableHint": "Desative para pausar este serviço sem o eliminar.",
+    "visible": "Mostrar na página de reservas",
+    "visibleHint": "Os serviços ocultos podem continuar a ser reservados pela sua equipa.",
+    "cancel": "Cancelar",
+    "save": "Guardar alterações"
+  },
+  "actions": {
+    "added": "Serviço adicionado",
+    "saved": "Serviço guardado",
+    "removed": "Serviço removido. As marcações anteriores mantêm o histórico.",
+    "categoryRemoved": "Categoria removida"
+  }
+}

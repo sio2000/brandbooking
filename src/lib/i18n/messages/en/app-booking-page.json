@@ -1,0 +1,143 @@
+{
+  "title": "Booking page",
+  "description": "Your public page where customers book. Publish it, share it everywhere, and make it look like you.",
+  "publish": {
+    "live": "Your booking page is live",
+    "paused": "Online booking is paused",
+    "draft": "Your booking page is a draft",
+    "badgeLive": "Live",
+    "badgePaused": "Paused",
+    "badgeDraft": "Draft",
+    "noSubscription": "Bookings are currently switched off because there’s no active subscription.",
+    "preview": "Preview",
+    "resume": "Resume bookings",
+    "publish": "Publish",
+    "verifyEmail": "Confirm your email address first. Check your inbox for the link.",
+    "needsService": "Add at least one active service with a team member assigned, then publish."
+  },
+  "pause": {
+    "summary": "Pause online booking (vacation mode)",
+    "message": "Message for customers",
+    "messageHint": "Shown on your booking page while paused.",
+    "messagePlaceholder": "We’re on holiday until 3 September. See you soon!",
+    "until": "Reopen automatically on",
+    "pause": "Pause bookings",
+    "unpublish": "Unpublish"
+  },
+  "celebrate": {
+    "title": "Your booking page is live.",
+    "body": "Share the link on Instagram, Google Business Profile or WhatsApp, or print the QR code for your counter.",
+    "dismiss": "Dismiss"
+  },
+  "copy": {
+    "copy": "Copy",
+    "link": "Copy link",
+    "bookingLink": "Copy booking link",
+    "copied": "Copied",
+    "linkCopied": "Link copied to clipboard"
+  },
+  "share": {
+    "title": "Share",
+    "description": "Put your link wherever customers find you.",
+    "linkLabel": "Booking link",
+    "email": "Email",
+    "qrAlt": "QR code linking to {url}",
+    "qr": "QR code",
+    "qrDescription": "For your counter, flyers or business cards. Bookings from it are tracked as “QR code”.",
+    "print": "Print",
+    "campaigns": "Campaign links (track where bookings come from)",
+    "campaignsBody": "Add UTM parameters and bookings will show the campaign in Analytics:"
+  },
+  "embed": {
+    "title": "Add booking to your website",
+    "description": "Paste one line into your site. The booking flow opens in a secure, self-contained window, so it won’t clash with your site’s design.",
+    "button": "Booking button",
+    "inline": "Inline",
+    "buttonDescription": "A button that opens booking in a popup.",
+    "inlineDescription": "The full booking flow embedded where you place the code.",
+    "code": "Embed code",
+    "copy": "Copy code",
+    "copied": "Code copied"
+  },
+  "branding": {
+    "title": "Branding",
+    "description": "Your logo, cover and colour. The preview updates as you edit.",
+    "preview": "Live preview",
+    "sampleService": "Sample service",
+    "sampleBook": "Book",
+    "sampleConfirm": "Confirm booking",
+    "logo": "Logo",
+    "logoHint": "Square, at least 64px.",
+    "cover": "Cover image",
+    "coverHint": "Wide, at least 800×200px.",
+    "colour": "Brand colour",
+    "customColour": "Custom brand colour",
+    "custom": "Custom",
+    "policy": "Booking policy",
+    "policyHint": "Shown on your page and in confirmation emails, e.g. late arrivals, deposits, cancellations.",
+    "showStaff": "Show team members on your page",
+    "showStaffHint": "Let customers choose who they’d like to see.",
+    "social": "Social links",
+    "save": "Save branding"
+  },
+  "upload": {
+    "uploadLogo": "Upload logo",
+    "uploadCover": "Upload cover image",
+    "removeLogo": "Remove logo",
+    "removeCover": "Remove cover image",
+    "tooLarge": "That file is larger than 5 MB.",
+    "uploaded": "Uploaded",
+    "replace": "Replace",
+    "upload": "Upload",
+    "formats": "JPG, PNG or WebP up to 5 MB."
+  },
+  "seo": {
+    "title": "Search & social previews",
+    "description": "How your page appears on Google and when shared.",
+    "preview": "Search result preview",
+    "pageTitle": "Page title",
+    "pageDescription": "Description",
+    "indexing": "Allow search engines to list this page",
+    "indexingHint": "Turn off if you only share the link privately.",
+    "save": "Save"
+  },
+  "link": {
+    "title": "Booking link",
+    "description": "Changing it breaks links you’ve already shared (including printed QR codes).",
+    "available": "Available",
+    "taken": "Already taken",
+    "invalid": "Invalid",
+    "change": "Change link"
+  },
+  "customer": {
+    "embedLabel": "Book now",
+    "seoTitle": "{name} · Online booking",
+    "seoDescription": "Book an appointment with {name} online.",
+    "shareText": "Book an appointment with {name}: {url}",
+    "shareSubject": "Book with {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Print QR code",
+    "bookOnline": "Book online",
+    "scan": "Scan to book your next appointment",
+    "print": "Print"
+  },
+  "toasts": {
+    "saved": "Saved"
+  },
+  "errors": {
+    "slugTaken": "That booking link is already taken.",
+    "cannotPublish": "Add at least one active service with a team member assigned before publishing."
+  },
+  "actions": {
+    "published": "Your booking page is live 🎉",
+    "paused": "Online booking paused",
+    "unpublished": "Booking page unpublished",
+    "brandingSaved": "Branding saved",
+    "seoSaved": "Search settings saved",
+    "linkUpdated": "Booking link updated",
+    "imageUpdated": "Image updated",
+    "imageRemoved": "Image removed",
+    "chooseImage": "Choose an image."
+  }
+}

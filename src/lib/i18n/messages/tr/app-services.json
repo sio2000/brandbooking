@@ -1,0 +1,84 @@
+{
+  "title": "Hizmetler",
+  "description": "Müşterilerin rezervasyon yapabileceği hizmetler. Süreyi, fiyatı, ara süreleri ve her hizmeti kimin verdiğini belirleyin.",
+  "list": {
+    "count": "{count, plural, one {# hizmet} other {# hizmet}} · rezervasyon sayfanızdaki sırayı değiştirmek için sürükleyin",
+    "export": "Dışa aktar",
+    "add": "Hizmet ekle",
+    "buffer": "+ {count} dk ara",
+    "upcoming": "{count} yaklaşan",
+    "free": "Ücretsiz",
+    "actions": "{name} için işlemler",
+    "edit": "Düzenle",
+    "pause": "Rezervasyonları duraklat",
+    "resume": "Rezervasyonları sürdür"
+  },
+  "empty": {
+    "title": "Henüz hiç hizmet eklemediniz",
+    "description": "Müşterilerin rezervasyon yapmaya başlayabilmesi için ilk hizmetinizi ekleyin. Süre, isteğe bağlı bir fiyat ve hizmeti kimin vereceğini belirleyebilirsiniz.",
+    "add": "İlk hizmetinizi ekleyin"
+  },
+  "badges": {
+    "paused": "Duraklatıldı",
+    "hidden": "Sayfada gizli",
+    "unassigned": "Kimse atanmadı"
+  },
+  "toasts": {
+    "paused": "Hizmet duraklatıldı. Rezervasyon yapılamaz",
+    "resumed": "Hizmet yeniden etkin",
+    "saved": "Kaydedildi",
+    "deleted": "Silindi"
+  },
+  "delete": {
+    "menu": "Sil",
+    "title": "“{name}” silinsin mi?",
+    "withUpcoming": "Bu hizmetin <b>{count, plural, one {# yaklaşan randevusu} other {# yaklaşan randevusu}}</b> var. Bu randevular geçerli kalır; yalnızca hizmete yeniden rezervasyon yapılamaz. Geçmiş randevular geçmişlerini korur.",
+    "body": "Müşteriler artık bu hizmete rezervasyon yapamayacak. Geçmiş randevular geçmişlerini korur.",
+    "confirm": "Hizmeti sil"
+  },
+  "form": {
+    "addTitle": "Hizmet ekleyin",
+    "editTitle": "Hizmeti düzenle",
+    "description": "Müşteriler adı, açıklamayı, süreyi ve fiyatı görür.",
+    "fixFields": "Lütfen işaretli alanları düzeltin.",
+    "name": "Hizmet adı",
+    "namePlaceholder": "ör. Saç kesimi ve fön",
+    "descriptionLabel": "Açıklama",
+    "descriptionPlaceholder": "Neleri kapsadığı, kimler için olduğu, nasıl hazırlanılacağı.",
+    "duration": "Süre",
+    "custom": "Özel",
+    "customLabel": "Dakika cinsinden özel süre",
+    "minSuffix": "dk",
+    "price": "Fiyat",
+    "priceHint": "Fiyatı gizlemek için boş bırakın; ücretsizse 0 girin.",
+    "category": "Kategori",
+    "categoryHint": "Hizmetleri rezervasyon sayfanızda gruplar.",
+    "categoryPlaceholder": "ör. Boya",
+    "noCategory": "Kategori yok",
+    "existingCategory": "Mevcut bir kategori seçin",
+    "newCategory": "+ Yeni kategori",
+    "staff": "Kim veriyor",
+    "noStaff": "Önce bir ekip üyesi ekleyin.",
+    "nobodyAssigned": "Kimse atanmadığı için müşteriler bu hizmete rezervasyon yapamaz.",
+    "bufferBefore": "Önce ara",
+    "bufferBeforeHint": "Hazırlık süresi; takviminizde engellenir.",
+    "bufferAfter": "Sonra ara",
+    "bufferAfterHint": "Sonraki rezervasyondan önce toparlanma süresi.",
+    "none": "Yok",
+    "minutes": "{count} dk",
+    "colour": "Takvim rengi",
+    "colourPicker": "Renk",
+    "bookable": "Rezerve edilebilir",
+    "bookableHint": "Hizmeti silmeden duraklatmak için kapatın.",
+    "visible": "Rezervasyon sayfasında göster",
+    "visibleHint": "Gizli hizmetlere ekibiniz yine de rezervasyon ekleyebilir.",
+    "cancel": "İptal",
+    "save": "Değişiklikleri kaydet"
+  },
+  "actions": {
+    "added": "Hizmet eklendi",
+    "saved": "Hizmet kaydedildi",
+    "removed": "Hizmet kaldırıldı. Geçmiş randevular geçmişlerini korur.",
+    "categoryRemoved": "Kategori kaldırıldı"
+  }
+}

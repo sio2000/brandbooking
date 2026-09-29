@@ -1,0 +1,71 @@
+{
+  "title": "チーム",
+  "description": "お客様が予約できるスタッフです。スタッフごとにサービス、スケジュール、カレンダーがあります。",
+  "list": {
+    "count": "{count, plural, other {スタッフ#名}}",
+    "logins": "ログインとロール",
+    "add": "スタッフを追加"
+  },
+  "empty": {
+    "title": "スタッフはまだいません",
+    "description": "お客様が予約できるスタッフを追加しましょう。"
+  },
+  "card": {
+    "defaultTitle": "スタッフ",
+    "notBookable": "予約不可",
+    "login": "{role, select, owner {オーナーとしてログイン} manager {マネージャーとしてログイン} other {スタッフとしてログイン}}",
+    "noLogin": "ログインなし",
+    "services": "サービス",
+    "servicesCount": "{total}件中{count}件",
+    "hours": "勤務時間",
+    "businessHours": "ビジネスの営業時間",
+    "ownSchedule": "個別のスケジュール",
+    "upcoming": "今後の予約",
+    "edit": "編集",
+    "hoursLink": "勤務時間"
+  },
+  "form": {
+    "editTitle": "スタッフを編集",
+    "description": "チームを表示している場合、名前、写真、肩書きが予約ページに表示されます。",
+    "fixFields": "ハイライトされた項目を修正してください。",
+    "uploadPhoto": "写真をアップロード",
+    "photoHint": "JPG、PNG、WebP。96px 以上、最大 5 MB。",
+    "name": "名前",
+    "title": "肩書き",
+    "titleHint": "例：シニアスタイリスト",
+    "email": "メールアドレス",
+    "emailHint": "記録用です。ログインを付与するには、設定 → チームから招待してください。",
+    "bio": "自己紹介",
+    "services": "担当するサービス",
+    "noServices": "サービスはまだありません。",
+    "colour": "カレンダーの色",
+    "colourPicker": "色",
+    "bookable": "予約受付",
+    "bookableHint": "長期不在の間はオフにしてください。既存の予約はそのまま残ります。",
+    "businessHours": "ビジネスの営業時間に従う",
+    "businessHoursHint": "オフにすると、空き状況で個別の週間スケジュールを設定できます。",
+    "cancel": "キャンセル",
+    "save": "変更を保存"
+  },
+  "remove": {
+    "button": "スタッフを削除",
+    "title": "{name} さんを削除しますか？",
+    "withUpcoming": "{name} さんには{count, plural, other {#件の今後の予約}}があります。先に日時を変更するかキャンセルしてください。",
+    "body": "予約ページに表示されなくなります。過去の予約の履歴は保持されます。",
+    "confirm": "削除"
+  },
+  "toasts": {
+    "saved": "保存しました",
+    "removed": "削除しました"
+  },
+  "errors": {
+    "hasUpcoming": "このスタッフには{count, plural, other {#件の今後の予約}}があります。先に日時を変更するかキャンセルしてください。"
+  },
+  "actions": {
+    "added": "スタッフを追加しました",
+    "saved": "スタッフを保存しました",
+    "removed": "スタッフを削除しました",
+    "photoUpdated": "写真を更新しました",
+    "chooseImage": "画像を選択してください。"
+  }
+}

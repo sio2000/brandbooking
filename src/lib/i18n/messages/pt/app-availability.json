@@ -1,0 +1,91 @@
+{
+  "title": "Disponibilidade",
+  "description": "Quando os clientes podem reservar. O horário de funcionamento aplica-se a todos; os membros da equipa podem segui-lo ou ter um horário próprio dentro dele.",
+  "allTimesIn": "Todas as horas em {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Horário de quem",
+    "business": "Horário do negócio"
+  },
+  "weekly": {
+    "title": "Horário de funcionamento",
+    "description": "O seu horário semanal habitual. Adicione um segundo intervalo para a pausa de almoço ou um turno repartido.",
+    "staffTitle": "Horário semanal de {name}",
+    "staffDescription": "As horas reserváveis em cada semana (sempre dentro do horário de funcionamento do negócio).",
+    "followsTitle": "Segue o horário do negócio",
+    "followsBody": "{name} pode ser reservado sempre que o negócio está aberto. Atribua-lhe um horário próprio se trabalhar menos horas.",
+    "followsNote": "Comece pelo horário do negócio e ajuste. As horas fora do horário de funcionamento não serão reserváveis.",
+    "useBusiness": "Usar o horário do negócio",
+    "endAfterStart": "A hora de fim tem de ser posterior à hora de início.",
+    "overlap": "Os intervalos de tempo sobrepõem-se.",
+    "fixDays": "Corrija primeiro os dias assinalados.",
+    "dayOpen": "{day} aberto",
+    "closed": "Fechado",
+    "rangeStart": "{day} intervalo {n} início",
+    "rangeEnd": "{day} intervalo {n} fim",
+    "removeRange": "Remover {day} intervalo {n}",
+    "addRange": "Adicionar horas (depois de uma pausa)",
+    "copyWeekdays": "Copiar para seg–sex",
+    "unsaved": "Alterações por guardar",
+    "save": "Guardar horário"
+  },
+  "closures": {
+    "title": "Feriados e encerramentos",
+    "description": "Dias inteiros em que está fechado. Os feriados recorrentes repetem-se todos os anos.",
+    "staffTitle": "Dias de folga de {name}",
+    "staffDescription": "Férias, baixas, formação.",
+    "from": "De",
+    "to": "Até",
+    "label": "Descrição",
+    "placeholder": "p. ex. Natal",
+    "staffPlaceholder": "p. ex. Férias",
+    "yearly": "Repete-se todos os anos",
+    "add": "Adicionar encerramento",
+    "empty": "Sem encerramentos previstos.",
+    "closed": "Fechado",
+    "yearlyBadge": "Anual",
+    "remove": "Remover encerramento",
+    "removeNamed": "Remover {label}"
+  },
+  "special": {
+    "title": "Horário especial",
+    "description": "Um horário diferente numa data específica, como um fecho mais tardio ou um dia mais curto.",
+    "date": "Data",
+    "opens": "Abre",
+    "closes": "Fecha",
+    "add": "Definir horário especial",
+    "empty": "Sem horários especiais previstos.",
+    "remove": "Remover o horário especial de {date}"
+  },
+  "blocks": {
+    "title": "Horas bloqueadas",
+    "description": "Bloqueie parte de um dia para uma reunião, um recado ou uma entrega. As reservas existentes não são afetadas.",
+    "date": "Data",
+    "from": "Das",
+    "until": "Às",
+    "reason": "Motivo",
+    "add": "Bloquear horas",
+    "addForEveryone": "Bloquear horas para todos",
+    "empty": "Sem horas bloqueadas previstas.",
+    "blocked": "Bloqueado",
+    "everyone": "todos",
+    "remove": "Remover bloqueio"
+  },
+  "toasts": {
+    "saved": "Guardado",
+    "added": "Adicionado",
+    "blocked": "Bloqueado",
+    "removed": "Removido",
+    "failed": "Falhou"
+  },
+  "actions": {
+    "hoursSaved": "Horário guardado",
+    "following": "Passa a seguir o horário do negócio",
+    "closureAdded": "Encerramento adicionado",
+    "closureRemoved": "Encerramento removido",
+    "specialSaved": "Horário especial guardado",
+    "specialRemoved": "Horário especial removido",
+    "blocked": "Horas bloqueadas",
+    "blockRemoved": "Bloqueio removido"
+  }
+}

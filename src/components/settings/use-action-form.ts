@@ -3,6 +3,7 @@
 import * as React from 'react'
 import type { ActionResult } from '@/server/actions'
 import { toast } from '@/components/ui/toaster'
+import { useT } from '@/components/i18n/provider'
 
 type Options<R> = {
   /** Called after a successful save (after the toast). */
@@ -25,6 +26,7 @@ export function useActionForm<T extends Record<string, unknown>, R>(
   action: (values: T) => Promise<ActionResult<R>>,
   opts: Options<R> = {},
 ) {
+  const t = useT('app-settings')
   const [start] = React.useState<T>(initial)
   const [values, setValues] = React.useState<T>(initial)
   const [baseline, setBaseline] = React.useState<string>(() => JSON.stringify(initial))
@@ -61,7 +63,7 @@ export function useActionForm<T extends Record<string, unknown>, R>(
         } else setBaseline(JSON.stringify(values))
         setSaved(true)
         setTimeout(() => setSaved(false), 1600)
-        if (!opts.silent) toast.success(r.message ?? opts.successMessage ?? 'Saved')
+        if (!opts.silent) toast.success(r.message ?? opts.successMessage ?? t('form.saved'))
         opts.onSuccess?.(r.data)
       } else {
         const fields = r.fields ?? {}
@@ -82,7 +84,7 @@ export function useActionForm<T extends Record<string, unknown>, R>(
         }
       }
     } catch {
-      setFormError('We couldn’t reach the server. Check your connection and try again.')
+      setFormError(t('form.offline'))
     } finally {
       setPending(false)
     }

@@ -15,7 +15,10 @@ import { businesses, users } from '@/server/db/schema'
 import { audit } from '@/server/audit'
 import { AppError } from '@/server/errors'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
-import { updateProfile } from '@/server/business/profile'
+import { updateAccountLocale, updateProfile } from '@/server/business/profile'
+import { getT } from '@/server/i18n'
+import { env } from '@/server/env'
+import { LOCALE_COOKIE } from '@/lib/i18n/config'
 import { saveBookingRules } from '@/server/business/availability-admin'
 import {
   changeRole,
@@ -93,21 +96,23 @@ async function forgetBusinessCookie() {
 /* ------------------------------------------------------------------------ */
 
 export async function updateProfileAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('settings.manage')
     const row = await updateProfile(ctx, parse(profileSchema, input), await requestMeta())
     revalidatePath('/app', 'layout')
     return { timezone: row.timezone }
-  }, 'Business profile saved')
+  }, t('actions.profileSaved'))
 }
 
 export async function saveBookingRulesAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('settings.manage')
     await saveBookingRules(ctx, parse(bookingRulesSchema, input), await requestMeta())
     revalidatePath('/app', 'layout')
     return null
-  }, 'Booking settings saved')
+  }, t('actions.bookingRulesSaved'))
 }
 
 /* ------------------------------------------------------------------------ */
@@ -115,21 +120,23 @@ export async function saveBookingRulesAction(input: unknown) {
 /* ------------------------------------------------------------------------ */
 
 export async function saveEmailSettingsAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('settings.manage')
     await updateEmailSettings(ctx, parse(notificationSettingsSchema, input), await requestMeta())
     revalidatePath('/app/settings/notifications')
     return null
-  }, 'Email settings saved')
+  }, t('actions.emailSettingsSaved'))
 }
 
 export async function saveMyPrefsAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction()
     await saveMyPrefs(ctx, parse(memberPrefsSchema, input))
     revalidatePath('/app/settings/notifications')
     return null
-  }, 'Preferences saved')
+  }, t('actions.prefsSaved'))
 }
 
 /* ------------------------------------------------------------------------ */
@@ -147,40 +154,44 @@ export async function inviteMemberAction(input: unknown) {
 }
 
 export async function revokeInvitationAction(id: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('team.manage')
     await revokeInvitation(ctx, parse(z.uuid(), id), await requestMeta())
     revalidatePath('/app/settings/team')
     return null
-  }, 'Invitation revoked')
+  }, t('actions.invitationRevoked'))
 }
 
 export async function changeRoleAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('team.manage')
     const v = parse(z.object({ memberId: z.uuid(), role: z.enum(['manager', 'staff']) }), input)
     await changeRole(ctx, v.memberId, v.role, await requestMeta())
     revalidatePath('/app/settings/team')
     return null
-  }, 'Role updated')
+  }, t('actions.roleUpdated'))
 }
 
 export async function removeMemberAction(memberId: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('team.manage')
     await removeMember(ctx, parse(z.uuid(), memberId), await requestMeta())
     revalidatePath('/app/settings/team')
     return null
-  }, 'Removed from your team')
+  }, t('actions.memberRemoved'))
 }
 
 export async function transferOwnershipAction(memberId: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction('team.manage')
     await transferOwnership(ctx, parse(z.uuid(), memberId), await requestMeta())
     revalidatePath('/app', 'layout')
     return null
-  }, 'Ownership transferred')
+  }, t('actions.ownershipTransferred'))
 }
 
 /* ------------------------------------------------------------------------ */
@@ -188,19 +199,42 @@ export async function transferOwnershipAction(memberId: unknown) {
 /* ------------------------------------------------------------------------ */
 
 export async function updateAccountNameAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction()
     const v = parse(
-      z.object({ name: z.string().trim().min(1, 'Enter your name.').max(120) }),
+      z.object({ name: z.string().trim().min(1, t('account.profile.nameRequired')).max(120) }),
       input,
     )
     await updateOwnName(ctx, v.name, await requestMeta())
     revalidatePath('/app', 'layout')
     return { name: v.name }
-  }, 'Name updated')
+  }, t('actions.nameUpdated'))
+}
+
+/**
+ * Changes the signed-in member's language (users.locale) and the language
+ * cookie, so the dashboard, other devices and emails to them all follow it.
+ * The page reloads afterwards to render in the new language.
+ */
+export async function updateAccountLocaleAction(locale: unknown) {
+  const t = await getT('app-settings')
+  return runAction(async () => {
+    const ctx = await requireTenantAction()
+    const saved = await updateAccountLocale(ctx, locale, await requestMeta())
+    ;(await cookies()).set(LOCALE_COOKIE, saved, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: 'lax',
+      secure: env().APP_URL.startsWith('https://'),
+    })
+    revalidatePath('/', 'layout')
+    return { locale: saved }
+  }, t('actions.languageSaved'))
 }
 
 export async function changePasswordAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     const ctx = await requireTenantAction()
     const v = parse(changePasswordSchema, input)
@@ -213,7 +247,7 @@ export async function changePasswordAction(input: unknown) {
       await requestMeta(),
     )
     return null
-  }, 'Password changed. Other devices have been signed out.')
+  }, t('actions.passwordChanged'))
 }
 
 export async function leaveBusinessAction() {
@@ -228,6 +262,7 @@ export async function leaveBusinessAction() {
 }
 
 export async function deleteAccountAction(input: unknown) {
+  const t = await getT('app-settings')
   return runAction(async () => {
     // Only a signed-in user is needed: someone who deleted their last business
     // (or never finished setting one up) must still be able to delete the account.
@@ -235,7 +270,9 @@ export async function deleteAccountAction(input: unknown) {
     if (!session) throw new AppError('unauthenticated')
     const ctx = { user: session.user }
     const v = parse(
-      z.object({ password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX) }),
+      z.object({
+        password: z.string().min(1, t('account.delete.passwordRequired')).max(PASSWORD_MAX),
+      }),
       input,
     )
     await enforceRateLimits([[`account-delete:user:${ctx.user.id}`, POLICIES.loginByEmail]])

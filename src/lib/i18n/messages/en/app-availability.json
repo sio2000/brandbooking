@@ -1,0 +1,91 @@
+{
+  "title": "Availability",
+  "description": "When customers can book. Opening hours apply to everyone; team members can follow them or have their own schedule within them.",
+  "allTimesIn": "All times in {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Whose schedule",
+    "business": "Business hours"
+  },
+  "weekly": {
+    "title": "Opening hours",
+    "description": "Your regular weekly hours. Add a second time range for a lunch break or split shift.",
+    "staffTitle": "{name}’s weekly schedule",
+    "staffDescription": "Their bookable hours each week (always within business opening hours).",
+    "followsTitle": "Follows your business hours",
+    "followsBody": "{name} is bookable whenever the business is open. Give them their own schedule if they work fewer hours.",
+    "followsNote": "Start from the business hours and adjust. Hours outside business opening hours won’t be bookable.",
+    "useBusiness": "Use business hours",
+    "endAfterStart": "End time must be after start time.",
+    "overlap": "Time ranges overlap.",
+    "fixDays": "Fix the highlighted days first.",
+    "dayOpen": "{day} open",
+    "closed": "Closed",
+    "rangeStart": "{day} range {n} start",
+    "rangeEnd": "{day} range {n} end",
+    "removeRange": "Remove {day} range {n}",
+    "addRange": "Add hours (after a break)",
+    "copyWeekdays": "Copy to Mon–Fri",
+    "unsaved": "Unsaved changes",
+    "save": "Save hours"
+  },
+  "closures": {
+    "title": "Holidays & closures",
+    "description": "Whole days you’re closed. Recurring holidays repeat every year.",
+    "staffTitle": "{name}’s days off",
+    "staffDescription": "Vacation, sick days, training.",
+    "from": "From",
+    "to": "To",
+    "label": "Label",
+    "placeholder": "e.g. Christmas",
+    "staffPlaceholder": "e.g. Vacation",
+    "yearly": "Repeats every year",
+    "add": "Add closure",
+    "empty": "No upcoming closures.",
+    "closed": "Closed",
+    "yearlyBadge": "Yearly",
+    "remove": "Remove closure",
+    "removeNamed": "Remove {label}"
+  },
+  "special": {
+    "title": "Special opening hours",
+    "description": "Different hours on a specific date, like a late opening or a short day.",
+    "date": "Date",
+    "opens": "Opens",
+    "closes": "Closes",
+    "add": "Set special hours",
+    "empty": "No special hours coming up.",
+    "remove": "Remove special hours on {date}"
+  },
+  "blocks": {
+    "title": "Blocked time",
+    "description": "Block part of a day for a meeting, an errand or a delivery. Existing bookings aren’t affected.",
+    "date": "Date",
+    "from": "From",
+    "until": "Until",
+    "reason": "Reason",
+    "add": "Block time",
+    "addForEveryone": "Block time for everyone",
+    "empty": "No blocked time coming up.",
+    "blocked": "Blocked",
+    "everyone": "everyone",
+    "remove": "Remove block"
+  },
+  "toasts": {
+    "saved": "Saved",
+    "added": "Added",
+    "blocked": "Blocked",
+    "removed": "Removed",
+    "failed": "Failed"
+  },
+  "actions": {
+    "hoursSaved": "Working hours saved",
+    "following": "Now following business hours",
+    "closureAdded": "Closure added",
+    "closureRemoved": "Closure removed",
+    "specialSaved": "Special hours saved",
+    "specialRemoved": "Special hours removed",
+    "blocked": "Time blocked",
+    "blockRemoved": "Block removed"
+  }
+}

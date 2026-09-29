@@ -1,0 +1,127 @@
+{
+  "title": "Abrechnung",
+  "description": "Ein einfacher Tarif mit allem inklusive. Keine Gebühren pro Buchung, keine Überraschungen.",
+  "loading": "Abrechnung wird geladen",
+  "price": {
+    "perMonth": "{price}/Monat",
+    "periodSuffix": "/ Monat",
+    "note": "Alles inklusive für Ihr ganzes Team. Je nach Sitz Ihres Unternehmens kann Mehrwertsteuer hinzukommen."
+  },
+  "checkout": {
+    "successTitle": "Danke, alles erledigt!",
+    "successBody": "Ihr Abonnement ist aktiv. Eine Quittung ist auf dem Weg in Ihren Posteingang.",
+    "pending": "Danke! Ihr Abonnement wird aktiviert, sobald Stripe die Zahlung bestätigt – meist innerhalb von Sekunden. Laden Sie die Seite neu, falls sich nichts ändert.",
+    "refresh": "Aktualisieren",
+    "cancelledTitle": "Bezahlvorgang abgebrochen",
+    "cancelledBody": "Kein Problem, es wurde nichts berechnet.",
+    "cancelledTrialBody": "Kein Problem, es wurde nichts berechnet. Ihr kostenloser Test läuft ganz normal weiter."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Gesperrt",
+      "title": "Ihr Konto ist gesperrt",
+      "body": "Der Hournook-Support hat dieses Konto gesperrt, daher ist Ihre Buchungsseite offline. Wenden Sie sich an den Support, um das zu klären. Ihre Daten sind sicher, und Sie können sie weiterhin exportieren."
+    },
+    "ending": {
+      "badge": "Endet bald",
+      "title": "Ihr Abonnement endet am {date}",
+      "dateFallback": "Ende dieses Zeitraums",
+      "body": "Es wird nichts mehr berechnet. Bis dahin funktioniert alles; danach nimmt Ihre Buchungsseite keine neuen Buchungen mehr an. Doch anders entschieden? Sie können es im Abrechnungsportal fortsetzen."
+    },
+    "trialing": {
+      "badge": "Abonniert",
+      "title": "Sie haben ein Abonnement",
+      "body": "Ihr kostenloser Test läuft bis {date}. Dann wird Ihre erste Zahlung von {price} fällig.",
+      "dateFallback": "zu seinem Ende"
+    },
+    "active": {
+      "badge": "Aktiv",
+      "title": "Ihr Abonnement ist aktiv",
+      "renews": "Verlängert sich automatisch am {date} für {price}.",
+      "billed": "Abrechnung: {price}."
+    },
+    "pastDue": {
+      "badge": "Zahlung fehlgeschlagen",
+      "title": "Ihre letzte Zahlung ist nicht durchgegangen",
+      "body": "Stripe versucht es automatisch erneut, aber bitte aktualisieren Sie Ihre Zahlungsmethode vor dem {date}, damit Sie weiter Buchungen annehmen.",
+      "dateFallback": "Ende der Nachfrist"
+    },
+    "trial": {
+      "badge": "Kostenloser Test",
+      "title": "{count, plural, one {Noch # Tag kostenloser Test} other {Noch # Tage kostenloser Test}}",
+      "body": "Ihr Test endet am {date}. Sie können jederzeit abonnieren. Sind noch mehr als zwei Tage übrig, werden sie übernommen und Ihre erste Zahlung wird erst am Ende des Tests fällig."
+    },
+    "overdue": {
+      "badge": "Zahlung überfällig",
+      "title": "Ihre Buchungsseite nimmt keine neuen Buchungen an",
+      "body": "Wir konnten Ihre letzte Zahlung nicht einziehen. Aktualisieren Sie Ihre Zahlungsmethode und begleichen Sie die offene Rechnung, dann ist die Online-Buchung sofort wieder offen. Es wurde nichts gelöscht."
+    },
+    "canceled": {
+      "badge": "Gekündigt",
+      "title": "Ihr Abonnement ist beendet",
+      "body": "Ihre Buchungsseite nimmt keine neuen Buchungen an. Alle Ihre Daten sind noch da. Abonnieren Sie erneut, um sie sofort wieder zu öffnen."
+    },
+    "noPlan": {
+      "badge": "Kein Tarif",
+      "title": "Ihr kostenloser Test ist beendet",
+      "body": "Ihre Buchungsseite nimmt derzeit keine neuen Buchungen an, aber alles, was Sie eingerichtet haben, ist noch da. Abonnieren Sie, um sie sofort wieder zu öffnen.",
+      "bodyEnded": "Er endete am {date}. Ihre Buchungsseite nimmt derzeit keine neuen Buchungen an, aber alles, was Sie eingerichtet haben, ist noch da. Abonnieren Sie, um sie sofort wieder zu öffnen."
+    }
+  },
+  "notConfigured": {
+    "title": "Die Abrechnung ist auf diesem Server noch nicht eingerichtet",
+    "bodyTrial": "Online-Zahlungen sind für diese Hournook-Installation nicht eingerichtet, daher können Abonnements hier weder abgeschlossen noch geändert werden. Ihr kostenloser Test funktioniert weiter wie oben beschrieben.",
+    "bodyAccount": "Online-Zahlungen sind für diese Hournook-Installation nicht eingerichtet, daher können Abonnements hier weder abgeschlossen noch geändert werden. Ihr Konto funktioniert weiter wie oben beschrieben."
+  },
+  "ownerOnly": "Nur der Inhaber des Unternehmens kann abonnieren, die Zahlungsmethode ändern oder kündigen.",
+  "cta": {
+    "subscribe": "Für {price} abonnieren",
+    "updatePayment": "Zahlungsmethode aktualisieren",
+    "resume": "Abonnement fortsetzen",
+    "manage": "Abrechnung verwalten",
+    "updateCard": "Karte ändern",
+    "cancel": "Abonnement kündigen",
+    "secure": "Sie bezahlen sicher auf der Bezahlseite von Stripe und kommen direkt hierher zurück."
+  },
+  "included": {
+    "title": "Das ist enthalten",
+    "page": "Eigene Buchungsseite, QR-Code & Website-Widget",
+    "unlimited": "Unbegrenzt Buchungen, Kunden und Leistungen",
+    "team": "Ihr ganzes Team, keine Gebühren pro Nutzer",
+    "calendar": "Kalender, Verfügbarkeit, Feiertage und freie Tage",
+    "emails": "Bestätigungs-E-Mails und automatische Erinnerungen",
+    "analytics": "Statistik, Exporte und Aktivitätsprotokoll"
+  },
+  "paymentMethod": {
+    "title": "Zahlungsmethode",
+    "notConfigured": "Nicht verfügbar, bis die Abrechnung eingerichtet ist.",
+    "loadFailed": "Ihre Kartendaten konnten gerade nicht geladen werden.",
+    "none": "Keine Karte hinterlegt. Sie fügen eine beim Abonnieren hinzu."
+  },
+  "invoices": {
+    "title": "Rechnungen",
+    "description": "Quittungen erhalten Sie nach jeder Zahlung auch per E-Mail.",
+    "notConfigured": "Rechnungen erscheinen hier, sobald die Abrechnung eingerichtet ist.",
+    "unavailableTitle": "Rechnungen sind gerade nicht verfügbar",
+    "unavailableBody": "Stripe war nicht erreichbar, um Ihre Rechnungen zu laden. Versuchen Sie es gleich noch einmal; Ihr Abonnement ist nicht betroffen.",
+    "empty": "Noch keine Rechnungen. Sie erscheinen hier nach Ihrer ersten Zahlung.",
+    "invoice": "Rechnung",
+    "view": "Ansehen",
+    "viewFrom": "Rechnung vom {date}",
+    "status": {
+      "paid": "Bezahlt",
+      "open": "Offen",
+      "void": "Storniert",
+      "uncollectible": "Unbezahlt",
+      "draft": "Entwurf"
+    }
+  },
+  "goodToKnow": {
+    "title": "Gut zu wissen",
+    "fees": "<b>Keine Gebühren pro Buchung.</b> <muted>Ein fester Preis, egal wie viel Sie zu tun haben.</muted>",
+    "cancel": "<b>Jederzeit kündbar.</b> <muted>Sie behalten den Zugang bis zum Ende des bezahlten Zeitraums.</muted>",
+    "vat": "<b>Mehrwertsteuer kann anfallen</b> <muted>je nach Standort. Sie steht auf Ihrer Rechnung.</muted>",
+    "data": "<b>Ihre Daten bleiben Ihre.</b> <muted>Läuft Ihr Tarif aus, wird nichts gelöscht. Sie können sich weiter anmelden und exportieren.</muted>"
+  },
+  "stripeUnreachable": "Stripe ist nicht erreichbar. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut."
+}

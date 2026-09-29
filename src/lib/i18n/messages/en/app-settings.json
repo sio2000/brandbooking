@@ -1,0 +1,646 @@
+{
+  "layout": {
+    "title": "Settings",
+    "description": "Manage {name}, your team and your own account."
+  },
+  "loading": "Loading settings",
+  "nav": {
+    "label": "Settings",
+    "business": "Business",
+    "booking": "Booking",
+    "notifications": "Notifications",
+    "team": "Team",
+    "account": "Account",
+    "privacy": "Privacy & data",
+    "activity": "Activity"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "listSeparator": ", "
+  },
+  "form": {
+    "saved": "Saved",
+    "offline": "We couldn’t reach the server. Check your connection and try again."
+  },
+  "saveBar": {
+    "unsaved": "Unsaved changes",
+    "saved": "All changes saved",
+    "discard": "Discard",
+    "save": "Save changes"
+  },
+  "duration": {
+    "zeroMinutes": "0 minutes",
+    "minutes": "{count, plural, one {# minute} other {# minutes}}",
+    "hours": "{count, plural, one {# hour} other {# hours}}",
+    "hoursMinutes": "{h} h {m} min",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "weeks": "{count, plural, one {# week} other {# weeks}}",
+    "months": "{count, plural, one {# month} other {# months}}",
+    "years": "{count, plural, one {# year} other {# years}}",
+    "current": "{label} (current)",
+    "noMinimum": "No minimum",
+    "everyHour": "Every hour",
+    "everyMinutes": "{count, plural, one {Every # minute} other {Every # minutes}}",
+    "upToStart": "Up to the start time",
+    "before": "{duration} before",
+    "ahead": "{duration} ahead"
+  },
+  "business": {
+    "metaTitle": "Business settings",
+    "title": "Business profile",
+    "description": "The basics customers see on your booking page and in their emails.",
+    "basics": {
+      "title": "Basics",
+      "description": "How your business appears on your booking page and in emails to customers.",
+      "name": "Business name",
+      "category": "Category",
+      "categoryHint": "Helps us tailor tips and defaults to your kind of business.",
+      "categoryPlaceholder": "Choose a category…",
+      "about": "About your business",
+      "aboutHint": "Shown at the top of your booking page. {count}/{max}",
+      "aboutPlaceholder": "A friendly sentence or two about what you do and what customers can expect."
+    },
+    "categories": {
+      "hairBeauty": "Hair & beauty",
+      "barbershop": "Barbershop",
+      "nails": "Nails",
+      "spaMassage": "Spa & massage",
+      "healthTherapy": "Health & therapy",
+      "fitnessCoaching": "Fitness & coaching",
+      "medicalDental": "Medical & dental",
+      "consulting": "Consulting",
+      "educationTutoring": "Education & tutoring",
+      "photography": "Photography",
+      "petServices": "Pet services",
+      "automotive": "Automotive",
+      "homeServices": "Home services",
+      "other": "Other"
+    },
+    "time": {
+      "title": "Time & money",
+      "description": "Your timezone decides how opening hours and appointment times are read. Currency is used for service prices.",
+      "timezone": "Timezone",
+      "timezoneHint": "Tip: with the list focused, type a city name to jump to it.",
+      "deviceTz": "This device is set to <b>{tz}</b>",
+      "useDeviceTz": "Use it",
+      "tzChangedTitle": "Changing your timezone changes how opening hours are read",
+      "tzChangedBody": "Working hours like 9:00–17:00 will mean 9:00–17:00 in <b>{tz}</b>. Appointments already booked keep their exact moment in time, so they may show at a different clock time.",
+      "currency": "Currency",
+      "currencyHint": "Changing the currency doesn’t convert existing prices.",
+      "regions": {
+        "Africa": "Africa",
+        "America": "America",
+        "Antarctica": "Antarctica",
+        "Arctic": "Arctic",
+        "Asia": "Asia",
+        "Atlantic": "Atlantic",
+        "Australia": "Australia",
+        "Europe": "Europe",
+        "Indian": "Indian",
+        "Pacific": "Pacific",
+        "Other": "Other"
+      }
+    },
+    "language": {
+      "title": "Booking page language",
+      "description": "The language customers see first on your booking page, in the booking widget and on their booking confirmation.",
+      "label": "Default language",
+      "hint": "Customers can still switch to another language themselves."
+    },
+    "contact": {
+      "title": "Contact details",
+      "description": "Shown on your booking page and in confirmation emails. Customer replies to Hournook emails go to this email address.",
+      "email": "Email",
+      "emailPlaceholder": "hello@yourbusiness.com",
+      "phone": "Phone",
+      "website": "Website",
+      "websitePlaceholder": "yourbusiness.com"
+    },
+    "address": {
+      "title": "Address",
+      "description": "Where customers come for their appointment. Leave empty if you work remotely or visit customers.",
+      "line1": "Street address",
+      "line2": "Apartment, suite, floor",
+      "postalCode": "Postal code",
+      "city": "City",
+      "country": "Country",
+      "countryPlaceholder": "Choose a country…"
+    }
+  },
+  "account": {
+    "metaTitle": "Your account",
+    "title": "Your account",
+    "intro": "Personal settings for {email}. You’re {role, select, owner {the owner} manager {a manager} other {a team member}} of {business}.",
+    "introMany": "Personal settings for {email}. You’re {role, select, owner {the owner} manager {a manager} other {a team member}} of {business} and belong to {count} businesses in total.",
+    "profile": {
+      "title": "Your profile",
+      "description": "How you appear to your team. Customers never see your account details.",
+      "name": "Your name",
+      "nameRequired": "Enter your name.",
+      "email": "Email",
+      "verified": "Verified",
+      "notVerified": "Not verified",
+      "emailHint": "Used to sign in. Contact support to change it.",
+      "save": "Save"
+    },
+    "language": {
+      "title": "Language",
+      "description": "The language of your dashboard and settings.",
+      "label": "Language",
+      "emailNote": "Emails we send to you (new bookings, team and billing updates) are in this language too.",
+      "switching": "Switching language…",
+      "invalid": "Choose one of the supported languages."
+    },
+    "password": {
+      "title": "Password",
+      "description": "Changing your password signs you out on every other device.",
+      "current": "Current password",
+      "new": "New password",
+      "newHint": "At least {min} characters. A short phrase works well.",
+      "repeat": "Repeat new password",
+      "mismatch": "The passwords don’t match.",
+      "submit": "Change password",
+      "show": "Show password",
+      "hide": "Hide password"
+    },
+    "leave": {
+      "title": "Leave {business}",
+      "description": "You’ll lose access to this business. Your appointments and profile stay with the business.",
+      "button": "Leave business",
+      "confirmTitle": "Leave {business}?",
+      "confirmBody": "You won’t be able to sign in to this business any more. An owner or manager can invite you again later."
+    },
+    "delete": {
+      "title": "Delete your account",
+      "description": "Permanently removes your login and personal details. This can’t be undone.",
+      "ownerTitle": "You still own a business",
+      "ownerBody": "Owners must delete their businesses, or make someone else the owner under Settings → Team, before deleting their account, so customers and bookings are never left without an owner. You own <b>{businesses}</b>. Delete it under <link>Privacy & data</link> first.",
+      "body": "You’ll be removed from every business you belong to. Appointments you handled stay with those businesses.",
+      "button": "Delete account…",
+      "dialogTitle": "Delete your account?",
+      "dialogDescription": "Enter your password to confirm. This can’t be undone.",
+      "password": "Password",
+      "passwordRequired": "Enter your password.",
+      "submit": "Delete my account"
+    }
+  },
+  "booking": {
+    "metaTitle": "Booking settings",
+    "title": "Booking rules",
+    "description": "Decide when and how customers can book, change and cancel. These apply to your whole booking page.",
+    "summary": {
+      "text": "Customers can book {notice}, and up to {days} in advance. Start times are offered {interval}.",
+      "lastMinute": "right up to the last minute",
+      "notice": "at least {duration} ahead",
+      "onTheHour": "on the hour",
+      "everyMinutes": "{count, plural, one {every # minute} other {every # minutes}}"
+    },
+    "window": {
+      "title": "When customers can book",
+      "description": "Protect your time: stop last-minute surprises and decide how far ahead your calendar opens.",
+      "minNotice": "Minimum notice",
+      "minNoticeHint": "How soon before an appointment someone can still book it online.",
+      "maxAdvance": "Book up to",
+      "maxAdvanceHint": "How far into the future customers can see free times.",
+      "startTimes": "Start times",
+      "startTimesHint": "With every 15 minutes, customers see 9:00, 9:15, 9:30… Longer steps keep your day tidier.",
+      "limit": "Limit online bookings per day",
+      "limitDescription": "Once the limit is reached, that day shows as full. You can still add appointments yourself.",
+      "maxPerDay": "Maximum per day"
+    },
+    "confirm": {
+      "title": "Confirmation",
+      "description": "Choose whether new bookings are final straight away.",
+      "review": "Review each booking before it’s confirmed",
+      "reviewOn": "New online bookings arrive as requests. The time is held, and the customer gets a confirmation email once you accept it.",
+      "reviewOff": "Bookings are confirmed instantly and the customer gets their confirmation email right away."
+    },
+    "changes": {
+      "title": "Cancelling & rescheduling",
+      "description": "Every confirmation email has a link customers can use to manage their booking. Decide what they can do themselves.",
+      "cancel": "Customers can cancel online",
+      "cancelOn": "Freed-up times become bookable again automatically.",
+      "cancelOff": "Customers need to contact you to cancel.",
+      "cancelDeadline": "Cancellation deadline",
+      "cancelDeadlineHint": "After this point the cancel button disappears and customers are asked to contact you.",
+      "reschedule": "Customers can reschedule online",
+      "rescheduleOn": "They pick a new free time; the old one is released.",
+      "rescheduleOff": "Customers need to contact you to move a booking.",
+      "rescheduleDeadline": "Rescheduling deadline",
+      "rescheduleDeadlineHint": "How close to the appointment customers can still move it."
+    },
+    "reminders": {
+      "title": "Reminder emails",
+      "description": "Automatic reminders cut no-shows. Pick up to {max}. Customers without an email address won’t get them.",
+      "legend": "Send reminders",
+      "none": "No reminders will be sent.",
+      "selected": "{count} of {max} selected: {list}. Changes apply to future bookings."
+    },
+    "form": {
+      "title": "Booking form",
+      "description": "What customers are asked when they book.",
+      "staff": "Choosing a team member",
+      "staffModes": {
+        "optional": {
+          "title": "Customer may choose",
+          "body": "Customers can pick a team member or choose “Any available”."
+        },
+        "required": {
+          "title": "Customer must choose",
+          "body": "Customers always pick a specific team member."
+        },
+        "hidden": {
+          "title": "Don’t ask",
+          "body": "We assign whoever is free. Customers never see a choice."
+        }
+      },
+      "phone": "Phone number",
+      "phoneModes": {
+        "required": {
+          "title": "Required",
+          "body": "Best if you call or text customers."
+        },
+        "optional": {
+          "title": "Optional",
+          "body": "Customers can leave it empty."
+        },
+        "hidden": {
+          "title": "Don’t ask",
+          "body": "The field isn’t shown at all."
+        }
+      },
+      "alwaysAsked": "Name and email are always asked for, so we can send confirmations."
+    }
+  },
+  "notifications": {
+    "metaTitle": "Notifications",
+    "mine": {
+      "title": "Your notifications",
+      "description": "Choose what we tell you about. This only affects you; each team member sets their own.",
+      "remindersByManager": "Reminder emails to customers are set up by an owner or manager under Booking settings.",
+      "verifyEmail": "Verify your email address to receive notification emails. Until then they only appear in your inbox."
+    },
+    "customers": {
+      "title": "Customer emails",
+      "description": "How your automatic emails to customers look.",
+      "remindersLink": "Looking for appointment reminders? They’re set under <link>Booking rules</link>."
+    },
+    "email": {
+      "title": "Emails to your customers",
+      "description": "Confirmations, reminders and change notices are sent automatically for every booking.",
+      "senderName": "Sender name",
+      "senderNameHint": "What customers see in their inbox. Leave empty to use “{business}”.",
+      "footer": "Email footer",
+      "footerHint": "A short note at the bottom of every email, e.g. parking tips or your cancellation policy. {count}/{max}",
+      "footerPlaceholder": "Free parking behind the building. Please arrive 5 minutes early.",
+      "preview": "Preview",
+      "inboxPreview": "Inbox preview",
+      "repliesTo": "Replies go to {email}",
+      "repliesToNobody": "Replies go to nobody yet",
+      "sampleSubject": "Your appointment is confirmed",
+      "defaultFooter": "You received this email because you booked an appointment.",
+      "sentBy": "Sent by Hournook on behalf of {business}.",
+      "whyTitle": "Why emails come from Hournook’s address",
+      "whyBody": "To keep your emails out of spam folders, they’re sent from Hournook’s verified address with your business name as the sender. We never pretend to send from your own domain. When customers hit reply, their message goes straight to <b>{email}</b>.",
+      "whyBodyNoEmail": "To keep your emails out of spam folders, they’re sent from Hournook’s verified address with your business name as the sender. We never pretend to send from your own domain. When customers hit reply, their message goes straight to your business email. <link>Add a contact email</link> so replies reach you.",
+      "save": "Save email settings"
+    },
+    "prefs": {
+      "title": "Notify me about",
+      "descriptionOwn": "Only about your own appointments. Changes save automatically.",
+      "descriptionAll": "Sent to you by email and shown in your inbox (the bell icon). Changes save automatically.",
+      "created": "New bookings",
+      "createdOwn": "When a customer books an appointment with you.",
+      "createdAll": "When a customer books online or a teammate adds an appointment.",
+      "rescheduled": "Rescheduled bookings",
+      "rescheduledOwn": "When one of your appointments moves to a new time.",
+      "rescheduledAll": "When an appointment is moved to a new time.",
+      "cancelled": "Cancellations",
+      "cancelledOwn": "When one of your appointments is cancelled.",
+      "cancelledAll": "When a customer or teammate cancels an appointment.",
+      "team": "Team changes",
+      "teamDescription": "When someone accepts an invitation and joins your team.",
+      "billing": "Billing",
+      "billingDescription": "Payment problems and subscription changes. We recommend leaving this on.",
+      "on": "Notifications turned on",
+      "off": "Notifications turned off",
+      "saveFailed": "We couldn’t save that change. Check your connection and try again."
+    }
+  },
+  "team": {
+    "metaTitle": "Team & access",
+    "title": "Team & access",
+    "description": "Invite colleagues to sign in with their own login. To add someone who just takes bookings (without a login), add them under <link>Team</link> in the sidebar.",
+    "roles": {
+      "owner": "Owner",
+      "manager": "Manager",
+      "staff": "Team member"
+    },
+    "roleDescriptions": {
+      "owner": "Everything, including billing, exporting all data and deleting the business.",
+      "manager": "Everything except billing, deleting the business, exporting all data and erasing customers.",
+      "staff": "Only their own appointments, customers they’ve seen, and their own availability."
+    },
+    "explainer": {
+      "title": "What each role can do",
+      "description": "Pick the smallest role someone needs. You can change it later."
+    },
+    "invite": {
+      "button": "Invite someone",
+      "title": "Invite to your team",
+      "description": "They’ll get an email with a link to join. No extra cost: your plan includes the whole team.",
+      "email": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "role": "Role",
+      "link": "Link to an existing profile",
+      "linkHint": "If this person already has a profile in your team (with bookings and working hours), link it so they see their own schedule. Otherwise a new profile is created when they join.",
+      "newProfile": "Create a new profile",
+      "submit": "Send invitation",
+      "sent": "Invitation sent to {email}",
+      "sentDescription": "The link is valid for 7 days.",
+      "created": "Invitation created for {email}",
+      "createdDescription": "We couldn’t send the email right now. Revoke it and invite again later."
+    },
+    "members": {
+      "title": "Members · {count}",
+      "description": "People who can sign in to this business.",
+      "you": "You",
+      "profile": "Profile: {name}",
+      "joined": "Joined {date}",
+      "actions": "Actions for {name}",
+      "changeRole": "Change role",
+      "current": "Current",
+      "makeOwner": "Make owner…",
+      "remove": "Remove from team"
+    },
+    "invites": {
+      "title": "Pending invitations",
+      "description": "Invitations expire after 7 days. Invite the same address again to send a fresh link.",
+      "emptyTitle": "No pending invitations",
+      "emptyDescription": "Invite a colleague so they can see their schedule and manage their own appointments.",
+      "expires": "Expires {when} · sent {sent}",
+      "expired": "Expired {when} · sent {sent}",
+      "revoke": "Revoke",
+      "revokeLabel": "Revoke invitation for {email}"
+    },
+    "transfer": {
+      "title": "Make {name} the owner?",
+      "titleGeneric": "Transfer ownership?",
+      "description": "They’ll get full control, including billing and deleting the business. You’ll stay on the team as a manager. Only the new owner can undo this.",
+      "confirm": "Transfer ownership"
+    },
+    "remove": {
+      "title": "Remove {name}?",
+      "titleGeneric": "Remove member?",
+      "description": "They’ll lose access to this business straight away. Their profile, past appointments and upcoming bookings stay in your calendar, and you can reassign or cancel them later."
+    },
+    "toasts": {
+      "roleChanged": "{name} is now {role, select, manager {a manager} owner {the owner} other {a team member}}",
+      "revoked": "Invitation for {email} revoked",
+      "nowOwner": "{name} is now the owner",
+      "removed": "{name} was removed from your team"
+    },
+    "errors": {
+      "staffHasAccount": "This team member already has an account.",
+      "alreadyOnTeam": "This person is already on your team.",
+      "profileLinked": "This team profile is already linked to another account. Ask for a new invitation.",
+      "alreadyMember": "You are already a member of this business."
+    }
+  },
+  "privacy": {
+    "metaTitle": "Privacy & data",
+    "title": "Privacy & data",
+    "description": "Your data belongs to you. Download it any time, see what we keep, and handle customer requests.",
+    "download": {
+      "title": "Download your data",
+      "description": "Exports are generated on the spot and logged in your activity. Handle files with customer details carefully.",
+      "button": "Download",
+      "ownerOnly": "Only the owner can download the complete export."
+    },
+    "exports": {
+      "all": {
+        "title": "Everything (JSON)",
+        "description": "Your complete account: profile, services, team, hours, booking rules, customers, appointments and activity log. Machine-readable, for backups or moving to another tool."
+      },
+      "customers": {
+        "title": "Customers (CSV)",
+        "description": "All customers with contact details and visit history. Opens in Excel, Numbers or Google Sheets."
+      },
+      "appointments": {
+        "title": "Appointments (CSV)",
+        "description": "Every appointment from the last 12 months and the next 12 months."
+      },
+      "services": {
+        "title": "Services (CSV)",
+        "description": "Your service menu with durations and prices."
+      }
+    },
+    "stored": {
+      "title": "What we store and for how long",
+      "description": "Hournook processes this data on your behalf to run your bookings. We never sell it or use it for advertising.",
+      "business": {
+        "what": "Business details",
+        "detail": "Your profile, services, prices, opening hours, team profiles and booking rules.",
+        "keep": "Until you change or delete them."
+      },
+      "customers": {
+        "what": "Customers",
+        "detail": "Name, email, phone, your internal notes and their appointment history.",
+        "keep": "Until you erase the customer or delete the business."
+      },
+      "appointments": {
+        "what": "Appointments",
+        "detail": "Date, time, service, team member, status and messages from the customer.",
+        "keep": "Until you delete the business. Erased customers’ appointments stay as anonymous records."
+      },
+      "emails": {
+        "what": "Emails",
+        "detail": "A delivery log of confirmations and reminders we sent.",
+        "keep": "Email contents are removed after 180 days; the delivery status stays."
+      },
+      "visits": {
+        "what": "Booking page visits",
+        "detail": "Anonymous page views and booking steps for your analytics. No cookies, no personal data.",
+        "keep": "Deleted after 400 days."
+      },
+      "activity": {
+        "what": "Activity log",
+        "detail": "Who changed what in your account, with the time and IP address.",
+        "keep": "Until you delete the business."
+      },
+      "sessions": {
+        "what": "Sign-in sessions",
+        "detail": "The devices you and your team are signed in on.",
+        "keep": "Expire after 30 days, or straight away when you sign out."
+      },
+      "stripe": "Card payments for your subscription are handled by Stripe. We never see or store card numbers. Read the full <link>privacy policy</link>."
+    },
+    "requests": {
+      "title": "Customer requests",
+      "description": "When a customer asks for a copy of their data or to be forgotten.",
+      "access": "Access requests",
+      "accessBody": "Open the customer’s page to see everything stored about them (details, notes and every appointment) and share it with them.",
+      "erasure": "Erasure requests",
+      "erasureBody": "On the customer’s page, choose <b>Erase customer data</b>. Their name, email, phone, notes and messages are removed for good, and pending reminders are cancelled. Appointments stay as anonymous records so your statistics add up.",
+      "ownerOnly": "Only the owner can erase customers.",
+      "goToCustomers": "Go to customers"
+    },
+    "danger": {
+      "title": "Danger zone",
+      "deleteTitle": "Delete this business",
+      "deleteBody": "Permanently deletes {business}, its booking page and all customer and appointment data. Team members lose access. This can’t be undone.",
+      "deleteBodySubscribed": "Permanently deletes {business}, its booking page and all customer and appointment data. Your subscription is cancelled immediately. Team members lose access. This can’t be undone.",
+      "button": "Delete business…",
+      "confirmTitle": "Delete {business}?",
+      "confirmBody": "This permanently deletes your booking page, services, team profiles, customers, appointments and uploaded images. Customers with upcoming appointments won’t be notified automatically.",
+      "confirmSubscription": "Your Hournook subscription is cancelled right away, so you won’t be charged again.",
+      "confirmFinal": "This can’t be undone. Download an export first if you might need the data.",
+      "confirm": "Delete forever"
+    }
+  },
+  "activity": {
+    "metaTitle": "Activity",
+    "title": "Activity",
+    "description": "A record of important changes in {business}: who did what, and when. Times are shown in {tz}.",
+    "empty": "No activity yet",
+    "emptyDescription": "Changes to your business, bookings and team will be listed here.",
+    "emptyMore": "No more activity",
+    "emptyMoreDescription": "You’ve reached the beginning of your history.",
+    "backToLatest": "Back to latest",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "by": "by <actor>{actor}</actor>",
+    "pagination": "Pagination",
+    "newer": "Newer",
+    "older": "Older",
+    "page": "Page {page}",
+    "actors": {
+      "formerMember": "A former team member",
+      "customer": "Customer",
+      "support": "Hournook support",
+      "system": "System"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {as owner} manager {as manager} other {as team member}}",
+      "rows": "{count, plural, one {# row} other {# rows}}",
+      "statusNow": "now {status}",
+      "attempt": "attempt {n}"
+    },
+    "subscriptionStatus": {
+      "trialing": "trialing",
+      "active": "active",
+      "pastDue": "past due",
+      "unpaid": "unpaid",
+      "canceled": "canceled",
+      "incomplete": "incomplete",
+      "incompleteExpired": "incomplete expired",
+      "paused": "paused"
+    },
+    "events": {
+      "business": {
+        "created": "Business created",
+        "profileUpdated": "Business profile updated",
+        "brandingUpdated": "Branding updated",
+        "seoUpdated": "SEO settings updated",
+        "slugChanged": "Booking link changed",
+        "published": "Booking page published",
+        "paused": "Online booking paused",
+        "unpublished": "Booking page unpublished",
+        "logoUploaded": "Logo uploaded",
+        "coverUploaded": "Cover image uploaded",
+        "logoRemoved": "Logo removed",
+        "coverRemoved": "Cover image removed",
+        "suspended": "Account suspended by Hournook",
+        "reactivated": "Account reactivated",
+        "exported": "Data export downloaded"
+      },
+      "service": {
+        "created": "Service added",
+        "updated": "Service edited",
+        "deleted": "Service removed"
+      },
+      "staff": {
+        "created": "Team member added",
+        "updated": "Team member edited",
+        "deleted": "Team member removed",
+        "avatarUploaded": "Team member photo updated"
+      },
+      "appointment": {
+        "created": "Appointment booked",
+        "cancelled": "Appointment cancelled",
+        "rescheduled": "Appointment rescheduled",
+        "confirmed": "Appointment confirmed",
+        "completed": "Appointment completed",
+        "noShow": "Marked as no-show",
+        "reopened": "Appointment reopened",
+        "notesUpdated": "Appointment notes edited",
+        "edited": "Edited"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "Working hours changed",
+        "staffUsesBusinessHours": "Team member now follows business hours",
+        "closureAdded": "Closure added",
+        "closureRemoved": "Closure removed",
+        "specialHoursSet": "Special opening hours set",
+        "timeBlocked": "Time blocked"
+      },
+      "settings": {
+        "bookingRulesUpdated": "Booking settings changed",
+        "notificationsUpdated": "Notification settings changed"
+      },
+      "customer": {
+        "created": "Customer added",
+        "updated": "Customer edited",
+        "erased": "Customer data erased"
+      },
+      "team": {
+        "memberInvited": "Team member invited",
+        "invitationRevoked": "Invitation revoked",
+        "memberJoined": "Team member joined",
+        "roleChanged": "Team role changed",
+        "memberRemoved": "Team member removed",
+        "memberLeft": "Team member left",
+        "ownershipTransferred": "Ownership transferred"
+      },
+      "billing": {
+        "checkoutStarted": "Checkout started",
+        "checkoutCompleted": "Subscription checkout completed",
+        "subscriptionStatusChanged": "Subscription status changed",
+        "invoicePaid": "Invoice paid",
+        "paymentFailed": "Payment failed"
+      },
+      "export": {
+        "appointments": "Appointments exported",
+        "customers": "Customers exported",
+        "services": "Services exported"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "Business profile saved",
+    "bookingRulesSaved": "Booking settings saved",
+    "emailSettingsSaved": "Email settings saved",
+    "prefsSaved": "Preferences saved",
+    "invitationRevoked": "Invitation revoked",
+    "roleUpdated": "Role updated",
+    "memberRemoved": "Removed from your team",
+    "ownershipTransferred": "Ownership transferred",
+    "nameUpdated": "Name updated",
+    "languageSaved": "Language saved",
+    "passwordChanged": "Password changed. Other devices have been signed out.",
+    "appointments": {
+      "created": "Appointment created",
+      "moved": "Appointment moved. The customer has been notified",
+      "confirm": "Appointment confirmed",
+      "cancel": "Appointment cancelled",
+      "complete": "Marked as completed",
+      "noShow": "Marked as no-show",
+      "reopen": "Appointment reopened",
+      "notesSaved": "Notes saved"
+    },
+    "customers": {
+      "added": "Customer added",
+      "updated": "Customer updated"
+    }
+  }
+}

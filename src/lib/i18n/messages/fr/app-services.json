@@ -1,0 +1,84 @@
+{
+  "title": "Prestations",
+  "description": "Ce que vos clients peuvent réserver. Définissez la durée, le prix, les temps tampons et qui réalise chaque prestation.",
+  "list": {
+    "count": "{count, plural, one {# prestation} other {# prestations}} · faites glisser pour changer l’ordre sur votre page de réservation",
+    "export": "Exporter",
+    "add": "Ajouter une prestation",
+    "buffer": "+ {count} min de battement",
+    "upcoming": "{count} à venir",
+    "free": "Gratuit",
+    "actions": "Actions pour {name}",
+    "edit": "Modifier",
+    "pause": "Suspendre les réservations",
+    "resume": "Reprendre les réservations"
+  },
+  "empty": {
+    "title": "Vous n’avez encore ajouté aucune prestation",
+    "description": "Ajoutez votre première prestation pour que vos clients puissent réserver. Vous pouvez définir une durée, un prix facultatif et qui la réalise.",
+    "add": "Ajouter votre première prestation"
+  },
+  "badges": {
+    "paused": "Suspendue",
+    "hidden": "Masquée sur la page",
+    "unassigned": "Personne n’est assigné"
+  },
+  "toasts": {
+    "paused": "Prestation suspendue. Elle ne peut plus être réservée",
+    "resumed": "Prestation de nouveau active",
+    "saved": "Enregistré",
+    "deleted": "Supprimé"
+  },
+  "delete": {
+    "menu": "Supprimer",
+    "title": "Supprimer « {name} » ?",
+    "withUpcoming": "Cette prestation a <b>{count, plural, one {# rendez-vous à venir} other {# rendez-vous à venir}}</b>. Ils restent réservés ; la prestation ne pourra simplement plus être réservée. Les rendez-vous passés conservent leur historique.",
+    "body": "Vos clients ne pourront plus la réserver. Les rendez-vous passés conservent leur historique.",
+    "confirm": "Supprimer la prestation"
+  },
+  "form": {
+    "addTitle": "Ajouter une prestation",
+    "editTitle": "Modifier la prestation",
+    "description": "Vos clients voient le nom, la description, la durée et le prix.",
+    "fixFields": "Corrigez les champs signalés.",
+    "name": "Nom de la prestation",
+    "namePlaceholder": "ex. Coupe et brushing",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Ce qui est inclus, à qui elle s’adresse, ce qu’il faut prévoir.",
+    "duration": "Durée",
+    "custom": "Autre",
+    "customLabel": "Durée personnalisée en minutes",
+    "minSuffix": "min",
+    "price": "Prix",
+    "priceHint": "Laissez vide pour masquer le prix ; saisissez 0 pour une prestation gratuite.",
+    "category": "Catégorie",
+    "categoryHint": "Regroupe les prestations sur votre page de réservation.",
+    "categoryPlaceholder": "ex. Couleur",
+    "noCategory": "Sans catégorie",
+    "existingCategory": "Choisir une catégorie existante",
+    "newCategory": "+ Nouvelle catégorie",
+    "staff": "Qui la réalise",
+    "noStaff": "Ajoutez d’abord un membre de l’équipe.",
+    "nobodyAssigned": "Personne n’est assigné : vos clients ne pourront pas réserver cette prestation.",
+    "bufferBefore": "Battement avant",
+    "bufferBeforeHint": "Temps de préparation, bloqué dans votre agenda.",
+    "bufferAfter": "Battement après",
+    "bufferAfterHint": "Temps de rangement avant la réservation suivante.",
+    "none": "Aucun",
+    "minutes": "{count} min",
+    "colour": "Couleur dans l’agenda",
+    "colourPicker": "Couleur",
+    "bookable": "Réservable",
+    "bookableHint": "Désactivez pour suspendre cette prestation sans la supprimer.",
+    "visible": "Afficher sur la page de réservation",
+    "visibleHint": "Votre équipe peut toujours réserver les prestations masquées.",
+    "cancel": "Annuler",
+    "save": "Enregistrer"
+  },
+  "actions": {
+    "added": "Prestation ajoutée",
+    "saved": "Prestation enregistrée",
+    "removed": "Prestation supprimée. Les rendez-vous passés conservent leur historique.",
+    "categoryRemoved": "Catégorie supprimée"
+  }
+}

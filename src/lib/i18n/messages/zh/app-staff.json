@@ -1,0 +1,71 @@
+{
+  "title": "团队",
+  "description": "客户可以预约的人员。每位团队成员都有自己的服务、排班和日历。",
+  "list": {
+    "count": "{count, plural, other {# 位团队成员}}",
+    "logins": "登录与角色",
+    "add": "添加团队成员"
+  },
+  "empty": {
+    "title": "还没有团队成员",
+    "description": "添加客户可以预约的人员。"
+  },
+  "card": {
+    "defaultTitle": "团队成员",
+    "notBookable": "不可预约",
+    "login": "{role, select, owner {所有者登录} manager {经理登录} other {团队成员登录}}",
+    "noLogin": "无登录",
+    "services": "服务",
+    "servicesCount": "{count}/{total}",
+    "hours": "时间",
+    "businessHours": "商家营业时间",
+    "ownSchedule": "个人排班",
+    "upcoming": "即将到来",
+    "edit": "编辑",
+    "hoursLink": "时间"
+  },
+  "form": {
+    "editTitle": "编辑团队成员",
+    "description": "如果您展示团队，姓名、照片和职位会显示在预约页面上。",
+    "fixFields": "请修正标出的字段。",
+    "uploadPhoto": "上传照片",
+    "photoHint": "JPG、PNG 或 WebP，至少 96 像素，最大 5 MB。",
+    "name": "姓名",
+    "title": "职位",
+    "titleHint": "例如：资深发型师",
+    "email": "邮箱",
+    "emailHint": "仅供您记录。如需为其开通登录，请在“设置 → 团队”中邀请。",
+    "bio": "简介",
+    "services": "提供的服务",
+    "noServices": "还没有服务。",
+    "colour": "日历颜色",
+    "colourPicker": "颜色",
+    "bookable": "可预约",
+    "bookableHint": "长期缺勤时关闭。已有预约会保留。",
+    "businessHours": "遵循商家营业时间",
+    "businessHoursHint": "关闭后可在“可预约时间”中为其设置单独的每周排班。",
+    "cancel": "取消",
+    "save": "保存更改"
+  },
+  "remove": {
+    "button": "移除团队成员",
+    "title": "要移除 {name} 吗？",
+    "withUpcoming": "{name} 有 {count, plural, other {# 个即将到来的预约}}。请先改期或取消这些预约。",
+    "body": "其将不再显示在您的预约页面上。过往预约会保留其记录。",
+    "confirm": "移除"
+  },
+  "toasts": {
+    "saved": "已保存",
+    "removed": "已移除"
+  },
+  "errors": {
+    "hasUpcoming": "该团队成员有 {count, plural, other {# 个即将到来的预约}}。请先改期或取消这些预约。"
+  },
+  "actions": {
+    "added": "团队成员已添加",
+    "saved": "团队成员已保存",
+    "removed": "团队成员已移除",
+    "photoUpdated": "照片已更新",
+    "chooseImage": "请选择一张图片。"
+  }
+}

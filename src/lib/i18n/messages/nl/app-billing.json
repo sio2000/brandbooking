@@ -1,0 +1,127 @@
+{
+  "title": "Facturering",
+  "description": "Eén eenvoudig abonnement waarin alles zit. Geen kosten per boeking, geen verrassingen.",
+  "loading": "Facturering laden",
+  "price": {
+    "perMonth": "{price}/maand",
+    "periodSuffix": "/ maand",
+    "note": "Alles inbegrepen voor je hele team. Afhankelijk van waar je bedrijf is gevestigd, kan er btw bij komen."
+  },
+  "checkout": {
+    "successTitle": "Bedankt, je bent helemaal klaar!",
+    "successBody": "Je abonnement is actief. Er is een betalingsbewijs onderweg naar je inbox.",
+    "pending": "Bedankt! Je abonnement wordt actief zodra Stripe de betaling bevestigt, meestal binnen een paar seconden. Vernieuw de pagina als er niets verandert.",
+    "refresh": "Vernieuwen",
+    "cancelledTitle": "Betaling geannuleerd",
+    "cancelledBody": "Geen zorgen, er is niets afgeschreven.",
+    "cancelledTrialBody": "Geen zorgen, er is niets afgeschreven. Je gratis proefperiode loopt gewoon door."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Opgeschort",
+      "title": "Je account is opgeschort",
+      "body": "Hournook-support heeft dit account opgeschort, dus je boekingspagina is offline. Neem contact op met support om dit op te lossen. Je gegevens zijn veilig en je kunt ze nog steeds exporteren."
+    },
+    "ending": {
+      "badge": "Loopt binnenkort af",
+      "title": "Je abonnement stopt: {date}",
+      "dateFallback": "aan het einde van deze periode",
+      "body": "Er wordt niets meer afgeschreven. Tot die tijd blijft alles werken; daarna neemt je boekingspagina geen nieuwe boekingen meer aan. Toch van gedachten veranderd? Je kunt het hervatten in het factureringsportaal."
+    },
+    "trialing": {
+      "badge": "Geabonneerd",
+      "title": "Je hebt een abonnement",
+      "body": "Je gratis proefperiode loopt door tot {date}. Dan wordt je eerste betaling van {price} afgeschreven.",
+      "dateFallback": "het einde ervan"
+    },
+    "active": {
+      "badge": "Actief",
+      "title": "Je abonnement is actief",
+      "renews": "Wordt automatisch verlengd op {date} voor {price}.",
+      "billed": "Gefactureerd: {price}."
+    },
+    "pastDue": {
+      "badge": "Betaling mislukt",
+      "title": "Je laatste betaling is niet gelukt",
+      "body": "Stripe probeert het automatisch opnieuw, maar werk je betaalmethode bij vóór {date} om boekingen te blijven ontvangen.",
+      "dateFallback": "het einde van de respijtperiode"
+    },
+    "trial": {
+      "badge": "Gratis proefperiode",
+      "title": "{count, plural, one {Nog # dag van je gratis proefperiode} other {Nog # dagen van je gratis proefperiode}}",
+      "body": "Je proefperiode eindigt op {date}. Neem een abonnement wanneer je wilt. Zijn er nog meer dan twee dagen over, dan schuiven die door en wordt je eerste betaling afgeschreven als de proefperiode afloopt."
+    },
+    "overdue": {
+      "badge": "Betaling achterstallig",
+      "title": "Je boekingspagina neemt geen nieuwe boekingen meer aan",
+      "body": "We konden je laatste betaling niet innen. Werk je betaalmethode bij en betaal de openstaande factuur om online boeken direct weer te openen. Er is niets verwijderd."
+    },
+    "canceled": {
+      "badge": "Opgezegd",
+      "title": "Je abonnement is afgelopen",
+      "body": "Je boekingspagina neemt geen nieuwe boekingen aan. Al je gegevens zijn er nog. Neem opnieuw een abonnement om hem direct weer te openen."
+    },
+    "noPlan": {
+      "badge": "Geen abonnement",
+      "title": "Je gratis proefperiode is afgelopen",
+      "body": "Je boekingspagina neemt op dit moment geen nieuwe boekingen aan, maar alles wat je hebt ingesteld is er nog. Neem een abonnement om hem direct weer te openen.",
+      "bodyEnded": "Deze is afgelopen op {date}. Je boekingspagina neemt op dit moment geen nieuwe boekingen aan, maar alles wat je hebt ingesteld is er nog. Neem een abonnement om hem direct weer te openen."
+    }
+  },
+  "notConfigured": {
+    "title": "Facturering is op deze server nog niet ingesteld",
+    "bodyTrial": "Online betalingen zijn niet geconfigureerd voor deze Hournook-installatie, dus hier kun je geen abonnement starten of wijzigen. Je gratis proefperiode blijft werken zoals hierboven beschreven.",
+    "bodyAccount": "Online betalingen zijn niet geconfigureerd voor deze Hournook-installatie, dus hier kun je geen abonnement starten of wijzigen. Je account blijft werken zoals hierboven beschreven."
+  },
+  "ownerOnly": "Alleen de eigenaar van het bedrijf kan een abonnement nemen, de betaalmethode wijzigen of opzeggen.",
+  "cta": {
+    "subscribe": "Abonneren voor {price}",
+    "updatePayment": "Betaalmethode bijwerken",
+    "resume": "Abonnement hervatten",
+    "manage": "Facturering beheren",
+    "updateCard": "Kaart bijwerken",
+    "cancel": "Abonnement opzeggen",
+    "secure": "Je betaalt veilig op de betaalpagina van Stripe en komt daarna direct hier terug."
+  },
+  "included": {
+    "title": "Wat je krijgt",
+    "page": "Je eigen boekingspagina, QR-code en websitewidget",
+    "unlimited": "Onbeperkt boekingen, klanten en diensten",
+    "team": "Je hele team, geen kosten per gebruiker",
+    "calendar": "Agenda, beschikbaarheid, feestdagen en vrije dagen",
+    "emails": "Bevestigingsmails en automatische herinneringen",
+    "analytics": "Statistieken, exports en activiteitenlog"
+  },
+  "paymentMethod": {
+    "title": "Betaalmethode",
+    "notConfigured": "Niet beschikbaar zolang facturering niet is ingesteld.",
+    "loadFailed": "We konden je kaartgegevens nu niet laden.",
+    "none": "Geen kaart opgeslagen. Die voeg je toe als je een abonnement neemt."
+  },
+  "invoices": {
+    "title": "Facturen",
+    "description": "Na elke betaling krijg je ook een betalingsbewijs per e-mail.",
+    "notConfigured": "Facturen verschijnen hier zodra facturering is ingesteld.",
+    "unavailableTitle": "Facturen zijn nu niet beschikbaar",
+    "unavailableBody": "We konden Stripe niet bereiken om je facturen te laden. Probeer het zo opnieuw; je abonnement heeft er geen last van.",
+    "empty": "Nog geen facturen. Ze verschijnen hier na je eerste betaling.",
+    "invoice": "Factuur",
+    "view": "Bekijken",
+    "viewFrom": "factuur van {date}",
+    "status": {
+      "paid": "Betaald",
+      "open": "Te betalen",
+      "void": "Vervallen",
+      "uncollectible": "Onbetaald",
+      "draft": "Concept"
+    }
+  },
+  "goodToKnow": {
+    "title": "Goed om te weten",
+    "fees": "<b>Geen kosten per boeking.</b> <muted>Eén vaste prijs, hoe druk je het ook krijgt.</muted>",
+    "cancel": "<b>Altijd opzegbaar.</b> <muted>Je houdt toegang tot het einde van de periode waarvoor je hebt betaald.</muted>",
+    "vat": "<b>Er kan btw bij komen</b> <muted>afhankelijk van je locatie. Die staat op je factuur.</muted>",
+    "data": "<b>Je gegevens blijven van jou.</b> <muted>Als je abonnement afloopt, wordt er niets verwijderd. Je kunt nog steeds inloggen en exporteren.</muted>"
+  },
+  "stripeUnreachable": "We konden Stripe niet bereiken. Controleer je verbinding en probeer het opnieuw."
+}

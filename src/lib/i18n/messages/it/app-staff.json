@@ -1,0 +1,71 @@
+{
+  "title": "Team",
+  "description": "Le persone che i clienti possono prenotare. Ogni membro del team ha i propri servizi, orari e calendario.",
+  "list": {
+    "count": "{count, plural, one {# membro del team} other {# membri del team}}",
+    "logins": "Accessi e ruoli",
+    "add": "Aggiungi membro del team"
+  },
+  "empty": {
+    "title": "Ancora nessun membro del team",
+    "description": "Aggiungi le persone che i clienti possono prenotare."
+  },
+  "card": {
+    "defaultTitle": "Membro del team",
+    "notBookable": "Non prenotabile",
+    "login": "{role, select, owner {Accesso come titolare} manager {Accesso come manager} other {Accesso come membro del team}}",
+    "noLogin": "Nessun accesso",
+    "services": "Servizi",
+    "servicesCount": "{count} di {total}",
+    "hours": "Orari",
+    "businessHours": "Orari dell’attività",
+    "ownSchedule": "Orari propri",
+    "upcoming": "In arrivo",
+    "edit": "Modifica",
+    "hoursLink": "Orari"
+  },
+  "form": {
+    "editTitle": "Modifica membro del team",
+    "description": "Nome, foto e qualifica compaiono sulla tua pagina di prenotazione se mostri il tuo team.",
+    "fixFields": "Correggi i campi evidenziati.",
+    "uploadPhoto": "Carica foto",
+    "photoHint": "JPG, PNG o WebP, almeno 96 px, max 5 MB.",
+    "name": "Nome",
+    "title": "Qualifica",
+    "titleHint": "es. Stylist senior",
+    "email": "Email",
+    "emailHint": "Per i tuoi archivi. Per dargli un accesso, invitalo da Impostazioni → Team.",
+    "bio": "Breve biografia",
+    "services": "Servizi che esegue",
+    "noServices": "Ancora nessun servizio.",
+    "colour": "Colore nel calendario",
+    "colourPicker": "Colore",
+    "bookable": "Prenotabile",
+    "bookableHint": "Disattiva durante le assenze lunghe. Gli appuntamenti esistenti restano.",
+    "businessHours": "Segue gli orari dell’attività",
+    "businessHoursHint": "Disattiva per assegnargli un orario settimanale proprio in Disponibilità.",
+    "cancel": "Annulla",
+    "save": "Salva modifiche"
+  },
+  "remove": {
+    "button": "Rimuovi membro del team",
+    "title": "Rimuovere {name}?",
+    "withUpcoming": "{name} ha {count, plural, one {# appuntamento in arrivo} other {# appuntamenti in arrivo}}. Prima spostali o annullali.",
+    "body": "Non comparirà più sulla tua pagina di prenotazione. Gli appuntamenti passati conservano la loro cronologia.",
+    "confirm": "Rimuovi"
+  },
+  "toasts": {
+    "saved": "Salvato",
+    "removed": "Rimosso"
+  },
+  "errors": {
+    "hasUpcoming": "Questo membro del team ha {count, plural, one {# appuntamento in arrivo} other {# appuntamenti in arrivo}}. Prima spostali o annullali."
+  },
+  "actions": {
+    "added": "Membro del team aggiunto",
+    "saved": "Membro del team salvato",
+    "removed": "Membro del team rimosso",
+    "photoUpdated": "Foto aggiornata",
+    "chooseImage": "Scegli un’immagine."
+  }
+}

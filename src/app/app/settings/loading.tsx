@@ -1,10 +1,12 @@
 import { Card } from '@/components/ui/card'
+import { getT } from '@/server/i18n'
 import { Skeleton } from '@/components/ui/skeleton'
 
 /** Shown inside the settings layout (header + tabs stay visible) while a tab loads. */
-export default function Loading() {
+export default async function Loading() {
+  const t = await getT('app-settings')
   return (
-    <div role="status" aria-label="Loading settings" className="grid grid-cols-1 gap-5">
+    <div role="status" aria-label={t('loading')} className="grid grid-cols-1 gap-5">
       <div className="grid grid-cols-1 gap-2">
         <Skeleton className="h-6 w-44" />
         <Skeleton className="h-4 w-80 max-w-full" />

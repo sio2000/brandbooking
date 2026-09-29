@@ -1,0 +1,71 @@
+{
+  "title": "Ekip",
+  "description": "Müşterilerin randevu alabileceği kişiler. Her ekip üyesinin kendi hizmetleri, programı ve takvimi vardır.",
+  "list": {
+    "count": "{count, plural, one {# ekip üyesi} other {# ekip üyesi}}",
+    "logins": "Girişler ve roller",
+    "add": "Ekip üyesi ekle"
+  },
+  "empty": {
+    "title": "Henüz ekip üyesi yok",
+    "description": "Müşterilerin randevu alabileceği kişileri ekleyin."
+  },
+  "card": {
+    "defaultTitle": "Ekip üyesi",
+    "notBookable": "Rezerve edilemez",
+    "login": "{role, select, owner {İşletme sahibi girişi} manager {Yönetici girişi} other {Ekip üyesi girişi}}",
+    "noLogin": "Giriş yok",
+    "services": "Hizmetler",
+    "servicesCount": "{count}/{total}",
+    "hours": "Saatler",
+    "businessHours": "İşletme saatleri",
+    "ownSchedule": "Kendi programı",
+    "upcoming": "Yaklaşan",
+    "edit": "Düzenle",
+    "hoursLink": "Saatler"
+  },
+  "form": {
+    "editTitle": "Ekip üyesini düzenle",
+    "description": "Ekibinizi gösteriyorsanız ad, fotoğraf ve unvan rezervasyon sayfanızda görünür.",
+    "fixFields": "Lütfen işaretli alanları düzeltin.",
+    "uploadPhoto": "Fotoğraf yükle",
+    "photoHint": "JPG, PNG veya WebP; en az 96 px, en fazla 5 MB.",
+    "name": "Ad",
+    "title": "Unvan",
+    "titleHint": "ör. Kıdemli stilist",
+    "email": "E-posta",
+    "emailHint": "Kayıtlarınız için. Giriş yetkisi vermek için Ayarlar → Ekip bölümünden davet edin.",
+    "bio": "Kısa biyografi",
+    "services": "Verdiği hizmetler",
+    "noServices": "Henüz hizmet yok.",
+    "colour": "Takvim rengi",
+    "colourPicker": "Renk",
+    "bookable": "Rezerve edilebilir",
+    "bookableHint": "Uzun süreli yokluklarda kapatın. Mevcut randevular kalır.",
+    "businessHours": "İşletme saatlerini izler",
+    "businessHoursHint": "Müsaitlik bölümünde kendi haftalık programını vermek için kapatın.",
+    "cancel": "İptal",
+    "save": "Değişiklikleri kaydet"
+  },
+  "remove": {
+    "button": "Ekip üyesini kaldır",
+    "title": "{name} kaldırılsın mı?",
+    "withUpcoming": "{name} adlı kişinin {count, plural, one {# yaklaşan randevusu} other {# yaklaşan randevusu}} var. Önce bunları yeniden planlayın veya iptal edin.",
+    "body": "Artık rezervasyon sayfanızda görünmeyecek. Geçmiş randevular geçmişlerini korur.",
+    "confirm": "Kaldır"
+  },
+  "toasts": {
+    "saved": "Kaydedildi",
+    "removed": "Kaldırıldı"
+  },
+  "errors": {
+    "hasUpcoming": "Bu ekip üyesinin {count, plural, one {# yaklaşan randevusu} other {# yaklaşan randevusu}} var. Önce bunları yeniden planlayın veya iptal edin."
+  },
+  "actions": {
+    "added": "Ekip üyesi eklendi",
+    "saved": "Ekip üyesi kaydedildi",
+    "removed": "Ekip üyesi kaldırıldı",
+    "photoUpdated": "Fotoğraf güncellendi",
+    "chooseImage": "Bir görsel seçin."
+  }
+}

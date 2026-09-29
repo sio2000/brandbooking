@@ -1,6 +1,8 @@
 /**
  * Option lists for timezone / currency / country selects. Built on the server
  * (Intl data differs between runtimes) and passed to the client as plain data.
+ * Country and currency names come from Intl.DisplayNames in the viewer's
+ * language; timezone offsets are formatted in that language too.
  */
 
 export type Option = { value: string; label: string }
@@ -41,23 +43,37 @@ const CURRENCY_CODES = [
   'MXN',
 ]
 
-function displayNames(type: 'region' | 'currency') {
+/** Timezone regions (first part of the IANA id) with a translated label. */
+export const TZ_REGIONS = [
+  'Africa',
+  'America',
+  'Antarctica',
+  'Arctic',
+  'Asia',
+  'Atlantic',
+  'Australia',
+  'Europe',
+  'Indian',
+  'Pacific',
+] as const
+
+function displayNames(locale: string, type: 'region' | 'currency') {
   try {
-    return new Intl.DisplayNames(['en'], { type })
+    return new Intl.DisplayNames([locale, 'en'], { type })
   } catch {
     return null
   }
 }
 
-export function countryOptions(): Option[] {
-  const names = displayNames('region')
+export function countryOptions(locale = 'en'): Option[] {
+  const names = displayNames(locale, 'region')
   return COUNTRY_CODES.map((c) => ({ value: c, label: names?.of(c) ?? c })).sort((a, b) =>
-    a.label.localeCompare(b.label),
+    a.label.localeCompare(b.label, locale),
   )
 }
 
-export function currencyOptions(current: string): Option[] {
-  const names = displayNames('currency')
+export function currencyOptions(current: string, locale = 'en'): Option[] {
+  const names = displayNames(locale, 'currency')
   const codes =
     CURRENCY_CODES.includes(current) || !/^[A-Z]{3}$/.test(current)
       ? CURRENCY_CODES
@@ -65,9 +81,9 @@ export function currencyOptions(current: string): Option[] {
   return codes.map((c) => ({ value: c, label: `${c} · ${names?.of(c) ?? c}` }))
 }
 
-function offsetLabel(tz: string, at: Date) {
+function offsetLabel(tz: string, at: Date, locale: string) {
   try {
-    const part = new Intl.DateTimeFormat('en', { timeZone: tz, timeZoneName: 'shortOffset' })
+    const part = new Intl.DateTimeFormat(locale, { timeZone: tz, timeZoneName: 'shortOffset' })
       .formatToParts(at)
       .find((p) => p.type === 'timeZoneName')
     return part?.value ?? ''
@@ -76,8 +92,16 @@ function offsetLabel(tz: string, at: Date) {
   }
 }
 
-/** Timezones grouped by region ("Europe", "America"…) with the current UTC offset. */
-export function timezoneGroups(current: string, at = new Date()): OptionGroup[] {
+/**
+ * Timezones grouped by region ("Europe", "America"…) with the current UTC
+ * offset. `regionLabel` translates a region id (or 'Other').
+ */
+export function timezoneGroups(
+  current: string,
+  at = new Date(),
+  locale = 'en',
+  regionLabel: (region: string) => string = (r) => r,
+): OptionGroup[] {
   let zones: string[] = []
   try {
     zones = Intl.supportedValuesOf('timeZone')
@@ -93,15 +117,25 @@ export function timezoneGroups(current: string, at = new Date()): OptionGroup[] 
     const city = (slash === -1 ? tz : tz.slice(slash + 1))
       .replaceAll('_', ' ')
       .replaceAll('/', ' / ')
-    const off = offsetLabel(tz, at)
+    const off = offsetLabel(tz, at, locale)
     const list = groups.get(region) ?? []
     list.push({ value: tz, label: off ? `${city} (${off})` : city })
     groups.set(region, list)
   }
   return [...groups.entries()]
-    .sort(([a], [b]) => (a === 'Other' ? 1 : b === 'Other' ? -1 : a.localeCompare(b)))
-    .map(([label, options]) => ({
+    .map(([region, options]) => ({
+      region,
+      label:
+        (TZ_REGIONS as readonly string[]).includes(region) || region === 'Other'
+          ? regionLabel(region)
+          : region,
+      options,
+    }))
+    .sort((a, b) =>
+      a.region === 'Other' ? 1 : b.region === 'Other' ? -1 : a.label.localeCompare(b.label, locale),
+    )
+    .map(({ label, options }) => ({
       label,
-      options: options.sort((a, b) => a.label.localeCompare(b.label)),
+      options: options.sort((a, b) => a.label.localeCompare(b.label, 'en')),
     }))
 }

@@ -21,6 +21,7 @@ import { generateToken, hashToken } from '@/server/security/crypto'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import { sendInvitationEmail } from '@/server/notifications/account-emails'
 import { addInboxItems, membersToNotify } from '@/server/notifications/outbox'
+import { tFor } from './i18n'
 
 const INVITE_TTL_MS = 7 * 24 * 60 * 60 * 1000
 
@@ -91,7 +92,7 @@ export async function inviteMember(
     if (!s) throw new AppError('not_found')
     if (s.userId)
       throw new AppError('validation', {
-        fields: { staffId: 'This team member already has an account.' },
+        fields: { staffId: (await tFor(ctx.user, 'app-settings'))('team.errors.staffHasAccount') },
       })
   }
   const [existingMember] = await db()
@@ -101,7 +102,9 @@ export async function inviteMember(
     .where(and(eq(businessMembers.businessId, ctx.business.id), eq(users.email, input.email)))
     .limit(1)
   if (existingMember)
-    throw new AppError('validation', { fields: { email: 'This person is already on your team.' } })
+    throw new AppError('validation', {
+      fields: { email: (await tFor(ctx.user, 'app-settings'))('team.errors.alreadyOnTeam') },
+    })
 
   const token = generateToken()
   await db().transaction(async (tx) => {
@@ -185,6 +188,7 @@ export async function findInvitation(token: string) {
 
 export async function acceptInvitation(user: SessionUser, token: string, meta: RequestMeta) {
   const { inv } = await findInvitation(token)
+  const t = await tFor(user, 'app-settings')
   if (inv.email.toLowerCase() !== user.email.toLowerCase())
     throw new AppError('invitation_email_mismatch')
   if (!user.emailVerified) {
@@ -228,8 +232,7 @@ export async function acceptInvitation(user: SessionUser, token: string, meta: R
       if (!linked)
         throw new AppError('validation', {
           fields: {
-            _form:
-              'This team profile is already linked to another account. Ask for a new invitation.',
+            _form: t('team.errors.profileLinked'),
           },
         })
     }
@@ -240,7 +243,7 @@ export async function acceptInvitation(user: SessionUser, token: string, meta: R
     } catch (err) {
       if (pgErrorCode(err) === PgErrorCode.uniqueViolation)
         throw new AppError('validation', {
-          fields: { _form: 'You are already a member of this business.' },
+          fields: { _form: t('team.errors.alreadyMember') },
         })
       throw err
     }

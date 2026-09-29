@@ -1,0 +1,143 @@
+{
+  "title": "Página de reservas",
+  "description": "Tu página pública donde reservan tus clientes. Publícala, compártela en todas partes y dale tu estilo.",
+  "publish": {
+    "live": "Tu página de reservas está publicada",
+    "paused": "Las reservas en línea están en pausa",
+    "draft": "Tu página de reservas es un borrador",
+    "badgeLive": "Publicada",
+    "badgePaused": "En pausa",
+    "badgeDraft": "Borrador",
+    "noSubscription": "Las reservas están desactivadas porque no hay ninguna suscripción activa.",
+    "preview": "Vista previa",
+    "resume": "Reanudar reservas",
+    "publish": "Publicar",
+    "verifyEmail": "Confirma primero tu dirección de email. Busca el enlace en tu bandeja de entrada.",
+    "needsService": "Añade al menos un servicio activo con un miembro del equipo asignado y luego publica."
+  },
+  "pause": {
+    "summary": "Pausar las reservas en línea (modo vacaciones)",
+    "message": "Mensaje para tus clientes",
+    "messageHint": "Aparece en tu página de reservas mientras está en pausa.",
+    "messagePlaceholder": "Estamos de vacaciones hasta el 3 de septiembre. ¡Hasta pronto!",
+    "until": "Reabrir automáticamente el",
+    "pause": "Pausar reservas",
+    "unpublish": "Despublicar"
+  },
+  "celebrate": {
+    "title": "Tu página de reservas está publicada.",
+    "body": "Comparte el enlace en Instagram, en tu Perfil de Empresa de Google o en WhatsApp, o imprime el código QR para tu mostrador.",
+    "dismiss": "Cerrar"
+  },
+  "copy": {
+    "copy": "Copiar",
+    "link": "Copiar enlace",
+    "bookingLink": "Copiar enlace de reservas",
+    "copied": "Copiado",
+    "linkCopied": "Enlace copiado al portapapeles"
+  },
+  "share": {
+    "title": "Compartir",
+    "description": "Pon tu enlace allí donde te encuentran tus clientes.",
+    "linkLabel": "Enlace de reservas",
+    "email": "Email",
+    "qrAlt": "Código QR que lleva a {url}",
+    "qr": "Código QR",
+    "qrDescription": "Para tu mostrador, folletos o tarjetas de visita. Las reservas que llegan por él se registran como «Código QR».",
+    "print": "Imprimir",
+    "campaigns": "Enlaces de campaña (sabe de dónde vienen las reservas)",
+    "campaignsBody": "Añade parámetros UTM y las reservas mostrarán la campaña en Estadísticas:"
+  },
+  "embed": {
+    "title": "Añade las reservas a tu web",
+    "description": "Pega una sola línea en tu web. El proceso de reserva se abre en una ventana segura e independiente, así que no choca con el diseño de tu sitio.",
+    "button": "Botón de reservas",
+    "inline": "Integrado",
+    "buttonDescription": "Un botón que abre la reserva en una ventana emergente.",
+    "inlineDescription": "Todo el proceso de reserva integrado donde colocas el código.",
+    "code": "Código de inserción",
+    "copy": "Copiar código",
+    "copied": "Código copiado"
+  },
+  "branding": {
+    "title": "Imagen de marca",
+    "description": "Tu logotipo, portada y color. La vista previa se actualiza mientras editas.",
+    "preview": "Vista previa en directo",
+    "sampleService": "Servicio de ejemplo",
+    "sampleBook": "Reservar",
+    "sampleConfirm": "Confirmar reserva",
+    "logo": "Logotipo",
+    "logoHint": "Cuadrado, de al menos 64 px.",
+    "cover": "Imagen de portada",
+    "coverHint": "Panorámica, de al menos 800×200 px.",
+    "colour": "Color de marca",
+    "customColour": "Color de marca personalizado",
+    "custom": "Personalizado",
+    "policy": "Política de reservas",
+    "policyHint": "Aparece en tu página y en los emails de confirmación, p. ej., retrasos, señales o cancelaciones.",
+    "showStaff": "Mostrar a los miembros del equipo en tu página",
+    "showStaffHint": "Deja que tus clientes elijan con quién quieren reservar.",
+    "social": "Redes sociales",
+    "save": "Guardar imagen de marca"
+  },
+  "upload": {
+    "uploadLogo": "Subir logotipo",
+    "uploadCover": "Subir imagen de portada",
+    "removeLogo": "Quitar logotipo",
+    "removeCover": "Quitar imagen de portada",
+    "tooLarge": "El archivo pesa más de 5 MB.",
+    "uploaded": "Subido",
+    "replace": "Sustituir",
+    "upload": "Subir",
+    "formats": "JPG, PNG o WebP de hasta 5 MB."
+  },
+  "seo": {
+    "title": "Vista previa en buscadores y redes sociales",
+    "description": "Cómo aparece tu página en Google y al compartirla.",
+    "preview": "Vista previa del resultado de búsqueda",
+    "pageTitle": "Título de la página",
+    "pageDescription": "Descripción",
+    "indexing": "Permitir que los buscadores muestren esta página",
+    "indexingHint": "Desactívalo si solo compartes el enlace de forma privada.",
+    "save": "Guardar"
+  },
+  "link": {
+    "title": "Enlace de reservas",
+    "description": "Si lo cambias, dejarán de funcionar los enlaces que ya hayas compartido (también los códigos QR impresos).",
+    "available": "Disponible",
+    "taken": "Ya está en uso",
+    "invalid": "No válido",
+    "change": "Cambiar enlace"
+  },
+  "customer": {
+    "embedLabel": "Reservar ahora",
+    "seoTitle": "{name} · Reservas en línea",
+    "seoDescription": "Reserva una cita con {name} en línea.",
+    "shareText": "Reserva una cita con {name}: {url}",
+    "shareSubject": "Reserva con {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Imprimir código QR",
+    "bookOnline": "Reserva en línea",
+    "scan": "Escanea para reservar tu próxima cita",
+    "print": "Imprimir"
+  },
+  "toasts": {
+    "saved": "Guardado"
+  },
+  "errors": {
+    "slugTaken": "Ese enlace de reservas ya está en uso.",
+    "cannotPublish": "Añade al menos un servicio activo con un miembro del equipo asignado antes de publicar."
+  },
+  "actions": {
+    "published": "Tu página de reservas ya está publicada 🎉",
+    "paused": "Reservas en línea en pausa",
+    "unpublished": "Página de reservas despublicada",
+    "brandingSaved": "Imagen de marca guardada",
+    "seoSaved": "Ajustes de búsqueda guardados",
+    "linkUpdated": "Enlace de reservas actualizado",
+    "imageUpdated": "Imagen actualizada",
+    "imageRemoved": "Imagen quitada",
+    "chooseImage": "Elige una imagen."
+  }
+}

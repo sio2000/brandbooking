@@ -1,0 +1,91 @@
+{
+  "title": "Dostępność",
+  "description": "Kiedy klienci mogą rezerwować. Godziny otwarcia obowiązują wszystkich; członkowie zespołu mogą się ich trzymać lub mieć własny grafik w ich ramach.",
+  "allTimesIn": "Wszystkie godziny w strefie {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Czyj grafik",
+    "business": "Godziny otwarcia firmy"
+  },
+  "weekly": {
+    "title": "Godziny otwarcia",
+    "description": "Twoje stałe godziny w tygodniu. Dodaj drugi przedział na przerwę obiadową lub dzieloną zmianę.",
+    "staffTitle": "Tygodniowy grafik: {name}",
+    "staffDescription": "Godziny dostępne do rezerwacji w każdym tygodniu (zawsze w ramach godzin otwarcia firmy).",
+    "followsTitle": "Pracuje w godzinach otwarcia firmy",
+    "followsBody": "{name} jest dostępny(-a) do rezerwacji zawsze, gdy firma jest otwarta. Ustaw własny grafik, jeśli ta osoba pracuje krócej.",
+    "followsNote": "Zacznij od godzin otwarcia firmy i dostosuj je. Godziny poza godzinami otwarcia nie będą dostępne do rezerwacji.",
+    "useBusiness": "Użyj godzin otwarcia firmy",
+    "endAfterStart": "Godzina zakończenia musi być późniejsza niż godzina rozpoczęcia.",
+    "overlap": "Przedziały czasu nakładają się.",
+    "fixDays": "Najpierw popraw zaznaczone dni.",
+    "dayOpen": "{day}: otwarte",
+    "closed": "Zamknięte",
+    "rangeStart": "{day}, przedział {n}, początek",
+    "rangeEnd": "{day}, przedział {n}, koniec",
+    "removeRange": "Usuń przedział {n} ({day})",
+    "addRange": "Dodaj godziny (po przerwie)",
+    "copyWeekdays": "Kopiuj na pn.–pt.",
+    "unsaved": "Niezapisane zmiany",
+    "save": "Zapisz godziny"
+  },
+  "closures": {
+    "title": "Święta i dni zamknięcia",
+    "description": "Całe dni, w które firma jest zamknięta. Święta cykliczne powtarzają się co roku.",
+    "staffTitle": "Dni wolne: {name}",
+    "staffDescription": "Urlop, zwolnienie lekarskie, szkolenie.",
+    "from": "Od",
+    "to": "Do",
+    "label": "Nazwa",
+    "placeholder": "np. Boże Narodzenie",
+    "staffPlaceholder": "np. Urlop",
+    "yearly": "Powtarzaj co roku",
+    "add": "Dodaj dni zamknięcia",
+    "empty": "Brak zaplanowanych dni zamknięcia.",
+    "closed": "Zamknięte",
+    "yearlyBadge": "Co roku",
+    "remove": "Usuń dni zamknięcia",
+    "removeNamed": "Usuń: {label}"
+  },
+  "special": {
+    "title": "Specjalne godziny otwarcia",
+    "description": "Inne godziny w konkretnym dniu, np. dłuższe otwarcie lub krótszy dzień.",
+    "date": "Data",
+    "opens": "Otwarcie",
+    "closes": "Zamknięcie",
+    "add": "Ustaw specjalne godziny",
+    "empty": "Brak zaplanowanych specjalnych godzin.",
+    "remove": "Usuń specjalne godziny w dniu {date}"
+  },
+  "blocks": {
+    "title": "Zablokowany czas",
+    "description": "Zablokuj część dnia na spotkanie, sprawę do załatwienia lub dostawę. Istniejące rezerwacje nie zmieniają się.",
+    "date": "Data",
+    "from": "Od",
+    "until": "Do",
+    "reason": "Powód",
+    "add": "Zablokuj czas",
+    "addForEveryone": "Zablokuj czas dla wszystkich",
+    "empty": "Brak zaplanowanego zablokowanego czasu.",
+    "blocked": "Zablokowane",
+    "everyone": "wszyscy",
+    "remove": "Usuń blokadę"
+  },
+  "toasts": {
+    "saved": "Zapisano",
+    "added": "Dodano",
+    "blocked": "Zablokowano",
+    "removed": "Usunięto",
+    "failed": "Niepowodzenie"
+  },
+  "actions": {
+    "hoursSaved": "Zapisano godziny pracy",
+    "following": "Teraz obowiązują godziny otwarcia firmy",
+    "closureAdded": "Dodano dni zamknięcia",
+    "closureRemoved": "Usunięto dni zamknięcia",
+    "specialSaved": "Zapisano specjalne godziny",
+    "specialRemoved": "Usunięto specjalne godziny",
+    "blocked": "Zablokowano czas",
+    "blockRemoved": "Usunięto blokadę"
+  }
+}

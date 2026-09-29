@@ -12,62 +12,41 @@ import {
 } from 'lucide-react'
 import { requireTenantPage } from '@/server/tenancy/context'
 import { getSubscription } from '@/server/billing/service'
+import { getT } from '@/server/i18n'
+import { rich } from '@/components/i18n/rich'
 import { Button } from '@/components/ui/button'
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { SettingsIntro } from '@/components/settings/section'
 import { DeleteBusinessButton } from '@/components/settings/delete-business'
 
-export const metadata: Metadata = { title: 'Privacy & data' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-settings')
+  return { title: t('privacy.metaTitle') }
+}
 
+/** Rows of the "What we store" table: `privacy.stored.<key>.{what,detail,keep}`. */
 const STORED = [
-  {
-    what: 'Business details',
-    detail: 'Your profile, services, prices, opening hours, team profiles and booking rules.',
-    keep: 'Until you change or delete them.',
-  },
-  {
-    what: 'Customers',
-    detail: 'Name, email, phone, your internal notes and their appointment history.',
-    keep: 'Until you erase the customer or delete the business.',
-  },
-  {
-    what: 'Appointments',
-    detail: 'Date, time, service, team member, status and messages from the customer.',
-    keep: 'Until you delete the business. Erased customers’ appointments stay as anonymous records.',
-  },
-  {
-    what: 'Emails',
-    detail: 'A delivery log of confirmations and reminders we sent.',
-    keep: 'Email contents are removed after 180 days; the delivery status stays.',
-  },
-  {
-    what: 'Booking page visits',
-    detail:
-      'Anonymous page views and booking steps for your analytics. No cookies, no personal data.',
-    keep: 'Deleted after 400 days.',
-  },
-  {
-    what: 'Activity log',
-    detail: 'Who changed what in your account, with the time and IP address.',
-    keep: 'Until you delete the business.',
-  },
-  {
-    what: 'Sign-in sessions',
-    detail: 'The devices you and your team are signed in on.',
-    keep: 'Expire after 30 days, or straight away when you sign out.',
-  },
-]
+  'business',
+  'customers',
+  'appointments',
+  'emails',
+  'visits',
+  'activity',
+  'sessions',
+] as const
 
 function ExportRow({
   href,
   icon: Icon,
   title,
   description,
+  downloadLabel,
 }: {
   href: string
   icon: React.ComponentType<{ className?: string }>
   title: string
   description: string
+  downloadLabel: string
 }) {
   return (
     <li className="flex flex-col gap-3 py-3.5 first:pt-0 last:pb-0 sm:flex-row sm:items-center">
@@ -83,7 +62,7 @@ function ExportRow({
       </div>
       <Button asChild variant="secondary" size="sm" className="self-start sm:self-center">
         <a href={href} download>
-          Download
+          {downloadLabel}
         </a>
       </Button>
     </li>
@@ -92,6 +71,7 @@ function ExportRow({
 
 export default async function PrivacySettingsPage() {
   const ctx = await requireTenantPage(['business.export', 'customers.export', 'business.delete'])
+  const t = await getT('app-settings')
   const canDelete = ctx.can('business.delete')
   const sub = canDelete ? await getSubscription(ctx.business.id) : null
   const hasSubscription = Boolean(
@@ -104,28 +84,26 @@ export default async function PrivacySettingsPage() {
     ctx.can('business.export') && {
       href: '/app/export/business',
       icon: FileJson,
-      title: 'Everything (JSON)',
-      description:
-        'Your complete account: profile, services, team, hours, booking rules, customers, appointments and activity log. Machine-readable, for backups or moving to another tool.',
+      title: t('privacy.exports.all.title'),
+      description: t('privacy.exports.all.description'),
     },
     ctx.can('customers.export') && {
       href: '/app/export/customers',
       icon: Users,
-      title: 'Customers (CSV)',
-      description:
-        'All customers with contact details and visit history. Opens in Excel, Numbers or Google Sheets.',
+      title: t('privacy.exports.customers.title'),
+      description: t('privacy.exports.customers.description'),
     },
     (ctx.can('appointments.view_all') || ctx.can('customers.export')) && {
       href: '/app/export/appointments',
       icon: CalendarDays,
-      title: 'Appointments (CSV)',
-      description: 'Every appointment from the last 12 months and the next 12 months.',
+      title: t('privacy.exports.appointments.title'),
+      description: t('privacy.exports.appointments.description'),
     },
     ctx.can('services.manage') && {
       href: '/app/export/services',
       icon: Scissors,
-      title: 'Services (CSV)',
-      description: 'Your service menu with durations and prices.',
+      title: t('privacy.exports.services.title'),
+      description: t('privacy.exports.services.description'),
     },
   ].filter(Boolean) as Array<{
     href: string
@@ -136,25 +114,22 @@ export default async function PrivacySettingsPage() {
 
   return (
     <div className="grid grid-cols-1 gap-6">
-      <SettingsIntro
-        title="Privacy & data"
-        description="Your data belongs to you. Download it any time, see what we keep, and handle customer requests."
-      />
+      <SettingsIntro title={t('privacy.title')} description={t('privacy.description')} />
 
       <Card>
         <CardHeader
-          title="Download your data"
-          description="Exports are generated on the spot and logged in your activity. Handle files with customer details carefully."
+          title={t('privacy.download.title')}
+          description={t('privacy.download.description')}
         />
         <CardBody>
           <ul className="divide-y divide-border">
             {exports.map((e) => (
-              <ExportRow key={e.href} {...e} />
+              <ExportRow key={e.href} {...e} downloadLabel={t('privacy.download.button')} />
             ))}
           </ul>
           {!ctx.can('business.export') && (
             <p className="mt-4 text-[13px] text-muted-foreground">
-              Only the owner can download the complete export.
+              {t('privacy.download.ownerOnly')}
             </p>
           )}
         </CardBody>
@@ -162,31 +137,36 @@ export default async function PrivacySettingsPage() {
 
       <Card>
         <CardHeader
-          title="What we store and for how long"
-          description="Hournook processes this data on your behalf to run your bookings. We never sell it or use it for advertising."
+          title={t('privacy.stored.title')}
+          description={t('privacy.stored.description')}
         />
         <CardBody>
           <dl className="grid gap-px overflow-hidden rounded-xl border border-border bg-border">
             {STORED.map((s) => (
               <div
-                key={s.what}
+                key={s}
                 className="grid grid-cols-1 gap-1 bg-surface px-4 py-3 sm:grid-cols-[10rem_minmax(0,1fr)_minmax(0,14rem)] sm:gap-4"
               >
-                <dt className="text-sm font-medium">{s.what}</dt>
-                <dd className="text-[13px] leading-snug text-muted-foreground">{s.detail}</dd>
-                <dd className="text-[13px] leading-snug text-foreground/80">{s.keep}</dd>
+                <dt className="text-sm font-medium">{t(`privacy.stored.${s}.what`)}</dt>
+                <dd className="text-[13px] leading-snug text-muted-foreground">
+                  {t(`privacy.stored.${s}.detail`)}
+                </dd>
+                <dd className="text-[13px] leading-snug text-foreground/80">
+                  {t(`privacy.stored.${s}.keep`)}
+                </dd>
               </div>
             ))}
           </dl>
           <p className="mt-4 flex items-start gap-2 text-[13px] leading-relaxed text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
             <span>
-              Card payments for your subscription are handled by Stripe. We never see or store card
-              numbers. Read the full{' '}
-              <Link href="/privacy" className="font-medium text-primary hover:underline">
-                privacy policy
-              </Link>
-              .
+              {rich(t('privacy.stored.stripe'), {
+                link: (c) => (
+                  <Link href="/privacy" className="font-medium text-primary hover:underline">
+                    {c}
+                  </Link>
+                ),
+              })}
             </span>
           </p>
         </CardBody>
@@ -194,35 +174,34 @@ export default async function PrivacySettingsPage() {
 
       <Card>
         <CardHeader
-          title="Customer requests"
-          description="When a customer asks for a copy of their data or to be forgotten."
+          title={t('privacy.requests.title')}
+          description={t('privacy.requests.description')}
         />
         <CardBody className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-border p-4">
             <p className="flex items-center gap-2 text-sm font-semibold">
-              <FileSpreadsheet className="size-4 text-primary" aria-hidden /> Access requests
+              <FileSpreadsheet className="size-4 text-primary" aria-hidden />{' '}
+              {t('privacy.requests.access')}
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-              Open the customer’s page to see everything stored about them (details, notes and every
-              appointment) and share it with them.
+              {t('privacy.requests.accessBody')}
             </p>
           </div>
           <div className="rounded-xl border border-border p-4">
             <p className="flex items-center gap-2 text-sm font-semibold">
-              <UserX className="size-4 text-primary" aria-hidden /> Erasure requests
+              <UserX className="size-4 text-primary" aria-hidden /> {t('privacy.requests.erasure')}
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">
-              On the customer’s page, choose{' '}
-              <strong className="font-medium text-foreground">Erase customer data</strong>. Their
-              name, email, phone, notes and messages are removed for good, and pending reminders are
-              cancelled. Appointments stay as anonymous records so your statistics add up.
-              {!ctx.can('customers.erase') && ' Only the owner can erase customers.'}
+              {rich(t('privacy.requests.erasureBody'), {
+                b: (c) => <strong className="font-medium text-foreground">{c}</strong>,
+              })}
+              {!ctx.can('customers.erase') && ` ${t('privacy.requests.ownerOnly')}`}
             </p>
           </div>
           <div className="sm:col-span-2">
             <Button asChild variant="secondary" size="sm">
               <Link href="/app/customers">
-                <Database /> Go to customers
+                <Database /> {t('privacy.requests.goToCustomers')}
               </Link>
             </Button>
           </div>
@@ -235,17 +214,19 @@ export default async function PrivacySettingsPage() {
             id="danger-title"
             className="mb-3 font-sans text-[15px] font-semibold tracking-normal text-danger"
           >
-            Danger zone
+            {t('privacy.danger.title')}
           </h3>
           <Card className="border-danger/35">
             <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="min-w-0">
-                <p className="text-sm font-semibold">Delete this business</p>
+                <p className="text-sm font-semibold">{t('privacy.danger.deleteTitle')}</p>
                 <p className="mt-0.5 max-w-xl text-[13px] leading-relaxed text-muted-foreground">
-                  Permanently deletes {ctx.business.name}, its booking page and all customer and
-                  appointment data.
-                  {hasSubscription ? ' Your subscription is cancelled immediately.' : ''} Team
-                  members lose access. This can’t be undone.
+                  {t(
+                    hasSubscription
+                      ? 'privacy.danger.deleteBodySubscribed'
+                      : 'privacy.danger.deleteBody',
+                    { business: ctx.business.name },
+                  )}
                 </p>
               </div>
               <DeleteBusinessButton

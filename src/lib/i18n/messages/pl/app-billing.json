@@ -1,0 +1,127 @@
+{
+  "title": "Płatności",
+  "description": "Jeden prosty plan, w którym jest wszystko. Bez opłat za rezerwację, bez niespodzianek.",
+  "loading": "Wczytywanie płatności",
+  "price": {
+    "perMonth": "{price}/mies.",
+    "periodSuffix": "/ mies.",
+    "note": "Wszystko w cenie dla całego zespołu. W zależności od siedziby firmy może zostać doliczony VAT."
+  },
+  "checkout": {
+    "successTitle": "Dziękujemy, wszystko gotowe!",
+    "successBody": "Twoja subskrypcja jest aktywna. Potwierdzenie płatności jest już w drodze do Twojej skrzynki.",
+    "pending": "Dziękujemy! Subskrypcja aktywuje się, gdy tylko Stripe potwierdzi płatność, zwykle w ciągu kilku sekund. Odśwież stronę, jeśli nic się nie zmieni.",
+    "refresh": "Odśwież",
+    "cancelledTitle": "Płatność anulowana",
+    "cancelledBody": "Nic się nie stało, nie pobraliśmy żadnej opłaty.",
+    "cancelledTrialBody": "Nic się nie stało, nie pobraliśmy żadnej opłaty. Bezpłatny okres próbny trwa dalej."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Zawieszone",
+      "title": "Twoje konto jest zawieszone",
+      "body": "Pomoc techniczna Hournook zawiesiła to konto, więc strona rezerwacji jest niedostępna. Skontaktuj się z pomocą techniczną, aby to wyjaśnić. Twoje dane są bezpieczne i nadal możesz je wyeksportować."
+    },
+    "ending": {
+      "badge": "Wkrótce wygasa",
+      "title": "Koniec subskrypcji: {date}",
+      "dateFallback": "koniec bieżącego okresu",
+      "body": "Nie pobierzemy już kolejnej opłaty. Do tego czasu wszystko działa; potem strona rezerwacji przestanie przyjmować nowe rezerwacje. Zmiana planów? Możesz wznowić subskrypcję w portalu płatności."
+    },
+    "trialing": {
+      "badge": "Subskrypcja",
+      "title": "Masz subskrypcję",
+      "body": "Bezpłatny okres próbny trwa do {date}. Wtedy pobierzemy pierwszą płatność w wysokości {price}.",
+      "dateFallback": "jego końca"
+    },
+    "active": {
+      "badge": "Aktywna",
+      "title": "Twoja subskrypcja jest aktywna",
+      "renews": "Odnawia się automatycznie {date} za {price}.",
+      "billed": "Opłata: {price}."
+    },
+    "pastDue": {
+      "badge": "Płatność nieudana",
+      "title": "Ostatnia płatność nie przeszła",
+      "body": "Stripe automatycznie spróbuje ponownie, ale zaktualizuj metodę płatności przed terminem ({date}), aby nadal przyjmować rezerwacje.",
+      "dateFallback": "koniec okresu karencji"
+    },
+    "trial": {
+      "badge": "Bezpłatny okres próbny",
+      "title": "{count, plural, one {Do końca okresu próbnego został # dzień} few {Do końca okresu próbnego zostały # dni} many {Do końca okresu próbnego zostało # dni} other {Do końca okresu próbnego zostało # dnia}}",
+      "body": "Okres próbny kończy się {date}. Możesz wykupić subskrypcję w dowolnym momencie. Jeśli zostały ponad dwa dni, przechodzą one dalej, a pierwsza płatność zostanie pobrana po zakończeniu okresu próbnego."
+    },
+    "overdue": {
+      "badge": "Zaległa płatność",
+      "title": "Strona rezerwacji wstrzymała nowe rezerwacje",
+      "body": "Nie udało się pobrać ostatniej płatności. Zaktualizuj metodę płatności i opłać otwartą fakturę, aby od razu przywrócić rezerwacje online. Nic nie zostało usunięte."
+    },
+    "canceled": {
+      "badge": "Anulowana",
+      "title": "Twoja subskrypcja wygasła",
+      "body": "Strona rezerwacji nie przyjmuje nowych rezerwacji. Wszystkie Twoje dane nadal tu są. Wykup subskrypcję ponownie, aby od razu ją otworzyć."
+    },
+    "noPlan": {
+      "badge": "Brak planu",
+      "title": "Bezpłatny okres próbny się zakończył",
+      "body": "Strona rezerwacji nie przyjmuje teraz nowych rezerwacji, ale wszystko, co skonfigurowano, nadal tu jest. Wykup subskrypcję, aby od razu ją otworzyć.",
+      "bodyEnded": "Zakończył się {date}. Strona rezerwacji nie przyjmuje teraz nowych rezerwacji, ale wszystko, co skonfigurowano, nadal tu jest. Wykup subskrypcję, aby od razu ją otworzyć."
+    }
+  },
+  "notConfigured": {
+    "title": "Płatności nie są jeszcze skonfigurowane na tym serwerze",
+    "bodyTrial": "W tej instalacji Hournook nie skonfigurowano płatności online, więc nie można tu rozpocząć ani zmienić subskrypcji. Bezpłatny okres próbny działa dalej zgodnie z opisem powyżej.",
+    "bodyAccount": "W tej instalacji Hournook nie skonfigurowano płatności online, więc nie można tu rozpocząć ani zmienić subskrypcji. Twoje konto działa dalej zgodnie z opisem powyżej."
+  },
+  "ownerOnly": "Tylko właściciel firmy może wykupić subskrypcję, zmienić metodę płatności lub ją anulować.",
+  "cta": {
+    "subscribe": "Subskrybuj za {price}",
+    "updatePayment": "Zaktualizuj metodę płatności",
+    "resume": "Wznów subskrypcję",
+    "manage": "Zarządzaj płatnościami",
+    "updateCard": "Zmień kartę",
+    "cancel": "Anuluj subskrypcję",
+    "secure": "Zapłacisz bezpiecznie na stronie płatności Stripe i od razu tu wrócisz."
+  },
+  "included": {
+    "title": "Co obejmuje plan",
+    "page": "Własna strona rezerwacji, kod QR i widżet na stronę",
+    "unlimited": "Nielimitowane rezerwacje, klienci i usługi",
+    "team": "Cały zespół, bez opłat za użytkownika",
+    "calendar": "Kalendarz, dostępność, święta i urlopy",
+    "emails": "Potwierdzenia e-mail i automatyczne przypomnienia",
+    "analytics": "Statystyki, eksporty i historia aktywności"
+  },
+  "paymentMethod": {
+    "title": "Metoda płatności",
+    "notConfigured": "Niedostępne, dopóki płatności nie zostaną skonfigurowane.",
+    "loadFailed": "Nie udało się teraz wczytać danych karty.",
+    "none": "Brak zapisanej karty. Dodasz ją przy zakupie subskrypcji."
+  },
+  "invoices": {
+    "title": "Faktury",
+    "description": "Po każdej płatności wysyłamy też potwierdzenie e-mailem.",
+    "notConfigured": "Faktury pojawią się tutaj po skonfigurowaniu płatności.",
+    "unavailableTitle": "Faktury są teraz niedostępne",
+    "unavailableBody": "Nie udało się połączyć ze Stripe, aby wczytać faktury. Spróbuj ponownie za chwilę; nie ma to wpływu na subskrypcję.",
+    "empty": "Brak faktur. Pojawią się tutaj po pierwszej płatności.",
+    "invoice": "Faktura",
+    "view": "Zobacz",
+    "viewFrom": "fakturę z dnia {date}",
+    "status": {
+      "paid": "Opłacona",
+      "open": "Do zapłaty",
+      "void": "Unieważniona",
+      "uncollectible": "Nieopłacona",
+      "draft": "Wersja robocza"
+    }
+  },
+  "goodToKnow": {
+    "title": "Warto wiedzieć",
+    "fees": "<b>Bez opłat za rezerwację.</b> <muted>Jedna stała cena, niezależnie od liczby klientów.</muted>",
+    "cancel": "<b>Anuluj w dowolnym momencie.</b> <muted>Dostęp zachowujesz do końca opłaconego okresu.</muted>",
+    "vat": "<b>Może obowiązywać VAT</b> <muted>w zależności od lokalizacji. Jest widoczny na fakturze.</muted>",
+    "data": "<b>Twoje dane są Twoje.</b> <muted>Jeśli plan wygaśnie, nic nie zostanie usunięte. Nadal możesz się zalogować i wyeksportować dane.</muted>"
+  },
+  "stripeUnreachable": "Nie udało się połączyć ze Stripe. Sprawdź połączenie i spróbuj ponownie."
+}

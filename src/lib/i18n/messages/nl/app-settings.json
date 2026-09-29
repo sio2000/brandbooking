@@ -1,0 +1,646 @@
+{
+  "layout": {
+    "title": "Instellingen",
+    "description": "Beheer {name}, je team en je eigen account."
+  },
+  "loading": "Instellingen laden",
+  "nav": {
+    "label": "Instellingen",
+    "business": "Bedrijf",
+    "booking": "Boekingen",
+    "notifications": "Meldingen",
+    "team": "Team",
+    "account": "Account",
+    "privacy": "Privacy en gegevens",
+    "activity": "Activiteit"
+  },
+  "common": {
+    "cancel": "Annuleren",
+    "listSeparator": ", "
+  },
+  "form": {
+    "saved": "Opgeslagen",
+    "offline": "We konden de server niet bereiken. Controleer je verbinding en probeer het opnieuw."
+  },
+  "saveBar": {
+    "unsaved": "Niet-opgeslagen wijzigingen",
+    "saved": "Alle wijzigingen opgeslagen",
+    "discard": "Negeren",
+    "save": "Wijzigingen opslaan"
+  },
+  "duration": {
+    "zeroMinutes": "0 minuten",
+    "minutes": "{count, plural, one {# minuut} other {# minuten}}",
+    "hours": "{count, plural, one {# uur} other {# uur}}",
+    "hoursMinutes": "{h} u {m} min",
+    "days": "{count, plural, one {# dag} other {# dagen}}",
+    "weeks": "{count, plural, one {# week} other {# weken}}",
+    "months": "{count, plural, one {# maand} other {# maanden}}",
+    "years": "{count, plural, one {# jaar} other {# jaar}}",
+    "current": "{label} (huidig)",
+    "noMinimum": "Geen minimum",
+    "everyHour": "Elk uur",
+    "everyMinutes": "{count, plural, one {Elke minuut} other {Elke # minuten}}",
+    "upToStart": "Tot het begintijdstip",
+    "before": "{duration} van tevoren",
+    "ahead": "{duration} vooruit"
+  },
+  "business": {
+    "metaTitle": "Bedrijfsinstellingen",
+    "title": "Bedrijfsprofiel",
+    "description": "De basisgegevens die klanten op je boekingspagina en in hun e-mails zien.",
+    "basics": {
+      "title": "Basisgegevens",
+      "description": "Hoe je bedrijf wordt weergegeven op je boekingspagina en in e-mails aan klanten.",
+      "name": "Bedrijfsnaam",
+      "category": "Categorie",
+      "categoryHint": "Zo kunnen we tips en standaardinstellingen afstemmen op jouw soort bedrijf.",
+      "categoryPlaceholder": "Kies een categorie…",
+      "about": "Over je bedrijf",
+      "aboutHint": "Staat bovenaan je boekingspagina. {count}/{max}",
+      "aboutPlaceholder": "Een of twee vriendelijke zinnen over wat je doet en wat klanten kunnen verwachten."
+    },
+    "categories": {
+      "hairBeauty": "Kapper en beauty",
+      "barbershop": "Barbershop",
+      "nails": "Nagels",
+      "spaMassage": "Spa en massage",
+      "healthTherapy": "Gezondheid en therapie",
+      "fitnessCoaching": "Fitness en coaching",
+      "medicalDental": "Medisch en tandheelkunde",
+      "consulting": "Advies",
+      "educationTutoring": "Onderwijs en bijles",
+      "photography": "Fotografie",
+      "petServices": "Dierenservices",
+      "automotive": "Auto",
+      "homeServices": "Diensten aan huis",
+      "other": "Overig"
+    },
+    "time": {
+      "title": "Tijd en valuta",
+      "description": "Je tijdzone bepaalt hoe openingstijden en afspraaktijden worden gelezen. De valuta wordt gebruikt voor de prijzen van diensten.",
+      "timezone": "Tijdzone",
+      "timezoneHint": "Tip: typ de naam van een stad terwijl de lijst actief is om er direct naartoe te springen.",
+      "deviceTz": "Dit apparaat staat ingesteld op <b>{tz}</b>",
+      "useDeviceTz": "Gebruiken",
+      "tzChangedTitle": "Als je de tijdzone wijzigt, verandert de betekenis van je openingstijden",
+      "tzChangedBody": "Werktijden als 9:00–17:00 betekenen dan 9:00–17:00 in <b>{tz}</b>. Bestaande afspraken houden hun exacte moment in de tijd, dus ze kunnen op een andere kloktijd worden weergegeven.",
+      "currency": "Valuta",
+      "currencyHint": "Als je de valuta wijzigt, worden bestaande prijzen niet omgerekend.",
+      "regions": {
+        "Africa": "Afrika",
+        "America": "Amerika",
+        "Antarctica": "Antarctica",
+        "Arctic": "Noordpoolgebied",
+        "Asia": "Azië",
+        "Atlantic": "Atlantische Oceaan",
+        "Australia": "Australië",
+        "Europe": "Europa",
+        "Indian": "Indische Oceaan",
+        "Pacific": "Stille Oceaan",
+        "Other": "Overig"
+      }
+    },
+    "language": {
+      "title": "Taal van de boekingspagina",
+      "description": "De taal die klanten als eerste zien op je boekingspagina, in de boekingswidget en in hun boekingsbevestiging.",
+      "label": "Standaardtaal",
+      "hint": "Klanten kunnen zelf nog steeds een andere taal kiezen."
+    },
+    "contact": {
+      "title": "Contactgegevens",
+      "description": "Staan op je boekingspagina en in bevestigingsmails. Antwoorden van klanten op e-mails van Hournook gaan naar dit e-mailadres.",
+      "email": "E-mail",
+      "emailPlaceholder": "hallo@jouwbedrijf.nl",
+      "phone": "Telefoon",
+      "website": "Website",
+      "websitePlaceholder": "jouwbedrijf.nl"
+    },
+    "address": {
+      "title": "Adres",
+      "description": "Waar klanten voor hun afspraak naartoe komen. Laat leeg als je op afstand werkt of bij klanten langsgaat.",
+      "line1": "Straat en huisnummer",
+      "line2": "Toevoeging, verdieping",
+      "postalCode": "Postcode",
+      "city": "Plaats",
+      "country": "Land",
+      "countryPlaceholder": "Kies een land…"
+    }
+  },
+  "account": {
+    "metaTitle": "Je account",
+    "title": "Je account",
+    "intro": "Persoonlijke instellingen voor {email}. Je bent {role, select, owner {de eigenaar} manager {een manager} other {een teamlid}} van {business}.",
+    "introMany": "Persoonlijke instellingen voor {email}. Je bent {role, select, owner {de eigenaar} manager {een manager} other {een teamlid}} van {business} en hoort in totaal bij {count} bedrijven.",
+    "profile": {
+      "title": "Je profiel",
+      "description": "Hoe je team je ziet. Klanten zien je accountgegevens nooit.",
+      "name": "Je naam",
+      "nameRequired": "Vul je naam in.",
+      "email": "E-mail",
+      "verified": "Geverifieerd",
+      "notVerified": "Niet geverifieerd",
+      "emailHint": "Wordt gebruikt om in te loggen. Neem contact op met support om dit te wijzigen.",
+      "save": "Opslaan"
+    },
+    "language": {
+      "title": "Taal",
+      "description": "De taal van je dashboard en instellingen.",
+      "label": "Taal",
+      "emailNote": "E-mails die we jou sturen (nieuwe boekingen, team- en factuurupdates) zijn ook in deze taal.",
+      "switching": "Taal wordt gewijzigd…",
+      "invalid": "Kies een van de ondersteunde talen."
+    },
+    "password": {
+      "title": "Wachtwoord",
+      "description": "Als je je wachtwoord wijzigt, word je op alle andere apparaten uitgelogd.",
+      "current": "Huidig wachtwoord",
+      "new": "Nieuw wachtwoord",
+      "newHint": "Minstens {min} tekens. Een korte zin werkt goed.",
+      "repeat": "Herhaal nieuw wachtwoord",
+      "mismatch": "De wachtwoorden komen niet overeen.",
+      "submit": "Wachtwoord wijzigen",
+      "show": "Wachtwoord tonen",
+      "hide": "Wachtwoord verbergen"
+    },
+    "leave": {
+      "title": "{business} verlaten",
+      "description": "Je verliest de toegang tot dit bedrijf. Je afspraken en profiel blijven bij het bedrijf.",
+      "button": "Bedrijf verlaten",
+      "confirmTitle": "{business} verlaten?",
+      "confirmBody": "Je kunt niet meer inloggen bij dit bedrijf. Een eigenaar of manager kan je later opnieuw uitnodigen."
+    },
+    "delete": {
+      "title": "Je account verwijderen",
+      "description": "Verwijdert je login en persoonlijke gegevens definitief. Dit kan niet ongedaan worden gemaakt.",
+      "ownerTitle": "Je bent nog eigenaar van een bedrijf",
+      "ownerBody": "Eigenaren moeten hun bedrijven verwijderen, of iemand anders eigenaar maken via Instellingen → Team, voordat ze hun account verwijderen. Zo blijven klanten en boekingen nooit zonder eigenaar. Je bent eigenaar van <b>{businesses}</b>. Verwijder dit eerst via <link>Privacy en gegevens</link>.",
+      "body": "Je wordt verwijderd uit alle bedrijven waar je bij hoort. Afspraken die jij hebt afgehandeld, blijven bij die bedrijven.",
+      "button": "Account verwijderen…",
+      "dialogTitle": "Je account verwijderen?",
+      "dialogDescription": "Vul je wachtwoord in om te bevestigen. Dit kan niet ongedaan worden gemaakt.",
+      "password": "Wachtwoord",
+      "passwordRequired": "Vul je wachtwoord in.",
+      "submit": "Mijn account verwijderen"
+    }
+  },
+  "booking": {
+    "metaTitle": "Boekingsinstellingen",
+    "title": "Boekingsregels",
+    "description": "Bepaal wanneer en hoe klanten kunnen boeken, wijzigen en annuleren. Dit geldt voor je hele boekingspagina.",
+    "summary": {
+      "text": "Klanten kunnen {notice} boeken, tot maximaal {days} vooruit. Starttijden worden {interval} aangeboden.",
+      "lastMinute": "tot op het laatste moment",
+      "notice": "minstens {duration} van tevoren",
+      "onTheHour": "op het hele uur",
+      "everyMinutes": "{count, plural, one {elke minuut} other {elke # minuten}}"
+    },
+    "window": {
+      "title": "Wanneer klanten kunnen boeken",
+      "description": "Bescherm je tijd: voorkom verrassingen op het laatste moment en bepaal hoe ver vooruit je agenda openstaat.",
+      "minNotice": "Minimale boektermijn",
+      "minNoticeHint": "Hoe kort voor een afspraak iemand die nog online kan boeken.",
+      "maxAdvance": "Boeken tot",
+      "maxAdvanceHint": "Hoe ver vooruit klanten vrije tijden kunnen zien.",
+      "startTimes": "Starttijden",
+      "startTimesHint": "Bij elke 15 minuten zien klanten 9:00, 9:15, 9:30… Grotere stappen houden je dag overzichtelijker.",
+      "limit": "Online boekingen per dag beperken",
+      "limitDescription": "Als de limiet is bereikt, wordt die dag als vol getoond. Je kunt zelf nog steeds afspraken toevoegen.",
+      "maxPerDay": "Maximaal per dag"
+    },
+    "confirm": {
+      "title": "Bevestiging",
+      "description": "Kies of nieuwe boekingen meteen definitief zijn.",
+      "review": "Elke boeking beoordelen voordat die wordt bevestigd",
+      "reviewOn": "Nieuwe online boekingen komen binnen als aanvraag. Het tijdstip wordt vastgehouden en de klant krijgt een bevestigingsmail zodra je de aanvraag accepteert.",
+      "reviewOff": "Boekingen worden direct bevestigd en de klant krijgt meteen een bevestigingsmail."
+    },
+    "changes": {
+      "title": "Annuleren en verzetten",
+      "description": "Elke bevestigingsmail bevat een link waarmee klanten hun boeking kunnen beheren. Bepaal wat ze zelf mogen doen.",
+      "cancel": "Klanten kunnen online annuleren",
+      "cancelOn": "Vrijgekomen tijden worden automatisch weer boekbaar.",
+      "cancelOff": "Klanten moeten contact met je opnemen om te annuleren.",
+      "cancelDeadline": "Annuleringstermijn",
+      "cancelDeadlineHint": "Na dit moment verdwijnt de annuleerknop en wordt klanten gevraagd contact met je op te nemen.",
+      "reschedule": "Klanten kunnen online verzetten",
+      "rescheduleOn": "Ze kiezen een nieuw vrij tijdstip; het oude komt weer vrij.",
+      "rescheduleOff": "Klanten moeten contact met je opnemen om een boeking te verzetten.",
+      "rescheduleDeadline": "Termijn voor verzetten",
+      "rescheduleDeadlineHint": "Hoe kort voor de afspraak klanten die nog kunnen verzetten."
+    },
+    "reminders": {
+      "title": "Herinneringsmails",
+      "description": "Automatische herinneringen zorgen voor minder no-shows. Kies er maximaal {max}. Klanten zonder e-mailadres krijgen ze niet.",
+      "legend": "Herinneringen sturen",
+      "none": "Er worden geen herinneringen verstuurd.",
+      "selected": "{count} van {max} geselecteerd: {list}. Wijzigingen gelden voor toekomstige boekingen."
+    },
+    "form": {
+      "title": "Boekingsformulier",
+      "description": "Wat klanten wordt gevraagd als ze boeken.",
+      "staff": "Een teamlid kiezen",
+      "staffModes": {
+        "optional": {
+          "title": "Klant mag kiezen",
+          "body": "Klanten kunnen een teamlid kiezen of “Iedereen die beschikbaar is”."
+        },
+        "required": {
+          "title": "Klant moet kiezen",
+          "body": "Klanten kiezen altijd een specifiek teamlid."
+        },
+        "hidden": {
+          "title": "Niet vragen",
+          "body": "Wij wijzen iemand toe die vrij is. Klanten krijgen geen keuze te zien."
+        }
+      },
+      "phone": "Telefoonnummer",
+      "phoneModes": {
+        "required": {
+          "title": "Verplicht",
+          "body": "Handig als je klanten belt of appt."
+        },
+        "optional": {
+          "title": "Optioneel",
+          "body": "Klanten mogen het leeg laten."
+        },
+        "hidden": {
+          "title": "Niet vragen",
+          "body": "Het veld wordt helemaal niet getoond."
+        }
+      },
+      "alwaysAsked": "Naam en e-mailadres worden altijd gevraagd, zodat we bevestigingen kunnen sturen."
+    }
+  },
+  "notifications": {
+    "metaTitle": "Meldingen",
+    "mine": {
+      "title": "Jouw meldingen",
+      "description": "Kies waarover we je informeren. Dit geldt alleen voor jou; elk teamlid stelt dit zelf in.",
+      "remindersByManager": "Herinneringsmails aan klanten worden ingesteld door een eigenaar of manager bij Boekingsinstellingen.",
+      "verifyEmail": "Verifieer je e-mailadres om meldingen per e-mail te ontvangen. Tot die tijd verschijnen ze alleen in je inbox."
+    },
+    "customers": {
+      "title": "E-mails aan klanten",
+      "description": "Hoe je automatische e-mails aan klanten eruitzien.",
+      "remindersLink": "Op zoek naar afspraakherinneringen? Die stel je in bij <link>Boekingsregels</link>."
+    },
+    "email": {
+      "title": "E-mails aan je klanten",
+      "description": "Bevestigingen, herinneringen en wijzigingsberichten worden bij elke boeking automatisch verstuurd.",
+      "senderName": "Naam afzender",
+      "senderNameHint": "Wat klanten in hun inbox zien. Laat leeg om “{business}” te gebruiken.",
+      "footer": "Voettekst van de e-mail",
+      "footerHint": "Een korte notitie onderaan elke e-mail, bijvoorbeeld parkeertips of je annuleringsbeleid. {count}/{max}",
+      "footerPlaceholder": "Gratis parkeren achter het gebouw. Kom graag 5 minuten van tevoren.",
+      "preview": "Voorbeeld",
+      "inboxPreview": "Voorbeeld in inbox",
+      "repliesTo": "Antwoorden gaan naar {email}",
+      "repliesToNobody": "Antwoorden gaan nog nergens naartoe",
+      "sampleSubject": "Je afspraak is bevestigd",
+      "defaultFooter": "Je ontvangt deze e-mail omdat je een afspraak hebt geboekt.",
+      "sentBy": "Verstuurd door Hournook namens {business}.",
+      "whyTitle": "Waarom e-mails van het adres van Hournook komen",
+      "whyBody": "Om je e-mails uit de spammap te houden, worden ze verstuurd vanaf het geverifieerde adres van Hournook, met je bedrijfsnaam als afzender. We doen nooit alsof we vanaf je eigen domein versturen. Als klanten op beantwoorden klikken, gaat hun bericht direct naar <b>{email}</b>.",
+      "whyBodyNoEmail": "Om je e-mails uit de spammap te houden, worden ze verstuurd vanaf het geverifieerde adres van Hournook, met je bedrijfsnaam als afzender. We doen nooit alsof we vanaf je eigen domein versturen. Als klanten op beantwoorden klikken, gaat hun bericht direct naar het e-mailadres van je bedrijf. <link>Voeg een contactadres toe</link> zodat antwoorden bij je aankomen.",
+      "save": "E-mailinstellingen opslaan"
+    },
+    "prefs": {
+      "title": "Stuur me een melding over",
+      "descriptionOwn": "Alleen over je eigen afspraken. Wijzigingen worden automatisch opgeslagen.",
+      "descriptionAll": "Per e-mail verstuurd en getoond in je inbox (het belletje). Wijzigingen worden automatisch opgeslagen.",
+      "created": "Nieuwe boekingen",
+      "createdOwn": "Als een klant een afspraak bij jou boekt.",
+      "createdAll": "Als een klant online boekt of een collega een afspraak toevoegt.",
+      "rescheduled": "Verzette boekingen",
+      "rescheduledOwn": "Als een van je afspraken naar een andere tijd wordt verzet.",
+      "rescheduledAll": "Als een afspraak naar een andere tijd wordt verzet.",
+      "cancelled": "Annuleringen",
+      "cancelledOwn": "Als een van je afspraken wordt geannuleerd.",
+      "cancelledAll": "Als een klant of collega een afspraak annuleert.",
+      "team": "Teamwijzigingen",
+      "teamDescription": "Als iemand een uitnodiging accepteert en bij je team komt.",
+      "billing": "Facturering",
+      "billingDescription": "Betalingsproblemen en wijzigingen in je abonnement. We raden aan dit aan te laten.",
+      "on": "Meldingen aangezet",
+      "off": "Meldingen uitgezet",
+      "saveFailed": "We konden die wijziging niet opslaan. Controleer je verbinding en probeer het opnieuw."
+    }
+  },
+  "team": {
+    "metaTitle": "Team en toegang",
+    "title": "Team en toegang",
+    "description": "Nodig collega’s uit om met hun eigen login in te loggen. Wil je iemand toevoegen die alleen boekingen aanneemt (zonder login)? Voeg die dan toe onder <link>Team</link> in de zijbalk.",
+    "roles": {
+      "owner": "Eigenaar",
+      "manager": "Manager",
+      "staff": "Teamlid"
+    },
+    "roleDescriptions": {
+      "owner": "Alles, inclusief facturering, alle gegevens exporteren en het bedrijf verwijderen.",
+      "manager": "Alles behalve facturering, het bedrijf verwijderen, alle gegevens exporteren en klanten wissen.",
+      "staff": "Alleen hun eigen afspraken, klanten die ze hebben geholpen en hun eigen beschikbaarheid."
+    },
+    "explainer": {
+      "title": "Wat elke rol kan",
+      "description": "Kies de kleinste rol die iemand nodig heeft. Je kunt dit later wijzigen."
+    },
+    "invite": {
+      "button": "Iemand uitnodigen",
+      "title": "Uitnodigen voor je team",
+      "description": "Ze krijgen een e-mail met een link om mee te doen. Geen extra kosten: je abonnement geldt voor het hele team.",
+      "email": "E-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "role": "Rol",
+      "link": "Koppelen aan een bestaand profiel",
+      "linkHint": "Heeft deze persoon al een profiel in je team (met boekingen en werktijden)? Koppel dat dan, zodat die zijn of haar eigen rooster ziet. Anders wordt er een nieuw profiel aangemaakt bij het aanmelden.",
+      "newProfile": "Nieuw profiel aanmaken",
+      "submit": "Uitnodiging sturen",
+      "sent": "Uitnodiging verstuurd naar {email}",
+      "sentDescription": "De link is 7 dagen geldig.",
+      "created": "Uitnodiging aangemaakt voor {email}",
+      "createdDescription": "We konden de e-mail nu niet versturen. Trek de uitnodiging in en nodig later opnieuw uit."
+    },
+    "members": {
+      "title": "Leden · {count}",
+      "description": "Mensen die kunnen inloggen bij dit bedrijf.",
+      "you": "Jij",
+      "profile": "Profiel: {name}",
+      "joined": "Lid sinds {date}",
+      "actions": "Acties voor {name}",
+      "changeRole": "Rol wijzigen",
+      "current": "Huidig",
+      "makeOwner": "Eigenaar maken…",
+      "remove": "Uit team verwijderen"
+    },
+    "invites": {
+      "title": "Openstaande uitnodigingen",
+      "description": "Uitnodigingen verlopen na 7 dagen. Nodig hetzelfde adres opnieuw uit om een nieuwe link te sturen.",
+      "emptyTitle": "Geen openstaande uitnodigingen",
+      "emptyDescription": "Nodig een collega uit, zodat die het eigen rooster kan zien en eigen afspraken kan beheren.",
+      "expires": "Verloopt {when} · verstuurd {sent}",
+      "expired": "Verlopen {when} · verstuurd {sent}",
+      "revoke": "Intrekken",
+      "revokeLabel": "Uitnodiging voor {email} intrekken"
+    },
+    "transfer": {
+      "title": "{name} eigenaar maken?",
+      "titleGeneric": "Eigendom overdragen?",
+      "description": "Die krijgt volledige controle, inclusief facturering en het verwijderen van het bedrijf. Jij blijft als manager in het team. Alleen de nieuwe eigenaar kan dit terugdraaien.",
+      "confirm": "Eigendom overdragen"
+    },
+    "remove": {
+      "title": "{name} verwijderen?",
+      "titleGeneric": "Lid verwijderen?",
+      "description": "Die verliest direct de toegang tot dit bedrijf. Het profiel, eerdere afspraken en toekomstige boekingen blijven in je agenda staan; je kunt ze later aan iemand anders toewijzen of annuleren."
+    },
+    "toasts": {
+      "roleChanged": "{name} is nu {role, select, manager {een manager} owner {de eigenaar} other {een teamlid}}",
+      "revoked": "Uitnodiging voor {email} ingetrokken",
+      "nowOwner": "{name} is nu de eigenaar",
+      "removed": "{name} is uit je team verwijderd"
+    },
+    "errors": {
+      "staffHasAccount": "Dit teamlid heeft al een account.",
+      "alreadyOnTeam": "Deze persoon zit al in je team.",
+      "profileLinked": "Dit teamprofiel is al gekoppeld aan een ander account. Vraag om een nieuwe uitnodiging.",
+      "alreadyMember": "Je bent al lid van dit bedrijf."
+    }
+  },
+  "privacy": {
+    "metaTitle": "Privacy en gegevens",
+    "title": "Privacy en gegevens",
+    "description": "Je gegevens zijn van jou. Download ze wanneer je wilt, bekijk wat we bewaren en handel verzoeken van klanten af.",
+    "download": {
+      "title": "Je gegevens downloaden",
+      "description": "Exports worden direct aangemaakt en vastgelegd in je activiteit. Ga zorgvuldig om met bestanden met klantgegevens.",
+      "button": "Downloaden",
+      "ownerOnly": "Alleen de eigenaar kan de volledige export downloaden."
+    },
+    "exports": {
+      "all": {
+        "title": "Alles (JSON)",
+        "description": "Je volledige account: profiel, diensten, team, tijden, boekingsregels, klanten, afspraken en activiteitenlog. Machineleesbaar, voor back-ups of om naar een andere tool over te stappen."
+      },
+      "customers": {
+        "title": "Klanten (CSV)",
+        "description": "Alle klanten met contactgegevens en bezoekgeschiedenis. Te openen in Excel, Numbers of Google Spreadsheets."
+      },
+      "appointments": {
+        "title": "Afspraken (CSV)",
+        "description": "Alle afspraken van de afgelopen 12 maanden en de komende 12 maanden."
+      },
+      "services": {
+        "title": "Diensten (CSV)",
+        "description": "Je dienstenmenu met duur en prijzen."
+      }
+    },
+    "stored": {
+      "title": "Wat we bewaren en hoe lang",
+      "description": "Hournook verwerkt deze gegevens namens jou om je boekingen te laten werken. We verkopen ze nooit en gebruiken ze nooit voor advertenties.",
+      "business": {
+        "what": "Bedrijfsgegevens",
+        "detail": "Je profiel, diensten, prijzen, openingstijden, teamprofielen en boekingsregels.",
+        "keep": "Tot je ze wijzigt of verwijdert."
+      },
+      "customers": {
+        "what": "Klanten",
+        "detail": "Naam, e-mail, telefoon, je interne notities en hun afsprakengeschiedenis.",
+        "keep": "Tot je de klant wist of het bedrijf verwijdert."
+      },
+      "appointments": {
+        "what": "Afspraken",
+        "detail": "Datum, tijd, dienst, teamlid, status en berichten van de klant.",
+        "keep": "Tot je het bedrijf verwijdert. Afspraken van gewiste klanten blijven als anonieme records bestaan."
+      },
+      "emails": {
+        "what": "E-mails",
+        "detail": "Een bezorglog van de bevestigingen en herinneringen die we hebben verstuurd.",
+        "keep": "De inhoud van e-mails wordt na 180 dagen verwijderd; de bezorgstatus blijft."
+      },
+      "visits": {
+        "what": "Bezoeken aan de boekingspagina",
+        "detail": "Anonieme paginaweergaven en boekingsstappen voor je statistieken. Geen cookies, geen persoonsgegevens.",
+        "keep": "Na 400 dagen verwijderd."
+      },
+      "activity": {
+        "what": "Activiteitenlog",
+        "detail": "Wie wat heeft gewijzigd in je account, met tijd en IP-adres.",
+        "keep": "Tot je het bedrijf verwijdert."
+      },
+      "sessions": {
+        "what": "Inlogsessies",
+        "detail": "De apparaten waarop jij en je team zijn ingelogd.",
+        "keep": "Verlopen na 30 dagen, of direct als je uitlogt."
+      },
+      "stripe": "Kaartbetalingen voor je abonnement worden verwerkt door Stripe. Wij zien en bewaren nooit kaartnummers. Lees het volledige <link>privacybeleid</link>."
+    },
+    "requests": {
+      "title": "Verzoeken van klanten",
+      "description": "Als een klant om een kopie van zijn gegevens vraagt of vergeten wil worden.",
+      "access": "Inzageverzoeken",
+      "accessBody": "Open de pagina van de klant om alles te zien wat er over die klant is opgeslagen (gegevens, notities en alle afspraken) en deel dat met de klant.",
+      "erasure": "Verwijderverzoeken",
+      "erasureBody": "Kies op de pagina van de klant <b>Klantgegevens wissen</b>. Naam, e-mail, telefoon, notities en berichten worden definitief verwijderd en geplande herinneringen worden geannuleerd. Afspraken blijven als anonieme records bestaan, zodat je statistieken kloppen.",
+      "ownerOnly": "Alleen de eigenaar kan klanten wissen.",
+      "goToCustomers": "Naar klanten"
+    },
+    "danger": {
+      "title": "Gevarenzone",
+      "deleteTitle": "Dit bedrijf verwijderen",
+      "deleteBody": "Verwijdert {business}, de boekingspagina en alle klant- en afspraakgegevens definitief. Teamleden verliezen de toegang. Dit kan niet ongedaan worden gemaakt.",
+      "deleteBodySubscribed": "Verwijdert {business}, de boekingspagina en alle klant- en afspraakgegevens definitief. Je abonnement wordt direct opgezegd. Teamleden verliezen de toegang. Dit kan niet ongedaan worden gemaakt.",
+      "button": "Bedrijf verwijderen…",
+      "confirmTitle": "{business} verwijderen?",
+      "confirmBody": "Hiermee worden je boekingspagina, diensten, teamprofielen, klanten, afspraken en geüploade afbeeldingen definitief verwijderd. Klanten met toekomstige afspraken krijgen niet automatisch bericht.",
+      "confirmSubscription": "Je Hournook-abonnement wordt direct opgezegd, dus er wordt niets meer afgeschreven.",
+      "confirmFinal": "Dit kan niet ongedaan worden gemaakt. Download eerst een export als je de gegevens misschien nog nodig hebt.",
+      "confirm": "Definitief verwijderen"
+    }
+  },
+  "activity": {
+    "metaTitle": "Activiteit",
+    "title": "Activiteit",
+    "description": "Een overzicht van belangrijke wijzigingen in {business}: wie wat heeft gedaan, en wanneer. Tijden worden getoond in {tz}.",
+    "empty": "Nog geen activiteit",
+    "emptyDescription": "Wijzigingen in je bedrijf, boekingen en team verschijnen hier.",
+    "emptyMore": "Geen activiteit meer",
+    "emptyMoreDescription": "Je bent bij het begin van je geschiedenis.",
+    "backToLatest": "Terug naar nieuwste",
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "by": "door <actor>{actor}</actor>",
+    "pagination": "Paginering",
+    "newer": "Nieuwer",
+    "older": "Ouder",
+    "page": "Pagina {page}",
+    "actors": {
+      "formerMember": "Een voormalig teamlid",
+      "customer": "Klant",
+      "support": "Hournook-support",
+      "system": "Systeem"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {als eigenaar} manager {als manager} other {als teamlid}}",
+      "rows": "{count, plural, one {# rij} other {# rijen}}",
+      "statusNow": "nu {status}",
+      "attempt": "poging {n}"
+    },
+    "subscriptionStatus": {
+      "trialing": "in proefperiode",
+      "active": "actief",
+      "pastDue": "achterstallig",
+      "unpaid": "onbetaald",
+      "canceled": "opgezegd",
+      "incomplete": "onvolledig",
+      "incompleteExpired": "onvolledig en verlopen",
+      "paused": "gepauzeerd"
+    },
+    "events": {
+      "business": {
+        "created": "Bedrijf aangemaakt",
+        "profileUpdated": "Bedrijfsprofiel bijgewerkt",
+        "brandingUpdated": "Huisstijl bijgewerkt",
+        "seoUpdated": "SEO-instellingen bijgewerkt",
+        "slugChanged": "Boekingslink gewijzigd",
+        "published": "Boekingspagina gepubliceerd",
+        "paused": "Online boeken gepauzeerd",
+        "unpublished": "Publicatie van boekingspagina ingetrokken",
+        "logoUploaded": "Logo geüpload",
+        "coverUploaded": "Omslagfoto geüpload",
+        "logoRemoved": "Logo verwijderd",
+        "coverRemoved": "Omslagfoto verwijderd",
+        "suspended": "Account opgeschort door Hournook",
+        "reactivated": "Account opnieuw geactiveerd",
+        "exported": "Gegevensexport gedownload"
+      },
+      "service": {
+        "created": "Dienst toegevoegd",
+        "updated": "Dienst bewerkt",
+        "deleted": "Dienst verwijderd"
+      },
+      "staff": {
+        "created": "Teamlid toegevoegd",
+        "updated": "Teamlid bewerkt",
+        "deleted": "Teamlid verwijderd",
+        "avatarUploaded": "Foto van teamlid bijgewerkt"
+      },
+      "appointment": {
+        "created": "Afspraak geboekt",
+        "cancelled": "Afspraak geannuleerd",
+        "rescheduled": "Afspraak verzet",
+        "confirmed": "Afspraak bevestigd",
+        "completed": "Afspraak afgerond",
+        "noShow": "Gemarkeerd als niet verschenen",
+        "reopened": "Afspraak heropend",
+        "notesUpdated": "Notities bij afspraak bewerkt",
+        "edited": "Bewerkt"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "Werktijden gewijzigd",
+        "staffUsesBusinessHours": "Teamlid volgt nu de openingstijden",
+        "closureAdded": "Sluiting toegevoegd",
+        "closureRemoved": "Sluiting verwijderd",
+        "specialHoursSet": "Afwijkende openingstijden ingesteld",
+        "timeBlocked": "Tijd geblokkeerd"
+      },
+      "settings": {
+        "bookingRulesUpdated": "Boekingsinstellingen gewijzigd",
+        "notificationsUpdated": "Meldingsinstellingen gewijzigd"
+      },
+      "customer": {
+        "created": "Klant toegevoegd",
+        "updated": "Klant bewerkt",
+        "erased": "Klantgegevens gewist"
+      },
+      "team": {
+        "memberInvited": "Teamlid uitgenodigd",
+        "invitationRevoked": "Uitnodiging ingetrokken",
+        "memberJoined": "Teamlid aangesloten",
+        "roleChanged": "Teamrol gewijzigd",
+        "memberRemoved": "Teamlid verwijderd",
+        "memberLeft": "Teamlid vertrokken",
+        "ownershipTransferred": "Eigendom overgedragen"
+      },
+      "billing": {
+        "checkoutStarted": "Betaling gestart",
+        "checkoutCompleted": "Betaling voor abonnement afgerond",
+        "subscriptionStatusChanged": "Status van abonnement gewijzigd",
+        "invoicePaid": "Factuur betaald",
+        "paymentFailed": "Betaling mislukt"
+      },
+      "export": {
+        "appointments": "Afspraken geëxporteerd",
+        "customers": "Klanten geëxporteerd",
+        "services": "Diensten geëxporteerd"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "Bedrijfsprofiel opgeslagen",
+    "bookingRulesSaved": "Boekingsinstellingen opgeslagen",
+    "emailSettingsSaved": "E-mailinstellingen opgeslagen",
+    "prefsSaved": "Voorkeuren opgeslagen",
+    "invitationRevoked": "Uitnodiging ingetrokken",
+    "roleUpdated": "Rol bijgewerkt",
+    "memberRemoved": "Uit je team verwijderd",
+    "ownershipTransferred": "Eigendom overgedragen",
+    "nameUpdated": "Naam bijgewerkt",
+    "languageSaved": "Taal opgeslagen",
+    "passwordChanged": "Wachtwoord gewijzigd. Andere apparaten zijn uitgelogd.",
+    "appointments": {
+      "created": "Afspraak aangemaakt",
+      "moved": "Afspraak verzet. De klant heeft bericht gekregen",
+      "confirm": "Afspraak bevestigd",
+      "cancel": "Afspraak geannuleerd",
+      "complete": "Gemarkeerd als afgerond",
+      "noShow": "Gemarkeerd als niet verschenen",
+      "reopen": "Afspraak heropend",
+      "notesSaved": "Notities opgeslagen"
+    },
+    "customers": {
+      "added": "Klant toegevoegd",
+      "updated": "Klant bijgewerkt"
+    }
+  }
+}

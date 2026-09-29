@@ -1,21 +1,25 @@
-/** Friendly labels for minute/day durations used across the settings screens. */
+/**
+ * Friendly labels for minute/day durations used across the settings screens.
+ * Wording comes from the `app-settings` catalogue (`duration.*`), so every
+ * helper takes the translator of the page.
+ */
 
-const plural = (n: number, unit: string) => `${n} ${unit}${n === 1 ? '' : 's'}`
+type T = (key: string, vars?: Record<string, string | number | null | undefined>) => string
 
-export function humanMinutes(m: number): string {
-  if (m <= 0) return '0 minutes'
-  if (m % 10080 === 0) return plural(m / 10080, 'week')
-  if (m % 1440 === 0) return plural(m / 1440, 'day')
-  if (m % 60 === 0) return plural(m / 60, 'hour')
-  if (m > 60) return `${Math.floor(m / 60)} h ${m % 60} min`
-  return plural(m, 'minute')
+export function humanMinutes(m: number, t: T): string {
+  if (m <= 0) return t('duration.zeroMinutes')
+  if (m % 10080 === 0) return t('duration.weeks', { count: m / 10080 })
+  if (m % 1440 === 0) return t('duration.days', { count: m / 1440 })
+  if (m % 60 === 0) return t('duration.hours', { count: m / 60 })
+  if (m > 60) return t('duration.hoursMinutes', { h: Math.floor(m / 60), m: m % 60 })
+  return t('duration.minutes', { count: m })
 }
 
-export function humanDays(d: number): string {
-  if (d % 365 === 0) return plural(d / 365, 'year')
-  if (d === 30 || d === 60 || d === 90 || d === 180) return plural(d / 30, 'month')
-  if (d % 7 === 0) return plural(d / 7, 'week')
-  return plural(d, 'day')
+export function humanDays(d: number, t: T): string {
+  if (d % 365 === 0) return t('duration.years', { count: d / 365 })
+  if (d === 30 || d === 60 || d === 90 || d === 180) return t('duration.months', { count: d / 30 })
+  if (d % 7 === 0) return t('duration.weeks', { count: d / 7 })
+  return t('duration.days', { count: d })
 }
 
 export type DurationOption = { value: number; label: string }
@@ -25,41 +29,46 @@ export function withCurrent(
   options: DurationOption[],
   current: number,
   label: (v: number) => string,
+  t: T,
 ): DurationOption[] {
   if (options.some((o) => o.value === current)) return options
-  return [...options, { value: current, label: `${label(current)} (current)` }].sort(
-    (a, b) => a.value - b.value,
-  )
+  return [
+    ...options,
+    { value: current, label: t('duration.current', { label: label(current) }) },
+  ].sort((a, b) => a.value - b.value)
 }
 
-export const MIN_NOTICE: DurationOption[] = [
-  { value: 0, label: 'No minimum' },
-  ...[15, 30, 60, 120, 180, 240, 360, 720, 1440, 2880, 4320, 10080, 20160].map((v) => ({
+export function minNoticeOptions(t: T): DurationOption[] {
+  return [
+    { value: 0, label: t('duration.noMinimum') },
+    ...[15, 30, 60, 120, 180, 240, 360, 720, 1440, 2880, 4320, 10080, 20160].map((v) => ({
+      value: v,
+      label: humanMinutes(v, t),
+    })),
+  ]
+}
+
+export const MAX_ADVANCE_DAYS = [7, 14, 21, 30, 60, 90, 180, 365, 730] as const
+
+export function slotIntervalOptions(t: T): DurationOption[] {
+  return [5, 10, 15, 20, 30, 45, 60].map((v) => ({
     value: v,
-    label: humanMinutes(v),
-  })),
-]
+    label: v === 60 ? t('duration.everyHour') : t('duration.everyMinutes', { count: v }),
+  }))
+}
 
-export const MAX_ADVANCE: DurationOption[] = [7, 14, 21, 30, 60, 90, 180, 365, 730].map((v) => ({
-  value: v,
-  label: humanDays(v),
-}))
-
-export const SLOT_INTERVALS: DurationOption[] = [5, 10, 15, 20, 30, 45, 60].map((v) => ({
-  value: v,
-  label: v === 60 ? 'Every hour' : `Every ${v} minutes`,
-}))
-
-export const CHANGE_DEADLINES: DurationOption[] = [
-  { value: 0, label: 'Up to the start time' },
-  ...[60, 120, 180, 360, 720, 1440, 2880, 4320, 10080].map((v) => ({
-    value: v,
-    label: `${humanMinutes(v)} before`,
-  })),
-]
+export function changeDeadlineOptions(t: T): DurationOption[] {
+  return [
+    { value: 0, label: t('duration.upToStart') },
+    ...[60, 120, 180, 360, 720, 1440, 2880, 4320, 10080].map((v) => ({
+      value: v,
+      label: t('duration.before', { duration: humanMinutes(v, t) }),
+    })),
+  ]
+}
 
 export const REMINDER_OFFSETS = [60, 120, 180, 360, 720, 1440, 2880] as const
 
-export function reminderLabel(m: number) {
-  return `${humanMinutes(m)} before`
+export function reminderLabel(m: number, t: T) {
+  return t('duration.before', { duration: humanMinutes(m, t) })
 }

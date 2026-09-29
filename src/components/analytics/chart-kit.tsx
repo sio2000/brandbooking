@@ -4,6 +4,7 @@ import * as React from 'react'
 import { BarChart3, Table2 } from 'lucide-react'
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+import { useLocale, useT } from '@/components/i18n/provider'
 
 /** Tracks an element's content width with ResizeObserver (state is only set from the observer callback). */
 export function useElementWidth<T extends HTMLElement>(fallback: number) {
@@ -60,10 +61,12 @@ export function ChartTooltip({
   rows: Array<{ key: string; color?: string; label: React.ReactNode; value: React.ReactNode }>
   visible: boolean
 }) {
+  const { dir } = useLocale()
   const flip = x > containerWidth * 0.62
   return (
     <div
       aria-hidden
+      dir={dir}
       className={cn(
         'pointer-events-none absolute z-10 min-w-36 rounded-lg border border-border bg-elevated px-3 py-2 text-xs shadow-md transition-opacity duration-100',
         visible ? 'opacity-100' : 'opacity-0',
@@ -134,6 +137,7 @@ export function ChartCard({
   className?: string
   headerExtra?: React.ReactNode
 }) {
+  const t = useT('app-analytics')
   const [showTable, setShowTable] = React.useState(false)
   const id = React.useId()
   return (
@@ -155,7 +159,7 @@ export function ChartCard({
               ) : (
                 <Table2 className="size-4" aria-hidden />
               )}
-              <span>{showTable ? 'Chart' : 'Table'}</span>
+              <span>{showTable ? t('chart.showChart') : t('chart.showTable')}</span>
             </button>
           ) : undefined
         }
@@ -200,7 +204,7 @@ export function DataTable({
               scope="col"
               className={cn(
                 'px-3 py-2 font-medium whitespace-nowrap',
-                c.numeric ? 'text-right' : 'text-left',
+                c.numeric ? 'text-end' : 'text-start',
               )}
             >
               {c.label}
@@ -216,14 +220,14 @@ export function DataTable({
                 <th
                   key={c.key}
                   scope="row"
-                  className="px-3 py-1.5 text-left font-normal whitespace-nowrap"
+                  className="px-3 py-1.5 text-start font-normal whitespace-nowrap"
                 >
                   {r[c.key]}
                 </th>
               ) : (
                 <td
                   key={c.key}
-                  className={cn('px-3 py-1.5 whitespace-nowrap', c.numeric && 'tabular text-right')}
+                  className={cn('px-3 py-1.5 whitespace-nowrap', c.numeric && 'tabular text-end')}
                 >
                   {r[c.key]}
                 </td>

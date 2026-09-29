@@ -2,9 +2,11 @@
 
 import * as React from 'react'
 import { formatPlainDate } from '@/lib/format'
+import { useLocale, useT } from '@/components/i18n/provider'
 import { ChartTooltip, columnPath, countTicks, niceTicks, useElementWidth } from './chart-kit'
 
-export type Series = { key: string; label: string; color: string }
+/** `valueLabel` names the unit in running text ("5 bookings"); defaults to `label`. */
+export type Series = { key: string; label: string; color: string; valueLabel?: string }
 export type TimePoint = { bucket: string; values: Record<string, number> }
 
 const TOP = 20
@@ -12,12 +14,20 @@ const BOTTOM = 26
 const RIGHT = 8
 const GAP = 2
 
-function bucketLabel(bucket: string, unit: 'day' | 'week', long = false) {
-  if (unit === 'week')
-    return `${long ? 'Week of ' : ''}${formatPlainDate(bucket, undefined, { day: 'numeric', month: 'short' })}`
+function bucketLabel(
+  bucket: string,
+  unit: 'day' | 'week',
+  tag: string,
+  weekOf: (date: string) => string,
+  long = false,
+) {
+  if (unit === 'week') {
+    const d = formatPlainDate(bucket, tag, { day: 'numeric', month: 'short' })
+    return long ? weekOf(d) : d
+  }
   return formatPlainDate(
     bucket,
-    undefined,
+    tag,
     long
       ? { weekday: 'short', day: 'numeric', month: 'short' }
       : { day: 'numeric', month: 'short' },
@@ -51,6 +61,10 @@ export function TimeSeriesChart({
   integer?: boolean
   height?: number
 }) {
+  const t = useT('app-analytics')
+  const { tag } = useLocale()
+  const weekOf = (date: string) => t('chart.weekOf', { date })
+  const label = (bucket: string, long = false) => bucketLabel(bucket, unit, tag, weekOf, long)
   const [ref, width] = useElementWidth<HTMLDivElement>(720)
   const [active, setActive] = React.useState<number | null>(null)
   const n = points.length
@@ -94,7 +108,17 @@ export function TimeSeriesChart({
 
   const activePoint = active !== null ? points[active] : null
   const readout = activePoint
-    ? `${bucketLabel(activePoint.bucket, unit, true)}: ${series.map((s) => `${formatValue(activePoint.values[s.key] ?? 0)} ${s.label.toLowerCase()}`).join(', ')}`
+    ? t('chart.readout', {
+        bucket: label(activePoint.bucket, true),
+        values: series
+          .map((s) =>
+            t('chart.readoutValue', {
+              value: formatValue(activePoint.values[s.key] ?? 0),
+              label: s.valueLabel ?? s.label,
+            }),
+          )
+          .join(t('listSeparator')),
+      })
     : ''
 
   // Area geometry.
@@ -108,13 +132,15 @@ export function TimeSeriesChart({
       : ''
 
   return (
+    // Time runs left to right in every language (as the SVG geometry assumes), also in RTL.
     <div
       ref={ref}
+      dir="ltr"
       className="relative w-full rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
       tabIndex={0}
       role="group"
-      aria-roledescription="chart"
-      aria-label={`${ariaLabel} Use the left and right arrow keys to read values.`}
+      aria-roledescription={t('chart.roleDescription')}
+      aria-label={`${ariaLabel} ${t('chart.keyboardHint')}`}
       onKeyDown={onKey}
       onFocus={() => setActive((a) => a ?? n - 1)}
       onBlur={() => setActive(null)}
@@ -265,7 +291,7 @@ export function TimeSeriesChart({
               fontSize={11}
               fill="var(--chart-axis)"
             >
-              {bucketLabel(p.bucket, unit)}
+              {label(p.bucket)}
             </text>
           ) : null,
         )}
@@ -289,7 +315,7 @@ export function TimeSeriesChart({
           x={cx(active)}
           y={TOP + plotH / 2}
           containerWidth={width}
-          title={bucketLabel(activePoint.bucket, unit, true)}
+          title={label(activePoint.bucket, true)}
           rows={[...series].reverse().map((s) => ({
             key: s.key,
             color: s.color,

@@ -1,0 +1,127 @@
+{
+  "title": "Fatturazione",
+  "description": "Un solo piano semplice con tutto incluso. Nessuna commissione sulle prenotazioni, nessuna sorpresa.",
+  "loading": "Caricamento fatturazione",
+  "price": {
+    "perMonth": "{price}/mese",
+    "periodSuffix": "/ mese",
+    "note": "Tutto incluso per tutto il tuo team. Potrebbe essere aggiunta l’IVA in base al paese in cui ha sede la tua attività."
+  },
+  "checkout": {
+    "successTitle": "Grazie, è tutto pronto!",
+    "successBody": "Il tuo abbonamento è attivo. Riceverai a breve una ricevuta via email.",
+    "pending": "Grazie! Il tuo abbonamento si attiverà appena Stripe conferma il pagamento, di solito in pochi secondi. Aggiorna la pagina se non cambia.",
+    "refresh": "Aggiorna",
+    "cancelledTitle": "Pagamento annullato",
+    "cancelledBody": "Nessun problema, non ti è stato addebitato nulla.",
+    "cancelledTrialBody": "Nessun problema, non ti è stato addebitato nulla. La tua prova gratuita continua normalmente."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Sospeso",
+      "title": "Il tuo account è sospeso",
+      "body": "L’assistenza Hournook ha sospeso questo account, quindi la tua pagina di prenotazione è offline. Contatta l’assistenza per risolvere. I tuoi dati sono al sicuro e puoi ancora esportarli."
+    },
+    "ending": {
+      "badge": "In scadenza",
+      "title": "Il tuo abbonamento termina: {date}",
+      "dateFallback": "alla fine di questo periodo",
+      "body": "Non ti verrà addebitato altro. Fino ad allora funziona tutto; dopo, la tua pagina di prenotazione non accetterà nuove prenotazioni. Hai cambiato idea? Puoi riattivarlo dal portale di fatturazione."
+    },
+    "trialing": {
+      "badge": "Abbonato",
+      "title": "Sei abbonato",
+      "body": "La tua prova gratuita continua fino a {date}. Il primo pagamento di {price} verrà addebitato allora.",
+      "dateFallback": "quando termina"
+    },
+    "active": {
+      "badge": "Attivo",
+      "title": "Il tuo abbonamento è attivo",
+      "renews": "Si rinnova automaticamente il {date} a {price}.",
+      "billed": "Addebito: {price}."
+    },
+    "pastDue": {
+      "badge": "Pagamento non riuscito",
+      "title": "Il tuo ultimo pagamento non è andato a buon fine",
+      "body": "Stripe riproverà automaticamente, ma aggiorna il metodo di pagamento prima di {date} per continuare ad accettare prenotazioni.",
+      "dateFallback": "la fine del periodo di tolleranza"
+    },
+    "trial": {
+      "badge": "Prova gratuita",
+      "title": "{count, plural, one {Ti resta # giorno di prova gratuita} other {Ti restano # giorni di prova gratuita}}",
+      "body": "La tua prova termina il {date}. Abbonati quando vuoi. Se mancano più di due giorni, vengono conservati e il primo pagamento viene addebitato alla fine della prova."
+    },
+    "overdue": {
+      "badge": "Pagamento scaduto",
+      "title": "La tua pagina di prenotazione ha sospeso le nuove prenotazioni",
+      "body": "Non siamo riusciti a incassare il tuo ultimo pagamento. Aggiorna il metodo di pagamento e salda la fattura aperta per riaprire subito le prenotazioni online. Non è stato eliminato nulla."
+    },
+    "canceled": {
+      "badge": "Annullato",
+      "title": "Il tuo abbonamento è terminato",
+      "body": "La tua pagina di prenotazione non accetta nuove prenotazioni. Tutti i tuoi dati sono ancora qui. Abbonati di nuovo per riaprirla all’istante."
+    },
+    "noPlan": {
+      "badge": "Nessun piano",
+      "title": "La tua prova gratuita è terminata",
+      "body": "Al momento la tua pagina di prenotazione non accetta nuove prenotazioni, ma tutto ciò che hai configurato è ancora qui. Abbonati per riaprirla all’istante.",
+      "bodyEnded": "È terminata il {date}. Al momento la tua pagina di prenotazione non accetta nuove prenotazioni, ma tutto ciò che hai configurato è ancora qui. Abbonati per riaprirla all’istante."
+    }
+  },
+  "notConfigured": {
+    "title": "La fatturazione non è ancora configurata su questo server",
+    "bodyTrial": "I pagamenti online non sono stati configurati per questa installazione di Hournook, quindi qui non è possibile attivare o modificare abbonamenti. La tua prova gratuita continua a funzionare come descritto sopra.",
+    "bodyAccount": "I pagamenti online non sono stati configurati per questa installazione di Hournook, quindi qui non è possibile attivare o modificare abbonamenti. Il tuo account continua a funzionare come descritto sopra."
+  },
+  "ownerOnly": "Solo il titolare dell’attività può abbonarsi, cambiare il metodo di pagamento o disdire.",
+  "cta": {
+    "subscribe": "Abbonati a {price}",
+    "updatePayment": "Aggiorna metodo di pagamento",
+    "resume": "Riattiva abbonamento",
+    "manage": "Gestisci fatturazione",
+    "updateCard": "Aggiorna carta",
+    "cancel": "Disdici abbonamento",
+    "secure": "Pagherai in sicurezza sulla pagina di pagamento di Stripe e tornerai subito qui."
+  },
+  "included": {
+    "title": "Cosa è incluso",
+    "page": "La tua pagina di prenotazione, codice QR e widget per il sito",
+    "unlimited": "Prenotazioni, clienti e servizi illimitati",
+    "team": "Tutto il tuo team, senza costi per utente",
+    "calendar": "Calendario, disponibilità, festività e giorni liberi",
+    "emails": "Email di conferma e promemoria automatici",
+    "analytics": "Statistiche, esportazioni e registro attività"
+  },
+  "paymentMethod": {
+    "title": "Metodo di pagamento",
+    "notConfigured": "Non disponibile finché la fatturazione non è configurata.",
+    "loadFailed": "Al momento non riusciamo a caricare i dati della tua carta.",
+    "none": "Nessuna carta registrata. La aggiungerai quando ti abboni."
+  },
+  "invoices": {
+    "title": "Fatture",
+    "description": "Dopo ogni pagamento ti inviamo anche la ricevuta via email.",
+    "notConfigured": "Le fatture compariranno qui quando la fatturazione sarà configurata.",
+    "unavailableTitle": "Le fatture non sono disponibili al momento",
+    "unavailableBody": "Non siamo riusciti a contattare Stripe per caricare le tue fatture. Riprova tra poco; il tuo abbonamento non ne risente.",
+    "empty": "Ancora nessuna fattura. Compariranno qui dopo il tuo primo pagamento.",
+    "invoice": "Fattura",
+    "view": "Visualizza",
+    "viewFrom": "fattura del {date}",
+    "status": {
+      "paid": "Pagata",
+      "open": "Da pagare",
+      "void": "Annullata",
+      "uncollectible": "Non pagata",
+      "draft": "Bozza"
+    }
+  },
+  "goodToKnow": {
+    "title": "Buono a sapersi",
+    "fees": "<b>Nessuna commissione sulle prenotazioni.</b> <muted>Un prezzo fisso, per quanto lavoro tu abbia.</muted>",
+    "cancel": "<b>Disdici quando vuoi.</b> <muted>Mantieni l’accesso fino alla fine del periodo pagato.</muted>",
+    "vat": "<b>Potrebbe applicarsi l’IVA</b> <muted>in base a dove ti trovi. È indicata in fattura.</muted>",
+    "data": "<b>I tuoi dati restano tuoi.</b> <muted>Se il piano scade, non viene eliminato nulla. Puoi comunque accedere ed esportare.</muted>"
+  },
+  "stripeUnreachable": "Non siamo riusciti a contattare Stripe. Controlla la connessione e riprova."
+}

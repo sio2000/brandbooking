@@ -1,0 +1,91 @@
+{
+  "title": "Disponibilità",
+  "description": "Quando i clienti possono prenotare. Gli orari di apertura valgono per tutti; i membri del team possono seguirli o avere orari propri al loro interno.",
+  "allTimesIn": "Tutti gli orari sono in {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Orari di chi",
+    "business": "Orari dell’attività"
+  },
+  "weekly": {
+    "title": "Orari di apertura",
+    "description": "I tuoi orari settimanali abituali. Aggiungi una seconda fascia per la pausa pranzo o un turno spezzato.",
+    "staffTitle": "Orario settimanale di {name}",
+    "staffDescription": "Le sue ore prenotabili ogni settimana (sempre entro gli orari di apertura dell’attività).",
+    "followsTitle": "Segue gli orari dell’attività",
+    "followsBody": "{name} è prenotabile ogni volta che l’attività è aperta. Assegnagli un orario proprio se lavora meno ore.",
+    "followsNote": "Parti dagli orari dell’attività e modificali. Le ore fuori dagli orari di apertura non saranno prenotabili.",
+    "useBusiness": "Usa gli orari dell’attività",
+    "endAfterStart": "L’ora di fine deve essere successiva all’ora di inizio.",
+    "overlap": "Le fasce orarie si sovrappongono.",
+    "fixDays": "Prima correggi i giorni evidenziati.",
+    "dayOpen": "{day} aperto",
+    "closed": "Chiuso",
+    "rangeStart": "{day} fascia {n} inizio",
+    "rangeEnd": "{day} fascia {n} fine",
+    "removeRange": "Rimuovi {day} fascia {n}",
+    "addRange": "Aggiungi orari (dopo una pausa)",
+    "copyWeekdays": "Copia da lun a ven",
+    "unsaved": "Modifiche non salvate",
+    "save": "Salva orari"
+  },
+  "closures": {
+    "title": "Festività e chiusure",
+    "description": "Giorni interi in cui sei chiuso. Le festività ricorrenti si ripetono ogni anno.",
+    "staffTitle": "Giorni liberi di {name}",
+    "staffDescription": "Ferie, malattia, formazione.",
+    "from": "Dal",
+    "to": "Al",
+    "label": "Etichetta",
+    "placeholder": "es. Natale",
+    "staffPlaceholder": "es. Ferie",
+    "yearly": "Si ripete ogni anno",
+    "add": "Aggiungi chiusura",
+    "empty": "Nessuna chiusura in programma.",
+    "closed": "Chiuso",
+    "yearlyBadge": "Annuale",
+    "remove": "Rimuovi chiusura",
+    "removeNamed": "Rimuovi {label}"
+  },
+  "special": {
+    "title": "Orari di apertura speciali",
+    "description": "Orari diversi in una data specifica, come un’apertura serale o una giornata corta.",
+    "date": "Data",
+    "opens": "Apre",
+    "closes": "Chiude",
+    "add": "Imposta orari speciali",
+    "empty": "Nessun orario speciale in programma.",
+    "remove": "Rimuovi gli orari speciali del {date}"
+  },
+  "blocks": {
+    "title": "Orari bloccati",
+    "description": "Blocca parte di una giornata per una riunione, una commissione o una consegna. Le prenotazioni esistenti non cambiano.",
+    "date": "Data",
+    "from": "Dalle",
+    "until": "Alle",
+    "reason": "Motivo",
+    "add": "Blocca orario",
+    "addForEveryone": "Blocca orario per tutti",
+    "empty": "Nessun orario bloccato in programma.",
+    "blocked": "Bloccato",
+    "everyone": "tutti",
+    "remove": "Rimuovi blocco"
+  },
+  "toasts": {
+    "saved": "Salvato",
+    "added": "Aggiunto",
+    "blocked": "Bloccato",
+    "removed": "Rimosso",
+    "failed": "Non riuscito"
+  },
+  "actions": {
+    "hoursSaved": "Orari di lavoro salvati",
+    "following": "Ora segue gli orari dell’attività",
+    "closureAdded": "Chiusura aggiunta",
+    "closureRemoved": "Chiusura rimossa",
+    "specialSaved": "Orari speciali salvati",
+    "specialRemoved": "Orari speciali rimossi",
+    "blocked": "Orario bloccato",
+    "blockRemoved": "Blocco rimosso"
+  }
+}

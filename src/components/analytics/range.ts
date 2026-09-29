@@ -23,8 +23,11 @@ export type ResolvedRange = {
   preset: RangePreset
   from: PlainDateString
   to: PlainDateString
-  /** Set when the requested custom range was rejected and we fell back to the default. */
-  invalid?: string
+  /**
+   * Set when the requested custom range was rejected and we fell back to the
+   * default: why (shown as `range.invalid.<reason>`).
+   */
+  invalid?: 'missing' | 'order' | 'tooLong'
 }
 
 /** Turn `?range=&from=&to=` into concrete local dates in the business timezone. */
@@ -59,12 +62,9 @@ export function resolveRange(
     case 'custom': {
       const { from, to } = input
       const fallback = { preset: '30d' as const, from: addDays(today, -29), to: today }
-      if (!isPlainDate(from) || !isPlainDate(to))
-        return { ...fallback, invalid: 'Choose both a start and an end date for a custom range.' }
-      if (compareDates(from, to) > 0)
-        return { ...fallback, invalid: 'The start date must be on or before the end date.' }
-      if (daysBetween(from, to) + 1 > MAX_RANGE_DAYS)
-        return { ...fallback, invalid: `Custom ranges can cover at most ${MAX_RANGE_DAYS} days.` }
+      if (!isPlainDate(from) || !isPlainDate(to)) return { ...fallback, invalid: 'missing' }
+      if (compareDates(from, to) > 0) return { ...fallback, invalid: 'order' }
+      if (daysBetween(from, to) + 1 > MAX_RANGE_DAYS) return { ...fallback, invalid: 'tooLong' }
       return { preset, from, to }
     }
     case '30d':

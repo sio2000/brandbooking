@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { parse, runAction } from '@/server/actions'
 import { requestMeta } from '@/server/request'
 import { requireTenantAction } from '@/server/tenancy/context'
+import { getT } from '@/server/i18n'
 import {
   closureSchema,
   specialHoursSchema,
@@ -30,51 +31,57 @@ function done() {
 }
 
 export async function saveWeeklyHoursAction(input: unknown) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await saveWeeklyHours(ctx, parse(weeklyHoursSchema, input), await requestMeta())
     done()
     return null
-  }, 'Working hours saved')
+  }, t('actions.hoursSaved'))
 }
 
 export async function followBusinessHoursAction(staffId: string) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await followBusinessHours(ctx, z.uuid().parse(staffId), await requestMeta())
     done()
     return null
-  }, 'Now following business hours')
+  }, t('actions.following'))
 }
 
 export async function addClosureAction(input: unknown) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await addClosure(ctx, parse(closureSchema, input), await requestMeta())
     done()
     return null
-  }, 'Closure added')
+  }, t('actions.closureAdded'))
 }
 
 export async function removeClosureAction(id: string) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await removeClosure(ctx, z.uuid().parse(id), await requestMeta())
     done()
     return null
-  }, 'Closure removed')
+  }, t('actions.closureRemoved'))
 }
 
 export async function setSpecialHoursAction(input: unknown) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await setSpecialHours(ctx, parse(specialHoursSchema, input), await requestMeta())
     done()
     return null
-  }, 'Special hours saved')
+  }, t('actions.specialSaved'))
 }
 
 export async function clearSpecialHoursAction(onDate: string, staffId: string | null) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     const v = z
@@ -83,23 +90,25 @@ export async function clearSpecialHoursAction(onDate: string, staffId: string | 
     await clearSpecialHours(ctx, v.onDate, v.staffId)
     done()
     return null
-  }, 'Special hours removed')
+  }, t('actions.specialRemoved'))
 }
 
 export async function addTimeBlockAction(input: unknown) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await addTimeBlock(ctx, parse(timeBlockSchema, input), await requestMeta())
     done()
     return null
-  }, 'Time blocked')
+  }, t('actions.blocked'))
 }
 
 export async function removeTimeBlockAction(id: string) {
+  const t = await getT('app-availability')
   return runAction(async () => {
     const ctx = await requireTenantAction([...PERMS])
     await removeTimeBlock(ctx, z.uuid().parse(id))
     done()
     return null
-  }, 'Block removed')
+  }, t('actions.blockRemoved'))
 }

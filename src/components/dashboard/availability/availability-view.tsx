@@ -12,8 +12,9 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { toast } from '@/components/ui/toaster'
+import { useLocale, useT } from '@/components/i18n/provider'
 import { cn } from '@/lib/utils'
-import { formatDateTime, formatMinutesOfDay, formatPlainDate } from '@/lib/format'
+import { formatDateTime, formatMinutesOfDay, formatPlainDate, formatTime } from '@/lib/format'
 import {
   addClosureAction,
   addTimeBlockAction,
@@ -50,7 +51,12 @@ type Props = {
   }>
 }
 
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+/** Weekday names in the page language, Monday first (weekday 1 = Monday, as stored). */
+function weekdayNames(tag: string) {
+  const f = new Intl.DateTimeFormat(tag, { weekday: 'long', timeZone: 'UTC' })
+  // 1 Jan 2024 was a Monday.
+  return Array.from({ length: 7 }, (_, i) => f.format(new Date(Date.UTC(2024, 0, 1 + i))))
+}
 const toTime = (m: number) =>
   m >= 1440
     ? '24:00'
@@ -62,6 +68,7 @@ const fromTime = (t: string) => {
 }
 
 export function AvailabilityView(p: Props) {
+  const t = useT('app-availability')
   const router = useRouter()
   const pathname = usePathname()
   const sel = p.selectedStaffId
@@ -75,11 +82,11 @@ export function AvailabilityView(p: Props) {
         <div
           className="-mx-4 flex scrollbar-thin gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:px-0"
           role="tablist"
-          aria-label="Whose schedule"
+          aria-label={t('tabs.label')}
         >
           {p.manageAll && (
             <TabPill active={sel === null} onClick={() => router.push(pathname)}>
-              Business hours
+              {t('tabs.business')}
             </TabPill>
           )}
           {p.staff.map((s) => (
@@ -97,28 +104,23 @@ export function AvailabilityView(p: Props) {
 
       {sel && followsBusiness ? (
         <Card>
-          <CardHeader title={`${selStaff!.name}’s weekly schedule`} />
+          <CardHeader title={t('weekly.staffTitle', { name: selStaff!.name })} />
           <CardBody className="grid gap-4">
-            <Alert tone="info" title="Follows your business hours">
-              {selStaff!.name} is bookable whenever the business is open. Give them their own
-              schedule if they work fewer hours.
+            <Alert tone="info" title={t('weekly.followsTitle')}>
+              {t('weekly.followsBody', { name: selStaff!.name })}
             </Alert>
             <WeeklyEditor
               staffId={sel}
               initial={groupWeekly(p.weekly.filter((w) => w.staffId === null))}
-              note="Start from the business hours and adjust. Hours outside business opening hours won’t be bookable."
+              note={t('weekly.followsNote')}
             />
           </CardBody>
         </Card>
       ) : (
         <Card>
           <CardHeader
-            title={sel ? `${selStaff?.name}’s weekly schedule` : 'Opening hours'}
-            description={
-              sel
-                ? 'Their bookable hours each week (always within business opening hours).'
-                : 'Your regular weekly hours. Add a second time range for a lunch break or split shift.'
-            }
+            title={sel ? t('weekly.staffTitle', { name: selStaff?.name ?? '' }) : t('weekly.title')}
+            description={sel ? t('weekly.staffDescription') : t('weekly.description')}
             action={sel ? <FollowBusinessButton staffId={sel} /> : undefined}
           />
           <CardBody>
@@ -133,7 +135,7 @@ export function AvailabilityView(p: Props) {
       </div>
       <BlocksCard {...p} />
       <p className="text-center text-xs text-subtle-foreground">
-        All times in {p.timezone.replace(/_/g, ' ')}.
+        {t('allTimesIn', { tz: p.timezone.replace(/_/g, ' ') })}
       </p>
     </div>
   )
@@ -166,6 +168,7 @@ function TabPill({
 }
 
 function FollowBusinessButton({ staffId }: { staffId: string }) {
+  const t = useT('app-availability')
   const router = useRouter()
   const [pending, setPending] = React.useState(false)
   return (
@@ -178,12 +181,12 @@ function FollowBusinessButton({ staffId }: { staffId: string }) {
         const r = await followBusinessHoursAction(staffId)
         setPending(false)
         if (r.ok) {
-          toast.success(r.message ?? 'Saved')
+          toast.success(r.message ?? t('toasts.saved'))
           router.refresh()
         } else toast.error(r.error)
       }}
     >
-      Use business hours
+      {t('weekly.useBusiness')}
     </Button>
   )
 }
@@ -209,6 +212,9 @@ function WeeklyEditor({
   initial: Record<number, Range[]>
   note?: string
 }) {
+  const t = useT('app-availability')
+  const { tag } = useLocale()
+  const DAYS = weekdayNames(tag)
   const router = useRouter()
   const [days, setDays] = React.useState(initial)
   const [pending, setPending] = React.useState(false)
@@ -220,13 +226,12 @@ function WeeklyEditor({
   const problems: Record<number, string> = {}
   for (let d = 1; d <= 7; d++) {
     const r = [...(days[d] ?? [])].sort((a, b) => a.start - b.start)
-    if (r.some((x) => x.end <= x.start)) problems[d] = 'End time must be after start time.'
-    else if (r.some((x, i) => i > 0 && x.start < r[i - 1]!.end))
-      problems[d] = 'Time ranges overlap.'
+    if (r.some((x) => x.end <= x.start)) problems[d] = t('weekly.endAfterStart')
+    else if (r.some((x, i) => i > 0 && x.start < r[i - 1]!.end)) problems[d] = t('weekly.overlap')
   }
 
   async function save() {
-    if (Object.keys(problems).length) return setError('Fix the highlighted days first.')
+    if (Object.keys(problems).length) return setError(t('weekly.fixDays'))
     setPending(true)
     setError(null)
     const r = await saveWeeklyHoursAction({
@@ -235,7 +240,7 @@ function WeeklyEditor({
     })
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Saved')
+      toast.success(r.message ?? t('toasts.saved'))
       router.refresh()
     } else setError(r.error)
   }
@@ -256,7 +261,7 @@ function WeeklyEditor({
                   id={`day-${d}`}
                   checked={open}
                   onCheckedChange={(c) => update(d, () => (c ? [{ start: 540, end: 1020 }] : []))}
-                  aria-label={`${label} open`}
+                  aria-label={t('weekly.dayOpen', { day: label })}
                 />
                 <label htmlFor={`day-${d}`} className="font-medium">
                   {label}
@@ -264,7 +269,7 @@ function WeeklyEditor({
               </div>
               <div className="min-w-0 flex-1">
                 {!open ? (
-                  <p className="pt-2 text-sm text-muted-foreground">Closed</p>
+                  <p className="pt-2 text-sm text-muted-foreground">{t('weekly.closed')}</p>
                 ) : (
                   <div className="grid gap-2">
                     <AnimatePresence initial={false}>
@@ -279,7 +284,7 @@ function WeeklyEditor({
                           <Input
                             type="time"
                             step={300}
-                            aria-label={`${label} range ${ri + 1} start`}
+                            aria-label={t('weekly.rangeStart', { day: label, n: ri + 1 })}
                             value={toTime(r.start)}
                             onChange={(e) =>
                               update(d, (rs) =>
@@ -294,7 +299,7 @@ function WeeklyEditor({
                           <Input
                             type="time"
                             step={300}
-                            aria-label={`${label} range ${ri + 1} end`}
+                            aria-label={t('weekly.rangeEnd', { day: label, n: ri + 1 })}
                             value={r.end === 1440 ? '23:59' : toTime(r.end)}
                             onChange={(e) =>
                               update(d, (rs) =>
@@ -317,7 +322,7 @@ function WeeklyEditor({
                             type="button"
                             variant="ghost"
                             size="icon-sm"
-                            aria-label={`Remove ${label} range ${ri + 1}`}
+                            aria-label={t('weekly.removeRange', { day: label, n: ri + 1 })}
                             onClick={() => update(d, (rs) => rs.filter((_, j) => j !== ri))}
                           >
                             <Trash2 />
@@ -342,7 +347,7 @@ function WeeklyEditor({
                           })
                         }
                       >
-                        <Plus className="size-3.5" /> Add hours (after a break)
+                        <Plus className="size-3.5" /> {t('weekly.addRange')}
                       </button>
                       <button
                         type="button"
@@ -355,7 +360,7 @@ function WeeklyEditor({
                           })
                         }
                       >
-                        <Copy className="size-3.5" /> Copy to Mon–Fri
+                        <Copy className="size-3.5" /> {t('weekly.copyWeekdays')}
                       </button>
                     </div>
                   </div>
@@ -366,9 +371,9 @@ function WeeklyEditor({
         })}
       </ul>
       <div className="flex items-center justify-end gap-3">
-        {dirty && <span className="text-[13px] text-muted-foreground">Unsaved changes</span>}
+        {dirty && <span className="text-[13px] text-muted-foreground">{t('weekly.unsaved')}</span>}
         <Button onClick={save} loading={pending} disabled={!dirty}>
-          Save hours
+          {t('weekly.save')}
         </Button>
       </div>
     </div>
@@ -376,6 +381,8 @@ function WeeklyEditor({
 }
 
 function ClosuresCard(p: Props) {
+  const t = useT('app-availability')
+  const { tag } = useLocale()
   const router = useRouter()
   const list = p.closures.filter((c) =>
     p.selectedStaffId ? c.staffId === p.selectedStaffId : c.staffId === null,
@@ -387,12 +394,8 @@ function ClosuresCard(p: Props) {
   return (
     <Card>
       <CardHeader
-        title={who ? `${who}’s days off` : 'Holidays & closures'}
-        description={
-          who
-            ? 'Vacation, sick days, training.'
-            : 'Whole days you’re closed. Recurring holidays repeat every year.'
-        }
+        title={who ? t('closures.staffTitle', { name: who }) : t('closures.title')}
+        description={who ? t('closures.staffDescription') : t('closures.description')}
       />
       <CardBody className="grid gap-4">
         <form
@@ -407,7 +410,7 @@ function ClosuresCard(p: Props) {
             })
             setPending(false)
             if (r.ok) {
-              toast.success(r.message ?? 'Added')
+              toast.success(r.message ?? t('toasts.added'))
               setV({ startsOn: '', endsOn: '', label: '', recurringYearly: false })
               setErrors({})
               router.refresh()
@@ -415,7 +418,7 @@ function ClosuresCard(p: Props) {
           }}
         >
           <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="From" htmlFor="cl-from" error={errors.startsOn}>
+            <Field label={t('closures.from')} htmlFor="cl-from" error={errors.startsOn}>
               <Input
                 type="date"
                 value={v.startsOn}
@@ -423,7 +426,7 @@ function ClosuresCard(p: Props) {
                 required
               />
             </Field>
-            <Field label="To" htmlFor="cl-to" optional error={errors.endsOn}>
+            <Field label={t('closures.to')} htmlFor="cl-to" optional error={errors.endsOn}>
               <Input
                 type="date"
                 value={v.endsOn}
@@ -432,11 +435,11 @@ function ClosuresCard(p: Props) {
               />
             </Field>
           </div>
-          <Field label="Label" htmlFor="cl-label" optional>
+          <Field label={t('closures.label')} htmlFor="cl-label" optional>
             <Input
               value={v.label}
               onChange={(e) => setV({ ...v, label: e.target.value })}
-              placeholder={who ? 'e.g. Vacation' : 'e.g. Christmas'}
+              placeholder={who ? t('closures.staffPlaceholder') : t('closures.placeholder')}
               maxLength={120}
             />
           </Field>
@@ -445,7 +448,7 @@ function ClosuresCard(p: Props) {
               checked={v.recurringYearly}
               onCheckedChange={(c) => setV({ ...v, recurringYearly: c === true })}
             />{' '}
-            Repeats every year
+            {t('closures.yearly')}
           </label>
           {errors._form && <p className="text-[13px] font-medium text-danger">{errors._form}</p>}
           <Button
@@ -455,34 +458,36 @@ function ClosuresCard(p: Props) {
             disabled={!v.startsOn}
             className="justify-self-start"
           >
-            <CalendarOff /> Add closure
+            <CalendarOff /> {t('closures.add')}
           </Button>
         </form>
         {list.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No upcoming closures.</p>
+          <p className="text-sm text-muted-foreground">{t('closures.empty')}</p>
         ) : (
           <ul className="divide-y divide-border">
             {list.map((c) => (
               <li key={c.id} className="flex items-center gap-3 py-2.5 text-sm">
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium">{c.label || 'Closed'}</p>
+                  <p className="font-medium">{c.label || t('closures.closed')}</p>
                   <p className="text-[13px] text-muted-foreground">
-                    {formatPlainDate(c.startsOn, 'en', {
+                    {formatPlainDate(c.startsOn, tag, {
                       day: 'numeric',
                       month: 'short',
                       ...(c.recurringYearly ? {} : { year: 'numeric' }),
                     })}
                     {c.endsOn !== c.startsOn &&
-                      ` – ${formatPlainDate(c.endsOn, 'en', { day: 'numeric', month: 'short', ...(c.recurringYearly ? {} : { year: 'numeric' }) })}`}
+                      ` – ${formatPlainDate(c.endsOn, tag, { day: 'numeric', month: 'short', ...(c.recurringYearly ? {} : { year: 'numeric' }) })}`}
                   </p>
                 </div>
                 {c.recurringYearly && (
                   <Badge tone="info">
-                    <Repeat /> Yearly
+                    <Repeat /> {t('closures.yearlyBadge')}
                   </Badge>
                 )}
                 <RemoveButton
-                  label={`Remove ${c.label || 'closure'}`}
+                  label={
+                    c.label ? t('closures.removeNamed', { label: c.label }) : t('closures.remove')
+                  }
                   run={() => removeClosureAction(c.id)}
                 />
               </li>
@@ -495,6 +500,8 @@ function ClosuresCard(p: Props) {
 }
 
 function SpecialHoursCard(p: Props) {
+  const t = useT('app-availability')
+  const { tag } = useLocale()
   const router = useRouter()
   const byDate = new Map<string, Range[]>()
   for (const s of p.special.filter((x) => x.staffId === p.selectedStaffId))
@@ -504,10 +511,7 @@ function SpecialHoursCard(p: Props) {
   const [error, setError] = React.useState<string | null>(null)
   return (
     <Card>
-      <CardHeader
-        title="Special opening hours"
-        description="Different hours on a specific date, like a late opening or a short day."
-      />
+      <CardHeader title={t('special.title')} description={t('special.description')} />
       <CardBody className="grid gap-4">
         <form
           className="grid gap-3 rounded-xl bg-surface-2 p-3"
@@ -521,14 +525,14 @@ function SpecialHoursCard(p: Props) {
             })
             setPending(false)
             if (r.ok) {
-              toast.success(r.message ?? 'Saved')
+              toast.success(r.message ?? t('toasts.saved'))
               setError(null)
               router.refresh()
             } else setError(r.error)
           }}
         >
           <div className="grid gap-3 sm:grid-cols-3">
-            <Field label="Date" htmlFor="sh-date">
+            <Field label={t('special.date')} htmlFor="sh-date">
               <Input
                 type="date"
                 value={v.date}
@@ -536,7 +540,7 @@ function SpecialHoursCard(p: Props) {
                 required
               />
             </Field>
-            <Field label="Opens" htmlFor="sh-start">
+            <Field label={t('special.opens')} htmlFor="sh-start">
               <Input
                 type="time"
                 step={300}
@@ -544,7 +548,7 @@ function SpecialHoursCard(p: Props) {
                 onChange={(e) => setV({ ...v, start: e.target.value })}
               />
             </Field>
-            <Field label="Closes" htmlFor="sh-end">
+            <Field label={t('special.closes')} htmlFor="sh-end">
               <Input
                 type="time"
                 step={300}
@@ -561,25 +565,28 @@ function SpecialHoursCard(p: Props) {
             disabled={!v.date}
             className="justify-self-start"
           >
-            <Sparkles /> Set special hours
+            <Sparkles /> {t('special.add')}
           </Button>
         </form>
         {byDate.size === 0 ? (
-          <p className="text-sm text-muted-foreground">No special hours coming up.</p>
+          <p className="text-sm text-muted-foreground">{t('special.empty')}</p>
         ) : (
           <ul className="divide-y divide-border">
             {[...byDate.entries()].map(([date, ranges]) => (
               <li key={date} className="flex items-center gap-3 py-2.5 text-sm">
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium">{formatPlainDate(date)}</p>
+                  <p className="font-medium">{formatPlainDate(date, tag)}</p>
                   <p className="text-[13px] text-muted-foreground">
                     {ranges
-                      .map((r) => `${formatMinutesOfDay(r.start)} – ${formatMinutesOfDay(r.end)}`)
-                      .join(', ')}
+                      .map(
+                        (r) =>
+                          `${formatMinutesOfDay(r.start, tag)} – ${formatMinutesOfDay(r.end, tag)}`,
+                      )
+                      .join(t('listSeparator'))}
                   </p>
                 </div>
                 <RemoveButton
-                  label={`Remove special hours on ${date}`}
+                  label={t('special.remove', { date: formatPlainDate(date, tag) })}
                   run={() => clearSpecialHoursAction(date, p.selectedStaffId)}
                 />
               </li>
@@ -592,6 +599,8 @@ function SpecialHoursCard(p: Props) {
 }
 
 function BlocksCard(p: Props) {
+  const t = useT('app-availability')
+  const { tag } = useLocale()
   const router = useRouter()
   const list = p.blocks.filter((b) =>
     p.selectedStaffId ? b.staffId === p.selectedStaffId || b.staffId === null : true,
@@ -601,10 +610,7 @@ function BlocksCard(p: Props) {
   const [error, setError] = React.useState<string | null>(null)
   return (
     <Card>
-      <CardHeader
-        title="Blocked time"
-        description="Block part of a day for a meeting, an errand or a delivery. Existing bookings aren’t affected."
-      />
+      <CardHeader title={t('blocks.title')} description={t('blocks.description')} />
       <CardBody className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <form
           className="grid content-start gap-3 rounded-xl bg-surface-2 p-3"
@@ -620,14 +626,14 @@ function BlocksCard(p: Props) {
             })
             setPending(false)
             if (r.ok) {
-              toast.success(r.message ?? 'Blocked')
+              toast.success(r.message ?? t('toasts.blocked'))
               setError(null)
               router.refresh()
             } else setError(r.fields ? (Object.values(r.fields)[0] ?? r.error) : r.error)
           }}
         >
           <div className="grid gap-3 sm:grid-cols-3">
-            <Field label="Date" htmlFor="tb-date">
+            <Field label={t('blocks.date')} htmlFor="tb-date">
               <Input
                 type="date"
                 value={v.date}
@@ -635,7 +641,7 @@ function BlocksCard(p: Props) {
                 required
               />
             </Field>
-            <Field label="From" htmlFor="tb-start">
+            <Field label={t('blocks.from')} htmlFor="tb-start">
               <Input
                 type="time"
                 step={300}
@@ -643,7 +649,7 @@ function BlocksCard(p: Props) {
                 onChange={(e) => setV({ ...v, start: e.target.value })}
               />
             </Field>
-            <Field label="Until" htmlFor="tb-end">
+            <Field label={t('blocks.until')} htmlFor="tb-end">
               <Input
                 type="time"
                 step={300}
@@ -652,7 +658,7 @@ function BlocksCard(p: Props) {
               />
             </Field>
           </div>
-          <Field label="Reason" htmlFor="tb-reason" optional>
+          <Field label={t('blocks.reason')} htmlFor="tb-reason" optional>
             <Input
               value={v.reason}
               onChange={(e) => setV({ ...v, reason: e.target.value })}
@@ -667,11 +673,11 @@ function BlocksCard(p: Props) {
             disabled={!v.date}
             className="justify-self-start"
           >
-            <Ban /> Block time{p.selectedStaffId ? '' : ' for everyone'}
+            <Ban /> {p.selectedStaffId ? t('blocks.add') : t('blocks.addForEveryone')}
           </Button>
         </form>
         {list.length === 0 ? (
-          <p className="text-sm text-muted-foreground">No blocked time coming up.</p>
+          <p className="text-sm text-muted-foreground">{t('blocks.empty')}</p>
         ) : (
           <ul className="divide-y divide-border">
             {list.map((b) => (
@@ -679,19 +685,15 @@ function BlocksCard(p: Props) {
                 <Clock4 className="size-4 text-muted-foreground" aria-hidden />
                 <div className="min-w-0 flex-1">
                   <p className="font-medium">
-                    {formatDateTime(b.startsAt, p.timezone)} –{' '}
-                    {new Intl.DateTimeFormat('en', {
-                      timeZone: p.timezone,
-                      hour: 'numeric',
-                      minute: '2-digit',
-                    }).format(new Date(b.endsAt))}
+                    {formatDateTime(b.startsAt, p.timezone, tag)} –{' '}
+                    {formatTime(b.endsAt, p.timezone, tag)}
                   </p>
                   <p className="text-[13px] text-muted-foreground">
-                    {b.reason || 'Blocked'}
-                    {b.staffId === null ? ' · everyone' : ''}
+                    {b.reason || t('blocks.blocked')}
+                    {b.staffId === null ? ` · ${t('blocks.everyone')}` : ''}
                   </p>
                 </div>
-                <RemoveButton label="Remove block" run={() => removeTimeBlockAction(b.id)} />
+                <RemoveButton label={t('blocks.remove')} run={() => removeTimeBlockAction(b.id)} />
               </li>
             ))}
           </ul>
@@ -708,6 +710,7 @@ function RemoveButton({
   label: string
   run: () => Promise<{ ok: boolean; error?: string; message?: string }>
 }) {
+  const t = useT('app-availability')
   const router = useRouter()
   const [pending, setPending] = React.useState(false)
   return (
@@ -721,9 +724,9 @@ function RemoveButton({
         const r = await run()
         setPending(false)
         if (r.ok) {
-          toast.success(r.message ?? 'Removed')
+          toast.success(r.message ?? t('toasts.removed'))
           router.refresh()
-        } else toast.error(r.error ?? 'Failed')
+        } else toast.error(r.error ?? t('toasts.failed'))
       }}
     >
       <Trash2 />

@@ -70,8 +70,16 @@ export function SettingsGroup({
   )
 }
 
-/** Sticky save bar at the bottom of a settings form. */
-export function SaveBar({ dirty, children }: { dirty: boolean; children: React.ReactNode }) {
+/** Sticky save bar at the bottom of a settings form (labels come from the form's translations). */
+export function SaveBar({
+  dirty,
+  children,
+  labels,
+}: {
+  dirty: boolean
+  children: React.ReactNode
+  labels: { unsaved: string; saved: string }
+}) {
   return (
     <div className={cn('z-10 mt-6', dirty && 'sticky bottom-20 lg:bottom-4')}>
       <div
@@ -83,10 +91,10 @@ export function SaveBar({ dirty, children }: { dirty: boolean; children: React.R
         <p className="text-[13px] text-muted-foreground" aria-live="polite">
           {dirty ? (
             <span className="inline-flex items-center gap-2 font-medium text-foreground">
-              <span className="size-2 rounded-full bg-accent" aria-hidden /> Unsaved changes
+              <span className="size-2 rounded-full bg-accent" aria-hidden /> {labels.unsaved}
             </span>
           ) : (
-            'All changes saved'
+            labels.saved
           )}
         </p>
         <div className="flex items-center gap-2">{children}</div>

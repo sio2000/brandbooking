@@ -1,11 +1,13 @@
 import { PageContainer } from '@/components/dashboard/page-header'
 import { Card } from '@/components/ui/card'
+import { getT } from '@/server/i18n'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export default function Loading() {
+export default async function Loading() {
+  const t = await getT('app-billing')
   return (
     <PageContainer className="max-w-5xl">
-      <div role="status" aria-label="Loading billing">
+      <div role="status" aria-label={t('loading')}>
         <div className="mb-6 grid gap-2 sm:mb-8">
           <Skeleton className="h-8 w-36" />
           <Skeleton className="h-4 w-96 max-w-full" />

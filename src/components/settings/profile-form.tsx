@@ -7,10 +7,31 @@ import { Card, CardBody } from '@/components/ui/card'
 import { Field, FormError } from '@/components/ui/field'
 import { Input, NativeSelect, Textarea } from '@/components/ui/input'
 import { Alert } from '@/components/ui/feedback'
+import { useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
 import { updateProfileAction } from '@/app/app/_actions/settings'
 import { SaveBar, SettingsGroup } from './section'
 import { useActionForm } from './use-action-form'
+import { LanguageSelect } from './language-select'
 import type { Option, OptionGroup } from './locale-data'
+
+/** Stored category values (English, shared with onboarding) → catalogue keys. */
+const CATEGORY_KEYS: Record<string, string> = {
+  'Hair & beauty': 'hairBeauty',
+  Barbershop: 'barbershop',
+  Nails: 'nails',
+  'Spa & massage': 'spaMassage',
+  'Health & therapy': 'healthTherapy',
+  'Fitness & coaching': 'fitnessCoaching',
+  'Medical & dental': 'medicalDental',
+  Consulting: 'consulting',
+  'Education & tutoring': 'educationTutoring',
+  Photography: 'photography',
+  'Pet services': 'petServices',
+  Automotive: 'automotive',
+  'Home services': 'homeServices',
+  Other: 'other',
+}
 
 export type ProfileValues = {
   name: string
@@ -26,6 +47,8 @@ export type ProfileValues = {
   city: string
   postalCode: string
   country: string
+  /** Default language of the public booking page (businesses.locale). */
+  locale: string
 }
 
 const noopSubscribe = () => () => {}
@@ -51,6 +74,7 @@ export function ProfileForm({
   currencies: Option[]
   countries: Option[]
 }) {
+  const t = useT('app-settings')
   const [savedTz, setSavedTz] = React.useState(initial.timezone)
   const form = useActionForm(initial, updateProfileAction, {
     onSuccess: (d) => setSavedTz(d.timezone),
@@ -79,41 +103,41 @@ export function ProfileForm({
         <CardBody className="divide-y divide-border pt-5">
           <SettingsGroup
             id="basics"
-            title="Basics"
-            description="How your business appears on your booking page and in emails to customers."
+            title={t('business.basics.title')}
+            description={t('business.basics.description')}
           >
             <div className="grid grid-cols-1 gap-4">
-              <Field label="Business name" htmlFor="name" error={e.name}>
+              <Field label={t('business.basics.name')} htmlFor="name" error={e.name}>
                 <Input {...text('name')} autoComplete="organization" maxLength={120} required />
               </Field>
               <Field
-                label="Category"
+                label={t('business.basics.category')}
                 htmlFor="category"
                 error={e.category}
                 optional
-                hint="Helps us tailor tips and defaults to your kind of business."
+                hint={t('business.basics.categoryHint')}
               >
                 <NativeSelect {...text('category')}>
-                  <option value="">Choose a category…</option>
+                  <option value="">{t('business.basics.categoryPlaceholder')}</option>
                   {categoryOptions.map((c) => (
                     <option key={c} value={c}>
-                      {c}
+                      {CATEGORY_KEYS[c] ? t(`business.categories.${CATEGORY_KEYS[c]}`) : c}
                     </option>
                   ))}
                 </NativeSelect>
               </Field>
               <Field
-                label="About your business"
+                label={t('business.basics.about')}
                 htmlFor="description"
                 error={e.description}
                 optional
-                hint={`Shown at the top of your booking page. ${v.description.length}/2000`}
+                hint={t('business.basics.aboutHint', { count: v.description.length, max: 2000 })}
               >
                 <Textarea
                   {...text('description')}
                   maxLength={2000}
                   rows={4}
-                  placeholder="A friendly sentence or two about what you do and what customers can expect."
+                  placeholder={t('business.basics.aboutPlaceholder')}
                 />
               </Field>
             </div>
@@ -121,15 +145,15 @@ export function ProfileForm({
 
           <SettingsGroup
             id="time"
-            title="Time & money"
-            description="Your timezone decides how opening hours and appointment times are read. Currency is used for service prices."
+            title={t('business.time.title')}
+            description={t('business.time.description')}
           >
             <div className="grid grid-cols-1 gap-4">
               <Field
-                label="Timezone"
+                label={t('business.time.timezone')}
                 htmlFor="timezone"
                 error={e.timezone}
-                hint="Tip: with the list focused, type a city name to jump to it."
+                hint={t('business.time.timezoneHint')}
               >
                 <NativeSelect {...text('timezone')}>
                   {timezones.map((g) => (
@@ -146,9 +170,10 @@ export function ProfileForm({
               {suggestTz && (
                 <div className="-mt-2 flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground">
                   <LocateFixed className="size-3.5" aria-hidden />
-                  This device is set to{' '}
-                  <span className="font-medium text-foreground">
-                    {suggestTz.replaceAll('_', ' ')}
+                  <span>
+                    {rich(t('business.time.deviceTz', { tz: suggestTz.replaceAll('_', ' ') }), {
+                      b: (c) => <span className="font-medium text-foreground">{c}</span>,
+                    })}
                   </span>
                   <Button
                     type="button"
@@ -157,25 +182,22 @@ export function ProfileForm({
                     className="h-auto text-[13px]"
                     onClick={() => set('timezone', suggestTz)}
                   >
-                    Use it
+                    {t('business.time.useDeviceTz')}
                   </Button>
                 </div>
               )}
               {tzChanged && (
-                <Alert
-                  tone="warning"
-                  title="Changing your timezone changes how opening hours are read"
-                >
-                  Working hours like 9:00–17:00 will mean 9:00–17:00 in{' '}
-                  <strong>{v.timezone.replaceAll('_', ' ')}</strong>. Appointments already booked
-                  keep their exact moment in time, so they may show at a different clock time.
+                <Alert tone="warning" title={t('business.time.tzChangedTitle')}>
+                  {rich(t('business.time.tzChangedBody', { tz: v.timezone.replaceAll('_', ' ') }), {
+                    b: (c) => <strong>{c}</strong>,
+                  })}
                 </Alert>
               )}
               <Field
-                label="Currency"
+                label={t('business.time.currency')}
                 htmlFor="currency"
                 error={e.currency}
-                hint="Changing the currency doesn’t convert existing prices."
+                hint={t('business.time.currencyHint')}
               >
                 <NativeSelect {...text('currency')}>
                   {currencies.map((c) => (
@@ -189,13 +211,28 @@ export function ProfileForm({
           </SettingsGroup>
 
           <SettingsGroup
+            id="language"
+            title={t('business.language.title')}
+            description={t('business.language.description')}
+          >
+            <Field
+              label={t('business.language.label')}
+              htmlFor="locale"
+              error={e.locale}
+              hint={t('business.language.hint')}
+            >
+              <LanguageSelect value={v.locale} onChange={(l) => set('locale', l)} />
+            </Field>
+          </SettingsGroup>
+
+          <SettingsGroup
             id="contact"
-            title="Contact details"
-            description="Shown on your booking page and in confirmation emails. Customer replies to Hournook emails go to this email address."
+            title={t('business.contact.title')}
+            description={t('business.contact.description')}
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field
-                label="Email"
+                label={t('business.contact.email')}
                 htmlFor="email"
                 error={e.email}
                 optional
@@ -206,10 +243,10 @@ export function ProfileForm({
                   type="email"
                   inputMode="email"
                   autoComplete="email"
-                  placeholder="hello@yourbusiness.com"
+                  placeholder={t('business.contact.emailPlaceholder')}
                 />
               </Field>
-              <Field label="Phone" htmlFor="phone" error={e.phone} optional>
+              <Field label={t('business.contact.phone')} htmlFor="phone" error={e.phone} optional>
                 <Input
                   {...text('phone')}
                   type="tel"
@@ -218,13 +255,18 @@ export function ProfileForm({
                   placeholder="+49 30 1234567"
                 />
               </Field>
-              <Field label="Website" htmlFor="website" error={e.website} optional>
+              <Field
+                label={t('business.contact.website')}
+                htmlFor="website"
+                error={e.website}
+                optional
+              >
                 <Input
                   {...text('website')}
                   type="url"
                   inputMode="url"
                   autoComplete="url"
-                  placeholder="yourbusiness.com"
+                  placeholder={t('business.contact.websitePlaceholder')}
                 />
               </Field>
             </div>
@@ -232,12 +274,12 @@ export function ProfileForm({
 
           <SettingsGroup
             id="address"
-            title="Address"
-            description="Where customers come for their appointment. Leave empty if you work remotely or visit customers."
+            title={t('business.address.title')}
+            description={t('business.address.description')}
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               <Field
-                label="Street address"
+                label={t('business.address.line1')}
                 htmlFor="addressLine1"
                 error={e.addressLine1}
                 optional
@@ -246,7 +288,7 @@ export function ProfileForm({
                 <Input {...text('addressLine1')} autoComplete="address-line1" maxLength={200} />
               </Field>
               <Field
-                label="Apartment, suite, floor"
+                label={t('business.address.line2')}
                 htmlFor="addressLine2"
                 error={e.addressLine2}
                 optional
@@ -255,7 +297,7 @@ export function ProfileForm({
                 <Input {...text('addressLine2')} autoComplete="address-line2" maxLength={200} />
               </Field>
               <Field
-                label="Postal code"
+                label={t('business.address.postalCode')}
                 htmlFor="postalCode"
                 error={e.postalCode}
                 optional
@@ -263,18 +305,24 @@ export function ProfileForm({
               >
                 <Input {...text('postalCode')} autoComplete="postal-code" maxLength={20} />
               </Field>
-              <Field label="City" htmlFor="city" error={e.city} optional className="sm:col-span-4">
+              <Field
+                label={t('business.address.city')}
+                htmlFor="city"
+                error={e.city}
+                optional
+                className="sm:col-span-4"
+              >
                 <Input {...text('city')} autoComplete="address-level2" maxLength={100} />
               </Field>
               <Field
-                label="Country"
+                label={t('business.address.country')}
                 htmlFor="country"
                 error={e.country}
                 optional
                 className="sm:col-span-6"
               >
                 <NativeSelect {...text('country')} autoComplete="country">
-                  <option value="">Choose a country…</option>
+                  <option value="">{t('business.address.countryPlaceholder')}</option>
                   {countries.map((c) => (
                     <option key={c.value} value={c.value}>
                       {c.label}
@@ -287,7 +335,10 @@ export function ProfileForm({
         </CardBody>
       </Card>
 
-      <SaveBar dirty={form.dirty}>
+      <SaveBar
+        dirty={form.dirty}
+        labels={{ unsaved: t('saveBar.unsaved'), saved: t('saveBar.saved') }}
+      >
         {form.dirty && (
           <Button
             type="button"
@@ -296,7 +347,7 @@ export function ProfileForm({
             onClick={() => form.reset()}
             disabled={form.pending}
           >
-            Discard
+            {t('saveBar.discard')}
           </Button>
         )}
         <Button
@@ -306,7 +357,7 @@ export function ProfileForm({
           success={form.saved}
           disabled={!form.dirty && !form.pending}
         >
-          Save changes
+          {t('saveBar.save')}
         </Button>
       </SaveBar>
     </form>

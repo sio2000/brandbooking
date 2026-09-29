@@ -1,0 +1,646 @@
+{
+  "layout": {
+    "title": "設定",
+    "description": "{name}、チーム、ご自身のアカウントを管理します。"
+  },
+  "loading": "設定を読み込んでいます",
+  "nav": {
+    "label": "設定",
+    "business": "ビジネス",
+    "booking": "予約",
+    "notifications": "通知",
+    "team": "チーム",
+    "account": "アカウント",
+    "privacy": "プライバシーとデータ",
+    "activity": "アクティビティ"
+  },
+  "common": {
+    "cancel": "キャンセル",
+    "listSeparator": "、"
+  },
+  "form": {
+    "saved": "保存しました",
+    "offline": "サーバーに接続できませんでした。接続を確認して、もう一度お試しください。"
+  },
+  "saveBar": {
+    "unsaved": "未保存の変更があります",
+    "saved": "すべての変更を保存しました",
+    "discard": "破棄",
+    "save": "変更を保存"
+  },
+  "duration": {
+    "zeroMinutes": "0分",
+    "minutes": "{count, plural, other {#分}}",
+    "hours": "{count, plural, other {#時間}}",
+    "hoursMinutes": "{h}時間{m}分",
+    "days": "{count, plural, other {#日}}",
+    "weeks": "{count, plural, other {#週間}}",
+    "months": "{count, plural, other {#か月}}",
+    "years": "{count, plural, other {#年}}",
+    "current": "{label}（現在）",
+    "noMinimum": "制限なし",
+    "everyHour": "1時間ごと",
+    "everyMinutes": "{count, plural, other {#分ごと}}",
+    "upToStart": "開始時刻まで",
+    "before": "{duration}前",
+    "ahead": "{duration}先まで"
+  },
+  "business": {
+    "metaTitle": "ビジネス設定",
+    "title": "ビジネスプロフィール",
+    "description": "お客様が予約ページやメールで目にする基本情報です。",
+    "basics": {
+      "title": "基本情報",
+      "description": "予約ページやお客様へのメールでのビジネスの表示内容です。",
+      "name": "ビジネス名",
+      "category": "カテゴリ",
+      "categoryHint": "業種に合わせたヒントや初期設定をご提案するために使用します。",
+      "categoryPlaceholder": "カテゴリを選択…",
+      "about": "ビジネスの紹介",
+      "aboutHint": "予約ページの上部に表示されます。{count}/{max}",
+      "aboutPlaceholder": "どんなサービスを提供しているか、お客様が何を期待できるかを一言二言で親しみやすく紹介しましょう。"
+    },
+    "categories": {
+      "hairBeauty": "ヘア・ビューティー",
+      "barbershop": "理容室",
+      "nails": "ネイル",
+      "spaMassage": "スパ・マッサージ",
+      "healthTherapy": "健康・セラピー",
+      "fitnessCoaching": "フィットネス・コーチング",
+      "medicalDental": "医療・歯科",
+      "consulting": "コンサルティング",
+      "educationTutoring": "教育・家庭教師",
+      "photography": "写真撮影",
+      "petServices": "ペットサービス",
+      "automotive": "自動車",
+      "homeServices": "出張・ホームサービス",
+      "other": "その他"
+    },
+    "time": {
+      "title": "時刻と通貨",
+      "description": "タイムゾーンによって営業時間や予約時刻の解釈が決まります。通貨はサービス料金に使用されます。",
+      "timezone": "タイムゾーン",
+      "timezoneHint": "ヒント：リストを選択した状態で都市名を入力すると、その項目に移動できます。",
+      "deviceTz": "このデバイスのタイムゾーンは <b>{tz}</b> です",
+      "useDeviceTz": "これを使用",
+      "tzChangedTitle": "タイムゾーンを変更すると営業時間の解釈が変わります",
+      "tzChangedBody": "9:00〜17:00 のような営業時間は <b>{tz}</b> の 9:00〜17:00 として扱われます。すでに入っている予約は正確な時点を保つため、別の時刻で表示される場合があります。",
+      "currency": "通貨",
+      "currencyHint": "通貨を変更しても既存の料金は換算されません。",
+      "regions": {
+        "Africa": "アフリカ",
+        "America": "アメリカ",
+        "Antarctica": "南極",
+        "Arctic": "北極",
+        "Asia": "アジア",
+        "Atlantic": "大西洋",
+        "Australia": "オーストラリア",
+        "Europe": "ヨーロッパ",
+        "Indian": "インド洋",
+        "Pacific": "太平洋",
+        "Other": "その他"
+      }
+    },
+    "language": {
+      "title": "予約ページの言語",
+      "description": "予約ページ、予約ウィジェット、予約確認でお客様に最初に表示される言語です。",
+      "label": "既定の言語",
+      "hint": "お客様はご自身で別の言語に切り替えることもできます。"
+    },
+    "contact": {
+      "title": "連絡先",
+      "description": "予約ページと確認メールに表示されます。Hournook のメールへのお客様からの返信は、このメールアドレスに届きます。",
+      "email": "メールアドレス",
+      "emailPlaceholder": "hello@yourbusiness.com",
+      "phone": "電話番号",
+      "website": "ウェブサイト",
+      "websitePlaceholder": "yourbusiness.com"
+    },
+    "address": {
+      "title": "住所",
+      "description": "お客様が予約時に来店する場所です。リモートで対応する場合や出張する場合は空欄にしてください。",
+      "line1": "番地・建物名",
+      "line2": "部屋番号・階",
+      "postalCode": "郵便番号",
+      "city": "市区町村",
+      "country": "国",
+      "countryPlaceholder": "国を選択…"
+    }
+  },
+  "account": {
+    "metaTitle": "アカウント",
+    "title": "アカウント",
+    "intro": "{email} の個人設定です。あなたは {business} の{role, select, owner {オーナー} manager {マネージャー} other {スタッフ}}です。",
+    "introMany": "{email} の個人設定です。あなたは {business} の{role, select, owner {オーナー} manager {マネージャー} other {スタッフ}}で、合計 {count} 件のビジネスに所属しています。",
+    "profile": {
+      "title": "プロフィール",
+      "description": "チームに表示される情報です。お客様にアカウント情報が表示されることはありません。",
+      "name": "お名前",
+      "nameRequired": "お名前を入力してください。",
+      "email": "メールアドレス",
+      "verified": "確認済み",
+      "notVerified": "未確認",
+      "emailHint": "ログインに使用します。変更するにはサポートにお問い合わせください。",
+      "save": "保存"
+    },
+    "language": {
+      "title": "言語",
+      "description": "ダッシュボードと設定の表示言語です。",
+      "label": "言語",
+      "emailNote": "あなた宛てのメール（新しい予約、チームや請求に関するお知らせ）もこの言語で届きます。",
+      "switching": "言語を切り替えています…",
+      "invalid": "対応している言語から選択してください。"
+    },
+    "password": {
+      "title": "パスワード",
+      "description": "パスワードを変更すると、ほかのすべてのデバイスからログアウトされます。",
+      "current": "現在のパスワード",
+      "new": "新しいパスワード",
+      "newHint": "{min}文字以上。短いフレーズがおすすめです。",
+      "repeat": "新しいパスワード（確認）",
+      "mismatch": "パスワードが一致しません。",
+      "submit": "パスワードを変更",
+      "show": "パスワードを表示",
+      "hide": "パスワードを隠す"
+    },
+    "leave": {
+      "title": "{business} から退出",
+      "description": "このビジネスにアクセスできなくなります。あなたの予約とプロフィールはビジネスに残ります。",
+      "button": "ビジネスから退出",
+      "confirmTitle": "{business} から退出しますか？",
+      "confirmBody": "このビジネスにログインできなくなります。後でオーナーまたはマネージャーが再度招待できます。"
+    },
+    "delete": {
+      "title": "アカウントを削除",
+      "description": "ログイン情報と個人情報を完全に削除します。この操作は元に戻せません。",
+      "ownerTitle": "まだビジネスのオーナーです",
+      "ownerBody": "お客様や予約がオーナー不在にならないよう、オーナーはアカウントを削除する前に、ビジネスを削除するか、設定 → チームで別の人をオーナーにする必要があります。あなたは <b>{businesses}</b> のオーナーです。先に<link>プライバシーとデータ</link>で削除してください。",
+      "body": "所属しているすべてのビジネスから削除されます。あなたが担当した予約はそれぞれのビジネスに残ります。",
+      "button": "アカウントを削除…",
+      "dialogTitle": "アカウントを削除しますか？",
+      "dialogDescription": "確認のためパスワードを入力してください。この操作は元に戻せません。",
+      "password": "パスワード",
+      "passwordRequired": "パスワードを入力してください。",
+      "submit": "アカウントを削除する"
+    }
+  },
+  "booking": {
+    "metaTitle": "予約設定",
+    "title": "予約ルール",
+    "description": "お客様がいつ、どのように予約・変更・キャンセルできるかを決めます。予約ページ全体に適用されます。",
+    "summary": {
+      "text": "お客様は{notice}、最大{days}先まで予約できます。開始時刻は{interval}で表示されます。",
+      "lastMinute": "直前まで",
+      "notice": "{duration}前まで",
+      "onTheHour": "毎正時",
+      "everyMinutes": "{count, plural, other {#分間隔}}"
+    },
+    "window": {
+      "title": "予約を受け付ける期間",
+      "description": "直前の予約で慌てないよう、どれくらい先までカレンダーを公開するかを決めましょう。",
+      "minNotice": "予約締め切り",
+      "minNoticeHint": "予約開始時刻の何分・何時間前までオンライン予約を受け付けるか。",
+      "maxAdvance": "予約可能期間",
+      "maxAdvanceHint": "お客様がどれくらい先まで空き時間を確認できるか。",
+      "startTimes": "開始時刻",
+      "startTimesHint": "15分ごとにすると、お客様には 9:00、9:15、9:30… と表示されます。間隔を長くすると一日のスケジュールがすっきりします。",
+      "limit": "1日あたりのオンライン予約数を制限",
+      "limitDescription": "上限に達すると、その日は満員と表示されます。ご自身で予約を追加することは引き続き可能です。",
+      "maxPerDay": "1日の上限"
+    },
+    "confirm": {
+      "title": "確定方法",
+      "description": "新しい予約をすぐに確定するかどうかを選びます。",
+      "review": "予約ごとに確認してから確定する",
+      "reviewOn": "新しいオンライン予約はリクエストとして届きます。時間は仮押さえされ、承認するとお客様に確認メールが送られます。",
+      "reviewOff": "予約はすぐに確定し、お客様にはすぐに確認メールが届きます。"
+    },
+    "changes": {
+      "title": "キャンセルと日時の変更",
+      "description": "確認メールには、お客様が予約を管理できるリンクが含まれています。お客様ご自身でできることを決めましょう。",
+      "cancel": "お客様がオンラインでキャンセルできる",
+      "cancelOn": "空いた時間は自動的に再び予約可能になります。",
+      "cancelOff": "キャンセルするにはお客様からご連絡いただく必要があります。",
+      "cancelDeadline": "キャンセル期限",
+      "cancelDeadlineHint": "期限を過ぎるとキャンセルボタンが消え、お客様に連絡するよう案内されます。",
+      "reschedule": "お客様がオンラインで日時を変更できる",
+      "rescheduleOn": "新しい空き時間を選ぶと、元の時間は解放されます。",
+      "rescheduleOff": "予約の日時を変更するにはお客様からご連絡いただく必要があります。",
+      "rescheduleDeadline": "日時変更の期限",
+      "rescheduleDeadlineHint": "予約のどれくらい前までお客様が日時を変更できるか。"
+    },
+    "reminders": {
+      "title": "リマインダーメール",
+      "description": "自動リマインダーで無断キャンセルを減らせます。最大{max}件まで選べます。メールアドレスのないお客様には送信されません。",
+      "legend": "リマインダーを送信",
+      "none": "リマインダーは送信されません。",
+      "selected": "{max}件中{count}件を選択：{list}。変更は今後の予約に適用されます。"
+    },
+    "form": {
+      "title": "予約フォーム",
+      "description": "予約時にお客様に入力していただく内容です。",
+      "staff": "スタッフの指名",
+      "staffModes": {
+        "optional": {
+          "title": "お客様が選べる",
+          "body": "お客様はスタッフを指名するか、「指名なし」を選べます。"
+        },
+        "required": {
+          "title": "お客様が必ず選ぶ",
+          "body": "お客様は必ず特定のスタッフを指名します。"
+        },
+        "hidden": {
+          "title": "尋ねない",
+          "body": "空いているスタッフを自動で割り当てます。お客様には選択肢が表示されません。"
+        }
+      },
+      "phone": "電話番号",
+      "phoneModes": {
+        "required": {
+          "title": "必須",
+          "body": "お客様に電話やメッセージで連絡する場合に最適です。"
+        },
+        "optional": {
+          "title": "任意",
+          "body": "お客様は空欄のままにできます。"
+        },
+        "hidden": {
+          "title": "尋ねない",
+          "body": "入力欄は表示されません。"
+        }
+      },
+      "alwaysAsked": "確認メールを送るため、お名前とメールアドレスは常に入力していただきます。"
+    }
+  },
+  "notifications": {
+    "metaTitle": "通知",
+    "mine": {
+      "title": "あなたへの通知",
+      "description": "どんなことを通知するか選べます。この設定はあなたにのみ適用され、スタッフはそれぞれ自分で設定します。",
+      "remindersByManager": "お客様へのリマインダーメールは、オーナーまたはマネージャーが予約設定で設定します。",
+      "verifyEmail": "通知メールを受け取るにはメールアドレスを確認してください。確認するまでは受信トレイにのみ表示されます。"
+    },
+    "customers": {
+      "title": "お客様へのメール",
+      "description": "お客様に自動送信されるメールの見た目です。",
+      "remindersLink": "予約のリマインダーをお探しですか？<link>予約ルール</link>で設定できます。"
+    },
+    "email": {
+      "title": "お客様へのメール",
+      "description": "確認、リマインダー、変更のお知らせは、すべての予約について自動送信されます。",
+      "senderName": "差出人名",
+      "senderNameHint": "お客様の受信トレイに表示される名前です。空欄にすると「{business}」が使われます。",
+      "footer": "メールのフッター",
+      "footerHint": "すべてのメールの末尾に入る短いメモです。駐車場の案内やキャンセルポリシーなど。{count}/{max}",
+      "footerPlaceholder": "建物裏に無料駐車場があります。5分前にお越しください。",
+      "preview": "プレビュー",
+      "inboxPreview": "受信トレイでの表示",
+      "repliesTo": "返信先：{email}",
+      "repliesToNobody": "返信先はまだ設定されていません",
+      "sampleSubject": "ご予約が確定しました",
+      "defaultFooter": "このメールはご予約いただいたためにお送りしています。",
+      "sentBy": "Hournook が {business} に代わって送信しました。",
+      "whyTitle": "メールが Hournook のアドレスから届く理由",
+      "whyBody": "迷惑メールフォルダーに入らないよう、メールは Hournook の認証済みアドレスから、あなたのビジネス名を差出人として送信されます。あなたのドメインから送信しているように装うことはありません。お客様が返信すると、メッセージは <b>{email}</b> に直接届きます。",
+      "whyBodyNoEmail": "迷惑メールフォルダーに入らないよう、メールは Hournook の認証済みアドレスから、あなたのビジネス名を差出人として送信されます。あなたのドメインから送信しているように装うことはありません。お客様が返信すると、メッセージはビジネスのメールアドレスに直接届きます。返信を受け取るには<link>連絡先メールアドレスを追加</link>してください。",
+      "save": "メール設定を保存"
+    },
+    "prefs": {
+      "title": "通知する内容",
+      "descriptionOwn": "ご自身の予約についてのみ通知します。変更は自動で保存されます。",
+      "descriptionAll": "メールで送信され、受信トレイ（ベルのアイコン）にも表示されます。変更は自動で保存されます。",
+      "created": "新しい予約",
+      "createdOwn": "お客様があなたの予約をしたとき。",
+      "createdAll": "お客様がオンラインで予約したとき、またはチームメンバーが予約を追加したとき。",
+      "rescheduled": "日時が変更された予約",
+      "rescheduledOwn": "あなたの予約の日時が変更されたとき。",
+      "rescheduledAll": "予約の日時が変更されたとき。",
+      "cancelled": "キャンセル",
+      "cancelledOwn": "あなたの予約がキャンセルされたとき。",
+      "cancelledAll": "お客様またはチームメンバーが予約をキャンセルしたとき。",
+      "team": "チームの変更",
+      "teamDescription": "誰かが招待を承認してチームに参加したとき。",
+      "billing": "請求",
+      "billingDescription": "支払いの問題やサブスクリプションの変更。オンのままにすることをおすすめします。",
+      "on": "通知をオンにしました",
+      "off": "通知をオフにしました",
+      "saveFailed": "変更を保存できませんでした。接続を確認して、もう一度お試しください。"
+    }
+  },
+  "team": {
+    "metaTitle": "チームとアクセス権",
+    "title": "チームとアクセス権",
+    "description": "同僚を招待して、それぞれのログインで使ってもらえます。予約を受けるだけの人（ログインなし）を追加する場合は、サイドバーの<link>チーム</link>から追加してください。",
+    "roles": {
+      "owner": "オーナー",
+      "manager": "マネージャー",
+      "staff": "スタッフ"
+    },
+    "roleDescriptions": {
+      "owner": "請求、全データのエクスポート、ビジネスの削除を含むすべての操作。",
+      "manager": "請求、ビジネスの削除、全データのエクスポート、お客様データの消去以外のすべての操作。",
+      "staff": "自分の予約、担当したお客様、自分の空き状況のみ。"
+    },
+    "explainer": {
+      "title": "各ロールでできること",
+      "description": "必要最小限のロールを選びましょう。後から変更できます。"
+    },
+    "invite": {
+      "button": "メンバーを招待",
+      "title": "チームに招待",
+      "description": "参加用リンクを記載したメールが届きます。追加料金はかかりません。プランにはチーム全員が含まれます。",
+      "email": "メールアドレス",
+      "emailPlaceholder": "name@example.com",
+      "role": "ロール",
+      "link": "既存のプロフィールと紐付ける",
+      "linkHint": "この方がすでにチーム内にプロフィール（予約や営業時間を含む）をお持ちの場合は、紐付けるとご自身のスケジュールを確認できます。紐付けない場合は、参加時に新しいプロフィールが作成されます。",
+      "newProfile": "新しいプロフィールを作成",
+      "submit": "招待を送信",
+      "sent": "{email} に招待を送信しました",
+      "sentDescription": "リンクの有効期限は7日間です。",
+      "created": "{email} への招待を作成しました",
+      "createdDescription": "現在メールを送信できませんでした。招待を取り消して、後でもう一度招待してください。"
+    },
+    "members": {
+      "title": "メンバー · {count}",
+      "description": "このビジネスにログインできる人です。",
+      "you": "あなた",
+      "profile": "プロフィール：{name}",
+      "joined": "{date}に参加",
+      "actions": "{name} の操作",
+      "changeRole": "ロールを変更",
+      "current": "現在",
+      "makeOwner": "オーナーにする…",
+      "remove": "チームから削除"
+    },
+    "invites": {
+      "title": "保留中の招待",
+      "description": "招待は7日後に期限切れになります。同じアドレスを再度招待すると新しいリンクが送信されます。",
+      "emptyTitle": "保留中の招待はありません",
+      "emptyDescription": "同僚を招待すると、自分のスケジュールを確認し、自分の予約を管理できるようになります。",
+      "expires": "有効期限：{when} · 送信：{sent}",
+      "expired": "期限切れ：{when} · 送信：{sent}",
+      "revoke": "取り消す",
+      "revokeLabel": "{email} への招待を取り消す"
+    },
+    "transfer": {
+      "title": "{name} さんをオーナーにしますか？",
+      "titleGeneric": "オーナー権限を譲渡しますか？",
+      "description": "請求やビジネスの削除を含むすべての権限が付与されます。あなたはマネージャーとしてチームに残ります。元に戻せるのは新しいオーナーだけです。",
+      "confirm": "オーナー権限を譲渡"
+    },
+    "remove": {
+      "title": "{name} さんを削除しますか？",
+      "titleGeneric": "メンバーを削除しますか？",
+      "description": "このビジネスへのアクセス権はすぐに失われます。プロフィール、過去の予約、今後の予約はカレンダーに残るため、後で担当者を変更したりキャンセルしたりできます。"
+    },
+    "toasts": {
+      "roleChanged": "{name} さんを{role, select, manager {マネージャー} owner {オーナー} other {スタッフ}}に変更しました",
+      "revoked": "{email} への招待を取り消しました",
+      "nowOwner": "{name} さんがオーナーになりました",
+      "removed": "{name} さんをチームから削除しました"
+    },
+    "errors": {
+      "staffHasAccount": "このスタッフはすでにアカウントを持っています。",
+      "alreadyOnTeam": "この方はすでにチームのメンバーです。",
+      "profileLinked": "このプロフィールはすでに別のアカウントに紐付けられています。新しい招待を依頼してください。",
+      "alreadyMember": "すでにこのビジネスのメンバーです。"
+    }
+  },
+  "privacy": {
+    "metaTitle": "プライバシーとデータ",
+    "title": "プライバシーとデータ",
+    "description": "データはあなたのものです。いつでもダウンロードでき、保存内容を確認し、お客様からの依頼に対応できます。",
+    "download": {
+      "title": "データをダウンロード",
+      "description": "エクスポートはその場で作成され、アクティビティに記録されます。お客様情報を含むファイルは慎重に取り扱ってください。",
+      "button": "ダウンロード",
+      "ownerOnly": "完全なエクスポートをダウンロードできるのはオーナーのみです。"
+    },
+    "exports": {
+      "all": {
+        "title": "すべて（JSON）",
+        "description": "アカウント全体：プロフィール、サービス、チーム、営業時間、予約ルール、お客様、予約、アクティビティログ。バックアップや他ツールへの移行に使える機械可読形式です。"
+      },
+      "customers": {
+        "title": "お客様（CSV）",
+        "description": "すべてのお客様の連絡先と来店履歴。Excel、Numbers、Google スプレッドシートで開けます。"
+      },
+      "appointments": {
+        "title": "予約（CSV）",
+        "description": "過去12か月と今後12か月のすべての予約。"
+      },
+      "services": {
+        "title": "サービス（CSV）",
+        "description": "所要時間と料金を含むサービスメニュー。"
+      }
+    },
+    "stored": {
+      "title": "保存するデータと保存期間",
+      "description": "Hournook は予約の運営のため、あなたに代わってこれらのデータを処理します。販売したり広告に使用したりすることはありません。",
+      "business": {
+        "what": "ビジネス情報",
+        "detail": "プロフィール、サービス、料金、営業時間、チームのプロフィール、予約ルール。",
+        "keep": "変更または削除するまで。"
+      },
+      "customers": {
+        "what": "お客様",
+        "detail": "氏名、メールアドレス、電話番号、社内メモ、予約履歴。",
+        "keep": "お客様データを消去するか、ビジネスを削除するまで。"
+      },
+      "appointments": {
+        "what": "予約",
+        "detail": "日付、時刻、サービス、スタッフ、ステータス、お客様からのメッセージ。",
+        "keep": "ビジネスを削除するまで。消去したお客様の予約は匿名の記録として残ります。"
+      },
+      "emails": {
+        "what": "メール",
+        "detail": "送信した確認メールとリマインダーの配信ログ。",
+        "keep": "メール本文は180日後に削除され、配信ステータスは残ります。"
+      },
+      "visits": {
+        "what": "予約ページの訪問",
+        "detail": "分析用の匿名のページビューと予約ステップ。Cookie も個人データも使用しません。",
+        "keep": "400日後に削除されます。"
+      },
+      "activity": {
+        "what": "アクティビティログ",
+        "detail": "アカウントで誰が何を変更したか（日時と IP アドレスを含む）。",
+        "keep": "ビジネスを削除するまで。"
+      },
+      "sessions": {
+        "what": "ログインセッション",
+        "detail": "あなたとチームがログインしているデバイス。",
+        "keep": "30日後、またはログアウト時にすぐ失効します。"
+      },
+      "stripe": "サブスクリプションのカード決済は Stripe が処理します。カード番号を閲覧・保存することはありません。<link>プライバシーポリシー</link>の全文をご覧ください。"
+    },
+    "requests": {
+      "title": "お客様からの依頼",
+      "description": "お客様からデータのコピーや削除（忘れられる権利）を求められた場合。",
+      "access": "開示請求",
+      "accessBody": "お客様のページを開くと、そのお客様について保存されているすべての情報（詳細、メモ、すべての予約）を確認でき、お客様に共有できます。",
+      "erasure": "削除請求",
+      "erasureBody": "お客様のページで<b>お客様データを消去</b>を選びます。氏名、メールアドレス、電話番号、メモ、メッセージは完全に削除され、未送信のリマインダーはキャンセルされます。統計が合うよう、予約は匿名の記録として残ります。",
+      "ownerOnly": "お客様データを消去できるのはオーナーのみです。",
+      "goToCustomers": "お客様一覧へ"
+    },
+    "danger": {
+      "title": "危険な操作",
+      "deleteTitle": "このビジネスを削除",
+      "deleteBody": "{business}、その予約ページ、すべてのお客様データと予約データを完全に削除します。チームメンバーはアクセスできなくなります。この操作は元に戻せません。",
+      "deleteBodySubscribed": "{business}、その予約ページ、すべてのお客様データと予約データを完全に削除します。サブスクリプションはすぐに解約されます。チームメンバーはアクセスできなくなります。この操作は元に戻せません。",
+      "button": "ビジネスを削除…",
+      "confirmTitle": "{business} を削除しますか？",
+      "confirmBody": "予約ページ、サービス、チームのプロフィール、お客様、予約、アップロードした画像が完全に削除されます。今後の予約があるお客様には自動で通知されません。",
+      "confirmSubscription": "Hournook のサブスクリプションはすぐに解約されるため、今後請求されることはありません。",
+      "confirmFinal": "この操作は元に戻せません。データが必要になる可能性がある場合は、先にエクスポートをダウンロードしてください。",
+      "confirm": "完全に削除"
+    }
+  },
+  "activity": {
+    "metaTitle": "アクティビティ",
+    "title": "アクティビティ",
+    "description": "{business} の重要な変更の記録です。誰が、何を、いつ行ったかを確認できます。時刻は {tz} で表示されます。",
+    "empty": "アクティビティはまだありません",
+    "emptyDescription": "ビジネス、予約、チームの変更がここに表示されます。",
+    "emptyMore": "これ以上のアクティビティはありません",
+    "emptyMoreDescription": "履歴の最初に到達しました。",
+    "backToLatest": "最新に戻る",
+    "today": "今日",
+    "yesterday": "昨日",
+    "by": "実行者：<actor>{actor}</actor>",
+    "pagination": "ページ送り",
+    "newer": "新しい",
+    "older": "古い",
+    "page": "{page}ページ",
+    "actors": {
+      "formerMember": "以前のチームメンバー",
+      "customer": "お客様",
+      "support": "Hournook サポート",
+      "system": "システム"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {オーナーとして} manager {マネージャーとして} other {スタッフとして}}",
+      "rows": "{count, plural, other {#行}}",
+      "statusNow": "現在：{status}",
+      "attempt": "{n}回目の試行"
+    },
+    "subscriptionStatus": {
+      "trialing": "トライアル中",
+      "active": "有効",
+      "pastDue": "支払い期限超過",
+      "unpaid": "未払い",
+      "canceled": "解約済み",
+      "incomplete": "未完了",
+      "incompleteExpired": "未完了（期限切れ）",
+      "paused": "一時停止中"
+    },
+    "events": {
+      "business": {
+        "created": "ビジネスを作成",
+        "profileUpdated": "ビジネスプロフィールを更新",
+        "brandingUpdated": "ブランディングを更新",
+        "seoUpdated": "SEO 設定を更新",
+        "slugChanged": "予約リンクを変更",
+        "published": "予約ページを公開",
+        "paused": "オンライン予約を一時停止",
+        "unpublished": "予約ページを非公開に",
+        "logoUploaded": "ロゴをアップロード",
+        "coverUploaded": "カバー画像をアップロード",
+        "logoRemoved": "ロゴを削除",
+        "coverRemoved": "カバー画像を削除",
+        "suspended": "Hournook によりアカウントが停止されました",
+        "reactivated": "アカウントを再開",
+        "exported": "データのエクスポートをダウンロード"
+      },
+      "service": {
+        "created": "サービスを追加",
+        "updated": "サービスを編集",
+        "deleted": "サービスを削除"
+      },
+      "staff": {
+        "created": "スタッフを追加",
+        "updated": "スタッフを編集",
+        "deleted": "スタッフを削除",
+        "avatarUploaded": "スタッフの写真を更新"
+      },
+      "appointment": {
+        "created": "予約が入りました",
+        "cancelled": "予約がキャンセルされました",
+        "rescheduled": "予約の日時が変更されました",
+        "confirmed": "予約が確定しました",
+        "completed": "予約が完了しました",
+        "noShow": "無断キャンセルとして記録",
+        "reopened": "予約を再開",
+        "notesUpdated": "予約メモを編集",
+        "edited": "編集済み"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "営業時間を変更",
+        "staffUsesBusinessHours": "スタッフがビジネスの営業時間に従うように変更",
+        "closureAdded": "休業日を追加",
+        "closureRemoved": "休業日を削除",
+        "specialHoursSet": "特別営業時間を設定",
+        "timeBlocked": "時間をブロック"
+      },
+      "settings": {
+        "bookingRulesUpdated": "予約設定を変更",
+        "notificationsUpdated": "通知設定を変更"
+      },
+      "customer": {
+        "created": "お客様を追加",
+        "updated": "お客様情報を編集",
+        "erased": "お客様データを消去"
+      },
+      "team": {
+        "memberInvited": "スタッフを招待",
+        "invitationRevoked": "招待を取り消し",
+        "memberJoined": "スタッフが参加",
+        "roleChanged": "チームのロールを変更",
+        "memberRemoved": "スタッフを削除",
+        "memberLeft": "スタッフが退出",
+        "ownershipTransferred": "オーナー権限を譲渡"
+      },
+      "billing": {
+        "checkoutStarted": "決済を開始",
+        "checkoutCompleted": "サブスクリプションの決済が完了",
+        "subscriptionStatusChanged": "サブスクリプションのステータスが変更",
+        "invoicePaid": "請求書の支払いが完了",
+        "paymentFailed": "支払いに失敗"
+      },
+      "export": {
+        "appointments": "予約をエクスポート",
+        "customers": "お客様をエクスポート",
+        "services": "サービスをエクスポート"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "ビジネスプロフィールを保存しました",
+    "bookingRulesSaved": "予約設定を保存しました",
+    "emailSettingsSaved": "メール設定を保存しました",
+    "prefsSaved": "設定を保存しました",
+    "invitationRevoked": "招待を取り消しました",
+    "roleUpdated": "ロールを更新しました",
+    "memberRemoved": "チームから削除しました",
+    "ownershipTransferred": "オーナー権限を譲渡しました",
+    "nameUpdated": "お名前を更新しました",
+    "languageSaved": "言語を保存しました",
+    "passwordChanged": "パスワードを変更しました。ほかのデバイスからはログアウトしました。",
+    "appointments": {
+      "created": "予約を作成しました",
+      "moved": "予約の日時を変更しました。お客様に通知しました",
+      "confirm": "予約を確定しました",
+      "cancel": "予約をキャンセルしました",
+      "complete": "完了にしました",
+      "noShow": "無断キャンセルとして記録しました",
+      "reopen": "予約を再開しました",
+      "notesSaved": "メモを保存しました"
+    },
+    "customers": {
+      "added": "お客様を追加しました",
+      "updated": "お客様情報を更新しました"
+    }
+  }
+}

@@ -19,6 +19,7 @@ import type { z } from 'zod'
 import type { serviceSchema, staffSchema } from '@/lib/validation/business'
 import { assetUrls, deleteAsset, storeImage, validateImage } from '@/server/storage/images'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
+import { tFor } from './i18n'
 
 // ---------------------------------------------------------------------------
 // Services & categories
@@ -379,7 +380,7 @@ export async function deleteStaff(ctx: TenantContext, id: string, meta: RequestM
   if ((future?.n ?? 0) > 0) {
     throw new AppError('validation', {
       fields: {
-        _form: `This team member has ${future!.n} upcoming appointment(s). Reschedule or cancel them first.`,
+        _form: (await tFor(ctx.user, 'app-staff'))('errors.hasUpcoming', { count: future!.n }),
       },
     })
   }

@@ -7,6 +7,7 @@ import { services } from '@/server/db/schema'
 import { appUrl, isEmailSimulated } from '@/server/env'
 import { OnboardingWizard } from '@/components/onboarding/wizard'
 import { site } from '@/lib/site'
+import { Translations } from '@/components/i18n/translations'
 
 export const metadata: Metadata = { title: 'Set up your booking page', robots: { index: false } }
 
@@ -49,15 +50,18 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
       services: existing,
     }
   }
+  // The wizard's "Delete account" dialog reuses the settings form (app-settings).
   return (
-    <OnboardingWizard
-      userName={session.user.name}
-      emailVerified={session.user.emailVerified}
-      emailSimulated={isEmailSimulated()}
-      email={session.user.email}
-      resume={resume}
-      origin={appUrl('/').replace(/\/$/, '')}
-      trialDays={site.trialDays}
-    />
+    <Translations ns={['app-settings']}>
+      <OnboardingWizard
+        userName={session.user.name}
+        emailVerified={session.user.emailVerified}
+        emailSimulated={isEmailSimulated()}
+        email={session.user.email}
+        resume={resume}
+        origin={appUrl('/').replace(/\/$/, '')}
+        trialDays={site.trialDays}
+      />
+    </Translations>
   )
 }
