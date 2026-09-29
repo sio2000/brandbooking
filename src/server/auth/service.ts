@@ -5,7 +5,7 @@ import { authTokens, businessMembers, users } from '@/server/db/schema'
 import { AppError } from '@/server/errors'
 import { appUrl } from '@/server/env'
 import { burnPasswordCheck, hashPassword, verifyPassword } from './password'
-import { createSession, invalidateUserSessions } from './session'
+import { createSession, invalidateUserSessions, isBootstrapAdmin } from './session'
 import { generateToken, hashToken } from '@/server/security/crypto'
 import { enforceRateLimits, POLICIES, clearRateLimit } from '@/server/security/rate-limit'
 import { audit } from '@/server/audit'
@@ -154,6 +154,20 @@ export async function signIn(input: { email: string; password: string }, meta: R
     }
     throw new AppError('invalid_credentials')
   }
+  // Checked only after the password, so the ban is not revealed to anyone
+  // who doesn't know it.
+  if (user.bannedAt) {
+    await audit(db(), {
+      actor: 'user',
+      actorUserId: user.id,
+      action: 'user.sign_in_refused_banned',
+      entityType: 'user',
+      entityId: user.id,
+      ip: meta.ip,
+      requestId: meta.requestId,
+    })
+    throw new AppError('account_banned')
+  }
   await db()
     .update(users)
     .set({ failedLoginCount: 0, lockedUntil: null, lastLoginAt: new Date() })
@@ -169,7 +183,11 @@ export async function signIn(input: { email: string; password: string }, meta: R
     ip: meta.ip,
     requestId: meta.requestId,
   })
-  return { userId: user.id, session }
+  return {
+    userId: user.id,
+    session,
+    isPlatformAdmin: user.isPlatformAdmin || isBootstrapAdmin(user.email, user.emailVerifiedAt),
+  }
 }
 
 export async function resendVerification(userId: string, meta: RequestMeta) {
@@ -216,16 +234,13 @@ export async function requestPasswordReset(email: string, meta: RequestMeta) {
     [`reset:email:${email}`, POLICIES.passwordResetByEmail],
   ])
   const [user] = await db()
-    .select({ id: users.id, email: users.email })
+    .select({ id: users.id, email: users.email, bannedAt: users.bannedAt })
     .from(users)
     .where(eq(users.email, email))
     .limit(1)
-  if (!user) return
-  const token = await issueToken(user.id, 'password_reset', RESET_TTL_MS)
-  await sendPasswordResetEmail(
-    user.email,
-    appUrl(`/reset-password?token=${encodeURIComponent(token)}`),
-  )
+  // A banned account gets no reset link (the response stays the same).
+  if (!user || user.bannedAt) return
+  await sendPasswordResetLink(user)
   await audit(db(), {
     actor: 'user',
     actorUserId: user.id,
@@ -236,10 +251,25 @@ export async function requestPasswordReset(email: string, meta: RequestMeta) {
   })
 }
 
+/** Issue a one-hour reset link and email it (also used by platform admins). */
+export async function sendPasswordResetLink(user: { id: string; email: string }) {
+  const token = await issueToken(user.id, 'password_reset', RESET_TTL_MS)
+  return sendPasswordResetEmail(
+    user.email,
+    appUrl(`/reset-password?token=${encodeURIComponent(token)}`),
+  )
+}
+
 export async function resetPassword(token: string, newPassword: string, meta: RequestMeta) {
   const problem = passwordProblem(newPassword)
   if (problem) throw new AppError('weak_password', { fields: { password: problem } })
   const userId = await consumeToken(token, 'password_reset')
+  const [account] = await db()
+    .select({ bannedAt: users.bannedAt })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1)
+  if (account?.bannedAt) throw new AppError('account_banned')
   const passwordHash = await hashPassword(newPassword)
   // Resetting via email also proves ownership of the address.
   await db()

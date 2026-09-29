@@ -4,17 +4,19 @@ import type { Locale } from './config'
 import type booking from './messages/en/booking.json'
 import type common from './messages/en/common.json'
 import type email from './messages/en/email.json'
+import type emailBilling from './messages/en/email-billing.json'
 import type errors from './messages/en/errors.json'
 
 export type Catalogues = {
   'booking': typeof booking
   'common': typeof common
   'email': typeof email
+  'email-billing': typeof emailBilling
   'errors': typeof errors
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["booking","common","email","errors"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["booking","common","email","email-billing","errors"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -22,50 +24,65 @@ type Loader = () => Promise<{ default: unknown }>
 export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>> = {
   ar: {
     'common': () => import('./messages/ar/common.json'),
+    'email-billing': () => import('./messages/ar/email-billing.json'),
   },
   de: {
     'common': () => import('./messages/de/common.json'),
+    'email-billing': () => import('./messages/de/email-billing.json'),
   },
   el: {
     'common': () => import('./messages/el/common.json'),
+    'email-billing': () => import('./messages/el/email-billing.json'),
   },
   en: {
     'booking': () => import('./messages/en/booking.json'),
     'common': () => import('./messages/en/common.json'),
     'email': () => import('./messages/en/email.json'),
+    'email-billing': () => import('./messages/en/email-billing.json'),
     'errors': () => import('./messages/en/errors.json'),
   },
   es: {
     'common': () => import('./messages/es/common.json'),
+    'email-billing': () => import('./messages/es/email-billing.json'),
   },
   fr: {
     'common': () => import('./messages/fr/common.json'),
+    'email-billing': () => import('./messages/fr/email-billing.json'),
   },
   hi: {
     'common': () => import('./messages/hi/common.json'),
+    'email-billing': () => import('./messages/hi/email-billing.json'),
   },
   it: {
     'common': () => import('./messages/it/common.json'),
+    'email-billing': () => import('./messages/it/email-billing.json'),
   },
   ja: {
     'common': () => import('./messages/ja/common.json'),
+    'email-billing': () => import('./messages/ja/email-billing.json'),
   },
   nl: {
     'common': () => import('./messages/nl/common.json'),
+    'email-billing': () => import('./messages/nl/email-billing.json'),
   },
   pl: {
     'common': () => import('./messages/pl/common.json'),
+    'email-billing': () => import('./messages/pl/email-billing.json'),
   },
   pt: {
     'common': () => import('./messages/pt/common.json'),
+    'email-billing': () => import('./messages/pt/email-billing.json'),
   },
   ru: {
     'common': () => import('./messages/ru/common.json'),
+    'email-billing': () => import('./messages/ru/email-billing.json'),
   },
   tr: {
     'common': () => import('./messages/tr/common.json'),
+    'email-billing': () => import('./messages/tr/email-billing.json'),
   },
   zh: {
     'common': () => import('./messages/zh/common.json'),
+    'email-billing': () => import('./messages/zh/email-billing.json'),
   },
 }

@@ -322,7 +322,11 @@ export async function syncSubscription(
   const values = {
     stripeCustomerId: customerId,
     stripeSubscriptionId: sub.id,
+    // Any plan price is accepted (the admin price change moves subscribers to
+    // a new Stripe price); what each subscription pays is recorded for MRR.
     stripePriceId: item?.price?.id ?? null,
+    unitAmountCents: item?.price?.unit_amount ?? null,
+    priceCurrency: item?.price?.currency ? item.price.currency.toUpperCase() : null,
     status,
     currentPeriodEnd: item?.current_period_end ? new Date(item.current_period_end * 1000) : null,
     cancelAtPeriodEnd: Boolean(sub.cancel_at_period_end),
@@ -375,5 +379,15 @@ export async function syncSubscription(
       )
     }
   }
-  return { businessId, summary: { subscriptionId: sub.id, status, previous } }
+  return {
+    businessId,
+    summary: {
+      subscriptionId: sub.id,
+      status,
+      previous,
+      priceId: values.stripePriceId,
+      amount: values.unitAmountCents,
+      currency: values.priceCurrency,
+    },
+  }
 }

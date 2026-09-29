@@ -92,6 +92,9 @@ export const users = pgTable('users', {
   // Set at sign-up: acceptance of the Terms of Service (incl. the DPA).
   termsAcceptedAt: tstz('terms_accepted_at'),
   termsVersion: text('terms_version'),
+  // Set by a platform admin: the account cannot sign in (0004_admin).
+  bannedAt: tstz('banned_at'),
+  bannedReason: text('banned_reason'),
   createdAt: tstz('created_at').notNull().defaultNow(),
   updatedAt: tstz('updated_at').notNull().defaultNow(),
 })
@@ -144,6 +147,8 @@ export const businesses = pgTable('businesses', {
   status: businessStatus('status').notNull().default('active'),
   suspendedAt: tstz('suspended_at'),
   suspendedReason: text('suspended_reason'),
+  // 'admin' (suspended directly) or 'owner_ban' (lifted when the owner is unbanned).
+  suspensionSource: text('suspension_source').$type<'admin' | 'owner_ban'>(),
   publishStatus: publishStatus('publish_status').notNull().default('draft'),
   publishedAt: tstz('published_at'),
   pausedMessage: text('paused_message'),
@@ -437,6 +442,9 @@ export const subscriptions = pgTable('subscriptions', {
   trialEnd: tstz('trial_end'),
   lastPaymentFailedAt: tstz('last_payment_failed_at'),
   lastEventAt: tstz('last_event_at'),
+  // What this subscription actually costs per month (from its Stripe price).
+  unitAmountCents: integer('unit_amount_cents'),
+  priceCurrency: char('price_currency', { length: 3 }),
   createdAt: tstz('created_at').notNull().defaultNow(),
   updatedAt: tstz('updated_at').notNull().defaultNow(),
 })
@@ -521,3 +529,35 @@ export const bookingPageEvents = pgTable('booking_page_events', {
   utmCampaign: text('utm_campaign'),
   occurredAt: tstz('occurred_at').notNull().defaultNow(),
 })
+
+/** Monthly plan price history; the newest row is the current price (0004_admin). */
+export const planPrices = pgTable('plan_prices', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  amountCents: integer('amount_cents').notNull(),
+  currency: char('currency', { length: 3 }).notNull(),
+  stripePriceId: text('stripe_price_id').notNull(),
+  livemode: boolean('livemode').notNull().default(false),
+  previousAmountCents: integer('previous_amount_cents'),
+  previousStripePriceId: text('previous_stripe_price_id'),
+  createdAt: tstz('created_at').notNull().defaultNow(),
+  createdBy: uuid('created_by'),
+  effectiveForExistingAt: tstz('effective_for_existing_at').notNull(),
+})
+export type PlanPriceRow = typeof planPrices.$inferSelect
+
+export const planPriceMigrations = pgTable(
+  'plan_price_migrations',
+  {
+    planPriceId: uuid('plan_price_id').notNull(),
+    businessId: uuid('business_id').notNull(),
+    stripeSubscriptionId: text('stripe_subscription_id').notNull(),
+    status: text('status').$type<'pending' | 'done' | 'failed' | 'skipped'>().notNull(),
+    attempts: integer('attempts').notNull().default(0),
+    nextAttemptAt: tstz('next_attempt_at'),
+    lastError: text('last_error'),
+    migratedAt: tstz('migrated_at'),
+    createdAt: tstz('created_at').notNull().defaultNow(),
+    updatedAt: tstz('updated_at').notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.planPriceId, t.businessId] })],
+)

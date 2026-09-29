@@ -48,14 +48,15 @@ export async function signInAction(
   _: ActionResult<null> | null,
   form: FormData,
 ): Promise<ActionResult<null>> {
-  const next = safeRedirectPath(form.get('next'), '/app')
+  // An explicit `next` wins; otherwise platform admins land on /admin.
+  const requested = safeRedirectPath(form.get('next'), '')
   const result = await runAction(async () => {
     const input = parse(signInSchema, form)
-    const { session } = await signIn(input, await requestMeta())
+    const { session, isPlatformAdmin } = await signIn(input, await requestMeta())
     await setSessionCookie(session.token, session.expiresAt)
-    return null
+    return isPlatformAdmin
   })
-  if (result.ok) redirect(next)
+  if (result.ok) redirect(requested || (result.data ? '/admin' : '/app'))
   return result
 }
 

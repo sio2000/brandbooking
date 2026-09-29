@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { requireAdminPage } from '@/server/tenancy/context'
 import Link from 'next/link'
 import { ScrollText } from 'lucide-react'
 import { platformAudit } from '@/server/admin/admin'
@@ -37,6 +38,7 @@ function BusinessLink({ id, name }: { id: string | null; name: string | null }) 
 }
 
 export default async function AdminAuditPage() {
+  await requireAdminPage()
   const rows = await platformAudit(LIMIT)
 
   return (

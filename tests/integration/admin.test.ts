@@ -14,7 +14,6 @@ import {
   isFeatureEnabled,
   listBusinesses,
   listFlags,
-  platformMetrics,
   setBusinessSuspended,
   setSetting,
   systemHealth,
@@ -22,6 +21,7 @@ import {
 } from '@/server/admin/admin'
 import { createPublicBooking, publicAvailability } from '@/server/booking/public'
 import { accessFor } from '@/server/billing/service'
+import { overviewStats } from '@/server/admin/stats'
 import { localToDate } from '@/lib/tz'
 
 const TZ = 'Europe/Athens'
@@ -101,7 +101,7 @@ describe('suspending businesses', () => {
 })
 
 describe('platform overview', () => {
-  it('computes metrics across tenants', async () => {
+  it('computes metrics across tenants, MRR from each subscription’s own price', async () => {
     await db()
       .insert(subscriptions)
       .values([
@@ -110,27 +110,33 @@ describe('platform overview', () => {
           stripeCustomerId: 'cus_a',
           stripeSubscriptionId: 'sub_a',
           status: 'active',
+          unitAmountCents: 1000,
+          priceCurrency: 'EUR',
         },
         {
           businessId: B.ctx.business.id,
           stripeCustomerId: 'cus_b',
           stripeSubscriptionId: 'sub_b',
           status: 'past_due',
+          unitAmountCents: 1200,
+          priceCurrency: 'EUR',
         },
       ])
     await setBusinessSuspended(admin, B.ctx.business.id, true, null, meta())
-    const m = await platformMetrics()
+    const m = await overviewStats()
     expect(m).toMatchObject({
       businesses: 2,
       published: 2,
       suspended: 1,
       users: 3,
-      active_subs: 1,
-      past_due: 1,
+      users7d: 3,
+      banned: 0,
+      paying: 1,
+      pastDue: 1,
       canceled: 0,
-      trialing_app: 0,
-      mrrCents: 2000,
-      currency: 'EUR',
+      trialing: 0,
+      mrr: { mrrCents: 2200, arrCents: 26_400, currency: 'EUR', unpriced: 0, subscriptions: 2 },
+      conversion: { ended: 0, converted: 0, rate: null },
     })
   })
 

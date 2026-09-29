@@ -18,6 +18,7 @@ import {
   Scissors,
   Search,
   Settings,
+  ShieldCheck,
   User,
   UserCog,
   Users,
@@ -99,6 +100,7 @@ export function CommandPaletteProvider({
       ['/app/booking-page', 'Booking page', Globe, can.bookingPage],
       ['/app/settings', 'Settings', Settings, can.settings],
       ['/app/billing', 'Billing', CreditCard, can.billing],
+      ['/admin', 'Admin', ShieldCheck, can.admin],
     ] as Array<[string, string, typeof Home, boolean | undefined]>
   ).filter(([, , , show]) => show)
   // While search results are shown (cmdk filtering is off), keep pages whose

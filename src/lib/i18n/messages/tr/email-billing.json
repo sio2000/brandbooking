@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "Hournook fiyatınız {date} tarihinde değişiyor",
+    "preheader": "Mevcut fiyatınız {date} tarihine kadar geçerli. O zamana kadar istediğiniz zaman iptal edebilirsiniz.",
+    "heading": "Aylık fiyatınız değişiyor",
+    "intro": "Hournook planının fiyatını değiştiriyoruz. {business} için fiyat, KDV dahil aylık {oldPrice} yerine {newPrice} olacak.",
+    "when": "Mevcut fiyatınız {date} tarihine kadar geçerli. Bu tarihten sonra aboneliğiniz yeni fiyattan yenilenir.",
+    "oldLabel": "Mevcut fiyat",
+    "newLabel": "Yeni fiyat",
+    "fromLabel": "Geçerlilik tarihi",
+    "perMonth": "Aylık {price}, KDV dahil",
+    "cancel": "Herhangi bir şey yapmanıza gerek yok. Yeni fiyattan devam etmek istemezseniz, aboneliğinizi {date} tarihinden önce istediğiniz zaman Faturalandırma sayfasından iptal edebilirsiniz.",
+    "cta": "Faturalandırmayı aç",
+    "footer": "Bu e-postayı, Hournook aboneliği olan bir işletmenin sahibi olduğunuz için alıyorsunuz."
+  }
+}

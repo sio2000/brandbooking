@@ -24,7 +24,21 @@ export async function deleteBusiness(ctx: TenantContext, confirmName: string, me
       fields: { confirmName: 'Type the business name exactly to confirm.' },
     })
   }
-  const sub = await getSubscription(ctx.business.id)
+  await purgeBusiness(ctx.business, { actor: 'user', userId: ctx.user.id }, meta)
+}
+
+/**
+ * The deletion itself, shared by the owner's self-service deletion and the
+ * platform admin (deleting a business, or a user together with the
+ * businesses they own): cancel Stripe, keep a platform audit record, delete
+ * the business with all its data, then its stored files.
+ */
+export async function purgeBusiness(
+  business: { id: string; slug: string },
+  by: { actor: 'user' | 'admin'; userId: string; reason?: string | null },
+  meta: RequestMeta,
+) {
+  const sub = await getSubscription(business.id)
   if (
     sub?.stripeSubscriptionId &&
     sub.status &&
@@ -41,19 +55,19 @@ export async function deleteBusiness(ctx: TenantContext, confirmName: string, me
   const assets = await db()
     .select({ variants: uploadedAssets.variants })
     .from(uploadedAssets)
-    .where(eq(uploadedAssets.businessId, ctx.business.id))
+    .where(eq(uploadedAssets.businessId, business.id))
   // Keep a platform-level audit record (business_id null so it survives the cascade).
   await audit(db(), {
     businessId: null,
-    actor: 'user',
-    actorUserId: ctx.user.id,
+    actor: by.actor,
+    actorUserId: by.userId,
     action: 'business.deleted',
     entityType: 'business',
-    entityId: ctx.business.id,
-    metadata: { slug: ctx.business.slug },
+    entityId: business.id,
+    metadata: by.reason ? { slug: business.slug, reason: by.reason } : { slug: business.slug },
     ip: meta.ip,
   })
-  await db().delete(businesses).where(eq(businesses.id, ctx.business.id))
+  await db().delete(businesses).where(eq(businesses.id, business.id))
   for (const a of assets) {
     for (const v of Object.values(a.variants)) {
       await storage()

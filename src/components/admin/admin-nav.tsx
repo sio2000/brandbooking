@@ -5,11 +5,15 @@ import { usePathname } from 'next/navigation'
 import {
   Activity,
   ArrowLeft,
+  BarChart3,
   Building2,
+  Euro,
   Flag,
+  KeyRound,
   LayoutDashboard,
   Menu,
   ScrollText,
+  Users,
 } from 'lucide-react'
 import { Dialog, DialogClose, DialogTrigger, SheetContent } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -19,10 +23,13 @@ import { cn } from '@/lib/utils'
 
 const items = [
   { href: '/admin', label: 'Overview', icon: LayoutDashboard, exact: true },
+  { href: '/admin/stats', label: 'Stats', icon: BarChart3 },
+  { href: '/admin/users', label: 'Users', icon: Users },
   { href: '/admin/businesses', label: 'Businesses', icon: Building2 },
+  { href: '/admin/pricing', label: 'Pricing', icon: Euro },
   { href: '/admin/flags', label: 'Feature flags', icon: Flag },
+  { href: '/admin/health', label: 'Health', icon: Activity },
   { href: '/admin/audit', label: 'Audit log', icon: ScrollText },
-  { href: '/admin/health', label: 'System health', icon: Activity },
 ] as const
 
 function isActive(pathname: string, href: string, exact?: boolean) {
@@ -69,18 +76,37 @@ function NavLinks({ onNavigate }: { onNavigate?: boolean }) {
   )
 }
 
-function Footer({ email, inSheet }: { email: string; inSheet?: boolean }) {
+function Footer({
+  email,
+  inSheet,
+  hasBusiness,
+}: {
+  email: string
+  inSheet?: boolean
+  hasBusiness: boolean
+}) {
+  // An admin without a business of their own goes back to the site, not to onboarding.
   const back = (
     <Link
-      href="/app"
+      href={hasBusiness ? '/app' : '/'}
       className="flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2/70 hover:text-foreground"
     >
       <ArrowLeft className="size-4" aria-hidden />
-      Back to app
+      {hasBusiness ? 'Back to app' : 'Back to site'}
+    </Link>
+  )
+  const account = (
+    <Link
+      href="/admin/account"
+      className="flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface-2/70 hover:text-foreground"
+    >
+      <KeyRound className="size-4" aria-hidden />
+      Your account
     </Link>
   )
   return (
     <div className="grid grid-cols-1 gap-2 border-t border-border pt-3">
+      {inSheet ? <DialogClose asChild>{account}</DialogClose> : account}
       {inSheet ? <DialogClose asChild>{back}</DialogClose> : back}
       <div className="grid grid-cols-1 gap-2 px-2.5">
         <p className="min-w-0 truncate text-xs text-muted-foreground" title={email}>
@@ -98,7 +124,7 @@ function Footer({ email, inSheet }: { email: string; inSheet?: boolean }) {
 }
 
 /** Fixed sidebar on large screens. */
-export function AdminSidebar({ email }: { email: string }) {
+export function AdminSidebar({ email, hasBusiness }: { email: string; hasBusiness: boolean }) {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-border bg-surface px-3 py-4 lg:flex">
       <div className="px-2.5 pb-5">
@@ -107,13 +133,13 @@ export function AdminSidebar({ email }: { email: string }) {
       <nav aria-label="Admin" className="flex-1 overflow-y-auto">
         <NavLinks />
       </nav>
-      <Footer email={email} />
+      <Footer email={email} hasBusiness={hasBusiness} />
     </aside>
   )
 }
 
 /** Sticky top bar with a slide-over menu on small screens. */
-export function AdminTopBar({ email }: { email: string }) {
+export function AdminTopBar({ email, hasBusiness }: { email: string; hasBusiness: boolean }) {
   const pathname = usePathname()
   const current = items.find((it) => isActive(pathname, it.href, 'exact' in it ? it.exact : false))
   return (
@@ -135,7 +161,7 @@ export function AdminTopBar({ email }: { email: string }) {
             <nav aria-label="Admin" className="flex-1">
               <NavLinks onNavigate />
             </nav>
-            <Footer email={email} inSheet />
+            <Footer email={email} hasBusiness={hasBusiness} inSheet />
           </div>
         </SheetContent>
       </Dialog>

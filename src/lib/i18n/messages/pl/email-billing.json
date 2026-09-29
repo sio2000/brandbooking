@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "Cena Hournook zmienia się {date}",
+    "preheader": "Twoja obecna cena obowiązuje do {date}. Do tego czasu możesz w każdej chwili zrezygnować.",
+    "heading": "Twoja miesięczna cena się zmienia",
+    "intro": "Zmieniamy cenę planu Hournook. Dla {business} zmienia się z {oldPrice} na {newPrice} miesięcznie, z VAT.",
+    "when": "Twoja obecna cena obowiązuje do {date}. Potem subskrypcja będzie odnawiana po nowej cenie.",
+    "oldLabel": "Obecna cena",
+    "newLabel": "Nowa cena",
+    "fromLabel": "Obowiązuje od",
+    "perMonth": "{price} miesięcznie, z VAT",
+    "cancel": "Nie musisz nic robić. Jeśli nie chcesz kontynuować po nowej cenie, możesz anulować subskrypcję w dowolnym momencie przed {date} w sekcji Płatności.",
+    "cta": "Otwórz Płatności",
+    "footer": "Otrzymujesz tę wiadomość, ponieważ jesteś właścicielem firmy z subskrypcją Hournook."
+  }
+}

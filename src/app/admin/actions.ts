@@ -4,8 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { inArray } from 'drizzle-orm'
 import { z } from 'zod'
 import { parse, runAction, type ActionResult } from '@/server/actions'
-import { requestMeta } from '@/server/request'
-import { requireAdminAction } from '@/server/tenancy/context'
+import { adminMutation } from '@/server/admin/guard'
 import { deleteFlag, setBusinessSuspended, upsertFlag } from '@/server/admin/admin'
 import { db } from '@/server/db/client'
 import { businesses } from '@/server/db/schema'
@@ -93,15 +92,9 @@ export async function setSuspendedAction(
 ): Promise<ActionResult<null>> {
   return runAction(
     async () => {
-      const session = await requireAdminAction()
+      const { session, meta } = await adminMutation()
       const input = parse(suspendSchema, { id, suspended, reason })
-      await setBusinessSuspended(
-        session,
-        input.id,
-        input.suspended,
-        input.reason || null,
-        await requestMeta(),
-      )
+      await setBusinessSuspended(session, input.id, input.suspended, input.reason || null, meta)
       revalidateAdmin('/admin/businesses', `/admin/businesses/${input.id}`)
       return null
     },
@@ -113,7 +106,7 @@ export async function setSuspendedAction(
 
 export async function upsertFlagAction(formData: FormData): Promise<ActionResult<{ key: string }>> {
   return runAction(async () => {
-    const session = await requireAdminAction()
+    const { session, meta } = await adminMutation()
     const input = parse(flagSchema, formData)
     if (input.businessAllowlist.length) {
       const found = await db()
@@ -130,7 +123,7 @@ export async function upsertFlagAction(formData: FormData): Promise<ActionResult
         })
       }
     }
-    await upsertFlag(session, input, await requestMeta())
+    await upsertFlag(session, input, meta)
     revalidateAdmin('/admin/flags')
     return { key: input.key }
   }, 'Feature flag saved.')
@@ -138,9 +131,9 @@ export async function upsertFlagAction(formData: FormData): Promise<ActionResult
 
 export async function deleteFlagAction(key: string): Promise<ActionResult<null>> {
   return runAction(async () => {
-    const session = await requireAdminAction()
+    const { session, meta } = await adminMutation()
     const parsedKey = parse(flagKeySchema, key)
-    await deleteFlag(session, parsedKey, await requestMeta())
+    await deleteFlag(session, parsedKey, meta)
     revalidateAdmin('/admin/flags')
     return null
   }, 'Feature flag deleted.')

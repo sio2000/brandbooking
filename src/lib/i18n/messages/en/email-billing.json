@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "Your Hournook price changes on {date}",
+    "preheader": "Your current price stays until {date}. You can cancel any time before then.",
+    "heading": "Your monthly price is changing",
+    "intro": "We’re changing the price of the Hournook plan. For {business}, it goes from {oldPrice} to {newPrice} per month, VAT included.",
+    "when": "Your current price stays until {date}. After that, your subscription renews at the new price.",
+    "oldLabel": "Current price",
+    "newLabel": "New price",
+    "fromLabel": "Applies from",
+    "perMonth": "{price} per month, VAT included",
+    "cancel": "There’s nothing you need to do. If you’d rather not continue at the new price, you can cancel your subscription any time before {date} from Billing.",
+    "cta": "Open Billing",
+    "footer": "You’re receiving this because you own a business with a Hournook subscription."
+  }
+}

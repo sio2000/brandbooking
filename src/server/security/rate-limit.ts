@@ -27,6 +27,9 @@ export const POLICIES = {
   inviteByBusiness: { limit: 30, windowSeconds: 24 * 60 * 60 },
   exportByUser: { limit: 20, windowSeconds: 60 * 60 },
   searchByUser: { limit: 120, windowSeconds: 60 },
+  // Platform admin mutations (a stolen admin session can't script mass changes).
+  adminActionByUser: { limit: 60, windowSeconds: 60 },
+  adminPriceChangeByUser: { limit: 5, windowSeconds: 60 * 60 },
 } satisfies Record<string, RateLimitPolicy>
 
 export type RateLimitResult = { ok: boolean; remaining: number; resetAt: Date }

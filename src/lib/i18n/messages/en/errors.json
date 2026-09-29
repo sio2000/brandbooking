@@ -7,6 +7,7 @@
   "conflict": "This was changed by someone else. Refresh and try again.",
   "internal": "Something unexpected happened on our side. Please try again. If it keeps happening, contact support.",
   "invalid_credentials": "That email and password don't match. Check them and try again.",
+  "account_banned": "This account has been suspended. Contact support if you think this is a mistake.",
   "account_locked": "Too many failed sign-in attempts. For your security, sign-in is paused for 15 minutes.",
   "email_taken": "An account with this email already exists. Try signing in instead.",
   "email_not_verified": "Please verify your email address first. We can send you a new link.",

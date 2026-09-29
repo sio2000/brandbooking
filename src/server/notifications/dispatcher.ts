@@ -7,6 +7,7 @@ import { reportError } from '@/server/observability/errors'
 import { emailProvider, EmailSendError } from './providers'
 import { renderBookingEmail, type RenderResult } from './booking-emails'
 import { renderBillingEmail } from './billing-emails'
+import { renderPriceChangeEmail } from './price-change-email'
 import type { TemplateId } from './outbox'
 
 /**
@@ -53,6 +54,10 @@ export async function claimDue(limit: number): Promise<Claimed[]> {
 
 async function render(n: Claimed): Promise<RenderResult> {
   const template = n.template as TemplateId
+  if (template === 'plan_price_change') {
+    if (!n.businessId) return { skip: 'no_business' }
+    return renderPriceChangeEmail(n.businessId, n.recipient, n.payload)
+  }
   if (template.startsWith('billing_')) {
     if (!n.businessId) return { skip: 'no_business' }
     return renderBillingEmail(template, n.businessId, n.recipient)

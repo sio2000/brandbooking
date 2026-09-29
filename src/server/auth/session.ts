@@ -66,6 +66,7 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       emailVerifiedAt: users.emailVerifiedAt,
       isPlatformAdmin: users.isPlatformAdmin,
       locale: users.locale,
+      bannedAt: users.bannedAt,
     })
     .from(sessions)
     .innerJoin(users, eq(users.id, sessions.userId))
@@ -74,7 +75,8 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
   const row = rows[0]
   if (!row) return null
   const now = Date.now()
-  if (row.expiresAt.getTime() <= now) {
+  // Expired, or the account was banned since (banning also deletes sessions).
+  if (row.expiresAt.getTime() <= now || row.bannedAt) {
     await db().delete(sessions).where(eq(sessions.id, id))
     return null
   }

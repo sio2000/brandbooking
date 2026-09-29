@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { requireAdminPage } from '@/server/tenancy/context'
 import { CheckCircle2, CircleOff, Flag, ListChecks } from 'lucide-react'
 import { listFlags } from '@/server/admin/admin'
 import { Badge } from '@/components/ui/badge'
@@ -33,6 +34,7 @@ function FlagState({ enabled, allowlist }: { enabled: boolean; allowlist: number
 }
 
 export default async function AdminFlagsPage() {
+  await requireAdminPage()
   const flags = await listFlags()
 
   return (

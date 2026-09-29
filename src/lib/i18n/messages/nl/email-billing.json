@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "Je Hournook-prijs verandert op {date}",
+    "preheader": "Je huidige prijs blijft tot {date}. Je kunt tot die tijd op elk moment opzeggen.",
+    "heading": "Je maandprijs verandert",
+    "intro": "We passen de prijs van het Hournook-abonnement aan. Voor {business} gaat die van {oldPrice} naar {newPrice} per maand, inclusief btw.",
+    "when": "Je huidige prijs blijft geldig tot {date}. Daarna wordt je abonnement verlengd tegen de nieuwe prijs.",
+    "oldLabel": "Huidige prijs",
+    "newLabel": "Nieuwe prijs",
+    "fromLabel": "Geldt vanaf",
+    "perMonth": "{price} per maand, inclusief btw",
+    "cancel": "Je hoeft niets te doen. Wil je liever niet doorgaan tegen de nieuwe prijs? Dan kun je je abonnement op elk moment vóór {date} opzeggen via Facturering.",
+    "cta": "Facturering openen",
+    "footer": "Je ontvangt deze e-mail omdat je eigenaar bent van een bedrijf met een Hournook-abonnement."
+  }
+}

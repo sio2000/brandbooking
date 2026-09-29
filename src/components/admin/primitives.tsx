@@ -237,6 +237,36 @@ export function ActorBadge({ actor }: { actor: string }) {
   )
 }
 
+/** Account state badges: banned, admin, unverified (icon + text, never colour alone). */
+export function UserBadges({
+  admin,
+  banned,
+  verified,
+}: {
+  admin: boolean
+  banned: boolean
+  verified: boolean
+}) {
+  return (
+    <span className="inline-flex flex-wrap gap-1.5">
+      {banned && (
+        <Badge tone="danger">
+          <XCircle aria-hidden />
+          Banned
+        </Badge>
+      )}
+      {admin && <Badge tone="accent">Admin</Badge>}
+      {!verified && (
+        <Badge tone="warning">
+          <AlertTriangle aria-hidden />
+          Unverified
+        </Badge>
+      )}
+      {!banned && !admin && verified && <Badge tone="success">Active</Badge>}
+    </span>
+  )
+}
+
 /** Definition list for "label: value" detail rows. */
 export function DetailList({
   items,

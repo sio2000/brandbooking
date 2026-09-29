@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { requireAdminPage } from '@/server/tenancy/context'
 import Link from 'next/link'
 import { MailCheck, Webhook } from 'lucide-react'
 import { systemHealth } from '@/server/admin/admin'
@@ -25,6 +26,7 @@ function cronSummary(result: unknown): string | null {
 }
 
 export default async function AdminHealthPage() {
+  await requireAdminPage()
   const h = await systemHealth()
   const checks = assessHealth(h)
   const overall = worstTone(checks)
