@@ -59,6 +59,9 @@ test.describe('auth and onboarding in other languages', () => {
     // The rest of onboarding continues in German.
     await expect(page.getByRole('heading', { name: 'Wann haben Sie geöffnet?' })).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'de-DE')
+    // The language change reloaded the page: wait until it is interactive
+    // (hydrated) before clicking, or the click can land on inert server HTML.
+    await page.waitForLoadState('networkidle')
     await page.getByRole('button', { name: 'Weiter', exact: true }).click()
     await expect(page.getByRole('heading', { name: 'Was können Kunden buchen?' })).toBeVisible()
     await page.getByLabel('Name der Leistung').fill('Haarschnitt')
