@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Política de privacidade",
+    "description": "Que dados pessoais o {brand} trata, porquê, com que fundamento jurídico, quem nos ajuda, durante quanto tempo os conservamos e como exercer os seus direitos ao abrigo do RGPD."
+  },
+  "title": "Política de privacidade",
+  "intro": "Como o {brand} trata dados pessoais ao abrigo do Regulamento Geral sobre a Proteção de Dados da UE (RGPD) e da lei grega 4624/2019, quer gira um negócio no {brand}, quer tenha feito uma marcação num deles.",
+  "s1": {
+    "title": "Quem é o responsável",
+    "p1": "O {brand} é prestado por <provider></provider> («nós»).",
+    "p2": "Para qualquer questão sobre privacidade ou para exercer os seus direitos, escreva para <email>{email}</email>. Não designámos um encarregado da proteção de dados porque a lei não o exige para as nossas atividades; os pedidos relativos à privacidade são tratados diretamente pelo titular do negócio."
+  },
+  "s2": {
+    "title": "Dois papéis: responsável pelo tratamento e subcontratante",
+    "p1": "O {brand} é utilizado por dois grupos de pessoas e o nosso papel é diferente para cada um:",
+    "items": {
+      "i1": "<strong>Os negócios e os membros das suas equipas</strong> que têm uma conta {brand}. Relativamente aos seus dados de conta, faturação, apoio e segurança, somos o <strong>responsável pelo tratamento</strong>. Esta política descreve esse tratamento.",
+      "i2": "<strong>Os clientes desses negócios</strong> que reservam através de uma página de reservas ou que o próprio negócio adiciona. É o negócio que decide para que fins e de que forma estes dados são utilizados; por isso, <strong>o negócio é o responsável pelo tratamento</strong> e nós atuamos como seu <strong>subcontratante</strong> ao abrigo do nosso <dpa>Acordo de tratamento de dados</dpa>. Aplica-se-lhe o aviso de privacidade do próprio negócio."
+    },
+    "p2": "Se fez uma marcação num negócio e pretende consultar, corrigir ou apagar os seus dados, contacte diretamente o negócio; este pode fazê-lo a partir do seu painel. Se nos escrever, encaminharemos o seu pedido para o negócio e ajudá-lo-emos a responder."
+  },
+  "s3": {
+    "title": "Que dados são tratados",
+    "account": {
+      "title": "Dados da conta (somos responsáveis pelo tratamento)",
+      "items": {
+        "i1": "Nome, endereço de e-mail, se o e-mail está verificado, idioma.",
+        "i2": "A sua palavra-passe, armazenada apenas como hash unidirecional com salt, pelo que não a conseguimos ler.",
+        "i3": "Quando e que versão dos nossos termos aceitou no registo.",
+        "i4": "Sessões iniciadas, com endereço IP e tipo de navegador, para manter a sessão iniciada e proteger a sua conta."
+      }
+    },
+    "business": {
+      "title": "Dados do negócio (somos responsáveis pelo tratamento quanto à faturação e subcontratantes quanto ao resto)",
+      "items": {
+        "i1": "Nome, categoria e morada do negócio, contactos que opte por publicar, fuso horário, definições da página de reservas, logótipos e fotografias.",
+        "i2": "Serviços, preços, horários de funcionamento, encerramentos, regras de reserva, pessoal e respetivas funções."
+      }
+    },
+    "customer": {
+      "title": "Dados de clientes e marcações (somos subcontratantes)",
+      "items": {
+        "i1": "Nome, endereço de e-mail e número de telefone da pessoa que faz a reserva, qualquer mensagem que acrescente e notas privadas escritas pelo negócio.",
+        "i2": "Serviço, membro do pessoal, data, hora, duração, preço, estado e histórico de alterações (por exemplo, reagendada ou cancelada, e por quem), e a forma como a reserva foi feita (página de reservas, widget incorporado ou código QR, e um site de referência ou etiqueta de campanha, quando disponíveis)."
+      }
+    },
+    "billing": {
+      "title": "Dados de faturação (somos responsáveis pelo tratamento)",
+      "items": {
+        "i1": "Estado da subscrição e identificadores de cliente e de subscrição da Stripe. Os dados do cartão são introduzidos nas páginas da Stripe; nunca recebemos nem armazenamos números de cartão completos.",
+        "i2": "Faturas e registos de pagamentos exigidos pela legislação fiscal e contabilística."
+      }
+    },
+    "security": {
+      "title": "Registos de segurança e do serviço (somos responsáveis pelo tratamento)",
+      "items": {
+        "i1": "Um registo de auditoria de ações relevantes (por exemplo, inícios de sessão, alterações de definições, exportações e eliminações) com o endereço IP e um identificador do pedido.",
+        "i2": "Contadores de limitação de frequência de curta duração que bloqueiam abusos.",
+        "i3": "Registos técnicos dos servidores mantidos pelo nosso fornecedor de alojamento.",
+        "i4": "Estatísticas da página de reservas: contagens dos passos de reserva (como «página vista» ou «reserva concluída») com uma origem de tráfego. São <strong>sem cookies</strong> e não contêm nomes, contactos, endereços IP nem identificadores de dispositivos."
+      }
+    },
+    "support": {
+      "title": "Apoio",
+      "items": {
+        "i1": "Os e-mails que nos envia e as nossas respostas."
+      }
+    },
+    "p1": "Não compramos dados pessoais, não utilizamos cookies de rastreio nem de publicidade e não utilizamos serviços de análise que criem perfis de visitantes."
+  },
+  "s4": {
+    "title": "Para que os utilizamos e fundamento jurídico",
+    "items": {
+      "i1": "<strong>Prestação do serviço aos negócios:</strong> contas, páginas de reservas, calendário, listas de clientes, funcionalidades de equipa, exportações e e-mails do serviço (verificação, redefinição da palavra-passe, convites, avisos de faturação): necessário para a execução do nosso contrato consigo (art. 6.º, n.º 1, alínea b), do RGPD).",
+      "i2": "<strong>Tratamento de dados de clientes e marcações:</strong> apenas mediante instruções do negócio, ao abrigo do <dpa>Acordo de tratamento</dpa> (art. 28.º do RGPD). O negócio é responsável pelo seu próprio fundamento jurídico.",
+      "i3": "<strong>Faturação e contabilidade:</strong> contrato (art. 6.º, n.º 1, alínea b)) e as nossas obrigações legais nos termos da legislação fiscal e contabilística grega (art. 6.º, n.º 1, alínea c)).",
+      "i4": "<strong>Segurança e prevenção de fraude e abuso:</strong> registos de auditoria, limites de frequência e registos dos servidores: o nosso interesse legítimo em manter seguros o serviço e os seus utilizadores (art. 6.º, n.º 1, alínea f)).",
+      "i5": "<strong>Apoio:</strong> responder às suas mensagens: contrato ou, se não for cliente, o nosso interesse legítimo em responder (art. 6.º, n.º 1, alínea b) ou f)).",
+      "i6": "<strong>Melhoria do {brand}:</strong> utilização de informação agregada e não identificativa sobre a forma como as funcionalidades são utilizadas: o nosso interesse legítimo (art. 6.º, n.º 1, alínea f)).",
+      "i7": "<strong>Ações judiciais e pedidos das autoridades:</strong> quando necessário para a declaração, o exercício ou a defesa de um direito num processo judicial ou para cumprir a lei (art. 6.º, n.º 1, alíneas c) e f))."
+    }
+  },
+  "s5": {
+    "title": "Sem venda, sem publicidade, sem decisões automatizadas",
+    "p1": "Não vendemos nem alugamos dados pessoais, não utilizamos dados de clientes ou de contas para publicidade e não enviamos e-mails de marketing sem o seu consentimento. Não tomamos decisões baseadas exclusivamente no tratamento automatizado, incluindo a definição de perfis, que produzam efeitos na sua esfera jurídica ou que o afetem significativamente de forma similar."
+  },
+  "s6": {
+    "title": "Quem recebe os dados",
+    "p1": "Os dados pessoais apenas são partilhados com os prestadores indicados abaixo, que os tratam segundo as nossas instruções ao abrigo de acordos de tratamento de dados, e apenas na medida em que cada um necessite:",
+    "p2": "A Stripe trata também dados de pagamento como responsável pelo tratamento independente, nos termos da sua própria política de privacidade (por exemplo, para prevenção da fraude e cumprimento da regulamentação financeira). Podemos também divulgar dados a autoridades, tribunais ou consultores profissionais (como o nosso contabilista ou advogado) quando a lei o exija ou permita."
+  },
+  "s7": {
+    "title": "Transferências para fora do EEE",
+    "p1": "Alguns dos nossos prestadores estão sediados nos Estados Unidos ou podem aceder aos dados a partir desse país. Quando os dados pessoais são transferidos para fora do Espaço Económico Europeu, baseamo-nos numa decisão de adequação da Comissão Europeia (para prestadores certificados ao abrigo do Quadro de Privacidade de Dados UE-EUA) ou nas cláusulas contratuais-tipo da Comissão Europeia, em conjunto com as garantias adicionais oferecidas pelos nossos prestadores, como a cifragem em trânsito e em repouso. Pode pedir-nos mais informações sobre estas garantias."
+  },
+  "s8": {
+    "title": "Durante quanto tempo conservamos os dados",
+    "items": {
+      "i1": "<strong>Dados da conta e do negócio</strong>: enquanto a conta existir. Quando uma conta de negócio ou de utilizador é eliminada, os respetivos dados são apagados de imediato dos nossos sistemas em produção e, no prazo de 30 dias, das cópias de segurança do nosso fornecedor de base de dados.",
+      "i2": "<strong>Dados de clientes e marcações</strong>: enquanto o negócio os conservar, até o negócio apagar o cliente ou até o negócio ser eliminado.",
+      "i3": "<strong>Sessões iniciadas</strong>: expiram após 30 dias sem atividade e são depois eliminadas.",
+      "i4": "<strong>Ligações de verificação de e-mail e de redefinição da palavra-passe</strong>: eliminadas 7 dias após expirarem.",
+      "i5": "<strong>E-mails que enviamos</strong>: o conteúdo é apagado após 180 dias. Nos e-mails de marcações, um registo de entrega (destinatário, tipo, estado e data) mantém-se associado à marcação; os registos dos e-mails de conta são eliminados após 180 dias.",
+      "i6": "<strong>Registo de auditoria</strong>: os endereços IP são removidos após 180 dias e as entradas eliminadas após dois anos.",
+      "i7": "<strong>Contadores de limitação de frequência</strong>: eliminados até uma hora após expirarem.",
+      "i8": "<strong>Estatísticas da página de reservas</strong> (anónimas): eliminadas após cerca de 13 meses.",
+      "i9": "<strong>Faturas e registos de faturação</strong>: durante o período exigido pela legislação fiscal e contabilística grega: em regra, cinco anos a contar do fim do exercício fiscal, ou mais se a lei prorrogar esse prazo.",
+      "i10": "<strong>E-mails de apoio</strong>: durante o tempo necessário para tratar o seu pedido e até dois anos depois, salvo se for necessário um prazo mais longo para uma ação judicial."
+    }
+  },
+  "s9": {
+    "title": "Os seus direitos",
+    "p1": "Ao abrigo do RGPD, tem o direito de:",
+    "items": {
+      "i1": "<strong>aceder</strong> aos seus dados pessoais e receber uma cópia;",
+      "i2": "obter a <strong>retificação</strong> de dados inexatos;",
+      "i3": "obter o <strong>apagamento</strong> dos seus dados quando já não houver motivo para os conservar;",
+      "i4": "obter a <strong>limitação</strong> do tratamento em determinados casos;",
+      "i5": "receber os dados que nos forneceu num formato estruturado e de leitura automática (<strong>portabilidade</strong>);",
+      "i6": "<strong>opor-se</strong> a qualquer momento, por motivos relacionados com a sua situação particular, ao tratamento baseado nos nossos interesses legítimos; e",
+      "i7": "retirar qualquer consentimento que tenha dado, sem comprometer o tratamento efetuado antes da retirada."
+    },
+    "p2": "Os negócios podem fazer a maior parte disto por si próprios: editar os dados nas definições, exportar dados a partir do painel e eliminar o negócio ou a conta de utilizador nas definições. Para tudo o resto, escreva para <email>{email}</email>. Respondemos no prazo de um mês (prorrogável por mais dois meses em pedidos complexos, caso em que lhe explicamos o motivo). Poderemos pedir-lhe primeiro que confirme a sua identidade.",
+    "p3": "Tem também o direito de apresentar reclamação a uma autoridade de controlo, em especial no país da UE onde reside ou trabalha ou onde ocorreu a infração. Na Grécia, é a Autoridade Helénica de Proteção de Dados (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Atenas, <authority>www.dpa.gr</authority>. Agradecemos que nos dê primeiro a oportunidade de resolver a sua questão."
+  },
+  "s10": {
+    "title": "É obrigado a fornecer-nos os seus dados?",
+    "p1": "Para criar uma conta precisamos do seu nome, do seu endereço de e-mail e de uma palavra-passe; sem eles não podemos prestar o serviço. Tudo o resto é opcional ou é informação que o seu negócio decide acrescentar."
+  },
+  "s11": {
+    "title": "Segurança",
+    "p1": "Utilizamos ligações cifradas (HTTPS com HSTS), ligações cifradas à base de dados, hash unidirecional robusto das palavras-passe, cookies de sessão que os scripts da página não conseguem ler, separação estrita dos dados de cada negócio, permissões baseadas em funções para os membros da equipa, limitação da frequência de ações sensíveis, uma política de segurança de conteúdos e um registo de auditoria. Os nossos prestadores cifram os dados em repouso. Nenhum serviço online é totalmente seguro; se ocorrer uma violação de dados pessoais, notificá-la-emos à autoridade de controlo no prazo de 72 horas, quando exigido, informaremos os negócios afetados sem demora injustificada e informá-lo-emos diretamente quando a lei o exigir."
+  },
+  "s12": {
+    "title": "Cookies",
+    "p1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão e mantê-la segura, e o armazenamento local do seu navegador para memorizar a sua escolha de tema claro ou escuro. Não utilizamos cookies de análise, de publicidade nem de redes sociais, pelo que não apresentamos um banner de cookies. Consulte a <cookies>política de cookies</cookies> para mais pormenores."
+  },
+  "s13": {
+    "title": "Crianças",
+    "p1": "As contas {brand} destinam-se a negócios e só podem ser criadas por adultos. Não recolhemos intencionalmente dados de crianças para fins próprios. Os negócios que aceitam reservas para crianças (por exemplo, explicações) são responsáveis, enquanto responsáveis pelo tratamento, pela recolha lícita dos seus dados."
+  },
+  "s14": {
+    "title": "Alterações a esta política",
+    "p1": "Atualizaremos esta política quando o nosso tratamento mudar. A data e a versão no topo indicam quando foi alterada pela última vez; em caso de alterações substanciais, informamos também antecipadamente os titulares de contas por e-mail."
+  },
+  "s15": {
+    "title": "Contacto",
+    "p1": "<provider></provider>. E-mail: <email>{email}</email>."
+  }
+}

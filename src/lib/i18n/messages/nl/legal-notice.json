@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Juridische informatie",
+    "description": "Wie {brand} aanbiedt: bedrijfsnaam, adres, fiscaal en registratienummer, en hoe je contact met ons opneemt."
+  },
+  "title": "Juridische informatie",
+  "intro": "Informatie over de aanbieder van {brand}, zoals vereist door het recht van de EU en van Griekenland.",
+  "s1": {
+    "title": "Dienstverlener",
+    "businessName": "Bedrijfsnaam",
+    "legalForm": "Rechtsvorm",
+    "legalFormValue": "Eenmanszaak (ατομική επιχείρηση), Griekenland",
+    "tradingAs": "Handelsnaam",
+    "tradingAsValue": "{tradingName} ({brand} is een product van {tradingName})",
+    "address": "Adres",
+    "email": "E-mail",
+    "vat": "Fiscaal nummer (ΑΦΜ)",
+    "registry": "Handelsregister",
+    "registryValue": "Algemeen Handelsregister van Griekenland (Γ.Ε.ΜΗ.), nr. {gemiNumber}",
+    "website": "Website"
+  },
+  "s2": {
+    "title": "Centraal contactpunt",
+    "p1": "Op grond van de EU-digitaledienstenverordening is ons centrale contactpunt voor gebruikers en voor autoriteiten van EU-lidstaten, de Europese Commissie en de Europese raad voor digitale diensten <email>{email}</email>. Je kunt ons bereiken in het Engels en Grieks. Zie <illegal>Melden van illegale inhoud</illegal> om illegale inhoud te melden."
+  },
+  "s3": {
+    "title": "Juridische documenten",
+    "items": {
+      "i1": "<terms>Servicevoorwaarden</terms>: de overeenkomst met bedrijven die {brand} gebruiken.",
+      "i2": "<dpa>Verwerkersovereenkomst</dpa>: onderdeel van de voorwaarden, artikel 28 AVG.",
+      "i3": "<privacy>Privacybeleid</privacy>: hoe we persoonsgegevens verwerken.",
+      "i4": "<cookies>Cookiebeleid</cookies>: de enige cookies die we gebruiken."
+    }
+  },
+  "s4": {
+    "title": "Geschillen",
+    "p1": "{brand} wordt uitsluitend aan bedrijven aangeboden. We zijn niet verplicht en niet bereid deel te nemen aan geschillenbeslechtingsprocedures voor een geschillencommissie voor consumenten. Heb je een klacht, mail ons dan eerst; we doen ons best om die op te lossen."
+  }
+}

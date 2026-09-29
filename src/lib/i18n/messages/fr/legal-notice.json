@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Mentions légales",
+    "description": "Qui fournit {brand} : dénomination, adresse, numéros fiscal et d’immatriculation, et comment nous contacter."
+  },
+  "title": "Mentions légales",
+  "intro": "Informations sur le fournisseur de {brand}, conformément au droit de l’UE et au droit grec.",
+  "s1": {
+    "title": "Fournisseur du service",
+    "businessName": "Dénomination",
+    "legalForm": "Forme juridique",
+    "legalFormValue": "Entreprise individuelle (ατομική επιχείρηση), Grèce",
+    "tradingAs": "Nom commercial",
+    "tradingAsValue": "{tradingName} ({brand} est un produit de {tradingName})",
+    "address": "Adresse",
+    "email": "E-mail",
+    "vat": "Numéro fiscal (ΑΦΜ)",
+    "registry": "Registre du commerce",
+    "registryValue": "Registre général du commerce de Grèce (Γ.Ε.ΜΗ.), nº {gemiNumber}",
+    "website": "Site web"
+  },
+  "s2": {
+    "title": "Point de contact unique",
+    "p1": "En vertu du règlement de l’UE sur les services numériques, notre point de contact unique pour les utilisateurs ainsi que pour les autorités des États membres de l’UE, la Commission européenne et le Comité européen des services numériques est <email>{email}</email>. Vous pouvez nous contacter en anglais et en grec. Pour signaler un contenu illicite, voir <illegal>Signalement de contenus illicites</illegal>."
+  },
+  "s3": {
+    "title": "Documents juridiques",
+    "items": {
+      "i1": "<terms>Conditions d’utilisation</terms> : le contrat avec les entreprises qui utilisent {brand}.",
+      "i2": "<dpa>Accord de traitement des données</dpa> : partie intégrante des conditions, article 28 du RGPD.",
+      "i3": "<privacy>Politique de confidentialité</privacy> : comment nous traitons les données à caractère personnel.",
+      "i4": "<cookies>Politique relative aux cookies</cookies> : les seuls cookies que nous utilisons."
+    }
+  },
+  "s4": {
+    "title": "Litiges",
+    "p1": "{brand} est proposé exclusivement aux entreprises. Nous ne sommes ni tenus ni disposés à participer à une procédure de règlement des litiges devant une instance de médiation de la consommation. Si vous avez une réclamation, écrivez-nous d’abord par e-mail et nous ferons de notre mieux pour la résoudre."
+  }
+}

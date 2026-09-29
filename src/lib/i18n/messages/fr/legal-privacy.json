@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Politique de confidentialité",
+    "description": "Quelles données à caractère personnel {brand} traite, pourquoi, sur quelle base juridique, qui nous aide, combien de temps nous les conservons et comment exercer vos droits au titre du RGPD."
+  },
+  "title": "Politique de confidentialité",
+  "intro": "Comment {brand} traite les données à caractère personnel conformément au règlement général sur la protection des données de l’UE (RGPD) et à la loi grecque 4624/2019, que vous gériez une entreprise sur {brand} ou que vous ayez pris rendez-vous auprès de l’une d’elles.",
+  "s1": {
+    "title": "Qui est responsable",
+    "p1": "{brand} est fourni par <provider></provider> (« nous »).",
+    "p2": "Pour toute question relative à la protection de vos données ou pour exercer vos droits, écrivez à <email>{email}</email>. Nous n’avons pas désigné de délégué à la protection des données, car la loi ne l’exige pas pour nos activités ; les demandes relatives à la protection des données sont traitées directement par le titulaire de l’entreprise."
+  },
+  "s2": {
+    "title": "Deux rôles : responsable du traitement et sous-traitant",
+    "p1": "{brand} est utilisé par deux groupes de personnes, et notre rôle diffère pour chacun :",
+    "items": {
+      "i1": "<strong>Les entreprises et les membres de leur équipe</strong> qui disposent d’un compte {brand}. Pour leurs données de compte, de facturation, d’assistance et de sécurité, nous sommes le <strong>responsable du traitement</strong>. La présente politique décrit ce traitement.",
+      "i2": "<strong>Les clients de ces entreprises</strong> qui réservent via une page de réservation ou qu’une entreprise ajoute elle-même. L’entreprise décide pourquoi et comment ces données sont utilisées ; <strong>l’entreprise est donc le responsable du traitement</strong> et nous agissons en tant que son <strong>sous-traitant</strong> en vertu de notre <dpa>Accord de traitement des données</dpa>. C’est la politique de confidentialité de l’entreprise qui s’applique à vous."
+    },
+    "p2": "Si vous avez réservé auprès d’une entreprise et souhaitez consulter, corriger ou supprimer vos informations, veuillez contacter directement l’entreprise ; elle peut le faire depuis son tableau de bord. Si vous nous écrivez, nous transmettrons votre demande à l’entreprise et l’aiderons à y répondre."
+  },
+  "s3": {
+    "title": "Quelles données sont traitées",
+    "account": {
+      "title": "Données de compte (nous sommes responsable du traitement)",
+      "items": {
+        "i1": "Nom, adresse e-mail, vérification ou non de l’adresse e-mail, langue.",
+        "i2": "Votre mot de passe, stocké uniquement sous forme de hachage à sens unique salé, de sorte que nous ne pouvons pas le lire.",
+        "i3": "La date à laquelle vous avez accepté nos conditions lors de l’inscription, et leur version.",
+        "i4": "Les sessions de connexion, avec l’adresse IP et le type de navigateur, pour vous garder connecté et protéger votre compte."
+      }
+    },
+    "business": {
+      "title": "Données de l’entreprise (nous sommes responsable du traitement pour la facturation, sous-traitant pour le reste)",
+      "items": {
+        "i1": "Nom, catégorie et adresse de l’entreprise, coordonnées que vous choisissez de publier, fuseau horaire, paramètres de la page de réservation, logos et photos.",
+        "i2": "Prestations, prix, horaires d’ouverture, fermetures, règles de réservation, membres de l’équipe et leurs rôles."
+      }
+    },
+    "customer": {
+      "title": "Données des clients et des rendez-vous (nous sommes sous-traitant)",
+      "items": {
+        "i1": "Nom, adresse e-mail et numéro de téléphone de la personne qui réserve, tout message qu’elle ajoute et les notes privées rédigées par l’entreprise.",
+        "i2": "Prestation, membre de l’équipe, date, heure, durée, prix, statut et historique des modifications (par exemple déplacé ou annulé, et par qui), ainsi que le mode de réservation (page de réservation, widget intégré ou code QR, et site référent ou balise de campagne le cas échéant)."
+      }
+    },
+    "billing": {
+      "title": "Données de facturation (nous sommes responsable du traitement)",
+      "items": {
+        "i1": "Statut de l’abonnement et identifiants de client et d’abonnement Stripe. Les données de carte sont saisies sur les pages de Stripe ; nous ne recevons ni ne stockons jamais de numéros de carte complets.",
+        "i2": "Factures et justificatifs de paiement exigés par la législation fiscale et comptable."
+      }
+    },
+    "security": {
+      "title": "Registres de sécurité et de fonctionnement (nous sommes responsable du traitement)",
+      "items": {
+        "i1": "Un journal d’audit des actions importantes (par exemple connexions, modifications de paramètres, exports et suppressions) avec l’adresse IP et un identifiant de requête.",
+        "i2": "Des compteurs de limitation de débit de courte durée qui bloquent les abus.",
+        "i3": "Des journaux techniques des serveurs tenus par notre hébergeur.",
+        "i4": "Des statistiques de la page de réservation : décomptes des étapes de réservation (comme « page consultée » ou « réservation effectuée ») avec une source de trafic. Elles sont <strong>sans cookies</strong> et ne contiennent ni noms, ni coordonnées, ni adresses IP, ni identifiants d’appareil."
+      }
+    },
+    "support": {
+      "title": "Assistance",
+      "items": {
+        "i1": "Les e-mails que vous nous envoyez et nos réponses."
+      }
+    },
+    "p1": "Nous n’achetons pas de données à caractère personnel, n’utilisons pas de cookies de suivi ou publicitaires et n’utilisons pas de services d’analyse qui établissent le profil des visiteurs."
+  },
+  "s4": {
+    "title": "Pourquoi nous les utilisons et sur quelle base juridique",
+    "items": {
+      "i1": "<strong>Fournir le service aux entreprises :</strong> comptes, pages de réservation, agenda, listes de clients, fonctionnalités d’équipe, exports et e-mails de service (vérification, réinitialisation du mot de passe, invitations, avis de facturation) : nécessaire à l’exécution de notre contrat avec vous (art. 6, par. 1, point b), du RGPD).",
+      "i2": "<strong>Traitement des données des clients et des rendez-vous :</strong> uniquement sur instruction de l’entreprise, en vertu de l’<dpa>Accord de traitement</dpa> (art. 28 du RGPD). L’entreprise est responsable de sa propre base juridique.",
+      "i3": "<strong>Facturation et comptabilité :</strong> contrat (art. 6, par. 1, point b)) et nos obligations légales au titre de la législation fiscale et comptable grecque (art. 6, par. 1, point c)).",
+      "i4": "<strong>Sécurité et prévention de la fraude et des abus :</strong> journaux d’audit, limitation de débit et journaux des serveurs : notre intérêt légitime à assurer la sécurité du service et de ses utilisateurs (art. 6, par. 1, point f)).",
+      "i5": "<strong>Assistance :</strong> répondre à vos messages : contrat ou, si vous n’êtes pas client, notre intérêt légitime à vous répondre (art. 6, par. 1, point b) ou f)).",
+      "i6": "<strong>Amélioration de {brand} :</strong> utilisation d’informations agrégées et non identifiantes sur l’utilisation des fonctionnalités : notre intérêt légitime (art. 6, par. 1, point f)).",
+      "i7": "<strong>Actions en justice et demandes des autorités :</strong> lorsque cela est nécessaire à la constatation, à l’exercice ou à la défense de droits en justice ou pour respecter la loi (art. 6, par. 1, points c) et f))."
+    }
+  },
+  "s5": {
+    "title": "Pas de vente, pas de publicité, pas de décisions automatisées",
+    "p1": "Nous ne vendons ni ne louons de données à caractère personnel, nous n’utilisons pas les données des clients ou des comptes à des fins publicitaires et nous n’envoyons pas d’e-mails marketing sans votre consentement. Nous ne prenons aucune décision fondée exclusivement sur un traitement automatisé, y compris le profilage, produisant des effets juridiques vous concernant ou vous affectant de manière significative de façon similaire."
+  },
+  "s6": {
+    "title": "Qui reçoit les données",
+    "p1": "Les données à caractère personnel ne sont communiquées qu’aux prestataires ci-dessous, qui les traitent sur nos instructions en vertu d’accords de traitement des données, et uniquement dans la mesure nécessaire à chacun :",
+    "p2": "Stripe traite également les données de paiement en tant que responsable du traitement indépendant, conformément à sa propre politique de confidentialité (par exemple pour la prévention de la fraude et le respect de la réglementation financière). Nous pouvons aussi communiquer des données aux autorités, aux tribunaux ou à des conseillers professionnels (tels que notre comptable ou notre avocat) lorsque la loi l’exige ou le permet."
+  },
+  "s7": {
+    "title": "Transferts hors de l’EEE",
+    "p1": "Certains de nos prestataires sont établis aux États-Unis ou peuvent accéder aux données depuis ce pays. Lorsque des données à caractère personnel sont transférées hors de l’Espace économique européen, nous nous appuyons sur une décision d’adéquation de la Commission européenne (pour les prestataires certifiés au titre du cadre de protection des données UE-États-Unis) ou sur les clauses contractuelles types de la Commission européenne, ainsi que sur les garanties supplémentaires offertes par nos prestataires, telles que le chiffrement en transit et au repos. Vous pouvez nous demander plus d’informations sur ces garanties."
+  },
+  "s8": {
+    "title": "Durée de conservation",
+    "items": {
+      "i1": "<strong>Données de compte et d’entreprise</strong> : tant que le compte existe. Lorsqu’un compte d’entreprise ou d’utilisateur est supprimé, ses données sont immédiatement supprimées de nos systèmes en production, puis des sauvegardes de notre fournisseur de base de données sous 30 jours.",
+      "i2": "<strong>Données des clients et des rendez-vous</strong> : aussi longtemps que l’entreprise les conserve, jusqu’à ce que l’entreprise efface le client ou jusqu’à la suppression de l’entreprise.",
+      "i3": "<strong>Sessions de connexion</strong> : expirent après 30 jours d’inactivité, puis sont supprimées.",
+      "i4": "<strong>Liens de vérification d’e-mail et de réinitialisation du mot de passe</strong> : supprimés 7 jours après leur expiration.",
+      "i5": "<strong>E-mails que nous envoyons</strong> : le contenu est effacé après 180 jours. Pour les e-mails de rendez-vous, un enregistrement de remise (destinataire, type, statut et date) reste rattaché au rendez-vous ; les enregistrements des e-mails de compte sont supprimés après 180 jours.",
+      "i6": "<strong>Journal d’audit</strong> : les adresses IP sont supprimées après 180 jours et les entrées après deux ans.",
+      "i7": "<strong>Compteurs de limitation de débit</strong> : supprimés dans l’heure suivant leur expiration.",
+      "i8": "<strong>Statistiques de la page de réservation</strong> (anonymes) : supprimées après environ 13 mois.",
+      "i9": "<strong>Factures et documents de facturation</strong> : aussi longtemps que l’exige la législation fiscale et comptable grecque, soit en général cinq ans à compter de la fin de l’exercice fiscal, davantage si la loi prolonge ce délai.",
+      "i10": "<strong>E-mails d’assistance</strong> : aussi longtemps que nécessaire pour traiter votre demande et jusqu’à deux ans après, sauf si une durée plus longue est nécessaire pour une action en justice."
+    }
+  },
+  "s9": {
+    "title": "Vos droits",
+    "p1": "En vertu du RGPD, vous avez le droit :",
+    "items": {
+      "i1": "d’<strong>accéder</strong> à vos données à caractère personnel et d’en recevoir une copie ;",
+      "i2": "de faire <strong>rectifier</strong> des données inexactes ;",
+      "i3": "de faire <strong>effacer</strong> vos données lorsqu’il n’existe plus de raison de les conserver ;",
+      "i4": "de <strong>limiter</strong> le traitement dans certains cas ;",
+      "i5": "de recevoir les données que vous nous avez fournies dans un format structuré et lisible par machine (<strong>portabilité</strong>) ;",
+      "i6": "de vous <strong>opposer</strong> à tout moment, pour des raisons tenant à votre situation particulière, au traitement fondé sur nos intérêts légitimes ; et",
+      "i7": "de retirer tout consentement donné, sans que cela affecte le traitement effectué avant le retrait."
+    },
+    "p2": "Les entreprises peuvent faire l’essentiel elles-mêmes : modifier leurs informations dans les paramètres, exporter les données depuis le tableau de bord et supprimer l’entreprise ou le compte utilisateur dans les paramètres. Pour toute autre demande, écrivez à <email>{email}</email>. Nous répondons dans un délai d’un mois (prolongeable de deux mois pour les demandes complexes, auquel cas nous vous en indiquons la raison). Nous pouvons d’abord vous demander de confirmer votre identité.",
+    "p3": "Vous avez également le droit d’introduire une réclamation auprès d’une autorité de contrôle, notamment dans le pays de l’UE où vous résidez, où vous travaillez ou où la violation a eu lieu. En Grèce, il s’agit de l’Autorité hellénique de protection des données (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Athènes, <authority>www.dpa.gr</authority>. Nous vous serions reconnaissants de nous donner d’abord la possibilité de répondre à votre préoccupation."
+  },
+  "s10": {
+    "title": "Êtes-vous tenu de nous fournir vos données ?",
+    "p1": "Pour créer un compte, nous avons besoin de votre nom, de votre adresse e-mail et d’un mot de passe ; sans eux, nous ne pouvons pas fournir le service. Tout le reste est facultatif ou constitue des informations que votre entreprise choisit d’ajouter."
+  },
+  "s11": {
+    "title": "Sécurité",
+    "p1": "Nous utilisons des connexions chiffrées (HTTPS avec HSTS), des connexions chiffrées à la base de données, un hachage robuste et à sens unique des mots de passe, des cookies de connexion illisibles par les scripts de la page, une séparation stricte des données de chaque entreprise, des autorisations fondées sur les rôles pour les membres de l’équipe, une limitation du débit des actions sensibles, une politique de sécurité du contenu et un journal d’audit. Nos prestataires chiffrent les données au repos. Aucun service en ligne n’est parfaitement sûr ; en cas de violation de données à caractère personnel, nous la notifierons à l’autorité de contrôle dans les 72 heures lorsque cela est requis, informerons les entreprises concernées dans les meilleurs délais et vous informerons directement lorsque la loi l’exige."
+  },
+  "s12": {
+    "title": "Cookies",
+    "p1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter et sécuriser votre session, ainsi que le stockage local de votre navigateur pour mémoriser votre choix de thème clair ou sombre. Nous n’utilisons aucun cookie d’analyse, publicitaire ou de réseaux sociaux ; nous n’affichons donc pas de bandeau cookies. Consultez la <cookies>politique relative aux cookies</cookies> pour plus de détails."
+  },
+  "s13": {
+    "title": "Enfants",
+    "p1": "Les comptes {brand} sont destinés aux entreprises et ne peuvent être créés que par des adultes. Nous ne collectons pas sciemment de données d’enfants pour nos propres fins. Les entreprises qui prennent des réservations pour des enfants (par exemple du soutien scolaire) sont responsables, en tant que responsables du traitement, de la collecte licite de leurs données."
+  },
+  "s14": {
+    "title": "Modifications de la présente politique",
+    "p1": "Nous mettrons à jour la présente politique lorsque nos traitements évolueront. La date et la version indiquées en haut indiquent sa dernière modification ; pour les modifications substantielles, nous informons également à l’avance les titulaires de compte par e-mail."
+  },
+  "s15": {
+    "title": "Contact",
+    "p1": "<provider></provider>. E-mail : <email>{email}</email>."
+  }
+}

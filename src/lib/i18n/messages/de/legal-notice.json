@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Impressum",
+    "description": "Wer {brand} anbietet: Firmenname, Anschrift, Steuer- und Registernummern und wie Sie uns erreichen."
+  },
+  "title": "Impressum",
+  "intro": "Angaben zum Anbieter von {brand}, wie sie das Recht der EU und Griechenlands verlangt.",
+  "s1": {
+    "title": "Diensteanbieter",
+    "businessName": "Name des Unternehmens",
+    "legalForm": "Rechtsform",
+    "legalFormValue": "Einzelunternehmen (ατομική επιχείρηση), Griechenland",
+    "tradingAs": "Handelsname",
+    "tradingAsValue": "{tradingName} ({brand} ist ein Produkt von {tradingName})",
+    "address": "Anschrift",
+    "email": "E-Mail",
+    "vat": "Steuernummer (ΑΦΜ)",
+    "registry": "Handelsregister",
+    "registryValue": "Allgemeines Handelsregister Griechenlands (Γ.Ε.ΜΗ.), Nr. {gemiNumber}",
+    "website": "Website"
+  },
+  "s2": {
+    "title": "Zentrale Kontaktstelle",
+    "p1": "Nach dem Gesetz über digitale Dienste der EU ist unsere zentrale Kontaktstelle für Nutzer sowie für Behörden der EU-Mitgliedstaaten, die Europäische Kommission und das Europäische Gremium für digitale Dienste <email>{email}</email>. Sie erreichen uns auf Englisch und Griechisch. Zur Meldung rechtswidriger Inhalte siehe <illegal>Meldung rechtswidriger Inhalte</illegal>."
+  },
+  "s3": {
+    "title": "Rechtliche Dokumente",
+    "items": {
+      "i1": "<terms>Nutzungsbedingungen</terms>: der Vertrag mit Unternehmen, die {brand} nutzen.",
+      "i2": "<dpa>Auftragsverarbeitungsvertrag</dpa>: Teil der Bedingungen, Art. 28 DSGVO.",
+      "i3": "<privacy>Datenschutzerklärung</privacy>: wie wir personenbezogene Daten verarbeiten.",
+      "i4": "<cookies>Cookie-Richtlinie</cookies>: die einzigen Cookies, die wir verwenden."
+    }
+  },
+  "s4": {
+    "title": "Streitbeilegung",
+    "p1": "{brand} wird ausschließlich Unternehmen angeboten. Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Wenn Sie eine Beschwerde haben, schreiben Sie uns bitte zuerst eine E-Mail; wir tun unser Bestes, sie zu lösen."
+  }
+}

@@ -28,41 +28,21 @@ export const companyAddress = `${company.address.street}, ${company.address.post
  * user at sign-up; bump it (and the "last updated" date) when the terms change.
  */
 export const LEGAL_VERSION = '2026-09-28'
-export const LEGAL_UPDATED = '28 September 2026'
+/** Date the legal texts last changed (ISO date), shown formatted in each page's language. */
+export const LEGAL_UPDATED = '2026-09-28'
 
 /**
  * Sub-processors: providers that process personal data to run Hournook.
  * Shown in the Privacy Policy and the DPA; keep both in sync by editing here.
+ * What each one does and where it is located are translated in the
+ * `legal-shared` catalogue under `subprocessors.<id>`
+ * (English source: src/lib/i18n/messages/en/legal-shared.json).
  * `endCustomerData`: whether it processes the data a business's customers
  * submit (those are the sub-processors under the DPA).
  */
 export const SUBPROCESSORS = [
-  {
-    name: 'Netlify, Inc.',
-    country: 'United States',
-    purpose:
-      'Application hosting, serverless functions, content delivery, scheduled jobs, application logs and storage of uploaded images',
-    endCustomerData: true,
-  },
-  {
-    name: 'Neon, Inc.',
-    country: 'United States (database hosted on Amazon Web Services)',
-    purpose:
-      'PostgreSQL database: accounts, businesses, customers, appointments and backups of them',
-    endCustomerData: true,
-  },
-  {
-    name: 'Resend',
-    country: 'United States (emails sent from its EU region, Ireland)',
-    purpose:
-      'Delivery of transactional emails: booking confirmations, changes and reminders; account and security emails',
-    endCustomerData: true,
-  },
-  {
-    name: 'Stripe Payments Europe, Ltd.',
-    country: 'Ireland',
-    purpose:
-      'Subscription payments, invoices and the billing portal for businesses (never receives End Customer data)',
-    endCustomerData: false,
-  },
+  { id: 'netlify', name: 'Netlify, Inc.', endCustomerData: true },
+  { id: 'neon', name: 'Neon, Inc.', endCustomerData: true },
+  { id: 'resend', name: 'Resend', endCustomerData: true },
+  { id: 'stripe', name: 'Stripe Payments Europe, Ltd.', endCustomerData: false },
 ] as const

@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Verwerkersovereenkomst",
+    "description": "De verwerkersovereenkomst van {brand} (artikel 28 AVG) voor bedrijven: hoe we de persoonsgegevens van je klanten namens jou verwerken."
+  },
+  "title": "Verwerkersovereenkomst",
+  "intro": "Wanneer je klanten via {brand} boeken, bepaal jij hoe hun gegevens worden gebruikt en verwerken wij ze voor jou. Deze overeenkomst legt onze verplichtingen als jouw verwerker vast op grond van artikel 28 van de AVG. Ze maakt deel uit van de Servicevoorwaarden en geldt dus automatisch voor elk account.",
+  "s1": {
+    "title": "Partijen en reikwijdte",
+    "p1": "Deze Verwerkersovereenkomst (de ‘Verwerkersovereenkomst’) wordt gesloten tussen het bedrijf dat een {brand}-account heeft (de ‘Verwerkingsverantwoordelijke’, ‘jij’) en <provider></provider> (de ‘Verwerker’, ‘wij’). Ze maakt deel uit van de <terms>Servicevoorwaarden</terms> en geldt automatisch, zonder afzonderlijke ondertekening, wanneer we bij het leveren van {brand} namens jou persoonsgegevens verwerken.",
+    "p2": "Begrippen als ‘persoonsgegevens’, ‘verwerking’, ‘verwerkingsverantwoordelijke’, ‘verwerker’, ‘betrokkene’ en ‘inbreuk in verband met persoonsgegevens’ hebben de betekenis die Verordening (EU) 2016/679 (de ‘AVG’) eraan geeft. Als deze Verwerkersovereenkomst en de Voorwaarden op het gebied van gegevensbescherming met elkaar in strijd zijn, gaat deze Verwerkersovereenkomst voor."
+  },
+  "s2": {
+    "title": "Details van de verwerking",
+    "items": {
+      "i1": "<strong>Onderwerp en doel:</strong> {brand} aan jou leveren: je boekingspagina hosten, boekingen aannemen en beheren, klantgegevens opslaan, afspraakmails namens jou versturen, statistieken, exports en ondersteuning.",
+      "i2": "<strong>Duur:</strong> zolang je {brand} gebruikt en totdat de gegevens zijn verwijderd zoals hieronder beschreven.",
+      "i3": "<strong>Aard van de verwerking:</strong> verzameling via de boekingspagina of jouw invoer, opslag, ordening, opvraging, weergave aan jou en je team, verzending per e-mail, export en wissing.",
+      "i4": "<strong>Betrokkenen:</strong> je klanten en potentiële klanten die boeken of die je toevoegt; je medewerkers en teamleden.",
+      "i5": "<strong>Categorieën van persoonsgegevens:</strong> naam, e-mailadres, telefoonnummer, afspraakgegevens (dienst, medewerker, datum, tijd, prijs, status, geschiedenis), berichten van klanten, notities die je schrijft, en namen en roosters van medewerkers.",
+      "i6": "<strong>Bijzondere categorieën:</strong> {brand} is niet ontworpen voor bijzondere categorieën van gegevens (zoals gezondheidsgegevens). Je voert die niet in, tenzij je dat wettelijk mag en je de vereiste waarborgen hebt getroffen; doe je dat wel, dan gelden de beveiligingsmaatregelen van deze Verwerkersovereenkomst ook voor die gegevens."
+    }
+  },
+  "s3": {
+    "title": "Verwerking alleen op jouw instructies",
+    "p1": "We verwerken de persoonsgegevens uitsluitend op basis van je schriftelijke instructies, namelijk deze Voorwaarden en deze Verwerkersovereenkomst, en de instellingen en handelingen die je in {brand} gebruikt. We gebruiken ze niet voor eigen doeleinden, verkopen ze niet en combineren ze niet met andere gegevens, tenzij het recht van de EU of van Griekenland ons verplicht ze te verwerken; in dat geval laten we je dat vooraf weten, tenzij de wet dat verbiedt.",
+    "p2": "We laten het je onmiddellijk weten als een instructie naar ons oordeel in strijd is met de AVG of andere wetgeving inzake gegevensbescherming."
+  },
+  "s4": {
+    "title": "Vertrouwelijkheid",
+    "p1": "Iedereen die we toegang geven tot de persoonsgegevens is gebonden aan geheimhouding en heeft alleen toegang voor zover nodig om de dienst te leveren, te beveiligen of te ondersteunen."
+  },
+  "s5": {
+    "title": "Beveiligingsmaatregelen (artikel 32)",
+    "p1": "We treffen passende technische en organisatorische maatregelen, rekening houdend met de stand van de techniek, de kosten en de risico’s. Momenteel zijn dat onder meer:",
+    "items": {
+      "i1": "Versleuteling tijdens de overdracht (HTTPS met HSTS; versleutelde databaseverbindingen).",
+      "i2": "Versleuteling in rust door onze hosting- en databaseaanbieders.",
+      "i3": "Logische scheiding van de gegevens van elk bedrijf, bij elk verzoek afgedwongen, en op rollen gebaseerde rechten voor teamleden.",
+      "i4": "Sterke eenrichtingshashing van wachtwoorden, beveiligde sessiecookies, beperking van inlogpogingen en accountblokkering, en snelheidsbeperking van gevoelige handelingen.",
+      "i5": "Een contentbeveiligingsbeleid en andere beveiligingsheaders op elke pagina.",
+      "i6": "Een auditlog van belangrijke handelingen met betrekking tot accounts en gegevens.",
+      "i7": "Back-ups die onze databaseaanbieder bijhoudt, zodat herstel na een incident mogelijk is.",
+      "i8": "Toegang tot productiesystemen alleen voor de eigenaar van de aanbieder, met meervoudige authenticatie op de accounts bij aanbieders.",
+      "i9": "Gegevensminimalisatie en automatische verwijdering zoals beschreven in ons privacybeleid."
+    },
+    "p2": "We kunnen deze maatregelen bijwerken, zolang het algehele beveiligingsniveau niet daalt."
+  },
+  "s6": {
+    "title": "Subverwerkers",
+    "p1": "Je geeft ons algemene toestemming om subverwerkers in te schakelen. De subverwerkers die momenteel de gegevens van je klanten verwerken, zijn:",
+    "p2": "We leggen elke subverwerker verplichtingen inzake gegevensbescherming op die gelijkwaardig zijn aan die in deze Verwerkersovereenkomst en blijven jegens jou verantwoordelijk voor de nakoming daarvan. We laten accounteigenaren ten minste 30 dagen vóór het toevoegen of vervangen van een subverwerker per e-mail weten. Je kunt binnen die termijn op redelijke gronden van gegevensbescherming bezwaar maken; als we redelijkerwijs niet aan het bezwaar tegemoet kunnen komen, kun je de betreffende dienst beëindigen en ontvang je een evenredige terugbetaling van vooruitbetaalde bedragen."
+  },
+  "s7": {
+    "title": "Internationale doorgiften",
+    "p1": "Wanneer een subverwerker persoonsgegevens buiten de Europese Economische Ruimte verwerkt, zorgen we ervoor dat de doorgifte voldoet aan hoofdstuk V van de AVG, door middel van een adequaatheidsbesluit (zoals het EU-VS-kader voor gegevensbescherming voor gecertificeerde aanbieders) of de modelcontractbepalingen van de Europese Commissie, zo nodig met aanvullende maatregelen."
+  },
+  "s8": {
+    "title": "Hulp bij verzoeken van betrokkenen en naleving",
+    "p1": "Met {brand} kun je de meeste verzoeken zelf afhandelen: klantgegevens inzien, corrigeren en exporteren, een klant wissen en je bedrijf verwijderen. Als we rechtstreeks een verzoek van een van je klanten ontvangen, beantwoorden we dat niet zelf (behalve om de persoon naar jou te verwijzen) en sturen we het zonder onredelijke vertraging aan je door.",
+    "p2": "Rekening houdend met de aard van de verwerking en de informatie waarover we beschikken, helpen we je ook in redelijke mate bij je verplichtingen op het gebied van beveiliging, melding van inbreuken, gegevensbeschermingseffectbeoordelingen en voorafgaande raadpleging (artikelen 32–36 AVG)."
+  },
+  "s9": {
+    "title": "Inbreuken in verband met persoonsgegevens",
+    "p1": "We stellen je zonder onredelijke vertraging, en in elk geval binnen 48 uur nadat we kennis hebben gekregen van een inbreuk in verband met persoonsgegevens die jouw gegevens raakt, per e-mail aan de accounteigenaar op de hoogte. De melding beschrijft, voor zover op dat moment bekend, de aard van de inbreuk, de categorieën en het geschatte aantal betrokkenen en gegevensrecords, de waarschijnlijke gevolgen en de genomen of voorgestelde maatregelen. We nemen redelijke maatregelen om de inbreuk in te dammen en verstrekken verdere informatie zodra die beschikbaar is, zodat je aan je eigen verplichtingen kunt voldoen om de toezichthoudende autoriteit en de betrokkenen te informeren."
+  },
+  "s10": {
+    "title": "Verwijdering en teruggave van gegevens",
+    "p1": "Je kunt je gegevens op elk moment exporteren. Wanneer je een klant wist, worden diens persoonsgegevens direct verwijderd en blijven alleen anonieme afspraakrecords over voor je statistieken. Wanneer je je bedrijf verwijdert, worden alle gegevens ervan direct uit onze productiesystemen verwijderd. In beide gevallen worden de gegevens binnen 30 dagen overschreven in de back-ups van onze databaseaanbieder, tenzij het recht van de EU of van Griekenland ons verplicht ze te bewaren. Eindigt je abonnement zonder dat je je bedrijf verwijdert, dan blijven je gegevens voor je beschikbaar totdat je ze verwijdert."
+  },
+  "s11": {
+    "title": "Informatie en audits",
+    "p1": "We stellen de informatie beschikbaar die redelijkerwijs nodig is om aan te tonen dat we voldoen aan artikel 28 AVG, en beantwoorden je schriftelijke vragen over onze verwerking. Is dat niet voldoende, dan kun je onze naleving laten controleren, ook door een onafhankelijke auditor die tot geheimhouding is verplicht, met een schriftelijke aankondiging van ten minste 30 dagen, niet vaker dan eenmaal per jaar (tenzij een toezichthoudende autoriteit dat eist of na een inbreuk), tijdens kantooruren en op een manier die de gegevens van andere klanten of onze beveiliging niet in gevaar brengt. Elke partij draagt haar eigen kosten."
+  },
+  "s12": {
+    "title": "Aansprakelijkheid en looptijd",
+    "p1": "Aansprakelijkheid op grond van deze Verwerkersovereenkomst valt onder de beperkingen in de Voorwaarden, behalve waar de wet die niet toestaat. Deze Verwerkersovereenkomst eindigt automatisch wanneer we geen persoonsgegevens meer namens jou verwerken; de verplichtingen inzake verwijdering en vertrouwelijkheid blijven tot dat moment gelden. Op deze overeenkomst zijn hetzelfde recht en dezelfde bevoegde rechter van toepassing als op de Voorwaarden."
+  },
+  "s13": {
+    "title": "Contact",
+    "p1": "Vragen over deze Verwerkersovereenkomst of verzoeken om een door ons medeondertekend exemplaar: <email>{email}</email>."
+  }
+}

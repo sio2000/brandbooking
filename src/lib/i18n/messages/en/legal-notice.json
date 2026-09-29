@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Legal notice",
+    "description": "Who provides {brand}: business name, address, VAT and registry numbers, and how to contact us."
+  },
+  "title": "Legal notice",
+  "intro": "Information about the provider of {brand}, as required by EU and Greek law.",
+  "s1": {
+    "title": "Service provider",
+    "businessName": "Business name",
+    "legalForm": "Legal form",
+    "legalFormValue": "Sole proprietorship (ατομική επιχείρηση), Greece",
+    "tradingAs": "Trading as",
+    "tradingAsValue": "{tradingName} ({brand} is a product of {tradingName})",
+    "address": "Address",
+    "email": "Email",
+    "vat": "VAT number (ΑΦΜ)",
+    "registry": "Commercial registry",
+    "registryValue": "General Commercial Registry of Greece (Γ.Ε.ΜΗ.), no. {gemiNumber}",
+    "website": "Website"
+  },
+  "s2": {
+    "title": "Single point of contact",
+    "p1": "Under the EU Digital Services Act, our single point of contact for users and for authorities of EU member states, the European Commission and the European Board for Digital Services is <email>{email}</email>. We can be contacted in English and Greek. To report illegal content, see <illegal>Reporting illegal content</illegal>."
+  },
+  "s3": {
+    "title": "Legal documents",
+    "items": {
+      "i1": "<terms>Terms of service</terms>: the agreement with businesses using {brand}.",
+      "i2": "<dpa>Data processing agreement</dpa>: part of the terms, GDPR article 28.",
+      "i3": "<privacy>Privacy policy</privacy>: how we process personal data.",
+      "i4": "<cookies>Cookie policy</cookies>: the only cookies we use."
+    }
+  },
+  "s4": {
+    "title": "Disputes",
+    "p1": "{brand} is offered to businesses only. We are neither obliged nor willing to take part in dispute resolution proceedings before a consumer arbitration board. If you have a complaint, please email us first and we will do our best to resolve it."
+  }
+}

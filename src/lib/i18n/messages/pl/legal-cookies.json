@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Polityka plików cookie",
+    "description": "{brand} używa wyłącznie niezbędnych plików cookie: żadnych analitycznych ani reklamowych. Zobacz, co dokładnie jest przechowywane i dlaczego."
+  },
+  "title": "Polityka plików cookie",
+  "intro": "{brand} ogranicza pliki cookie do minimum potrzebnego do działania bezpiecznej usługi. Oto wszystko, co przechowujemy w twojej przeglądarce, i dlaczego.",
+  "s1": {
+    "title": "W skrócie",
+    "items": {
+      "i1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię i zabezpieczenia twojej sesji.",
+      "i2": "Nie używamy analitycznych, reklamowych ani śledzących plików cookie mediów społecznościowych.",
+      "i3": "Statystyki strony rezerwacji są anonimowe i działają bez plików cookie. Na urządzeniach twoich klientów nic nie jest zapisywane."
+    }
+  },
+  "s2": {
+    "title": "Pliki cookie, których używamy",
+    "p1": "Te pliki cookie ustawia sam {brand} (pliki cookie własne). Są ustawiane wyłącznie dla osób, które logują się do konta firmowego.",
+    "table": {
+      "caption": "Pliki cookie ustawiane przez {brand}",
+      "name": "Nazwa",
+      "purpose": "Cel",
+      "duration": "Okres przechowywania",
+      "set": "Kiedy jest ustawiany",
+      "session": {
+        "devNote": "(<code>{devName}</code> w środowiskach programistycznych bez HTTPS)",
+        "purpose": "Utrzymuje cię zalogowanym. Zawiera wyłącznie losowy token sesji; skrypty strony nie mogą go odczytać i jest wysyłany wyłącznie przez bezpieczne połączenia.",
+        "duration": "Do 30 dni bez aktywności, odnawiany podczas korzystania z aplikacji. Usuwany po wylogowaniu.",
+        "when": "Po zalogowaniu"
+      },
+      "business": {
+        "purpose": "Zapamiętuje, w której firmie pracujesz, jeśli należysz do więcej niż jednej.",
+        "duration": "Do zamknięcia przeglądarki lub wylogowania.",
+        "when": "Po zalogowaniu i zmianie firmy"
+      }
+    },
+    "p2": "Te pliki cookie są niezbędne do świadczenia usługi, o którą prosisz, dlatego zgodnie z dyrektywą o prywatności i łączności elektronicznej (art. 5 ust. 3) oraz greckim prawem 3471/2006 (art. 4 ust. 5) nie wymagają zgody. Z tego powodu nie wyświetlamy banera cookie. Jeśli kiedykolwiek dodamy opcjonalne pliki cookie, najpierw poprosimy cię o zgodę."
+  },
+  "s3": {
+    "title": "Pamięć lokalna",
+    "p1": "Jeśli wybierzesz motyw kolorystyczny (jasny, ciemny lub systemowy), zapamiętamy ten wybór w pamięci lokalnej twojej przeglądarki pod kluczem <code>{key}</code>. Pozostaje on na twoim urządzeniu i nigdy nie jest wysyłany na nasze serwery. Możesz go w każdej chwili usunąć w ustawieniach przeglądarki."
+  },
+  "s4": {
+    "title": "Strony rezerwacji i widżet do osadzania",
+    "p1": "Gdy klienci otwierają stronę rezerwacji firmy (bezpośrednio, przez kod QR lub przez widżet osadzony na stronie internetowej firmy), {brand} nie ustawia plików cookie do celów analitycznych ani reklamowych. Aby pokazać firmom skuteczność ich strony rezerwacji, anonimowo liczymy kroki, takie jak „wyświetlenie strony” i „rezerwacja zakończona”, bez plików cookie, identyfikatorów urządzeń i danych osobowych.",
+    "p2": "Strona internetowa, na której osadzono widżet, może używać własnych plików cookie. Kontroluje je ta strona, a nie {brand}."
+  },
+  "s5": {
+    "title": "Płatności przez Stripe",
+    "p1": "Gdy właściciel firmy wykupuje subskrypcję lub zarządza rozliczeniami, zostaje przekierowany na strony hostowane przez Stripe. Stripe może tam ustawiać własne pliki cookie, na przykład w celu zapobiegania oszustwom, zgodnie z własnymi zasadami dotyczącymi plików cookie i prywatności."
+  },
+  "s6": {
+    "title": "Zarządzanie plikami cookie",
+    "p1": "Możesz blokować lub usuwać pliki cookie w ustawieniach przeglądarki. Jeśli zablokujesz plik cookie sesji, nie zalogujesz się do {brand}; strony rezerwacji będą nadal działać."
+  },
+  "s7": {
+    "title": "Pytania",
+    "p1": "Skontaktuj się z nami pod adresem <email>{email}</email>. Więcej o tym, jak przetwarzamy dane osobowe, przeczytasz w <privacy>polityce prywatności</privacy>."
+  }
+}

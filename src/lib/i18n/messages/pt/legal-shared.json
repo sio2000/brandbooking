@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Informação legal",
+  "lastUpdated": "Última atualização: {date} · Versão {version}",
+  "toc": "Nesta página",
+  "documentsNav": "Documentos legais",
+  "documents": {
+    "terms": "Termos de serviço",
+    "privacy": "Política de privacidade",
+    "dpa": "Acordo de tratamento de dados",
+    "cookies": "Política de cookies",
+    "legal": "Aviso legal"
+  },
+  "translation": {
+    "original": "Ler o original em inglês"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), empresário em nome individual que opera com a designação comercial {tradingName}, {address}. Número de identificação fiscal (ΑΦΜ) {vatNumber}, Registo Comercial Geral da Grécia (Γ.Ε.ΜΗ.) n.º {gemiNumber}",
+  "subprocessors": {
+    "caption": "Subcontratantes ulteriores",
+    "provider": "Prestador",
+    "purpose": "O que faz por nós",
+    "location": "Localização",
+    "netlify": {
+      "purpose": "Alojamento da aplicação, funções serverless, distribuição de conteúdos, tarefas agendadas, registos da aplicação e armazenamento das imagens carregadas",
+      "country": "Estados Unidos"
+    },
+    "neon": {
+      "purpose": "Base de dados PostgreSQL: contas, negócios, clientes, marcações e respetivas cópias de segurança",
+      "country": "Estados Unidos (base de dados alojada na Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Envio de e-mails transacionais: confirmações, alterações e lembretes de reservas; e-mails de conta e de segurança",
+      "country": "Estados Unidos (e-mails enviados a partir da sua região da UE, na Irlanda)"
+    },
+    "stripe": {
+      "purpose": "Pagamentos de subscrições, faturas e portal de faturação para os negócios (nunca recebe dados de Clientes finais)",
+      "country": "Irlanda"
+    }
+  }
+}

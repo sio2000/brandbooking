@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Informacje prawne",
+  "lastUpdated": "Ostatnia aktualizacja: {date} · Wersja {version}",
+  "toc": "Na tej stronie",
+  "documentsNav": "Dokumenty prawne",
+  "documents": {
+    "terms": "Warunki świadczenia usług",
+    "privacy": "Polityka prywatności",
+    "dpa": "Umowa powierzenia przetwarzania danych",
+    "cookies": "Polityka plików cookie",
+    "legal": "Informacje prawne"
+  },
+  "translation": {
+    "original": "Przeczytaj angielski oryginał"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), jednoosobowa działalność gospodarcza prowadzona pod nazwą handlową {tradingName}, {address}. Grecki numer identyfikacji podatkowej (ΑΦΜ) {vatNumber}, numer w Generalnym Rejestrze Handlowym Grecji (Γ.Ε.ΜΗ.) {gemiNumber}",
+  "subprocessors": {
+    "caption": "Podmioty podprzetwarzające",
+    "provider": "Dostawca",
+    "purpose": "Co dla nas robi",
+    "location": "Lokalizacja",
+    "netlify": {
+      "purpose": "Hosting aplikacji, funkcje serverless, dostarczanie treści, zaplanowane zadania, logi aplikacji i przechowywanie przesłanych obrazów",
+      "country": "Stany Zjednoczone"
+    },
+    "neon": {
+      "purpose": "Baza danych PostgreSQL: konta, firmy, klienci, wizyty oraz ich kopie zapasowe",
+      "country": "Stany Zjednoczone (baza danych hostowana w Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Dostarczanie e-maili transakcyjnych: potwierdzenia, zmiany i przypomnienia o rezerwacjach; e-maile dotyczące konta i bezpieczeństwa",
+      "country": "Stany Zjednoczone (e-maile wysyłane z regionu UE w Irlandii)"
+    },
+    "stripe": {
+      "purpose": "Płatności za subskrypcje, faktury i portal rozliczeniowy dla firm (nigdy nie otrzymuje danych Klientów końcowych)",
+      "country": "Irlandia"
+    }
+  }
+}

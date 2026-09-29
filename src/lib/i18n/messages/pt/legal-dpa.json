@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Acordo de tratamento de dados",
+    "description": "O acordo de tratamento de dados do {brand} (artigo 28.º do RGPD) para negócios: como tratamos, por sua conta, os dados pessoais dos seus clientes."
+  },
+  "title": "Acordo de tratamento de dados",
+  "intro": "Quando os seus clientes reservam através do {brand}, é o utilizador que decide como os dados deles são utilizados e nós tratamo-los por sua conta. Este acordo estabelece as nossas obrigações enquanto seu subcontratante nos termos do artigo 28.º do RGPD. Faz parte dos Termos de serviço, pelo que se aplica automaticamente a todas as contas.",
+  "s1": {
+    "title": "Partes e âmbito",
+    "p1": "O presente Acordo de tratamento de dados (o «Acordo de tratamento») é celebrado entre o negócio que tem uma conta {brand} (o «Responsável pelo tratamento», «o utilizador») e <provider></provider> (o «Subcontratante», «nós»). Faz parte dos <terms>Termos de serviço</terms> e aplica-se automaticamente, sem necessidade de assinatura separada, sempre que tratamos dados pessoais por sua conta no âmbito da prestação do {brand}.",
+    "p2": "Termos como «dados pessoais», «tratamento», «responsável pelo tratamento», «subcontratante», «titular dos dados» e «violação de dados pessoais» têm o significado que lhes é atribuído pelo Regulamento (UE) 2016/679 (o «RGPD»). Em caso de conflito entre o presente Acordo de tratamento e os Termos em matéria de proteção de dados, prevalece o presente Acordo de tratamento."
+  },
+  "s2": {
+    "title": "Detalhes do tratamento",
+    "items": {
+      "i1": "<strong>Objeto e finalidade:</strong> prestar-lhe o {brand}: alojamento da sua página de reservas, receção e gestão de reservas, armazenamento de fichas de clientes, envio de e-mails de marcações em seu nome, estatísticas, exportações e apoio.",
+      "i2": "<strong>Duração:</strong> enquanto utilizar o {brand} e até que os dados sejam eliminados conforme descrito abaixo.",
+      "i3": "<strong>Natureza do tratamento:</strong> recolha através da página de reservas ou dos seus registos, conservação, organização, consulta, apresentação a si e à sua equipa, transmissão por e-mail, exportação e apagamento.",
+      "i4": "<strong>Titulares dos dados:</strong> os seus clientes e potenciais clientes que reservam ou que adiciona; o seu pessoal e os membros da sua equipa.",
+      "i5": "<strong>Categorias de dados pessoais:</strong> nome, endereço de e-mail, número de telefone, detalhes das marcações (serviço, membro do pessoal, data, hora, preço, estado, histórico), mensagens dos clientes, notas que escreve, e nomes e horários do pessoal.",
+      "i6": "<strong>Categorias especiais:</strong> o {brand} não foi concebido para categorias especiais de dados (como dados de saúde). Não as introduzirá, a menos que a lei o permita e tenha assegurado as garantias exigidas; se o fizer, as medidas de segurança do presente Acordo de tratamento também se lhes aplicam."
+    }
+  },
+  "s3": {
+    "title": "Tratamento apenas mediante as suas instruções",
+    "p1": "Tratamos os dados pessoais apenas mediante as suas instruções documentadas, que consistem nestes Termos e no presente Acordo de tratamento, bem como nas definições e ações que utiliza no {brand}. Não os utilizamos para fins próprios, não os vendemos nem os combinamos com outros dados, exceto se o direito da UE ou o direito grego nos obrigar a tratá-los; nesse caso, informá-lo-emos previamente, salvo se a lei o proibir.",
+    "p2": "Informá-lo-emos imediatamente se, na nossa opinião, uma instrução violar o RGPD ou outra legislação de proteção de dados."
+  },
+  "s4": {
+    "title": "Confidencialidade",
+    "p1": "Todas as pessoas autorizadas por nós a aceder aos dados pessoais estão sujeitas a um dever de confidencialidade e só lhes acedem na medida necessária para prestar, proteger ou apoiar o serviço."
+  },
+  "s5": {
+    "title": "Medidas de segurança (artigo 32.º)",
+    "p1": "Aplicamos medidas técnicas e organizativas adequadas, tendo em conta as técnicas mais avançadas, os custos e os riscos. Atualmente incluem:",
+    "items": {
+      "i1": "Cifragem em trânsito (HTTPS com HSTS; ligações cifradas à base de dados).",
+      "i2": "Cifragem em repouso assegurada pelos nossos fornecedores de alojamento e de base de dados.",
+      "i3": "Separação lógica dos dados de cada negócio, aplicada em cada pedido, e permissões baseadas em funções para os membros da equipa.",
+      "i4": "Hash unidirecional robusto das palavras-passe, cookies de sessão seguros, limitação das tentativas de início de sessão e bloqueio de contas, bem como limitação da frequência de ações sensíveis.",
+      "i5": "Uma política de segurança de conteúdos e outros cabeçalhos de segurança em todas as páginas.",
+      "i6": "Um registo de auditoria das ações relevantes sobre contas e dados.",
+      "i7": "Cópias de segurança mantidas pelo nosso fornecedor de base de dados, que permitem a reposição após um incidente.",
+      "i8": "Acesso aos sistemas de produção restrito ao titular do prestador, com autenticação multifator nas contas junto dos fornecedores.",
+      "i9": "Minimização dos dados e eliminação automática, conforme previsto na nossa política de privacidade."
+    },
+    "p2": "Podemos atualizar estas medidas desde que o nível global de segurança não seja reduzido."
+  },
+  "s6": {
+    "title": "Subcontratantes ulteriores",
+    "p1": "Concede-nos uma autorização geral para contratar subcontratantes ulteriores. Os subcontratantes ulteriores que atualmente tratam os dados dos seus clientes são:",
+    "p2": "Impomos a cada subcontratante ulterior obrigações de proteção de dados equivalentes às do presente Acordo de tratamento e continuamos a ser responsáveis perante si pelo seu cumprimento. Informaremos os titulares de contas por e-mail pelo menos 30 dias antes de acrescentar ou substituir um subcontratante ulterior. Pode opor-se por motivos razoáveis de proteção de dados dentro desse prazo; se não pudermos dar resposta razoável à sua objeção, pode resolver o serviço afetado e receber o reembolso proporcional dos montantes pagos antecipadamente."
+  },
+  "s7": {
+    "title": "Transferências internacionais",
+    "p1": "Quando um subcontratante ulterior trata dados pessoais fora do Espaço Económico Europeu, asseguramos que a transferência cumpre o capítulo V do RGPD, através de uma decisão de adequação (como o Quadro de Privacidade de Dados UE-EUA para prestadores certificados) ou das cláusulas contratuais-tipo da Comissão Europeia, com medidas complementares sempre que necessário."
+  },
+  "s8": {
+    "title": "Assistência com pedidos dos titulares dos dados e conformidade",
+    "p1": "O {brand} permite-lhe responder por si próprio à maioria dos pedidos: consultar, retificar e exportar dados de clientes, apagar um cliente e eliminar o seu negócio. Se recebermos um pedido diretamente de um dos seus clientes, não lhe responderemos nós (exceto para o reencaminhar para si) e transmiti-lo-emos a si sem demora injustificada.",
+    "p2": "Tendo em conta a natureza do tratamento e a informação ao nosso dispor, prestar-lhe-emos também assistência razoável no cumprimento das suas obrigações em matéria de segurança, notificação de violações, avaliações de impacto sobre a proteção de dados e consulta prévia (artigos 32.º a 36.º do RGPD)."
+  },
+  "s9": {
+    "title": "Violações de dados pessoais",
+    "p1": "Notificá-lo-emos sem demora injustificada e, em qualquer caso, no prazo de 48 horas após termos tomado conhecimento de uma violação de dados pessoais que afete os seus dados, por e-mail enviado ao titular da conta. A notificação descreverá, na medida do que for então conhecido, a natureza da violação, as categorias e o número aproximado de titulares dos dados e de registos afetados, as consequências prováveis e as medidas adotadas ou propostas. Tomaremos medidas razoáveis para conter a violação e prestaremos informações adicionais à medida que forem disponibilizadas, para que possa cumprir as suas próprias obrigações de notificação à autoridade de controlo e de comunicação aos titulares dos dados."
+  },
+  "s10": {
+    "title": "Eliminação e devolução dos dados",
+    "p1": "Pode exportar os seus dados a qualquer momento. Quando apaga um cliente, os respetivos dados pessoais são removidos de imediato e ficam apenas registos anónimos de marcações para as suas estatísticas. Quando elimina o seu negócio, todos os respetivos dados são apagados de imediato dos nossos sistemas em produção. Em ambos os casos, os dados são substituídos nas cópias de segurança do nosso fornecedor de base de dados no prazo de 30 dias, salvo se o direito da UE ou o direito grego nos obrigar a conservá-los. Se a sua subscrição terminar sem que elimine o seu negócio, os seus dados continuam à sua disposição até os eliminar."
+  },
+  "s11": {
+    "title": "Informações e auditorias",
+    "p1": "Disponibilizaremos as informações razoavelmente necessárias para demonstrar o cumprimento do artigo 28.º do RGPD e responderemos às suas perguntas escritas sobre o nosso tratamento. Se tal não for suficiente, pode auditar o nosso cumprimento, incluindo através de um auditor independente sujeito a confidencialidade, mediante pré-aviso escrito de pelo menos 30 dias, no máximo uma vez por ano (salvo exigência de uma autoridade de controlo ou após uma violação), durante o horário de expediente e de forma a não comprometer os dados de outros clientes nem a nossa segurança. Cada parte suporta os seus próprios custos."
+  },
+  "s12": {
+    "title": "Responsabilidade e vigência",
+    "p1": "A responsabilidade ao abrigo do presente Acordo de tratamento está sujeita às limitações previstas nos Termos, exceto quando a lei não as permita. O presente Acordo de tratamento cessa automaticamente quando deixarmos de tratar dados pessoais por sua conta; as obrigações de eliminação e de confidencialidade mantêm-se até lá. Rege-se pela mesma lei e pelos mesmos tribunais que os Termos."
+  },
+  "s13": {
+    "title": "Contacto",
+    "p1": "Questões sobre o presente Acordo de tratamento ou pedidos de uma cópia também assinada por nós: <email>{email}</email>."
+  }
+}

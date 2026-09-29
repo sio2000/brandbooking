@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Aviso legal",
+    "description": "Quem presta o {brand}: denominação, morada, números fiscal e de registo, e como nos contactar."
+  },
+  "title": "Aviso legal",
+  "intro": "Informações sobre o prestador do {brand}, conforme exigido pelo direito da UE e pelo direito grego.",
+  "s1": {
+    "title": "Prestador do serviço",
+    "businessName": "Denominação",
+    "legalForm": "Forma jurídica",
+    "legalFormValue": "Empresário em nome individual (ατομική επιχείρηση), Grécia",
+    "tradingAs": "Designação comercial",
+    "tradingAsValue": "{tradingName} (o {brand} é um produto da {tradingName})",
+    "address": "Morada",
+    "email": "E-mail",
+    "vat": "Número de identificação fiscal (ΑΦΜ)",
+    "registry": "Registo comercial",
+    "registryValue": "Registo Comercial Geral da Grécia (Γ.Ε.ΜΗ.), n.º {gemiNumber}",
+    "website": "Site"
+  },
+  "s2": {
+    "title": "Ponto de contacto único",
+    "p1": "Nos termos do Regulamento dos Serviços Digitais da UE, o nosso ponto de contacto único para os utilizadores e para as autoridades dos Estados-Membros da UE, a Comissão Europeia e o Comité Europeu dos Serviços Digitais é <email>{email}</email>. Pode contactar-nos em inglês e em grego. Para denunciar conteúdos ilegais, consulte <illegal>Denúncia de conteúdos ilegais</illegal>."
+  },
+  "s3": {
+    "title": "Documentos legais",
+    "items": {
+      "i1": "<terms>Termos de serviço</terms>: o acordo com os negócios que utilizam o {brand}.",
+      "i2": "<dpa>Acordo de tratamento de dados</dpa>: parte dos termos, artigo 28.º do RGPD.",
+      "i3": "<privacy>Política de privacidade</privacy>: como tratamos os dados pessoais.",
+      "i4": "<cookies>Política de cookies</cookies>: os únicos cookies que utilizamos."
+    }
+  },
+  "s4": {
+    "title": "Litígios",
+    "p1": "O {brand} é disponibilizado apenas a negócios. Não somos obrigados nem estamos dispostos a participar em procedimentos de resolução de litígios perante uma entidade de resolução alternativa de litígios de consumo. Se tiver uma reclamação, envie-nos primeiro um e-mail e faremos o possível para a resolver."
+  }
+}

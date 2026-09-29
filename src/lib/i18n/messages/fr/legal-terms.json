@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Conditions d’utilisation",
+    "description": "Le contrat entre {brand} et les entreprises qui l’utilisent : essai, abonnement, vos données, utilisation acceptable, responsabilité et comment nous joindre."
+  },
+  "title": "Conditions d’utilisation",
+  "intro": "Le contrat entre {brand} et les entreprises qui l’utilisent, rédigé pour être lu. En bref : {days} jours gratuits sans carte, puis {price} par mois, résiliable à tout moment, vos données restent les vôtres, et nous traitons les données de vos clients uniquement pour faire fonctionner le service pour vous.",
+  "s1": {
+    "title": "Qui nous sommes et ce que couvrent ces conditions",
+    "p1": "{brand} est fourni par <provider></provider> (« {brand} », « nous »).",
+    "p2": "Les présentes conditions d’utilisation (les « Conditions ») constituent un contrat entre nous et l’entreprise ou le professionnel qui crée un compte {brand} (« vous », le « Client »). Elles incluent notre <dpa>Accord de traitement des données</dpa> (l’« Accord de traitement »), qui s’applique aux données à caractère personnel de vos clients que {brand} traite pour vous. Notre <privacy>Politique de confidentialité</privacy> explique comment nous traitons les données à caractère personnel dont nous sommes nous-mêmes responsables.",
+    "p3": "Vous acceptez les présentes Conditions lorsque vous cochez la case lors de l’inscription et créez un compte. Si vous les acceptez au nom d’une entreprise, vous confirmez être habilité à engager cette entreprise."
+  },
+  "s2": {
+    "title": "Usage professionnel uniquement",
+    "p1": "{brand} est proposé uniquement aux entreprises, aux travailleurs indépendants et aux organisations, pour un usage dans le cadre de leur activité commerciale, industrielle, artisanale ou libérale. Il n’est pas proposé aux consommateurs. Vous devez avoir au moins 18 ans pour créer un compte.",
+    "p2": "Les personnes qui prennent rendez-vous via votre page de réservation (les « Clients finaux ») n’ont pas besoin de compte et ne sont pas parties aux présentes Conditions. Votre relation avec elles (les prestations que vous fournissez, vos prix, vos règles d’annulation) ne concerne que vous et elles."
+  },
+  "s3": {
+    "title": "Le service",
+    "p1": "{brand} est un logiciel en ligne qui vous permet de publier une page de réservation, de gérer vos prestations, horaires d’ouverture, membres de l’équipe, rendez-vous et fiches clients, de consulter des statistiques simples sur votre activité et d’envoyer par e-mail des confirmations, modifications et rappels de rendez-vous. Nous le fournissons « en tant que service » via Internet ; il n’y a rien à installer.",
+    "p2": "Nous développons {brand} en continu. Nous pouvons ajouter, modifier ou supprimer des fonctionnalités. Si une modification réduit de manière significative les fonctionnalités essentielles pour lesquelles vous payez, nous vous en informerons au moins 30 jours à l’avance, et vous pourrez résilier avant sa prise d’effet.",
+    "p3": "{brand} ne traite pas les paiements de vos rendez-vous et n’est ni un agent, ni un intermédiaire, ni une place de marché entre vous et vos Clients finaux."
+  },
+  "s4": {
+    "title": "Votre compte et votre équipe",
+    "items": {
+      "i1": "Fournissez des informations exactes lors de l’inscription et tenez-les à jour.",
+      "i2": "Gardez votre mot de passe confidentiel et ne partagez pas de compte. Invitez plutôt des membres de l’équipe ; vous êtes responsable de ce que font dans votre compte les personnes que vous invitez.",
+      "i3": "Prévenez-nous sans délai à <email>{email}</email> si vous pensez que votre compte a fait l’objet d’un accès non autorisé."
+    }
+  },
+  "s5": {
+    "title": "Essai gratuit, prix, facturation et résiliation",
+    "trial": {
+      "title": "Essai gratuit",
+      "p1": "Chaque nouvelle entreprise bénéficie d’un essai gratuit de {days} jours avec toutes les fonctionnalités. Aucune carte de paiement n’est nécessaire pour le commencer, et l’essai ne se transforme pas en abonnement payant, sauf si vous vous abonnez. Si vous ne vous abonnez pas avant la fin de l’essai, votre page de réservation cesse d’accepter de nouvelles réservations ; vos données restent dans votre compte et vous pouvez vous abonner à tout moment pour continuer."
+    },
+    "price": {
+      "title": "Abonnement et prix",
+      "items": {
+        "i1": "L’abonnement coûte {price} par entreprise et par mois, facturé mensuellement à l’avance, et inclut toutes les fonctionnalités. Il n’y a ni frais de mise en service ni frais par réservation.",
+        "i2": "Le prix inclut la TVA au taux grec de 24 %. Rien n’est ajouté lors du paiement, et vous recevez une facture pour chaque paiement.",
+        "i3": "Les paiements sont traités par notre prestataire de paiement, Stripe. En vous abonnant, vous nous autorisez à débiter, via Stripe, votre moyen de paiement pour chaque période de facturation jusqu’à votre résiliation.",
+        "i4": "Nous pouvons modifier le prix pour les périodes de facturation futures en vous en informant par e-mail au moins 30 jours avant que la modification ne s’applique à vous. Si vous n’êtes pas d’accord, vous pouvez résilier avant l’application du nouveau prix."
+      }
+    },
+    "cancellation": {
+      "title": "Résiliation et remboursements",
+      "items": {
+        "i1": "Vous pouvez résilier à tout moment depuis <em>Facturation</em> dans votre tableau de bord. La résiliation prend effet à la fin de la période de facturation déjà payée ; d’ici là, tout continue de fonctionner.",
+        "i2": "Les sommes déjà versées ne sont pas remboursables pour les mois entamés, sauf si la loi impose un remboursement ou si nous mettons fin à votre abonnement sans faute de votre part (auquel cas nous remboursons la partie non utilisée de la période)."
+      }
+    },
+    "failed": {
+      "title": "Échecs de paiement",
+      "p1": "Si un paiement échoue, Stripe et nous effectuerons une nouvelle tentative et vous en informerons. Si le montant reste impayé 7 jours après le premier échec, votre page de réservation cesse d’accepter de nouvelles réservations jusqu’au paiement. Vos données ne sont pas supprimées en raison d’un échec de paiement."
+    }
+  },
+  "s6": {
+    "title": "Votre contenu et les données de vos clients",
+    "p1": "Vous conservez tous les droits sur le contenu que vous saisissez dans {brand} : informations sur l’entreprise, images, prestations, prix et fiches clients (« Votre Contenu »). Vous nous concédez une licence non exclusive, mondiale et gratuite pour héberger, copier, afficher et traiter Votre Contenu uniquement dans la mesure nécessaire pour vous fournir, sécuriser et assister le service, y compris l’affichage public de votre page de réservation.",
+    "p2": "Pour les données à caractère personnel de vos Clients finaux et de votre personnel, <strong>vous êtes le responsable du traitement</strong> et <strong>{brand} est votre sous-traitant</strong>. L’<dpa>Accord de traitement</dpa> définit nos obligations en tant que sous-traitant et fait partie intégrante des présentes Conditions.",
+    "p3": "Vous êtes responsable de Votre Contenu et de disposer d’une base juridique, au titre du RGPD et des autres lois applicables, pour collecter et utiliser les données de vos clients, y compris pour les en informer. {brand} est un outil de réservation, et non un système médical ou de dossiers de santé : ne conservez pas de données de santé ni d’autres catégories particulières de données (par exemple dans les notes clients ou de rendez-vous), sauf si la loi vous y autorise et que vous avez mis en place les garanties qu’elle exige.",
+    "p4": "Vous pouvez exporter vos données (clients, rendez-vous, prestations et informations sur l’entreprise) à tout moment depuis le tableau de bord, y compris après votre résiliation."
+  },
+  "s7": {
+    "title": "Utilisation acceptable",
+    "p1": "Vous ne devez pas utiliser {brand}, ni permettre à quiconque de l’utiliser, pour :",
+    "items": {
+      "i1": "proposer, promouvoir ou organiser des services illégaux, ou des services que vous n’êtes pas autorisé ou qualifié à fournir lorsqu’une autorisation ou une qualification est légalement requise ;",
+      "i2": "publier un contenu illicite, trompeur, discriminatoire, diffamatoire, portant atteinte à la propriété intellectuelle ou à la vie privée d’autrui, ou à caractère sexuellement explicite ;",
+      "i3": "envoyer du spam ou des messages publicitaires au moyen des e-mails de réservation, ou ajouter des personnes comme clients sans base juridique ;",
+      "i4": "vous faire passer pour une autre entreprise ou une autre personne, ou créer des pages de réservation pour une entreprise que vous ne représentez pas ;",
+      "i5": "accéder aux données d’autres entreprises, tester, sonder ou contourner nos mesures de sécurité, introduire des logiciels malveillants, extraire automatiquement des données du service ou lui imposer une charge excessive ;",
+      "i6": "revendre, sous-licencier, copier ou rétro-concevoir le service, sauf dans la mesure où la loi l’autorise expressément."
+    }
+  },
+  "s8": {
+    "title": "Signalement de contenus illicites et nos décisions",
+    "p1": "Les pages de réservation sont publiées à la demande des entreprises qui les créent. Toute personne, y compris les autorités, peut signaler un contenu qu’elle estime illicite ou contraire aux présentes Conditions en écrivant à notre point de contact unique, <email>{email}</email>, en anglais ou en grec. Veuillez indiquer :",
+    "items": {
+      "i1": "l’adresse web (URL) du contenu et ce qui est précisément en cause ;",
+      "i2": "les raisons pour lesquelles vous le considérez illicite ou contraire aux présentes Conditions ;",
+      "i3": "vos nom et adresse e-mail (non requis pour les signalements de matériel pédopornographique) ; et",
+      "i4": "une déclaration selon laquelle vous estimez de bonne foi que le signalement est exact et complet."
+    },
+    "p2": "Nous accusons réception, examinons les signalements avec diligence et objectivité et informons l’auteur du signalement de notre décision. Si nous retirons ou restreignons un contenu ou un compte, nous indiquons à l’entreprise concernée les motifs et la manière de contester la décision ; vous pouvez la contester en répondant à ce message et nous la réexaminerons. Nous n’utilisons pas de systèmes automatisés pour prendre ces décisions.",
+    "p3": "Nous pouvons retirer un contenu, suspendre une page de réservation ou suspendre un compte lorsque cela est nécessaire pour respecter la loi, faire cesser un manquement grave aux présentes Conditions ou protéger les Clients finaux, d’autres utilisateurs ou le service. Lorsque cela est approprié, nous vous contactons au préalable."
+  },
+  "s9": {
+    "title": "Notre propriété intellectuelle",
+    "p1": "{brand}, son logiciel, son design, ses textes et ses marques nous appartiennent ou appartiennent à nos concédants. Les présentes Conditions vous donnent le droit d’utiliser le service pour votre entreprise tant que votre compte est actif ; elles ne transfèrent aucun droit de propriété. Si vous nous envoyez des commentaires ou des suggestions, nous pouvons les utiliser librement et sans obligation envers vous."
+  },
+  "s10": {
+    "title": "Disponibilité et assistance",
+    "p1": "Nous faisons en sorte que {brand} soit disponible, sûr et fiable et que les problèmes soient corrigés rapidement, mais nous ne garantissons pas un fonctionnement ininterrompu ou exempt d’erreurs. La maintenance planifiée est effectuée, dans la mesure du possible, aux heures creuses. Le service repose sur une infrastructure tierce (hébergement, base de données, envoi d’e-mails, paiements), et la remise des e-mails dépend aussi des serveurs de messagerie et des filtres anti-spam des destinataires ; nous ne pouvons donc pas garantir que chaque e-mail arrive.",
+    "p2": "L’assistance est assurée par e-mail à <email>{email}</email>, en anglais ou en grec, les jours ouvrés. Nous nous efforçons de répondre sous deux jours ouvrés."
+  },
+  "s11": {
+    "title": "Fin du contrat",
+    "items": {
+      "i1": "<strong>De votre fait :</strong> résiliez votre abonnement à tout moment (voir ci-dessus), et supprimez votre entreprise depuis <em>Paramètres → Confidentialité et données</em> et votre compte utilisateur depuis <em>Paramètres du compte</em> quand vous le souhaitez.",
+      "i2": "<strong>De notre fait, avec préavis :</strong> nous pouvons mettre fin au contrat pour quelque motif que ce soit moyennant un préavis d’au moins 30 jours par e-mail, en remboursant les sommes payées d’avance pour la période postérieure à la résiliation.",
+      "i3": "<strong>De notre fait, avec effet immédiat :</strong> nous pouvons suspendre ou fermer un compte si vous manquez gravement ou de manière répétée aux présentes Conditions ou à la loi, si un paiement reste impayé après mise en demeure, ou si une autorité compétente l’exige."
+    },
+    "p1": "La suppression d’une entreprise supprime définitivement et immédiatement ses clients, rendez-vous, prestations et fichiers téléversés de nos systèmes en production ; les copies figurant dans les sauvegardes de notre fournisseur de base de données sont écrasées sous 30 jours. Pensez à exporter au préalable tout ce que vous souhaitez conserver. Nous conservons les documents de facturation aussi longtemps que la législation fiscale l’exige, comme expliqué dans la <privacy>Politique de confidentialité</privacy>."
+  },
+  "s12": {
+    "title": "Garanties",
+    "p1": "Nous fournissons {brand} avec la compétence et le soin raisonnables et conformément à sa description. Au-delà, et dans la mesure permise par la loi, le service est fourni « en l’état » et nous ne donnons aucune autre garantie, par exemple qu’il répondra à toutes vos exigences particulières ou vous apportera un nombre donné de réservations."
+  },
+  "s13": {
+    "title": "Responsabilité",
+    "p1": "Aucune disposition des présentes Conditions ne limite ni n’exclut une responsabilité qui ne peut être limitée ou exclue par la loi, notamment la responsabilité pour faute intentionnelle (dol) ou faute lourde, ou en cas de décès ou de dommage corporel.",
+    "p2": "Pour le reste, dans la mesure permise par la loi :",
+    "items": {
+      "i1": "aucune partie n’est responsable, en cas de faute légère, des dommages indirects ou consécutifs, ni des pertes de bénéfices, de chiffre d’affaires, d’activité, de clientèle ou de données qui auraient pu être évitées en utilisant la fonction d’export ;",
+      "i2": "la responsabilité totale de chaque partie découlant des présentes Conditions ou en lien avec celles-ci sur toute période de 12 mois est limitée au plus élevé des montants suivants : (a) les sommes que vous nous avez versées au cours des 12 mois précédant le fait générateur de la réclamation et (b) 100 €."
+    },
+    "p3": "Vous nous indemniserez des réclamations de tiers (y compris les Clients finaux et les autorités) causées par Votre Contenu, par les prestations que vous fournissez à vos Clients finaux, ou par votre manquement aux présentes Conditions ou à la législation sur la protection des données, y compris les frais juridiques raisonnables."
+  },
+  "s14": {
+    "title": "Confidentialité",
+    "p1": "Chaque partie préserve la confidentialité des informations commerciales non publiques de l’autre et ne les utilise qu’aux fins du présent contrat, sauf si leur divulgation est exigée par la loi ou par une autorité compétente. Cette obligation dure trois ans après la fin du contrat et, pour les données à caractère personnel, aussi longtemps que l’Accord de traitement s’applique."
+  },
+  "s15": {
+    "title": "Événements indépendants de notre volonté",
+    "p1": "Aucune partie n’est responsable des retards ou manquements causés par des événements échappant à son contrôle raisonnable, tels que catastrophes naturelles, guerre, épidémies, grèves, défaillances des réseaux publics ou de l’alimentation électrique, ou pannes chez des fournisseurs d’infrastructure, à condition qu’elle prenne des mesures raisonnables pour en limiter les effets."
+  },
+  "s16": {
+    "title": "Modifications des présentes conditions",
+    "p1": "Nous pouvons mettre à jour les présentes Conditions, par exemple pour tenir compte de l’évolution du service ou de la loi. Nous informerons les titulaires de compte par e-mail de toute modification substantielle au moins 30 jours avant son entrée en vigueur, sauf si la loi impose une modification plus rapide. Si vous n’êtes pas d’accord, vous pouvez résilier avant l’application de la modification ; continuer à utiliser {brand} après cette date vaut acceptation des nouvelles Conditions. La version et la date indiquées en haut de cette page précisent la version applicable."
+  },
+  "s17": {
+    "title": "Dispositions générales",
+    "items": {
+      "i1": "Les présentes Conditions (avec l’Accord de traitement) constituent l’intégralité de l’accord entre nous concernant {brand} et remplacent toute discussion antérieure.",
+      "i2": "Si une disposition est jugée invalide, les autres restent en vigueur et la disposition invalide est remplacée par une disposition valide aussi proche que possible de son objectif.",
+      "i3": "Vous ne pouvez pas céder le présent contrat sans notre consentement. Nous pouvons le céder à un successeur de notre entreprise et vous en informerons le cas échéant.",
+      "i4": "Les notifications qui vous sont destinées sont envoyées à l’adresse e-mail du titulaire du compte ; celles qui nous sont destinées sont envoyées à <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Droit applicable et juridiction",
+    "p1": "Les présentes Conditions et tout litige les concernant sont régis par le droit grec. Les tribunaux de Thessalonique (Grèce) sont seuls compétents, sauf disposition impérative contraire. La Convention des Nations unies sur les contrats de vente internationale de marchandises ne s’applique pas."
+  },
+  "s19": {
+    "title": "Contact",
+    "p1": "<provider></provider>. E-mail : <email>{email}</email>. Voir aussi nos <legal>mentions légales</legal>. Pour les services de {tradingName} autres que {brand}, des conditions distinctes s’appliquent."
+  }
+}

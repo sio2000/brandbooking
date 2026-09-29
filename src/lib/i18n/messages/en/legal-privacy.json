@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Privacy policy",
+    "description": "What personal data {brand} processes, why, on what legal basis, who helps us, how long we keep it and how to exercise your GDPR rights."
+  },
+  "title": "Privacy policy",
+  "intro": "How {brand} handles personal data under the EU General Data Protection Regulation (GDPR) and Greek law 4624/2019, whether you run a business on {brand} or booked an appointment with one.",
+  "s1": {
+    "title": "Who is responsible",
+    "p1": "{brand} is provided by <provider></provider> (“we”, “us”).",
+    "p2": "For any question about privacy or to exercise your rights, email <email>{email}</email>. We have not appointed a data protection officer because the law does not require one for our activities; privacy requests are handled directly by the owner of the business."
+  },
+  "s2": {
+    "title": "Two roles: controller and processor",
+    "p1": "{brand} is used by two groups of people, and our role is different for each:",
+    "items": {
+      "i1": "<strong>Businesses and their team members</strong> who have a {brand} account. For their account, billing, support and security data, we are the <strong>controller</strong>. This policy describes that processing.",
+      "i2": "<strong>Customers of those businesses</strong> who book through a booking page, or whom a business adds itself. The business decides why and how this data is used, so the <strong>business is the controller</strong> and we act as its <strong>processor</strong> under our <dpa>Data Processing Agreement</dpa>. The business’s own privacy notice applies to you."
+    },
+    "p2": "If you booked with a business and want to see, correct or delete your details, please contact the business directly; it can do this from its dashboard. If you write to us, we will forward your request to the business and help it respond."
+  },
+  "s3": {
+    "title": "What data is processed",
+    "account": {
+      "title": "Account data (we are controller)",
+      "items": {
+        "i1": "Name, email address, whether the email is verified, language.",
+        "i2": "Your password, stored only as a salted one-way hash, so we cannot read it.",
+        "i3": "When and which version of our terms you accepted at sign-up.",
+        "i4": "Sign-in sessions with IP address and browser type, to keep you signed in and protect your account."
+      }
+    },
+    "business": {
+      "title": "Business data (we are controller for billing; processor for the rest)",
+      "items": {
+        "i1": "Business name, category, address, contact details you choose to publish, time zone, booking-page settings, logos and photos.",
+        "i2": "Services, prices, opening hours, closures, booking rules, staff and their roles."
+      }
+    },
+    "customer": {
+      "title": "Customer and appointment data (we are processor)",
+      "items": {
+        "i1": "Name, email address and phone number of the person booking, any message they add, and private notes the business writes.",
+        "i2": "Service, staff member, date, time, duration, price, status and history of changes (for example rescheduled or cancelled, and by whom), and how the booking was made (booking page, embedded widget or QR code, and a referring site or campaign tag where available)."
+      }
+    },
+    "billing": {
+      "title": "Billing data (we are controller)",
+      "items": {
+        "i1": "Subscription status and Stripe customer and subscription identifiers. Card details are entered on Stripe’s pages; we never receive or store full card numbers.",
+        "i2": "Invoices and payment records required by tax and accounting law."
+      }
+    },
+    "security": {
+      "title": "Security and service records (we are controller)",
+      "items": {
+        "i1": "An audit log of significant actions (for example sign-ins, settings changes, exports and deletions) with the IP address and a request identifier.",
+        "i2": "Short-lived rate-limiting counters that block abuse.",
+        "i3": "Technical server logs kept by our hosting provider.",
+        "i4": "Booking-page statistics: counts of booking steps (such as “page viewed” or “booking completed”) with a traffic source. They are <strong>cookieless</strong> and contain no names, contact details, IP addresses or device identifiers."
+      }
+    },
+    "support": {
+      "title": "Support",
+      "items": {
+        "i1": "Emails you send us and our replies."
+      }
+    },
+    "p1": "We do not buy personal data, do not use tracking or advertising cookies, and do not use analytics services that profile visitors."
+  },
+  "s4": {
+    "title": "Why we use it and our legal basis",
+    "items": {
+      "i1": "<strong>Providing the service to businesses:</strong> accounts, booking pages, calendar, customer lists, team features, exports and service emails (verification, password reset, invitations, billing notices): necessary to perform our contract with you (GDPR art. 6(1)(b)).",
+      "i2": "<strong>Processing customer and appointment data:</strong> only on the instructions of the business, under the <dpa>DPA</dpa> (GDPR art. 28). The business is responsible for its own legal basis.",
+      "i3": "<strong>Billing, invoicing and accounting:</strong> contract (art. 6(1)(b)) and our legal obligations under Greek tax and accounting law (art. 6(1)(c)).",
+      "i4": "<strong>Security, fraud and abuse prevention:</strong> audit logs, rate limits and server logs: our legitimate interest in keeping the service and its users safe (art. 6(1)(f)).",
+      "i5": "<strong>Support:</strong> answering your messages: contract or, if you are not a customer, our legitimate interest in responding (art. 6(1)(b) or (f)).",
+      "i6": "<strong>Improving {brand}:</strong> using aggregated, non-identifying information about how features are used: our legitimate interest (art. 6(1)(f)).",
+      "i7": "<strong>Legal claims and requests from authorities:</strong> where necessary to establish, exercise or defend legal claims or comply with the law (art. 6(1)(c) and (f))."
+    }
+  },
+  "s5": {
+    "title": "No selling, no advertising, no automated decisions",
+    "p1": "We do not sell or rent personal data, we do not use customer or account data for advertising, and we do not send marketing emails without your consent. We make no decisions based solely on automated processing, including profiling, that have legal or similarly significant effects on you."
+  },
+  "s6": {
+    "title": "Who receives data",
+    "p1": "Personal data is shared only with the providers below, which process it on our instructions under data processing agreements, and only as far as each needs to:",
+    "p2": "Stripe also processes payment data as an independent controller under its own privacy policy (for example for fraud prevention and to meet financial regulations). We may also disclose data to authorities, courts or professional advisers (such as our accountant or lawyer) where the law requires or allows it."
+  },
+  "s7": {
+    "title": "Transfers outside the EEA",
+    "p1": "Some of our providers are based in the United States or may access data from there. Where personal data is transferred outside the European Economic Area, we rely on an adequacy decision of the European Commission (for providers certified under the EU–U.S. Data Privacy Framework) or on the European Commission’s Standard Contractual Clauses, together with the additional safeguards our providers offer, such as encryption in transit and at rest. You can ask us for more information about these safeguards."
+  },
+  "s8": {
+    "title": "How long we keep data",
+    "items": {
+      "i1": "<strong>Account and business data</strong>: while the account exists. When a business or user account is deleted, its data is deleted from our live systems immediately, and from our database provider’s backups within 30 days.",
+      "i2": "<strong>Customer and appointment data</strong>: for as long as the business keeps it, until the business erases the customer, or until the business is deleted.",
+      "i3": "<strong>Sign-in sessions</strong>: expire after 30 days without activity and are then deleted.",
+      "i4": "<strong>Email verification and password-reset links</strong>: deleted 7 days after they expire.",
+      "i5": "<strong>Emails we send</strong>: the content is cleared after 180 days. For appointment emails a delivery record (recipient, type, status and date) stays with the appointment; records of account emails are deleted after 180 days.",
+      "i6": "<strong>Audit log</strong>: IP addresses are removed after 180 days and entries are deleted after two years.",
+      "i7": "<strong>Rate-limiting counters</strong>: deleted within an hour of expiring.",
+      "i8": "<strong>Booking-page statistics</strong> (anonymous): deleted after about 13 months.",
+      "i9": "<strong>Invoices and billing records</strong>: for as long as Greek tax and accounting law requires: generally five years from the end of the tax year, longer if the law extends that period.",
+      "i10": "<strong>Support emails</strong>: for as long as needed to handle your request and for up to two years afterwards, unless a longer period is needed for a legal claim."
+    }
+  },
+  "s9": {
+    "title": "Your rights",
+    "p1": "Under the GDPR you have the right to:",
+    "items": {
+      "i1": "<strong>access</strong> your personal data and receive a copy;",
+      "i2": "have inaccurate data <strong>corrected</strong>;",
+      "i3": "have your data <strong>erased</strong> where there is no longer a reason to keep it;",
+      "i4": "<strong>restrict</strong> processing in certain cases;",
+      "i5": "receive the data you gave us in a structured, machine-readable format (<strong>portability</strong>);",
+      "i6": "<strong>object</strong> at any time to processing based on our legitimate interests, for reasons relating to your particular situation; and",
+      "i7": "withdraw any consent you gave, without affecting processing before the withdrawal."
+    },
+    "p2": "Businesses can do most of this themselves: edit details in settings, export data from the dashboard, and delete the business or user account in settings. For anything else, email <email>{email}</email>. We answer within one month (extendable by two further months for complex requests, in which case we tell you why). We may ask you to confirm your identity first.",
+    "p3": "You also have the right to lodge a complaint with a supervisory authority, in particular in the EU country where you live or work or where an infringement took place. In Greece this is the Hellenic Data Protection Authority (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Athens, <authority>www.dpa.gr</authority>. We would appreciate the chance to address your concern first."
+  },
+  "s10": {
+    "title": "Do you have to give us your data?",
+    "p1": "To create an account we need your name, email address and a password; without them we cannot provide the service. Everything else is optional or is information your business chooses to add."
+  },
+  "s11": {
+    "title": "Security",
+    "p1": "We use encrypted connections (HTTPS with HSTS), encrypted database connections, strong one-way password hashing, sign-in cookies that page scripts cannot read, strict separation of each business’s data, role-based permissions for team members, rate limiting of sensitive actions, a content security policy and an audit log. Our providers encrypt data at rest. No online service is perfectly secure; if a personal data breach occurs, we will notify the supervisory authority within 72 hours where required, inform affected businesses without undue delay, and inform you directly where the law requires it."
+  },
+  "s12": {
+    "title": "Cookies",
+    "p1": "We only use cookies that are strictly necessary to sign you in and keep your session secure, and your browser’s local storage to remember your light/dark theme choice. We use no analytics, advertising or social-media cookies, so we do not show a cookie banner. See the <cookies>cookie policy</cookies> for details."
+  },
+  "s13": {
+    "title": "Children",
+    "p1": "{brand} accounts are for businesses and may only be created by adults. We do not knowingly collect data from children for our own purposes. Businesses that take bookings for children (for example tutoring) are responsible, as controllers, for collecting their data lawfully."
+  },
+  "s14": {
+    "title": "Changes to this policy",
+    "p1": "We will update this policy when our processing changes. The date and version at the top show when it last changed; for material changes we also email account owners in advance."
+  },
+  "s15": {
+    "title": "Contact",
+    "p1": "<provider></provider>. Email: <email>{email}</email>."
+  }
+}

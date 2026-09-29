@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Accord de traitement des données",
+    "description": "L’accord de traitement des données de {brand} (article 28 du RGPD) pour les entreprises : comment nous traitons pour votre compte les données à caractère personnel de vos clients."
+  },
+  "title": "Accord de traitement des données",
+  "intro": "Lorsque vos clients réservent via {brand}, vous décidez de l’utilisation de leurs données et nous les traitons pour vous. Le présent accord définit nos obligations en tant que votre sous-traitant au titre de l’article 28 du RGPD. Il fait partie des Conditions d’utilisation et s’applique donc automatiquement à chaque compte.",
+  "s1": {
+    "title": "Parties et champ d’application",
+    "p1": "Le présent Accord de traitement des données (l’« Accord de traitement ») est conclu entre l’entreprise qui dispose d’un compte {brand} (le « Responsable du traitement », « vous ») et <provider></provider> (le « Sous-traitant », « nous »). Il fait partie des <terms>Conditions d’utilisation</terms> et s’applique automatiquement, sans signature distincte, chaque fois que nous traitons des données à caractère personnel pour votre compte dans le cadre de la fourniture de {brand}.",
+    "p2": "Les termes tels que « données à caractère personnel », « traitement », « responsable du traitement », « sous-traitant », « personne concernée » et « violation de données à caractère personnel » ont le sens que leur donne le règlement (UE) 2016/679 (le « RGPD »). En cas de contradiction entre le présent Accord de traitement et les Conditions en matière de protection des données, le présent Accord de traitement prévaut."
+  },
+  "s2": {
+    "title": "Description du traitement",
+    "items": {
+      "i1": "<strong>Objet et finalité :</strong> vous fournir {brand} : hébergement de votre page de réservation, prise et gestion des réservations, conservation des fiches clients, envoi d’e-mails de rendez-vous en votre nom, statistiques, exports et assistance.",
+      "i2": "<strong>Durée :</strong> aussi longtemps que vous utilisez {brand}, et jusqu’à la suppression des données comme décrit ci-dessous.",
+      "i3": "<strong>Nature du traitement :</strong> collecte via la page de réservation ou vos saisies, conservation, organisation, extraction, affichage pour vous et votre équipe, transmission par e-mail, export et effacement.",
+      "i4": "<strong>Personnes concernées :</strong> vos clients et clients potentiels qui réservent ou que vous ajoutez ; votre personnel et les membres de votre équipe.",
+      "i5": "<strong>Catégories de données à caractère personnel :</strong> nom, adresse e-mail, numéro de téléphone, détails des rendez-vous (prestation, membre de l’équipe, date, heure, prix, statut, historique), messages des clients, notes que vous rédigez, ainsi que noms et plannings du personnel.",
+      "i6": "<strong>Catégories particulières :</strong> {brand} n’est pas conçu pour les catégories particulières de données (telles que les données de santé). Vous ne les saisirez pas, sauf si la loi vous y autorise et que vous avez mis en place les garanties requises ; si vous le faites, les mesures de sécurité du présent Accord de traitement s’y appliquent également."
+    }
+  },
+  "s3": {
+    "title": "Traitement uniquement sur vos instructions",
+    "p1": "Nous traitons les données à caractère personnel uniquement sur vos instructions documentées, à savoir les présentes Conditions et le présent Accord de traitement, ainsi que les paramètres et actions que vous utilisez dans {brand}. Nous ne les utilisons pas à nos propres fins, ne les vendons pas et ne les combinons pas avec d’autres données, sauf si le droit de l’UE ou le droit grec nous impose de les traiter ; dans ce cas, nous vous en informons au préalable, sauf si la loi l’interdit.",
+    "p2": "Nous vous informerons immédiatement si, selon nous, une instruction constitue une violation du RGPD ou d’autres dispositions relatives à la protection des données."
+  },
+  "s4": {
+    "title": "Confidentialité",
+    "p1": "Toute personne que nous autorisons à accéder aux données à caractère personnel est tenue à la confidentialité et n’y accède que dans la mesure nécessaire pour fournir, sécuriser ou assister le service."
+  },
+  "s5": {
+    "title": "Mesures de sécurité (article 32)",
+    "p1": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées, compte tenu de l’état des connaissances, des coûts et des risques. Elles comprennent actuellement :",
+    "items": {
+      "i1": "Le chiffrement en transit (HTTPS avec HSTS ; connexions chiffrées à la base de données).",
+      "i2": "Le chiffrement au repos assuré par nos fournisseurs d’hébergement et de base de données.",
+      "i3": "La séparation logique des données de chaque entreprise, appliquée à chaque requête, et des autorisations fondées sur les rôles pour les membres de l’équipe.",
+      "i4": "Un hachage robuste et à sens unique des mots de passe, des cookies de session sécurisés, la limitation des tentatives de connexion et le verrouillage des comptes, ainsi que la limitation du débit des actions sensibles.",
+      "i5": "Une politique de sécurité du contenu et d’autres en-têtes de sécurité sur chaque page.",
+      "i6": "Un journal d’audit des actions importantes relatives aux comptes et aux données.",
+      "i7": "Des sauvegardes gérées par notre fournisseur de base de données, permettant une restauration après un incident.",
+      "i8": "Un accès aux systèmes de production réservé au titulaire de l’entreprise prestataire, avec authentification multifacteur sur les comptes auprès des fournisseurs.",
+      "i9": "La minimisation des données et leur suppression automatique, comme indiqué dans notre politique de confidentialité."
+    },
+    "p2": "Nous pouvons faire évoluer ces mesures tant que le niveau global de sécurité n’est pas réduit."
+  },
+  "s6": {
+    "title": "Sous-traitants ultérieurs",
+    "p1": "Vous nous donnez une autorisation générale de recourir à des sous-traitants ultérieurs. Les sous-traitants ultérieurs qui traitent aujourd’hui les données de vos clients sont :",
+    "p2": "Nous imposons à chaque sous-traitant ultérieur des obligations en matière de protection des données équivalentes à celles du présent Accord de traitement et restons responsables envers vous de leur exécution. Nous informerons les titulaires de compte par e-mail au moins 30 jours avant d’ajouter ou de remplacer un sous-traitant ultérieur. Vous pouvez vous y opposer pour des motifs raisonnables liés à la protection des données dans ce délai ; si nous ne pouvons raisonnablement pas répondre à votre objection, vous pouvez résilier le service concerné et obtenir le remboursement au prorata des sommes payées d’avance."
+  },
+  "s7": {
+    "title": "Transferts internationaux",
+    "p1": "Lorsqu’un sous-traitant ultérieur traite des données à caractère personnel hors de l’Espace économique européen, nous veillons à ce que le transfert soit conforme au chapitre V du RGPD, au moyen d’une décision d’adéquation (telle que le cadre de protection des données UE-États-Unis pour les prestataires certifiés) ou des clauses contractuelles types de la Commission européenne, assorties de mesures supplémentaires si nécessaire."
+  },
+  "s8": {
+    "title": "Assistance pour les demandes des personnes concernées et la conformité",
+    "p1": "{brand} vous permet de répondre vous-même à la plupart des demandes : consulter, rectifier et exporter les données des clients, effacer un client et supprimer votre entreprise. Si nous recevons une demande directement de l’un de vos clients, nous n’y répondrons pas nous-mêmes (sauf pour l’orienter vers vous) et vous la transmettrons dans les meilleurs délais.",
+    "p2": "Compte tenu de la nature du traitement et des informations dont nous disposons, nous vous aiderons également, dans une mesure raisonnable, à respecter vos obligations en matière de sécurité, de notification des violations, d’analyses d’impact relatives à la protection des données et de consultation préalable (articles 32 à 36 du RGPD)."
+  },
+  "s9": {
+    "title": "Violations de données à caractère personnel",
+    "p1": "Nous vous informerons dans les meilleurs délais, et en tout état de cause dans les 48 heures après en avoir pris connaissance, de toute violation de données à caractère personnel touchant vos données, par e-mail au titulaire du compte. La notification décrira, dans la mesure où ces éléments sont alors connus, la nature de la violation, les catégories et le nombre approximatif de personnes concernées et d’enregistrements concernés, les conséquences probables et les mesures prises ou proposées. Nous prendrons des mesures raisonnables pour contenir la violation et fournirons des informations complémentaires dès qu’elles seront disponibles, afin que vous puissiez respecter vos propres obligations de notification à l’autorité de contrôle et de communication aux personnes concernées."
+  },
+  "s10": {
+    "title": "Suppression et restitution des données",
+    "p1": "Vous pouvez exporter vos données à tout moment. Lorsque vous effacez un client, ses données à caractère personnel sont supprimées immédiatement et seuls des enregistrements de rendez-vous anonymes subsistent pour vos statistiques. Lorsque vous supprimez votre entreprise, toutes ses données sont immédiatement supprimées de nos systèmes en production. Dans les deux cas, les données sont écrasées dans les sauvegardes de notre fournisseur de base de données sous 30 jours, sauf si le droit de l’UE ou le droit grec nous impose de les conserver. Si votre abonnement prend fin sans que vous supprimiez votre entreprise, vos données restent à votre disposition jusqu’à ce que vous les supprimiez."
+  },
+  "s11": {
+    "title": "Informations et audits",
+    "p1": "Nous mettons à disposition les informations raisonnablement nécessaires pour démontrer le respect de l’article 28 du RGPD et répondons à vos questions écrites sur nos traitements. Si cela ne suffit pas, vous pouvez auditer notre conformité, y compris par l’intermédiaire d’un auditeur indépendant tenu à la confidentialité, moyennant un préavis écrit d’au moins 30 jours, au plus une fois par an (sauf exigence d’une autorité de contrôle ou après une violation), pendant les heures ouvrables et de manière à ne pas compromettre les données des autres clients ni notre sécurité. Chaque partie supporte ses propres frais."
+  },
+  "s12": {
+    "title": "Responsabilité et durée",
+    "p1": "La responsabilité au titre du présent Accord de traitement est soumise aux limitations prévues par les Conditions, sauf lorsque la loi ne les autorise pas. Le présent Accord de traitement prend fin automatiquement lorsque nous cessons de traiter des données à caractère personnel pour votre compte ; les obligations de suppression et de confidentialité s’appliquent jusqu’à cette date. Il est régi par le même droit et relève des mêmes juridictions que les Conditions."
+  },
+  "s13": {
+    "title": "Contact",
+    "p1": "Questions sur le présent Accord de traitement ou demandes d’un exemplaire contresigné : <email>{email}</email>."
+  }
+}

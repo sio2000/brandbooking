@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Warunki świadczenia usług",
+    "description": "Umowa między {brand} a firmami, które z niego korzystają: okres próbny, subskrypcja, twoje dane, dopuszczalne korzystanie, odpowiedzialność i kontakt z nami."
+  },
+  "title": "Warunki świadczenia usług",
+  "intro": "Umowa między {brand} a firmami, które z niego korzystają, napisana tak, by dało się ją przeczytać. W skrócie: {days, plural, one {# dzień} few {# dni} many {# dni} other {# dnia}} za darmo bez karty, potem {price} miesięcznie, rezygnacja w dowolnym momencie, twoje dane pozostają twoje, a dane twoich klientów przetwarzamy wyłącznie po to, by świadczyć dla ciebie usługę.",
+  "s1": {
+    "title": "Kim jesteśmy i czego dotyczą te warunki",
+    "p1": "Usługę {brand} świadczy <provider></provider> („{brand}”, „my”).",
+    "p2": "Niniejsze warunki świadczenia usług („Warunki”) stanowią umowę między nami a firmą lub profesjonalistą, który zakłada konto {brand} („ty”, „Klient”). Obejmują one naszą <dpa>Umowę powierzenia przetwarzania danych</dpa> („Umowa powierzenia”), która ma zastosowanie do danych osobowych twoich klientów przetwarzanych przez {brand} w twoim imieniu. Nasza <privacy>Polityka prywatności</privacy> wyjaśnia, jak przetwarzamy dane osobowe, za które sami odpowiadamy.",
+    "p3": "Akceptujesz niniejsze Warunki, zaznaczając pole podczas rejestracji i zakładając konto. Jeśli akceptujesz je w imieniu firmy, potwierdzasz, że jesteś upoważniony do zaciągania zobowiązań w jej imieniu."
+  },
+  "s2": {
+    "title": "Wyłącznie do użytku zawodowego",
+    "p1": "{brand} jest oferowany wyłącznie przedsiębiorcom, osobom samozatrudnionym i organizacjom, do użytku w ramach ich działalności handlowej, gospodarczej, rzemieślniczej lub zawodowej. Nie jest oferowany konsumentom. Aby założyć konto, musisz mieć ukończone 18 lat.",
+    "p2": "Osoby, które rezerwują wizytę przez twoją stronę rezerwacji („Klienci końcowi”), nie potrzebują konta i nie są stronami niniejszych Warunków. Twoja relacja z nimi (świadczone przez ciebie usługi, twoje ceny, twoje zasady odwoływania wizyt) dotyczy wyłącznie ciebie i ich."
+  },
+  "s3": {
+    "title": "Usługa",
+    "p1": "{brand} to oprogramowanie online, które pozwala opublikować stronę rezerwacji, zarządzać usługami, godzinami otwarcia, personelem, wizytami i kartotekami klientów, przeglądać proste statystyki firmy oraz wysyłać e-mailem potwierdzenia, zmiany i przypomnienia o wizytach. Udostępniamy je „jako usługę” przez internet; nie trzeba niczego instalować.",
+    "p2": "Stale rozwijamy {brand}. Możemy dodawać, zmieniać lub usuwać funkcje. Jeśli zmiana istotnie ograniczy podstawową funkcjonalność, za którą płacisz, poinformujemy cię o tym co najmniej 30 dni wcześniej, a ty możesz zrezygnować, zanim zmiana wejdzie w życie.",
+    "p3": "{brand} nie obsługuje płatności za twoje wizyty i nie jest agentem, pośrednikiem ani platformą handlową między tobą a twoimi Klientami końcowymi."
+  },
+  "s4": {
+    "title": "Twoje konto i zespół",
+    "items": {
+      "i1": "Podawaj przy rejestracji prawdziwe informacje i aktualizuj je.",
+      "i2": "Zachowaj hasło w tajemnicy i nie udostępniaj kont. Zamiast tego zapraszaj członków zespołu; odpowiadasz za to, co osoby przez ciebie zaproszone robią na twoim koncie.",
+      "i3": "Niezwłocznie poinformuj nas pod adresem <email>{email}</email>, jeśli uważasz, że ktoś uzyskał dostęp do twojego konta bez zgody."
+    }
+  },
+  "s5": {
+    "title": "Bezpłatny okres próbny, cena, rozliczenia i rezygnacja",
+    "trial": {
+      "title": "Bezpłatny okres próbny",
+      "p1": "Każda nowa firma otrzymuje {days}-dniowy bezpłatny okres próbny ze wszystkimi funkcjami. Do jego rozpoczęcia nie jest potrzebna karta płatnicza, a okres próbny nie przechodzi w płatną subskrypcję, chyba że ją wykupisz. Jeśli nie wykupisz subskrypcji do końca okresu próbnego, twoja strona rezerwacji przestanie przyjmować nowe rezerwacje; twoje dane pozostaną na koncie i w każdej chwili możesz wykupić subskrypcję, aby kontynuować."
+    },
+    "price": {
+      "title": "Subskrypcja i cena",
+      "items": {
+        "i1": "Subskrypcja kosztuje {price} za firmę miesięcznie, jest rozliczana co miesiąc z góry i obejmuje wszystkie funkcje. Nie ma opłat za uruchomienie ani opłat za rezerwację.",
+        "i2": "Cena zawiera podatek VAT według greckiej stawki 24%. Przy płatności nic nie jest doliczane, a za każdą płatność otrzymujesz fakturę.",
+        "i3": "Płatności obsługuje nasz dostawca usług płatniczych, Stripe. Wykupując subskrypcję, upoważniasz nas do obciążania, za pośrednictwem Stripe, twojej metody płatności za każdy okres rozliczeniowy aż do rezygnacji.",
+        "i4": "Możemy zmienić cenę na przyszłe okresy rozliczeniowe, informując cię e-mailem co najmniej 30 dni przed tym, jak zmiana zacznie cię obowiązywać. Jeśli się nie zgadzasz, możesz zrezygnować, zanim nowa cena zacznie obowiązywać."
+      }
+    },
+    "cancellation": {
+      "title": "Rezygnacja i zwroty",
+      "items": {
+        "i1": "Możesz zrezygnować w dowolnym momencie w sekcji <em>Rozliczenia</em> w panelu. Rezygnacja staje się skuteczna z końcem opłaconego już okresu rozliczeniowego; do tego czasu wszystko działa normalnie.",
+        "i2": "Uiszczone opłaty nie podlegają zwrotowi za niepełne miesiące, chyba że prawo wymaga zwrotu lub to my zakończymy twoją subskrypcję bez twojej winy (w takim przypadku zwracamy niewykorzystaną część okresu)."
+      }
+    },
+    "failed": {
+      "title": "Nieudane płatności",
+      "p1": "Jeśli płatność się nie powiedzie, my i Stripe spróbujemy ponownie i cię o tym poinformujemy. Jeśli należność pozostanie nieopłacona 7 dni po pierwszej nieudanej próbie, twoja strona rezerwacji przestanie przyjmować nowe rezerwacje do czasu zapłaty. Twoje dane nie są usuwane z powodu nieudanej płatności."
+    }
+  },
+  "s6": {
+    "title": "Twoje treści i dane twoich klientów",
+    "p1": "Zachowujesz wszelkie prawa do treści, które wprowadzasz do {brand}: danych firmy, zdjęć, usług, cen i kartotek klientów („Twoje Treści”). Udzielasz nam niewyłącznej, światowej, nieodpłatnej licencji na hostowanie, kopiowanie, wyświetlanie i przetwarzanie Twoich Treści wyłącznie w zakresie niezbędnym do świadczenia, zabezpieczania i wspierania usługi dla ciebie, w tym do publicznego wyświetlania twojej strony rezerwacji.",
+    "p2": "W odniesieniu do danych osobowych twoich Klientów końcowych i personelu <strong>to ty jesteś administratorem</strong>, a <strong>{brand} jest twoim podmiotem przetwarzającym</strong>. <dpa>Umowa powierzenia</dpa> określa nasze obowiązki jako podmiotu przetwarzającego i stanowi część niniejszych Warunków.",
+    "p3": "Odpowiadasz za Twoje Treści oraz za posiadanie podstawy prawnej, zgodnie z RODO i innymi obowiązującymi przepisami, do zbierania i wykorzystywania danych twoich klientów, w tym za poinformowanie ich o tym. {brand} jest narzędziem do rezerwacji, a nie systemem medycznym ani systemem dokumentacji medycznej: nie przechowuj danych o zdrowiu ani innych szczególnych kategorii danych (na przykład w notatkach o klientach lub wizytach), chyba że prawo ci na to pozwala i zastosowałeś wymagane przez nie zabezpieczenia.",
+    "p4": "Swoje dane (klientów, wizyty, usługi i dane firmy) możesz w każdej chwili wyeksportować z panelu, także po rezygnacji."
+  },
+  "s7": {
+    "title": "Dopuszczalne korzystanie",
+    "p1": "Nie wolno ci korzystać z {brand} ani pozwalać komukolwiek na korzystanie z niego w celu:",
+    "items": {
+      "i1": "oferowania, reklamowania lub organizowania nielegalnych usług albo usług, do których świadczenia nie masz uprawnień lub kwalifikacji, gdy są one wymagane prawem;",
+      "i2": "publikowania treści niezgodnych z prawem, wprowadzających w błąd, dyskryminujących, zniesławiających, naruszających czyjąkolwiek własność intelektualną lub prywatność albo o charakterze jednoznacznie seksualnym;",
+      "i3": "wysyłania spamu lub wiadomości marketingowych za pośrednictwem e-maili rezerwacyjnych albo dodawania osób jako klientów bez podstawy prawnej;",
+      "i4": "podszywania się pod inną firmę lub osobę albo tworzenia stron rezerwacji dla firmy, której nie reprezentujesz;",
+      "i5": "uzyskiwania dostępu do danych innych firm, testowania, sondowania lub obchodzenia naszych zabezpieczeń, wprowadzania złośliwego oprogramowania, automatycznego pobierania danych z usługi lub nadmiernego jej obciążania;",
+      "i6": "odsprzedaży, sublicencjonowania, kopiowania lub inżynierii wstecznej usługi, z wyjątkiem przypadków wyraźnie dozwolonych przez prawo."
+    }
+  },
+  "s8": {
+    "title": "Zgłaszanie nielegalnych treści i nasze decyzje",
+    "p1": "Strony rezerwacji są publikowane na zlecenie firm, które je tworzą. Każdy, w tym organy władzy, może zgłosić treści, które uważa za nielegalne lub naruszające niniejsze Warunki, pisząc do naszego pojedynczego punktu kontaktowego, <email>{email}</email>, po angielsku lub po grecku. Podaj:",
+    "items": {
+      "i1": "adres internetowy (URL) treści i czego dokładnie dotyczy zgłoszenie;",
+      "i2": "dlaczego uważasz ją za nielegalną lub naruszającą niniejsze Warunki;",
+      "i3": "swoje imię i nazwisko oraz adres e-mail (niewymagane w przypadku zgłoszeń materiałów przedstawiających seksualne wykorzystywanie dzieci); oraz",
+      "i4": "oświadczenie, że w dobrej wierze uważasz zgłoszenie za prawidłowe i kompletne."
+    },
+    "p2": "Potwierdzamy otrzymanie zgłoszenia, rozpatrujemy zgłoszenia starannie i obiektywnie oraz informujemy zgłaszającego o naszej decyzji. Jeśli usuniemy lub ograniczymy treść albo konto, przekazujemy danej firmie uzasadnienie oraz informację, jak zakwestionować decyzję; możesz ją zakwestionować, odpowiadając na tę wiadomość, a my rozpatrzymy sprawę ponownie. Nie podejmujemy tych decyzji przy użyciu zautomatyzowanych systemów.",
+    "p3": "Możemy usunąć treść, zawiesić stronę rezerwacji lub zawiesić konto, jeśli jest to konieczne do przestrzegania prawa, powstrzymania poważnego naruszenia niniejszych Warunków lub ochrony Klientów końcowych, innych użytkowników albo usługi. W stosownych przypadkach najpierw się z tobą kontaktujemy."
+  },
+  "s9": {
+    "title": "Nasza własność intelektualna",
+    "p1": "{brand}, jego oprogramowanie, projekt graficzny, teksty i znaki towarowe należą do nas lub naszych licencjodawców. Niniejsze Warunki dają ci prawo do korzystania z usługi na potrzeby twojej firmy, dopóki twoje konto jest aktywne; nie przenoszą żadnych praw własności. Jeśli prześlesz nam opinie lub sugestie, możemy z nich swobodnie korzystać bez żadnych zobowiązań wobec ciebie."
+  },
+  "s10": {
+    "title": "Dostępność i wsparcie",
+    "p1": "Dbamy o to, by {brand} był dostępny, bezpieczny i niezawodny, a problemy były szybko usuwane, ale nie gwarantujemy nieprzerwanego ani wolnego od błędów działania. Planowane prace konserwacyjne w miarę możliwości wykonujemy w okresach małego ruchu. Usługa korzysta z infrastruktury podmiotów trzecich (hosting, baza danych, dostarczanie e-maili, płatności), a dostarczenie e-maili zależy także od serwerów pocztowych i filtrów antyspamowych odbiorców, dlatego nie możemy zagwarantować, że każdy e-mail dotrze.",
+    "p2": "Wsparcie jest udzielane e-mailem pod adresem <email>{email}</email>, po angielsku lub po grecku, w dni robocze. Staramy się odpowiadać w ciągu dwóch dni roboczych."
+  },
+  "s11": {
+    "title": "Zakończenie umowy",
+    "items": {
+      "i1": "<strong>Przez ciebie:</strong> zrezygnuj z subskrypcji w dowolnym momencie (zob. wyżej), a firmę usuń w <em>Ustawienia → Prywatność i dane</em>, zaś konto użytkownika w <em>Ustawienia konta</em>, kiedy tylko zechcesz.",
+      "i2": "<strong>Przez nas, z wypowiedzeniem:</strong> możemy rozwiązać umowę z dowolnego powodu z co najmniej 30-dniowym wypowiedzeniem przesłanym e-mailem, zwracając opłaty uiszczone z góry za okres po rozwiązaniu umowy.",
+      "i3": "<strong>Przez nas, ze skutkiem natychmiastowym:</strong> możemy zawiesić lub zamknąć konto, jeśli poważnie lub wielokrotnie naruszasz niniejsze Warunki lub prawo, jeśli płatność pozostaje zaległa mimo wezwania albo jeśli wymaga tego właściwy organ."
+    },
+    "p1": "Usunięcie firmy trwale i natychmiast usuwa jej klientów, wizyty, usługi i przesłane pliki z naszych systemów produkcyjnych; kopie w kopiach zapasowych naszego dostawcy bazy danych są nadpisywane w ciągu 30 dni. Najpierw wyeksportuj wszystko, co chcesz zachować. Dokumentację rozliczeniową przechowujemy tak długo, jak wymagają tego przepisy podatkowe, zgodnie z <privacy>Polityką prywatności</privacy>."
+  },
+  "s12": {
+    "title": "Gwarancje",
+    "p1": "Świadczymy {brand} z należytą starannością i umiejętnościami oraz zgodnie z jego opisem. Poza tym, w zakresie dozwolonym przez prawo, usługa jest świadczona „w stanie, w jakim jest”, a my nie udzielamy żadnych innych gwarancji, na przykład że spełni ona wszystkie twoje szczególne wymagania lub zapewni ci określoną liczbę rezerwacji."
+  },
+  "s13": {
+    "title": "Odpowiedzialność",
+    "p1": "Żadne postanowienie niniejszych Warunków nie ogranicza ani nie wyłącza odpowiedzialności, której nie można ograniczyć ani wyłączyć na mocy prawa, w tym odpowiedzialności za winę umyślną (dolus) lub rażące niedbalstwo albo za śmierć lub uszkodzenie ciała.",
+    "p2": "W pozostałym zakresie, w stopniu dozwolonym przez prawo:",
+    "items": {
+      "i1": "żadna ze stron nie ponosi odpowiedzialności, w przypadku lekkiego niedbalstwa, za szkody pośrednie lub następcze ani za utratę zysków, przychodów, kontraktów, renomy lub danych, której można było uniknąć, korzystając z funkcji eksportu;",
+      "i2": "całkowita odpowiedzialność każdej ze stron wynikająca z niniejszych Warunków lub z nimi związana w dowolnym okresie 12 miesięcy jest ograniczona do wyższej z kwot: (a) opłat zapłaconych nam przez ciebie w ciągu 12 miesięcy poprzedzających zdarzenie będące podstawą roszczenia oraz (b) 100 €."
+    },
+    "p3": "Zwolnisz nas z odpowiedzialności za roszczenia osób trzecich (w tym Klientów końcowych i organów władzy) spowodowane Twoimi Treściami, usługami, które świadczysz swoim Klientom końcowym, lub naruszeniem przez ciebie niniejszych Warunków albo przepisów o ochronie danych, w tym za uzasadnione koszty prawne."
+  },
+  "s14": {
+    "title": "Poufność",
+    "p1": "Każda ze stron zachowa w poufności niepubliczne informacje biznesowe drugiej strony i będzie je wykorzystywać wyłącznie do celów niniejszej umowy, chyba że ich ujawnienia wymaga prawo lub właściwy organ. Obowiązek ten trwa trzy lata po zakończeniu umowy, a w odniesieniu do danych osobowych – tak długo, jak obowiązuje Umowa powierzenia."
+  },
+  "s15": {
+    "title": "Zdarzenia niezależne od nas",
+    "p1": "Żadna ze stron nie odpowiada za opóźnienia ani niewykonanie zobowiązań spowodowane zdarzeniami pozostającymi poza jej rozsądną kontrolą, takimi jak klęski żywiołowe, wojna, epidemie, strajki, awarie sieci publicznych lub zasilania albo przerwy w działaniu dostawców infrastruktury, pod warunkiem że podejmie rozsądne kroki w celu ograniczenia ich skutków."
+  },
+  "s16": {
+    "title": "Zmiany niniejszych warunków",
+    "p1": "Możemy aktualizować niniejsze Warunki, na przykład w związku ze zmianami usługi lub przepisów. O istotnych zmianach poinformujemy właścicieli kont e-mailem co najmniej 30 dni przed ich wejściem w życie, chyba że prawo wymaga wcześniejszej zmiany. Jeśli się nie zgadzasz, możesz zrezygnować, zanim zmiana zacznie obowiązywać; dalsze korzystanie z {brand} po tej dacie oznacza akceptację nowych Warunków. Wersja i data na górze tej strony wskazują, która wersja obowiązuje."
+  },
+  "s17": {
+    "title": "Postanowienia ogólne",
+    "items": {
+      "i1": "Niniejsze Warunki (wraz z Umową powierzenia) stanowią całość porozumienia między nami w sprawie {brand} i zastępują wszelkie wcześniejsze ustalenia.",
+      "i2": "Jeśli którekolwiek postanowienie okaże się nieważne, pozostałe pozostają w mocy, a nieważne postanowienie zastępuje się ważnym, które najlepiej oddaje jego cel.",
+      "i3": "Nie możesz przenieść niniejszej umowy bez naszej zgody. Możemy przenieść ją na następcę prawnego naszej działalności i poinformujemy cię o tym.",
+      "i4": "Zawiadomienia do ciebie są wysyłane na adres e-mail właściciela konta; zawiadomienia do nas należy kierować na adres <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Prawo właściwe i jurysdykcja",
+    "p1": "Niniejsze Warunki i wszelkie spory z nimi związane podlegają prawu greckiemu. Wyłącznie właściwe są sądy w Salonikach (Grecja), chyba że bezwzględnie obowiązujące przepisy stanowią inaczej. Konwencja Narodów Zjednoczonych o umowach międzynarodowej sprzedaży towarów nie ma zastosowania."
+  },
+  "s19": {
+    "title": "Kontakt",
+    "p1": "<provider></provider>. E-mail: <email>{email}</email>. Zobacz też nasze <legal>informacje prawne</legal>. Do usług {tradingName} innych niż {brand} mają zastosowanie odrębne warunki."
+  }
+}

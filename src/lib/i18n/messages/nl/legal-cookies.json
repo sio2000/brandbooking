@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Cookiebeleid",
+    "description": "{brand} gebruikt alleen strikt noodzakelijke cookies: geen analyse- of advertentiecookies. Bekijk precies wat er wordt opgeslagen en waarom."
+  },
+  "title": "Cookiebeleid",
+  "intro": "{brand} houdt cookies tot het minimum dat nodig is voor een veilige dienst. Hier lees je alles wat we in je browser opslaan, en waarom.",
+  "s1": {
+    "title": "In het kort",
+    "items": {
+      "i1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen en je sessie te beveiligen.",
+      "i2": "We gebruiken geen analyse-, advertentie- of trackingcookies van sociale media.",
+      "i3": "Statistieken van de boekingspagina zijn anoniem en cookieloos. Er wordt niets opgeslagen op de apparaten van je klanten."
+    }
+  },
+  "s2": {
+    "title": "Cookies die we gebruiken",
+    "p1": "Deze cookies worden door {brand} zelf geplaatst (first-party). Ze worden alleen geplaatst voor mensen die inloggen op een bedrijfsaccount.",
+    "table": {
+      "caption": "Cookies die {brand} plaatst",
+      "name": "Naam",
+      "purpose": "Doel",
+      "duration": "Duur",
+      "set": "Geplaatst",
+      "session": {
+        "devNote": "(<code>{devName}</code> in ontwikkelomgevingen zonder HTTPS)",
+        "purpose": "Houdt je ingelogd. Bevat alleen een willekeurig sessietoken; het kan niet door paginascripts worden gelezen en wordt alleen via beveiligde verbindingen verzonden.",
+        "duration": "Tot 30 dagen zonder activiteit, verlengd zolang je de app gebruikt. Verwijderd wanneer je uitlogt.",
+        "when": "Nadat je bent ingelogd"
+      },
+      "business": {
+        "purpose": "Onthoudt in welk bedrijf je werkt als je bij meer dan één bedrijf hoort.",
+        "duration": "Totdat je je browser sluit of uitlogt.",
+        "when": "Nadat je bent ingelogd en van bedrijf wisselt"
+      }
+    },
+    "p2": "Deze cookies zijn strikt noodzakelijk om de dienst te leveren waar je om hebt gevraagd; op grond van de e-privacyrichtlijn (art. 5, lid 3) en de Griekse wet 3471/2006 (art. 4, lid 5) is er daarom geen toestemming voor nodig. Daarom tonen we geen cookiebanner. Als we ooit optionele cookies toevoegen, vragen we eerst om je toestemming."
+  },
+  "s3": {
+    "title": "Lokale opslag",
+    "p1": "Als je een kleurthema kiest (licht, donker of systeem), onthouden we die keuze in de lokale opslag van je browser onder <code>{key}</code>. Die blijft op je apparaat en wordt nooit naar onze servers gestuurd. Je kunt deze op elk moment wissen in je browserinstellingen."
+  },
+  "s4": {
+    "title": "Boekingspagina’s en de insluitbare widget",
+    "p1": "Wanneer klanten de boekingspagina van een bedrijf openen (rechtstreeks, via een QR-code of via de widget op de website van het bedrijf), plaatst {brand} geen cookies voor analyse of advertenties. Om bedrijven te laten zien hoe hun boekingspagina presteert, tellen we stappen zoals ‘pagina bekeken’ en ‘boeking voltooid’ anoniem, zonder cookies, apparaat-ID’s of persoonsgegevens.",
+    "p2": "Een website waarop de widget is ingesloten, kan eigen cookies gebruiken. Die worden beheerd door die website, niet door {brand}."
+  },
+  "s5": {
+    "title": "Betalingen met Stripe",
+    "p1": "Wanneer een bedrijfseigenaar een abonnement afsluit of de facturering beheert, wordt hij doorgestuurd naar pagina’s die door Stripe worden gehost. Stripe kan daar eigen cookies plaatsen, bijvoorbeeld om fraude te voorkomen, volgens het eigen cookie- en privacybeleid van Stripe."
+  },
+  "s6": {
+    "title": "Cookies beheren",
+    "p1": "Je kunt cookies blokkeren of verwijderen in je browserinstellingen. Als je de sessiecookie blokkeert, kun je niet inloggen bij {brand}; boekingspagina’s blijven gewoon werken."
+  },
+  "s7": {
+    "title": "Vragen",
+    "p1": "Neem contact met ons op via <email>{email}</email>. Lees het <privacy>privacybeleid</privacy> voor meer informatie over hoe we met persoonsgegevens omgaan."
+  }
+}

@@ -5,16 +5,28 @@ import type booking from './messages/en/booking.json'
 import type common from './messages/en/common.json'
 import type email from './messages/en/email.json'
 import type errors from './messages/en/errors.json'
+import type legalCookies from './messages/en/legal-cookies.json'
+import type legalDpa from './messages/en/legal-dpa.json'
+import type legalNotice from './messages/en/legal-notice.json'
+import type legalPrivacy from './messages/en/legal-privacy.json'
+import type legalShared from './messages/en/legal-shared.json'
+import type legalTerms from './messages/en/legal-terms.json'
 
 export type Catalogues = {
   'booking': typeof booking
   'common': typeof common
   'email': typeof email
   'errors': typeof errors
+  'legal-cookies': typeof legalCookies
+  'legal-dpa': typeof legalDpa
+  'legal-notice': typeof legalNotice
+  'legal-privacy': typeof legalPrivacy
+  'legal-shared': typeof legalShared
+  'legal-terms': typeof legalTerms
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["booking","common","email","errors"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["booking","common","email","errors","legal-cookies","legal-dpa","legal-notice","legal-privacy","legal-shared","legal-terms"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -22,50 +34,140 @@ type Loader = () => Promise<{ default: unknown }>
 export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>> = {
   ar: {
     'common': () => import('./messages/ar/common.json'),
+    'legal-cookies': () => import('./messages/ar/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ar/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ar/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ar/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ar/legal-shared.json'),
+    'legal-terms': () => import('./messages/ar/legal-terms.json'),
   },
   de: {
     'common': () => import('./messages/de/common.json'),
+    'legal-cookies': () => import('./messages/de/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/de/legal-dpa.json'),
+    'legal-notice': () => import('./messages/de/legal-notice.json'),
+    'legal-privacy': () => import('./messages/de/legal-privacy.json'),
+    'legal-shared': () => import('./messages/de/legal-shared.json'),
+    'legal-terms': () => import('./messages/de/legal-terms.json'),
   },
   el: {
     'common': () => import('./messages/el/common.json'),
+    'legal-cookies': () => import('./messages/el/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/el/legal-dpa.json'),
+    'legal-notice': () => import('./messages/el/legal-notice.json'),
+    'legal-privacy': () => import('./messages/el/legal-privacy.json'),
+    'legal-shared': () => import('./messages/el/legal-shared.json'),
+    'legal-terms': () => import('./messages/el/legal-terms.json'),
   },
   en: {
     'booking': () => import('./messages/en/booking.json'),
     'common': () => import('./messages/en/common.json'),
     'email': () => import('./messages/en/email.json'),
     'errors': () => import('./messages/en/errors.json'),
+    'legal-cookies': () => import('./messages/en/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/en/legal-dpa.json'),
+    'legal-notice': () => import('./messages/en/legal-notice.json'),
+    'legal-privacy': () => import('./messages/en/legal-privacy.json'),
+    'legal-shared': () => import('./messages/en/legal-shared.json'),
+    'legal-terms': () => import('./messages/en/legal-terms.json'),
   },
   es: {
     'common': () => import('./messages/es/common.json'),
+    'legal-cookies': () => import('./messages/es/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/es/legal-dpa.json'),
+    'legal-notice': () => import('./messages/es/legal-notice.json'),
+    'legal-privacy': () => import('./messages/es/legal-privacy.json'),
+    'legal-shared': () => import('./messages/es/legal-shared.json'),
+    'legal-terms': () => import('./messages/es/legal-terms.json'),
   },
   fr: {
     'common': () => import('./messages/fr/common.json'),
+    'legal-cookies': () => import('./messages/fr/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/fr/legal-dpa.json'),
+    'legal-notice': () => import('./messages/fr/legal-notice.json'),
+    'legal-privacy': () => import('./messages/fr/legal-privacy.json'),
+    'legal-shared': () => import('./messages/fr/legal-shared.json'),
+    'legal-terms': () => import('./messages/fr/legal-terms.json'),
   },
   hi: {
     'common': () => import('./messages/hi/common.json'),
+    'legal-cookies': () => import('./messages/hi/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/hi/legal-dpa.json'),
+    'legal-notice': () => import('./messages/hi/legal-notice.json'),
+    'legal-privacy': () => import('./messages/hi/legal-privacy.json'),
+    'legal-shared': () => import('./messages/hi/legal-shared.json'),
+    'legal-terms': () => import('./messages/hi/legal-terms.json'),
   },
   it: {
     'common': () => import('./messages/it/common.json'),
+    'legal-cookies': () => import('./messages/it/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/it/legal-dpa.json'),
+    'legal-notice': () => import('./messages/it/legal-notice.json'),
+    'legal-privacy': () => import('./messages/it/legal-privacy.json'),
+    'legal-shared': () => import('./messages/it/legal-shared.json'),
+    'legal-terms': () => import('./messages/it/legal-terms.json'),
   },
   ja: {
     'common': () => import('./messages/ja/common.json'),
+    'legal-cookies': () => import('./messages/ja/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ja/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ja/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ja/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ja/legal-shared.json'),
+    'legal-terms': () => import('./messages/ja/legal-terms.json'),
   },
   nl: {
     'common': () => import('./messages/nl/common.json'),
+    'legal-cookies': () => import('./messages/nl/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/nl/legal-dpa.json'),
+    'legal-notice': () => import('./messages/nl/legal-notice.json'),
+    'legal-privacy': () => import('./messages/nl/legal-privacy.json'),
+    'legal-shared': () => import('./messages/nl/legal-shared.json'),
+    'legal-terms': () => import('./messages/nl/legal-terms.json'),
   },
   pl: {
     'common': () => import('./messages/pl/common.json'),
+    'legal-cookies': () => import('./messages/pl/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/pl/legal-dpa.json'),
+    'legal-notice': () => import('./messages/pl/legal-notice.json'),
+    'legal-privacy': () => import('./messages/pl/legal-privacy.json'),
+    'legal-shared': () => import('./messages/pl/legal-shared.json'),
+    'legal-terms': () => import('./messages/pl/legal-terms.json'),
   },
   pt: {
     'common': () => import('./messages/pt/common.json'),
+    'legal-cookies': () => import('./messages/pt/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/pt/legal-dpa.json'),
+    'legal-notice': () => import('./messages/pt/legal-notice.json'),
+    'legal-privacy': () => import('./messages/pt/legal-privacy.json'),
+    'legal-shared': () => import('./messages/pt/legal-shared.json'),
+    'legal-terms': () => import('./messages/pt/legal-terms.json'),
   },
   ru: {
     'common': () => import('./messages/ru/common.json'),
+    'legal-cookies': () => import('./messages/ru/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ru/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ru/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ru/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ru/legal-shared.json'),
+    'legal-terms': () => import('./messages/ru/legal-terms.json'),
   },
   tr: {
     'common': () => import('./messages/tr/common.json'),
+    'legal-cookies': () => import('./messages/tr/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/tr/legal-dpa.json'),
+    'legal-notice': () => import('./messages/tr/legal-notice.json'),
+    'legal-privacy': () => import('./messages/tr/legal-privacy.json'),
+    'legal-shared': () => import('./messages/tr/legal-shared.json'),
+    'legal-terms': () => import('./messages/tr/legal-terms.json'),
   },
   zh: {
     'common': () => import('./messages/zh/common.json'),
+    'legal-cookies': () => import('./messages/zh/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/zh/legal-dpa.json'),
+    'legal-notice': () => import('./messages/zh/legal-notice.json'),
+    'legal-privacy': () => import('./messages/zh/legal-privacy.json'),
+    'legal-shared': () => import('./messages/zh/legal-shared.json'),
+    'legal-terms': () => import('./messages/zh/legal-terms.json'),
   },
 }

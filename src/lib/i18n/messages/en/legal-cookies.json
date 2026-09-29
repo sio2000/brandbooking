@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Cookie policy",
+    "description": "{brand} uses only strictly necessary cookies: no analytics or advertising cookies. See exactly what is stored and why."
+  },
+  "title": "Cookie policy",
+  "intro": "{brand} keeps cookies to the minimum needed to run a secure service. Here is everything we store in your browser, and why.",
+  "s1": {
+    "title": "In short",
+    "items": {
+      "i1": "We only use cookies that are strictly necessary to sign you in and keep your session secure.",
+      "i2": "We do not use analytics, advertising or social-media tracking cookies.",
+      "i3": "Booking-page statistics are anonymous and cookieless. Nothing is stored on your customers’ devices."
+    }
+  },
+  "s2": {
+    "title": "Cookies we use",
+    "p1": "These cookies are set by {brand} itself (first-party). They are only set for people who sign in to a business account.",
+    "table": {
+      "caption": "Cookies set by {brand}",
+      "name": "Name",
+      "purpose": "Purpose",
+      "duration": "Duration",
+      "set": "Set",
+      "session": {
+        "devNote": "(<code>{devName}</code> on non-HTTPS development setups)",
+        "purpose": "Keeps you signed in. Holds a random session token only; it cannot be read by page scripts and is only sent over secure connections.",
+        "duration": "Up to 30 days without activity, renewed as you use the app. Removed when you sign out.",
+        "when": "After you sign in"
+      },
+      "business": {
+        "purpose": "Remembers which business you are working in if you belong to more than one.",
+        "duration": "Until you close your browser or sign out.",
+        "when": "After you sign in and switch business"
+      }
+    },
+    "p2": "These cookies are strictly necessary to provide the service you asked for, so under the ePrivacy Directive (art. 5(3)) and Greek law 3471/2006 (art. 4(5)) they do not require consent. That is why we do not show a cookie banner. If we ever add optional cookies, we will ask for your consent first."
+  },
+  "s3": {
+    "title": "Local storage",
+    "p1": "If you choose a colour theme (light, dark or system), we remember that choice in your browser’s local storage under <code>{key}</code>. It stays on your device and is never sent to our servers. You can clear it at any time in your browser settings."
+  },
+  "s4": {
+    "title": "Booking pages and the embeddable widget",
+    "p1": "When customers open a business’s booking page (directly, through a QR code or through the widget embedded on the business’s website), {brand} does not set cookies for analytics or advertising. To show businesses how their booking page performs, we count steps such as “page viewed” and “booking completed” anonymously, without cookies, device identifiers or personal data.",
+    "p2": "A website that embeds the widget may use its own cookies. Those are controlled by that website, not by {brand}."
+  },
+  "s5": {
+    "title": "Payments with Stripe",
+    "p1": "When a business owner subscribes or manages billing, they are taken to pages hosted by Stripe. Stripe may set its own cookies there, for example to prevent fraud, under Stripe’s own cookie and privacy policies."
+  },
+  "s6": {
+    "title": "Managing cookies",
+    "p1": "You can block or delete cookies in your browser settings. If you block the session cookie, you will not be able to sign in to {brand}; booking pages will keep working."
+  },
+  "s7": {
+    "title": "Questions",
+    "p1": "Contact us at <email>{email}</email>. For more on how we handle personal data, see the <privacy>privacy policy</privacy>."
+  }
+}

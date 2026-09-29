@@ -1,191 +1,100 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ContactEmail, LegalDocument, type LegalSection } from '@/components/marketing/legal'
-import { site, socialImage } from '@/lib/site'
+import {
+  LegalDocument,
+  legalMetadata,
+  legalText,
+  type LegalSection,
+} from '@/components/marketing/legal'
 
-const description = `${site.name} uses only strictly necessary cookies: no analytics or advertising cookies. See exactly what is stored and why.`
-
-export const metadata: Metadata = {
-  title: 'Cookie policy',
-  description,
-  alternates: { canonical: '/cookies' },
-  openGraph: {
-    images: [socialImage],
-    type: 'article',
-    url: '/cookies',
-    title: `Cookie policy · ${site.name}`,
-    description,
-  },
+export function generateMetadata(): Promise<Metadata> {
+  return legalMetadata('legal-cookies', '/cookies')
 }
 
-const cookieRows = [
-  {
-    name: (
-      <>
-        <code className="whitespace-nowrap">__Host-hn_session</code>
-        <span className="mt-1 block text-[13px] text-muted-foreground">
-          (<code>hn_session</code> on non-HTTPS development setups)
-        </span>
-      </>
-    ),
-    purpose:
-      'Keeps you signed in. Holds a random session token only; it cannot be read by page scripts and is only sent over secure connections.',
-    duration:
-      'Up to 30 days without activity, renewed as you use the app. Removed when you sign out.',
-    when: 'After you sign in',
-  },
-  {
-    name: <code>hn_business</code>,
-    purpose: 'Remembers which business you are working in if you belong to more than one.',
-    duration: 'Until you close your browser or sign out.',
-    when: 'After you sign in and switch business',
-  },
-]
+/** Names of what we store in the browser (see src/server/auth/session.ts, tenancy, theme). */
+const SESSION_COOKIE = '__Host-hn_session'
+const SESSION_COOKIE_DEV = 'hn_session'
+const BUSINESS_COOKIE = 'hn_business'
+const THEME_KEY = 'hn-theme'
 
-export default function CookiesPage() {
-  const sections: LegalSection[] = [
+export default async function CookiesPage() {
+  const { t, p, r, list } = await legalText('legal-cookies')
+  const section = (id: string, n: number, body: React.ReactNode): LegalSection => ({
+    id,
+    title: t(`s${n}.title`),
+    body,
+  })
+
+  const cookieRows = [
     {
-      id: 'summary',
-      title: 'In short',
-      body: (
-        <ul>
-          <li>
-            We only use cookies that are strictly necessary to sign you in and keep your session
-            secure.
-          </li>
-          <li>We do not use analytics, advertising or social-media tracking cookies.</li>
-          <li>
-            Booking-page statistics are anonymous and cookieless. Nothing is stored on your
-            customers’ devices.
-          </li>
-        </ul>
-      ),
-    },
-    {
-      id: 'cookies-we-use',
-      title: 'Cookies we use',
-      body: (
+      key: 'session',
+      name: (
         <>
-          <p>
-            These cookies are set by {site.name} itself (first-party). They are only set for people
-            who sign in to a business account.
-          </p>
-          <div className="mt-5 overflow-x-auto rounded-xl border border-border">
-            <table className="w-full min-w-[560px] border-collapse text-left text-[14px] leading-relaxed">
-              <caption className="sr-only">Cookies set by {site.name}</caption>
-              <thead className="bg-surface-2 text-[13px]">
-                <tr>
-                  <th scope="col" className="px-4 py-2.5 font-semibold">
-                    Name
-                  </th>
-                  <th scope="col" className="px-4 py-2.5 font-semibold">
-                    Purpose
-                  </th>
-                  <th scope="col" className="px-4 py-2.5 font-semibold">
-                    Duration
-                  </th>
-                  <th scope="col" className="px-4 py-2.5 font-semibold">
-                    Set
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {cookieRows.map((r, i) => (
-                  <tr key={i} className="align-top">
-                    <th scope="row" className="px-4 py-3 font-normal">
-                      {r.name}
-                    </th>
-                    <td className="px-4 py-3">{r.purpose}</td>
-                    <td className="px-4 py-3">{r.duration}</td>
-                    <td className="px-4 py-3">{r.when}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p>
-            These cookies are strictly necessary to provide the service you asked for, so under the
-            ePrivacy Directive (art. 5(3)) and Greek law 3471/2006 (art. 4(5)) they do not require
-            consent. That is why we do not show a cookie banner. If we ever add optional cookies, we
-            will ask for your consent first.
-          </p>
+          <code className="whitespace-nowrap">{SESSION_COOKIE}</code>
+          <span className="mt-1 block text-[13px] text-muted-foreground">
+            {r('s2.table.session.devNote', { vars: { devName: SESSION_COOKIE_DEV } })}
+          </span>
         </>
       ),
     },
-    {
-      id: 'local-storage',
-      title: 'Local storage',
-      body: (
-        <p>
-          If you choose a colour theme (light, dark or system), we remember that choice in your
-          browser’s local storage under <code>hn-theme</code>. It stays on your device and is never
-          sent to our servers. You can clear it at any time in your browser settings.
-        </p>
-      ),
-    },
-    {
-      id: 'booking-pages',
-      title: 'Booking pages and the embeddable widget',
-      body: (
-        <>
-          <p>
-            When customers open a business’s booking page (directly, through a QR code or through
-            the widget embedded on the business’s website), {site.name} does not set cookies for
-            analytics or advertising. To show businesses how their booking page performs, we count
-            steps such as “page viewed” and “booking completed” anonymously, without cookies, device
-            identifiers or personal data.
-          </p>
-          <p>
-            A website that embeds the widget may use its own cookies. Those are controlled by that
-            website, not by {site.name}.
-          </p>
-        </>
-      ),
-    },
-    {
-      id: 'third-parties',
-      title: 'Payments with Stripe',
-      body: (
-        <p>
-          When a business owner subscribes or manages billing, they are taken to pages hosted by
-          Stripe. Stripe may set its own cookies there, for example to prevent fraud, under Stripe’s
-          own cookie and privacy policies.
-        </p>
-      ),
-    },
-    {
-      id: 'managing',
-      title: 'Managing cookies',
-      body: (
-        <p>
-          You can block or delete cookies in your browser settings. If you block the session cookie,
-          you will not be able to sign in to {site.name}; booking pages will keep working.
-        </p>
-      ),
-    },
-    {
-      id: 'contact',
-      title: 'Questions',
-      body: (
-        <p>
-          Contact us at <ContactEmail />. For more on how we handle personal data, see the{' '}
-          <Link href="/privacy">privacy policy</Link>.
-        </p>
-      ),
-    },
+    { key: 'business', name: <code>{BUSINESS_COOKIE}</code> },
   ]
 
-  return (
-    <LegalDocument
-      path="/cookies"
-      title="Cookie policy"
-      intro={
-        <p>
-          {site.name} keeps cookies to the minimum needed to run a secure service. Here is
-          everything we store in your browser, and why.
-        </p>
-      }
-      sections={sections}
-    />
-  )
+  const sections: LegalSection[] = [
+    section('summary', 1, list('s1.items')),
+    section(
+      'cookies-we-use',
+      2,
+      <>
+        {p('s2.p1')}
+        <div className="mt-5 overflow-x-auto rounded-xl border border-border">
+          <table className="w-full min-w-[560px] border-collapse text-start text-[14px] leading-relaxed">
+            <caption className="sr-only">{t('s2.table.caption')}</caption>
+            <thead className="bg-surface-2 text-[13px]">
+              <tr>
+                <th scope="col" className="px-4 py-2.5 text-start font-semibold">
+                  {t('s2.table.name')}
+                </th>
+                <th scope="col" className="px-4 py-2.5 text-start font-semibold">
+                  {t('s2.table.purpose')}
+                </th>
+                <th scope="col" className="px-4 py-2.5 text-start font-semibold">
+                  {t('s2.table.duration')}
+                </th>
+                <th scope="col" className="px-4 py-2.5 text-start font-semibold">
+                  {t('s2.table.set')}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {cookieRows.map((row) => (
+                <tr key={row.key} className="align-top">
+                  <th scope="row" className="px-4 py-3 text-start font-normal">
+                    {row.name}
+                  </th>
+                  <td className="px-4 py-3">{t(`s2.table.${row.key}.purpose`)}</td>
+                  <td className="px-4 py-3">{t(`s2.table.${row.key}.duration`)}</td>
+                  <td className="px-4 py-3">{t(`s2.table.${row.key}.when`)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {p('s2.p2')}
+      </>,
+    ),
+    section('local-storage', 3, p('s3.p1', { vars: { key: THEME_KEY } })),
+    section(
+      'booking-pages',
+      4,
+      <>
+        {p('s4.p1')}
+        {p('s4.p2')}
+      </>,
+    ),
+    section('third-parties', 5, p('s5.p1')),
+    section('managing', 6, p('s6.p1')),
+    section('contact', 7, p('s7.p1')),
+  ]
+
+  return <LegalDocument path="/cookies" title={t('title')} intro={p('intro')} sections={sections} />
 }

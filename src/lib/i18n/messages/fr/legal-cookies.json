@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Politique relative aux cookies",
+    "description": "{brand} n’utilise que des cookies strictement nécessaires : aucun cookie d’analyse ni publicitaire. Découvrez précisément ce qui est stocké et pourquoi."
+  },
+  "title": "Politique relative aux cookies",
+  "intro": "{brand} limite les cookies au minimum nécessaire pour faire fonctionner un service sécurisé. Voici tout ce que nous stockons dans votre navigateur, et pourquoi.",
+  "s1": {
+    "title": "En bref",
+    "items": {
+      "i1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter et sécuriser votre session.",
+      "i2": "Nous n’utilisons pas de cookies d’analyse, publicitaires ou de suivi des réseaux sociaux.",
+      "i3": "Les statistiques de la page de réservation sont anonymes et sans cookies. Rien n’est stocké sur les appareils de vos clients."
+    }
+  },
+  "s2": {
+    "title": "Les cookies que nous utilisons",
+    "p1": "Ces cookies sont déposés par {brand} lui-même (cookies propriétaires). Ils ne sont déposés que pour les personnes qui se connectent à un compte d’entreprise.",
+    "table": {
+      "caption": "Cookies déposés par {brand}",
+      "name": "Nom",
+      "purpose": "Finalité",
+      "duration": "Durée",
+      "set": "Déposé",
+      "session": {
+        "devNote": "(<code>{devName}</code> dans les environnements de développement sans HTTPS)",
+        "purpose": "Vous garde connecté. Contient uniquement un jeton de session aléatoire ; il ne peut pas être lu par les scripts de la page et n’est envoyé que par des connexions sécurisées.",
+        "duration": "Jusqu’à 30 jours sans activité, renouvelé lorsque vous utilisez l’application. Supprimé à la déconnexion.",
+        "when": "Après votre connexion"
+      },
+      "business": {
+        "purpose": "Mémorise l’entreprise dans laquelle vous travaillez si vous appartenez à plusieurs.",
+        "duration": "Jusqu’à la fermeture de votre navigateur ou votre déconnexion.",
+        "when": "Après votre connexion et un changement d’entreprise"
+      }
+    },
+    "p2": "Ces cookies sont strictement nécessaires pour fournir le service que vous avez demandé ; en vertu de la directive « vie privée et communications électroniques » (art. 5, par. 3) et de la loi grecque 3471/2006 (art. 4, par. 5), ils ne nécessitent donc pas de consentement. C’est pourquoi nous n’affichons pas de bandeau cookies. Si nous ajoutons un jour des cookies facultatifs, nous vous demanderons d’abord votre consentement."
+  },
+  "s3": {
+    "title": "Stockage local",
+    "p1": "Si vous choisissez un thème de couleurs (clair, sombre ou système), nous mémorisons ce choix dans le stockage local de votre navigateur sous <code>{key}</code>. Il reste sur votre appareil et n’est jamais envoyé à nos serveurs. Vous pouvez l’effacer à tout moment dans les paramètres de votre navigateur."
+  },
+  "s4": {
+    "title": "Pages de réservation et widget intégrable",
+    "p1": "Lorsque des clients ouvrent la page de réservation d’une entreprise (directement, via un code QR ou via le widget intégré au site web de l’entreprise), {brand} ne dépose pas de cookies d’analyse ou publicitaires. Pour montrer aux entreprises les performances de leur page de réservation, nous comptons de manière anonyme des étapes telles que « page consultée » et « réservation effectuée », sans cookies, identifiants d’appareil ni données à caractère personnel.",
+    "p2": "Un site web qui intègre le widget peut utiliser ses propres cookies. Ceux-ci sont contrôlés par ce site, et non par {brand}."
+  },
+  "s5": {
+    "title": "Paiements avec Stripe",
+    "p1": "Lorsqu’un titulaire d’entreprise s’abonne ou gère sa facturation, il est redirigé vers des pages hébergées par Stripe. Stripe peut y déposer ses propres cookies, par exemple pour prévenir la fraude, conformément à ses propres politiques relatives aux cookies et à la confidentialité."
+  },
+  "s6": {
+    "title": "Gérer les cookies",
+    "p1": "Vous pouvez bloquer ou supprimer les cookies dans les paramètres de votre navigateur. Si vous bloquez le cookie de session, vous ne pourrez pas vous connecter à {brand} ; les pages de réservation continueront de fonctionner."
+  },
+  "s7": {
+    "title": "Questions",
+    "p1": "Contactez-nous à <email>{email}</email>. Pour en savoir plus sur la manière dont nous traitons les données à caractère personnel, consultez la <privacy>politique de confidentialité</privacy>."
+  }
+}

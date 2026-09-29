@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Informativa sulla privacy",
+    "description": "Quali dati personali tratta {brand}, perché, su quale base giuridica, chi ci aiuta, per quanto tempo li conserviamo e come esercitare i tuoi diritti ai sensi del GDPR."
+  },
+  "title": "Informativa sulla privacy",
+  "intro": "Come {brand} tratta i dati personali ai sensi del Regolamento generale sulla protezione dei dati dell’UE (GDPR) e della legge greca 4624/2019, sia che tu gestisca un’attività su {brand}, sia che tu abbia prenotato un appuntamento presso una di esse.",
+  "s1": {
+    "title": "Chi è il titolare",
+    "p1": "{brand} è fornito da <provider></provider> («noi»).",
+    "p2": "Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti, scrivi a <email>{email}</email>. Non abbiamo nominato un responsabile della protezione dei dati perché la legge non lo richiede per le nostre attività; le richieste in materia di privacy sono gestite direttamente dal titolare dell’impresa."
+  },
+  "s2": {
+    "title": "Due ruoli: titolare e responsabile del trattamento",
+    "p1": "{brand} è utilizzato da due gruppi di persone e il nostro ruolo è diverso per ciascuno:",
+    "items": {
+      "i1": "<strong>Le attività e i membri dei loro team</strong> che hanno un account {brand}. Per i loro dati relativi all’account, alla fatturazione, all’assistenza e alla sicurezza, siamo il <strong>titolare del trattamento</strong>. La presente informativa descrive tale trattamento.",
+      "i2": "<strong>I clienti di tali attività</strong> che prenotano tramite una pagina di prenotazione o che l’attività stessa aggiunge. È l’attività a decidere perché e come vengono utilizzati questi dati; pertanto <strong>l’attività è il titolare del trattamento</strong> e noi agiamo come suo <strong>responsabile del trattamento</strong> in base al nostro <dpa>Accordo sul trattamento dei dati</dpa>. A te si applica l’informativa sulla privacy dell’attività."
+    },
+    "p2": "Se hai prenotato presso un’attività e vuoi consultare, correggere o cancellare i tuoi dati, contatta direttamente l’attività; può farlo dalla sua dashboard. Se scrivi a noi, inoltreremo la tua richiesta all’attività e la aiuteremo a rispondere."
+  },
+  "s3": {
+    "title": "Quali dati vengono trattati",
+    "account": {
+      "title": "Dati dell’account (siamo titolari)",
+      "items": {
+        "i1": "Nome, indirizzo email, se l’email è verificata, lingua.",
+        "i2": "La tua password, conservata solo come hash unidirezionale con salt, così che non possiamo leggerla.",
+        "i3": "Quando e quale versione dei nostri termini hai accettato al momento della registrazione.",
+        "i4": "Sessioni di accesso con indirizzo IP e tipo di browser, per mantenerti connesso e proteggere il tuo account."
+      }
+    },
+    "business": {
+      "title": "Dati dell’attività (siamo titolari per la fatturazione e responsabili per il resto)",
+      "items": {
+        "i1": "Nome, categoria e indirizzo dell’attività, recapiti che scegli di pubblicare, fuso orario, impostazioni della pagina di prenotazione, loghi e foto.",
+        "i2": "Servizi, prezzi, orari di apertura, chiusure, regole di prenotazione, personale e relativi ruoli."
+      }
+    },
+    "customer": {
+      "title": "Dati dei clienti e degli appuntamenti (siamo responsabili)",
+      "items": {
+        "i1": "Nome, indirizzo email e numero di telefono della persona che prenota, eventuali messaggi che aggiunge e note private scritte dall’attività.",
+        "i2": "Servizio, membro del personale, data, ora, durata, prezzo, stato e cronologia delle modifiche (ad esempio spostato o cancellato, e da chi), e modalità della prenotazione (pagina di prenotazione, widget incorporato o codice QR, e sito di provenienza o tag di campagna, se disponibili)."
+      }
+    },
+    "billing": {
+      "title": "Dati di fatturazione (siamo titolari)",
+      "items": {
+        "i1": "Stato dell’abbonamento e identificativi di cliente e abbonamento su Stripe. I dati della carta vengono inseriti nelle pagine di Stripe; non riceviamo né conserviamo mai numeri di carta completi.",
+        "i2": "Fatture e registrazioni dei pagamenti richieste dalla normativa fiscale e contabile."
+      }
+    },
+    "security": {
+      "title": "Registri di sicurezza e di servizio (siamo titolari)",
+      "items": {
+        "i1": "Un registro di audit delle azioni rilevanti (ad esempio accessi, modifiche alle impostazioni, esportazioni e cancellazioni) con l’indirizzo IP e un identificativo della richiesta.",
+        "i2": "Contatori di limitazione della frequenza di breve durata che bloccano gli abusi.",
+        "i3": "Log tecnici dei server conservati dal nostro fornitore di hosting.",
+        "i4": "Statistiche della pagina di prenotazione: conteggi delle fasi di prenotazione (come «pagina visualizzata» o «prenotazione completata») con una fonte di traffico. Sono <strong>senza cookie</strong> e non contengono nomi, recapiti, indirizzi IP o identificativi dei dispositivi."
+      }
+    },
+    "support": {
+      "title": "Assistenza",
+      "items": {
+        "i1": "Le email che ci invii e le nostre risposte."
+      }
+    },
+    "p1": "Non acquistiamo dati personali, non utilizziamo cookie di tracciamento o pubblicitari e non utilizziamo servizi di analisi che profilano i visitatori."
+  },
+  "s4": {
+    "title": "Perché li utilizziamo e base giuridica",
+    "items": {
+      "i1": "<strong>Fornire il servizio alle attività:</strong> account, pagine di prenotazione, calendario, elenchi clienti, funzionalità per il team, esportazioni ed email di servizio (verifica, reimpostazione della password, inviti, avvisi di fatturazione): necessario per eseguire il nostro contratto con te (art. 6, par. 1, lett. b), GDPR).",
+      "i2": "<strong>Trattamento dei dati dei clienti e degli appuntamenti:</strong> solo su istruzione dell’attività, in base all’<dpa>Accordo sul trattamento</dpa> (art. 28 GDPR). L’attività è responsabile della propria base giuridica.",
+      "i3": "<strong>Fatturazione e contabilità:</strong> contratto (art. 6, par. 1, lett. b)) e nostri obblighi di legge ai sensi della normativa fiscale e contabile greca (art. 6, par. 1, lett. c)).",
+      "i4": "<strong>Sicurezza e prevenzione di frodi e abusi:</strong> registri di audit, limitazioni della frequenza e log dei server: il nostro legittimo interesse a mantenere sicuri il servizio e i suoi utenti (art. 6, par. 1, lett. f)).",
+      "i5": "<strong>Assistenza:</strong> rispondere ai tuoi messaggi: contratto o, se non sei cliente, il nostro legittimo interesse a rispondere (art. 6, par. 1, lett. b) o f)).",
+      "i6": "<strong>Miglioramento di {brand}:</strong> utilizzo di informazioni aggregate e non identificative sull’uso delle funzionalità: il nostro legittimo interesse (art. 6, par. 1, lett. f)).",
+      "i7": "<strong>Azioni legali e richieste delle autorità:</strong> ove necessario per accertare, esercitare o difendere un diritto in sede giudiziaria o per adempiere alla legge (art. 6, par. 1, lett. c) e f))."
+    }
+  },
+  "s5": {
+    "title": "Nessuna vendita, nessuna pubblicità, nessuna decisione automatizzata",
+    "p1": "Non vendiamo né concediamo in locazione dati personali, non utilizziamo i dati dei clienti o degli account per finalità pubblicitarie e non inviamo email di marketing senza il tuo consenso. Non adottiamo decisioni basate unicamente sul trattamento automatizzato, compresa la profilazione, che producano effetti giuridici che ti riguardano o che incidano in modo analogo significativamente sulla tua persona."
+  },
+  "s6": {
+    "title": "Chi riceve i dati",
+    "p1": "I dati personali sono comunicati solo ai fornitori indicati di seguito, che li trattano su nostra istruzione in base ad accordi sul trattamento dei dati, e solo nella misura necessaria a ciascuno:",
+    "p2": "Stripe tratta inoltre i dati di pagamento come titolare autonomo del trattamento secondo la propria informativa sulla privacy (ad esempio per la prevenzione delle frodi e il rispetto della normativa finanziaria). Possiamo anche comunicare dati ad autorità, tribunali o consulenti professionali (come il nostro commercialista o avvocato) quando la legge lo richiede o lo consente."
+  },
+  "s7": {
+    "title": "Trasferimenti al di fuori del SEE",
+    "p1": "Alcuni dei nostri fornitori hanno sede negli Stati Uniti o possono accedere ai dati da lì. Quando i dati personali sono trasferiti al di fuori dello Spazio economico europeo, ci basiamo su una decisione di adeguatezza della Commissione europea (per i fornitori certificati nell’ambito del Quadro UE-USA per la protezione dei dati) o sulle clausole contrattuali tipo della Commissione europea, insieme alle garanzie aggiuntive offerte dai nostri fornitori, come la cifratura in transito e a riposo. Puoi chiederci maggiori informazioni su queste garanzie."
+  },
+  "s8": {
+    "title": "Per quanto tempo conserviamo i dati",
+    "items": {
+      "i1": "<strong>Dati dell’account e dell’attività</strong>: finché l’account esiste. Quando un account dell’attività o dell’utente viene eliminato, i relativi dati vengono cancellati subito dai nostri sistemi in produzione ed entro 30 giorni dai backup del nostro fornitore di database.",
+      "i2": "<strong>Dati dei clienti e degli appuntamenti</strong>: finché l’attività li conserva, fino a quando l’attività cancella il cliente o fino all’eliminazione dell’attività.",
+      "i3": "<strong>Sessioni di accesso</strong>: scadono dopo 30 giorni di inattività e vengono poi cancellate.",
+      "i4": "<strong>Link di verifica dell’email e di reimpostazione della password</strong>: cancellati 7 giorni dopo la scadenza.",
+      "i5": "<strong>Email che inviamo</strong>: il contenuto viene cancellato dopo 180 giorni. Per le email relative agli appuntamenti, una registrazione della consegna (destinatario, tipo, stato e data) resta associata all’appuntamento; le registrazioni delle email relative all’account vengono cancellate dopo 180 giorni.",
+      "i6": "<strong>Registro di audit</strong>: gli indirizzi IP vengono rimossi dopo 180 giorni e le voci cancellate dopo due anni.",
+      "i7": "<strong>Contatori di limitazione della frequenza</strong>: cancellati entro un’ora dalla scadenza.",
+      "i8": "<strong>Statistiche della pagina di prenotazione</strong> (anonime): cancellate dopo circa 13 mesi.",
+      "i9": "<strong>Fatture e documenti di fatturazione</strong>: per il tempo richiesto dalla normativa fiscale e contabile greca: in genere cinque anni dalla fine del periodo d’imposta, più a lungo se la legge proroga tale termine.",
+      "i10": "<strong>Email di assistenza</strong>: per il tempo necessario a gestire la tua richiesta e fino a due anni dopo, salvo che serva un periodo più lungo per un’azione legale."
+    }
+  },
+  "s9": {
+    "title": "I tuoi diritti",
+    "p1": "Ai sensi del GDPR hai il diritto di:",
+    "items": {
+      "i1": "<strong>accedere</strong> ai tuoi dati personali e riceverne una copia;",
+      "i2": "ottenere la <strong>rettifica</strong> dei dati inesatti;",
+      "i3": "ottenere la <strong>cancellazione</strong> dei tuoi dati quando non vi è più motivo di conservarli;",
+      "i4": "ottenere la <strong>limitazione</strong> del trattamento in determinati casi;",
+      "i5": "ricevere i dati che ci hai fornito in un formato strutturato e leggibile da dispositivo automatico (<strong>portabilità</strong>);",
+      "i6": "<strong>opporti</strong> in qualsiasi momento, per motivi connessi alla tua situazione particolare, al trattamento basato sui nostri legittimi interessi; e",
+      "i7": "revocare qualsiasi consenso prestato, senza pregiudicare il trattamento effettuato prima della revoca."
+    },
+    "p2": "Le attività possono fare autonomamente gran parte di queste operazioni: modificare i dati nelle impostazioni, esportare i dati dalla dashboard ed eliminare l’attività o l’account utente nelle impostazioni. Per tutto il resto, scrivi a <email>{email}</email>. Rispondiamo entro un mese (prorogabile di altri due mesi per le richieste complesse, nel qual caso ti spieghiamo il motivo). Potremmo prima chiederti di confermare la tua identità.",
+    "p3": "Hai inoltre il diritto di proporre reclamo a un’autorità di controllo, in particolare nel Paese dell’UE in cui risiedi o lavori oppure in cui si è verificata la violazione. In Grecia si tratta dell’Autorità ellenica per la protezione dei dati (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Atene, <authority>www.dpa.gr</authority>. Ti saremmo grati se ci dessi prima la possibilità di rispondere alla tua richiesta."
+  },
+  "s10": {
+    "title": "Sei obbligato a fornirci i tuoi dati?",
+    "p1": "Per creare un account ci servono il tuo nome, il tuo indirizzo email e una password; senza di essi non possiamo fornire il servizio. Tutto il resto è facoltativo o è un’informazione che la tua attività sceglie di aggiungere."
+  },
+  "s11": {
+    "title": "Sicurezza",
+    "p1": "Utilizziamo connessioni cifrate (HTTPS con HSTS), connessioni cifrate al database, un robusto hashing unidirezionale delle password, cookie di accesso non leggibili dagli script della pagina, una rigorosa separazione dei dati di ciascuna attività, autorizzazioni basate sui ruoli per i membri del team, limitazione della frequenza delle azioni sensibili, una content security policy e un registro di audit. I nostri fornitori cifrano i dati a riposo. Nessun servizio online è perfettamente sicuro; in caso di violazione dei dati personali, la notificheremo all’autorità di controllo entro 72 ore ove richiesto, informeremo senza ingiustificato ritardo le attività interessate e informeremo direttamente te quando la legge lo richiede."
+  },
+  "s12": {
+    "title": "Cookie",
+    "p1": "Utilizziamo solo cookie strettamente necessari per farti accedere e mantenere sicura la tua sessione, e l’archiviazione locale del tuo browser per ricordare la tua scelta del tema chiaro o scuro. Non utilizziamo cookie analitici, pubblicitari o dei social media, quindi non mostriamo un banner dei cookie. Per i dettagli consulta l’<cookies>informativa sui cookie</cookies>."
+  },
+  "s13": {
+    "title": "Minori",
+    "p1": "Gli account {brand} sono destinati alle attività e possono essere creati solo da maggiorenni. Non raccogliamo consapevolmente dati di minori per nostre finalità. Le attività che accettano prenotazioni per minori (ad esempio ripetizioni) sono responsabili, in qualità di titolari del trattamento, della raccolta lecita dei loro dati."
+  },
+  "s14": {
+    "title": "Modifiche alla presente informativa",
+    "p1": "Aggiorneremo la presente informativa quando il nostro trattamento cambierà. La data e la versione indicate in alto mostrano quando è stata modificata l’ultima volta; per le modifiche sostanziali informiamo anche in anticipo via email i titolari di account."
+  },
+  "s15": {
+    "title": "Contatti",
+    "p1": "<provider></provider>. Email: <email>{email}</email>."
+  }
+}

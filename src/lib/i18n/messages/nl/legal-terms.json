@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Servicevoorwaarden",
+    "description": "De overeenkomst tussen {brand} en de bedrijven die het gebruiken: proefperiode, abonnement, je gegevens, aanvaardbaar gebruik, aansprakelijkheid en hoe je ons bereikt."
+  },
+  "title": "Servicevoorwaarden",
+  "intro": "De overeenkomst tussen {brand} en de bedrijven die het gebruiken, geschreven om gelezen te worden. Kort samengevat: {days} dagen gratis zonder kaart, daarna {price} per maand, op elk moment opzegbaar, je gegevens blijven van jou en we verwerken de gegevens van je klanten alleen om de dienst voor je te laten werken.",
+  "s1": {
+    "title": "Wie we zijn en waar deze voorwaarden over gaan",
+    "p1": "{brand} wordt aangeboden door <provider></provider> (‘{brand}’, ‘wij’, ‘ons’).",
+    "p2": "Deze servicevoorwaarden (de ‘Voorwaarden’) vormen een overeenkomst tussen ons en het bedrijf of de professional die een {brand}-account aanmaakt (‘jij’, de ‘Klant’). Ze omvatten onze <dpa>Verwerkersovereenkomst</dpa> (de ‘Verwerkersovereenkomst’), die van toepassing is op de persoonsgegevens van je klanten die {brand} voor jou verwerkt. Ons <privacy>Privacybeleid</privacy> legt uit hoe we omgaan met persoonsgegevens waarvoor we zelf verantwoordelijk zijn.",
+    "p3": "Je aanvaardt deze Voorwaarden wanneer je bij het aanmelden het vakje aanvinkt en een account aanmaakt. Als je ze aanvaardt namens een bedrijf, bevestig je dat je bevoegd bent dat bedrijf te binden."
+  },
+  "s2": {
+    "title": "Alleen voor zakelijk gebruik",
+    "p1": "{brand} wordt uitsluitend aangeboden aan bedrijven, zelfstandigen en organisaties, voor gebruik in de uitoefening van hun handel, bedrijf, ambacht of beroep. Het wordt niet aangeboden aan consumenten. Je moet ten minste 18 jaar oud zijn om een account aan te maken.",
+    "p2": "Mensen die via je boekingspagina een afspraak boeken (‘Eindklanten’) hebben geen account nodig en zijn geen partij bij deze Voorwaarden. Je relatie met hen (de diensten die je levert, je prijzen, je annuleringsregels) is een zaak tussen jou en hen."
+  },
+  "s3": {
+    "title": "De dienst",
+    "p1": "{brand} is onlinesoftware waarmee je een boekingspagina publiceert, diensten, openingstijden, medewerkers, afspraken en klantgegevens beheert, eenvoudige bedrijfsstatistieken bekijkt en afspraakbevestigingen, -wijzigingen en -herinneringen per e-mail verstuurt. We leveren het ‘als dienst’ via internet; er hoeft niets te worden geïnstalleerd.",
+    "p2": "We ontwikkelen {brand} voortdurend. We kunnen functies toevoegen, wijzigen of verwijderen. Als een wijziging de kernfunctionaliteit waarvoor je betaalt wezenlijk beperkt, laten we je dat ten minste 30 dagen van tevoren weten en kun je opzeggen voordat de wijziging ingaat.",
+    "p3": "{brand} verwerkt geen betalingen voor je afspraken en is geen agent, tussenpersoon of marktplaats tussen jou en je Eindklanten."
+  },
+  "s4": {
+    "title": "Je account en je team",
+    "items": {
+      "i1": "Geef bij het aanmelden juiste informatie op en houd die actueel.",
+      "i2": "Houd je wachtwoord geheim en deel geen accounts. Nodig in plaats daarvan teamleden uit; je bent verantwoordelijk voor wat de mensen die je uitnodigt in je account doen.",
+      "i3": "Laat het ons onverwijld weten via <email>{email}</email> als je denkt dat iemand zonder toestemming toegang heeft gehad tot je account."
+    }
+  },
+  "s5": {
+    "title": "Gratis proefperiode, prijs, facturering en opzegging",
+    "trial": {
+      "title": "Gratis proefperiode",
+      "p1": "Elk nieuw bedrijf krijgt een gratis proefperiode van {days} dagen met alle functies. Je hebt geen betaalkaart nodig om te beginnen en de proefperiode wordt niet omgezet in een betaald abonnement, tenzij je een abonnement afsluit. Sluit je vóór het einde van de proefperiode geen abonnement af, dan accepteert je boekingspagina geen nieuwe boekingen meer; je gegevens blijven in je account en je kunt op elk moment een abonnement afsluiten om verder te gaan."
+    },
+    "price": {
+      "title": "Abonnement en prijs",
+      "items": {
+        "i1": "Het abonnement kost {price} per bedrijf per maand, wordt maandelijks vooraf gefactureerd en omvat alle functies. Er zijn geen instapkosten en geen kosten per boeking.",
+        "i2": "De prijs is inclusief btw tegen het Griekse tarief van 24%. Bij het afrekenen komt er niets bij en je ontvangt voor elke betaling een factuur.",
+        "i3": "Betalingen worden verwerkt door onze betaaldienstverlener Stripe. Door een abonnement af te sluiten machtig je ons om via Stripe je betaalmiddel voor elke factureringsperiode te belasten totdat je opzegt.",
+        "i4": "We kunnen de prijs voor toekomstige factureringsperioden wijzigen door je dat ten minste 30 dagen voordat de wijziging voor jou geldt per e-mail te laten weten. Ga je niet akkoord, dan kun je opzeggen voordat de nieuwe prijs ingaat."
+      }
+    },
+    "cancellation": {
+      "title": "Opzegging en terugbetalingen",
+      "items": {
+        "i1": "Je kunt op elk moment opzeggen via <em>Facturering</em> in je dashboard. De opzegging gaat in aan het einde van de factureringsperiode waarvoor je al hebt betaald; tot dan blijft alles werken.",
+        "i2": "Reeds betaalde bedragen worden niet terugbetaald voor gedeeltelijke maanden, tenzij de wet een terugbetaling voorschrijft of wij je abonnement beëindigen zonder dat jou iets te verwijten valt (in dat geval betalen we het ongebruikte deel van de periode terug)."
+      }
+    },
+    "failed": {
+      "title": "Mislukte betalingen",
+      "p1": "Als een betaling mislukt, proberen wij en Stripe het opnieuw en laten we het je weten. Is het bedrag 7 dagen na de eerste mislukte poging nog niet betaald, dan accepteert je boekingspagina geen nieuwe boekingen meer totdat er is betaald. Je gegevens worden niet verwijderd vanwege een mislukte betaling."
+    }
+  },
+  "s6": {
+    "title": "Je inhoud en de gegevens van je klanten",
+    "p1": "Je behoudt alle rechten op de inhoud die je in {brand} invoert: bedrijfsgegevens, afbeeldingen, diensten, prijzen en klantgegevens (‘Jouw Inhoud’). Je verleent ons een niet-exclusieve, wereldwijde, royaltyvrije licentie om Jouw Inhoud te hosten, te kopiëren, weer te geven en te verwerken, uitsluitend voor zover nodig om de dienst voor je te leveren, te beveiligen en te ondersteunen, waaronder het openbaar tonen van je boekingspagina.",
+    "p2": "Voor persoonsgegevens van je Eindklanten en medewerkers <strong>ben jij de verwerkingsverantwoordelijke</strong> en <strong>is {brand} je verwerker</strong>. De <dpa>Verwerkersovereenkomst</dpa> legt onze verplichtingen als verwerker vast en maakt deel uit van deze Voorwaarden.",
+    "p3": "Je bent verantwoordelijk voor Jouw Inhoud en voor het hebben van een rechtsgrond op grond van de AVG en andere toepasselijke wetgeving om de gegevens van je klanten te verzamelen en te gebruiken, inclusief het informeren van hen daarover. {brand} is een boekingstool, geen medisch systeem of systeem voor gezondheidsdossiers: sla geen gezondheidsgegevens of andere bijzondere categorieën van gegevens op (bijvoorbeeld in klant- of afspraaknotities), tenzij de wet dat toestaat en je de waarborgen hebt getroffen die de wet vereist.",
+    "p4": "Je kunt je gegevens (klanten, afspraken, diensten en bedrijfsgegevens) op elk moment vanuit het dashboard exporteren, ook na opzegging."
+  },
+  "s7": {
+    "title": "Aanvaardbaar gebruik",
+    "p1": "Je mag {brand} niet gebruiken, of iemand anders laten gebruiken, om:",
+    "items": {
+      "i1": "illegale diensten aan te bieden, aan te prijzen of te regelen, of diensten waarvoor je geen vergunning of kwalificatie hebt terwijl die wettelijk verplicht is;",
+      "i2": "inhoud te publiceren die onrechtmatig, misleidend, discriminerend of lasterlijk is, inbreuk maakt op iemands intellectuele eigendom of privacy, of seksueel expliciet is;",
+      "i3": "spam of marketingberichten te versturen via boekingsmails, of mensen zonder rechtsgrond als klant toe te voegen;",
+      "i4": "je voor te doen als een ander bedrijf of een andere persoon, of boekingspagina’s te maken voor een bedrijf dat je niet vertegenwoordigt;",
+      "i5": "toegang te krijgen tot gegevens van andere bedrijven, onze beveiliging te testen, af te tasten of te omzeilen, malware binnen te brengen, de dienst te scrapen of onredelijk te belasten;",
+      "i6": "de dienst door te verkopen, in sublicentie te geven, te kopiëren of te reverse-engineeren, behalve voor zover de wet dat uitdrukkelijk toestaat."
+    }
+  },
+  "s8": {
+    "title": "Melden van illegale inhoud en onze beslissingen",
+    "p1": "Boekingspagina’s worden gepubliceerd op verzoek van de bedrijven die ze maken. Iedereen, ook autoriteiten, kan inhoud die volgens hem illegaal is of in strijd is met deze Voorwaarden melden door te schrijven naar ons centrale contactpunt, <email>{email}</email>, in het Engels of Grieks. Vermeld daarbij:",
+    "items": {
+      "i1": "het webadres (URL) van de inhoud en waar het precies om gaat;",
+      "i2": "waarom je de inhoud illegaal of in strijd met deze Voorwaarden acht;",
+      "i3": "je naam en e-mailadres (niet vereist bij meldingen van materiaal van seksueel misbruik van kinderen); en",
+      "i4": "een verklaring dat je te goeder trouw meent dat de melding juist en volledig is."
+    },
+    "p2": "We bevestigen de ontvangst, beoordelen meldingen zorgvuldig en objectief en laten de melder weten wat we hebben besloten. Als we inhoud of een account verwijderen of beperken, delen we het betrokken bedrijf de redenen mee en hoe het de beslissing kan aanvechten; je kunt die aanvechten door op dat bericht te antwoorden, waarna we de beslissing opnieuw beoordelen. We gebruiken geen geautomatiseerde systemen om deze beslissingen te nemen.",
+    "p3": "We kunnen inhoud verwijderen, een boekingspagina opschorten of een account opschorten wanneer dat nodig is om aan de wet te voldoen, een ernstige schending van deze Voorwaarden te stoppen of Eindklanten, andere gebruikers of de dienst te beschermen. Waar passend nemen we eerst contact met je op."
+  },
+  "s9": {
+    "title": "Ons intellectueel eigendom",
+    "p1": "{brand}, de software, het ontwerp, de teksten en de merken ervan behoren toe aan ons of onze licentiegevers. Deze Voorwaarden geven je het recht de dienst voor je bedrijf te gebruiken zolang je account actief is; ze dragen geen eigendom over. Als je ons feedback of suggesties stuurt, mogen we die vrij en zonder verplichting jegens jou gebruiken."
+  },
+  "s10": {
+    "title": "Beschikbaarheid en ondersteuning",
+    "p1": "We zetten ons in om {brand} beschikbaar, veilig en betrouwbaar te houden en problemen snel op te lossen, maar we garanderen geen ononderbroken of foutloze werking. Gepland onderhoud vindt waar mogelijk op rustige momenten plaats. De dienst is afhankelijk van infrastructuur van derden (hosting, database, e-mailverzending, betalingen), en de aflevering van e-mail hangt ook af van de mailservers en spamfilters van ontvangers; daarom kunnen we niet garanderen dat elke e-mail aankomt.",
+    "p2": "Ondersteuning wordt per e-mail geboden via <email>{email}</email>, in het Engels of Grieks, op werkdagen. We streven ernaar binnen twee werkdagen te antwoorden."
+  },
+  "s11": {
+    "title": "Beëindiging van de overeenkomst",
+    "items": {
+      "i1": "<strong>Door jou:</strong> zeg je abonnement op elk moment op (zie hierboven) en verwijder je bedrijf via <em>Instellingen → Privacy & gegevens</em> en je gebruikersaccount via <em>Accountinstellingen</em> wanneer je maar wilt.",
+      "i2": "<strong>Door ons, met opzegtermijn:</strong> we kunnen de overeenkomst om elke reden beëindigen met een opzegtermijn van ten minste 30 dagen per e-mail, waarbij we vooruitbetaalde bedragen voor de periode na de beëindiging terugbetalen.",
+      "i3": "<strong>Door ons, met onmiddellijke ingang:</strong> we kunnen een account opschorten of sluiten als je deze Voorwaarden of de wet ernstig of herhaaldelijk schendt, als een betaling na aanmaning achterstallig blijft of als een bevoegde autoriteit dat eist."
+    },
+    "p1": "Het verwijderen van een bedrijf verwijdert de klanten, afspraken, diensten en geüploade bestanden ervan direct en definitief uit onze productiesystemen; kopieën in de back-ups van onze databaseaanbieder worden binnen 30 dagen overschreven. Exporteer daarom eerst alles wat je wilt bewaren. Factureringsgegevens bewaren we zolang de belastingwetgeving dat vereist, zoals uitgelegd in het <privacy>Privacybeleid</privacy>."
+  },
+  "s12": {
+    "title": "Garanties",
+    "p1": "We leveren {brand} met redelijke vakkundigheid en zorg en in overeenstemming met de beschrijving ervan. Daarnaast, en voor zover de wet dat toestaat, wordt de dienst geleverd ‘zoals hij is’ en geven we geen andere garanties, bijvoorbeeld dat hij aan al je specifieke eisen voldoet of je een bepaald aantal boekingen oplevert."
+  },
+  "s13": {
+    "title": "Aansprakelijkheid",
+    "p1": "Niets in deze Voorwaarden beperkt of sluit aansprakelijkheid uit die wettelijk niet kan worden beperkt of uitgesloten, waaronder aansprakelijkheid voor opzet (dolus) of grove nalatigheid, of voor overlijden of letsel.",
+    "p2": "Voor het overige, voor zover wettelijk toegestaan:",
+    "items": {
+      "i1": "geen van de partijen is bij lichte nalatigheid aansprakelijk voor indirecte schade of gevolgschade, of voor gederfde winst, omzet, zaken, goodwill of gegevensverlies dat door gebruik van de exportfunctie had kunnen worden voorkomen;",
+      "i2": "de totale aansprakelijkheid van elke partij die voortvloeit uit of verband houdt met deze Voorwaarden, is in elke periode van 12 maanden beperkt tot het hoogste van (a) de bedragen die je ons hebt betaald in de 12 maanden vóór de gebeurtenis die tot de vordering leidde en (b) € 100."
+    },
+    "p3": "Je vrijwaart ons voor vorderingen van derden (waaronder Eindklanten en autoriteiten) die worden veroorzaakt door Jouw Inhoud, door de diensten die je aan je Eindklanten levert of door jouw schending van deze Voorwaarden of van de wetgeving inzake gegevensbescherming, inclusief redelijke juridische kosten."
+  },
+  "s14": {
+    "title": "Vertrouwelijkheid",
+    "p1": "Elke partij houdt de niet-openbare bedrijfsinformatie van de andere partij vertrouwelijk en gebruikt die alleen voor de doeleinden van deze overeenkomst, tenzij openbaarmaking wettelijk of door een bevoegde autoriteit is vereist. Dit geldt tot drie jaar na het einde van de overeenkomst en, voor persoonsgegevens, zolang de Verwerkersovereenkomst van toepassing is."
+  },
+  "s15": {
+    "title": "Gebeurtenissen buiten onze macht",
+    "p1": "Geen van de partijen is verantwoordelijk voor vertragingen of tekortkomingen die worden veroorzaakt door gebeurtenissen buiten haar redelijke macht, zoals natuurrampen, oorlog, epidemieën, stakingen, storingen van openbare netwerken of van de stroomvoorziening, of storingen bij infrastructuuraanbieders, mits zij redelijke maatregelen neemt om de gevolgen te beperken."
+  },
+  "s16": {
+    "title": "Wijzigingen van deze voorwaarden",
+    "p1": "We kunnen deze Voorwaarden bijwerken, bijvoorbeeld om wijzigingen in de dienst of de wet te verwerken. Over wezenlijke wijzigingen sturen we accounteigenaren ten minste 30 dagen vóór de ingangsdatum een e-mail, tenzij de wet een eerdere wijziging vereist. Ga je niet akkoord, dan kun je opzeggen voordat de wijziging ingaat; als je {brand} na die datum blijft gebruiken, aanvaard je de nieuwe Voorwaarden. De versie en datum bovenaan deze pagina geven aan welke versie van toepassing is."
+  },
+  "s17": {
+    "title": "Algemeen",
+    "items": {
+      "i1": "Deze Voorwaarden (met de Verwerkersovereenkomst) vormen de volledige overeenkomst tussen ons over {brand} en vervangen alle eerdere afspraken.",
+      "i2": "Als een bepaling ongeldig blijkt, blijft de rest van kracht en wordt de ongeldige bepaling vervangen door een geldige bepaling die het doel ervan zo dicht mogelijk benadert.",
+      "i3": "Je mag deze overeenkomst niet zonder onze toestemming overdragen. Wij mogen haar overdragen aan een opvolger van ons bedrijf en laten je dat weten als we dat doen.",
+      "i4": "Mededelingen aan jou worden verzonden naar het e-mailadres van de accounteigenaar; mededelingen aan ons gaan naar <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Toepasselijk recht en bevoegde rechter",
+    "p1": "Op deze Voorwaarden en elk geschil daarover is Grieks recht van toepassing. De rechtbanken van Thessaloniki, Griekenland, zijn exclusief bevoegd, tenzij dwingend recht anders bepaalt. Het Verdrag der Verenigde Naties inzake internationale koopovereenkomsten betreffende roerende zaken is niet van toepassing."
+  },
+  "s19": {
+    "title": "Contact",
+    "p1": "<provider></provider>. E-mail: <email>{email}</email>. Zie ook onze <legal>juridische informatie</legal>. Voor andere diensten van {tradingName} dan {brand} gelden afzonderlijke voorwaarden."
+  }
+}

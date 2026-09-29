@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Juridisch",
+  "lastUpdated": "Laatst bijgewerkt op {date} · Versie {version}",
+  "toc": "Op deze pagina",
+  "documentsNav": "Juridische documenten",
+  "documents": {
+    "terms": "Servicevoorwaarden",
+    "privacy": "Privacybeleid",
+    "dpa": "Verwerkersovereenkomst",
+    "cookies": "Cookiebeleid",
+    "legal": "Juridische informatie"
+  },
+  "translation": {
+    "original": "Lees het Engelse origineel"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), eenmanszaak handelend onder de naam {tradingName}, {address}. Grieks fiscaal nummer (ΑΦΜ) {vatNumber}, Algemeen Handelsregister van Griekenland (Γ.Ε.ΜΗ.) nr. {gemiNumber}",
+  "subprocessors": {
+    "caption": "Subverwerkers",
+    "provider": "Aanbieder",
+    "purpose": "Wat hij voor ons doet",
+    "location": "Locatie",
+    "netlify": {
+      "purpose": "Hosting van de applicatie, serverless functies, contentlevering, geplande taken, applicatielogs en opslag van geüploade afbeeldingen",
+      "country": "Verenigde Staten"
+    },
+    "neon": {
+      "purpose": "PostgreSQL-database: accounts, bedrijven, klanten, afspraken en back-ups daarvan",
+      "country": "Verenigde Staten (database gehost bij Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Verzending van transactionele e-mails: boekingsbevestigingen, wijzigingen en herinneringen; account- en beveiligingsmails",
+      "country": "Verenigde Staten (e-mails verzonden vanuit de EU-regio in Ierland)"
+    },
+    "stripe": {
+      "purpose": "Abonnementsbetalingen, facturen en het factureringsportaal voor bedrijven (ontvangt nooit gegevens van Eindklanten)",
+      "country": "Ierland"
+    }
+  }
+}

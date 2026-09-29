@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · 法律",
+  "lastUpdated": "最后更新：{date} · 版本 {version}",
+  "toc": "本页内容",
+  "documentsNav": "法律文件",
+  "documents": {
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "dpa": "数据处理协议",
+    "cookies": "Cookie 政策",
+    "legal": "法律声明"
+  },
+  "translation": {
+    "original": "阅读英文原文"
+  },
+  "provider": "<strong>{legalName}</strong>（{legalNameEl}），以 {tradingName} 为商号经营的个体经营者，地址：{address}。希腊税号（ΑΦΜ）{vatNumber}，希腊商业总登记处（Γ.Ε.ΜΗ.）登记号 {gemiNumber}",
+  "subprocessors": {
+    "caption": "子处理者",
+    "provider": "服务商",
+    "purpose": "为我们提供的服务",
+    "location": "所在地",
+    "netlify": {
+      "purpose": "应用托管、无服务器函数、内容分发、定时任务、应用日志以及上传图片的存储",
+      "country": "美国"
+    },
+    "neon": {
+      "purpose": "PostgreSQL 数据库：账户、商家、客户、预约及其备份",
+      "country": "美国（数据库托管于 Amazon Web Services）"
+    },
+    "resend": {
+      "purpose": "发送事务性邮件：预订确认、变更和提醒；账户和安全相关邮件",
+      "country": "美国（邮件从其位于爱尔兰的欧盟区域发送）"
+    },
+    "stripe": {
+      "purpose": "为商家处理订阅付款、发票和账单门户（从不接收终端客户的数据）",
+      "country": "爱尔兰"
+    }
+  }
+}

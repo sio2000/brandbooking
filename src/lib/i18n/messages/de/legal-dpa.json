@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Auftragsverarbeitungsvertrag",
+    "description": "Der Auftragsverarbeitungsvertrag von {brand} (Art. 28 DSGVO) für Unternehmen: wie wir die personenbezogenen Daten Ihrer Kunden in Ihrem Auftrag verarbeiten."
+  },
+  "title": "Auftragsverarbeitungsvertrag",
+  "intro": "Wenn Ihre Kunden über {brand} buchen, entscheiden Sie, wie deren Daten verwendet werden, und wir verarbeiten sie für Sie. Dieser Vertrag legt unsere Pflichten als Ihr Auftragsverarbeiter nach Artikel 28 DSGVO fest. Er ist Teil der Nutzungsbedingungen und gilt daher automatisch für jedes Konto.",
+  "s1": {
+    "title": "Parteien und Geltungsbereich",
+    "p1": "Dieser Auftragsverarbeitungsvertrag („AVV“) wird geschlossen zwischen dem Unternehmen, das ein {brand}-Konto hat (der „Verantwortliche“, „Sie“), und <provider></provider> (der „Auftragsverarbeiter“, „wir“). Er ist Bestandteil der <terms>Nutzungsbedingungen</terms> und gilt automatisch, ohne gesonderte Unterschrift, wann immer wir bei der Bereitstellung von {brand} personenbezogene Daten in Ihrem Auftrag verarbeiten.",
+    "p2": "Begriffe wie „personenbezogene Daten“, „Verarbeitung“, „Verantwortlicher“, „Auftragsverarbeiter“, „betroffene Person“ und „Verletzung des Schutzes personenbezogener Daten“ haben die Bedeutung, die ihnen die Verordnung (EU) 2016/679 (die „DSGVO“) gibt. Widersprechen sich dieser AVV und die Bedingungen in Fragen des Datenschutzes, hat dieser AVV Vorrang."
+  },
+  "s2": {
+    "title": "Einzelheiten der Verarbeitung",
+    "items": {
+      "i1": "<strong>Gegenstand und Zweck:</strong> Bereitstellung von {brand} für Sie: Hosting Ihrer Buchungsseite, Annahme und Verwaltung von Buchungen, Speicherung von Kundendaten, Versand von Termin-E-Mails in Ihrem Namen, Statistiken, Exporte und Support.",
+      "i2": "<strong>Dauer:</strong> solange Sie {brand} nutzen und bis die Daten wie unten beschrieben gelöscht sind.",
+      "i3": "<strong>Art der Verarbeitung:</strong> Erhebung über die Buchungsseite oder Ihre Eingaben, Speicherung, Organisation, Abruf, Anzeige für Sie und Ihr Team, Übermittlung per E-Mail, Export und Löschung.",
+      "i4": "<strong>Betroffene Personen:</strong> Ihre Kunden und Interessenten, die buchen oder die Sie anlegen; Ihre Mitarbeitenden und Teammitglieder.",
+      "i5": "<strong>Kategorien personenbezogener Daten:</strong> Name, E-Mail-Adresse, Telefonnummer, Termindetails (Leistung, Mitarbeiter:in, Datum, Uhrzeit, Preis, Status, Verlauf), Nachrichten von Kunden, Ihre Notizen sowie Namen und Arbeitspläne der Mitarbeitenden.",
+      "i6": "<strong>Besondere Kategorien:</strong> {brand} ist nicht für besondere Kategorien von Daten (etwa Gesundheitsdaten) ausgelegt. Sie werden solche Daten nur eingeben, wenn Sie dazu gesetzlich berechtigt sind und die erforderlichen Garantien sichergestellt haben; tun Sie dies, gelten die Sicherheitsmaßnahmen dieses AVV auch für sie."
+    }
+  },
+  "s3": {
+    "title": "Verarbeitung nur auf Ihre Weisung",
+    "p1": "Wir verarbeiten die personenbezogenen Daten nur auf Ihre dokumentierte Weisung, die in diesen Bedingungen und diesem AVV sowie in den Einstellungen und Aktionen besteht, die Sie in {brand} nutzen. Wir verwenden sie nicht für eigene Zwecke, verkaufen sie nicht und verknüpfen sie nicht mit anderen Daten, es sei denn, das Recht der EU oder Griechenlands verpflichtet uns zur Verarbeitung; in diesem Fall teilen wir Ihnen dies vorher mit, sofern das Gesetz es nicht verbietet.",
+    "p2": "Wir informieren Sie unverzüglich, wenn eine Weisung nach unserer Auffassung gegen die DSGVO oder andere Datenschutzvorschriften verstößt."
+  },
+  "s4": {
+    "title": "Vertraulichkeit",
+    "p1": "Alle Personen, die wir zum Zugriff auf die personenbezogenen Daten befugen, sind zur Vertraulichkeit verpflichtet und greifen nur darauf zu, soweit dies für die Bereitstellung, Absicherung oder Unterstützung des Dienstes erforderlich ist."
+  },
+  "s5": {
+    "title": "Sicherheitsmaßnahmen (Artikel 32)",
+    "p1": "Wir treffen geeignete technische und organisatorische Maßnahmen unter Berücksichtigung des Stands der Technik, der Kosten und der Risiken. Derzeit gehören dazu:",
+    "items": {
+      "i1": "Verschlüsselung bei der Übertragung (HTTPS mit HSTS; verschlüsselte Datenbankverbindungen).",
+      "i2": "Verschlüsselung im Ruhezustand durch unsere Hosting- und Datenbankanbieter.",
+      "i3": "Logische Trennung der Daten jedes Unternehmens, bei jeder Anfrage durchgesetzt, und rollenbasierte Berechtigungen für Teammitglieder.",
+      "i4": "Starkes Einweg-Hashing von Passwörtern, sichere Sitzungs-Cookies, Drosselung von Anmeldeversuchen und Kontosperrung sowie Ratenbegrenzung sensibler Aktionen.",
+      "i5": "Eine Content Security Policy und weitere Sicherheits-Header auf jeder Seite.",
+      "i6": "Ein Prüfprotokoll wichtiger Konto- und Datenaktionen.",
+      "i7": "Sicherungen durch unseren Datenbankanbieter, die eine Wiederherstellung nach einem Vorfall ermöglichen.",
+      "i8": "Zugriff auf Produktivsysteme nur durch den Inhaber des Anbieters, mit Multi-Faktor-Authentifizierung bei den Konten der Dienstleister.",
+      "i9": "Datenminimierung und automatische Löschung wie in unserer Datenschutzerklärung beschrieben."
+    },
+    "p2": "Wir können diese Maßnahmen anpassen, solange das Gesamtsicherheitsniveau nicht sinkt."
+  },
+  "s6": {
+    "title": "Unterauftragsverarbeiter",
+    "p1": "Sie erteilen uns eine allgemeine Genehmigung zur Beauftragung von Unterauftragsverarbeitern. Die Unterauftragsverarbeiter, die derzeit die Daten Ihrer Kunden verarbeiten, sind:",
+    "p2": "Wir erlegen jedem Unterauftragsverarbeiter Datenschutzpflichten auf, die denen dieses AVV gleichwertig sind, und bleiben Ihnen gegenüber für deren Erfüllung verantwortlich. Wir informieren Kontoinhaber mindestens 30 Tage vor dem Hinzuziehen oder Ersetzen eines Unterauftragsverarbeiters per E-Mail. Sie können innerhalb dieser Frist aus berechtigten datenschutzrechtlichen Gründen Einspruch erheben; können wir dem Einspruch nicht in zumutbarer Weise Rechnung tragen, können Sie den betroffenen Dienst kündigen und erhalten eine anteilige Erstattung vorausbezahlter Entgelte."
+  },
+  "s7": {
+    "title": "Internationale Übermittlungen",
+    "p1": "Verarbeitet ein Unterauftragsverarbeiter personenbezogene Daten außerhalb des Europäischen Wirtschaftsraums, stellen wir sicher, dass die Übermittlung Kapitel V DSGVO entspricht, durch einen Angemessenheitsbeschluss (etwa den EU-US-Datenschutzrahmen für zertifizierte Anbieter) oder die Standardvertragsklauseln der Europäischen Kommission, bei Bedarf mit ergänzenden Maßnahmen."
+  },
+  "s8": {
+    "title": "Unterstützung bei Betroffenenanfragen und Compliance",
+    "p1": "Mit {brand} können Sie die meisten Anfragen selbst beantworten: Kundendaten einsehen, berichtigen und exportieren, einen Kunden löschen und Ihr Unternehmen löschen. Erhalten wir eine Anfrage direkt von einem Ihrer Kunden, beantworten wir sie nicht selbst (außer um die Person an Sie zu verweisen) und leiten sie unverzüglich an Sie weiter.",
+    "p2": "Unter Berücksichtigung der Art der Verarbeitung und der uns zur Verfügung stehenden Informationen unterstützen wir Sie zudem in angemessenem Umfang bei Ihren Pflichten zu Sicherheit, Meldung von Verletzungen, Datenschutz-Folgenabschätzungen und vorheriger Konsultation (Art. 32–36 DSGVO)."
+  },
+  "s9": {
+    "title": "Verletzungen des Schutzes personenbezogener Daten",
+    "p1": "Wir benachrichtigen Sie unverzüglich, in jedem Fall innerhalb von 48 Stunden, nachdem uns eine Verletzung des Schutzes personenbezogener Daten bekannt geworden ist, die Ihre Daten betrifft, per E-Mail an den Kontoinhaber. Die Meldung beschreibt, soweit dann bekannt, die Art der Verletzung, die Kategorien und die ungefähre Zahl der betroffenen Personen und Datensätze, die wahrscheinlichen Folgen sowie die ergriffenen oder vorgeschlagenen Maßnahmen. Wir ergreifen angemessene Maßnahmen, um die Verletzung einzudämmen, und liefern weitere Informationen, sobald sie verfügbar sind, damit Sie Ihre eigenen Pflichten zur Meldung an die Aufsichtsbehörde und zur Benachrichtigung der betroffenen Personen erfüllen können."
+  },
+  "s10": {
+    "title": "Löschung und Rückgabe von Daten",
+    "p1": "Sie können Ihre Daten jederzeit exportieren. Wenn Sie einen Kunden löschen, werden seine personenbezogenen Daten sofort entfernt, und für Ihre Statistiken bleiben nur anonyme Termindatensätze erhalten. Wenn Sie Ihr Unternehmen löschen, werden alle seine Daten sofort aus unseren Live-Systemen gelöscht. In beiden Fällen werden die Daten innerhalb von 30 Tagen in den Sicherungen unseres Datenbankanbieters überschrieben, sofern das Recht der EU oder Griechenlands uns nicht zur Aufbewahrung verpflichtet. Endet Ihr Abonnement, ohne dass Sie Ihr Unternehmen löschen, bleiben Ihre Daten für Sie verfügbar, bis Sie sie löschen."
+  },
+  "s11": {
+    "title": "Informationen und Prüfungen",
+    "p1": "Wir stellen die Informationen zur Verfügung, die vernünftigerweise erforderlich sind, um die Einhaltung von Artikel 28 DSGVO nachzuweisen, und beantworten Ihre schriftlichen Fragen zu unserer Verarbeitung. Reicht das nicht aus, können Sie unsere Einhaltung überprüfen, auch durch einen zur Vertraulichkeit verpflichteten unabhängigen Prüfer, mit einer schriftlichen Ankündigung von mindestens 30 Tagen, höchstens einmal im Jahr (sofern nicht von einer Aufsichtsbehörde verlangt oder nach einer Verletzung), während der Geschäftszeiten und so, dass die Daten anderer Kunden oder unsere Sicherheit nicht gefährdet werden. Jede Partei trägt ihre eigenen Kosten."
+  },
+  "s12": {
+    "title": "Haftung und Laufzeit",
+    "p1": "Die Haftung aus diesem AVV unterliegt den Beschränkungen der Bedingungen, soweit das Gesetz sie nicht ausschließt. Dieser AVV endet automatisch, wenn wir keine personenbezogenen Daten mehr in Ihrem Auftrag verarbeiten; die Pflichten zu Löschung und Vertraulichkeit gelten bis dahin fort. Er unterliegt demselben Recht und denselben Gerichten wie die Bedingungen."
+  },
+  "s13": {
+    "title": "Kontakt",
+    "p1": "Fragen zu diesem AVV oder Anfragen nach einem gegengezeichneten Exemplar: <email>{email}</email>."
+  }
+}

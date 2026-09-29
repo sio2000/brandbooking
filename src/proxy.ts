@@ -121,6 +121,11 @@ export function resolveLocale(request: NextRequest): LocaleDecision {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       return { locale: DEFAULT_LOCALE, cookies: [] }
     }
+    // An explicit ?lang=en (the "English original" link on translated legal
+    // pages) shows the English page without redirecting or changing the cookie.
+    if (url.searchParams.get('lang') === DEFAULT_LOCALE) {
+      return { locale: DEFAULT_LOCALE, cookies: [] }
+    }
     const preferred = isLocale(cookieLocale)
       ? cookieLocale
       : matchAcceptLanguage(request.headers.get('accept-language'))

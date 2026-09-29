@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Veri işleme sözleşmesi",
+    "description": "İşletmeler için {brand} veri işleme sözleşmesi (GDPR madde 28): müşterilerinizin kişisel verilerini sizin adınıza nasıl işlediğimiz."
+  },
+  "title": "Veri işleme sözleşmesi",
+  "intro": "Müşterileriniz {brand} üzerinden rezervasyon yaptığında, verilerinin nasıl kullanılacağına siz karar verirsiniz ve biz bu verileri sizin için işleriz. Bu sözleşme, GDPR’ın 28. maddesi kapsamında veri işleyeniniz olarak yükümlülüklerimizi belirler. Hizmet Koşullarının bir parçasıdır; bu nedenle her hesaba otomatik olarak uygulanır.",
+  "s1": {
+    "title": "Taraflar ve kapsam",
+    "p1": "Bu Veri İşleme Sözleşmesi (“Veri İşleme Sözleşmesi”), {brand} hesabı olan işletme (“Veri Sorumlusu”, “siz”) ile <provider></provider> (“Veri İşleyen”, “biz”) arasında akdedilmiştir. <terms>Hizmet koşullarının</terms> bir parçasıdır ve {brand}’u sağlarken sizin adınıza kişisel veri işlediğimiz her durumda, ayrı bir imzaya gerek olmaksızın otomatik olarak uygulanır.",
+    "p2": "“Kişisel veri”, “işleme”, “veri sorumlusu”, “veri işleyen”, “ilgili kişi” ve “kişisel veri ihlali” gibi terimler, (AB) 2016/679 sayılı Tüzükte (“GDPR”) verilen anlamı taşır. Bu Veri İşleme Sözleşmesi ile Koşullar arasında veri koruma konusunda çelişki olması hâlinde bu Veri İşleme Sözleşmesi geçerlidir."
+  },
+  "s2": {
+    "title": "İşlemenin ayrıntıları",
+    "items": {
+      "i1": "<strong>Konu ve amaç:</strong> {brand}’u size sunmak: rezervasyon sayfanızı barındırmak, rezervasyonları almak ve yönetmek, müşteri kayıtlarını saklamak, sizin adınıza randevu e-postaları göndermek, istatistikler, dışa aktarmalar ve destek.",
+      "i2": "<strong>Süre:</strong> {brand}’u kullandığınız sürece ve veriler aşağıda açıklandığı şekilde silinene kadar.",
+      "i3": "<strong>İşlemenin niteliği:</strong> rezervasyon sayfası veya sizin girişleriniz aracılığıyla toplama, saklama, düzenleme, erişim, size ve ekibinize gösterme, e-postayla iletme, dışa aktarma ve silme.",
+      "i4": "<strong>İlgili kişiler:</strong> rezervasyon yapan veya sizin eklediğiniz müşterileriniz ve potansiyel müşterileriniz; personeliniz ve ekip üyeleriniz.",
+      "i5": "<strong>Kişisel veri kategorileri:</strong> ad, e-posta adresi, telefon numarası, randevu ayrıntıları (hizmet, personel, tarih, saat, fiyat, durum, geçmiş), müşterilerden gelen mesajlar, yazdığınız notlar ile personelin adları ve çalışma programları.",
+      "i6": "<strong>Özel nitelikli veriler:</strong> {brand}, özel nitelikli veriler (sağlık verileri gibi) için tasarlanmamıştır. Yasal olarak izin verilmedikçe ve gerekli güvenceleri sağlamadıkça bu verileri girmezsiniz; girerseniz bu Veri İşleme Sözleşmesindeki güvenlik önlemleri bu veriler için de geçerli olur."
+    }
+  },
+  "s3": {
+    "title": "Yalnızca talimatlarınız doğrultusunda işleme",
+    "p1": "Kişisel verileri yalnızca belgelenmiş talimatlarınız doğrultusunda işleriz; bu talimatlar bu Koşullar ve bu Veri İşleme Sözleşmesi ile {brand}’ta kullandığınız ayarlar ve işlemlerdir. AB hukuku veya Yunan hukuku bizi işlemeye zorunlu kılmadıkça verileri kendi amaçlarımız için kullanmaz, satmaz veya başka verilerle birleştirmeyiz; bu durumda, yasa yasaklamadıkça sizi önceden bilgilendiririz.",
+    "p2": "Bir talimatın bize göre GDPR’ı veya diğer veri koruma mevzuatını ihlal etmesi hâlinde sizi derhal bilgilendiririz."
+  },
+  "s4": {
+    "title": "Gizlilik",
+    "p1": "Kişisel verilere erişmesine izin verdiğimiz herkes gizlilik yükümlülüğüne tabidir ve verilere yalnızca hizmeti sunmak, güvenliğini sağlamak veya desteklemek için gerekli olduğu ölçüde erişir."
+  },
+  "s5": {
+    "title": "Güvenlik önlemleri (madde 32)",
+    "p1": "Teknolojinin geldiği nokta, maliyet ve riskleri dikkate alarak uygun teknik ve idari önlemleri uygularız. Bunlar şu anda şunları içerir:",
+    "items": {
+      "i1": "Aktarım sırasında şifreleme (HSTS ile HTTPS; şifreli veritabanı bağlantıları).",
+      "i2": "Barındırma ve veritabanı sağlayıcılarımızın sağladığı depolamada şifreleme.",
+      "i3": "Her istekte uygulanan, her işletmenin verilerinin mantıksal olarak ayrılması ve ekip üyeleri için rol tabanlı izinler.",
+      "i4": "Güçlü tek yönlü şifre karma işlemi, güvenli oturum çerezleri, oturum açma denemelerinin sınırlandırılması ve hesap kilitleme ile hassas işlemlerde hız sınırlaması.",
+      "i5": "Her sayfada bir içerik güvenliği politikası ve diğer güvenlik başlıkları.",
+      "i6": "Önemli hesap ve veri işlemlerine ilişkin bir denetim günlüğü.",
+      "i7": "Veritabanı sağlayıcımızın tuttuğu, bir olaydan sonra geri yüklemeye olanak tanıyan yedekler.",
+      "i8": "Üretim sistemlerine erişimin sağlayıcının sahibiyle sınırlı olması ve sağlayıcı hesaplarında çok faktörlü kimlik doğrulama.",
+      "i9": "Gizlilik politikamızda belirtildiği şekilde veri minimizasyonu ve otomatik silme."
+    },
+    "p2": "Genel güvenlik düzeyi düşmediği sürece bu önlemleri güncelleyebiliriz."
+  },
+  "s6": {
+    "title": "Alt işleyenler",
+    "p1": "Alt işleyen görevlendirmemiz için bize genel yetki verirsiniz. Müşterilerinizin verilerini bugün işleyen alt işleyenler şunlardır:",
+    "p2": "Her alt işleyene bu Veri İşleme Sözleşmesindekilere eşdeğer veri koruma yükümlülükleri yükler ve bunların yerine getirilmesinden size karşı sorumlu olmaya devam ederiz. Bir alt işleyeni eklemeden veya değiştirmeden en az 30 gün önce hesap sahiplerini e-postayla bilgilendiririz. Bu süre içinde makul veri koruma gerekçeleriyle itiraz edebilirsiniz; itirazınızı makul biçimde karşılayamazsak etkilenen hizmeti feshedebilir ve peşin ödenmiş ücretlerin orantılı iadesini alabilirsiniz."
+  },
+  "s7": {
+    "title": "Uluslararası aktarımlar",
+    "p1": "Bir alt işleyen kişisel verileri Avrupa Ekonomik Alanı dışında işlediğinde, aktarımın GDPR’ın V. Bölümüne uygun olmasını bir yeterlilik kararı (sertifikalı sağlayıcılar için AB-ABD Veri Gizliliği Çerçevesi gibi) veya gerektiğinde tamamlayıcı önlemlerle birlikte Avrupa Komisyonu’nun standart sözleşme hükümleri aracılığıyla sağlarız."
+  },
+  "s8": {
+    "title": "İlgili kişi talepleri ve uyum konusunda size yardım",
+    "p1": "{brand}, taleplerin çoğunu kendiniz yanıtlamanıza olanak tanır: müşteri verilerini görüntüleme, düzeltme ve dışa aktarma, bir müşteriyi silme ve işletmenizi silme. Müşterilerinizden birinden doğrudan bir talep alırsak talebi kendimiz yanıtlamaz (kişiyi size yönlendirmek dışında) ve gereksiz gecikme olmaksızın size iletiriz.",
+    "p2": "İşlemenin niteliğini ve elimizdeki bilgileri dikkate alarak güvenlik, ihlal bildirimi, veri koruma etki değerlendirmeleri ve ön danışma konusundaki yükümlülüklerinizde de size makul ölçüde yardımcı oluruz (GDPR madde 32–36)."
+  },
+  "s9": {
+    "title": "Kişisel veri ihlalleri",
+    "p1": "Verilerinizi etkileyen bir kişisel veri ihlalini öğrendikten sonra, gereksiz gecikme olmaksızın ve her hâlükârda 48 saat içinde, hesap sahibine e-posta göndererek sizi bilgilendiririz. Bildirim, o an bilindiği ölçüde, ihlalin niteliğini, etkilenen ilgili kişilerin ve kayıtların kategorilerini ve yaklaşık sayısını, olası sonuçlarını ve alınan veya önerilen önlemleri açıklar. İhlali sınırlamak için makul adımlar atar ve denetim makamına ve ilgili kişilere bildirimde bulunma yükümlülüklerinizi yerine getirebilmeniz için yeni bilgileri edinildikçe iletiriz."
+  },
+  "s10": {
+    "title": "Verilerin silinmesi ve iadesi",
+    "p1": "Verilerinizi istediğiniz zaman dışa aktarabilirsiniz. Bir müşteriyi sildiğinizde kişisel verileri derhal kaldırılır ve istatistikleriniz için yalnızca anonim randevu kayıtları kalır. İşletmenizi sildiğinizde tüm verileri canlı sistemlerimizden derhal silinir. Her iki durumda da, AB hukuku veya Yunan hukuku saklamamızı gerektirmedikçe, veritabanı sağlayıcımızın yedeklerindeki verilerin üzerine 30 gün içinde yazılır. Aboneliğiniz işletmenizi silmeden sona ererse verileriniz siz silene kadar kullanımınıza açık kalır."
+  },
+  "s11": {
+    "title": "Bilgi ve denetimler",
+    "p1": "GDPR’ın 28. maddesine uyumu göstermek için makul ölçüde gerekli bilgileri sağlar ve işleme faaliyetimize ilişkin yazılı sorularınızı yanıtlarız. Bu yeterli değilse, uyumumuzu en az 30 gün önceden yazılı bildirimde bulunarak, yılda en fazla bir kez (bir denetim makamı gerektirmedikçe veya bir ihlal sonrası hariç), çalışma saatleri içinde ve diğer müşterilerin verilerini veya güvenliğimizi tehlikeye atmayacak şekilde, gizlilik yükümlülüğüne tabi bağımsız bir denetçi aracılığıyla da denetleyebilirsiniz. Her taraf kendi masraflarını üstlenir."
+  },
+  "s12": {
+    "title": "Sorumluluk ve süre",
+    "p1": "Bu Veri İşleme Sözleşmesi kapsamındaki sorumluluk, yasanın izin vermediği durumlar hariç, Koşullardaki sınırlamalara tabidir. Bu Veri İşleme Sözleşmesi, sizin adınıza kişisel veri işlemeyi bıraktığımızda kendiliğinden sona erer; silme ve gizliliğe ilişkin yükümlülükler o zamana kadar devam eder. Koşullarla aynı hukuka ve aynı mahkemelere tabidir."
+  },
+  "s13": {
+    "title": "İletişim",
+    "p1": "Bu Veri İşleme Sözleşmesi hakkındaki sorular veya karşı imzalı bir nüsha talepleri için: <email>{email}</email>."
+  }
+}
