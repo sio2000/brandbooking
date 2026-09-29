@@ -1,3 +1,5 @@
+import { readdirSync } from 'node:fs'
+import path from 'node:path'
 import { test as setup } from '@playwright/test'
 import postgres from 'postgres'
 import { assertE2eDatabase, E2E_BASE_URL, E2E_DATABASE_URL } from './support/env'
@@ -11,7 +13,7 @@ import { migrateUp } from '@/server/db/migrator'
  * `_e2e`.
  */
 setup('reset and seed the E2E database', async () => {
-  setup.setTimeout(420_000)
+  setup.setTimeout(900_000)
   assertE2eDatabase(E2E_DATABASE_URL)
   const sql = postgres(E2E_DATABASE_URL, { max: 1, onnotice: () => {} })
   try {
@@ -29,27 +31,41 @@ setup('reset and seed the E2E database', async () => {
 
 /**
  * The dev server compiles each route on its first request, which can take
- * longer than a test's whole timeout on a busy machine. Request the main
- * routes once here, so timed tests only ever meet compiled pages.
+ * longer than a test's whole timeout on a busy machine. Request every page
+ * once here (found in src/app, dynamic segments filled with harmless
+ * values), so timed tests only ever meet compiled pages. Anonymous requests
+ * are enough: a page compiles even when it then redirects to sign-in or 404s.
  */
 async function warmUp() {
-  const paths = [
-    '/',
-    '/pricing',
-    '/el',
-    '/login',
-    '/signup',
-    '/app',
-    '/onboarding',
-    `/${BIZ_A.slug}`,
-    `/embed/${BIZ_A.slug}`,
-    '/manage/not-a-real-token',
-    '/terms',
-  ]
-  for (const p of paths) {
-    await fetch(new URL(p, E2E_BASE_URL), {
-      redirect: 'manual',
-      signal: AbortSignal.timeout(180_000),
-    }).catch(() => {})
+  const pages: string[] = []
+  const visit = (dir: string, route: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory()) {
+        const seg = /^\(.+\)$/.test(e.name)
+          ? ''
+          : e.name === '[slug]'
+            ? `/${BIZ_A.slug}`
+            : e.name === '[id]'
+              ? '/00000000-0000-4000-8000-000000000000'
+              : /^\[/.test(e.name)
+                ? '/warm-up'
+                : `/${e.name}`
+        if (!/^[_@]/.test(e.name)) visit(path.join(dir, e.name), route + seg)
+      } else if (e.name === 'page.tsx') {
+        pages.push(route || '/')
+      }
+    }
   }
+  visit(path.resolve(__dirname, '../../src/app'), '')
+  pages.push('/el', `/embed/${BIZ_A.slug}`)
+  const queue = [...new Set(pages)]
+  const worker = async () => {
+    for (let p = queue.shift(); p; p = queue.shift()) {
+      await fetch(new URL(p, E2E_BASE_URL), {
+        redirect: 'manual',
+        signal: AbortSignal.timeout(180_000),
+      }).catch(() => {})
+    }
+  }
+  await Promise.all([worker(), worker(), worker()])
 }

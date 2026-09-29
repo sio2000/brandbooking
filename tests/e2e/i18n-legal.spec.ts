@@ -92,7 +92,7 @@ test.describe('legal pages in Greek', () => {
       await notice.getByRole('link').click()
       await expect(page).toHaveURL(new RegExp(`${path}\\?lang=en$`))
       await expect(page.getByRole('heading', { level: 1, name: en.title })).toBeVisible()
-      await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en')
       await expect(page.getByTestId('translation-notice')).toHaveCount(0)
     })
   }
@@ -130,7 +130,7 @@ test('English legal pages show no translation notice', async ({ page }) => {
   for (const { path, en } of PAGES) {
     await page.goto(path)
     await expect(page.getByRole('heading', { level: 1, name: en.title })).toBeVisible()
-    await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
     await expect(page.getByTestId('translation-notice')).toHaveCount(0)
     await expect(page.getByRole('main')).toContainText('Last updated 28 September 2026')
   }

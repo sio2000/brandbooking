@@ -36,20 +36,38 @@ async function latinWords(page: Page, allowed: string[]) {
 }
 
 /** Picks a bookable day other than today (so the slot can't slip into the past), then a time. */
-async function pickLaterDayAndTime(page: Page, grid: string, dayName: RegExp, times: RegExp) {
+async function pickLaterDayAndTime(
+  page: Page,
+  grid: string,
+  dayName: RegExp,
+  times: RegExp,
+  nextMonth: string,
+) {
   const days = page.getByRole('grid', { name: grid }).getByRole('button', { name: dayName })
   await expect(days.first()).toBeVisible()
   const radios = page.getByRole('radiogroup', { name: times }).getByRole('radio')
   await expect(radios.first()).toBeVisible()
-  const today = await page.evaluate(() => new Date().getDate())
-  const count = await days.count()
-  for (let i = 0; i < count; i++) {
-    const day = days.nth(i)
-    if (Number((await day.innerText()).trim()) === today) continue
-    const old = await radios.first().elementHandle()
-    await day.click()
-    await old?.waitForElementState('hidden').catch(() => {})
-    break
+  // At least two days ahead: the booking can then still be changed online
+  // (the default change deadline is 24 hours), whatever the time of day.
+  const soon = await page.evaluate(() =>
+    [0, 1].map((d) => new Date(Date.now() + d * 864e5).getDate()),
+  )
+  const pick = async () => {
+    const count = await days.count()
+    for (let i = 0; i < count; i++) {
+      const day = days.nth(i)
+      if (soon.includes(Number((await day.innerText()).trim()))) continue
+      const old = await radios.first().elementHandle()
+      await day.click()
+      await old?.waitForElementState('hidden').catch(() => {})
+      return true
+    }
+    return false
+  }
+  if (!(await pick())) {
+    await page.getByRole('button', { name: nextMonth }).click()
+    await expect(days.first()).toBeVisible()
+    await pick()
   }
   await expect(radios.first()).toBeVisible()
   await radios.first().click()
@@ -115,6 +133,7 @@ test.describe('booking pages in the customer’s language', () => {
       'Elige una fecha',
       /, \d+ horas? disponibles?$/,
       /^Horas de (mañana|tarde|noche)$/,
+      'Mes siguiente',
     )
     await page.getByRole('button', { name: 'Continuar' }).click()
     await expect(page.getByRole('heading', { name: 'Tus datos' })).toBeVisible()

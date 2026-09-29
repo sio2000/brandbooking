@@ -204,7 +204,7 @@ test.describe('dashboard languages', () => {
     test.setTimeout(240_000)
     await loginAs(context, OWNER.email)
     await page.goto('/app/settings/account')
-    await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
 
     // The picker lists all 15 languages by their own names, with flags.
     await page.locator('#account-language').click()

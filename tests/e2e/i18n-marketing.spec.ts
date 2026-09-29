@@ -101,7 +101,7 @@ test.describe('marketing site languages', () => {
       await expect(page).toHaveURL(/\/el$/)
       await chooseLanguage(page, 'en')
       await expect(page).toHaveURL(/:\d+\/$/)
-      await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en')
       await page.goto('/')
       await expect(page).toHaveURL(/:\d+\/$/)
       await expect(page.locator('h1')).toContainText('Online booking for your')

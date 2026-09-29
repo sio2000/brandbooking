@@ -204,7 +204,8 @@ export async function LegalDocument({
   const locale = await getLocale()
   const { tag } = LOCALE_META[locale]
   const [t, common] = await Promise.all([getT('legal-shared', locale), getT('common', locale)])
-  const updated = formatPlainDate(LEGAL_UPDATED, tag, {
+  // The legal texts are written in British English: keep their "28 September 2026" date.
+  const updated = formatPlainDate(LEGAL_UPDATED, locale === 'en' ? 'en-GB' : tag, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

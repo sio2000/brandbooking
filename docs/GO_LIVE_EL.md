@@ -13,7 +13,8 @@
 | `ADMIN_BOOTSTRAP_PASSWORD` | ο κωδικός που επιλέξατε για τον admin                                              |
 | `PLATFORM_ADMIN_EMAILS`    | `devtaskhub@gmail.com` (ή διαγράψτε τη, αν έχει ακόμα άλλο email, π.χ. το xsiwzos) |
 
-Στο επόμενο deploy το build δημιουργεί τον λογαριασμό admin (με επιβεβαιωμένο email) ή, αν
+Οι αλλαγές μεταβλητών ισχύουν μόνο μετά από νέο build: Netlify → Deploys → **Trigger deploy →
+Deploy site**. Στο build αυτό δημιουργείται ο λογαριασμός admin (με επιβεβαιωμένο email) ή, αν
 υπάρχει ήδη, του δίνει δικαιώματα admin και βάζει αυτόν τον κωδικό. Στο log του build θα δείτε
 μόνο `admin bootstrap: created devtaskhub@gmail.com` (ποτέ τον κωδικό).
 
