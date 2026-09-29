@@ -36,7 +36,7 @@ export type LocaleMeta = {
 }
 
 export const LOCALE_META: Record<Locale, LocaleMeta> = {
-  en: { name: 'English', english: 'English', flag: 'GB', dir: 'ltr', tag: 'en-GB' },
+  en: { name: 'English', english: 'English', flag: 'GB', dir: 'ltr', tag: 'en' },
   el: { name: 'Ελληνικά', english: 'Greek', flag: 'GR', dir: 'ltr', tag: 'el-GR' },
   es: { name: 'Español', english: 'Spanish', flag: 'ES', dir: 'ltr', tag: 'es-ES' },
   fr: { name: 'Français', english: 'French', flag: 'FR', dir: 'ltr', tag: 'fr-FR' },
