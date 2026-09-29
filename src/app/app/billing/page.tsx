@@ -282,8 +282,7 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
                 <span className="text-muted-foreground">/ {site.price.period}</span>
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Everything included for your whole team. VAT may be added depending on where your
-                business is located.
+                Everything included for your whole team. VAT included: nothing is added at checkout.
               </p>
 
               <div
@@ -466,9 +465,9 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
                 <li className="flex gap-2.5">
                   <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
                   <span>
-                    <span className="font-medium">VAT may apply</span>{' '}
+                    <span className="font-medium">VAT included.</span>{' '}
                     <span className="text-muted-foreground">
-                      depending on your location. It’s shown on your invoice.
+                      The price already includes Greek VAT (24%), so nothing is added on top.
                     </span>
                   </span>
                 </li>

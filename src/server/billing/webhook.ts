@@ -334,6 +334,11 @@ export async function syncSubscription(
     trialEnd: sub.trial_end ? new Date(sub.trial_end * 1000) : null,
     lastEventAt: eventAt,
     ...(status === 'active' || status === 'trialing' ? { lastPaymentFailedAt: null } : {}),
+    // The grace period needs a start even if invoice.payment_failed is late or
+    // missing; otherwise a past_due business would keep taking bookings forever.
+    ...(status === 'past_due' && !current?.lastPaymentFailedAt
+      ? { lastPaymentFailedAt: eventAt }
+      : {}),
   }
   await tx
     .insert(subscriptions)

@@ -105,9 +105,13 @@ export async function createCheckoutSession(
     },
     metadata: { business_id: business.id },
     allow_promotion_codes: false,
-    billing_address_collection: 'auto',
+    // Invoices (and Workadu, which issues the legal ones from Stripe) need the
+    // business's billing address, so it is always collected and saved on the customer.
+    billing_address_collection: 'required',
     automatic_tax: { enabled: Boolean(e.STRIPE_AUTOMATIC_TAX) },
-    ...(e.STRIPE_AUTOMATIC_TAX ? { customer_update: { address: 'auto', name: 'auto' } } : {}),
+    customer_update: e.STRIPE_AUTOMATIC_TAX
+      ? { address: 'auto', name: 'auto' }
+      : { address: 'auto' },
     success_url: appUrl('/app/billing?checkout=success'),
     cancel_url: appUrl('/app/billing?checkout=cancelled'),
   })
@@ -170,9 +174,12 @@ export async function paymentMethodSummary(businessId: string): Promise<string |
   if (!sub?.stripeSubscriptionId) return null
   try {
     const s = await stripe().subscriptions.retrieve(sub.stripeSubscriptionId, {
-      expand: ['default_payment_method'],
+      expand: ['default_payment_method', 'customer.invoice_settings.default_payment_method'],
     })
-    const pm = s.default_payment_method
+    // The card Stripe charges: the subscription's own default, else the customer's
+    // invoice default (set by the portal, the Dashboard or API-created subscriptions).
+    const customer = typeof s.customer === 'object' && !s.customer.deleted ? s.customer : null
+    const pm = s.default_payment_method ?? customer?.invoice_settings?.default_payment_method
     if (pm && typeof pm === 'object' && pm.card)
       return `${pm.card.brand.toUpperCase()} •••• ${pm.card.last4}`
     return null

@@ -28,10 +28,13 @@ async function main() {
   if (!process.env.APP_SECRET)
     throw new Error('APP_SECRET is required (it encrypts the webhook secret)')
 
-  const { planPriceId, portalConfigurationId, ensureWebhookEndpoint } =
+  const { planPriceId, portalConfigurationId, ensureWebhookEndpoint, dropForeignModeSettings } =
     await import('../src/server/billing/config')
   const mode = process.env.STRIPE_SECRET_KEY.includes('_test_') ? 'test' : 'live'
   console.log(`[stripe:setup] Stripe ${mode} mode`)
+  // Ids stored while on the other mode's keys (test → live at go-live) are unusable there.
+  for (const key of await dropForeignModeSettings())
+    console.log(`[stripe:setup] ${key}: stored id is from the other Stripe mode, re-provisioning`)
   console.log(`[stripe:setup] plan price: ${await planPriceId()}`)
   console.log(`[stripe:setup] portal configuration: ${await portalConfigurationId()}`)
 

@@ -37,6 +37,10 @@ export async function startFakeStripe() {
     subscriptions: new Map<string, FakeSubscription>(),
     /** Make the next N subscription updates fail with a 500 (retry tests). */
     failSubscriptionUpdates: 0,
+    /** Request bodies seen per Idempotency-Key. */
+    idempotency: new Map<string, string>(),
+    /** When set, reusing a key with different parameters fails as it does on Stripe. */
+    enforceIdempotency: false,
   }
   /** Seed a price (e.g. the plan price the app starts from). */
   const addPrice = (p: {
@@ -94,6 +98,19 @@ export async function startFakeStripe() {
       if (req.headers.authorization !== `Bearer ${process.env.STRIPE_SECRET_KEY}`) {
         return json(401, { error: { type: 'invalid_request_error', message: 'Invalid API Key' } })
       }
+      const key = req.headers['idempotency-key'] as string | undefined
+      if (key) {
+        const seen = state.idempotency.get(key)
+        if (state.enforceIdempotency && seen !== undefined && seen !== `${path}?${body}`) {
+          return json(400, {
+            error: {
+              type: 'idempotency_error',
+              message: `Keys for idempotent requests can only be used with the same parameters they were first used with. Try using a key other than '${key}' if you meant to execute a different request.`,
+            },
+          })
+        }
+        state.idempotency.set(key, `${path}?${body}`)
+      }
       if (req.method === 'POST' && path === '/v1/customers') {
         return json(200, {
           id: `cus_test_${id}`,
@@ -120,6 +137,15 @@ export async function startFakeStripe() {
       const list = (url: string, data: unknown[]) =>
         json(200, { object: 'list', data, has_more: false, url })
       if (req.method === 'GET' && path === '/v1/prices') return list(path, state.prices)
+      const byId = (items: unknown[], what: string) => {
+        const found = items.find((o) => (o as { id: string }).id === path.split('/').pop())
+        return found
+          ? json(200, found)
+          : json(404, { error: { type: 'invalid_request_error', message: `No such ${what}` } })
+      }
+      if (req.method === 'GET' && path.startsWith('/v1/prices/')) return byId(state.prices, 'price')
+      if (req.method === 'GET' && path.startsWith('/v1/billing_portal/configurations/'))
+        return byId(state.portalConfigs, 'configuration')
       if (req.method === 'POST' && path === '/v1/products') {
         const product = { id: `prod_test_${id}`, object: 'product', name: params.get('name') }
         state.products.push(product)

@@ -28,7 +28,16 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     ".next-e2e/types/**/*.ts",
-    ".next-e2e/dev/types/**/*.ts"
+    ".next-e2e/dev/types/**/*.ts",
+    ".next-stripe-live/types/**/*.ts",
+    ".next-stripe-live/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", ".next-e2e", "playwright-report", "test-results"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".next-e2e",
+    ".next-stripe-live",
+    "playwright-report",
+    "test-results"
+  ]
 }
