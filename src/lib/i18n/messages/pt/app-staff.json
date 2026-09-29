@@ -1,0 +1,71 @@
+{
+  "title": "Equipa",
+  "description": "As pessoas que os clientes podem reservar. Cada membro da equipa tem os seus próprios serviços, horário e agenda.",
+  "list": {
+    "count": "{count, plural, one {# membro da equipa} other {# membros da equipa}}",
+    "logins": "Acessos e funções",
+    "add": "Adicionar membro da equipa"
+  },
+  "empty": {
+    "title": "Ainda não há membros da equipa",
+    "description": "Adicione as pessoas que os clientes podem reservar."
+  },
+  "card": {
+    "defaultTitle": "Membro da equipa",
+    "notBookable": "Não reservável",
+    "login": "{role, select, owner {Acesso de proprietário} manager {Acesso de gestor} other {Acesso de membro da equipa}}",
+    "noLogin": "Sem acesso",
+    "services": "Serviços",
+    "servicesCount": "{count} de {total}",
+    "hours": "Horário",
+    "businessHours": "Horário do negócio",
+    "ownSchedule": "Horário próprio",
+    "upcoming": "Próximas",
+    "edit": "Editar",
+    "hoursLink": "Horário"
+  },
+  "form": {
+    "editTitle": "Editar membro da equipa",
+    "description": "O nome, a foto e o cargo aparecem na sua página de reservas se mostrar a sua equipa.",
+    "fixFields": "Corrija os campos assinalados.",
+    "uploadPhoto": "Carregar foto",
+    "photoHint": "JPG, PNG ou WebP, pelo menos 96 px, máx. 5 MB.",
+    "name": "Nome",
+    "title": "Cargo",
+    "titleHint": "p. ex. Cabeleireira sénior",
+    "email": "Email",
+    "emailHint": "Para os seus registos. Para lhe dar acesso, convide-o em Definições → Equipa.",
+    "bio": "Biografia curta",
+    "services": "Serviços que realiza",
+    "noServices": "Ainda não há serviços.",
+    "colour": "Cor na agenda",
+    "colourPicker": "Cor",
+    "bookable": "Reservável",
+    "bookableHint": "Desative durante ausências prolongadas. As marcações existentes mantêm-se.",
+    "businessHours": "Segue o horário do negócio",
+    "businessHoursHint": "Desative para lhe atribuir um horário semanal próprio em Disponibilidade.",
+    "cancel": "Cancelar",
+    "save": "Guardar alterações"
+  },
+  "remove": {
+    "button": "Remover membro da equipa",
+    "title": "Remover {name}?",
+    "withUpcoming": "{name} tem {count, plural, one {# marcação futura} other {# marcações futuras}}. Reagende-as ou cancele-as primeiro.",
+    "body": "Deixará de aparecer na sua página de reservas. As marcações anteriores mantêm o histórico.",
+    "confirm": "Remover"
+  },
+  "toasts": {
+    "saved": "Guardado",
+    "removed": "Removido"
+  },
+  "errors": {
+    "hasUpcoming": "Este membro da equipa tem {count, plural, one {# marcação futura} other {# marcações futuras}}. Reagende-as ou cancele-as primeiro."
+  },
+  "actions": {
+    "added": "Membro da equipa adicionado",
+    "saved": "Membro da equipa guardado",
+    "removed": "Membro da equipa removido",
+    "photoUpdated": "Foto atualizada",
+    "chooseImage": "Escolha uma imagem."
+  }
+}

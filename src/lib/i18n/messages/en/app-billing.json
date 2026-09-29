@@ -1,0 +1,127 @@
+{
+  "title": "Billing",
+  "description": "One simple plan with everything included. No per-booking fees, no surprises.",
+  "loading": "Loading billing",
+  "price": {
+    "perMonth": "{price}/month",
+    "periodSuffix": "/ month",
+    "note": "Everything included for your whole team. VAT included: nothing is added at checkout."
+  },
+  "checkout": {
+    "successTitle": "Thanks, you’re all set!",
+    "successBody": "Your subscription is active. A receipt is on its way to your inbox.",
+    "pending": "Thanks! Your subscription will activate as soon as Stripe confirms the payment, usually within seconds. Refresh if it doesn’t update.",
+    "refresh": "Refresh",
+    "cancelledTitle": "Checkout cancelled",
+    "cancelledBody": "No worries, you haven’t been charged.",
+    "cancelledTrialBody": "No worries, you haven’t been charged. Your free trial continues as normal."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Suspended",
+      "title": "Your account is suspended",
+      "body": "Hournook support has suspended this account, so your booking page is offline. Contact support to resolve it. Your data is safe and you can still export it."
+    },
+    "ending": {
+      "badge": "Ends soon",
+      "title": "Your subscription ends on {date}",
+      "dateFallback": "the end of this period",
+      "body": "You won’t be charged again. Everything keeps working until then; after that your booking page stops taking new bookings. Changed your mind? You can resume in the billing portal."
+    },
+    "trialing": {
+      "badge": "Subscribed",
+      "title": "You’re subscribed",
+      "body": "Your free trial continues until {date}. Your first {price} payment is taken then.",
+      "dateFallback": "it ends"
+    },
+    "active": {
+      "badge": "Active",
+      "title": "Your subscription is active",
+      "renews": "Renews automatically on {date} for {price}.",
+      "billed": "Billed {price}."
+    },
+    "pastDue": {
+      "badge": "Payment failed",
+      "title": "Your last payment didn’t go through",
+      "body": "Stripe will retry automatically, but please update your payment method before {date} to keep accepting bookings.",
+      "dateFallback": "the grace period ends"
+    },
+    "trial": {
+      "badge": "Free trial",
+      "title": "{count, plural, one {# day left in your free trial} other {# days left in your free trial}}",
+      "body": "Your trial ends on {date}. Subscribe any time. If there are more than two days left, they carry over and your first payment is taken when the trial ends."
+    },
+    "overdue": {
+      "badge": "Payment overdue",
+      "title": "Your booking page has paused new bookings",
+      "body": "We couldn’t collect your last payment. Update your payment method and settle the open invoice to reopen online booking straight away. Nothing has been deleted."
+    },
+    "canceled": {
+      "badge": "Cancelled",
+      "title": "Your subscription has ended",
+      "body": "Your booking page isn’t taking new bookings. All your data is still here. Subscribe again to reopen it instantly."
+    },
+    "noPlan": {
+      "badge": "No plan",
+      "title": "Your free trial has ended",
+      "body": "Your booking page isn’t taking new bookings right now, but everything you set up is still here. Subscribe to reopen it instantly.",
+      "bodyEnded": "It ended on {date}. Your booking page isn’t taking new bookings right now, but everything you set up is still here. Subscribe to reopen it instantly."
+    }
+  },
+  "notConfigured": {
+    "title": "Billing isn’t set up on this server yet",
+    "bodyTrial": "Online payments haven’t been configured for this Hournook installation, so subscriptions can’t be started or changed here. Your free trial keeps working as described above.",
+    "bodyAccount": "Online payments haven’t been configured for this Hournook installation, so subscriptions can’t be started or changed here. Your account keeps working as described above."
+  },
+  "ownerOnly": "Only the business owner can subscribe, change the payment method or cancel.",
+  "cta": {
+    "subscribe": "Subscribe for {price}",
+    "updatePayment": "Update payment method",
+    "resume": "Resume subscription",
+    "manage": "Manage billing",
+    "updateCard": "Update card",
+    "cancel": "Cancel subscription",
+    "secure": "You’ll pay securely on Stripe’s checkout page and come straight back here."
+  },
+  "included": {
+    "title": "What’s included",
+    "page": "Your own booking page, QR code & website widget",
+    "unlimited": "Unlimited bookings, customers and services",
+    "team": "Your whole team, no per-seat fees",
+    "calendar": "Calendar, availability, holidays and time off",
+    "emails": "Email confirmations and automatic reminders",
+    "analytics": "Analytics, exports and activity log"
+  },
+  "paymentMethod": {
+    "title": "Payment method",
+    "notConfigured": "Not available until billing is set up.",
+    "loadFailed": "We couldn’t load your card details right now.",
+    "none": "No card on file. You’ll add one when you subscribe."
+  },
+  "invoices": {
+    "title": "Invoices",
+    "description": "Receipts are also emailed to you after each payment.",
+    "notConfigured": "Invoices will appear here once billing is set up.",
+    "unavailableTitle": "Invoices are unavailable right now",
+    "unavailableBody": "We couldn’t reach Stripe to load your invoices. Try again in a moment; your subscription isn’t affected.",
+    "empty": "No invoices yet. They’ll appear here after your first payment.",
+    "invoice": "Invoice",
+    "view": "View",
+    "viewFrom": "invoice from {date}",
+    "status": {
+      "paid": "Paid",
+      "open": "Due",
+      "void": "Void",
+      "uncollectible": "Unpaid",
+      "draft": "Draft"
+    }
+  },
+  "goodToKnow": {
+    "title": "Good to know",
+    "fees": "<b>No per-booking fees.</b> <muted>One flat price, however busy you get.</muted>",
+    "cancel": "<b>Cancel anytime.</b> <muted>You keep access until the end of the period you paid for.</muted>",
+    "vat": "<b>VAT included.</b> <muted>The price already includes Greek VAT (24%), so nothing is added on top.</muted>",
+    "data": "<b>Your data stays yours.</b> <muted>If your plan lapses, nothing is deleted. You can still sign in and export.</muted>"
+  },
+  "stripeUnreachable": "We couldn’t reach Stripe. Check your connection and try again."
+}

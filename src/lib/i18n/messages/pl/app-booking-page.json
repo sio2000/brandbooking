@@ -1,0 +1,143 @@
+{
+  "title": "Strona rezerwacji",
+  "description": "Twoja publiczna strona, na której klienci rezerwują. Opublikuj ją, udostępniaj wszędzie i nadaj jej swój styl.",
+  "publish": {
+    "live": "Twoja strona rezerwacji jest opublikowana",
+    "paused": "Rezerwacje online są wstrzymane",
+    "draft": "Twoja strona rezerwacji to wersja robocza",
+    "badgeLive": "Opublikowana",
+    "badgePaused": "Wstrzymana",
+    "badgeDraft": "Wersja robocza",
+    "noSubscription": "Rezerwacje są obecnie wyłączone, ponieważ nie ma aktywnej subskrypcji.",
+    "preview": "Podgląd",
+    "resume": "Wznów rezerwacje",
+    "publish": "Opublikuj",
+    "verifyEmail": "Najpierw potwierdź adres e-mail. Link znajdziesz w skrzynce odbiorczej.",
+    "needsService": "Dodaj co najmniej jedną aktywną usługę z przypisanym członkiem zespołu, a potem opublikuj."
+  },
+  "pause": {
+    "summary": "Wstrzymaj rezerwacje online (tryb urlopowy)",
+    "message": "Wiadomość dla klientów",
+    "messageHint": "Wyświetlana na stronie rezerwacji podczas wstrzymania.",
+    "messagePlaceholder": "Jesteśmy na urlopie do 3 września. Do zobaczenia!",
+    "until": "Otwórz automatycznie w dniu",
+    "pause": "Wstrzymaj rezerwacje",
+    "unpublish": "Wycofaj publikację"
+  },
+  "celebrate": {
+    "title": "Twoja strona rezerwacji jest opublikowana.",
+    "body": "Udostępnij link na Instagramie, w Profilu Firmy w Google lub na WhatsAppie albo wydrukuj kod QR na ladę.",
+    "dismiss": "Zamknij"
+  },
+  "copy": {
+    "copy": "Kopiuj",
+    "link": "Kopiuj link",
+    "bookingLink": "Kopiuj link do rezerwacji",
+    "copied": "Skopiowano",
+    "linkCopied": "Link skopiowany do schowka"
+  },
+  "share": {
+    "title": "Udostępnij",
+    "description": "Umieść link wszędzie tam, gdzie znajdują Cię klienci.",
+    "linkLabel": "Link do rezerwacji",
+    "email": "E-mail",
+    "qrAlt": "Kod QR prowadzący do {url}",
+    "qr": "Kod QR",
+    "qrDescription": "Na ladę, ulotki lub wizytówki. Rezerwacje z niego są oznaczane jako „Kod QR”.",
+    "print": "Drukuj",
+    "campaigns": "Linki kampanii (sprawdzaj, skąd przychodzą rezerwacje)",
+    "campaignsBody": "Dodaj parametry UTM, a rezerwacje pokażą kampanię w Statystykach:"
+  },
+  "embed": {
+    "title": "Dodaj rezerwacje do swojej strony",
+    "description": "Wklej jedną linijkę na swoją stronę. Rezerwacja otwiera się w bezpiecznym, osobnym oknie, więc nie koliduje z wyglądem Twojej strony.",
+    "button": "Przycisk rezerwacji",
+    "inline": "Osadzony",
+    "buttonDescription": "Przycisk, który otwiera rezerwację w okienku.",
+    "inlineDescription": "Cały proces rezerwacji osadzony tam, gdzie wkleisz kod.",
+    "code": "Kod do osadzenia",
+    "copy": "Kopiuj kod",
+    "copied": "Skopiowano kod"
+  },
+  "branding": {
+    "title": "Wygląd",
+    "description": "Twoje logo, zdjęcie w tle i kolor. Podgląd aktualizuje się podczas edycji.",
+    "preview": "Podgląd na żywo",
+    "sampleService": "Przykładowa usługa",
+    "sampleBook": "Zarezerwuj",
+    "sampleConfirm": "Potwierdź rezerwację",
+    "logo": "Logo",
+    "logoHint": "Kwadratowe, co najmniej 64 px.",
+    "cover": "Zdjęcie w tle",
+    "coverHint": "Szerokie, co najmniej 800×200 px.",
+    "colour": "Kolor marki",
+    "customColour": "Własny kolor marki",
+    "custom": "Własny",
+    "policy": "Zasady rezerwacji",
+    "policyHint": "Wyświetlane na stronie i w e-mailach z potwierdzeniem, np. spóźnienia, zaliczki, odwołania.",
+    "showStaff": "Pokaż członków zespołu na stronie",
+    "showStaffHint": "Pozwól klientom wybrać, do kogo chcą się umówić.",
+    "social": "Media społecznościowe",
+    "save": "Zapisz wygląd"
+  },
+  "upload": {
+    "uploadLogo": "Prześlij logo",
+    "uploadCover": "Prześlij zdjęcie w tle",
+    "removeLogo": "Usuń logo",
+    "removeCover": "Usuń zdjęcie w tle",
+    "tooLarge": "Ten plik ma ponad 5 MB.",
+    "uploaded": "Przesłano",
+    "replace": "Zamień",
+    "upload": "Prześlij",
+    "formats": "JPG, PNG lub WebP do 5 MB."
+  },
+  "seo": {
+    "title": "Podgląd w wyszukiwarce i mediach społecznościowych",
+    "description": "Jak Twoja strona wygląda w Google i po udostępnieniu.",
+    "preview": "Podgląd wyniku wyszukiwania",
+    "pageTitle": "Tytuł strony",
+    "pageDescription": "Opis",
+    "indexing": "Pozwól wyszukiwarkom wyświetlać tę stronę",
+    "indexingHint": "Wyłącz, jeśli udostępniasz link tylko prywatnie.",
+    "save": "Zapisz"
+  },
+  "link": {
+    "title": "Link do rezerwacji",
+    "description": "Zmiana linku unieważni linki, które już udostępniono (także wydrukowane kody QR).",
+    "available": "Dostępny",
+    "taken": "Już zajęty",
+    "invalid": "Nieprawidłowy",
+    "change": "Zmień link"
+  },
+  "customer": {
+    "embedLabel": "Zarezerwuj teraz",
+    "seoTitle": "{name} · Rezerwacja online",
+    "seoDescription": "Umów się online: {name}.",
+    "shareText": "Umów wizytę – {name}: {url}",
+    "shareSubject": "Rezerwacja – {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Drukuj kod QR",
+    "bookOnline": "Zarezerwuj online",
+    "scan": "Zeskanuj, aby umówić kolejną wizytę",
+    "print": "Drukuj"
+  },
+  "toasts": {
+    "saved": "Zapisano"
+  },
+  "errors": {
+    "slugTaken": "Ten link do rezerwacji jest już zajęty.",
+    "cannotPublish": "Przed publikacją dodaj co najmniej jedną aktywną usługę z przypisanym członkiem zespołu."
+  },
+  "actions": {
+    "published": "Twoja strona rezerwacji jest opublikowana 🎉",
+    "paused": "Wstrzymano rezerwacje online",
+    "unpublished": "Wycofano publikację strony rezerwacji",
+    "brandingSaved": "Zapisano wygląd",
+    "seoSaved": "Zapisano ustawienia wyszukiwania",
+    "linkUpdated": "Zaktualizowano link do rezerwacji",
+    "imageUpdated": "Zaktualizowano obraz",
+    "imageRemoved": "Usunięto obraz",
+    "chooseImage": "Wybierz obraz."
+  }
+}

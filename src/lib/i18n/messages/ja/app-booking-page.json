@@ -1,0 +1,143 @@
+{
+  "title": "予約ページ",
+  "description": "お客様が予約する公開ページです。公開してあらゆる場所で共有し、あなたらしいデザインに整えましょう。",
+  "publish": {
+    "live": "予約ページは公開中です",
+    "paused": "オンライン予約は一時停止中です",
+    "draft": "予約ページは下書きです",
+    "badgeLive": "公開中",
+    "badgePaused": "一時停止中",
+    "badgeDraft": "下書き",
+    "noSubscription": "有効なサブスクリプションがないため、現在予約の受付は停止しています。",
+    "preview": "プレビュー",
+    "resume": "予約受付を再開",
+    "publish": "公開",
+    "verifyEmail": "先にメールアドレスを確認してください。受信トレイに確認リンクが届いています。",
+    "needsService": "スタッフが割り当てられた有効なサービスを1つ以上追加してから公開してください。"
+  },
+  "pause": {
+    "summary": "オンライン予約を一時停止（休暇モード）",
+    "message": "お客様へのメッセージ",
+    "messageHint": "一時停止中、予約ページに表示されます。",
+    "messagePlaceholder": "9月3日まで休業いたします。またのご来店をお待ちしております！",
+    "until": "自動で再開する日",
+    "pause": "予約受付を一時停止",
+    "unpublish": "非公開にする"
+  },
+  "celebrate": {
+    "title": "予約ページを公開しました。",
+    "body": "Instagram、Google ビジネス プロフィール、WhatsApp でリンクを共有したり、受付用に QR コードを印刷したりしましょう。",
+    "dismiss": "閉じる"
+  },
+  "copy": {
+    "copy": "コピー",
+    "link": "リンクをコピー",
+    "bookingLink": "予約リンクをコピー",
+    "copied": "コピーしました",
+    "linkCopied": "リンクをクリップボードにコピーしました"
+  },
+  "share": {
+    "title": "共有",
+    "description": "お客様があなたを見つける場所にリンクを掲載しましょう。",
+    "linkLabel": "予約リンク",
+    "email": "メール",
+    "qrAlt": "{url} へのリンクの QR コード",
+    "qr": "QR コード",
+    "qrDescription": "受付、チラシ、名刺に。ここからの予約は「QR コード」として記録されます。",
+    "print": "印刷",
+    "campaigns": "キャンペーンリンク（予約の流入元を計測）",
+    "campaignsBody": "UTM パラメータを追加すると、分析で予約のキャンペーンが表示されます："
+  },
+  "embed": {
+    "title": "ウェブサイトに予約を追加",
+    "description": "サイトに1行貼り付けるだけです。予約画面は安全な独立したウィンドウで開くため、サイトのデザインと干渉しません。",
+    "button": "予約ボタン",
+    "inline": "埋め込み",
+    "buttonDescription": "ポップアップで予約画面を開くボタンです。",
+    "inlineDescription": "コードを貼り付けた場所に予約画面全体を埋め込みます。",
+    "code": "埋め込みコード",
+    "copy": "コードをコピー",
+    "copied": "コードをコピーしました"
+  },
+  "branding": {
+    "title": "ブランディング",
+    "description": "ロゴ、カバー画像、カラーを設定します。編集内容はプレビューにすぐ反映されます。",
+    "preview": "ライブプレビュー",
+    "sampleService": "サンプルサービス",
+    "sampleBook": "予約する",
+    "sampleConfirm": "予約を確定",
+    "logo": "ロゴ",
+    "logoHint": "正方形、64px 以上。",
+    "cover": "カバー画像",
+    "coverHint": "横長、800×200px 以上。",
+    "colour": "ブランドカラー",
+    "customColour": "カスタムのブランドカラー",
+    "custom": "カスタム",
+    "policy": "予約ポリシー",
+    "policyHint": "ページと確認メールに表示されます。遅刻、前金、キャンセルについてなど。",
+    "showStaff": "ページにスタッフを表示",
+    "showStaffHint": "お客様が担当スタッフを選べるようにします。",
+    "social": "SNS リンク",
+    "save": "ブランディングを保存"
+  },
+  "upload": {
+    "uploadLogo": "ロゴをアップロード",
+    "uploadCover": "カバー画像をアップロード",
+    "removeLogo": "ロゴを削除",
+    "removeCover": "カバー画像を削除",
+    "tooLarge": "ファイルが 5 MB を超えています。",
+    "uploaded": "アップロード済み",
+    "replace": "置き換え",
+    "upload": "アップロード",
+    "formats": "JPG、PNG、WebP（最大 5 MB）。"
+  },
+  "seo": {
+    "title": "検索結果と SNS での表示",
+    "description": "Google や共有時にページがどのように表示されるかを設定します。",
+    "preview": "検索結果のプレビュー",
+    "pageTitle": "ページタイトル",
+    "pageDescription": "説明",
+    "indexing": "検索エンジンにこのページの掲載を許可",
+    "indexingHint": "リンクを限られた相手にのみ共有する場合はオフにしてください。",
+    "save": "保存"
+  },
+  "link": {
+    "title": "予約リンク",
+    "description": "変更すると、共有済みのリンク（印刷した QR コードを含む）は使えなくなります。",
+    "available": "使用できます",
+    "taken": "すでに使われています",
+    "invalid": "無効です",
+    "change": "リンクを変更"
+  },
+  "customer": {
+    "embedLabel": "今すぐ予約",
+    "seoTitle": "{name} · オンライン予約",
+    "seoDescription": "{name} の予約をオンラインで。",
+    "shareText": "{name} の予約はこちら：{url}",
+    "shareSubject": "{name} の予約"
+  },
+  "qrPrint": {
+    "metaTitle": "QR コードを印刷",
+    "bookOnline": "オンライン予約",
+    "scan": "スキャンして次回のご予約を",
+    "print": "印刷"
+  },
+  "toasts": {
+    "saved": "保存しました"
+  },
+  "errors": {
+    "slugTaken": "この予約リンクはすでに使われています。",
+    "cannotPublish": "公開する前に、スタッフが割り当てられた有効なサービスを1つ以上追加してください。"
+  },
+  "actions": {
+    "published": "予約ページを公開しました 🎉",
+    "paused": "オンライン予約を一時停止しました",
+    "unpublished": "予約ページを非公開にしました",
+    "brandingSaved": "ブランディングを保存しました",
+    "seoSaved": "検索設定を保存しました",
+    "linkUpdated": "予約リンクを更新しました",
+    "imageUpdated": "画像を更新しました",
+    "imageRemoved": "画像を削除しました",
+    "chooseImage": "画像を選択してください。"
+  }
+}

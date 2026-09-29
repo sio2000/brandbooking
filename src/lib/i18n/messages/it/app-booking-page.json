@@ -1,0 +1,143 @@
+{
+  "title": "Pagina di prenotazione",
+  "description": "La tua pagina pubblica dove i clienti prenotano. Pubblicala, condividila ovunque e rendila simile a te.",
+  "publish": {
+    "live": "La tua pagina di prenotazione è online",
+    "paused": "Le prenotazioni online sono in pausa",
+    "draft": "La tua pagina di prenotazione è una bozza",
+    "badgeLive": "Online",
+    "badgePaused": "In pausa",
+    "badgeDraft": "Bozza",
+    "noSubscription": "Le prenotazioni sono disattivate perché non c’è un abbonamento attivo.",
+    "preview": "Anteprima",
+    "resume": "Riprendi le prenotazioni",
+    "publish": "Pubblica",
+    "verifyEmail": "Prima conferma il tuo indirizzo email. Trovi il link nella tua casella di posta.",
+    "needsService": "Aggiungi almeno un servizio attivo con un membro del team assegnato, poi pubblica."
+  },
+  "pause": {
+    "summary": "Metti in pausa le prenotazioni online (modalità vacanza)",
+    "message": "Messaggio per i clienti",
+    "messageHint": "Mostrato sulla tua pagina di prenotazione durante la pausa.",
+    "messagePlaceholder": "Siamo in vacanza fino al 3 settembre. A presto!",
+    "until": "Riapri automaticamente il",
+    "pause": "Sospendi le prenotazioni",
+    "unpublish": "Annulla pubblicazione"
+  },
+  "celebrate": {
+    "title": "La tua pagina di prenotazione è online.",
+    "body": "Condividi il link su Instagram, sul Profilo dell’attività su Google o su WhatsApp, oppure stampa il codice QR per il bancone.",
+    "dismiss": "Chiudi"
+  },
+  "copy": {
+    "copy": "Copia",
+    "link": "Copia link",
+    "bookingLink": "Copia link di prenotazione",
+    "copied": "Copiato",
+    "linkCopied": "Link copiato negli appunti"
+  },
+  "share": {
+    "title": "Condividi",
+    "description": "Metti il tuo link ovunque i clienti ti trovano.",
+    "linkLabel": "Link di prenotazione",
+    "email": "Email",
+    "qrAlt": "Codice QR che rimanda a {url}",
+    "qr": "Codice QR",
+    "qrDescription": "Per il bancone, i volantini o i biglietti da visita. Le prenotazioni da qui vengono registrate come “Codice QR”.",
+    "print": "Stampa",
+    "campaigns": "Link per campagne (scopri da dove arrivano le prenotazioni)",
+    "campaignsBody": "Aggiungi parametri UTM e le prenotazioni mostreranno la campagna in Statistiche:"
+  },
+  "embed": {
+    "title": "Aggiungi le prenotazioni al tuo sito",
+    "description": "Incolla una riga nel tuo sito. La prenotazione si apre in una finestra sicura e indipendente, quindi non si scontra con la grafica del tuo sito.",
+    "button": "Pulsante di prenotazione",
+    "inline": "Integrato",
+    "buttonDescription": "Un pulsante che apre la prenotazione in un popup.",
+    "inlineDescription": "L’intera procedura di prenotazione incorporata dove inserisci il codice.",
+    "code": "Codice da incorporare",
+    "copy": "Copia codice",
+    "copied": "Codice copiato"
+  },
+  "branding": {
+    "title": "Aspetto",
+    "description": "Logo, copertina e colore. L’anteprima si aggiorna mentre modifichi.",
+    "preview": "Anteprima dal vivo",
+    "sampleService": "Servizio di esempio",
+    "sampleBook": "Prenota",
+    "sampleConfirm": "Conferma prenotazione",
+    "logo": "Logo",
+    "logoHint": "Quadrato, almeno 64 px.",
+    "cover": "Immagine di copertina",
+    "coverHint": "Orizzontale, almeno 800×200 px.",
+    "colour": "Colore del brand",
+    "customColour": "Colore del brand personalizzato",
+    "custom": "Personalizzato",
+    "policy": "Condizioni di prenotazione",
+    "policyHint": "Mostrate sulla tua pagina e nelle email di conferma, ad es. ritardi, acconti, cancellazioni.",
+    "showStaff": "Mostra i membri del team sulla tua pagina",
+    "showStaffHint": "Permetti ai clienti di scegliere da chi andare.",
+    "social": "Link ai social",
+    "save": "Salva aspetto"
+  },
+  "upload": {
+    "uploadLogo": "Carica logo",
+    "uploadCover": "Carica immagine di copertina",
+    "removeLogo": "Rimuovi logo",
+    "removeCover": "Rimuovi immagine di copertina",
+    "tooLarge": "Il file supera i 5 MB.",
+    "uploaded": "Caricato",
+    "replace": "Sostituisci",
+    "upload": "Carica",
+    "formats": "JPG, PNG o WebP fino a 5 MB."
+  },
+  "seo": {
+    "title": "Anteprime in ricerca e sui social",
+    "description": "Come appare la tua pagina su Google e quando viene condivisa.",
+    "preview": "Anteprima del risultato di ricerca",
+    "pageTitle": "Titolo della pagina",
+    "pageDescription": "Descrizione",
+    "indexing": "Consenti ai motori di ricerca di mostrare questa pagina",
+    "indexingHint": "Disattiva se condividi il link solo in privato.",
+    "save": "Salva"
+  },
+  "link": {
+    "title": "Link di prenotazione",
+    "description": "Cambiarlo rende non validi i link che hai già condiviso (compresi i codici QR stampati).",
+    "available": "Disponibile",
+    "taken": "Già in uso",
+    "invalid": "Non valido",
+    "change": "Cambia link"
+  },
+  "customer": {
+    "embedLabel": "Prenota ora",
+    "seoTitle": "{name} · Prenotazione online",
+    "seoDescription": "Prenota online un appuntamento con {name}.",
+    "shareText": "Prenota un appuntamento con {name}: {url}",
+    "shareSubject": "Prenota con {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Stampa codice QR",
+    "bookOnline": "Prenota online",
+    "scan": "Inquadra per prenotare il tuo prossimo appuntamento",
+    "print": "Stampa"
+  },
+  "toasts": {
+    "saved": "Salvato"
+  },
+  "errors": {
+    "slugTaken": "Questo link di prenotazione è già in uso.",
+    "cannotPublish": "Prima di pubblicare, aggiungi almeno un servizio attivo con un membro del team assegnato."
+  },
+  "actions": {
+    "published": "La tua pagina di prenotazione è online 🎉",
+    "paused": "Prenotazioni online in pausa",
+    "unpublished": "Pubblicazione della pagina annullata",
+    "brandingSaved": "Aspetto salvato",
+    "seoSaved": "Impostazioni di ricerca salvate",
+    "linkUpdated": "Link di prenotazione aggiornato",
+    "imageUpdated": "Immagine aggiornata",
+    "imageRemoved": "Immagine rimossa",
+    "chooseImage": "Scegli un’immagine."
+  }
+}

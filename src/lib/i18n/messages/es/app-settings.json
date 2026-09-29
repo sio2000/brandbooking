@@ -1,0 +1,632 @@
+{
+  "layout": {
+    "title": "Ajustes",
+    "description": "Gestiona {name}, tu equipo y tu propia cuenta."
+  },
+  "loading": "Cargando ajustes",
+  "nav": {
+    "label": "Ajustes",
+    "business": "Negocio",
+    "booking": "Reservas",
+    "notifications": "Notificaciones",
+    "team": "Equipo",
+    "account": "Cuenta",
+    "privacy": "Privacidad y datos",
+    "activity": "Actividad"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "listSeparator": ", "
+  },
+  "form": {
+    "saved": "Guardado",
+    "offline": "No hemos podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo."
+  },
+  "saveBar": {
+    "unsaved": "Cambios sin guardar",
+    "saved": "Todos los cambios guardados",
+    "discard": "Descartar",
+    "save": "Guardar cambios"
+  },
+  "duration": {
+    "zeroMinutes": "0 minutos",
+    "minutes": "{count, plural, one {# minuto} other {# minutos}}",
+    "hours": "{count, plural, one {# hora} other {# horas}}",
+    "hoursMinutes": "{h} h {m} min",
+    "days": "{count, plural, one {# día} other {# días}}",
+    "weeks": "{count, plural, one {# semana} other {# semanas}}",
+    "months": "{count, plural, one {# mes} other {# meses}}",
+    "years": "{count, plural, one {# año} other {# años}}",
+    "current": "{label} (actual)",
+    "noMinimum": "Sin mínimo",
+    "everyHour": "Cada hora",
+    "everyMinutes": "{count, plural, one {Cada # minuto} other {Cada # minutos}}",
+    "upToStart": "Hasta la hora de inicio",
+    "before": "{duration} antes",
+    "ahead": "{duration} de antelación"
+  },
+  "business": {
+    "metaTitle": "Ajustes del negocio",
+    "title": "Perfil del negocio",
+    "description": "Lo básico que ven tus clientes en tu página de reservas y en sus emails.",
+    "basics": {
+      "title": "Lo básico",
+      "description": "Cómo aparece tu negocio en tu página de reservas y en los emails a tus clientes.",
+      "name": "Nombre del negocio",
+      "category": "Categoría",
+      "categoryHint": "Nos ayuda a adaptar consejos y ajustes predeterminados a tu tipo de negocio.",
+      "categoryPlaceholder": "Elige una categoría…",
+      "about": "Sobre tu negocio",
+      "aboutHint": "Aparece en la parte superior de tu página de reservas. {count}/{max}",
+      "aboutPlaceholder": "Una o dos frases cercanas sobre lo que haces y lo que pueden esperar tus clientes."
+    },
+    "categories": {
+      "hairBeauty": "Peluquería y belleza",
+      "barbershop": "Barbería",
+      "nails": "Uñas",
+      "spaMassage": "Spa y masajes",
+      "healthTherapy": "Salud y terapia",
+      "fitnessCoaching": "Fitness y entrenamiento",
+      "medicalDental": "Medicina y odontología",
+      "consulting": "Consultoría",
+      "educationTutoring": "Educación y clases particulares",
+      "photography": "Fotografía",
+      "petServices": "Servicios para mascotas",
+      "automotive": "Automoción",
+      "homeServices": "Servicios a domicilio",
+      "other": "Otra"
+    },
+    "time": {
+      "title": "Hora y dinero",
+      "description": "Tu zona horaria determina cómo se interpretan el horario y las horas de las citas. La moneda se usa para los precios de los servicios.",
+      "timezone": "Zona horaria",
+      "timezoneHint": "Consejo: con la lista seleccionada, escribe el nombre de una ciudad para saltar a ella.",
+      "deviceTz": "Este dispositivo usa <b>{tz}</b>",
+      "useDeviceTz": "Usar esta",
+      "tzChangedTitle": "Cambiar la zona horaria cambia cómo se interpreta tu horario",
+      "tzChangedBody": "Un horario como 9:00–17:00 significará 9:00–17:00 en <b>{tz}</b>. Las citas ya reservadas mantienen su momento exacto, así que pueden aparecer a otra hora del reloj.",
+      "currency": "Moneda",
+      "currencyHint": "Cambiar la moneda no convierte los precios existentes.",
+      "regions": {
+        "Africa": "África",
+        "America": "América",
+        "Antarctica": "Antártida",
+        "Arctic": "Ártico",
+        "Asia": "Asia",
+        "Atlantic": "Atlántico",
+        "Australia": "Australia",
+        "Europe": "Europa",
+        "Indian": "Océano Índico",
+        "Pacific": "Pacífico",
+        "Other": "Otras"
+      }
+    },
+    "language": {
+      "title": "Idioma de la página de reservas",
+      "description": "El idioma que ven primero tus clientes en tu página de reservas, en el widget de reservas y en la confirmación de su reserva.",
+      "label": "Idioma predeterminado",
+      "hint": "Tus clientes siempre pueden cambiar a otro idioma por su cuenta."
+    },
+    "contact": {
+      "title": "Datos de contacto",
+      "description": "Aparecen en tu página de reservas y en los emails de confirmación. Las respuestas de los clientes a los emails de Hournook llegan a esta dirección.",
+      "email": "Email",
+      "emailPlaceholder": "hola@tunegocio.es",
+      "phone": "Teléfono",
+      "website": "Sitio web",
+      "websitePlaceholder": "tunegocio.es"
+    },
+    "address": {
+      "title": "Dirección",
+      "description": "Dónde acuden tus clientes a su cita. Déjalo vacío si trabajas en remoto o visitas a tus clientes.",
+      "line1": "Dirección",
+      "line2": "Piso, puerta, local",
+      "postalCode": "Código postal",
+      "city": "Ciudad",
+      "country": "País",
+      "countryPlaceholder": "Elige un país…"
+    }
+  },
+  "account": {
+    "metaTitle": "Tu cuenta",
+    "title": "Tu cuenta",
+    "intro": "Ajustes personales de {email}. Eres {role, select, owner {el propietario} manager {un encargado} other {un miembro del equipo}} de {business}.",
+    "introMany": "Ajustes personales de {email}. Eres {role, select, owner {el propietario} manager {un encargado} other {un miembro del equipo}} de {business} y perteneces a {count} negocios en total.",
+    "profile": {
+      "title": "Tu perfil",
+      "description": "Cómo te ve tu equipo. Los clientes nunca ven los datos de tu cuenta.",
+      "name": "Tu nombre",
+      "nameRequired": "Escribe tu nombre.",
+      "email": "Email",
+      "verified": "Verificado",
+      "notVerified": "Sin verificar",
+      "emailHint": "Se usa para iniciar sesión. Contacta con soporte para cambiarlo.",
+      "save": "Guardar"
+    },
+    "language": {
+      "title": "Idioma",
+      "description": "El idioma de tu panel y de los ajustes.",
+      "label": "Idioma",
+      "emailNote": "Los emails que te enviamos (nuevas reservas, novedades del equipo y de facturación) también llegarán en este idioma.",
+      "switching": "Cambiando de idioma…",
+      "invalid": "Elige uno de los idiomas disponibles."
+    },
+    "password": {
+      "title": "Contraseña",
+      "description": "Al cambiar la contraseña se cierra tu sesión en todos los demás dispositivos.",
+      "current": "Contraseña actual",
+      "new": "Nueva contraseña",
+      "newHint": "Al menos {min} caracteres. Una frase corta funciona muy bien.",
+      "repeat": "Repite la nueva contraseña",
+      "mismatch": "Las contraseñas no coinciden.",
+      "submit": "Cambiar contraseña",
+      "show": "Mostrar contraseña",
+      "hide": "Ocultar contraseña"
+    },
+    "leave": {
+      "title": "Salir de {business}",
+      "description": "Perderás el acceso a este negocio. Tus citas y tu perfil se quedan en el negocio.",
+      "button": "Salir del negocio",
+      "confirmTitle": "¿Salir de {business}?",
+      "confirmBody": "Ya no podrás iniciar sesión en este negocio. Un propietario o encargado puede volver a invitarte más adelante."
+    },
+    "delete": {
+      "title": "Eliminar tu cuenta",
+      "description": "Elimina para siempre tu acceso y tus datos personales. No se puede deshacer.",
+      "ownerTitle": "Todavía eres propietario de un negocio",
+      "ownerBody": "Los propietarios deben eliminar sus negocios, o nombrar a otra persona propietaria en Ajustes → Equipo, antes de eliminar su cuenta, para que clientes y reservas nunca se queden sin propietario. Eres propietario de <b>{businesses}</b>. Elimínalo primero en <link>Privacidad y datos</link>.",
+      "body": "Se te quitará de todos los negocios a los que perteneces. Las citas que gestionaste se quedan en esos negocios.",
+      "button": "Eliminar cuenta…",
+      "dialogTitle": "¿Eliminar tu cuenta?",
+      "dialogDescription": "Escribe tu contraseña para confirmar. No se puede deshacer.",
+      "password": "Contraseña",
+      "passwordRequired": "Escribe tu contraseña.",
+      "submit": "Eliminar mi cuenta"
+    }
+  },
+  "booking": {
+    "metaTitle": "Ajustes de reservas",
+    "title": "Reglas de reserva",
+    "description": "Decide cuándo y cómo pueden reservar, cambiar y cancelar tus clientes. Se aplican a toda tu página de reservas.",
+    "summary": {
+      "text": "Tus clientes pueden reservar {notice} y hasta con {days} de antelación. Las horas de inicio se ofrecen {interval}.",
+      "lastMinute": "hasta el último minuto",
+      "notice": "con al menos {duration} de antelación",
+      "onTheHour": "a las horas en punto",
+      "everyMinutes": "{count, plural, one {cada # minuto} other {cada # minutos}}"
+    },
+    "window": {
+      "title": "Cuándo pueden reservar tus clientes",
+      "description": "Protege tu tiempo: evita las sorpresas de última hora y decide con cuánta antelación se abre tu calendario.",
+      "minNotice": "Antelación mínima",
+      "minNoticeHint": "Con cuánta antelación a una cita se puede reservar todavía en línea.",
+      "maxAdvance": "Reservar hasta",
+      "maxAdvanceHint": "Hasta qué punto del futuro ven tus clientes horas libres.",
+      "startTimes": "Horas de inicio",
+      "startTimesHint": "Con cada 15 minutos, tus clientes ven 9:00, 9:15, 9:30… Intervalos más largos mantienen tu día más ordenado.",
+      "limit": "Limitar las reservas en línea por día",
+      "limitDescription": "Al llegar al límite, ese día aparece completo. Tú puedes seguir añadiendo citas.",
+      "maxPerDay": "Máximo por día"
+    },
+    "confirm": {
+      "title": "Confirmación",
+      "description": "Elige si las nuevas reservas son definitivas al momento.",
+      "review": "Revisar cada reserva antes de confirmarla",
+      "reviewOn": "Las nuevas reservas en línea llegan como solicitudes. La hora queda reservada y el cliente recibe un email de confirmación cuando la aceptas.",
+      "reviewOff": "Las reservas se confirman al instante y el cliente recibe enseguida su email de confirmación."
+    },
+    "changes": {
+      "title": "Cancelaciones y cambios de hora",
+      "description": "Cada email de confirmación incluye un enlace para que el cliente gestione su reserva. Decide qué puede hacer por su cuenta.",
+      "cancel": "Los clientes pueden cancelar en línea",
+      "cancelOn": "Las horas que se liberan vuelven a estar disponibles automáticamente.",
+      "cancelOff": "Los clientes tienen que contactarte para cancelar.",
+      "cancelDeadline": "Plazo de cancelación",
+      "cancelDeadlineHint": "Pasado este momento desaparece el botón de cancelar y se pide al cliente que te contacte.",
+      "reschedule": "Los clientes pueden cambiar la hora en línea",
+      "rescheduleOn": "Eligen una nueva hora libre y la anterior se libera.",
+      "rescheduleOff": "Los clientes tienen que contactarte para mover una reserva.",
+      "rescheduleDeadline": "Plazo para cambiar la hora",
+      "rescheduleDeadlineHint": "Hasta cuánto antes de la cita pueden moverla tus clientes."
+    },
+    "reminders": {
+      "title": "Emails de recordatorio",
+      "description": "Los recordatorios automáticos reducen las ausencias. Elige hasta {max}. Los clientes sin email no los reciben.",
+      "legend": "Enviar recordatorios",
+      "none": "No se enviará ningún recordatorio.",
+      "selected": "{count} de {max} seleccionados: {list}. Los cambios se aplican a las reservas futuras."
+    },
+    "form": {
+      "title": "Formulario de reserva",
+      "description": "Lo que se pregunta a tus clientes al reservar.",
+      "staff": "Elegir miembro del equipo",
+      "staffModes": {
+        "optional": {
+          "title": "El cliente puede elegir",
+          "body": "Los clientes pueden elegir a un miembro del equipo o «Cualquiera disponible»."
+        },
+        "required": {
+          "title": "El cliente debe elegir",
+          "body": "Los clientes siempre eligen a un miembro concreto del equipo."
+        },
+        "hidden": {
+          "title": "No preguntar",
+          "body": "Asignamos a quien esté libre. Los clientes nunca ven la opción."
+        }
+      },
+      "phone": "Número de teléfono",
+      "phoneModes": {
+        "required": {
+          "title": "Obligatorio",
+          "body": "Ideal si llamas o escribes a tus clientes."
+        },
+        "optional": {
+          "title": "Opcional",
+          "body": "Los clientes pueden dejarlo vacío."
+        },
+        "hidden": {
+          "title": "No preguntar",
+          "body": "El campo no se muestra."
+        }
+      },
+      "alwaysAsked": "El nombre y el email se piden siempre para poder enviar las confirmaciones."
+    }
+  },
+  "notifications": {
+    "metaTitle": "Notificaciones",
+    "mine": {
+      "title": "Tus notificaciones",
+      "description": "Elige de qué quieres enterarte. Solo te afecta a ti; cada miembro del equipo configura las suyas.",
+      "remindersByManager": "Los emails de recordatorio a clientes los configura un propietario o encargado en Ajustes de reservas.",
+      "verifyEmail": "Verifica tu dirección de email para recibir emails de notificación. Hasta entonces solo aparecen en tu bandeja."
+    },
+    "customers": {
+      "title": "Emails a clientes",
+      "description": "Cómo se ven tus emails automáticos a los clientes.",
+      "remindersLink": "¿Buscas los recordatorios de citas? Se configuran en <link>Reglas de reserva</link>."
+    },
+    "email": {
+      "title": "Emails a tus clientes",
+      "description": "Las confirmaciones, los recordatorios y los avisos de cambios se envían automáticamente con cada reserva.",
+      "senderName": "Nombre del remitente",
+      "senderNameHint": "Lo que ven tus clientes en su bandeja de entrada. Déjalo vacío para usar «{business}».",
+      "footer": "Pie de email",
+      "footerHint": "Una nota breve al final de cada email, p. ej. dónde aparcar o tu política de cancelación. {count}/{max}",
+      "footerPlaceholder": "Aparcamiento gratuito detrás del edificio. Llega 5 minutos antes, por favor.",
+      "preview": "Vista previa",
+      "inboxPreview": "Vista previa de la bandeja",
+      "repliesTo": "Las respuestas llegan a {email}",
+      "repliesToNobody": "Las respuestas aún no llegan a nadie",
+      "sampleSubject": "Tu cita está confirmada",
+      "defaultFooter": "Has recibido este email porque reservaste una cita.",
+      "sentBy": "Enviado por Hournook en nombre de {business}.",
+      "whyTitle": "Por qué los emails salen de la dirección de Hournook",
+      "whyBody": "Para que tus emails no acaben en spam, se envían desde la dirección verificada de Hournook con el nombre de tu negocio como remitente. Nunca fingimos enviar desde tu propio dominio. Cuando tus clientes responden, su mensaje va directamente a <b>{email}</b>.",
+      "whyBodyNoEmail": "Para que tus emails no acaben en spam, se envían desde la dirección verificada de Hournook con el nombre de tu negocio como remitente. Nunca fingimos enviar desde tu propio dominio. Cuando tus clientes responden, su mensaje va directamente al email de tu negocio. <link>Añade un email de contacto</link> para recibir las respuestas.",
+      "save": "Guardar ajustes de email"
+    },
+    "prefs": {
+      "title": "Avísame de",
+      "descriptionOwn": "Solo sobre tus propias citas. Los cambios se guardan automáticamente.",
+      "descriptionAll": "Te llegan por email y aparecen en tu bandeja (el icono de la campana). Los cambios se guardan automáticamente.",
+      "created": "Nuevas reservas",
+      "createdOwn": "Cuando un cliente reserva una cita contigo.",
+      "createdAll": "Cuando un cliente reserva en línea o un compañero añade una cita.",
+      "rescheduled": "Cambios de hora",
+      "rescheduledOwn": "Cuando una de tus citas pasa a otra hora.",
+      "rescheduledAll": "Cuando una cita pasa a otra hora.",
+      "cancelled": "Cancelaciones",
+      "cancelledOwn": "Cuando se cancela una de tus citas.",
+      "cancelledAll": "Cuando un cliente o un compañero cancela una cita.",
+      "team": "Cambios en el equipo",
+      "teamDescription": "Cuando alguien acepta una invitación y se une a tu equipo.",
+      "billing": "Facturación",
+      "billingDescription": "Problemas de pago y cambios en la suscripción. Te recomendamos dejarlo activado.",
+      "on": "Notificaciones activadas",
+      "off": "Notificaciones desactivadas",
+      "saveFailed": "No hemos podido guardar el cambio. Comprueba tu conexión e inténtalo de nuevo."
+    }
+  },
+  "team": {
+    "metaTitle": "Equipo y acceso",
+    "title": "Equipo y acceso",
+    "description": "Invita a tus compañeros a entrar con su propio acceso. Para añadir a alguien que solo recibe reservas (sin acceso), añádelo en <link>Equipo</link> en la barra lateral.",
+    "roles": {
+      "owner": "Propietario",
+      "manager": "Encargado",
+      "staff": "Miembro del equipo"
+    },
+    "roleDescriptions": {
+      "owner": "Todo, incluida la facturación, exportar todos los datos y eliminar el negocio.",
+      "manager": "Todo excepto la facturación, eliminar el negocio, exportar todos los datos y borrar clientes.",
+      "staff": "Solo sus propias citas, los clientes que ha atendido y su propia disponibilidad."
+    },
+    "explainer": {
+      "title": "Qué puede hacer cada rol",
+      "description": "Elige el rol más limitado que necesite cada persona. Puedes cambiarlo más adelante."
+    },
+    "invite": {
+      "button": "Invitar a alguien",
+      "title": "Invitar a tu equipo",
+      "description": "Recibirá un email con un enlace para unirse. Sin coste extra: tu plan incluye a todo el equipo.",
+      "email": "Dirección de email",
+      "emailPlaceholder": "nombre@ejemplo.com",
+      "role": "Rol",
+      "link": "Vincular a un perfil existente",
+      "linkHint": "Si esta persona ya tiene un perfil en tu equipo (con reservas y horario), vincúlalo para que vea su propia agenda. Si no, se creará un perfil nuevo cuando se una.",
+      "newProfile": "Crear un perfil nuevo",
+      "submit": "Enviar invitación",
+      "sent": "Invitación enviada a {email}",
+      "sentDescription": "El enlace es válido durante 7 días.",
+      "created": "Invitación creada para {email}",
+      "createdDescription": "Ahora mismo no hemos podido enviar el email. Revócala y vuelve a invitar más tarde."
+    },
+    "members": {
+      "title": "Miembros · {count}",
+      "description": "Personas que pueden entrar en este negocio.",
+      "you": "Tú",
+      "profile": "Perfil: {name}",
+      "joined": "Se unió el {date}",
+      "actions": "Acciones para {name}",
+      "changeRole": "Cambiar rol",
+      "current": "Actual",
+      "makeOwner": "Hacer propietario…",
+      "remove": "Quitar del equipo"
+    },
+    "invites": {
+      "title": "Invitaciones pendientes",
+      "description": "Las invitaciones caducan a los 7 días. Invita de nuevo a la misma dirección para enviar un enlace nuevo.",
+      "emptyTitle": "No hay invitaciones pendientes",
+      "emptyDescription": "Invita a un compañero para que vea su agenda y gestione sus propias citas.",
+      "expires": "Caduca {when} · enviada {sent}",
+      "expired": "Caducó {when} · enviada {sent}",
+      "revoke": "Revocar",
+      "revokeLabel": "Revocar la invitación de {email}"
+    },
+    "transfer": {
+      "title": "¿Hacer a {name} propietario?",
+      "titleGeneric": "¿Transferir la propiedad?",
+      "description": "Tendrá el control total, incluida la facturación y la eliminación del negocio. Tú seguirás en el equipo como encargado. Solo el nuevo propietario puede deshacerlo.",
+      "confirm": "Transferir la propiedad"
+    },
+    "remove": {
+      "title": "¿Quitar a {name}?",
+      "titleGeneric": "¿Quitar al miembro?",
+      "description": "Perderá el acceso a este negocio de inmediato. Su perfil, sus citas pasadas y sus próximas reservas se quedan en tu calendario, y podrás reasignarlas o cancelarlas más adelante."
+    },
+    "toasts": {
+      "roleChanged": "{name} ahora es {role, select, manager {un encargado} owner {el propietario} other {un miembro del equipo}}",
+      "revoked": "Invitación de {email} revocada",
+      "nowOwner": "{name} ahora es el propietario",
+      "removed": "{name} ya no forma parte de tu equipo"
+    },
+    "errors": {
+      "staffHasAccount": "Este miembro del equipo ya tiene una cuenta.",
+      "alreadyOnTeam": "Esta persona ya está en tu equipo.",
+      "profileLinked": "Este perfil del equipo ya está vinculado a otra cuenta. Pide una invitación nueva.",
+      "alreadyMember": "Ya eres miembro de este negocio."
+    }
+  },
+  "privacy": {
+    "metaTitle": "Privacidad y datos",
+    "title": "Privacidad y datos",
+    "description": "Tus datos son tuyos. Descárgalos cuando quieras, consulta qué guardamos y gestiona las solicitudes de tus clientes.",
+    "download": {
+      "title": "Descargar tus datos",
+      "description": "Las exportaciones se generan al momento y quedan registradas en tu actividad. Trata con cuidado los archivos con datos de clientes.",
+      "button": "Descargar",
+      "ownerOnly": "Solo el propietario puede descargar la exportación completa."
+    },
+    "exports": {
+      "all": {
+        "title": "Todo (JSON)",
+        "description": "Tu cuenta completa: perfil, servicios, equipo, horarios, reglas de reserva, clientes, citas y registro de actividad. Legible por máquinas, para copias de seguridad o para cambiar de herramienta."
+      },
+      "customers": {
+        "title": "Clientes (CSV)",
+        "description": "Todos los clientes con sus datos de contacto e historial de visitas. Se abre en Excel, Numbers o Google Sheets."
+      },
+      "appointments": {
+        "title": "Citas (CSV)",
+        "description": "Todas las citas de los últimos 12 meses y de los próximos 12 meses."
+      },
+      "services": {
+        "title": "Servicios (CSV)",
+        "description": "Tu carta de servicios con duraciones y precios."
+      }
+    },
+    "stored": {
+      "title": "Qué guardamos y durante cuánto tiempo",
+      "description": "Hournook trata estos datos en tu nombre para gestionar tus reservas. Nunca los vendemos ni los usamos para publicidad.",
+      "business": {
+        "what": "Datos del negocio",
+        "detail": "Tu perfil, servicios, precios, horario, perfiles del equipo y reglas de reserva.",
+        "keep": "Hasta que los cambies o los elimines."
+      },
+      "customers": {
+        "what": "Clientes",
+        "detail": "Nombre, email, teléfono, tus notas internas y su historial de citas.",
+        "keep": "Hasta que borres al cliente o elimines el negocio."
+      },
+      "appointments": {
+        "what": "Citas",
+        "detail": "Fecha, hora, servicio, miembro del equipo, estado y mensajes del cliente.",
+        "keep": "Hasta que elimines el negocio. Las citas de los clientes borrados se conservan como registros anónimos."
+      },
+      "emails": {
+        "what": "Emails",
+        "detail": "Un registro de entrega de las confirmaciones y recordatorios que enviamos.",
+        "keep": "El contenido de los emails se elimina a los 180 días; el estado de entrega se conserva."
+      },
+      "visits": {
+        "what": "Visitas a la página de reservas",
+        "detail": "Visitas y pasos de reserva anónimos para tus estadísticas. Sin cookies ni datos personales.",
+        "keep": "Se eliminan a los 400 días."
+      },
+      "activity": {
+        "what": "Registro de actividad",
+        "detail": "Quién cambió qué en tu cuenta, con la hora y la dirección IP.",
+        "keep": "Hasta que elimines el negocio."
+      },
+      "sessions": {
+        "what": "Sesiones iniciadas",
+        "detail": "Los dispositivos en los que tú y tu equipo tenéis la sesión iniciada.",
+        "keep": "Caducan a los 30 días, o al momento cuando cierras sesión."
+      },
+      "stripe": "Los pagos con tarjeta de tu suscripción los gestiona Stripe. Nunca vemos ni guardamos números de tarjeta. Lee la <link>política de privacidad</link> completa."
+    },
+    "requests": {
+      "title": "Solicitudes de clientes",
+      "description": "Cuando un cliente pide una copia de sus datos o que se le olvide.",
+      "access": "Solicitudes de acceso",
+      "accessBody": "Abre la página del cliente para ver todo lo que hay guardado sobre él (datos, notas y cada cita) y compártelo con él.",
+      "erasure": "Solicitudes de supresión",
+      "erasureBody": "En la página del cliente, elige <b>Borrar datos del cliente</b>. Su nombre, email, teléfono, notas y mensajes se eliminan para siempre y los recordatorios pendientes se cancelan. Las citas se conservan como registros anónimos para que tus estadísticas cuadren.",
+      "ownerOnly": "Solo el propietario puede borrar clientes.",
+      "goToCustomers": "Ir a clientes"
+    },
+    "danger": {
+      "title": "Zona de peligro",
+      "deleteTitle": "Eliminar este negocio",
+      "deleteBody": "Elimina para siempre {business}, su página de reservas y todos los datos de clientes y citas. Los miembros del equipo pierden el acceso. No se puede deshacer.",
+      "deleteBodySubscribed": "Elimina para siempre {business}, su página de reservas y todos los datos de clientes y citas. Tu suscripción se cancela de inmediato. Los miembros del equipo pierden el acceso. No se puede deshacer.",
+      "button": "Eliminar negocio…",
+      "confirmTitle": "¿Eliminar {business}?",
+      "confirmBody": "Se eliminarán para siempre tu página de reservas, servicios, perfiles del equipo, clientes, citas e imágenes subidas. Los clientes con citas próximas no recibirán ningún aviso automático.",
+      "confirmSubscription": "Tu suscripción a Hournook se cancela en el acto, así que no se te volverá a cobrar.",
+      "confirmFinal": "No se puede deshacer. Descarga antes una exportación si puedes necesitar los datos.",
+      "confirm": "Eliminar para siempre"
+    }
+  },
+  "activity": {
+    "metaTitle": "Actividad",
+    "title": "Actividad",
+    "description": "Un registro de los cambios importantes en {business}: quién hizo qué y cuándo. Las horas se muestran en {tz}.",
+    "empty": "Aún no hay actividad",
+    "emptyDescription": "Aquí aparecerán los cambios en tu negocio, tus reservas y tu equipo.",
+    "emptyMore": "No hay más actividad",
+    "emptyMoreDescription": "Has llegado al principio de tu historial.",
+    "backToLatest": "Volver a lo más reciente",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "by": "por <actor>{actor}</actor>",
+    "pagination": "Paginación",
+    "newer": "Más recientes",
+    "older": "Más antiguos",
+    "page": "Página {page}",
+    "actors": {
+      "formerMember": "Un antiguo miembro del equipo",
+      "customer": "Cliente",
+      "support": "Soporte de Hournook",
+      "system": "Sistema"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {como propietario} manager {como encargado} other {como miembro del equipo}}",
+      "rows": "{count, plural, one {# fila} other {# filas}}",
+      "statusNow": "ahora: {status}",
+      "attempt": "intento {n}"
+    },
+    "subscriptionStatus": {
+      "trialing": "en prueba",
+      "active": "activa",
+      "pastDue": "pago vencido",
+      "unpaid": "impagada",
+      "canceled": "cancelada",
+      "incomplete": "incompleta",
+      "incompleteExpired": "incompleta y caducada",
+      "paused": "en pausa"
+    },
+    "events": {
+      "business": {
+        "created": "Negocio creado",
+        "profileUpdated": "Perfil del negocio actualizado",
+        "brandingUpdated": "Imagen de marca actualizada",
+        "seoUpdated": "Ajustes de búsqueda actualizados",
+        "slugChanged": "Enlace de reservas cambiado",
+        "published": "Página de reservas publicada",
+        "paused": "Reservas en línea en pausa",
+        "unpublished": "Página de reservas despublicada",
+        "logoUploaded": "Logotipo subido",
+        "coverUploaded": "Imagen de portada subida",
+        "logoRemoved": "Logotipo eliminado",
+        "coverRemoved": "Imagen de portada eliminada",
+        "suspended": "Cuenta suspendida por Hournook",
+        "reactivated": "Cuenta reactivada",
+        "exported": "Exportación de datos descargada"
+      },
+      "service": {
+        "created": "Servicio añadido",
+        "updated": "Servicio editado",
+        "deleted": "Servicio eliminado"
+      },
+      "staff": {
+        "created": "Miembro del equipo añadido",
+        "updated": "Miembro del equipo editado",
+        "deleted": "Miembro del equipo eliminado",
+        "avatarUploaded": "Foto de miembro del equipo actualizada"
+      },
+      "appointment": {
+        "created": "Cita reservada",
+        "cancelled": "Cita cancelada",
+        "rescheduled": "Cita cambiada de hora",
+        "confirmed": "Cita confirmada",
+        "completed": "Cita completada",
+        "noShow": "Marcada como «no se presentó»",
+        "reopened": "Cita reabierta",
+        "notesUpdated": "Notas de la cita editadas",
+        "edited": "Editada"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "Horario cambiado",
+        "staffUsesBusinessHours": "El miembro del equipo sigue ahora el horario del negocio",
+        "closureAdded": "Cierre añadido",
+        "closureRemoved": "Cierre eliminado",
+        "specialHoursSet": "Horario especial establecido",
+        "timeBlocked": "Tiempo bloqueado"
+      },
+      "settings": {
+        "bookingRulesUpdated": "Ajustes de reservas cambiados",
+        "notificationsUpdated": "Ajustes de notificaciones cambiados"
+      },
+      "customer": {
+        "created": "Cliente añadido",
+        "updated": "Cliente editado",
+        "erased": "Datos del cliente borrados"
+      },
+      "team": {
+        "memberInvited": "Miembro del equipo invitado",
+        "invitationRevoked": "Invitación revocada",
+        "memberJoined": "Un miembro se unió al equipo",
+        "roleChanged": "Rol en el equipo cambiado",
+        "memberRemoved": "Miembro del equipo eliminado",
+        "memberLeft": "Un miembro salió del equipo",
+        "ownershipTransferred": "Propiedad transferida"
+      },
+      "billing": {
+        "checkoutStarted": "Pago iniciado",
+        "checkoutCompleted": "Pago de la suscripción completado",
+        "subscriptionStatusChanged": "Estado de la suscripción cambiado",
+        "invoicePaid": "Factura pagada",
+        "paymentFailed": "Pago fallido"
+      },
+      "export": {
+        "appointments": "Citas exportadas",
+        "customers": "Clientes exportados",
+        "services": "Servicios exportados"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "Perfil del negocio guardado",
+    "bookingRulesSaved": "Ajustes de reservas guardados",
+    "emailSettingsSaved": "Ajustes de email guardados",
+    "prefsSaved": "Preferencias guardadas",
+    "invitationRevoked": "Invitación revocada",
+    "roleUpdated": "Rol actualizado",
+    "memberRemoved": "Quitado de tu equipo",
+    "ownershipTransferred": "Propiedad transferida",
+    "nameUpdated": "Nombre actualizado",
+    "languageSaved": "Idioma guardado",
+    "passwordChanged": "Contraseña cambiada. Se ha cerrado la sesión en los demás dispositivos."
+  }
+}

@@ -1,21 +1,22 @@
 import type { Metadata } from 'next'
 import { requireTenantPage } from '@/server/tenancy/context'
+import { getT } from '@/server/i18n'
 import { db } from '@/server/db/client'
 import { getOrCreateRules } from '@/server/booking/loader'
 import { BookingRulesForm } from '@/components/settings/booking-rules-form'
 import { SettingsIntro } from '@/components/settings/section'
 
-export const metadata: Metadata = { title: 'Booking settings' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-settings')
+  return { title: t('booking.metaTitle') }
+}
 
 export default async function BookingSettingsPage() {
   const ctx = await requireTenantPage('settings.manage')
-  const r = await getOrCreateRules(db(), ctx.business.id)
+  const [r, t] = await Promise.all([getOrCreateRules(db(), ctx.business.id), getT('app-settings')])
   return (
     <>
-      <SettingsIntro
-        title="Booking rules"
-        description="Decide when and how customers can book, change and cancel. These apply to your whole booking page."
-      />
+      <SettingsIntro title={t('booking.title')} description={t('booking.description')} />
       <BookingRulesForm
         initial={{
           minNoticeMinutes: r.minNoticeMinutes,

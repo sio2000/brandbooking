@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { ExternalLink, RefreshCw } from 'lucide-react'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { toast } from '@/components/ui/toaster'
+import { useT } from '@/components/i18n/provider'
 import { openBillingPortalAction, startCheckoutAction } from '@/app/app/_actions/billing'
 
 /**
@@ -16,6 +17,7 @@ export function StripeButton({
   children,
   ...props
 }: Omit<ButtonProps, 'onClick'> & { kind: 'checkout' | 'portal' }) {
+  const t = useT('app-billing')
   const [pending, setPending] = React.useState(false)
   return (
     <Button
@@ -32,7 +34,7 @@ export function StripeButton({
             setPending(false)
           }
         } catch {
-          toast.error('We couldn’t reach Stripe. Check your connection and try again.')
+          toast.error(t('stripeUnreachable'))
           setPending(false)
         }
       }}
@@ -43,7 +45,7 @@ export function StripeButton({
   )
 }
 
-export function RefreshButton({ label = 'Refresh' }: { label?: string }) {
+export function RefreshButton({ label }: { label: string }) {
   const router = useRouter()
   const [pending, startTransition] = React.useTransition()
   return (

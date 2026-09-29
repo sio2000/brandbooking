@@ -1,0 +1,143 @@
+{
+  "title": "Página de reservas",
+  "description": "A sua página pública onde os clientes reservam. Publique-a, partilhe-a em todo o lado e dê-lhe a sua imagem.",
+  "publish": {
+    "live": "A sua página de reservas está online",
+    "paused": "As reservas online estão em pausa",
+    "draft": "A sua página de reservas é um rascunho",
+    "badgeLive": "Online",
+    "badgePaused": "Em pausa",
+    "badgeDraft": "Rascunho",
+    "noSubscription": "As reservas estão desativadas porque não existe uma subscrição ativa.",
+    "preview": "Pré-visualizar",
+    "resume": "Retomar reservas",
+    "publish": "Publicar",
+    "verifyEmail": "Confirme primeiro o seu endereço de email. Procure a ligação na sua caixa de entrada.",
+    "needsService": "Adicione pelo menos um serviço ativo com um membro da equipa atribuído e depois publique."
+  },
+  "pause": {
+    "summary": "Pausar as reservas online (modo férias)",
+    "message": "Mensagem para os clientes",
+    "messageHint": "Aparece na sua página de reservas durante a pausa.",
+    "messagePlaceholder": "Estamos de férias até 3 de setembro. Até breve!",
+    "until": "Reabrir automaticamente a",
+    "pause": "Pausar reservas",
+    "unpublish": "Despublicar"
+  },
+  "celebrate": {
+    "title": "A sua página de reservas está online.",
+    "body": "Partilhe a ligação no Instagram, no Perfil da Empresa no Google ou no WhatsApp, ou imprima o código QR para o balcão.",
+    "dismiss": "Fechar"
+  },
+  "copy": {
+    "copy": "Copiar",
+    "link": "Copiar ligação",
+    "bookingLink": "Copiar ligação de reserva",
+    "copied": "Copiado",
+    "linkCopied": "Ligação copiada para a área de transferência"
+  },
+  "share": {
+    "title": "Partilhar",
+    "description": "Coloque a sua ligação onde quer que os clientes o encontrem.",
+    "linkLabel": "Ligação de reserva",
+    "email": "Email",
+    "qrAlt": "Código QR com ligação para {url}",
+    "qr": "Código QR",
+    "qrDescription": "Para o balcão, folhetos ou cartões de visita. As reservas feitas por aqui ficam registadas como “Código QR”.",
+    "print": "Imprimir",
+    "campaigns": "Ligações de campanha (saiba de onde vêm as reservas)",
+    "campaignsBody": "Adicione parâmetros UTM e as reservas mostrarão a campanha nas Estatísticas:"
+  },
+  "embed": {
+    "title": "Adicionar reservas ao seu website",
+    "description": "Cole uma linha no seu site. O processo de reserva abre numa janela segura e independente, para não entrar em conflito com o design do seu site.",
+    "button": "Botão de reserva",
+    "inline": "Integrado",
+    "buttonDescription": "Um botão que abre a reserva numa janela pop-up.",
+    "inlineDescription": "Todo o processo de reserva integrado onde colocar o código.",
+    "code": "Código de incorporação",
+    "copy": "Copiar código",
+    "copied": "Código copiado"
+  },
+  "branding": {
+    "title": "Imagem da marca",
+    "description": "O seu logótipo, capa e cor. A pré-visualização atualiza-se enquanto edita.",
+    "preview": "Pré-visualização em direto",
+    "sampleService": "Serviço de exemplo",
+    "sampleBook": "Reservar",
+    "sampleConfirm": "Confirmar reserva",
+    "logo": "Logótipo",
+    "logoHint": "Quadrado, pelo menos 64 px.",
+    "cover": "Imagem de capa",
+    "coverHint": "Larga, pelo menos 800×200 px.",
+    "colour": "Cor da marca",
+    "customColour": "Cor da marca personalizada",
+    "custom": "Personalizada",
+    "policy": "Política de reservas",
+    "policyHint": "Aparece na sua página e nos emails de confirmação, p. ex. atrasos, sinais, cancelamentos.",
+    "showStaff": "Mostrar os membros da equipa na sua página",
+    "showStaffHint": "Permita que os clientes escolham quem os atende.",
+    "social": "Redes sociais",
+    "save": "Guardar imagem da marca"
+  },
+  "upload": {
+    "uploadLogo": "Carregar logótipo",
+    "uploadCover": "Carregar imagem de capa",
+    "removeLogo": "Remover logótipo",
+    "removeCover": "Remover imagem de capa",
+    "tooLarge": "Esse ficheiro tem mais de 5 MB.",
+    "uploaded": "Carregado",
+    "replace": "Substituir",
+    "upload": "Carregar",
+    "formats": "JPG, PNG ou WebP até 5 MB."
+  },
+  "seo": {
+    "title": "Pré-visualizações em pesquisas e redes sociais",
+    "description": "Como a sua página aparece no Google e quando é partilhada.",
+    "preview": "Pré-visualização do resultado de pesquisa",
+    "pageTitle": "Título da página",
+    "pageDescription": "Descrição",
+    "indexing": "Permitir que os motores de pesquisa mostrem esta página",
+    "indexingHint": "Desative se só partilhar a ligação em privado.",
+    "save": "Guardar"
+  },
+  "link": {
+    "title": "Ligação de reserva",
+    "description": "Alterá-la invalida as ligações que já partilhou (incluindo códigos QR impressos).",
+    "available": "Disponível",
+    "taken": "Já está em uso",
+    "invalid": "Inválida",
+    "change": "Alterar ligação"
+  },
+  "customer": {
+    "embedLabel": "Reservar agora",
+    "seoTitle": "{name} · Reservas online",
+    "seoDescription": "Faça a sua marcação online com {name}.",
+    "shareText": "Faça a sua marcação com {name}: {url}",
+    "shareSubject": "Reserve com {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Imprimir código QR",
+    "bookOnline": "Reserve online",
+    "scan": "Leia o código para fazer a sua próxima marcação",
+    "print": "Imprimir"
+  },
+  "toasts": {
+    "saved": "Guardado"
+  },
+  "errors": {
+    "slugTaken": "Essa ligação de reserva já está em uso.",
+    "cannotPublish": "Antes de publicar, adicione pelo menos um serviço ativo com um membro da equipa atribuído."
+  },
+  "actions": {
+    "published": "A sua página de reservas está online 🎉",
+    "paused": "Reservas online em pausa",
+    "unpublished": "Página de reservas despublicada",
+    "brandingSaved": "Imagem da marca guardada",
+    "seoSaved": "Definições de pesquisa guardadas",
+    "linkUpdated": "Ligação de reserva atualizada",
+    "imageUpdated": "Imagem atualizada",
+    "imageRemoved": "Imagem removida",
+    "chooseImage": "Escolha uma imagem."
+  }
+}

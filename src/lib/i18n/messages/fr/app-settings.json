@@ -1,0 +1,632 @@
+{
+  "layout": {
+    "title": "Paramètres",
+    "description": "Gérez {name}, votre équipe et votre propre compte."
+  },
+  "loading": "Chargement des paramètres",
+  "nav": {
+    "label": "Paramètres",
+    "business": "Établissement",
+    "booking": "Réservations",
+    "notifications": "Notifications",
+    "team": "Équipe",
+    "account": "Compte",
+    "privacy": "Confidentialité et données",
+    "activity": "Activité"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "listSeparator": ", "
+  },
+  "form": {
+    "saved": "Enregistré",
+    "offline": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez."
+  },
+  "saveBar": {
+    "unsaved": "Modifications non enregistrées",
+    "saved": "Toutes les modifications sont enregistrées",
+    "discard": "Annuler les modifications",
+    "save": "Enregistrer"
+  },
+  "duration": {
+    "zeroMinutes": "0 minute",
+    "minutes": "{count, plural, one {# minute} other {# minutes}}",
+    "hours": "{count, plural, one {# heure} other {# heures}}",
+    "hoursMinutes": "{h} h {m} min",
+    "days": "{count, plural, one {# jour} other {# jours}}",
+    "weeks": "{count, plural, one {# semaine} other {# semaines}}",
+    "months": "{count, plural, one {# mois} other {# mois}}",
+    "years": "{count, plural, one {# an} other {# ans}}",
+    "current": "{label} (actuel)",
+    "noMinimum": "Aucun minimum",
+    "everyHour": "Toutes les heures",
+    "everyMinutes": "{count, plural, one {Toutes les # minute} other {Toutes les # minutes}}",
+    "upToStart": "Jusqu’à l’heure de début",
+    "before": "{duration} avant",
+    "ahead": "{duration} à l’avance"
+  },
+  "business": {
+    "metaTitle": "Paramètres de l’établissement",
+    "title": "Profil de l’établissement",
+    "description": "L’essentiel de ce que vos clients voient sur votre page de réservation et dans leurs e-mails.",
+    "basics": {
+      "title": "Informations de base",
+      "description": "Comment votre établissement apparaît sur votre page de réservation et dans les e-mails envoyés aux clients.",
+      "name": "Nom de l’établissement",
+      "category": "Catégorie",
+      "categoryHint": "Nous aide à adapter les conseils et les réglages par défaut à votre activité.",
+      "categoryPlaceholder": "Choisissez une catégorie…",
+      "about": "À propos de votre établissement",
+      "aboutHint": "Affiché en haut de votre page de réservation. {count}/{max}",
+      "aboutPlaceholder": "Une ou deux phrases chaleureuses sur ce que vous faites et ce que vos clients peuvent attendre."
+    },
+    "categories": {
+      "hairBeauty": "Coiffure et beauté",
+      "barbershop": "Barbier",
+      "nails": "Ongles",
+      "spaMassage": "Spa et massage",
+      "healthTherapy": "Santé et thérapie",
+      "fitnessCoaching": "Sport et coaching",
+      "medicalDental": "Médical et dentaire",
+      "consulting": "Conseil",
+      "educationTutoring": "Enseignement et soutien scolaire",
+      "photography": "Photographie",
+      "petServices": "Services pour animaux",
+      "automotive": "Automobile",
+      "homeServices": "Services à domicile",
+      "other": "Autre"
+    },
+    "time": {
+      "title": "Heure et devise",
+      "description": "Votre fuseau horaire détermine la lecture des horaires d’ouverture et des heures de rendez-vous. La devise sert aux prix des prestations.",
+      "timezone": "Fuseau horaire",
+      "timezoneHint": "Astuce : liste sélectionnée, tapez le nom d’une ville pour y accéder directement.",
+      "deviceTz": "Cet appareil est réglé sur <b>{tz}</b>",
+      "useDeviceTz": "Utiliser",
+      "tzChangedTitle": "Changer de fuseau horaire change la lecture de vos horaires",
+      "tzChangedBody": "Des horaires comme 9:00–17:00 signifieront 9:00–17:00 en <b>{tz}</b>. Les rendez-vous déjà réservés gardent leur moment exact et peuvent donc s’afficher à une autre heure.",
+      "currency": "Devise",
+      "currencyHint": "Changer de devise ne convertit pas les prix existants.",
+      "regions": {
+        "Africa": "Afrique",
+        "America": "Amérique",
+        "Antarctica": "Antarctique",
+        "Arctic": "Arctique",
+        "Asia": "Asie",
+        "Atlantic": "Atlantique",
+        "Australia": "Australie",
+        "Europe": "Europe",
+        "Indian": "Océan Indien",
+        "Pacific": "Pacifique",
+        "Other": "Autres"
+      }
+    },
+    "language": {
+      "title": "Langue de la page de réservation",
+      "description": "La langue que vos clients voient en premier sur votre page de réservation, dans le module de réservation et dans la confirmation de leur réservation.",
+      "label": "Langue par défaut",
+      "hint": "Vos clients peuvent toujours passer eux-mêmes à une autre langue."
+    },
+    "contact": {
+      "title": "Coordonnées",
+      "description": "Affichées sur votre page de réservation et dans les e-mails de confirmation. Les réponses des clients aux e-mails Hournook arrivent à cette adresse.",
+      "email": "E-mail",
+      "emailPlaceholder": "bonjour@votreetablissement.fr",
+      "phone": "Téléphone",
+      "website": "Site web",
+      "websitePlaceholder": "votreetablissement.fr"
+    },
+    "address": {
+      "title": "Adresse",
+      "description": "Là où vos clients viennent pour leur rendez-vous. Laissez vide si vous travaillez à distance ou vous déplacez chez vos clients.",
+      "line1": "Adresse",
+      "line2": "Appartement, bâtiment, étage",
+      "postalCode": "Code postal",
+      "city": "Ville",
+      "country": "Pays",
+      "countryPlaceholder": "Choisissez un pays…"
+    }
+  },
+  "account": {
+    "metaTitle": "Votre compte",
+    "title": "Votre compte",
+    "intro": "Paramètres personnels de {email}. Vous êtes {role, select, owner {le propriétaire de} manager {manager chez} other {membre de l’équipe de}} {business}.",
+    "introMany": "Paramètres personnels de {email}. Vous êtes {role, select, owner {le propriétaire de} manager {manager chez} other {membre de l’équipe de}} {business} et faites partie de {count} établissements au total.",
+    "profile": {
+      "title": "Votre profil",
+      "description": "Comment votre équipe vous voit. Les clients ne voient jamais les informations de votre compte.",
+      "name": "Votre nom",
+      "nameRequired": "Saisissez votre nom.",
+      "email": "E-mail",
+      "verified": "Vérifié",
+      "notVerified": "Non vérifié",
+      "emailHint": "Sert à vous connecter. Contactez l’assistance pour le modifier.",
+      "save": "Enregistrer"
+    },
+    "language": {
+      "title": "Langue",
+      "description": "La langue de votre tableau de bord et de vos paramètres.",
+      "label": "Langue",
+      "emailNote": "Les e-mails que nous vous envoyons (nouvelles réservations, équipe et facturation) seront aussi dans cette langue.",
+      "switching": "Changement de langue…",
+      "invalid": "Choisissez l’une des langues proposées."
+    },
+    "password": {
+      "title": "Mot de passe",
+      "description": "Changer votre mot de passe vous déconnecte de tous vos autres appareils.",
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "newHint": "Au moins {min} caractères. Une courte phrase fonctionne très bien.",
+      "repeat": "Confirmez le nouveau mot de passe",
+      "mismatch": "Les mots de passe ne correspondent pas.",
+      "submit": "Changer le mot de passe",
+      "show": "Afficher le mot de passe",
+      "hide": "Masquer le mot de passe"
+    },
+    "leave": {
+      "title": "Quitter {business}",
+      "description": "Vous perdrez l’accès à cet établissement. Vos rendez-vous et votre profil restent dans l’établissement.",
+      "button": "Quitter l’établissement",
+      "confirmTitle": "Quitter {business} ?",
+      "confirmBody": "Vous ne pourrez plus vous connecter à cet établissement. Un propriétaire ou un manager pourra vous inviter à nouveau plus tard."
+    },
+    "delete": {
+      "title": "Supprimer votre compte",
+      "description": "Supprime définitivement votre accès et vos données personnelles. Cette action est irréversible.",
+      "ownerTitle": "Vous êtes encore propriétaire d’un établissement",
+      "ownerBody": "Les propriétaires doivent supprimer leurs établissements, ou désigner un autre propriétaire dans Paramètres → Équipe, avant de supprimer leur compte, pour que clients et réservations ne restent jamais sans propriétaire. Vous êtes propriétaire de <b>{businesses}</b>. Supprimez-le d’abord dans <link>Confidentialité et données</link>.",
+      "body": "Vous serez retiré de tous les établissements dont vous faites partie. Les rendez-vous que vous avez gérés restent dans ces établissements.",
+      "button": "Supprimer le compte…",
+      "dialogTitle": "Supprimer votre compte ?",
+      "dialogDescription": "Saisissez votre mot de passe pour confirmer. Cette action est irréversible.",
+      "password": "Mot de passe",
+      "passwordRequired": "Saisissez votre mot de passe.",
+      "submit": "Supprimer mon compte"
+    }
+  },
+  "booking": {
+    "metaTitle": "Paramètres de réservation",
+    "title": "Règles de réservation",
+    "description": "Décidez quand et comment vos clients peuvent réserver, modifier et annuler. Ces règles s’appliquent à toute votre page de réservation.",
+    "summary": {
+      "text": "Vos clients peuvent réserver {notice}, et jusqu’à {days} à l’avance. Les heures de début sont proposées {interval}.",
+      "lastMinute": "jusqu’à la dernière minute",
+      "notice": "au moins {duration} à l’avance",
+      "onTheHour": "à l’heure pile",
+      "everyMinutes": "{count, plural, one {toutes les # minute} other {toutes les # minutes}}"
+    },
+    "window": {
+      "title": "Quand vos clients peuvent réserver",
+      "description": "Protégez votre temps : évitez les surprises de dernière minute et choisissez jusqu’où votre agenda est ouvert.",
+      "minNotice": "Délai minimum",
+      "minNoticeHint": "Combien de temps avant un rendez-vous on peut encore le réserver en ligne.",
+      "maxAdvance": "Réservable jusqu’à",
+      "maxAdvanceHint": "Jusqu’où dans le futur vos clients voient des créneaux libres.",
+      "startTimes": "Heures de début",
+      "startTimesHint": "Avec un intervalle de 15 minutes, vos clients voient 9:00, 9:15, 9:30… Des intervalles plus longs gardent votre journée mieux organisée.",
+      "limit": "Limiter les réservations en ligne par jour",
+      "limitDescription": "Une fois la limite atteinte, la journée apparaît complète. Vous pouvez toujours ajouter des rendez-vous vous-même.",
+      "maxPerDay": "Maximum par jour"
+    },
+    "confirm": {
+      "title": "Confirmation",
+      "description": "Choisissez si les nouvelles réservations sont définitives immédiatement.",
+      "review": "Valider chaque réservation avant confirmation",
+      "reviewOn": "Les nouvelles réservations en ligne arrivent sous forme de demandes. Le créneau est bloqué et le client reçoit un e-mail de confirmation dès que vous acceptez.",
+      "reviewOff": "Les réservations sont confirmées immédiatement et le client reçoit aussitôt son e-mail de confirmation."
+    },
+    "changes": {
+      "title": "Annulations et déplacements",
+      "description": "Chaque e-mail de confirmation contient un lien permettant au client de gérer sa réservation. Décidez de ce qu’il peut faire lui-même.",
+      "cancel": "Les clients peuvent annuler en ligne",
+      "cancelOn": "Les créneaux libérés redeviennent réservables automatiquement.",
+      "cancelOff": "Les clients doivent vous contacter pour annuler.",
+      "cancelDeadline": "Délai d’annulation",
+      "cancelDeadlineHint": "Passé ce délai, le bouton d’annulation disparaît et le client est invité à vous contacter.",
+      "reschedule": "Les clients peuvent déplacer en ligne",
+      "rescheduleOn": "Ils choisissent un nouveau créneau libre ; l’ancien est libéré.",
+      "rescheduleOff": "Les clients doivent vous contacter pour déplacer une réservation.",
+      "rescheduleDeadline": "Délai de déplacement",
+      "rescheduleDeadlineHint": "Jusqu’à combien de temps avant le rendez-vous les clients peuvent encore le déplacer."
+    },
+    "reminders": {
+      "title": "E-mails de rappel",
+      "description": "Les rappels automatiques réduisent les absences. Choisissez-en jusqu’à {max}. Les clients sans adresse e-mail ne les reçoivent pas.",
+      "legend": "Envoyer des rappels",
+      "none": "Aucun rappel ne sera envoyé.",
+      "selected": "{count} sur {max} sélectionnés : {list}. Les modifications s’appliquent aux réservations futures."
+    },
+    "form": {
+      "title": "Formulaire de réservation",
+      "description": "Ce que l’on demande à vos clients lorsqu’ils réservent.",
+      "staff": "Choix du membre de l’équipe",
+      "staffModes": {
+        "optional": {
+          "title": "Le client peut choisir",
+          "body": "Les clients peuvent choisir un membre de l’équipe ou « Peu importe »."
+        },
+        "required": {
+          "title": "Le client doit choisir",
+          "body": "Les clients choisissent toujours un membre précis de l’équipe."
+        },
+        "hidden": {
+          "title": "Ne pas demander",
+          "body": "Nous attribuons la personne disponible. Les clients ne voient aucun choix."
+        }
+      },
+      "phone": "Numéro de téléphone",
+      "phoneModes": {
+        "required": {
+          "title": "Obligatoire",
+          "body": "Idéal si vous appelez ou écrivez à vos clients."
+        },
+        "optional": {
+          "title": "Facultatif",
+          "body": "Les clients peuvent le laisser vide."
+        },
+        "hidden": {
+          "title": "Ne pas demander",
+          "body": "Le champ n’est pas affiché du tout."
+        }
+      },
+      "alwaysAsked": "Le nom et l’e-mail sont toujours demandés, afin que nous puissions envoyer les confirmations."
+    }
+  },
+  "notifications": {
+    "metaTitle": "Notifications",
+    "mine": {
+      "title": "Vos notifications",
+      "description": "Choisissez ce dont nous vous informons. Cela ne concerne que vous ; chaque membre de l’équipe règle les siennes.",
+      "remindersByManager": "Les e-mails de rappel aux clients sont configurés par un propriétaire ou un manager dans les paramètres de réservation.",
+      "verifyEmail": "Vérifiez votre adresse e-mail pour recevoir les e-mails de notification. D’ici là, elles n’apparaissent que dans votre boîte de réception."
+    },
+    "customers": {
+      "title": "E-mails aux clients",
+      "description": "L’apparence de vos e-mails automatiques aux clients.",
+      "remindersLink": "Vous cherchez les rappels de rendez-vous ? Ils se règlent dans <link>Règles de réservation</link>."
+    },
+    "email": {
+      "title": "E-mails à vos clients",
+      "description": "Confirmations, rappels et avis de modification sont envoyés automatiquement pour chaque réservation.",
+      "senderName": "Nom de l’expéditeur",
+      "senderNameHint": "Ce que vos clients voient dans leur boîte de réception. Laissez vide pour utiliser « {business} ».",
+      "footer": "Pied de page des e-mails",
+      "footerHint": "Une courte note en bas de chaque e-mail, par ex. infos de stationnement ou politique d’annulation. {count}/{max}",
+      "footerPlaceholder": "Parking gratuit derrière le bâtiment. Merci d’arriver 5 minutes en avance.",
+      "preview": "Aperçu",
+      "inboxPreview": "Aperçu de la boîte de réception",
+      "repliesTo": "Les réponses arrivent à {email}",
+      "repliesToNobody": "Les réponses n’arrivent encore à personne",
+      "sampleSubject": "Votre rendez-vous est confirmé",
+      "defaultFooter": "Vous recevez cet e-mail car vous avez réservé un rendez-vous.",
+      "sentBy": "Envoyé par Hournook pour le compte de {business}.",
+      "whyTitle": "Pourquoi les e-mails partent de l’adresse de Hournook",
+      "whyBody": "Pour éviter que vos e-mails finissent dans les spams, ils sont envoyés depuis l’adresse vérifiée de Hournook, avec le nom de votre établissement comme expéditeur. Nous ne prétendons jamais envoyer depuis votre propre domaine. Quand vos clients répondent, leur message arrive directement à <b>{email}</b>.",
+      "whyBodyNoEmail": "Pour éviter que vos e-mails finissent dans les spams, ils sont envoyés depuis l’adresse vérifiée de Hournook, avec le nom de votre établissement comme expéditeur. Nous ne prétendons jamais envoyer depuis votre propre domaine. Quand vos clients répondent, leur message arrive directement à l’e-mail de votre établissement. <link>Ajoutez un e-mail de contact</link> pour recevoir les réponses.",
+      "save": "Enregistrer les paramètres d’e-mail"
+    },
+    "prefs": {
+      "title": "Me prévenir pour",
+      "descriptionOwn": "Uniquement pour vos propres rendez-vous. Les modifications sont enregistrées automatiquement.",
+      "descriptionAll": "Envoyées par e-mail et affichées dans votre boîte de réception (l’icône en forme de cloche). Les modifications sont enregistrées automatiquement.",
+      "created": "Nouvelles réservations",
+      "createdOwn": "Quand un client réserve un rendez-vous avec vous.",
+      "createdAll": "Quand un client réserve en ligne ou qu’un collègue ajoute un rendez-vous.",
+      "rescheduled": "Réservations déplacées",
+      "rescheduledOwn": "Quand l’un de vos rendez-vous est déplacé.",
+      "rescheduledAll": "Quand un rendez-vous est déplacé.",
+      "cancelled": "Annulations",
+      "cancelledOwn": "Quand l’un de vos rendez-vous est annulé.",
+      "cancelledAll": "Quand un client ou un collègue annule un rendez-vous.",
+      "team": "Changements dans l’équipe",
+      "teamDescription": "Quand quelqu’un accepte une invitation et rejoint votre équipe.",
+      "billing": "Facturation",
+      "billingDescription": "Problèmes de paiement et changements d’abonnement. Nous vous conseillons de laisser cette option activée.",
+      "on": "Notifications activées",
+      "off": "Notifications désactivées",
+      "saveFailed": "Impossible d’enregistrer cette modification. Vérifiez votre connexion et réessayez."
+    }
+  },
+  "team": {
+    "metaTitle": "Équipe et accès",
+    "title": "Équipe et accès",
+    "description": "Invitez vos collègues à se connecter avec leur propre compte. Pour ajouter une personne qui reçoit seulement des réservations (sans compte), ajoutez-la dans <link>Équipe</link> dans la barre latérale.",
+    "roles": {
+      "owner": "Propriétaire",
+      "manager": "Manager",
+      "staff": "Membre de l’équipe"
+    },
+    "roleDescriptions": {
+      "owner": "Tout, y compris la facturation, l’export de toutes les données et la suppression de l’établissement.",
+      "manager": "Tout sauf la facturation, la suppression de l’établissement, l’export de toutes les données et l’effacement des clients.",
+      "staff": "Uniquement ses propres rendez-vous, les clients qu’il a reçus et ses propres disponibilités."
+    },
+    "explainer": {
+      "title": "Ce que chaque rôle peut faire",
+      "description": "Choisissez le rôle le plus restreint dont la personne a besoin. Vous pourrez le modifier plus tard."
+    },
+    "invite": {
+      "button": "Inviter quelqu’un",
+      "title": "Inviter dans votre équipe",
+      "description": "La personne recevra un e-mail avec un lien pour rejoindre l’équipe. Sans surcoût : votre offre inclut toute l’équipe.",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "nom@exemple.fr",
+      "role": "Rôle",
+      "link": "Associer à un profil existant",
+      "linkHint": "Si cette personne a déjà un profil dans votre équipe (avec réservations et horaires), associez-le pour qu’elle voie son propre planning. Sinon, un nouveau profil sera créé à son arrivée.",
+      "newProfile": "Créer un nouveau profil",
+      "submit": "Envoyer l’invitation",
+      "sent": "Invitation envoyée à {email}",
+      "sentDescription": "Le lien est valable 7 jours.",
+      "created": "Invitation créée pour {email}",
+      "createdDescription": "Impossible d’envoyer l’e-mail pour le moment. Révoquez l’invitation et réinvitez plus tard."
+    },
+    "members": {
+      "title": "Membres · {count}",
+      "description": "Les personnes qui peuvent se connecter à cet établissement.",
+      "you": "Vous",
+      "profile": "Profil : {name}",
+      "joined": "Arrivé le {date}",
+      "actions": "Actions pour {name}",
+      "changeRole": "Changer de rôle",
+      "current": "Actuel",
+      "makeOwner": "Nommer propriétaire…",
+      "remove": "Retirer de l’équipe"
+    },
+    "invites": {
+      "title": "Invitations en attente",
+      "description": "Les invitations expirent au bout de 7 jours. Invitez de nouveau la même adresse pour envoyer un nouveau lien.",
+      "emptyTitle": "Aucune invitation en attente",
+      "emptyDescription": "Invitez un collègue pour qu’il voie son planning et gère ses propres rendez-vous.",
+      "expires": "Expire {when} · envoyée {sent}",
+      "expired": "Expirée {when} · envoyée {sent}",
+      "revoke": "Révoquer",
+      "revokeLabel": "Révoquer l’invitation de {email}"
+    },
+    "transfer": {
+      "title": "Nommer {name} propriétaire ?",
+      "titleGeneric": "Transférer la propriété ?",
+      "description": "Cette personne aura le contrôle total, y compris la facturation et la suppression de l’établissement. Vous resterez dans l’équipe en tant que manager. Seul le nouveau propriétaire pourra annuler ce changement.",
+      "confirm": "Transférer la propriété"
+    },
+    "remove": {
+      "title": "Retirer {name} ?",
+      "titleGeneric": "Retirer ce membre ?",
+      "description": "La personne perdra immédiatement l’accès à cet établissement. Son profil, ses rendez-vous passés et ses réservations à venir restent dans votre agenda, et vous pourrez les réattribuer ou les annuler plus tard."
+    },
+    "toasts": {
+      "roleChanged": "{name} est maintenant {role, select, manager {un manager} owner {le propriétaire} other {un membre de l’équipe}}",
+      "revoked": "Invitation de {email} révoquée",
+      "nowOwner": "{name} est maintenant le propriétaire",
+      "removed": "{name} a été retiré de votre équipe"
+    },
+    "errors": {
+      "staffHasAccount": "Ce membre de l’équipe a déjà un compte.",
+      "alreadyOnTeam": "Cette personne fait déjà partie de votre équipe.",
+      "profileLinked": "Ce profil d’équipe est déjà associé à un autre compte. Demandez une nouvelle invitation.",
+      "alreadyMember": "Vous êtes déjà membre de cet établissement."
+    }
+  },
+  "privacy": {
+    "metaTitle": "Confidentialité et données",
+    "title": "Confidentialité et données",
+    "description": "Vos données vous appartiennent. Téléchargez-les à tout moment, voyez ce que nous conservons et traitez les demandes de vos clients.",
+    "download": {
+      "title": "Télécharger vos données",
+      "description": "Les exports sont générés à la volée et consignés dans votre activité. Manipulez avec soin les fichiers contenant des données clients.",
+      "button": "Télécharger",
+      "ownerOnly": "Seul le propriétaire peut télécharger l’export complet."
+    },
+    "exports": {
+      "all": {
+        "title": "Tout (JSON)",
+        "description": "Votre compte complet : profil, prestations, équipe, horaires, règles de réservation, clients, rendez-vous et journal d’activité. Lisible par machine, pour les sauvegardes ou le passage à un autre outil."
+      },
+      "customers": {
+        "title": "Clients (CSV)",
+        "description": "Tous les clients avec leurs coordonnées et l’historique de leurs visites. S’ouvre dans Excel, Numbers ou Google Sheets."
+      },
+      "appointments": {
+        "title": "Rendez-vous (CSV)",
+        "description": "Tous les rendez-vous des 12 derniers mois et des 12 prochains mois."
+      },
+      "services": {
+        "title": "Prestations (CSV)",
+        "description": "Votre carte de prestations avec durées et prix."
+      }
+    },
+    "stored": {
+      "title": "Ce que nous conservons et combien de temps",
+      "description": "Hournook traite ces données pour votre compte afin de gérer vos réservations. Nous ne les vendons jamais et ne les utilisons jamais à des fins publicitaires.",
+      "business": {
+        "what": "Informations sur l’établissement",
+        "detail": "Votre profil, vos prestations, vos prix, vos horaires, les profils de l’équipe et les règles de réservation.",
+        "keep": "Jusqu’à ce que vous les modifiiez ou les supprimiez."
+      },
+      "customers": {
+        "what": "Clients",
+        "detail": "Nom, e-mail, téléphone, vos notes internes et l’historique de leurs rendez-vous.",
+        "keep": "Jusqu’à ce que vous effaciez le client ou supprimiez l’établissement."
+      },
+      "appointments": {
+        "what": "Rendez-vous",
+        "detail": "Date, heure, prestation, membre de l’équipe, statut et messages du client.",
+        "keep": "Jusqu’à la suppression de l’établissement. Les rendez-vous des clients effacés sont conservés sous forme anonyme."
+      },
+      "emails": {
+        "what": "E-mails",
+        "detail": "Un journal de distribution des confirmations et rappels envoyés.",
+        "keep": "Le contenu des e-mails est supprimé au bout de 180 jours ; le statut de distribution est conservé."
+      },
+      "visits": {
+        "what": "Visites de la page de réservation",
+        "detail": "Pages vues et étapes de réservation anonymes pour vos statistiques. Sans cookies ni données personnelles.",
+        "keep": "Supprimées au bout de 400 jours."
+      },
+      "activity": {
+        "what": "Journal d’activité",
+        "detail": "Qui a modifié quoi dans votre compte, avec l’heure et l’adresse IP.",
+        "keep": "Jusqu’à la suppression de l’établissement."
+      },
+      "sessions": {
+        "what": "Sessions de connexion",
+        "detail": "Les appareils sur lesquels vous et votre équipe êtes connectés.",
+        "keep": "Expirent au bout de 30 jours, ou dès que vous vous déconnectez."
+      },
+      "stripe": "Les paiements par carte de votre abonnement sont gérés par Stripe. Nous ne voyons ni ne conservons jamais de numéros de carte. Lisez la <link>politique de confidentialité</link> complète."
+    },
+    "requests": {
+      "title": "Demandes des clients",
+      "description": "Quand un client demande une copie de ses données ou leur effacement.",
+      "access": "Demandes d’accès",
+      "accessBody": "Ouvrez la fiche du client pour voir tout ce qui est enregistré à son sujet (coordonnées, notes et chaque rendez-vous) et le lui transmettre.",
+      "erasure": "Demandes d’effacement",
+      "erasureBody": "Sur la fiche du client, choisissez <b>Effacer les données du client</b>. Son nom, son e-mail, son téléphone, ses notes et ses messages sont supprimés définitivement, et les rappels en attente sont annulés. Les rendez-vous sont conservés sous forme anonyme pour que vos statistiques restent justes.",
+      "ownerOnly": "Seul le propriétaire peut effacer des clients.",
+      "goToCustomers": "Aller aux clients"
+    },
+    "danger": {
+      "title": "Zone de danger",
+      "deleteTitle": "Supprimer cet établissement",
+      "deleteBody": "Supprime définitivement {business}, sa page de réservation et toutes les données clients et rendez-vous. Les membres de l’équipe perdent l’accès. Cette action est irréversible.",
+      "deleteBodySubscribed": "Supprime définitivement {business}, sa page de réservation et toutes les données clients et rendez-vous. Votre abonnement est résilié immédiatement. Les membres de l’équipe perdent l’accès. Cette action est irréversible.",
+      "button": "Supprimer l’établissement…",
+      "confirmTitle": "Supprimer {business} ?",
+      "confirmBody": "Cela supprime définitivement votre page de réservation, vos prestations, les profils de l’équipe, vos clients, vos rendez-vous et les images importées. Les clients ayant des rendez-vous à venir ne seront pas prévenus automatiquement.",
+      "confirmSubscription": "Votre abonnement Hournook est résilié immédiatement : vous ne serez plus prélevé.",
+      "confirmFinal": "Cette action est irréversible. Téléchargez d’abord un export si vous risquez d’avoir besoin des données.",
+      "confirm": "Supprimer définitivement"
+    }
+  },
+  "activity": {
+    "metaTitle": "Activité",
+    "title": "Activité",
+    "description": "L’historique des changements importants dans {business} : qui a fait quoi, et quand. Les heures sont affichées en {tz}.",
+    "empty": "Aucune activité pour l’instant",
+    "emptyDescription": "Les changements concernant votre établissement, vos réservations et votre équipe apparaîtront ici.",
+    "emptyMore": "Plus d’activité",
+    "emptyMoreDescription": "Vous êtes arrivé au début de votre historique.",
+    "backToLatest": "Revenir aux plus récents",
+    "today": "Aujourd’hui",
+    "yesterday": "Hier",
+    "by": "par <actor>{actor}</actor>",
+    "pagination": "Pagination",
+    "newer": "Plus récents",
+    "older": "Plus anciens",
+    "page": "Page {page}",
+    "actors": {
+      "formerMember": "Un ancien membre de l’équipe",
+      "customer": "Client",
+      "support": "Assistance Hournook",
+      "system": "Système"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {comme propriétaire} manager {comme manager} other {comme membre de l’équipe}}",
+      "rows": "{count, plural, one {# ligne} other {# lignes}}",
+      "statusNow": "désormais : {status}",
+      "attempt": "tentative {n}"
+    },
+    "subscriptionStatus": {
+      "trialing": "en essai",
+      "active": "actif",
+      "pastDue": "impayé en retard",
+      "unpaid": "impayé",
+      "canceled": "résilié",
+      "incomplete": "incomplet",
+      "incompleteExpired": "incomplet et expiré",
+      "paused": "en pause"
+    },
+    "events": {
+      "business": {
+        "created": "Établissement créé",
+        "profileUpdated": "Profil de l’établissement mis à jour",
+        "brandingUpdated": "Apparence mise à jour",
+        "seoUpdated": "Paramètres de recherche mis à jour",
+        "slugChanged": "Lien de réservation modifié",
+        "published": "Page de réservation publiée",
+        "paused": "Réservation en ligne mise en pause",
+        "unpublished": "Page de réservation dépubliée",
+        "logoUploaded": "Logo importé",
+        "coverUploaded": "Image de couverture importée",
+        "logoRemoved": "Logo supprimé",
+        "coverRemoved": "Image de couverture supprimée",
+        "suspended": "Compte suspendu par Hournook",
+        "reactivated": "Compte réactivé",
+        "exported": "Export des données téléchargé"
+      },
+      "service": {
+        "created": "Prestation ajoutée",
+        "updated": "Prestation modifiée",
+        "deleted": "Prestation supprimée"
+      },
+      "staff": {
+        "created": "Membre de l’équipe ajouté",
+        "updated": "Membre de l’équipe modifié",
+        "deleted": "Membre de l’équipe retiré",
+        "avatarUploaded": "Photo d’un membre de l’équipe mise à jour"
+      },
+      "appointment": {
+        "created": "Rendez-vous réservé",
+        "cancelled": "Rendez-vous annulé",
+        "rescheduled": "Rendez-vous déplacé",
+        "confirmed": "Rendez-vous confirmé",
+        "completed": "Rendez-vous terminé",
+        "noShow": "Marqué comme absent",
+        "reopened": "Rendez-vous rouvert",
+        "notesUpdated": "Notes du rendez-vous modifiées",
+        "edited": "Modifié"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "Horaires modifiés",
+        "staffUsesBusinessHours": "Le membre de l’équipe suit désormais les horaires de l’établissement",
+        "closureAdded": "Fermeture ajoutée",
+        "closureRemoved": "Fermeture supprimée",
+        "specialHoursSet": "Horaires exceptionnels définis",
+        "timeBlocked": "Créneau bloqué"
+      },
+      "settings": {
+        "bookingRulesUpdated": "Paramètres de réservation modifiés",
+        "notificationsUpdated": "Paramètres de notification modifiés"
+      },
+      "customer": {
+        "created": "Client ajouté",
+        "updated": "Client modifié",
+        "erased": "Données du client effacées"
+      },
+      "team": {
+        "memberInvited": "Membre de l’équipe invité",
+        "invitationRevoked": "Invitation révoquée",
+        "memberJoined": "Un membre a rejoint l’équipe",
+        "roleChanged": "Rôle dans l’équipe modifié",
+        "memberRemoved": "Membre retiré de l’équipe",
+        "memberLeft": "Un membre a quitté l’équipe",
+        "ownershipTransferred": "Propriété transférée"
+      },
+      "billing": {
+        "checkoutStarted": "Paiement lancé",
+        "checkoutCompleted": "Souscription de l’abonnement finalisée",
+        "subscriptionStatusChanged": "Statut de l’abonnement modifié",
+        "invoicePaid": "Facture payée",
+        "paymentFailed": "Échec du paiement"
+      },
+      "export": {
+        "appointments": "Rendez-vous exportés",
+        "customers": "Clients exportés",
+        "services": "Prestations exportées"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "Profil de l’établissement enregistré",
+    "bookingRulesSaved": "Paramètres de réservation enregistrés",
+    "emailSettingsSaved": "Paramètres d’e-mail enregistrés",
+    "prefsSaved": "Préférences enregistrées",
+    "invitationRevoked": "Invitation révoquée",
+    "roleUpdated": "Rôle mis à jour",
+    "memberRemoved": "Retiré de votre équipe",
+    "ownershipTransferred": "Propriété transférée",
+    "nameUpdated": "Nom mis à jour",
+    "languageSaved": "Langue enregistrée",
+    "passwordChanged": "Mot de passe modifié. Vos autres appareils ont été déconnectés."
+  }
+}

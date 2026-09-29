@@ -1,0 +1,143 @@
+{
+  "title": "Buchungsseite",
+  "description": "Ihre öffentliche Seite, auf der Kunden buchen. Veröffentlichen Sie sie, teilen Sie sie überall und geben Sie ihr Ihren eigenen Stil.",
+  "publish": {
+    "live": "Ihre Buchungsseite ist online",
+    "paused": "Online-Buchung ist pausiert",
+    "draft": "Ihre Buchungsseite ist ein Entwurf",
+    "badgeLive": "Online",
+    "badgePaused": "Pausiert",
+    "badgeDraft": "Entwurf",
+    "noSubscription": "Buchungen sind derzeit deaktiviert, weil kein aktives Abonnement besteht.",
+    "preview": "Vorschau",
+    "resume": "Buchungen fortsetzen",
+    "publish": "Veröffentlichen",
+    "verifyEmail": "Bestätigen Sie zuerst Ihre E-Mail-Adresse. Den Link finden Sie in Ihrem Posteingang.",
+    "needsService": "Fügen Sie mindestens eine aktive Leistung mit zugewiesenem Teammitglied hinzu und veröffentlichen Sie dann."
+  },
+  "pause": {
+    "summary": "Online-Buchung pausieren (Urlaubsmodus)",
+    "message": "Nachricht an Kunden",
+    "messageHint": "Wird während der Pause auf Ihrer Buchungsseite angezeigt.",
+    "messagePlaceholder": "Wir sind bis zum 3. September im Urlaub. Bis bald!",
+    "until": "Automatisch wieder öffnen am",
+    "pause": "Buchungen pausieren",
+    "unpublish": "Zurückziehen"
+  },
+  "celebrate": {
+    "title": "Ihre Buchungsseite ist online.",
+    "body": "Teilen Sie den Link auf Instagram, in Ihrem Google-Unternehmensprofil oder per WhatsApp, oder drucken Sie den QR-Code für Ihren Empfang aus.",
+    "dismiss": "Schließen"
+  },
+  "copy": {
+    "copy": "Kopieren",
+    "link": "Link kopieren",
+    "bookingLink": "Buchungslink kopieren",
+    "copied": "Kopiert",
+    "linkCopied": "Link in die Zwischenablage kopiert"
+  },
+  "share": {
+    "title": "Teilen",
+    "description": "Platzieren Sie Ihren Link überall dort, wo Kunden Sie finden.",
+    "linkLabel": "Buchungslink",
+    "email": "E-Mail",
+    "qrAlt": "QR-Code, der zu {url} führt",
+    "qr": "QR-Code",
+    "qrDescription": "Für den Empfang, Flyer oder Visitenkarten. Buchungen darüber werden als „QR-Code“ erfasst.",
+    "print": "Drucken",
+    "campaigns": "Kampagnenlinks (sehen, woher Buchungen kommen)",
+    "campaignsBody": "Fügen Sie UTM-Parameter hinzu, dann zeigen Buchungen die Kampagne in der Statistik:"
+  },
+  "embed": {
+    "title": "Buchung auf Ihrer Website einbinden",
+    "description": "Fügen Sie eine einzige Zeile in Ihre Website ein. Die Buchung öffnet sich in einem sicheren, eigenständigen Fenster und stört Ihr Design nicht.",
+    "button": "Buchungsbutton",
+    "inline": "Eingebettet",
+    "buttonDescription": "Ein Button, der die Buchung in einem Pop-up öffnet.",
+    "inlineDescription": "Der komplette Buchungsablauf direkt dort eingebettet, wo Sie den Code platzieren.",
+    "code": "Einbettungscode",
+    "copy": "Code kopieren",
+    "copied": "Code kopiert"
+  },
+  "branding": {
+    "title": "Erscheinungsbild",
+    "description": "Ihr Logo, Titelbild und Ihre Farbe. Die Vorschau aktualisiert sich beim Bearbeiten.",
+    "preview": "Live-Vorschau",
+    "sampleService": "Beispielleistung",
+    "sampleBook": "Buchen",
+    "sampleConfirm": "Buchung bestätigen",
+    "logo": "Logo",
+    "logoHint": "Quadratisch, mindestens 64 px.",
+    "cover": "Titelbild",
+    "coverHint": "Breit, mindestens 800×200 px.",
+    "colour": "Markenfarbe",
+    "customColour": "Eigene Markenfarbe",
+    "custom": "Eigene",
+    "policy": "Buchungsrichtlinie",
+    "policyHint": "Wird auf Ihrer Seite und in Bestätigungs-E-Mails angezeigt, z. B. zu Verspätungen, Anzahlungen, Stornierungen.",
+    "showStaff": "Teammitglieder auf Ihrer Seite anzeigen",
+    "showStaffHint": "Lassen Sie Kunden wählen, bei wem sie buchen möchten.",
+    "social": "Social-Media-Links",
+    "save": "Erscheinungsbild speichern"
+  },
+  "upload": {
+    "uploadLogo": "Logo hochladen",
+    "uploadCover": "Titelbild hochladen",
+    "removeLogo": "Logo entfernen",
+    "removeCover": "Titelbild entfernen",
+    "tooLarge": "Die Datei ist größer als 5 MB.",
+    "uploaded": "Hochgeladen",
+    "replace": "Ersetzen",
+    "upload": "Hochladen",
+    "formats": "JPG, PNG oder WebP bis 5 MB."
+  },
+  "seo": {
+    "title": "Vorschau in Suche & sozialen Medien",
+    "description": "So erscheint Ihre Seite bei Google und beim Teilen.",
+    "preview": "Vorschau des Suchergebnisses",
+    "pageTitle": "Seitentitel",
+    "pageDescription": "Beschreibung",
+    "indexing": "Suchmaschinen erlauben, diese Seite anzuzeigen",
+    "indexingHint": "Ausschalten, wenn Sie den Link nur privat teilen.",
+    "save": "Speichern"
+  },
+  "link": {
+    "title": "Buchungslink",
+    "description": "Wenn Sie ihn ändern, funktionieren bereits geteilte Links nicht mehr (auch gedruckte QR-Codes).",
+    "available": "Verfügbar",
+    "taken": "Bereits vergeben",
+    "invalid": "Ungültig",
+    "change": "Link ändern"
+  },
+  "customer": {
+    "embedLabel": "Jetzt buchen",
+    "seoTitle": "{name} · Online-Buchung",
+    "seoDescription": "Buchen Sie online einen Termin bei {name}.",
+    "shareText": "Buchen Sie einen Termin bei {name}: {url}",
+    "shareSubject": "Termin bei {name} buchen"
+  },
+  "qrPrint": {
+    "metaTitle": "QR-Code drucken",
+    "bookOnline": "Online buchen",
+    "scan": "Scannen und den nächsten Termin buchen",
+    "print": "Drucken"
+  },
+  "toasts": {
+    "saved": "Gespeichert"
+  },
+  "errors": {
+    "slugTaken": "Dieser Buchungslink ist bereits vergeben.",
+    "cannotPublish": "Fügen Sie vor dem Veröffentlichen mindestens eine aktive Leistung mit zugewiesenem Teammitglied hinzu."
+  },
+  "actions": {
+    "published": "Ihre Buchungsseite ist online 🎉",
+    "paused": "Online-Buchung pausiert",
+    "unpublished": "Buchungsseite zurückgezogen",
+    "brandingSaved": "Erscheinungsbild gespeichert",
+    "seoSaved": "Sucheinstellungen gespeichert",
+    "linkUpdated": "Buchungslink aktualisiert",
+    "imageUpdated": "Bild aktualisiert",
+    "imageRemoved": "Bild entfernt",
+    "chooseImage": "Wählen Sie ein Bild."
+  }
+}

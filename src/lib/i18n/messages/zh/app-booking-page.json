@@ -1,0 +1,143 @@
+{
+  "title": "预约页面",
+  "description": "客户进行预约的公开页面。发布页面、随处分享，并打造您的专属风格。",
+  "publish": {
+    "live": "您的预约页面已上线",
+    "paused": "在线预约已暂停",
+    "draft": "您的预约页面是草稿",
+    "badgeLive": "已上线",
+    "badgePaused": "已暂停",
+    "badgeDraft": "草稿",
+    "noSubscription": "由于没有有效的订阅，预约功能目前已关闭。",
+    "preview": "预览",
+    "resume": "恢复预约",
+    "publish": "发布",
+    "verifyEmail": "请先验证您的邮箱地址。验证链接已发送到您的收件箱。",
+    "needsService": "请至少添加一项已分配团队成员的有效服务，然后发布。"
+  },
+  "pause": {
+    "summary": "暂停在线预约（休假模式）",
+    "message": "给客户的留言",
+    "messageHint": "暂停期间显示在您的预约页面上。",
+    "messagePlaceholder": "我们休假至 9 月 3 日，期待与您再见！",
+    "until": "自动重新开放日期",
+    "pause": "暂停预约",
+    "unpublish": "取消发布"
+  },
+  "celebrate": {
+    "title": "您的预约页面已上线。",
+    "body": "在 Instagram、Google 商家资料或 WhatsApp 上分享链接，或打印二维码放在前台。",
+    "dismiss": "关闭"
+  },
+  "copy": {
+    "copy": "复制",
+    "link": "复制链接",
+    "bookingLink": "复制预约链接",
+    "copied": "已复制",
+    "linkCopied": "链接已复制到剪贴板"
+  },
+  "share": {
+    "title": "分享",
+    "description": "把链接放在客户能找到您的任何地方。",
+    "linkLabel": "预约链接",
+    "email": "邮件",
+    "qrAlt": "指向 {url} 的二维码",
+    "qr": "二维码",
+    "qrDescription": "适用于前台、传单或名片。通过它产生的预订会记为“二维码”。",
+    "print": "打印",
+    "campaigns": "推广活动链接（追踪预订来源）",
+    "campaignsBody": "添加 UTM 参数后，预订会在统计中显示对应的推广活动："
+  },
+  "embed": {
+    "title": "在您的网站上添加预约",
+    "description": "在网站中粘贴一行代码即可。预约流程会在安全、独立的窗口中打开，不会与您网站的设计冲突。",
+    "button": "预约按钮",
+    "inline": "内嵌",
+    "buttonDescription": "点击后在弹窗中打开预约的按钮。",
+    "inlineDescription": "在放置代码的位置嵌入完整的预约流程。",
+    "code": "嵌入代码",
+    "copy": "复制代码",
+    "copied": "代码已复制"
+  },
+  "branding": {
+    "title": "品牌外观",
+    "description": "您的 Logo、封面和颜色。编辑时预览会实时更新。",
+    "preview": "实时预览",
+    "sampleService": "示例服务",
+    "sampleBook": "预约",
+    "sampleConfirm": "确认预约",
+    "logo": "Logo",
+    "logoHint": "正方形，至少 64 像素。",
+    "cover": "封面图片",
+    "coverHint": "横向，至少 800×200 像素。",
+    "colour": "品牌色",
+    "customColour": "自定义品牌色",
+    "custom": "自定义",
+    "policy": "预约须知",
+    "policyHint": "显示在您的页面和确认邮件中，例如迟到、定金、取消等规定。",
+    "showStaff": "在页面上显示团队成员",
+    "showStaffHint": "让客户选择想要预约的人员。",
+    "social": "社交媒体链接",
+    "save": "保存品牌外观"
+  },
+  "upload": {
+    "uploadLogo": "上传 Logo",
+    "uploadCover": "上传封面图片",
+    "removeLogo": "移除 Logo",
+    "removeCover": "移除封面图片",
+    "tooLarge": "该文件超过 5 MB。",
+    "uploaded": "已上传",
+    "replace": "替换",
+    "upload": "上传",
+    "formats": "JPG、PNG 或 WebP，不超过 5 MB。"
+  },
+  "seo": {
+    "title": "搜索与社交分享预览",
+    "description": "您的页面在 Google 上以及被分享时的显示效果。",
+    "preview": "搜索结果预览",
+    "pageTitle": "页面标题",
+    "pageDescription": "描述",
+    "indexing": "允许搜索引擎收录此页面",
+    "indexingHint": "如果只私下分享链接，请关闭。",
+    "save": "保存"
+  },
+  "link": {
+    "title": "预约链接",
+    "description": "更改后，您已分享的链接（包括已打印的二维码）将失效。",
+    "available": "可用",
+    "taken": "已被占用",
+    "invalid": "无效",
+    "change": "更改链接"
+  },
+  "customer": {
+    "embedLabel": "立即预约",
+    "seoTitle": "{name} · 在线预约",
+    "seoDescription": "在线预约 {name}。",
+    "shareText": "预约 {name}：{url}",
+    "shareSubject": "预约 {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "打印二维码",
+    "bookOnline": "在线预约",
+    "scan": "扫码预约下次服务",
+    "print": "打印"
+  },
+  "toasts": {
+    "saved": "已保存"
+  },
+  "errors": {
+    "slugTaken": "该预约链接已被占用。",
+    "cannotPublish": "发布前，请至少添加一项已分配团队成员的有效服务。"
+  },
+  "actions": {
+    "published": "您的预约页面已上线 🎉",
+    "paused": "在线预约已暂停",
+    "unpublished": "预约页面已取消发布",
+    "brandingSaved": "品牌外观已保存",
+    "seoSaved": "搜索设置已保存",
+    "linkUpdated": "预约链接已更新",
+    "imageUpdated": "图片已更新",
+    "imageRemoved": "图片已移除",
+    "chooseImage": "请选择一张图片。"
+  }
+}

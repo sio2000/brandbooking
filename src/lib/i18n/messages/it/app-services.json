@@ -1,0 +1,84 @@
+{
+  "title": "Servizi",
+  "description": "Cosa possono prenotare i clienti. Imposta durata, prezzo, tempi di margine e chi esegue ogni servizio.",
+  "list": {
+    "count": "{count, plural, one {# servizio} other {# servizi}} · trascina per cambiare l’ordine sulla tua pagina di prenotazione",
+    "export": "Esporta",
+    "add": "Aggiungi servizio",
+    "buffer": "+ {count} min di margine",
+    "upcoming": "{count} in arrivo",
+    "free": "Gratis",
+    "actions": "Azioni per {name}",
+    "edit": "Modifica",
+    "pause": "Sospendi le prenotazioni",
+    "resume": "Riprendi le prenotazioni"
+  },
+  "empty": {
+    "title": "Non hai ancora aggiunto nessun servizio",
+    "description": "Aggiungi il tuo primo servizio così i clienti possono iniziare a prenotare. Puoi impostare una durata, un prezzo facoltativo e chi lo esegue.",
+    "add": "Aggiungi il tuo primo servizio"
+  },
+  "badges": {
+    "paused": "In pausa",
+    "hidden": "Nascosto dalla pagina",
+    "unassigned": "Nessuno assegnato"
+  },
+  "toasts": {
+    "paused": "Servizio in pausa. Non può essere prenotato",
+    "resumed": "Servizio di nuovo attivo",
+    "saved": "Salvato",
+    "deleted": "Eliminato"
+  },
+  "delete": {
+    "menu": "Elimina",
+    "title": "Eliminare “{name}”?",
+    "withUpcoming": "Questo servizio ha <b>{count, plural, one {# appuntamento in arrivo} other {# appuntamenti in arrivo}}</b>. Restano prenotati; semplicemente il servizio non potrà più essere prenotato. Gli appuntamenti passati conservano la loro cronologia.",
+    "body": "I clienti non potranno più prenotarlo. Gli appuntamenti passati conservano la loro cronologia.",
+    "confirm": "Elimina servizio"
+  },
+  "form": {
+    "addTitle": "Aggiungi un servizio",
+    "editTitle": "Modifica servizio",
+    "description": "I clienti vedono nome, descrizione, durata e prezzo.",
+    "fixFields": "Correggi i campi evidenziati.",
+    "name": "Nome del servizio",
+    "namePlaceholder": "es. Taglio e piega",
+    "descriptionLabel": "Descrizione",
+    "descriptionPlaceholder": "Cosa include, a chi è rivolto, cosa preparare.",
+    "duration": "Durata",
+    "custom": "Personalizzata",
+    "customLabel": "Durata personalizzata in minuti",
+    "minSuffix": "min",
+    "price": "Prezzo",
+    "priceHint": "Lascia vuoto per nascondere il prezzo; inserisci 0 se è gratuito.",
+    "category": "Categoria",
+    "categoryHint": "Raggruppa i servizi sulla tua pagina di prenotazione.",
+    "categoryPlaceholder": "es. Colore",
+    "noCategory": "Nessuna categoria",
+    "existingCategory": "Scegli una categoria esistente",
+    "newCategory": "+ Nuova categoria",
+    "staff": "Chi lo esegue",
+    "noStaff": "Aggiungi prima un membro del team.",
+    "nobodyAssigned": "Non è assegnato nessuno, quindi i clienti non potranno prenotare questo servizio.",
+    "bufferBefore": "Margine prima",
+    "bufferBeforeHint": "Tempo di preparazione, bloccato nel tuo calendario.",
+    "bufferAfter": "Margine dopo",
+    "bufferAfterHint": "Tempo per riordinare prima della prenotazione successiva.",
+    "none": "Nessuno",
+    "minutes": "{count} min",
+    "colour": "Colore nel calendario",
+    "colourPicker": "Colore",
+    "bookable": "Prenotabile",
+    "bookableHint": "Disattiva per mettere in pausa questo servizio senza eliminarlo.",
+    "visible": "Mostra sulla pagina di prenotazione",
+    "visibleHint": "I servizi nascosti possono comunque essere prenotati dal tuo team.",
+    "cancel": "Annulla",
+    "save": "Salva modifiche"
+  },
+  "actions": {
+    "added": "Servizio aggiunto",
+    "saved": "Servizio salvato",
+    "removed": "Servizio rimosso. Gli appuntamenti passati conservano la loro cronologia.",
+    "categoryRemoved": "Categoria rimossa"
+  }
+}

@@ -6,8 +6,10 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/menu'
 import { Input, NativeSelect } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { formatSpan, RANGE_PRESETS, type RangePreset } from './presets'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatSpan, presetKey, RANGE_PRESETS, type RangePreset } from './presets'
 import { useAnalyticsFrame } from './analytics-frame'
+import { rich } from '@/components/i18n/rich'
 
 type Option = { id: string; name: string; isActive?: boolean }
 
@@ -41,11 +43,14 @@ export function FilterBar({
   serviceId: string | null
   lockedStaffId: string | null
 }) {
+  const t = useT('app-analytics')
+  const { tag } = useLocale()
+  const span = (a: string, b: string) => formatSpan(a, b, tag)
   const { setParams, pending } = useAnalyticsFrame()
   const [open, setOpen] = React.useState(false)
   const [draft, setDraft] = React.useState({ from, to })
   const [error, setError] = React.useState<string | null>(null)
-  const presetLabel = RANGE_PRESETS.find((p) => p.value === preset)?.label ?? 'Custom range'
+  const presetLabel = t(`presets.${presetKey(preset)}`)
 
   const onOpenChange = (next: boolean) => {
     if (next) {
@@ -62,10 +67,10 @@ export function FilterBar({
 
   const applyCustom = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!draft.from || !draft.to) return setError('Choose a start and an end date.')
-    if (draft.from > draft.to) return setError('The start date must be on or before the end date.')
+    if (!draft.from || !draft.to) return setError(t('filters.errorMissing'))
+    if (draft.from > draft.to) return setError(t('range.invalid.order'))
     if (spanDays(draft.from, draft.to) > MAX_DAYS)
-      return setError(`Choose a range of at most ${MAX_DAYS} days.`)
+      return setError(t('filters.errorTooLong', { max: MAX_DAYS }))
     setOpen(false)
     setParams({ range: 'custom', from: draft.from, to: draft.to })
   }
@@ -74,24 +79,28 @@ export function FilterBar({
 
   return (
     <div className="mb-6 flex flex-col gap-2">
-      <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filters">
+      <div
+        className="flex flex-wrap items-center gap-2"
+        role="group"
+        aria-label={t('filters.label')}
+      >
         <Popover open={open} onOpenChange={onOpenChange}>
           <PopoverTrigger asChild>
             <button
               type="button"
               className="inline-flex h-10 max-w-full min-w-0 items-center gap-2 rounded-lg border border-border-strong bg-surface px-3 text-sm shadow-xs transition-colors outline-none hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-ring"
-              aria-label={`Date range: ${presetLabel}, ${formatSpan(from, to)}`}
+              aria-label={t('filters.rangeLabel', { preset: presetLabel, span: span(from, to) })}
             >
               <CalendarRange className="size-4 shrink-0 text-muted-foreground" aria-hidden />
               <span className="font-medium">{presetLabel}</span>
               <span className="hidden truncate text-muted-foreground sm:inline">
-                {formatSpan(from, to)}
+                {span(from, to)}
               </span>
               <ChevronDown className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-[min(20rem,calc(100vw-2rem))] p-1">
-            <div role="listbox" aria-label="Date range presets">
+            <div role="listbox" aria-label={t('filters.presets')}>
               {RANGE_PRESETS.filter((p) => p.value !== 'custom').map((p) => {
                 const selected = p.value === preset
                 return (
@@ -102,14 +111,14 @@ export function FilterBar({
                     aria-selected={selected}
                     onClick={() => choose(p.value)}
                     className={cn(
-                      'flex h-9 w-full items-center gap-2 rounded-lg px-2.5 text-left text-sm outline-none hover:bg-surface-2 focus-visible:bg-surface-2',
+                      'flex h-9 w-full items-center gap-2 rounded-lg px-2.5 text-start text-sm outline-none hover:bg-surface-2 focus-visible:bg-surface-2',
                       selected && 'font-semibold',
                     )}
                   >
                     <span className="grid size-4 place-items-center" aria-hidden>
                       {selected && <Check className="size-4 text-primary" strokeWidth={3} />}
                     </span>
-                    {p.label}
+                    {t(`presets.${p.key}`)}
                   </button>
                 )
               })}
@@ -128,11 +137,11 @@ export function FilterBar({
                 <span className="grid size-4 place-items-center" aria-hidden>
                   {preset === 'custom' && <Check className="size-4 text-primary" strokeWidth={3} />}
                 </span>
-                Custom range
+                {t('presets.custom')}
               </p>
               <div className="grid grid-cols-2 gap-2">
                 <label className="text-xs font-medium text-muted-foreground">
-                  From
+                  {t('filters.from')}
                   <Input
                     type="date"
                     value={draft.from}
@@ -143,7 +152,7 @@ export function FilterBar({
                   />
                 </label>
                 <label className="text-xs font-medium text-muted-foreground">
-                  To
+                  {t('filters.to')}
                   <Input
                     type="date"
                     value={draft.to}
@@ -165,10 +174,10 @@ export function FilterBar({
                   className="text-xs text-muted-foreground underline-offset-2 hover:underline"
                   onClick={() => setDraft({ from: today, to: today })}
                 >
-                  Today
+                  {t('presets.today')}
                 </button>
                 <Button type="submit" size="sm">
-                  Apply
+                  {t('filters.apply')}
                 </Button>
               </div>
             </form>
@@ -176,7 +185,7 @@ export function FilterBar({
         </Popover>
 
         <label className="sr-only" htmlFor="analytics-staff">
-          Team member
+          {t('table.teamMember')}
         </label>
         <div className="w-full min-w-0 sm:w-52">
           <NativeSelect
@@ -185,18 +194,17 @@ export function FilterBar({
             disabled={Boolean(lockedStaffId)}
             onChange={(e) => setParams({ staff: e.target.value || null })}
           >
-            {!lockedStaffId && <option value="">All team members</option>}
+            {!lockedStaffId && <option value="">{t('filters.allStaff')}</option>}
             {staff.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.name}
-                {s.isActive === false ? ' (inactive)' : ''}
+                {s.isActive === false ? t('filters.inactive', { name: s.name }) : s.name}
               </option>
             ))}
           </NativeSelect>
         </div>
 
         <label className="sr-only" htmlFor="analytics-service">
-          Service
+          {t('table.service')}
         </label>
         <div className="w-full min-w-0 sm:w-52">
           <NativeSelect
@@ -204,11 +212,10 @@ export function FilterBar({
             value={serviceId ?? ''}
             onChange={(e) => setParams({ service: e.target.value || null })}
           >
-            <option value="">All services</option>
+            <option value="">{t('filters.allServices')}</option>
             {services.map((s) => (
               <option key={s.id} value={s.id}>
-                {s.name}
-                {s.isActive === false ? ' (inactive)' : ''}
+                {s.isActive === false ? t('filters.inactive', { name: s.name }) : s.name}
               </option>
             ))}
           </NativeSelect>
@@ -220,7 +227,7 @@ export function FilterBar({
             size="sm"
             onClick={() => setParams({ staff: null, service: null })}
           >
-            <X aria-hidden /> Clear filters
+            <X aria-hidden /> {t('filters.clear')}
           </Button>
         )}
       </div>
@@ -228,12 +235,13 @@ export function FilterBar({
         className="flex flex-wrap items-center gap-x-2 text-[13px] text-muted-foreground"
         aria-live="polite"
       >
-        <span className="sm:hidden">{formatSpan(from, to)} ·</span>
+        <span className="sm:hidden">{span(from, to)} ·</span>
         <span>
-          Compared with{' '}
-          <span className="text-foreground">{formatSpan(previous.from, previous.to)}</span>
+          {rich(t('filters.comparedWith', { span: span(previous.from, previous.to) }), {
+            b: (c) => <span className="text-foreground">{c}</span>,
+          })}
         </span>
-        {pending && <span className="text-subtle-foreground">Updating…</span>}
+        {pending && <span className="text-subtle-foreground">{t('filters.updating')}</span>}
       </p>
     </div>
   )

@@ -1,0 +1,143 @@
+{
+  "title": "Rezervasyon sayfası",
+  "description": "Müşterilerin rezervasyon yaptığı herkese açık sayfanız. Yayınlayın, her yerde paylaşın ve size benzemesini sağlayın.",
+  "publish": {
+    "live": "Rezervasyon sayfanız yayında",
+    "paused": "Online rezervasyon duraklatıldı",
+    "draft": "Rezervasyon sayfanız taslak hâlinde",
+    "badgeLive": "Yayında",
+    "badgePaused": "Duraklatıldı",
+    "badgeDraft": "Taslak",
+    "noSubscription": "Etkin bir abonelik olmadığı için rezervasyonlar şu anda kapalı.",
+    "preview": "Önizle",
+    "resume": "Rezervasyonları sürdür",
+    "publish": "Yayınla",
+    "verifyEmail": "Önce e-posta adresinizi onaylayın. Bağlantı gelen kutunuzda.",
+    "needsService": "Ekip üyesi atanmış en az bir etkin hizmet ekleyin, ardından yayınlayın."
+  },
+  "pause": {
+    "summary": "Online rezervasyonu duraklat (tatil modu)",
+    "message": "Müşterilere mesaj",
+    "messageHint": "Duraklatma süresince rezervasyon sayfanızda gösterilir.",
+    "messagePlaceholder": "3 Eylül’e kadar tatildeyiz. Görüşmek üzere!",
+    "until": "Otomatik olarak yeniden açılış tarihi",
+    "pause": "Rezervasyonları duraklat",
+    "unpublish": "Yayından kaldır"
+  },
+  "celebrate": {
+    "title": "Rezervasyon sayfanız yayında.",
+    "body": "Bağlantıyı Instagram’da, Google İşletme Profili’nde veya WhatsApp’ta paylaşın ya da tezgâhınız için QR kodu yazdırın.",
+    "dismiss": "Kapat"
+  },
+  "copy": {
+    "copy": "Kopyala",
+    "link": "Bağlantıyı kopyala",
+    "bookingLink": "Rezervasyon bağlantısını kopyala",
+    "copied": "Kopyalandı",
+    "linkCopied": "Bağlantı panoya kopyalandı"
+  },
+  "share": {
+    "title": "Paylaş",
+    "description": "Bağlantınızı müşterilerin sizi bulduğu her yere koyun.",
+    "linkLabel": "Rezervasyon bağlantısı",
+    "email": "E-posta",
+    "qrAlt": "{url} adresine giden QR kod",
+    "qr": "QR kod",
+    "qrDescription": "Tezgâhınız, broşürleriniz veya kartvizitleriniz için. Buradan gelen rezervasyonlar “QR kod” olarak izlenir.",
+    "print": "Yazdır",
+    "campaigns": "Kampanya bağlantıları (rezervasyonların nereden geldiğini izleyin)",
+    "campaignsBody": "UTM parametreleri ekleyin; rezervasyonlar İstatistikler’de kampanyayı gösterir:"
+  },
+  "embed": {
+    "title": "Web sitenize rezervasyon ekleyin",
+    "description": "Sitenize tek bir satır yapıştırın. Rezervasyon akışı güvenli ve bağımsız bir pencerede açılır; bu yüzden sitenizin tasarımıyla çakışmaz.",
+    "button": "Rezervasyon düğmesi",
+    "inline": "Sayfa içi",
+    "buttonDescription": "Rezervasyonu açılır pencerede açan bir düğme.",
+    "inlineDescription": "Kodu yerleştirdiğiniz yerde tüm rezervasyon akışı.",
+    "code": "Yerleştirme kodu",
+    "copy": "Kodu kopyala",
+    "copied": "Kod kopyalandı"
+  },
+  "branding": {
+    "title": "Marka görünümü",
+    "description": "Logonuz, kapak görseliniz ve renginiz. Önizleme siz düzenledikçe güncellenir.",
+    "preview": "Canlı önizleme",
+    "sampleService": "Örnek hizmet",
+    "sampleBook": "Randevu al",
+    "sampleConfirm": "Rezervasyonu onayla",
+    "logo": "Logo",
+    "logoHint": "Kare, en az 64 px.",
+    "cover": "Kapak görseli",
+    "coverHint": "Geniş, en az 800×200 px.",
+    "colour": "Marka rengi",
+    "customColour": "Özel marka rengi",
+    "custom": "Özel",
+    "policy": "Rezervasyon politikası",
+    "policyHint": "Sayfanızda ve onay e-postalarında gösterilir; ör. gecikmeler, kaporalar, iptaller.",
+    "showStaff": "Ekip üyelerini sayfanızda göster",
+    "showStaffHint": "Müşterilerin kimden hizmet almak istediklerini seçmelerine izin verin.",
+    "social": "Sosyal medya bağlantıları",
+    "save": "Marka görünümünü kaydet"
+  },
+  "upload": {
+    "uploadLogo": "Logo yükle",
+    "uploadCover": "Kapak görseli yükle",
+    "removeLogo": "Logoyu kaldır",
+    "removeCover": "Kapak görselini kaldır",
+    "tooLarge": "Bu dosya 5 MB’tan büyük.",
+    "uploaded": "Yüklendi",
+    "replace": "Değiştir",
+    "upload": "Yükle",
+    "formats": "En fazla 5 MB JPG, PNG veya WebP."
+  },
+  "seo": {
+    "title": "Arama ve sosyal medya önizlemeleri",
+    "description": "Sayfanızın Google’da ve paylaşıldığında nasıl göründüğü.",
+    "preview": "Arama sonucu önizlemesi",
+    "pageTitle": "Sayfa başlığı",
+    "pageDescription": "Açıklama",
+    "indexing": "Arama motorlarının bu sayfayı listelemesine izin ver",
+    "indexingHint": "Bağlantıyı yalnızca özel olarak paylaşıyorsanız kapatın.",
+    "save": "Kaydet"
+  },
+  "link": {
+    "title": "Rezervasyon bağlantısı",
+    "description": "Değiştirmek, daha önce paylaştığınız bağlantıları (basılı QR kodlar dahil) geçersiz kılar.",
+    "available": "Kullanılabilir",
+    "taken": "Zaten alınmış",
+    "invalid": "Geçersiz",
+    "change": "Bağlantıyı değiştir"
+  },
+  "customer": {
+    "embedLabel": "Randevu al",
+    "seoTitle": "{name} · Online randevu",
+    "seoDescription": "{name} için online randevu alın.",
+    "shareText": "{name} için randevu alın: {url}",
+    "shareSubject": "{name} · Randevu al"
+  },
+  "qrPrint": {
+    "metaTitle": "QR kodu yazdır",
+    "bookOnline": "Online randevu alın",
+    "scan": "Bir sonraki randevunuzu almak için okutun",
+    "print": "Yazdır"
+  },
+  "toasts": {
+    "saved": "Kaydedildi"
+  },
+  "errors": {
+    "slugTaken": "Bu rezervasyon bağlantısı zaten alınmış.",
+    "cannotPublish": "Yayınlamadan önce ekip üyesi atanmış en az bir etkin hizmet ekleyin."
+  },
+  "actions": {
+    "published": "Rezervasyon sayfanız yayında 🎉",
+    "paused": "Online rezervasyon duraklatıldı",
+    "unpublished": "Rezervasyon sayfası yayından kaldırıldı",
+    "brandingSaved": "Marka görünümü kaydedildi",
+    "seoSaved": "Arama ayarları kaydedildi",
+    "linkUpdated": "Rezervasyon bağlantısı güncellendi",
+    "imageUpdated": "Görsel güncellendi",
+    "imageRemoved": "Görsel kaldırıldı",
+    "chooseImage": "Bir görsel seçin."
+  }
+}

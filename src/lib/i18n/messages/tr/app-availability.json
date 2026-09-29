@@ -1,0 +1,91 @@
+{
+  "title": "Müsaitlik",
+  "description": "Müşterilerin ne zaman rezervasyon yapabileceği. Çalışma saatleri herkes için geçerlidir; ekip üyeleri bunları izleyebilir veya bu saatler içinde kendi programlarına sahip olabilir.",
+  "allTimesIn": "Tüm saatler {tz} saat dilimindedir.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Kimin programı",
+    "business": "İşletme saatleri"
+  },
+  "weekly": {
+    "title": "Çalışma saatleri",
+    "description": "Olağan haftalık saatleriniz. Öğle arası veya bölünmüş vardiya için ikinci bir zaman aralığı ekleyin.",
+    "staffTitle": "Haftalık program: {name}",
+    "staffDescription": "Her hafta rezerve edilebilir saatleri (her zaman işletmenin çalışma saatleri içinde).",
+    "followsTitle": "İşletme saatlerini izliyor",
+    "followsBody": "{name}, işletme açık olduğu her an rezerve edilebilir. Daha az saat çalışıyorsa kendi programını verin.",
+    "followsNote": "İşletme saatlerinden başlayıp düzenleyin. İşletmenin çalışma saatleri dışındaki saatler rezerve edilemez.",
+    "useBusiness": "İşletme saatlerini kullan",
+    "endAfterStart": "Bitiş saati başlangıç saatinden sonra olmalıdır.",
+    "overlap": "Zaman aralıkları çakışıyor.",
+    "fixDays": "Önce işaretli günleri düzeltin.",
+    "dayOpen": "{day} açık",
+    "closed": "Kapalı",
+    "rangeStart": "{day} {n}. aralık başlangıcı",
+    "rangeEnd": "{day} {n}. aralık bitişi",
+    "removeRange": "{day} {n}. aralığı kaldır",
+    "addRange": "Saat ekle (aradan sonra)",
+    "copyWeekdays": "Pzt–Cum’a kopyala",
+    "unsaved": "Kaydedilmemiş değişiklikler",
+    "save": "Saatleri kaydet"
+  },
+  "closures": {
+    "title": "Tatiller ve kapalı günler",
+    "description": "Tüm gün kapalı olduğunuz günler. Yıllık tatiller her yıl tekrarlanır.",
+    "staffTitle": "İzin günleri: {name}",
+    "staffDescription": "Tatil, hastalık izni, eğitim.",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "label": "Etiket",
+    "placeholder": "ör. Yılbaşı",
+    "staffPlaceholder": "ör. Yıllık izin",
+    "yearly": "Her yıl tekrarlanır",
+    "add": "Kapalı gün ekle",
+    "empty": "Yaklaşan kapalı gün yok.",
+    "closed": "Kapalı",
+    "yearlyBadge": "Yıllık",
+    "remove": "Kapalı günü kaldır",
+    "removeNamed": "Kaldır: {label}"
+  },
+  "special": {
+    "title": "Özel çalışma saatleri",
+    "description": "Belirli bir tarihte farklı saatler; örneğin geç kapanış veya kısa gün.",
+    "date": "Tarih",
+    "opens": "Açılış",
+    "closes": "Kapanış",
+    "add": "Özel saat belirle",
+    "empty": "Yaklaşan özel saat yok.",
+    "remove": "{date} tarihindeki özel saatleri kaldır"
+  },
+  "blocks": {
+    "title": "Engellenen zaman",
+    "description": "Bir toplantı, iş veya teslimat için günün bir bölümünü engelleyin. Mevcut rezervasyonlar etkilenmez.",
+    "date": "Tarih",
+    "from": "Başlangıç",
+    "until": "Bitiş",
+    "reason": "Neden",
+    "add": "Zamanı engelle",
+    "addForEveryone": "Herkes için zamanı engelle",
+    "empty": "Yaklaşan engellenmiş zaman yok.",
+    "blocked": "Engellendi",
+    "everyone": "herkes",
+    "remove": "Engeli kaldır"
+  },
+  "toasts": {
+    "saved": "Kaydedildi",
+    "added": "Eklendi",
+    "blocked": "Engellendi",
+    "removed": "Kaldırıldı",
+    "failed": "Başarısız"
+  },
+  "actions": {
+    "hoursSaved": "Çalışma saatleri kaydedildi",
+    "following": "Artık işletme saatlerini izliyor",
+    "closureAdded": "Kapalı gün eklendi",
+    "closureRemoved": "Kapalı gün kaldırıldı",
+    "specialSaved": "Özel saatler kaydedildi",
+    "specialRemoved": "Özel saatler kaldırıldı",
+    "blocked": "Zaman engellendi",
+    "blockRemoved": "Engel kaldırıldı"
+  }
+}

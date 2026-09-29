@@ -1,0 +1,632 @@
+{
+  "layout": {
+    "title": "设置",
+    "description": "管理{name}、您的团队和您自己的账户。"
+  },
+  "loading": "正在加载设置",
+  "nav": {
+    "label": "设置",
+    "business": "商家",
+    "booking": "预约",
+    "notifications": "通知",
+    "team": "团队",
+    "account": "账户",
+    "privacy": "隐私与数据",
+    "activity": "活动记录"
+  },
+  "common": {
+    "cancel": "取消",
+    "listSeparator": "、"
+  },
+  "form": {
+    "saved": "已保存",
+    "offline": "无法连接服务器。请检查网络连接后重试。"
+  },
+  "saveBar": {
+    "unsaved": "有未保存的更改",
+    "saved": "所有更改已保存",
+    "discard": "放弃",
+    "save": "保存更改"
+  },
+  "duration": {
+    "zeroMinutes": "0 分钟",
+    "minutes": "{count, plural, other {# 分钟}}",
+    "hours": "{count, plural, other {# 小时}}",
+    "hoursMinutes": "{h} 小时 {m} 分钟",
+    "days": "{count, plural, other {# 天}}",
+    "weeks": "{count, plural, other {# 周}}",
+    "months": "{count, plural, other {# 个月}}",
+    "years": "{count, plural, other {# 年}}",
+    "current": "{label}（当前）",
+    "noMinimum": "无最短时间",
+    "everyHour": "每小时",
+    "everyMinutes": "{count, plural, other {每 # 分钟}}",
+    "upToStart": "直到开始时间",
+    "before": "提前 {duration}",
+    "ahead": "未来 {duration}"
+  },
+  "business": {
+    "metaTitle": "商家设置",
+    "title": "商家资料",
+    "description": "客户在您的预约页面和邮件中看到的基本信息。",
+    "basics": {
+      "title": "基本信息",
+      "description": "您的商家在预约页面和发给客户的邮件中如何呈现。",
+      "name": "商家名称",
+      "category": "类别",
+      "categoryHint": "帮助我们根据您的商家类型提供合适的建议和默认设置。",
+      "categoryPlaceholder": "选择类别…",
+      "about": "商家简介",
+      "aboutHint": "显示在预约页面顶部。{count}/{max}",
+      "aboutPlaceholder": "用一两句亲切的话介绍您的服务内容以及客户可以期待什么。"
+    },
+    "categories": {
+      "hairBeauty": "美发美容",
+      "barbershop": "理发店",
+      "nails": "美甲",
+      "spaMassage": "水疗与按摩",
+      "healthTherapy": "健康与理疗",
+      "fitnessCoaching": "健身与教练",
+      "medicalDental": "医疗与牙科",
+      "consulting": "咨询",
+      "educationTutoring": "教育与辅导",
+      "photography": "摄影",
+      "petServices": "宠物服务",
+      "automotive": "汽车服务",
+      "homeServices": "上门服务",
+      "other": "其他"
+    },
+    "time": {
+      "title": "时间与货币",
+      "description": "时区决定营业时间和预约时间的解读方式。货币用于服务价格。",
+      "timezone": "时区",
+      "timezoneHint": "提示：列表获得焦点时，输入城市名称即可跳转。",
+      "deviceTz": "此设备的时区为 <b>{tz}</b>",
+      "useDeviceTz": "使用此时区",
+      "tzChangedTitle": "更改时区会改变营业时间的解读方式",
+      "tzChangedBody": "例如 9:00–17:00 的营业时间将表示 <b>{tz}</b> 的 9:00–17:00。已有预约保留其确切时刻，因此可能显示为不同的钟点。",
+      "currency": "货币",
+      "currencyHint": "更改货币不会换算现有价格。",
+      "regions": {
+        "Africa": "非洲",
+        "America": "美洲",
+        "Antarctica": "南极洲",
+        "Arctic": "北极",
+        "Asia": "亚洲",
+        "Atlantic": "大西洋",
+        "Australia": "澳大利亚",
+        "Europe": "欧洲",
+        "Indian": "印度洋",
+        "Pacific": "太平洋",
+        "Other": "其他"
+      }
+    },
+    "language": {
+      "title": "预约页面语言",
+      "description": "客户在您的预约页面、预约小组件和预约确认中首先看到的语言。",
+      "label": "默认语言",
+      "hint": "客户仍可自行切换到其他语言。"
+    },
+    "contact": {
+      "title": "联系方式",
+      "description": "显示在您的预约页面和确认邮件中。客户回复 Hournook 邮件时，回复将发送到此邮箱。",
+      "email": "邮箱",
+      "emailPlaceholder": "hello@yourbusiness.com",
+      "phone": "电话",
+      "website": "网站",
+      "websitePlaceholder": "yourbusiness.com"
+    },
+    "address": {
+      "title": "地址",
+      "description": "客户前来赴约的地点。如果您远程工作或上门服务，请留空。",
+      "line1": "街道地址",
+      "line2": "楼层、单元、门牌号",
+      "postalCode": "邮政编码",
+      "city": "城市",
+      "country": "国家/地区",
+      "countryPlaceholder": "选择国家/地区…"
+    }
+  },
+  "account": {
+    "metaTitle": "您的账户",
+    "title": "您的账户",
+    "intro": "{email} 的个人设置。您是{business}的{role, select, owner {所有者} manager {经理} other {团队成员}}。",
+    "introMany": "{email} 的个人设置。您是{business}的{role, select, owner {所有者} manager {经理} other {团队成员}}，共属于 {count} 个商家。",
+    "profile": {
+      "title": "您的资料",
+      "description": "团队成员看到的您的信息。客户永远看不到您的账户信息。",
+      "name": "您的姓名",
+      "nameRequired": "请输入您的姓名。",
+      "email": "邮箱",
+      "verified": "已验证",
+      "notVerified": "未验证",
+      "emailHint": "用于登录。如需更改，请联系客服。",
+      "save": "保存"
+    },
+    "language": {
+      "title": "语言",
+      "description": "仪表板和设置的显示语言。",
+      "label": "语言",
+      "emailNote": "我们发给您的邮件（新预订、团队和账单通知）也将使用此语言。",
+      "switching": "正在切换语言…",
+      "invalid": "请选择一种支持的语言。"
+    },
+    "password": {
+      "title": "密码",
+      "description": "更改密码后，您将在所有其他设备上退出登录。",
+      "current": "当前密码",
+      "new": "新密码",
+      "newHint": "至少 {min} 个字符。一句简短的话就很好。",
+      "repeat": "再次输入新密码",
+      "mismatch": "两次输入的密码不一致。",
+      "submit": "更改密码",
+      "show": "显示密码",
+      "hide": "隐藏密码"
+    },
+    "leave": {
+      "title": "退出{business}",
+      "description": "您将失去对该商家的访问权限。您的预约和资料仍保留在该商家。",
+      "button": "退出商家",
+      "confirmTitle": "要退出{business}吗？",
+      "confirmBody": "您将无法再登录该商家。所有者或经理之后可以再次邀请您。"
+    },
+    "delete": {
+      "title": "删除您的账户",
+      "description": "永久删除您的登录信息和个人资料。此操作无法撤销。",
+      "ownerTitle": "您仍是某个商家的所有者",
+      "ownerBody": "为确保客户和预订不会失去所有者，所有者在删除账户前必须先删除其商家，或在“设置 → 团队”中将他人设为所有者。您是 <b>{businesses}</b> 的所有者。请先在<link>隐私与数据</link>中将其删除。",
+      "body": "您将被移出所属的所有商家。您处理过的预约仍保留在这些商家中。",
+      "button": "删除账户…",
+      "dialogTitle": "要删除您的账户吗？",
+      "dialogDescription": "请输入密码以确认。此操作无法撤销。",
+      "password": "密码",
+      "passwordRequired": "请输入您的密码。",
+      "submit": "删除我的账户"
+    }
+  },
+  "booking": {
+    "metaTitle": "预约设置",
+    "title": "预约规则",
+    "description": "决定客户何时以及如何预约、改期和取消。这些规则适用于您的整个预约页面。",
+    "summary": {
+      "text": "客户可以{notice}预约，最多可提前 {days}。可选开始时间为{interval}。",
+      "lastMinute": "直到最后一刻",
+      "notice": "至少提前 {duration}",
+      "onTheHour": "每个整点",
+      "everyMinutes": "{count, plural, other {每 # 分钟一个}}"
+    },
+    "window": {
+      "title": "客户何时可以预约",
+      "description": "保护您的时间：避免临时的意外预约，并决定日历向未来开放多久。",
+      "minNotice": "最短提前时间",
+      "minNoticeHint": "距离预约开始多久之前仍可在线预约。",
+      "maxAdvance": "最远可预约",
+      "maxAdvanceHint": "客户最远能看到多久之后的空闲时间。",
+      "startTimes": "开始时间",
+      "startTimesHint": "设置为每 15 分钟时，客户会看到 9:00、9:15、9:30… 间隔越长，您的日程越整齐。",
+      "limit": "限制每天的在线预约数量",
+      "limitDescription": "达到上限后，当天会显示为已约满。您仍可自行添加预约。",
+      "maxPerDay": "每天最多"
+    },
+    "confirm": {
+      "title": "确认方式",
+      "description": "选择新预订是否立即生效。",
+      "review": "每个预订确认前先由您审核",
+      "reviewOn": "新的在线预订将作为请求送达。时间会被保留，您接受后客户会收到确认邮件。",
+      "reviewOff": "预订会立即确认，客户会马上收到确认邮件。"
+    },
+    "changes": {
+      "title": "取消与改期",
+      "description": "每封确认邮件都包含一个链接，客户可以用它管理自己的预订。请决定客户可以自行执行哪些操作。",
+      "cancel": "客户可在线取消",
+      "cancelOn": "空出的时间会自动重新开放预约。",
+      "cancelOff": "客户需要联系您才能取消。",
+      "cancelDeadline": "取消截止时间",
+      "cancelDeadlineHint": "超过此时间后，取消按钮将消失，客户需要联系您。",
+      "reschedule": "客户可在线改期",
+      "rescheduleOn": "客户选择新的空闲时间，原时间会被释放。",
+      "rescheduleOff": "客户需要联系您才能更改预订时间。",
+      "rescheduleDeadline": "改期截止时间",
+      "rescheduleDeadlineHint": "距离预约多近时客户仍可改期。"
+    },
+    "reminders": {
+      "title": "提醒邮件",
+      "description": "自动提醒可以减少未到场。最多选择 {max} 个。没有邮箱地址的客户不会收到提醒。",
+      "legend": "发送提醒",
+      "none": "不会发送提醒。",
+      "selected": "已选择 {count}/{max}：{list}。更改将适用于之后的预订。"
+    },
+    "form": {
+      "title": "预约表单",
+      "description": "客户预约时需要填写的内容。",
+      "staff": "选择团队成员",
+      "staffModes": {
+        "optional": {
+          "title": "客户可选择",
+          "body": "客户可以选择一位团队成员，也可以选择“任意有空的成员”。"
+        },
+        "required": {
+          "title": "客户必须选择",
+          "body": "客户总是需要选择一位具体的团队成员。"
+        },
+        "hidden": {
+          "title": "不询问",
+          "body": "由我们分配有空的人员。客户看不到选择。"
+        }
+      },
+      "phone": "电话号码",
+      "phoneModes": {
+        "required": {
+          "title": "必填",
+          "body": "适合需要给客户打电话或发短信的商家。"
+        },
+        "optional": {
+          "title": "选填",
+          "body": "客户可以留空。"
+        },
+        "hidden": {
+          "title": "不询问",
+          "body": "完全不显示此字段。"
+        }
+      },
+      "alwaysAsked": "姓名和邮箱始终为必填项，以便我们发送确认。"
+    }
+  },
+  "notifications": {
+    "metaTitle": "通知",
+    "mine": {
+      "title": "您的通知",
+      "description": "选择我们通知您的内容。此设置仅影响您本人；每位团队成员可自行设置。",
+      "remindersByManager": "发给客户的提醒邮件由所有者或经理在“预约设置”中配置。",
+      "verifyEmail": "请验证您的邮箱地址以接收通知邮件。在此之前，通知仅显示在您的收件箱中。"
+    },
+    "customers": {
+      "title": "客户邮件",
+      "description": "发给客户的自动邮件的样式。",
+      "remindersLink": "在找预约提醒？请前往<link>预约规则</link>设置。"
+    },
+    "email": {
+      "title": "发给客户的邮件",
+      "description": "每个预订都会自动发送确认、提醒和变更通知。",
+      "senderName": "发件人名称",
+      "senderNameHint": "客户在收件箱中看到的名称。留空则使用“{business}”。",
+      "footer": "邮件页脚",
+      "footerHint": "每封邮件底部的简短说明，例如停车提示或取消政策。{count}/{max}",
+      "footerPlaceholder": "楼后可免费停车。请提前 5 分钟到达。",
+      "preview": "预览",
+      "inboxPreview": "收件箱预览",
+      "repliesTo": "回复将发送至 {email}",
+      "repliesToNobody": "目前回复不会发送给任何人",
+      "sampleSubject": "您的预约已确认",
+      "defaultFooter": "您收到此邮件是因为您预约了服务。",
+      "sentBy": "由 Hournook 代表{business}发送。",
+      "whyTitle": "为什么邮件来自 Hournook 的地址",
+      "whyBody": "为避免邮件进入垃圾邮件箱，邮件从 Hournook 已验证的地址发出，并以您的商家名称作为发件人。我们绝不会冒充从您自己的域名发送。客户点击回复时，消息会直接发送到 <b>{email}</b>。",
+      "whyBodyNoEmail": "为避免邮件进入垃圾邮件箱，邮件从 Hournook 已验证的地址发出，并以您的商家名称作为发件人。我们绝不会冒充从您自己的域名发送。客户点击回复时，消息会直接发送到您的商家邮箱。<link>添加联系邮箱</link>，以便收到回复。",
+      "save": "保存邮件设置"
+    },
+    "prefs": {
+      "title": "通知我以下内容",
+      "descriptionOwn": "仅限您自己的预约。更改会自动保存。",
+      "descriptionAll": "通过邮件发送给您，并显示在收件箱（铃铛图标）中。更改会自动保存。",
+      "created": "新预订",
+      "createdOwn": "客户预约您的服务时。",
+      "createdAll": "客户在线预订或同事添加预约时。",
+      "rescheduled": "预订改期",
+      "rescheduledOwn": "您的某个预约改到新时间时。",
+      "rescheduledAll": "某个预约改到新时间时。",
+      "cancelled": "取消",
+      "cancelledOwn": "您的某个预约被取消时。",
+      "cancelledAll": "客户或同事取消预约时。",
+      "team": "团队变动",
+      "teamDescription": "有人接受邀请并加入您的团队时。",
+      "billing": "账单",
+      "billingDescription": "付款问题和订阅变更。建议保持开启。",
+      "on": "通知已开启",
+      "off": "通知已关闭",
+      "saveFailed": "无法保存此更改。请检查网络连接后重试。"
+    }
+  },
+  "team": {
+    "metaTitle": "团队与权限",
+    "title": "团队与权限",
+    "description": "邀请同事使用自己的账户登录。如果只需添加接受预约的人员（无需登录），请在侧边栏的<link>团队</link>中添加。",
+    "roles": {
+      "owner": "所有者",
+      "manager": "经理",
+      "staff": "团队成员"
+    },
+    "roleDescriptions": {
+      "owner": "所有权限，包括账单、导出全部数据和删除商家。",
+      "manager": "除账单、删除商家、导出全部数据和删除客户以外的所有权限。",
+      "staff": "仅限自己的预约、自己服务过的客户以及自己的可预约时间。"
+    },
+    "explainer": {
+      "title": "各角色的权限",
+      "description": "请选择满足需要的最小角色。之后可以更改。"
+    },
+    "invite": {
+      "button": "邀请成员",
+      "title": "邀请加入团队",
+      "description": "对方会收到一封包含加入链接的邮件。无额外费用：您的套餐包含整个团队。",
+      "email": "邮箱地址",
+      "emailPlaceholder": "name@example.com",
+      "role": "角色",
+      "link": "关联到现有资料",
+      "linkHint": "如果此人已在您的团队中有资料（含预订和营业时间），请关联该资料，以便其查看自己的日程。否则会在其加入时创建新资料。",
+      "newProfile": "创建新资料",
+      "submit": "发送邀请",
+      "sent": "邀请已发送至 {email}",
+      "sentDescription": "链接 7 天内有效。",
+      "created": "已为 {email} 创建邀请",
+      "createdDescription": "暂时无法发送邮件。请撤销后稍后重新邀请。"
+    },
+    "members": {
+      "title": "成员 · {count}",
+      "description": "可以登录此商家的人员。",
+      "you": "您",
+      "profile": "资料：{name}",
+      "joined": "加入于 {date}",
+      "actions": "{name} 的操作",
+      "changeRole": "更改角色",
+      "current": "当前",
+      "makeOwner": "设为所有者…",
+      "remove": "移出团队"
+    },
+    "invites": {
+      "title": "待处理的邀请",
+      "description": "邀请将在 7 天后过期。再次邀请同一地址即可发送新链接。",
+      "emptyTitle": "没有待处理的邀请",
+      "emptyDescription": "邀请同事，让他们查看自己的日程并管理自己的预约。",
+      "expires": "{when}过期 · {sent}发送",
+      "expired": "已于{when}过期 · {sent}发送",
+      "revoke": "撤销",
+      "revokeLabel": "撤销发给 {email} 的邀请"
+    },
+    "transfer": {
+      "title": "要将 {name} 设为所有者吗？",
+      "titleGeneric": "要转让所有权吗？",
+      "description": "对方将获得完全控制权，包括账单和删除商家。您将以经理身份留在团队中。只有新的所有者可以撤销此操作。",
+      "confirm": "转让所有权"
+    },
+    "remove": {
+      "title": "要移除 {name} 吗？",
+      "titleGeneric": "要移除成员吗？",
+      "description": "对方将立即失去对此商家的访问权限。其资料、过往预约和即将到来的预订仍保留在您的日历中，您之后可以重新分配或取消。"
+    },
+    "toasts": {
+      "roleChanged": "{name} 现在是{role, select, manager {经理} owner {所有者} other {团队成员}}",
+      "revoked": "已撤销发给 {email} 的邀请",
+      "nowOwner": "{name} 现在是所有者",
+      "removed": "已将 {name} 移出团队"
+    },
+    "errors": {
+      "staffHasAccount": "该团队成员已有账户。",
+      "alreadyOnTeam": "此人已在您的团队中。",
+      "profileLinked": "该团队资料已关联到另一个账户。请申请新的邀请。",
+      "alreadyMember": "您已是该商家的成员。"
+    }
+  },
+  "privacy": {
+    "metaTitle": "隐私与数据",
+    "title": "隐私与数据",
+    "description": "您的数据属于您。随时下载，了解我们保存了哪些数据，并处理客户的请求。",
+    "download": {
+      "title": "下载您的数据",
+      "description": "导出文件即时生成，并记录在您的活动记录中。请妥善处理包含客户信息的文件。",
+      "button": "下载",
+      "ownerOnly": "只有所有者可以下载完整导出。"
+    },
+    "exports": {
+      "all": {
+        "title": "全部（JSON）",
+        "description": "您的完整账户：资料、服务、团队、营业时间、预约规则、客户、预约和活动记录。机器可读格式，可用于备份或迁移到其他工具。"
+      },
+      "customers": {
+        "title": "客户（CSV）",
+        "description": "所有客户及其联系方式和到访记录。可在 Excel、Numbers 或 Google 表格中打开。"
+      },
+      "appointments": {
+        "title": "预约（CSV）",
+        "description": "过去 12 个月和未来 12 个月的所有预约。"
+      },
+      "services": {
+        "title": "服务（CSV）",
+        "description": "包含时长和价格的服务列表。"
+      }
+    },
+    "stored": {
+      "title": "我们保存哪些数据以及保存多久",
+      "description": "Hournook 代表您处理这些数据以运行您的预约业务。我们绝不出售这些数据，也不用于广告。",
+      "business": {
+        "what": "商家信息",
+        "detail": "您的资料、服务、价格、营业时间、团队资料和预约规则。",
+        "keep": "直到您更改或删除。"
+      },
+      "customers": {
+        "what": "客户",
+        "detail": "姓名、邮箱、电话、您的内部备注及其预约记录。",
+        "keep": "直到您删除该客户或删除商家。"
+      },
+      "appointments": {
+        "what": "预约",
+        "detail": "日期、时间、服务、团队成员、状态以及客户留言。",
+        "keep": "直到您删除商家。已删除客户的预约将以匿名记录保留。"
+      },
+      "emails": {
+        "what": "邮件",
+        "detail": "我们发送的确认和提醒的投递记录。",
+        "keep": "邮件内容在 180 天后删除；投递状态会保留。"
+      },
+      "visits": {
+        "what": "预约页面访问",
+        "detail": "用于统计分析的匿名页面浏览量和预约步骤。不使用 Cookie，不含个人数据。",
+        "keep": "400 天后删除。"
+      },
+      "activity": {
+        "what": "活动记录",
+        "detail": "谁在您的账户中更改了什么，以及时间和 IP 地址。",
+        "keep": "直到您删除商家。"
+      },
+      "sessions": {
+        "what": "登录会话",
+        "detail": "您和团队成员已登录的设备。",
+        "keep": "30 天后过期，或在退出登录时立即失效。"
+      },
+      "stripe": "订阅的银行卡付款由 Stripe 处理。我们从不查看或保存卡号。请阅读完整的<link>隐私政策</link>。"
+    },
+    "requests": {
+      "title": "客户请求",
+      "description": "当客户要求获取其数据副本或要求被遗忘时。",
+      "access": "访问请求",
+      "accessBody": "打开客户页面，查看关于该客户保存的所有信息（资料、备注和每个预约），并与其分享。",
+      "erasure": "删除请求",
+      "erasureBody": "在客户页面中选择<b>删除客户数据</b>。其姓名、邮箱、电话、备注和留言将被永久删除，待发送的提醒也会取消。预约将以匿名记录保留，以确保统计数据准确。",
+      "ownerOnly": "只有所有者可以删除客户。",
+      "goToCustomers": "前往客户"
+    },
+    "danger": {
+      "title": "危险操作",
+      "deleteTitle": "删除此商家",
+      "deleteBody": "永久删除{business}、其预约页面以及所有客户和预约数据。团队成员将失去访问权限。此操作无法撤销。",
+      "deleteBodySubscribed": "永久删除{business}、其预约页面以及所有客户和预约数据。您的订阅将立即取消。团队成员将失去访问权限。此操作无法撤销。",
+      "button": "删除商家…",
+      "confirmTitle": "要删除{business}吗？",
+      "confirmBody": "此操作将永久删除您的预约页面、服务、团队资料、客户、预约和已上传的图片。有即将到来预约的客户不会自动收到通知。",
+      "confirmSubscription": "您的 Hournook 订阅将立即取消，之后不会再扣费。",
+      "confirmFinal": "此操作无法撤销。如果之后可能需要这些数据，请先下载导出文件。",
+      "confirm": "永久删除"
+    }
+  },
+  "activity": {
+    "metaTitle": "活动记录",
+    "title": "活动记录",
+    "description": "{business}的重要变更记录：谁在何时做了什么。时间以 {tz} 显示。",
+    "empty": "暂无活动",
+    "emptyDescription": "商家、预订和团队的变更将显示在这里。",
+    "emptyMore": "没有更多活动",
+    "emptyMoreDescription": "已经到达记录的开头。",
+    "backToLatest": "返回最新",
+    "today": "今天",
+    "yesterday": "昨天",
+    "by": "操作者：<actor>{actor}</actor>",
+    "pagination": "分页",
+    "newer": "较新",
+    "older": "较早",
+    "page": "第 {page} 页",
+    "actors": {
+      "formerMember": "一位前团队成员",
+      "customer": "客户",
+      "support": "Hournook 客服",
+      "system": "系统"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {身份为所有者} manager {身份为经理} other {身份为团队成员}}",
+      "rows": "{count, plural, other {# 行}}",
+      "statusNow": "当前状态：{status}",
+      "attempt": "第 {n} 次尝试"
+    },
+    "subscriptionStatus": {
+      "trialing": "试用中",
+      "active": "有效",
+      "pastDue": "逾期未付",
+      "unpaid": "未付款",
+      "canceled": "已取消",
+      "incomplete": "未完成",
+      "incompleteExpired": "未完成且已过期",
+      "paused": "已暂停"
+    },
+    "events": {
+      "business": {
+        "created": "已创建商家",
+        "profileUpdated": "已更新商家资料",
+        "brandingUpdated": "已更新品牌外观",
+        "seoUpdated": "已更新 SEO 设置",
+        "slugChanged": "已更改预约链接",
+        "published": "已发布预约页面",
+        "paused": "已暂停在线预约",
+        "unpublished": "已取消发布预约页面",
+        "logoUploaded": "已上传 Logo",
+        "coverUploaded": "已上传封面图片",
+        "logoRemoved": "已移除 Logo",
+        "coverRemoved": "已移除封面图片",
+        "suspended": "账户已被 Hournook 暂停",
+        "reactivated": "账户已重新启用",
+        "exported": "已下载数据导出"
+      },
+      "service": {
+        "created": "已添加服务",
+        "updated": "已编辑服务",
+        "deleted": "已移除服务"
+      },
+      "staff": {
+        "created": "已添加团队成员",
+        "updated": "已编辑团队成员",
+        "deleted": "已移除团队成员",
+        "avatarUploaded": "已更新团队成员照片"
+      },
+      "appointment": {
+        "created": "已预约",
+        "cancelled": "预约已取消",
+        "rescheduled": "预约已改期",
+        "confirmed": "预约已确认",
+        "completed": "预约已完成",
+        "noShow": "已标记为未到场",
+        "reopened": "预约已重新打开",
+        "notesUpdated": "已编辑预约备注",
+        "edited": "已编辑"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "已更改营业时间",
+        "staffUsesBusinessHours": "团队成员现在遵循商家营业时间",
+        "closureAdded": "已添加休息日",
+        "closureRemoved": "已移除休息日",
+        "specialHoursSet": "已设置特殊营业时间",
+        "timeBlocked": "已屏蔽时间"
+      },
+      "settings": {
+        "bookingRulesUpdated": "已更改预约设置",
+        "notificationsUpdated": "已更改通知设置"
+      },
+      "customer": {
+        "created": "已添加客户",
+        "updated": "已编辑客户",
+        "erased": "已删除客户数据"
+      },
+      "team": {
+        "memberInvited": "已邀请团队成员",
+        "invitationRevoked": "已撤销邀请",
+        "memberJoined": "团队成员已加入",
+        "roleChanged": "团队角色已更改",
+        "memberRemoved": "已移除团队成员",
+        "memberLeft": "团队成员已退出",
+        "ownershipTransferred": "所有权已转让"
+      },
+      "billing": {
+        "checkoutStarted": "已开始结账",
+        "checkoutCompleted": "订阅结账已完成",
+        "subscriptionStatusChanged": "订阅状态已更改",
+        "invoicePaid": "发票已支付",
+        "paymentFailed": "付款失败"
+      },
+      "export": {
+        "appointments": "已导出预约",
+        "customers": "已导出客户",
+        "services": "已导出服务"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "商家资料已保存",
+    "bookingRulesSaved": "预约设置已保存",
+    "emailSettingsSaved": "邮件设置已保存",
+    "prefsSaved": "偏好设置已保存",
+    "invitationRevoked": "邀请已撤销",
+    "roleUpdated": "角色已更新",
+    "memberRemoved": "已移出团队",
+    "ownershipTransferred": "所有权已转让",
+    "nameUpdated": "姓名已更新",
+    "languageSaved": "语言已保存",
+    "passwordChanged": "密码已更改。其他设备已退出登录。"
+  }
+}

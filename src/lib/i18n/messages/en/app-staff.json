@@ -1,0 +1,71 @@
+{
+  "title": "Team",
+  "description": "The people customers can book. Each team member has their own services, schedule and calendar.",
+  "list": {
+    "count": "{count, plural, one {# team member} other {# team members}}",
+    "logins": "Logins & roles",
+    "add": "Add team member"
+  },
+  "empty": {
+    "title": "No team members yet",
+    "description": "Add the people customers can book."
+  },
+  "card": {
+    "defaultTitle": "Team member",
+    "notBookable": "Not bookable",
+    "login": "{role, select, owner {Owner login} manager {Manager login} other {Team member login}}",
+    "noLogin": "No login",
+    "services": "Services",
+    "servicesCount": "{count} of {total}",
+    "hours": "Hours",
+    "businessHours": "Business hours",
+    "ownSchedule": "Own schedule",
+    "upcoming": "Upcoming",
+    "edit": "Edit",
+    "hoursLink": "Hours"
+  },
+  "form": {
+    "editTitle": "Edit team member",
+    "description": "Name, photo and title appear on your booking page if you show your team.",
+    "fixFields": "Please fix the highlighted fields.",
+    "uploadPhoto": "Upload photo",
+    "photoHint": "JPG, PNG or WebP, at least 96px, max 5 MB.",
+    "name": "Name",
+    "title": "Title",
+    "titleHint": "e.g. Senior stylist",
+    "email": "Email",
+    "emailHint": "For your records. To give them a login, invite them under Settings → Team.",
+    "bio": "Short bio",
+    "services": "Services they perform",
+    "noServices": "No services yet.",
+    "colour": "Calendar colour",
+    "colourPicker": "Colour",
+    "bookable": "Bookable",
+    "bookableHint": "Turn off during long absences. Existing appointments stay.",
+    "businessHours": "Follows business hours",
+    "businessHoursHint": "Turn off to give them their own weekly schedule under Availability.",
+    "cancel": "Cancel",
+    "save": "Save changes"
+  },
+  "remove": {
+    "button": "Remove team member",
+    "title": "Remove {name}?",
+    "withUpcoming": "{name} has {count} upcoming appointment(s). Reschedule or cancel those first.",
+    "body": "They will no longer appear on your booking page. Past appointments keep their history.",
+    "confirm": "Remove"
+  },
+  "toasts": {
+    "saved": "Saved",
+    "removed": "Removed"
+  },
+  "errors": {
+    "hasUpcoming": "This team member has {count} upcoming appointment(s). Reschedule or cancel them first."
+  },
+  "actions": {
+    "added": "Team member added",
+    "saved": "Team member saved",
+    "removed": "Team member removed",
+    "photoUpdated": "Photo updated",
+    "chooseImage": "Choose an image."
+  }
+}

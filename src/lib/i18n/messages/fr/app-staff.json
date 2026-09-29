@@ -1,0 +1,71 @@
+{
+  "title": "Équipe",
+  "description": "Les personnes avec qui vos clients peuvent réserver. Chaque membre de l’équipe a ses propres prestations, son planning et son agenda.",
+  "list": {
+    "count": "{count, plural, one {# membre de l’équipe} other {# membres de l’équipe}}",
+    "logins": "Comptes et rôles",
+    "add": "Ajouter un membre"
+  },
+  "empty": {
+    "title": "Aucun membre dans l’équipe pour l’instant",
+    "description": "Ajoutez les personnes avec qui vos clients peuvent réserver."
+  },
+  "card": {
+    "defaultTitle": "Membre de l’équipe",
+    "notBookable": "Non réservable",
+    "login": "{role, select, owner {Compte propriétaire} manager {Compte manager} other {Compte membre}}",
+    "noLogin": "Sans compte",
+    "services": "Prestations",
+    "servicesCount": "{count} sur {total}",
+    "hours": "Horaires",
+    "businessHours": "Horaires de l’établissement",
+    "ownSchedule": "Planning personnel",
+    "upcoming": "À venir",
+    "edit": "Modifier",
+    "hoursLink": "Horaires"
+  },
+  "form": {
+    "editTitle": "Modifier le membre",
+    "description": "Le nom, la photo et le titre apparaissent sur votre page de réservation si vous affichez votre équipe.",
+    "fixFields": "Corrigez les champs signalés.",
+    "uploadPhoto": "Importer une photo",
+    "photoHint": "JPG, PNG ou WebP, au moins 96 px, 5 Mo maximum.",
+    "name": "Nom",
+    "title": "Titre",
+    "titleHint": "ex. Coiffeuse confirmée",
+    "email": "E-mail",
+    "emailHint": "Pour vos dossiers. Pour lui donner un compte, invitez-le dans Paramètres → Équipe.",
+    "bio": "Courte présentation",
+    "services": "Prestations réalisées",
+    "noServices": "Aucune prestation pour l’instant.",
+    "colour": "Couleur dans l’agenda",
+    "colourPicker": "Couleur",
+    "bookable": "Réservable",
+    "bookableHint": "Désactivez pendant les longues absences. Les rendez-vous existants sont conservés.",
+    "businessHours": "Suit les horaires de l’établissement",
+    "businessHoursHint": "Désactivez pour lui donner son propre planning hebdomadaire dans Disponibilités.",
+    "cancel": "Annuler",
+    "save": "Enregistrer"
+  },
+  "remove": {
+    "button": "Retirer ce membre",
+    "title": "Retirer {name} ?",
+    "withUpcoming": "{name} a {count, plural, one {# rendez-vous à venir} other {# rendez-vous à venir}}. Déplacez-les ou annulez-les d’abord.",
+    "body": "Cette personne n’apparaîtra plus sur votre page de réservation. Les rendez-vous passés conservent leur historique.",
+    "confirm": "Retirer"
+  },
+  "toasts": {
+    "saved": "Enregistré",
+    "removed": "Retiré"
+  },
+  "errors": {
+    "hasUpcoming": "Ce membre de l’équipe a {count, plural, one {# rendez-vous à venir} other {# rendez-vous à venir}}. Déplacez-les ou annulez-les d’abord."
+  },
+  "actions": {
+    "added": "Membre de l’équipe ajouté",
+    "saved": "Membre de l’équipe enregistré",
+    "removed": "Membre de l’équipe retiré",
+    "photoUpdated": "Photo mise à jour",
+    "chooseImage": "Choisissez une image."
+  }
+}

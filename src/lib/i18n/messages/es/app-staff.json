@@ -1,0 +1,71 @@
+{
+  "title": "Equipo",
+  "description": "Las personas con las que tus clientes pueden reservar. Cada miembro del equipo tiene sus propios servicios, horario y calendario.",
+  "list": {
+    "count": "{count, plural, one {# miembro del equipo} other {# miembros del equipo}}",
+    "logins": "Accesos y roles",
+    "add": "Añadir miembro del equipo"
+  },
+  "empty": {
+    "title": "Todavía no hay miembros del equipo",
+    "description": "Añade a las personas con las que tus clientes pueden reservar."
+  },
+  "card": {
+    "defaultTitle": "Miembro del equipo",
+    "notBookable": "No reservable",
+    "login": "{role, select, owner {Acceso de propietario} manager {Acceso de encargado} other {Acceso de miembro}}",
+    "noLogin": "Sin acceso",
+    "services": "Servicios",
+    "servicesCount": "{count} de {total}",
+    "hours": "Horario",
+    "businessHours": "Horario del negocio",
+    "ownSchedule": "Horario propio",
+    "upcoming": "Próximas",
+    "edit": "Editar",
+    "hoursLink": "Horario"
+  },
+  "form": {
+    "editTitle": "Editar miembro del equipo",
+    "description": "El nombre, la foto y el cargo aparecen en tu página de reservas si muestras a tu equipo.",
+    "fixFields": "Corrige los campos marcados.",
+    "uploadPhoto": "Subir foto",
+    "photoHint": "JPG, PNG o WebP, de al menos 96 px y hasta 5 MB.",
+    "name": "Nombre",
+    "title": "Cargo",
+    "titleHint": "p. ej., Estilista sénior",
+    "email": "Email",
+    "emailHint": "Para tus registros. Para darle acceso, invítalo en Ajustes → Equipo.",
+    "bio": "Biografía breve",
+    "services": "Servicios que realiza",
+    "noServices": "Todavía no hay servicios.",
+    "colour": "Color en el calendario",
+    "colourPicker": "Color",
+    "bookable": "Reservable",
+    "bookableHint": "Desactívalo durante ausencias largas. Las citas existentes se mantienen.",
+    "businessHours": "Sigue el horario del negocio",
+    "businessHoursHint": "Desactívalo para darle su propio horario semanal en Disponibilidad.",
+    "cancel": "Cancelar",
+    "save": "Guardar cambios"
+  },
+  "remove": {
+    "button": "Quitar miembro del equipo",
+    "title": "¿Quitar a {name}?",
+    "withUpcoming": "{name} tiene {count, plural, one {# cita próxima} other {# citas próximas}}. Cámbialas de hora o cancélalas primero.",
+    "body": "Ya no aparecerá en tu página de reservas. Las citas pasadas conservan su historial.",
+    "confirm": "Quitar"
+  },
+  "toasts": {
+    "saved": "Guardado",
+    "removed": "Quitado"
+  },
+  "errors": {
+    "hasUpcoming": "Este miembro del equipo tiene {count, plural, one {# cita próxima} other {# citas próximas}}. Cámbialas de hora o cancélalas primero."
+  },
+  "actions": {
+    "added": "Miembro del equipo añadido",
+    "saved": "Miembro del equipo guardado",
+    "removed": "Miembro del equipo quitado",
+    "photoUpdated": "Foto actualizada",
+    "chooseImage": "Elige una imagen."
+  }
+}

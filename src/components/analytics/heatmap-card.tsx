@@ -3,8 +3,9 @@
 import * as React from 'react'
 import { formatMinutesOfDay, formatNumber } from '@/lib/format'
 import { cn } from '@/lib/utils'
+import { useLocale, useT } from '@/components/i18n/provider'
 import { ChartCard, ChartTooltip, useElementWidth } from './chart-kit'
-import { hourLabel, WEEKDAYS_LONG, WEEKDAYS_SHORT } from './presets'
+import { hourLabel, weekdayNames } from './presets'
 
 type Cell = { dow: number; hour: number; bookings: number; cancelled: number }
 
@@ -15,11 +16,16 @@ function cellColor(v: number, max: number) {
   return `color-mix(in oklab, var(--primary) ${pct}%, var(--surface))`
 }
 
-function slot(hour: number) {
-  return `${formatMinutesOfDay(hour * 60)}–${formatMinutesOfDay(((hour + 1) % 24) * 60)}`
+function slot(hour: number, tag: string) {
+  return `${formatMinutesOfDay(hour * 60, tag)}–${formatMinutesOfDay(((hour + 1) % 24) * 60, tag)}`
 }
 
 export function HeatmapCard({ cells }: { cells: Cell[] }) {
+  const t = useT('app-analytics')
+  const { tag, dir } = useLocale()
+  const WEEKDAYS_LONG = weekdayNames(tag, 'long')
+  const WEEKDAYS_SHORT = weekdayNames(tag, 'short')
+  const num = (n: number) => formatNumber(n, tag)
   const active = cells.filter((c) => c.bookings > 0)
   const minH = active.length ? Math.min(...active.map((c) => c.hour)) : 9
   const maxH = active.length ? Math.max(...active.map((c) => c.hour)) : 17
@@ -33,10 +39,17 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
   )
   const busiestDayIdx = byDay.indexOf(Math.max(...byDay))
   const headline = busiest
-    ? `Busiest: ${WEEKDAYS_LONG[busiest.dow - 1]} ${slot(busiest.hour)} (${busiest.bookings} bookings).`
-    : 'No bookings in this period.'
+    ? t('heatmap.busiest', {
+        day: WEEKDAYS_LONG[busiest.dow - 1],
+        slot: slot(busiest.hour, tag),
+        count: busiest.bookings,
+      })
+    : t('heatmap.empty')
   const sub = busiest
-    ? `Busiest day overall: ${WEEKDAYS_LONG[busiestDayIdx]} (${formatNumber(byDay[busiestDayIdx] ?? 0)} bookings).`
+    ? t('heatmap.busiestDay', {
+        day: WEEKDAYS_LONG[busiestDayIdx],
+        count: byDay[busiestDayIdx] ?? 0,
+      })
     : ''
   const summary = `${headline} ${sub}`.trim()
 
@@ -70,8 +83,8 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
 
   return (
     <ChartCard
-      title="Busiest days & times"
-      description="When do customers come in? Scheduled appointments by weekday and start hour (business time)."
+      title={t('heatmap.title')}
+      description={t('heatmap.description')}
       footer={
         <span>
           <span className="font-medium text-foreground">{headline}</span> {sub}
@@ -79,22 +92,22 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
       }
       table={
         <table className="w-full text-sm">
-          <caption className="sr-only">Bookings by weekday and hour</caption>
+          <caption className="sr-only">{t('heatmap.caption')}</caption>
           <thead className="sticky top-0 bg-surface-2 text-xs text-muted-foreground">
             <tr>
               <th
                 scope="col"
-                className="sticky left-0 bg-surface-2 px-3 py-2 text-left font-medium"
+                className="sticky start-0 bg-surface-2 px-3 py-2 text-start font-medium"
               >
-                Day
+                {t('heatmap.day')}
               </th>
               {hours.map((h) => (
                 <th
                   key={h}
                   scope="col"
-                  className="px-2 py-2 text-right font-medium whitespace-nowrap"
+                  className="px-2 py-2 text-end font-medium whitespace-nowrap"
                 >
-                  {hourLabel(h)}
+                  {hourLabel(h, tag)}
                 </th>
               ))}
             </tr>
@@ -104,13 +117,17 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
               <tr key={d} className="border-t border-border">
                 <th
                   scope="row"
-                  className="sticky left-0 bg-surface px-3 py-1.5 text-left font-normal"
+                  className="sticky start-0 bg-surface px-3 py-1.5 text-start font-normal"
                 >
                   {d}
                 </th>
                 {hours.map((h) => (
-                  <td key={h} className="tabular px-2 py-1.5 text-right">
-                    {value(r + 1, h) || <span className="text-subtle-foreground">·</span>}
+                  <td key={h} className="tabular px-2 py-1.5 text-end">
+                    {value(r + 1, h) ? (
+                      num(value(r + 1, h))
+                    ) : (
+                      <span className="text-subtle-foreground">·</span>
+                    )}
                   </td>
                 ))}
               </tr>
@@ -120,9 +137,11 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
       }
     >
       <div ref={ref} className="relative" onPointerLeave={() => setHover(null)}>
+        {/* The hour axis runs left to right in every language (tooltip maths assume it). */}
         <div
           role="grid"
-          aria-label={`Bookings by weekday and hour. ${summary}`}
+          dir="ltr"
+          aria-label={`${t('heatmap.caption')}. ${summary}`}
           onKeyDown={onKey}
           className="grid gap-[2px]"
           style={{ gridTemplateColumns: `${labelW - 2}px repeat(${hours.length}, minmax(0, 1fr))` }}
@@ -133,10 +152,10 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
               <div
                 key={h}
                 role="columnheader"
-                aria-label={hourLabel(h)}
+                aria-label={hourLabel(h, tag)}
                 className="tabular flex justify-center overflow-visible pb-1 text-[11px] whitespace-nowrap text-[var(--chart-axis)]"
               >
-                {c % labelEvery === 0 ? hourLabel(h) : ''}
+                {c % labelEvery === 0 ? hourLabel(h, tag) : ''}
               </div>
             ))}
           </div>
@@ -161,7 +180,11 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
                       cellRefs.current[r * hours.length + c] = el
                     }}
                     tabIndex={focusPos.r === r && focusPos.c === c ? 0 : -1}
-                    aria-label={`${WEEKDAYS_LONG[r]} ${slot(h)}: ${v} ${v === 1 ? 'booking' : 'bookings'}`}
+                    aria-label={t('heatmap.cell', {
+                      day: WEEKDAYS_LONG[r],
+                      slot: slot(h, tag),
+                      count: v,
+                    })}
                     onPointerEnter={() => setHover({ r, c })}
                     onFocus={() => {
                       setFocusPos({ r, c })
@@ -185,30 +208,35 @@ export function HeatmapCard({ cells }: { cells: Cell[] }) {
             x={labelW + cellW * (hover.c + 0.5)}
             y={20 + cellH * (hover.r + 0.5) + 2 * hover.r}
             containerWidth={width}
-            title={`${WEEKDAYS_LONG[hv.dow - 1]} ${slot(hv.hour)}`}
+            title={`${WEEKDAYS_LONG[hv.dow - 1]} ${slot(hv.hour, tag)}`}
             rows={[
               {
                 key: 'b',
-                label: (hvCell?.bookings ?? 0) === 1 ? 'booking' : 'bookings',
-                value: formatNumber(hvCell?.bookings ?? 0),
+                label: '',
+                value: t('heatmap.bookingsCount', { count: hvCell?.bookings ?? 0 }),
               },
               ...((hvCell?.cancelled ?? 0) > 0
-                ? [{ key: 'c', label: 'cancelled', value: formatNumber(hvCell!.cancelled) }]
+                ? [
+                    {
+                      key: 'c',
+                      label: '',
+                      value: t('heatmap.cancelledCount', { count: hvCell!.cancelled }),
+                    },
+                  ]
                 : []),
             ]}
           />
         )}
         <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground" aria-hidden>
-          <span>Fewer</span>
+          <span>{t('heatmap.fewer')}</span>
           <span
             className="h-2.5 w-28 rounded-full"
             style={{
-              background:
-                'linear-gradient(90deg, color-mix(in oklab, var(--primary) 14%, var(--surface)), var(--primary))',
+              background: `linear-gradient(${dir === 'rtl' ? 270 : 90}deg, color-mix(in oklab, var(--primary) 14%, var(--surface)), var(--primary))`,
             }}
           />
-          <span>More</span>
-          <span className="tabular ml-auto">Max {formatNumber(max)} per slot</span>
+          <span>{t('heatmap.more')}</span>
+          <span className="tabular ms-auto">{t('heatmap.max', { n: num(max) })}</span>
         </div>
       </div>
     </ChartCard>

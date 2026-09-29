@@ -1,0 +1,632 @@
+{
+  "layout": {
+    "title": "Ayarlar",
+    "description": "{name} işletmesini, ekibinizi ve kendi hesabınızı yönetin."
+  },
+  "loading": "Ayarlar yükleniyor",
+  "nav": {
+    "label": "Ayarlar",
+    "business": "İşletme",
+    "booking": "Rezervasyon",
+    "notifications": "Bildirimler",
+    "team": "Ekip",
+    "account": "Hesap",
+    "privacy": "Gizlilik ve veriler",
+    "activity": "Etkinlik"
+  },
+  "common": {
+    "cancel": "İptal",
+    "listSeparator": ", "
+  },
+  "form": {
+    "saved": "Kaydedildi",
+    "offline": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin."
+  },
+  "saveBar": {
+    "unsaved": "Kaydedilmemiş değişiklikler",
+    "saved": "Tüm değişiklikler kaydedildi",
+    "discard": "Vazgeç",
+    "save": "Değişiklikleri kaydet"
+  },
+  "duration": {
+    "zeroMinutes": "0 dakika",
+    "minutes": "{count, plural, one {# dakika} other {# dakika}}",
+    "hours": "{count, plural, one {# saat} other {# saat}}",
+    "hoursMinutes": "{h} sa {m} dk",
+    "days": "{count, plural, one {# gün} other {# gün}}",
+    "weeks": "{count, plural, one {# hafta} other {# hafta}}",
+    "months": "{count, plural, one {# ay} other {# ay}}",
+    "years": "{count, plural, one {# yıl} other {# yıl}}",
+    "current": "{label} (geçerli)",
+    "noMinimum": "Alt sınır yok",
+    "everyHour": "Saat başı",
+    "everyMinutes": "{count, plural, one {# dakikada bir} other {# dakikada bir}}",
+    "upToStart": "Başlangıç saatine kadar",
+    "before": "{duration} önce",
+    "ahead": "{duration} öncesinden"
+  },
+  "business": {
+    "metaTitle": "İşletme ayarları",
+    "title": "İşletme profili",
+    "description": "Müşterilerin rezervasyon sayfanızda ve e-postalarında gördüğü temel bilgiler.",
+    "basics": {
+      "title": "Temel bilgiler",
+      "description": "İşletmenizin rezervasyon sayfanızda ve müşterilere giden e-postalarda nasıl göründüğü.",
+      "name": "İşletme adı",
+      "category": "Kategori",
+      "categoryHint": "İpuçlarını ve varsayılan ayarları işletme türünüze göre uyarlamamıza yardımcı olur.",
+      "categoryPlaceholder": "Bir kategori seçin…",
+      "about": "İşletmeniz hakkında",
+      "aboutHint": "Rezervasyon sayfanızın en üstünde gösterilir. {count}/{max}",
+      "aboutPlaceholder": "Ne yaptığınızı ve müşterilerin neler bekleyebileceğini anlatan samimi bir iki cümle."
+    },
+    "categories": {
+      "hairBeauty": "Kuaför ve güzellik",
+      "barbershop": "Berber",
+      "nails": "Tırnak bakımı",
+      "spaMassage": "Spa ve masaj",
+      "healthTherapy": "Sağlık ve terapi",
+      "fitnessCoaching": "Fitness ve koçluk",
+      "medicalDental": "Tıp ve diş",
+      "consulting": "Danışmanlık",
+      "educationTutoring": "Eğitim ve özel ders",
+      "photography": "Fotoğrafçılık",
+      "petServices": "Evcil hayvan hizmetleri",
+      "automotive": "Otomotiv",
+      "homeServices": "Ev hizmetleri",
+      "other": "Diğer"
+    },
+    "time": {
+      "title": "Saat ve para birimi",
+      "description": "Saat diliminiz, çalışma saatlerinin ve randevu saatlerinin nasıl yorumlanacağını belirler. Para birimi hizmet fiyatlarında kullanılır.",
+      "timezone": "Saat dilimi",
+      "timezoneHint": "İpucu: Liste seçiliyken bir şehir adı yazarak doğrudan ona gidebilirsiniz.",
+      "deviceTz": "Bu cihaz <b>{tz}</b> saat dilimine ayarlı",
+      "useDeviceTz": "Bunu kullan",
+      "tzChangedTitle": "Saat dilimini değiştirmek çalışma saatlerinin yorumlanışını değiştirir",
+      "tzChangedBody": "9.00–17.00 gibi çalışma saatleri <b>{tz}</b> saat diliminde 9.00–17.00 anlamına gelir. Mevcut randevular zamandaki tam anlarını korur; bu yüzden saatte farklı görünebilirler.",
+      "currency": "Para birimi",
+      "currencyHint": "Para birimini değiştirmek mevcut fiyatları dönüştürmez.",
+      "regions": {
+        "Africa": "Afrika",
+        "America": "Amerika",
+        "Antarctica": "Antarktika",
+        "Arctic": "Arktik",
+        "Asia": "Asya",
+        "Atlantic": "Atlantik",
+        "Australia": "Avustralya",
+        "Europe": "Avrupa",
+        "Indian": "Hint Okyanusu",
+        "Pacific": "Pasifik",
+        "Other": "Diğer"
+      }
+    },
+    "language": {
+      "title": "Rezervasyon sayfası dili",
+      "description": "Müşterilerin rezervasyon sayfanızda, rezervasyon widget’ında ve rezervasyon onaylarında ilk gördüğü dil.",
+      "label": "Varsayılan dil",
+      "hint": "Müşteriler yine de kendileri başka bir dile geçebilir."
+    },
+    "contact": {
+      "title": "İletişim bilgileri",
+      "description": "Rezervasyon sayfanızda ve onay e-postalarında gösterilir. Müşterilerin Hournook e-postalarına verdiği yanıtlar bu adrese gelir.",
+      "email": "E-posta",
+      "emailPlaceholder": "merhaba@isletmeniz.com",
+      "phone": "Telefon",
+      "website": "Web sitesi",
+      "websitePlaceholder": "isletmeniz.com"
+    },
+    "address": {
+      "title": "Adres",
+      "description": "Müşterilerin randevu için geldiği yer. Uzaktan çalışıyor veya müşterilerinize gidiyorsanız boş bırakın.",
+      "line1": "Sokak adresi",
+      "line2": "Daire, kat, ofis",
+      "postalCode": "Posta kodu",
+      "city": "Şehir",
+      "country": "Ülke",
+      "countryPlaceholder": "Bir ülke seçin…"
+    }
+  },
+  "account": {
+    "metaTitle": "Hesabınız",
+    "title": "Hesabınız",
+    "intro": "{email} için kişisel ayarlar. {business} işletmesinde {role, select, owner {işletme sahibisiniz} manager {yönetici olarak çalışıyorsunuz} other {ekip üyesisiniz}}.",
+    "introMany": "{email} için kişisel ayarlar. {business} işletmesinde {role, select, owner {işletme sahibisiniz} manager {yönetici olarak çalışıyorsunuz} other {ekip üyesisiniz}} ve toplam {count} işletmeye üyesiniz.",
+    "profile": {
+      "title": "Profiliniz",
+      "description": "Ekibinizin sizi nasıl gördüğü. Müşteriler hesap bilgilerinizi asla görmez.",
+      "name": "Adınız",
+      "nameRequired": "Adınızı girin.",
+      "email": "E-posta",
+      "verified": "Doğrulandı",
+      "notVerified": "Doğrulanmadı",
+      "emailHint": "Giriş yapmak için kullanılır. Değiştirmek için destekle iletişime geçin.",
+      "save": "Kaydet"
+    },
+    "language": {
+      "title": "Dil",
+      "description": "Panelinizin ve ayarlarınızın dili.",
+      "label": "Dil",
+      "emailNote": "Size gönderdiğimiz e-postalar (yeni rezervasyonlar, ekip ve faturalandırma bildirimleri) da bu dilde olur.",
+      "switching": "Dil değiştiriliyor…",
+      "invalid": "Desteklenen dillerden birini seçin."
+    },
+    "password": {
+      "title": "Şifre",
+      "description": "Şifrenizi değiştirdiğinizde diğer tüm cihazlarda oturumunuz kapatılır.",
+      "current": "Mevcut şifre",
+      "new": "Yeni şifre",
+      "newHint": "En az {min} karakter. Kısa bir cümle iyi bir seçimdir.",
+      "repeat": "Yeni şifreyi tekrarlayın",
+      "mismatch": "Şifreler eşleşmiyor.",
+      "submit": "Şifreyi değiştir",
+      "show": "Şifreyi göster",
+      "hide": "Şifreyi gizle"
+    },
+    "leave": {
+      "title": "{business} işletmesinden ayrıl",
+      "description": "Bu işletmeye erişiminizi kaybedersiniz. Randevularınız ve profiliniz işletmede kalır.",
+      "button": "İşletmeden ayrıl",
+      "confirmTitle": "{business} işletmesinden ayrılsın mı?",
+      "confirmBody": "Artık bu işletmeye giriş yapamazsınız. Bir işletme sahibi veya yönetici sizi daha sonra tekrar davet edebilir."
+    },
+    "delete": {
+      "title": "Hesabınızı silin",
+      "description": "Giriş bilgilerinizi ve kişisel verilerinizi kalıcı olarak kaldırır. Bu işlem geri alınamaz.",
+      "ownerTitle": "Hâlâ bir işletmenin sahibisiniz",
+      "ownerBody": "Müşteriler ve rezervasyonlar sahipsiz kalmasın diye, işletme sahipleri hesaplarını silmeden önce işletmelerini silmeli veya Ayarlar → Ekip bölümünden başka birini sahip yapmalıdır. Sahibi olduğunuz işletme: <b>{businesses}</b>. Önce <link>Gizlilik ve veriler</link> bölümünden silin.",
+      "body": "Üyesi olduğunuz tüm işletmelerden çıkarılırsınız. İlgilendiğiniz randevular bu işletmelerde kalır.",
+      "button": "Hesabı sil…",
+      "dialogTitle": "Hesabınız silinsin mi?",
+      "dialogDescription": "Onaylamak için şifrenizi girin. Bu işlem geri alınamaz.",
+      "password": "Şifre",
+      "passwordRequired": "Şifrenizi girin.",
+      "submit": "Hesabımı sil"
+    }
+  },
+  "booking": {
+    "metaTitle": "Rezervasyon ayarları",
+    "title": "Rezervasyon kuralları",
+    "description": "Müşterilerin ne zaman ve nasıl rezervasyon yapabileceğine, değiştirebileceğine ve iptal edebileceğine karar verin. Bu kurallar tüm rezervasyon sayfanız için geçerlidir.",
+    "summary": {
+      "text": "Müşteriler {notice} ve en fazla {days} öncesinden rezervasyon yapabilir. Başlangıç saatleri {interval} sunulur.",
+      "lastMinute": "son dakikaya kadar",
+      "notice": "en az {duration} önceden",
+      "onTheHour": "saat başlarında",
+      "everyMinutes": "{count, plural, one {# dakikada bir} other {# dakikada bir}}"
+    },
+    "window": {
+      "title": "Müşteriler ne zaman rezervasyon yapabilir",
+      "description": "Zamanınızı koruyun: son dakika sürprizlerini önleyin ve takviminizin ne kadar ileriye açık olacağına karar verin.",
+      "minNotice": "En kısa süre",
+      "minNoticeHint": "Bir randevudan ne kadar önceye kadar hâlâ online rezervasyon yapılabileceği.",
+      "maxAdvance": "En uzak rezervasyon",
+      "maxAdvanceHint": "Müşterilerin boş saatleri ne kadar ileriye kadar görebileceği.",
+      "startTimes": "Başlangıç saatleri",
+      "startTimesHint": "15 dakikada bir seçildiğinde müşteriler 9.00, 9.15, 9.30… görür. Daha uzun aralıklar gününüzü daha düzenli tutar.",
+      "limit": "Günlük online rezervasyonları sınırla",
+      "limitDescription": "Sınıra ulaşıldığında o gün dolu görünür. Siz yine de randevu ekleyebilirsiniz.",
+      "maxPerDay": "Günlük en fazla"
+    },
+    "confirm": {
+      "title": "Onay",
+      "description": "Yeni rezervasyonların hemen kesinleşip kesinleşmeyeceğini seçin.",
+      "review": "Her rezervasyonu onaylamadan önce incele",
+      "reviewOn": "Yeni online rezervasyonlar talep olarak gelir. Saat ayrılır ve siz kabul ettiğinizde müşteriye onay e-postası gider.",
+      "reviewOff": "Rezervasyonlar anında onaylanır ve müşteri onay e-postasını hemen alır."
+    },
+    "changes": {
+      "title": "İptal ve yeniden planlama",
+      "description": "Her onay e-postasında müşterilerin rezervasyonunu yönetebileceği bir bağlantı bulunur. Neleri kendilerinin yapabileceğine karar verin.",
+      "cancel": "Müşteriler online iptal edebilir",
+      "cancelOn": "Boşalan saatler otomatik olarak yeniden rezerve edilebilir hâle gelir.",
+      "cancelOff": "Müşterilerin iptal için sizinle iletişime geçmesi gerekir.",
+      "cancelDeadline": "İptal için son süre",
+      "cancelDeadlineHint": "Bu süreden sonra iptal düğmesi kaybolur ve müşteriden sizinle iletişime geçmesi istenir.",
+      "reschedule": "Müşteriler online yeniden planlayabilir",
+      "rescheduleOn": "Yeni bir boş saat seçerler; eskisi serbest kalır.",
+      "rescheduleOff": "Müşterilerin rezervasyonu taşımak için sizinle iletişime geçmesi gerekir.",
+      "rescheduleDeadline": "Yeniden planlama için son süre",
+      "rescheduleDeadlineHint": "Müşterilerin randevuyu en geç ne zamana kadar taşıyabileceği."
+    },
+    "reminders": {
+      "title": "Hatırlatma e-postaları",
+      "description": "Otomatik hatırlatmalar gelmeyenleri azaltır. En fazla {max} tane seçin. E-posta adresi olmayan müşterilere gönderilmez.",
+      "legend": "Hatırlatma gönder",
+      "none": "Hatırlatma gönderilmeyecek.",
+      "selected": "{max} seçenekten {count} tanesi seçili: {list}. Değişiklikler gelecekteki rezervasyonlar için geçerlidir."
+    },
+    "form": {
+      "title": "Rezervasyon formu",
+      "description": "Müşterilere rezervasyon yaparken neler sorulacağı.",
+      "staff": "Ekip üyesi seçimi",
+      "staffModes": {
+        "optional": {
+          "title": "Müşteri seçebilir",
+          "body": "Müşteriler bir ekip üyesi ya da “Uygun olan herhangi biri” seçeneğini seçebilir."
+        },
+        "required": {
+          "title": "Müşteri seçmek zorunda",
+          "body": "Müşteriler her zaman belirli bir ekip üyesi seçer."
+        },
+        "hidden": {
+          "title": "Sorma",
+          "body": "Müsait olanı biz atarız. Müşteriler seçim görmez."
+        }
+      },
+      "phone": "Telefon numarası",
+      "phoneModes": {
+        "required": {
+          "title": "Zorunlu",
+          "body": "Müşterileri arıyor veya onlara mesaj atıyorsanız en iyisi budur."
+        },
+        "optional": {
+          "title": "İsteğe bağlı",
+          "body": "Müşteriler boş bırakabilir."
+        },
+        "hidden": {
+          "title": "Sorma",
+          "body": "Alan hiç gösterilmez."
+        }
+      },
+      "alwaysAsked": "Onay gönderebilmemiz için ad ve e-posta her zaman sorulur."
+    }
+  },
+  "notifications": {
+    "metaTitle": "Bildirimler",
+    "mine": {
+      "title": "Bildirimleriniz",
+      "description": "Size neler hakkında bilgi verileceğini seçin. Bu yalnızca sizi etkiler; her ekip üyesi kendi ayarını yapar.",
+      "remindersByManager": "Müşterilere giden hatırlatma e-postaları, Rezervasyon ayarları bölümünde bir işletme sahibi veya yönetici tarafından ayarlanır.",
+      "verifyEmail": "Bildirim e-postaları almak için e-posta adresinizi doğrulayın. O zamana kadar bildirimler yalnızca gelen kutunuzda görünür."
+    },
+    "customers": {
+      "title": "Müşteri e-postaları",
+      "description": "Müşterilere giden otomatik e-postalarınızın görünümü.",
+      "remindersLink": "Randevu hatırlatmalarını mı arıyorsunuz? <link>Rezervasyon kuralları</link> bölümünde ayarlanır."
+    },
+    "email": {
+      "title": "Müşterilerinize giden e-postalar",
+      "description": "Onaylar, hatırlatmalar ve değişiklik bildirimleri her rezervasyon için otomatik olarak gönderilir.",
+      "senderName": "Gönderen adı",
+      "senderNameHint": "Müşterilerin gelen kutusunda gördüğü ad. “{business}” kullanılması için boş bırakın.",
+      "footer": "E-posta alt bilgisi",
+      "footerHint": "Her e-postanın altında kısa bir not; örneğin otopark bilgisi veya iptal politikanız. {count}/{max}",
+      "footerPlaceholder": "Binanın arkasında ücretsiz otopark var. Lütfen 5 dakika erken gelin.",
+      "preview": "Önizleme",
+      "inboxPreview": "Gelen kutusu önizlemesi",
+      "repliesTo": "Yanıtlar {email} adresine gider",
+      "repliesToNobody": "Yanıtlar henüz kimseye gitmiyor",
+      "sampleSubject": "Randevunuz onaylandı",
+      "defaultFooter": "Bu e-postayı randevu aldığınız için aldınız.",
+      "sentBy": "{business} adına Hournook tarafından gönderildi.",
+      "whyTitle": "E-postalar neden Hournook adresinden gelir",
+      "whyBody": "E-postalarınızın spam klasörüne düşmemesi için, gönderen olarak işletmenizin adıyla Hournook’un doğrulanmış adresinden gönderilir. Asla kendi alan adınızdan gönderiyormuş gibi yapmayız. Müşteriler yanıtla dediğinde mesajları doğrudan <b>{email}</b> adresine gider.",
+      "whyBodyNoEmail": "E-postalarınızın spam klasörüne düşmemesi için, gönderen olarak işletmenizin adıyla Hournook’un doğrulanmış adresinden gönderilir. Asla kendi alan adınızdan gönderiyormuş gibi yapmayız. Müşteriler yanıtla dediğinde mesajları doğrudan işletme e-postanıza gider. Yanıtların size ulaşması için <link>bir iletişim e-postası ekleyin</link>.",
+      "save": "E-posta ayarlarını kaydet"
+    },
+    "prefs": {
+      "title": "Bana bildir",
+      "descriptionOwn": "Yalnızca kendi randevularınız hakkında. Değişiklikler otomatik kaydedilir.",
+      "descriptionAll": "Size e-postayla gönderilir ve gelen kutunuzda (zil simgesi) gösterilir. Değişiklikler otomatik kaydedilir.",
+      "created": "Yeni rezervasyonlar",
+      "createdOwn": "Bir müşteri sizden randevu aldığında.",
+      "createdAll": "Bir müşteri online rezervasyon yaptığında veya bir ekip arkadaşı randevu eklediğinde.",
+      "rescheduled": "Yeniden planlanan rezervasyonlar",
+      "rescheduledOwn": "Randevularınızdan biri başka bir saate taşındığında.",
+      "rescheduledAll": "Bir randevu başka bir saate taşındığında.",
+      "cancelled": "İptaller",
+      "cancelledOwn": "Randevularınızdan biri iptal edildiğinde.",
+      "cancelledAll": "Bir müşteri veya ekip arkadaşı bir randevuyu iptal ettiğinde.",
+      "team": "Ekip değişiklikleri",
+      "teamDescription": "Biri daveti kabul edip ekibinize katıldığında.",
+      "billing": "Faturalandırma",
+      "billingDescription": "Ödeme sorunları ve abonelik değişiklikleri. Açık bırakmanızı öneririz.",
+      "on": "Bildirimler açıldı",
+      "off": "Bildirimler kapatıldı",
+      "saveFailed": "Bu değişiklik kaydedilemedi. Bağlantınızı kontrol edip tekrar deneyin."
+    }
+  },
+  "team": {
+    "metaTitle": "Ekip ve erişim",
+    "title": "Ekip ve erişim",
+    "description": "İş arkadaşlarınızı kendi girişleriyle oturum açmaları için davet edin. Yalnızca rezervasyon alan (girişi olmayan) birini eklemek için kenar çubuğundaki <link>Ekip</link> bölümünü kullanın.",
+    "roles": {
+      "owner": "İşletme sahibi",
+      "manager": "Yönetici",
+      "staff": "Ekip üyesi"
+    },
+    "roleDescriptions": {
+      "owner": "Faturalandırma, tüm verileri dışa aktarma ve işletmeyi silme dahil her şey.",
+      "manager": "Faturalandırma, işletmeyi silme, tüm verileri dışa aktarma ve müşteri silme dışında her şey.",
+      "staff": "Yalnızca kendi randevuları, hizmet verdiği müşteriler ve kendi müsaitliği."
+    },
+    "explainer": {
+      "title": "Her rol neler yapabilir",
+      "description": "Kişinin ihtiyaç duyduğu en dar rolü seçin. Daha sonra değiştirebilirsiniz."
+    },
+    "invite": {
+      "button": "Birini davet et",
+      "title": "Ekibinize davet edin",
+      "description": "Katılmak için bağlantı içeren bir e-posta alır. Ek ücret yok: planınız tüm ekibi kapsar.",
+      "email": "E-posta adresi",
+      "emailPlaceholder": "ad@ornek.com",
+      "role": "Rol",
+      "link": "Mevcut bir profile bağla",
+      "linkHint": "Bu kişinin ekibinizde zaten bir profili varsa (rezervasyonları ve çalışma saatleriyle), kendi programını görmesi için bağlayın. Aksi hâlde katıldığında yeni bir profil oluşturulur.",
+      "newProfile": "Yeni profil oluştur",
+      "submit": "Davet gönder",
+      "sent": "Davet {email} adresine gönderildi",
+      "sentDescription": "Bağlantı 7 gün geçerlidir.",
+      "created": "{email} için davet oluşturuldu",
+      "createdDescription": "E-posta şu anda gönderilemedi. Daveti geri alıp daha sonra tekrar davet edin."
+    },
+    "members": {
+      "title": "Üyeler · {count}",
+      "description": "Bu işletmeye giriş yapabilen kişiler.",
+      "you": "Siz",
+      "profile": "Profil: {name}",
+      "joined": "Katılma: {date}",
+      "actions": "{name} için işlemler",
+      "changeRole": "Rolü değiştir",
+      "current": "Geçerli",
+      "makeOwner": "İşletme sahibi yap…",
+      "remove": "Ekipten çıkar"
+    },
+    "invites": {
+      "title": "Bekleyen davetler",
+      "description": "Davetlerin süresi 7 gün sonra dolar. Yeni bir bağlantı göndermek için aynı adresi tekrar davet edin.",
+      "emptyTitle": "Bekleyen davet yok",
+      "emptyDescription": "Programını görebilmesi ve kendi randevularını yönetebilmesi için bir iş arkadaşınızı davet edin.",
+      "expires": "Son geçerlilik {when} · gönderilme {sent}",
+      "expired": "Süresi doldu {when} · gönderilme {sent}",
+      "revoke": "Geri al",
+      "revokeLabel": "{email} davetini geri al"
+    },
+    "transfer": {
+      "title": "{name} işletme sahibi yapılsın mı?",
+      "titleGeneric": "Sahiplik devredilsin mi?",
+      "description": "Faturalandırma ve işletmeyi silme dahil tam kontrol sahibi olur. Siz ekipte yönetici olarak kalırsınız. Bunu yalnızca yeni işletme sahibi geri alabilir.",
+      "confirm": "Sahipliği devret"
+    },
+    "remove": {
+      "title": "{name} çıkarılsın mı?",
+      "titleGeneric": "Üye çıkarılsın mı?",
+      "description": "Bu işletmeye erişimini hemen kaybeder. Profili, geçmiş randevuları ve yaklaşan rezervasyonları takviminizde kalır; bunları daha sonra başkasına atayabilir veya iptal edebilirsiniz."
+    },
+    "toasts": {
+      "roleChanged": "{name} artık {role, select, manager {yönetici rolünde} owner {işletme sahibi} other {ekip üyesi}}",
+      "revoked": "{email} daveti geri alındı",
+      "nowOwner": "{name} artık işletme sahibi",
+      "removed": "{name} ekibinizden çıkarıldı"
+    },
+    "errors": {
+      "staffHasAccount": "Bu ekip üyesinin zaten bir hesabı var.",
+      "alreadyOnTeam": "Bu kişi zaten ekibinizde.",
+      "profileLinked": "Bu ekip profili zaten başka bir hesaba bağlı. Yeni bir davet isteyin.",
+      "alreadyMember": "Bu işletmenin zaten üyesisiniz."
+    }
+  },
+  "privacy": {
+    "metaTitle": "Gizlilik ve veriler",
+    "title": "Gizlilik ve veriler",
+    "description": "Verileriniz size aittir. İstediğiniz zaman indirin, neleri sakladığımızı görün ve müşteri taleplerini yönetin.",
+    "download": {
+      "title": "Verilerinizi indirin",
+      "description": "Dışa aktarımlar anında oluşturulur ve etkinlik kaydınıza işlenir. Müşteri bilgisi içeren dosyaları dikkatle saklayın.",
+      "button": "İndir",
+      "ownerOnly": "Tam dışa aktarımı yalnızca işletme sahibi indirebilir."
+    },
+    "exports": {
+      "all": {
+        "title": "Her şey (JSON)",
+        "description": "Hesabınızın tamamı: profil, hizmetler, ekip, çalışma saatleri, rezervasyon kuralları, müşteriler, randevular ve etkinlik kaydı. Makine tarafından okunabilir; yedekleme veya başka bir araca geçiş için."
+      },
+      "customers": {
+        "title": "Müşteriler (CSV)",
+        "description": "İletişim bilgileri ve ziyaret geçmişiyle tüm müşteriler. Excel, Numbers veya Google E-Tablolar’da açılır."
+      },
+      "appointments": {
+        "title": "Randevular (CSV)",
+        "description": "Son 12 ay ve önümüzdeki 12 aydaki tüm randevular."
+      },
+      "services": {
+        "title": "Hizmetler (CSV)",
+        "description": "Süreleri ve fiyatlarıyla hizmet listeniz."
+      }
+    },
+    "stored": {
+      "title": "Neleri ve ne kadar süre saklıyoruz",
+      "description": "Hournook bu verileri rezervasyonlarınızı yürütmek için sizin adınıza işler. Asla satmayız veya reklam için kullanmayız.",
+      "business": {
+        "what": "İşletme bilgileri",
+        "detail": "Profiliniz, hizmetleriniz, fiyatlarınız, çalışma saatleriniz, ekip profilleriniz ve rezervasyon kurallarınız.",
+        "keep": "Siz değiştirene veya silene kadar."
+      },
+      "customers": {
+        "what": "Müşteriler",
+        "detail": "Ad, e-posta, telefon, dahili notlarınız ve randevu geçmişleri.",
+        "keep": "Müşteriyi veya işletmeyi silene kadar."
+      },
+      "appointments": {
+        "what": "Randevular",
+        "detail": "Tarih, saat, hizmet, ekip üyesi, durum ve müşteriden gelen mesajlar.",
+        "keep": "İşletmeyi silene kadar. Silinen müşterilerin randevuları anonim kayıt olarak kalır."
+      },
+      "emails": {
+        "what": "E-postalar",
+        "detail": "Gönderdiğimiz onay ve hatırlatmaların teslim kaydı.",
+        "keep": "E-posta içerikleri 180 gün sonra silinir; teslim durumu kalır."
+      },
+      "visits": {
+        "what": "Rezervasyon sayfası ziyaretleri",
+        "detail": "İstatistikleriniz için anonim sayfa görüntülemeleri ve rezervasyon adımları. Çerez yok, kişisel veri yok.",
+        "keep": "400 gün sonra silinir."
+      },
+      "activity": {
+        "what": "Etkinlik kaydı",
+        "detail": "Hesabınızda kimin neyi değiştirdiği; saat ve IP adresiyle birlikte.",
+        "keep": "İşletmeyi silene kadar."
+      },
+      "sessions": {
+        "what": "Oturumlar",
+        "detail": "Sizin ve ekibinizin oturum açtığı cihazlar.",
+        "keep": "30 gün sonra veya oturumu kapattığınızda hemen sona erer."
+      },
+      "stripe": "Aboneliğinizin kartla ödemeleri Stripe tarafından işlenir. Kart numaralarını asla görmez veya saklamayız. <link>Gizlilik politikasının</link> tamamını okuyun."
+    },
+    "requests": {
+      "title": "Müşteri talepleri",
+      "description": "Bir müşteri verilerinin bir kopyasını veya unutulmayı istediğinde.",
+      "access": "Erişim talepleri",
+      "accessBody": "Müşteri hakkında saklanan her şeyi (bilgiler, notlar ve tüm randevular) görmek için müşterinin sayfasını açın ve bunları kendisiyle paylaşın.",
+      "erasure": "Silme talepleri",
+      "erasureBody": "Müşterinin sayfasında <b>Müşteri verilerini sil</b> seçeneğini seçin. Adı, e-postası, telefonu, notları ve mesajları kalıcı olarak silinir, bekleyen hatırlatmalar iptal edilir. İstatistiklerinizin tutması için randevular anonim kayıt olarak kalır.",
+      "ownerOnly": "Müşterileri yalnızca işletme sahibi silebilir.",
+      "goToCustomers": "Müşterilere git"
+    },
+    "danger": {
+      "title": "Tehlikeli bölge",
+      "deleteTitle": "Bu işletmeyi sil",
+      "deleteBody": "{business} işletmesini, rezervasyon sayfasını ve tüm müşteri ve randevu verilerini kalıcı olarak siler. Ekip üyeleri erişimini kaybeder. Bu işlem geri alınamaz.",
+      "deleteBodySubscribed": "{business} işletmesini, rezervasyon sayfasını ve tüm müşteri ve randevu verilerini kalıcı olarak siler. Aboneliğiniz hemen iptal edilir. Ekip üyeleri erişimini kaybeder. Bu işlem geri alınamaz.",
+      "button": "İşletmeyi sil…",
+      "confirmTitle": "{business} silinsin mi?",
+      "confirmBody": "Rezervasyon sayfanız, hizmetleriniz, ekip profilleriniz, müşterileriniz, randevularınız ve yüklenen görseller kalıcı olarak silinir. Yaklaşan randevusu olan müşterilere otomatik bildirim gönderilmez.",
+      "confirmSubscription": "Hournook aboneliğiniz hemen iptal edilir; bir daha ücret alınmaz.",
+      "confirmFinal": "Bu işlem geri alınamaz. Verilere ihtiyacınız olabilecekse önce bir dışa aktarım indirin.",
+      "confirm": "Kalıcı olarak sil"
+    }
+  },
+  "activity": {
+    "metaTitle": "Etkinlik",
+    "title": "Etkinlik",
+    "description": "{business} işletmesindeki önemli değişikliklerin kaydı: kim, neyi, ne zaman yaptı. Saatler {tz} saat dilimindedir.",
+    "empty": "Henüz etkinlik yok",
+    "emptyDescription": "İşletmeniz, rezervasyonlarınız ve ekibinizdeki değişiklikler burada listelenir.",
+    "emptyMore": "Başka etkinlik yok",
+    "emptyMoreDescription": "Geçmişinizin başına ulaştınız.",
+    "backToLatest": "En yeniye dön",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "by": "yapan: <actor>{actor}</actor>",
+    "pagination": "Sayfalama",
+    "newer": "Daha yeni",
+    "older": "Daha eski",
+    "page": "Sayfa {page}",
+    "actors": {
+      "formerMember": "Eski bir ekip üyesi",
+      "customer": "Müşteri",
+      "support": "Hournook destek",
+      "system": "Sistem"
+    },
+    "detail": {
+      "asRole": "{role, select, owner {işletme sahibi olarak} manager {yönetici olarak} other {ekip üyesi olarak}}",
+      "rows": "{count, plural, one {# satır} other {# satır}}",
+      "statusNow": "şimdi {status}",
+      "attempt": "{n}. deneme"
+    },
+    "subscriptionStatus": {
+      "trialing": "deneme sürümünde",
+      "active": "etkin",
+      "pastDue": "ödemesi gecikmiş",
+      "unpaid": "ödenmemiş",
+      "canceled": "iptal edildi",
+      "incomplete": "tamamlanmamış",
+      "incompleteExpired": "tamamlanmadan sona erdi",
+      "paused": "duraklatıldı"
+    },
+    "events": {
+      "business": {
+        "created": "İşletme oluşturuldu",
+        "profileUpdated": "İşletme profili güncellendi",
+        "brandingUpdated": "Marka görünümü güncellendi",
+        "seoUpdated": "SEO ayarları güncellendi",
+        "slugChanged": "Rezervasyon bağlantısı değişti",
+        "published": "Rezervasyon sayfası yayınlandı",
+        "paused": "Online rezervasyon duraklatıldı",
+        "unpublished": "Rezervasyon sayfası yayından kaldırıldı",
+        "logoUploaded": "Logo yüklendi",
+        "coverUploaded": "Kapak görseli yüklendi",
+        "logoRemoved": "Logo kaldırıldı",
+        "coverRemoved": "Kapak görseli kaldırıldı",
+        "suspended": "Hesap Hournook tarafından askıya alındı",
+        "reactivated": "Hesap yeniden etkinleştirildi",
+        "exported": "Veri dışa aktarımı indirildi"
+      },
+      "service": {
+        "created": "Hizmet eklendi",
+        "updated": "Hizmet düzenlendi",
+        "deleted": "Hizmet kaldırıldı"
+      },
+      "staff": {
+        "created": "Ekip üyesi eklendi",
+        "updated": "Ekip üyesi düzenlendi",
+        "deleted": "Ekip üyesi kaldırıldı",
+        "avatarUploaded": "Ekip üyesinin fotoğrafı güncellendi"
+      },
+      "appointment": {
+        "created": "Randevu alındı",
+        "cancelled": "Randevu iptal edildi",
+        "rescheduled": "Randevu yeniden planlandı",
+        "confirmed": "Randevu onaylandı",
+        "completed": "Randevu tamamlandı",
+        "noShow": "Gelmedi olarak işaretlendi",
+        "reopened": "Randevu yeniden açıldı",
+        "notesUpdated": "Randevu notları düzenlendi",
+        "edited": "Düzenlendi"
+      },
+      "availability": {
+        "weeklyHoursUpdated": "Çalışma saatleri değişti",
+        "staffUsesBusinessHours": "Ekip üyesi artık işletme saatlerini izliyor",
+        "closureAdded": "Kapalı gün eklendi",
+        "closureRemoved": "Kapalı gün kaldırıldı",
+        "specialHoursSet": "Özel çalışma saatleri ayarlandı",
+        "timeBlocked": "Zaman engellendi"
+      },
+      "settings": {
+        "bookingRulesUpdated": "Rezervasyon ayarları değişti",
+        "notificationsUpdated": "Bildirim ayarları değişti"
+      },
+      "customer": {
+        "created": "Müşteri eklendi",
+        "updated": "Müşteri düzenlendi",
+        "erased": "Müşteri verileri silindi"
+      },
+      "team": {
+        "memberInvited": "Ekip üyesi davet edildi",
+        "invitationRevoked": "Davet geri alındı",
+        "memberJoined": "Ekip üyesi katıldı",
+        "roleChanged": "Ekip rolü değişti",
+        "memberRemoved": "Ekip üyesi çıkarıldı",
+        "memberLeft": "Ekip üyesi ayrıldı",
+        "ownershipTransferred": "Sahiplik devredildi"
+      },
+      "billing": {
+        "checkoutStarted": "Ödeme başlatıldı",
+        "checkoutCompleted": "Abonelik ödemesi tamamlandı",
+        "subscriptionStatusChanged": "Abonelik durumu değişti",
+        "invoicePaid": "Fatura ödendi",
+        "paymentFailed": "Ödeme başarısız oldu"
+      },
+      "export": {
+        "appointments": "Randevular dışa aktarıldı",
+        "customers": "Müşteriler dışa aktarıldı",
+        "services": "Hizmetler dışa aktarıldı"
+      }
+    }
+  },
+  "actions": {
+    "profileSaved": "İşletme profili kaydedildi",
+    "bookingRulesSaved": "Rezervasyon ayarları kaydedildi",
+    "emailSettingsSaved": "E-posta ayarları kaydedildi",
+    "prefsSaved": "Tercihler kaydedildi",
+    "invitationRevoked": "Davet geri alındı",
+    "roleUpdated": "Rol güncellendi",
+    "memberRemoved": "Ekibinizden çıkarıldı",
+    "ownershipTransferred": "Sahiplik devredildi",
+    "nameUpdated": "Ad güncellendi",
+    "languageSaved": "Dil kaydedildi",
+    "passwordChanged": "Şifre değiştirildi. Diğer cihazlarda oturum kapatıldı."
+  }
+}

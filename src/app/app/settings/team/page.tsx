@@ -4,7 +4,9 @@ import { requireTenantPage } from '@/server/tenancy/context'
 import { listTeam } from '@/server/business/team'
 import { listStaff } from '@/server/business/catalog'
 import { assignableRoles } from '@/server/tenancy/permissions'
+import { getFormatLocale, getT } from '@/server/i18n'
 import { formatDateShort, formatRelative } from '@/lib/format'
+import { rich } from '@/components/i18n/rich'
 import {
   RolesExplainer,
   TeamManager,
@@ -13,10 +15,14 @@ import {
 } from '@/components/settings/team-manager'
 import { SettingsIntro } from '@/components/settings/section'
 
-export const metadata: Metadata = { title: 'Team & access' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-settings')
+  return { title: t('team.metaTitle') }
+}
 
 function describeInvites(
   invites: Awaited<ReturnType<typeof listTeam>>['invites'],
+  tag: string,
   now = new Date(),
 ): PendingInvite[] {
   return invites.map((i) => ({
@@ -24,14 +30,19 @@ function describeInvites(
     email: i.email,
     role: i.role,
     expired: i.expiresAt.getTime() < now.getTime(),
-    expiresLabel: formatRelative(i.expiresAt, now),
-    sentLabel: formatRelative(i.createdAt, now),
+    expiresLabel: formatRelative(i.expiresAt, now, tag),
+    sentLabel: formatRelative(i.createdAt, now, tag),
   }))
 }
 
 export default async function TeamSettingsPage() {
   const ctx = await requireTenantPage('team.manage')
-  const [{ members, invites }, staff] = await Promise.all([listTeam(ctx), listStaff(ctx)])
+  const [{ members, invites }, staff, t, tag] = await Promise.all([
+    listTeam(ctx),
+    listStaff(ctx),
+    getT('app-settings'),
+    getFormatLocale(),
+  ])
   const tz = ctx.business.timezone
   const rows: TeamMember[] = members.map((m) => ({
     id: m.id,
@@ -40,26 +51,23 @@ export default async function TeamSettingsPage() {
     name: m.name,
     email: m.email,
     staffName: m.staffName,
-    joined: formatDateShort(m.createdAt, tz),
+    joined: formatDateShort(m.createdAt, tz, tag),
   }))
   return (
     <div className="grid grid-cols-1 gap-6">
       <SettingsIntro
-        title="Team & access"
-        description={
-          <>
-            Invite colleagues to sign in with their own login. To add someone who just takes
-            bookings (without a login), add them under{' '}
+        title={t('team.title')}
+        description={rich(t('team.description'), {
+          link: (c) => (
             <Link href="/app/staff" className="font-medium text-primary hover:underline">
-              Team
-            </Link>{' '}
-            in the sidebar.
-          </>
-        }
+              {c}
+            </Link>
+          ),
+        })}
       />
       <TeamManager
         members={rows}
-        invites={describeInvites(invites)}
+        invites={describeInvites(invites, tag)}
         me={{ userId: ctx.user.id, role: ctx.membership.role }}
         assignable={assignableRoles(ctx.membership.role)}
         staff={staff

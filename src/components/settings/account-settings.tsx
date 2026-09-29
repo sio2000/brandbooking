@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { BadgeCheck, Eye, EyeOff, LogOut, Trash2 } from 'lucide-react'
+import { BadgeCheck, Eye, EyeOff, Languages, LogOut, Mail, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardBody, CardFooter, CardHeader } from '@/components/ui/card'
@@ -12,25 +12,30 @@ import { Alert } from '@/components/ui/feedback'
 import { Field, FormError } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
+import { useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
 import {
   changePasswordAction,
   deleteAccountAction,
   leaveBusinessAction,
+  updateAccountLocaleAction,
   updateAccountNameAction,
 } from '@/app/app/_actions/settings'
 import { PASSWORD_MIN } from '@/lib/validation/password'
 import { useActionForm } from './use-action-form'
+import { LanguageSelect } from './language-select'
 
 function PasswordInput(props: React.ComponentProps<typeof Input>) {
+  const t = useT('app-settings')
   const [show, setShow] = React.useState(false)
   return (
     <div className="relative">
-      <Input {...props} type={show ? 'text' : 'password'} className="pr-10" />
+      <Input {...props} type={show ? 'text' : 'password'} className="pe-10" />
       <button
         type="button"
         onClick={() => setShow((s) => !s)}
-        className="absolute inset-y-0 right-0 grid w-10 place-items-center rounded-r-lg text-muted-foreground hover:text-foreground"
-        aria-label={show ? 'Hide password' : 'Show password'}
+        className="absolute inset-y-0 end-0 grid w-10 place-items-center rounded-e-lg text-muted-foreground hover:text-foreground"
+        aria-label={show ? t('account.password.hide') : t('account.password.show')}
         aria-pressed={show}
       >
         {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
@@ -48,13 +53,14 @@ export function AccountProfileForm({
   email: string
   verified: boolean
 }) {
+  const t = useT('app-settings')
   const form = useActionForm({ name }, updateAccountNameAction)
   return (
     <form onSubmit={form.submit} noValidate>
       <Card>
         <CardHeader
-          title="Your profile"
-          description="How you appear to your team. Customers never see your account details."
+          title={t('account.profile.title')}
+          description={t('account.profile.description')}
         />
         <CardBody className="grid items-start gap-4 sm:grid-cols-2">
           {form.formError && (
@@ -62,7 +68,7 @@ export function AccountProfileForm({
               <FormError message={form.formError} />
             </div>
           )}
-          <Field label="Your name" htmlFor="account-name" error={form.errors.name}>
+          <Field label={t('account.profile.name')} htmlFor="account-name" error={form.errors.name}>
             <Input
               value={form.values.name}
               onChange={(e) => form.set('name', e.target.value)}
@@ -71,22 +77,22 @@ export function AccountProfileForm({
             />
           </Field>
           <div className="grid grid-cols-1 content-start gap-1.5">
-            <p className="text-sm font-medium">Email</p>
+            <p className="text-sm font-medium">{t('account.profile.email')}</p>
             <p className="flex h-10 items-center gap-2 truncate rounded-lg border border-border bg-surface-2/60 px-3 text-sm text-muted-foreground">
-              <span className="truncate">{email}</span>
+              <span className="truncate" dir="ltr">
+                {email}
+              </span>
               {verified ? (
-                <Badge tone="success" className="ml-auto">
-                  <BadgeCheck aria-hidden /> Verified
+                <Badge tone="success" className="ms-auto">
+                  <BadgeCheck aria-hidden /> {t('account.profile.verified')}
                 </Badge>
               ) : (
-                <Badge tone="warning" className="ml-auto">
-                  Not verified
+                <Badge tone="warning" className="ms-auto">
+                  {t('account.profile.notVerified')}
                 </Badge>
               )}
             </p>
-            <p className="text-[13px] text-muted-foreground">
-              Used to sign in. Contact support to change it.
-            </p>
+            <p className="text-[13px] text-muted-foreground">{t('account.profile.emailHint')}</p>
           </div>
         </CardBody>
         <CardFooter>
@@ -97,7 +103,7 @@ export function AccountProfileForm({
             success={form.saved}
             disabled={!form.dirty && !form.pending}
           >
-            Save
+            {t('account.profile.save')}
           </Button>
         </CardFooter>
       </Card>
@@ -105,7 +111,71 @@ export function AccountProfileForm({
   )
 }
 
+/**
+ * The member's own language: the dashboard, settings and every email sent to
+ * them follow it. Saving reloads the page in the new language.
+ */
+export function AccountLanguageCard({ current }: { current: string }) {
+  const t = useT('app-settings')
+  const [value, setValue] = React.useState(current)
+  const [pending, start] = React.useTransition()
+  const [error, setError] = React.useState<string | null>(null)
+
+  function choose(next: string) {
+    const previous = value
+    setValue(next)
+    setError(null)
+    start(async () => {
+      try {
+        const r = await updateAccountLocaleAction(next)
+        if (r.ok) {
+          window.location.reload()
+          return
+        }
+        setValue(previous)
+        setError(r.fields?.locale ?? r.error)
+      } catch {
+        setValue(previous)
+        setError(t('form.offline'))
+      }
+    })
+  }
+
+  return (
+    <Card id="language">
+      <CardHeader
+        title={t('account.language.title')}
+        description={t('account.language.description')}
+      />
+      <CardBody className="grid grid-cols-1 gap-3">
+        <Field
+          label={t('account.language.label')}
+          htmlFor="account-language"
+          error={error ?? undefined}
+          className="sm:max-w-sm"
+        >
+          <LanguageSelect value={value} onChange={choose} disabled={pending} />
+        </Field>
+        <p className="flex items-start gap-2 text-[13px] text-muted-foreground">
+          <Mail className="mt-0.5 size-3.5 shrink-0" aria-hidden />
+          {t('account.language.emailNote')}
+        </p>
+        {pending && (
+          <p
+            className="flex items-center gap-2 text-[13px] text-muted-foreground"
+            aria-live="polite"
+          >
+            <Languages className="size-3.5 shrink-0" aria-hidden />
+            {t('account.language.switching')}
+          </p>
+        )}
+      </CardBody>
+    </Card>
+  )
+}
+
 export function ChangePasswordForm() {
+  const t = useT('app-settings')
   const empty = { currentPassword: '', newPassword: '' }
   const [confirm, setConfirm] = React.useState('')
   const [mismatch, setMismatch] = React.useState(false)
@@ -130,13 +200,13 @@ export function ChangePasswordForm() {
     >
       <Card>
         <CardHeader
-          title="Password"
-          description="Changing your password signs you out on every other device."
+          title={t('account.password.title')}
+          description={t('account.password.description')}
         />
         <CardBody className="grid grid-cols-1 gap-4">
           <FormError message={form.formError} />
           <Field
-            label="Current password"
+            label={t('account.password.current')}
             htmlFor="currentPassword"
             error={e.currentPassword}
             className="sm:max-w-sm"
@@ -149,10 +219,10 @@ export function ChangePasswordForm() {
           </Field>
           <div className="grid items-start gap-4 sm:grid-cols-2">
             <Field
-              label="New password"
+              label={t('account.password.new')}
               htmlFor="newPassword"
               error={e.newPassword}
-              hint={`At least ${PASSWORD_MIN} characters. A short phrase works well.`}
+              hint={t('account.password.newHint', { min: PASSWORD_MIN })}
             >
               <PasswordInput
                 autoComplete="new-password"
@@ -161,9 +231,9 @@ export function ChangePasswordForm() {
               />
             </Field>
             <Field
-              label="Repeat new password"
+              label={t('account.password.repeat')}
               htmlFor="confirmPassword"
-              error={mismatch ? 'The passwords don’t match.' : undefined}
+              error={mismatch ? t('account.password.mismatch') : undefined}
             >
               <PasswordInput
                 autoComplete="new-password"
@@ -183,7 +253,7 @@ export function ChangePasswordForm() {
             loading={form.pending}
             disabled={!v.currentPassword || !v.newPassword || !confirm}
           >
-            Change password
+            {t('account.password.submit')}
           </Button>
         </CardFooter>
       </Card>
@@ -192,22 +262,23 @@ export function ChangePasswordForm() {
 }
 
 export function LeaveBusinessCard({ businessName }: { businessName: string }) {
+  const t = useT('app-settings')
   return (
     <Card>
       <CardHeader
-        title={`Leave ${businessName}`}
-        description="You’ll lose access to this business. Your appointments and profile stay with the business."
+        title={t('account.leave.title', { business: businessName })}
+        description={t('account.leave.description')}
       />
       <CardFooter className="justify-start">
         <ConfirmDialog
           trigger={
             <Button variant="danger-soft" size="sm">
-              <LogOut /> Leave business
+              <LogOut /> {t('account.leave.button')}
             </Button>
           }
-          title={`Leave ${businessName}?`}
-          description="You won’t be able to sign in to this business any more. An owner or manager can invite you again later."
-          confirmLabel="Leave business"
+          title={t('account.leave.confirmTitle', { business: businessName })}
+          description={t('account.leave.confirmBody')}
+          confirmLabel={t('account.leave.button')}
           onConfirm={async () => {
             const r = await leaveBusinessAction()
             if (r && !r.ok) toast.error(r.error)
@@ -219,43 +290,39 @@ export function LeaveBusinessCard({ businessName }: { businessName: string }) {
 }
 
 export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string[] }) {
+  const t = useT('app-settings')
   const [open, setOpen] = React.useState(false)
   const blocked = ownedBusinesses.length > 0
   return (
     <Card className="border-danger/30">
-      <CardHeader
-        title="Delete your account"
-        description="Permanently removes your login and personal details. This can’t be undone."
-      />
+      <CardHeader title={t('account.delete.title')} description={t('account.delete.description')} />
       <CardBody className="grid grid-cols-1 gap-3">
         {blocked ? (
-          <Alert tone="warning" title="You still own a business">
-            Owners must delete their businesses, or make someone else the owner under Settings →
-            Team, before deleting their account, so customers and bookings are never left without an
-            owner. You own <strong>{ownedBusinesses.join(', ')}</strong>. Delete it under{' '}
-            <Link
-              href="/app/settings/privacy#danger"
-              className="font-semibold underline underline-offset-2"
-            >
-              Privacy &amp; data
-            </Link>{' '}
-            first.
+          <Alert tone="warning" title={t('account.delete.ownerTitle')}>
+            {rich(t('account.delete.ownerBody', { businesses: ownedBusinesses.join(', ') }), {
+              b: (c) => <strong>{c}</strong>,
+              link: (c) => (
+                <Link
+                  href="/app/settings/privacy#danger"
+                  className="font-semibold underline underline-offset-2"
+                >
+                  {c}
+                </Link>
+              ),
+            })}
           </Alert>
         ) : (
-          <p className="text-sm text-muted-foreground">
-            You’ll be removed from every business you belong to. Appointments you handled stay with
-            those businesses.
-          </p>
+          <p className="text-sm text-muted-foreground">{t('account.delete.body')}</p>
         )}
       </CardBody>
       <CardFooter className="justify-start">
         <Dialog open={open} onOpenChange={setOpen}>
           <Button variant="danger" size="sm" disabled={blocked} onClick={() => setOpen(true)}>
-            <Trash2 /> Delete account…
+            <Trash2 /> {t('account.delete.button')}
           </Button>
           <DialogContent
-            title="Delete your account?"
-            description="Enter your password to confirm. This can’t be undone."
+            title={t('account.delete.dialogTitle')}
+            description={t('account.delete.dialogDescription')}
             size="sm"
           >
             <DeleteAccountForm onCancel={() => setOpen(false)} />
@@ -267,12 +334,17 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
 }
 
 export function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
+  const t = useT('app-settings')
   const form = useActionForm({ password: '' }, deleteAccountAction, { silent: true })
   return (
     <form onSubmit={form.submit} noValidate>
       <DialogBody className="grid grid-cols-1 gap-4">
         <FormError message={form.formError} />
-        <Field label="Password" htmlFor="delete-password" error={form.errors.password}>
+        <Field
+          label={t('account.delete.password')}
+          htmlFor="delete-password"
+          error={form.errors.password}
+        >
           <PasswordInput
             autoComplete="current-password"
             value={form.values.password}
@@ -283,7 +355,7 @@ export function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onCancel}>
-          Cancel
+          {t('common.cancel')}
         </Button>
         <Button
           type="submit"
@@ -291,7 +363,7 @@ export function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
           loading={form.pending}
           disabled={!form.values.password}
         >
-          Delete my account
+          {t('account.delete.submit')}
         </Button>
       </DialogFooter>
     </form>

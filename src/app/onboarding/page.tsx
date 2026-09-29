@@ -56,10 +56,11 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
       services: existing,
     }
   }
+  // The wizard's "Delete account" dialog reuses the settings form (app-settings).
   return (
     // The wizard also renders shared pieces (account deletion form, colour
     // picker, copy button) that bring their own namespaces when translated.
-    <Translations ns={['common', 'onboarding']}>
+    <Translations ns={['common', 'onboarding', 'app-settings']}>
       <OnboardingWizard
         userName={session.user.name}
         emailVerified={session.user.emailVerified}

@@ -15,6 +15,7 @@ import { EmptyState } from '@/components/ui/feedback'
 import { Field, FormError } from '@/components/ui/field'
 import { Input, Textarea } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
+import { useT } from '@/components/i18n/provider'
 import { deleteStaffAction, saveStaffAction, uploadAvatarAction } from '@/app/app/_actions/catalog'
 import { ColorPicker } from './color-picker'
 
@@ -30,7 +31,8 @@ export type StaffItem = {
   serviceIds: string[]
   upcomingCount: number
   avatarUrl: string | null
-  loginRole: string | null
+  /** Role of the linked login, if any. */
+  loginRole: 'owner' | 'manager' | 'staff' | null
 }
 
 export function StaffView({
@@ -47,25 +49,24 @@ export function StaffView({
   editId: string | null
 }) {
   const router = useRouter()
+  const t = useT('app-staff')
   const [editing, setEditing] = React.useState<StaffItem | 'new' | null>(
     openNew ? 'new' : (staff.find((s) => s.id === editId) ?? null),
   )
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm text-muted-foreground">
-          {staff.length} team member{staff.length === 1 ? '' : 's'}
-        </p>
+        <p className="text-sm text-muted-foreground">{t('list.count', { count: staff.length })}</p>
         <div className="flex flex-wrap gap-2">
           {canInvite && (
             <Button asChild variant="secondary">
               <Link href="/app/settings/team">
-                <KeyRound /> Logins & roles
+                <KeyRound /> {t('list.logins')}
               </Link>
             </Button>
           )}
           <Button onClick={() => setEditing('new')}>
-            <Plus /> Add team member
+            <Plus /> {t('list.add')}
           </Button>
         </div>
       </div>
@@ -73,11 +74,11 @@ export function StaffView({
         <div className="rounded-xl border border-border bg-surface">
           <EmptyState
             icon={UserCog}
-            title="No team members yet"
-            description="Add the people customers can book."
+            title={t('empty.title')}
+            description={t('empty.description')}
             action={
               <Button onClick={() => setEditing('new')}>
-                <Plus /> Add team member
+                <Plus /> {t('list.add')}
               </Button>
             }
           />
@@ -102,43 +103,46 @@ export function StaffView({
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-semibold">{m.name}</p>
                   <p className="truncate text-[13px] text-muted-foreground">
-                    {m.title ?? 'Team member'}
+                    {m.title ?? t('card.defaultTitle')}
                   </p>
                   <div className="mt-1.5 flex flex-wrap gap-1.5">
-                    {!m.isActive && <Badge tone="warning">Not bookable</Badge>}
+                    {!m.isActive && <Badge tone="warning">{t('card.notBookable')}</Badge>}
                     {m.loginRole ? (
-                      <Badge tone="primary">{m.loginRole} login</Badge>
+                      <Badge tone="primary">{t('card.login', { role: m.loginRole })}</Badge>
                     ) : (
-                      <Badge>No login</Badge>
+                      <Badge>{t('card.noLogin')}</Badge>
                     )}
                   </div>
                 </div>
               </div>
               <dl className="mt-4 grid gap-1.5 text-[13px]">
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Services</dt>
+                  <dt className="text-muted-foreground">{t('card.services')}</dt>
                   <dd className="font-medium">
-                    {m.serviceIds.length} of {services.length}
+                    {t('card.servicesCount', {
+                      count: m.serviceIds.length,
+                      total: services.length,
+                    })}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Hours</dt>
+                  <dt className="text-muted-foreground">{t('card.hours')}</dt>
                   <dd className="font-medium">
-                    {m.usesBusinessHours ? 'Business hours' : 'Own schedule'}
+                    {m.usesBusinessHours ? t('card.businessHours') : t('card.ownSchedule')}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Upcoming</dt>
+                  <dt className="text-muted-foreground">{t('card.upcoming')}</dt>
                   <dd className="tabular font-medium">{m.upcomingCount}</dd>
                 </div>
               </dl>
               <div className="mt-4 flex gap-2 border-t border-border pt-3">
                 <Button variant="secondary" size="sm" onClick={() => setEditing(m)}>
-                  <Pencil /> Edit
+                  <Pencil /> {t('card.edit')}
                 </Button>
                 <Button asChild variant="ghost" size="sm">
                   <Link href={`/app/availability?staff=${m.id}`}>
-                    <Clock /> Hours
+                    <Clock /> {t('card.hoursLink')}
                   </Link>
                 </Button>
               </div>
@@ -148,8 +152,8 @@ export function StaffView({
       )}
       <Dialog open={editing !== null} onOpenChange={(o) => !o && setEditing(null)}>
         <SheetContent
-          title={editing === 'new' ? 'Add team member' : 'Edit team member'}
-          description="Name, photo and title appear on your booking page if you show your team."
+          title={editing === 'new' ? t('list.add') : t('form.editTitle')}
+          description={t('form.description')}
         >
           {editing && (
             <StaffForm
@@ -178,6 +182,7 @@ function StaffForm({
   onDone: () => void
 }) {
   const router = useRouter()
+  const t = useT('app-staff')
   const [v, setV] = React.useState({
     name: member?.name ?? '',
     email: member?.email ?? '',
@@ -200,13 +205,11 @@ function StaffForm({
     const r = await saveStaffAction(member?.id ?? null, v)
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Saved')
+      toast.success(r.message ?? t('toasts.saved'))
       onDone()
     } else {
       setErrors(r.fields ?? {})
-      setError(
-        r.fields && Object.keys(r.fields).length ? 'Please fix the highlighted fields.' : r.error,
-      )
+      setError(r.fields && Object.keys(r.fields).length ? t('form.fixFields') : r.error)
     }
   }
 
@@ -239,7 +242,7 @@ function StaffForm({
                   const r = await uploadAvatarAction(fd)
                   setUploading(false)
                   if (r.ok) {
-                    toast.success('Photo updated')
+                    toast.success(t('actions.photoUpdated'))
                     router.refresh()
                   } else toast.error(r.error)
                 }}
@@ -251,15 +254,13 @@ function StaffForm({
                 loading={uploading}
                 onClick={() => fileRef.current?.click()}
               >
-                <Camera /> Upload photo
+                <Camera /> {t('form.uploadPhoto')}
               </Button>
-              <p className="mt-1 text-xs text-muted-foreground">
-                JPG, PNG or WebP, at least 96px, max 5 MB.
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{t('form.photoHint')}</p>
             </div>
           </div>
         )}
-        <Field label="Name" htmlFor="st-name" error={errors.name}>
+        <Field label={t('form.name')} htmlFor="st-name" error={errors.name}>
           <Input
             value={v.name}
             onChange={(e) => setV({ ...v, name: e.target.value })}
@@ -268,10 +269,10 @@ function StaffForm({
           />
         </Field>
         <Field
-          label="Title"
+          label={t('form.title')}
           htmlFor="st-title"
           optional
-          hint="e.g. Senior stylist"
+          hint={t('form.titleHint')}
           error={errors.title}
         >
           <Input
@@ -281,10 +282,10 @@ function StaffForm({
           />
         </Field>
         <Field
-          label="Email"
+          label={t('form.email')}
           htmlFor="st-email"
           optional
-          hint="For your records. To give them a login, invite them under Settings → Team."
+          hint={t('form.emailHint')}
           error={errors.email}
         >
           <Input
@@ -293,7 +294,7 @@ function StaffForm({
             onChange={(e) => setV({ ...v, email: e.target.value })}
           />
         </Field>
-        <Field label="Short bio" htmlFor="st-bio" optional error={errors.bio}>
+        <Field label={t('form.bio')} htmlFor="st-bio" optional error={errors.bio}>
           <Textarea
             rows={3}
             value={v.bio}
@@ -302,9 +303,9 @@ function StaffForm({
           />
         </Field>
         <fieldset className="grid gap-2">
-          <legend className="mb-1.5 text-sm font-medium">Services they perform</legend>
+          <legend className="mb-1.5 text-sm font-medium">{t('form.services')}</legend>
           {services.length === 0 && (
-            <p className="text-sm text-muted-foreground">No services yet.</p>
+            <p className="text-sm text-muted-foreground">{t('form.noServices')}</p>
           )}
           {services.map((s) => (
             <label
@@ -327,21 +328,25 @@ function StaffForm({
           ))}
         </fieldset>
         <div className="grid gap-1.5">
-          <span className="text-sm font-medium">Calendar colour</span>
-          <ColorPicker value={v.color} onChange={(color) => setV({ ...v, color })} />
+          <span className="text-sm font-medium">{t('form.colour')}</span>
+          <ColorPicker
+            value={v.color}
+            onChange={(color) => setV({ ...v, color })}
+            label={t('form.colourPicker')}
+          />
         </div>
         <div className="divide-y divide-border rounded-xl border border-border px-4">
           <SwitchRow
             id="st-active"
-            label="Bookable"
-            description="Turn off during long absences. Existing appointments stay."
+            label={t('form.bookable')}
+            description={t('form.bookableHint')}
             checked={v.isActive}
             onCheckedChange={(c) => setV({ ...v, isActive: c })}
           />
           <SwitchRow
             id="st-hours"
-            label="Follows business hours"
-            description="Turn off to give them their own weekly schedule under Availability."
+            label={t('form.businessHours')}
+            description={t('form.businessHoursHint')}
             checked={v.usesBusinessHours}
             onCheckedChange={(c) => setV({ ...v, usesBusinessHours: c })}
           />
@@ -350,20 +355,20 @@ function StaffForm({
           <ConfirmDialog
             trigger={
               <Button type="button" variant="danger-soft" className="justify-self-start">
-                <Trash2 /> Remove team member
+                <Trash2 /> {t('remove.button')}
               </Button>
             }
-            title={`Remove ${member.name}?`}
+            title={t('remove.title', { name: member.name })}
             description={
               member.upcomingCount > 0
-                ? `${member.name} has ${member.upcomingCount} upcoming appointment(s). Reschedule or cancel those first.`
-                : 'They will no longer appear on your booking page. Past appointments keep their history.'
+                ? t('remove.withUpcoming', { name: member.name, count: member.upcomingCount })
+                : t('remove.body')
             }
-            confirmLabel="Remove"
+            confirmLabel={t('remove.confirm')}
             onConfirm={async () => {
               const r = await deleteStaffAction(member.id)
               if (r.ok) {
-                toast.success(r.message ?? 'Removed')
+                toast.success(r.message ?? t('toasts.removed'))
                 onDone()
               } else {
                 toast.error(r.fields?._form ?? r.error)
@@ -375,10 +380,10 @@ function StaffForm({
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onDone}>
-          Cancel
+          {t('form.cancel')}
         </Button>
         <Button type="submit" loading={pending}>
-          {member ? 'Save changes' : 'Add team member'}
+          {member ? t('form.save') : t('list.add')}
         </Button>
       </DialogFooter>
     </form>

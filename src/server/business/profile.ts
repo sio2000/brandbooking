@@ -3,6 +3,7 @@ import { and, count, eq, isNull } from 'drizzle-orm'
 import { db, pgErrorCode, PgErrorCode } from '@/server/db/client'
 import {
   businesses,
+  users,
   services,
   staffServices,
   type AssetKind,
@@ -18,6 +19,8 @@ import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import type { z } from 'zod'
 import type { brandingSchema, profileSchema, seoSchema } from '@/lib/validation/business'
 import { localToDate } from '@/lib/tz'
+import { localeSchema } from '@/lib/validation/business'
+import { tFor } from './i18n'
 
 async function update(
   ctx: TenantContext,
@@ -87,7 +90,9 @@ export async function changeSlug(ctx: TenantContext, slug: string, meta: Request
     })
   } catch (err) {
     if (pgErrorCode(err) === PgErrorCode.uniqueViolation)
-      throw new AppError('slug_taken', { fields: { slug: 'That booking link is already taken.' } })
+      throw new AppError('slug_taken', {
+        fields: { slug: (await tFor(ctx.user, 'app-booking-page'))('errors.slugTaken') },
+      })
     throw err
   }
 }
@@ -130,7 +135,7 @@ export async function setPublishState(
     if (!(await canPublish(ctx.business))) {
       throw new AppError('validation', {
         fields: {
-          _form: 'Add at least one active service with a team member assigned before publishing.',
+          _form: (await tFor(ctx.user, 'app-booking-page'))('errors.cannotPublish'),
         },
       })
     }
@@ -197,4 +202,31 @@ export async function removeBusinessImage(
     meta,
   )
   if (previous) await deleteAsset(ctx.business.id, previous)
+}
+
+/**
+ * The member's own interface language (users.locale), which also decides the
+ * language of emails sent to them. Only the 15 supported languages are accepted.
+ */
+export async function updateAccountLocale(ctx: TenantContext, locale: unknown, meta: RequestMeta) {
+  const parsed = localeSchema.safeParse(locale)
+  if (!parsed.success) {
+    const t = await tFor(ctx.user, 'app-settings')
+    throw new AppError('validation', { fields: { locale: t('account.language.invalid') } })
+  }
+  await db()
+    .update(users)
+    .set({ locale: parsed.data, updatedAt: new Date() })
+    .where(eq(users.id, ctx.user.id))
+  await audit(db(), {
+    actor: 'user',
+    actorUserId: ctx.user.id,
+    action: 'user.locale_changed',
+    entityType: 'user',
+    entityId: ctx.user.id,
+    metadata: { from: ctx.user.locale, to: parsed.data },
+    ip: meta.ip,
+    requestId: meta.requestId,
+  })
+  return parsed.data
 }

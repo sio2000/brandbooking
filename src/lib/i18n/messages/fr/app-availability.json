@@ -1,0 +1,91 @@
+{
+  "title": "Disponibilités",
+  "description": "Quand vos clients peuvent réserver. Les horaires d’ouverture s’appliquent à tous ; les membres de l’équipe peuvent les suivre ou avoir leur propre planning à l’intérieur.",
+  "allTimesIn": "Toutes les heures en {tz}.",
+  "listSeparator": ", ",
+  "tabs": {
+    "label": "Planning de qui",
+    "business": "Horaires de l’établissement"
+  },
+  "weekly": {
+    "title": "Horaires d’ouverture",
+    "description": "Vos horaires habituels de la semaine. Ajoutez une deuxième plage pour une pause déjeuner ou une journée coupée.",
+    "staffTitle": "Planning hebdomadaire de {name}",
+    "staffDescription": "Ses heures réservables chaque semaine (toujours dans les horaires d’ouverture).",
+    "followsTitle": "Suit les horaires de l’établissement",
+    "followsBody": "{name} est réservable dès que l’établissement est ouvert. Donnez-lui son propre planning s’il travaille moins d’heures.",
+    "followsNote": "Partez des horaires de l’établissement et ajustez. Les heures en dehors des horaires d’ouverture ne seront pas réservables.",
+    "useBusiness": "Utiliser les horaires de l’établissement",
+    "endAfterStart": "L’heure de fin doit être après l’heure de début.",
+    "overlap": "Les plages horaires se chevauchent.",
+    "fixDays": "Corrigez d’abord les jours signalés.",
+    "dayOpen": "{day} ouvert",
+    "closed": "Fermé",
+    "rangeStart": "{day}, plage {n}, début",
+    "rangeEnd": "{day}, plage {n}, fin",
+    "removeRange": "Supprimer la plage {n} du {day}",
+    "addRange": "Ajouter des heures (après une pause)",
+    "copyWeekdays": "Copier du lun. au ven.",
+    "unsaved": "Modifications non enregistrées",
+    "save": "Enregistrer les horaires"
+  },
+  "closures": {
+    "title": "Jours fériés et fermetures",
+    "description": "Des journées entières de fermeture. Les jours fériés récurrents se répètent chaque année.",
+    "staffTitle": "Jours de congé de {name}",
+    "staffDescription": "Vacances, maladie, formation.",
+    "from": "Du",
+    "to": "Au",
+    "label": "Libellé",
+    "placeholder": "ex. Noël",
+    "staffPlaceholder": "ex. Vacances",
+    "yearly": "Se répète chaque année",
+    "add": "Ajouter une fermeture",
+    "empty": "Aucune fermeture à venir.",
+    "closed": "Fermé",
+    "yearlyBadge": "Annuel",
+    "remove": "Supprimer la fermeture",
+    "removeNamed": "Supprimer {label}"
+  },
+  "special": {
+    "title": "Horaires exceptionnels",
+    "description": "Des horaires différents à une date précise, comme une nocturne ou une journée courte.",
+    "date": "Date",
+    "opens": "Ouverture",
+    "closes": "Fermeture",
+    "add": "Définir des horaires exceptionnels",
+    "empty": "Aucun horaire exceptionnel à venir.",
+    "remove": "Supprimer les horaires exceptionnels du {date}"
+  },
+  "blocks": {
+    "title": "Créneaux bloqués",
+    "description": "Bloquez une partie d’une journée pour une réunion, une course ou une livraison. Les réservations existantes ne sont pas concernées.",
+    "date": "Date",
+    "from": "De",
+    "until": "À",
+    "reason": "Motif",
+    "add": "Bloquer un créneau",
+    "addForEveryone": "Bloquer un créneau pour tous",
+    "empty": "Aucun créneau bloqué à venir.",
+    "blocked": "Bloqué",
+    "everyone": "tout le monde",
+    "remove": "Supprimer le blocage"
+  },
+  "toasts": {
+    "saved": "Enregistré",
+    "added": "Ajouté",
+    "blocked": "Bloqué",
+    "removed": "Supprimé",
+    "failed": "Échec"
+  },
+  "actions": {
+    "hoursSaved": "Horaires enregistrés",
+    "following": "Suit désormais les horaires de l’établissement",
+    "closureAdded": "Fermeture ajoutée",
+    "closureRemoved": "Fermeture supprimée",
+    "specialSaved": "Horaires exceptionnels enregistrés",
+    "specialRemoved": "Horaires exceptionnels supprimés",
+    "blocked": "Créneau bloqué",
+    "blockRemoved": "Blocage supprimé"
+  }
+}

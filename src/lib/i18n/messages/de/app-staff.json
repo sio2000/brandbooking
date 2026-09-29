@@ -1,0 +1,71 @@
+{
+  "title": "Team",
+  "description": "Die Personen, die Kunden buchen können. Jedes Teammitglied hat eigene Leistungen, einen eigenen Plan und einen eigenen Kalender.",
+  "list": {
+    "count": "{count, plural, one {# Teammitglied} other {# Teammitglieder}}",
+    "logins": "Logins & Rollen",
+    "add": "Teammitglied hinzufügen"
+  },
+  "empty": {
+    "title": "Noch keine Teammitglieder",
+    "description": "Fügen Sie die Personen hinzu, die Kunden buchen können."
+  },
+  "card": {
+    "defaultTitle": "Teammitglied",
+    "notBookable": "Nicht buchbar",
+    "login": "{role, select, owner {Login als Inhaber} manager {Login als Manager} other {Login als Teammitglied}}",
+    "noLogin": "Kein Login",
+    "services": "Leistungen",
+    "servicesCount": "{count} von {total}",
+    "hours": "Zeiten",
+    "businessHours": "Öffnungszeiten",
+    "ownSchedule": "Eigener Plan",
+    "upcoming": "Anstehend",
+    "edit": "Bearbeiten",
+    "hoursLink": "Zeiten"
+  },
+  "form": {
+    "editTitle": "Teammitglied bearbeiten",
+    "description": "Name, Foto und Titel erscheinen auf Ihrer Buchungsseite, wenn Sie Ihr Team anzeigen.",
+    "fixFields": "Bitte korrigieren Sie die markierten Felder.",
+    "uploadPhoto": "Foto hochladen",
+    "photoHint": "JPG, PNG oder WebP, mindestens 96 px, max. 5 MB.",
+    "name": "Name",
+    "title": "Titel",
+    "titleHint": "z. B. Senior-Stylistin",
+    "email": "E-Mail",
+    "emailHint": "Für Ihre Unterlagen. Für einen Login laden Sie die Person unter Einstellungen → Team ein.",
+    "bio": "Kurzprofil",
+    "services": "Leistungen dieser Person",
+    "noServices": "Noch keine Leistungen.",
+    "colour": "Kalenderfarbe",
+    "colourPicker": "Farbe",
+    "bookable": "Buchbar",
+    "bookableHint": "Bei längerer Abwesenheit ausschalten. Bestehende Termine bleiben.",
+    "businessHours": "Folgt den Öffnungszeiten",
+    "businessHoursHint": "Ausschalten, um unter Verfügbarkeit einen eigenen Wochenplan festzulegen.",
+    "cancel": "Abbrechen",
+    "save": "Änderungen speichern"
+  },
+  "remove": {
+    "button": "Teammitglied entfernen",
+    "title": "{name} entfernen?",
+    "withUpcoming": "{name} hat {count, plural, one {# anstehenden Termin} other {# anstehende Termine}}. Verschieben oder stornieren Sie diese zuerst.",
+    "body": "Die Person erscheint dann nicht mehr auf Ihrer Buchungsseite. Vergangene Termine behalten ihre Historie.",
+    "confirm": "Entfernen"
+  },
+  "toasts": {
+    "saved": "Gespeichert",
+    "removed": "Entfernt"
+  },
+  "errors": {
+    "hasUpcoming": "Dieses Teammitglied hat {count, plural, one {# anstehenden Termin} other {# anstehende Termine}}. Verschieben oder stornieren Sie diese zuerst."
+  },
+  "actions": {
+    "added": "Teammitglied hinzugefügt",
+    "saved": "Teammitglied gespeichert",
+    "removed": "Teammitglied entfernt",
+    "photoUpdated": "Foto aktualisiert",
+    "chooseImage": "Wählen Sie ein Bild."
+  }
+}

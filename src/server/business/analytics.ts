@@ -11,25 +11,8 @@ import { staffRangesOn } from '@/server/booking/availability'
  * Business analytics. All bucketing happens in SQL using the business
  * timezone (`starts_at AT TIME ZONE tz`), so "Tuesday" and "10:00" mean the
  * business's local Tuesday and 10:00 — never UTC. Every metric has a precise
- * definition (see METRIC_DEFINITIONS) that is shown in the UI.
+ * definition (`app-analytics` catalogue, `definitions.*`) that is shown in the UI.
  */
-
-export const METRIC_DEFINITIONS = {
-  bookings: 'Appointments scheduled in the period (excluding cancelled).',
-  cancellationRate: 'Cancelled ÷ all appointments scheduled in the period.',
-  noShowRate: 'No-shows ÷ appointments that reached an outcome (completed + no-show).',
-  revenue:
-    'Sum of service prices for completed appointments. Appointments complete automatically once they end, unless cancelled or marked as a no-show. Customers pay you directly, so this is earned revenue as booked, not money collected by Hournook.',
-  bookedValue: 'Sum of service prices for all non-cancelled appointments in the period.',
-  avgValue: 'Average service price of completed appointments that have a price.',
-  newCustomers: 'Customers whose first (non-cancelled) appointment falls in the period.',
-  returningCustomers: 'Customers with an appointment in the period who had visited before it.',
-  repeatRate: 'Returning customers ÷ all customers with an appointment in the period.',
-  utilization:
-    'Booked minutes ÷ available working minutes (from opening hours, staff schedules, closures).',
-  funnel:
-    'Anonymous step counts from your booking page (no cookies). Counts are per page load, so treat them as estimates.',
-} as const
 
 export type Range = { from: PlainDateString; to: PlainDateString }
 export type Filters = Range & { staffId?: string | null; serviceId?: string | null }
@@ -311,14 +294,37 @@ async function lifetimeValue(ctx: TenantContext) {
   return row!
 }
 
-export type Insight = { tone: 'positive' | 'neutral' | 'attention'; text: string }
+/**
+ * An observation about the period, as data: the UI words it in the viewer's
+ * language (`insights.<kind>` in the `app-analytics` catalogue).
+ */
+export type Insight =
+  | {
+      tone: 'positive' | 'attention'
+      kind: 'bookingsChange'
+      change: number
+      from: number
+      to: number
+    }
+  | {
+      tone: 'neutral'
+      kind: 'busiestTime'
+      /** ISO weekday, 1 = Monday. */
+      dow: number
+      part: DayPart
+      share: number
+    }
+  | { tone: 'neutral'; kind: 'topService'; name: string; share: number }
+  | { tone: 'attention'; kind: 'noShows'; share: number }
+  | { tone: 'attention'; kind: 'cancellations'; share: number }
+  | { tone: 'neutral'; kind: 'inactiveCustomers'; count: number }
 
-const DOW = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+export type DayPart = 'morning' | 'afternoon' | 'evening'
 
-function dayPart(hour: number) {
-  if (hour < 12) return 'mornings'
-  if (hour < 17) return 'afternoons'
-  return 'evenings'
+function dayPart(hour: number): DayPart {
+  if (hour < 12) return 'morning'
+  if (hour < 17) return 'afternoon'
+  return 'evening'
 }
 
 export function buildInsights(input: {
@@ -335,7 +341,10 @@ export function buildInsights(input: {
     if (Math.abs(change) >= 0.1) {
       out.push({
         tone: change > 0 ? 'positive' : 'attention',
-        text: `Bookings ${change > 0 ? 'increased' : 'decreased'} by ${Math.round(Math.abs(change) * 100)}% compared with the previous period (${p.scheduled} → ${c.scheduled}).`,
+        kind: 'bookingsChange',
+        change,
+        from: p.scheduled,
+        to: c.scheduled,
       })
     }
   }
@@ -350,37 +359,27 @@ export function buildInsights(input: {
     const [dow, part] = bestKey.split('|')
     out.push({
       tone: 'neutral',
-      text: `${DOW[Number(dow)]} ${part} are your busiest time (${Math.round((bestVal / total) * 100)}% of bookings).`,
+      kind: 'busiestTime',
+      dow: Number(dow),
+      part: part as DayPart,
+      share: bestVal / total,
     })
   }
   const svcTotal = input.services.reduce((s, x) => s + x.bookings, 0)
   const top = input.services[0]
   if (top && svcTotal >= 10 && input.services.length > 1) {
     const share = top.bookings / svcTotal
-    if (share >= 0.3)
-      out.push({
-        tone: 'neutral',
-        text: `${top.name} accounts for ${Math.round(share * 100)}% of your bookings.`,
-      })
+    if (share >= 0.3) out.push({ tone: 'neutral', kind: 'topService', name: top.name, share })
   }
   const outcomes = c.completed + c.no_show
   if (outcomes >= 10 && c.no_show / outcomes >= 0.1) {
-    out.push({
-      tone: 'attention',
-      text: `${Math.round((c.no_show / outcomes) * 100)}% of appointments were no-shows. Reminders are on by default; consider adding a 2-hour reminder in Booking settings.`,
-    })
+    out.push({ tone: 'attention', kind: 'noShows', share: c.no_show / outcomes })
   }
   if (c.total >= 10 && c.cancelled / c.total >= 0.2) {
-    out.push({
-      tone: 'attention',
-      text: `${Math.round((c.cancelled / c.total) * 100)}% of appointments were cancelled in this period.`,
-    })
+    out.push({ tone: 'attention', kind: 'cancellations', share: c.cancelled / c.total })
   }
   if (input.inactiveCustomers >= 5) {
-    out.push({
-      tone: 'neutral',
-      text: `${input.inactiveCustomers} customers haven't returned in over 90 days.`,
-    })
+    out.push({ tone: 'neutral', kind: 'inactiveCustomers', count: input.inactiveCustomers })
   }
   return out
 }

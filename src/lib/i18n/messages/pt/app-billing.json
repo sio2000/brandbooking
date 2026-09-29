@@ -1,0 +1,127 @@
+{
+  "title": "Faturação",
+  "description": "Um plano simples com tudo incluído. Sem comissões por reserva, sem surpresas.",
+  "loading": "A carregar faturação",
+  "price": {
+    "perMonth": "{price}/mês",
+    "periodSuffix": "/ mês",
+    "note": "Tudo incluído para toda a sua equipa. IVA incluído: nada é acrescentado no pagamento."
+  },
+  "checkout": {
+    "successTitle": "Obrigado, está tudo pronto!",
+    "successBody": "A sua subscrição está ativa. O recibo vai chegar à sua caixa de entrada.",
+    "pending": "Obrigado! A sua subscrição será ativada assim que a Stripe confirmar o pagamento, normalmente em poucos segundos. Atualize a página se não mudar.",
+    "refresh": "Atualizar",
+    "cancelledTitle": "Pagamento cancelado",
+    "cancelledBody": "Não se preocupe, não foi cobrado nada.",
+    "cancelledTrialBody": "Não se preocupe, não foi cobrado nada. O seu período experimental continua normalmente."
+  },
+  "status": {
+    "suspended": {
+      "badge": "Suspensa",
+      "title": "A sua conta está suspensa",
+      "body": "O suporte da Hournook suspendeu esta conta, por isso a sua página de reservas está offline. Contacte o suporte para resolver a situação. Os seus dados estão seguros e continua a poder exportá-los."
+    },
+    "ending": {
+      "badge": "Termina em breve",
+      "title": "A sua subscrição termina: {date}",
+      "dateFallback": "no fim deste período",
+      "body": "Não voltará a ser cobrado. Tudo continua a funcionar até lá; depois, a sua página de reservas deixa de aceitar novas reservas. Mudou de ideias? Pode retomá-la no portal de faturação."
+    },
+    "trialing": {
+      "badge": "Subscrito",
+      "title": "Tem uma subscrição",
+      "body": "O seu período experimental continua até {date}. O primeiro pagamento de {price} é cobrado nessa altura.",
+      "dateFallback": "ao fim"
+    },
+    "active": {
+      "badge": "Ativa",
+      "title": "A sua subscrição está ativa",
+      "renews": "Renova-se automaticamente a {date} por {price}.",
+      "billed": "Faturado: {price}."
+    },
+    "pastDue": {
+      "badge": "Falha no pagamento",
+      "title": "O seu último pagamento não foi concluído",
+      "body": "A Stripe vai tentar novamente de forma automática, mas atualize o método de pagamento antes de {date} para continuar a aceitar reservas.",
+      "dateFallback": "o fim do período de tolerância"
+    },
+    "trial": {
+      "badge": "Período experimental",
+      "title": "{count, plural, one {Falta # dia do período experimental} other {Faltam # dias do período experimental}}",
+      "body": "O seu período experimental termina a {date}. Subscreva quando quiser. Se faltarem mais de dois dias, esses dias transitam e o primeiro pagamento é cobrado quando o período experimental terminar."
+    },
+    "overdue": {
+      "badge": "Pagamento em atraso",
+      "title": "A sua página de reservas suspendeu as novas reservas",
+      "body": "Não foi possível cobrar o seu último pagamento. Atualize o método de pagamento e liquide a fatura em aberto para reabrir de imediato as reservas online. Nada foi eliminado."
+    },
+    "canceled": {
+      "badge": "Cancelada",
+      "title": "A sua subscrição terminou",
+      "body": "A sua página de reservas não está a aceitar novas reservas. Todos os seus dados continuam aqui. Volte a subscrever para a reabrir de imediato."
+    },
+    "noPlan": {
+      "badge": "Sem plano",
+      "title": "O seu período experimental terminou",
+      "body": "De momento, a sua página de reservas não aceita novas reservas, mas tudo o que configurou continua aqui. Subscreva para a reabrir de imediato.",
+      "bodyEnded": "Terminou a {date}. De momento, a sua página de reservas não aceita novas reservas, mas tudo o que configurou continua aqui. Subscreva para a reabrir de imediato."
+    }
+  },
+  "notConfigured": {
+    "title": "A faturação ainda não está configurada neste servidor",
+    "bodyTrial": "Os pagamentos online não foram configurados nesta instalação da Hournook, por isso não é possível iniciar nem alterar subscrições aqui. O seu período experimental continua a funcionar como descrito acima.",
+    "bodyAccount": "Os pagamentos online não foram configurados nesta instalação da Hournook, por isso não é possível iniciar nem alterar subscrições aqui. A sua conta continua a funcionar como descrito acima."
+  },
+  "ownerOnly": "Só o proprietário do negócio pode subscrever, alterar o método de pagamento ou cancelar.",
+  "cta": {
+    "subscribe": "Subscrever por {price}",
+    "updatePayment": "Atualizar método de pagamento",
+    "resume": "Retomar subscrição",
+    "manage": "Gerir faturação",
+    "updateCard": "Atualizar cartão",
+    "cancel": "Cancelar subscrição",
+    "secure": "Pagará em segurança na página de pagamento da Stripe e voltará logo para aqui."
+  },
+  "included": {
+    "title": "O que está incluído",
+    "page": "A sua própria página de reservas, código QR e widget para o website",
+    "unlimited": "Reservas, clientes e serviços ilimitados",
+    "team": "Toda a sua equipa, sem custo por utilizador",
+    "calendar": "Agenda, disponibilidade, feriados e folgas",
+    "emails": "Emails de confirmação e lembretes automáticos",
+    "analytics": "Estatísticas, exportações e registo de atividade"
+  },
+  "paymentMethod": {
+    "title": "Método de pagamento",
+    "notConfigured": "Indisponível até a faturação estar configurada.",
+    "loadFailed": "Não foi possível carregar os dados do seu cartão neste momento.",
+    "none": "Nenhum cartão registado. Vai adicionar um quando subscrever."
+  },
+  "invoices": {
+    "title": "Faturas",
+    "description": "Os recibos também lhe são enviados por email após cada pagamento.",
+    "notConfigured": "As faturas vão aparecer aqui quando a faturação estiver configurada.",
+    "unavailableTitle": "As faturas estão indisponíveis neste momento",
+    "unavailableBody": "Não foi possível contactar a Stripe para carregar as suas faturas. Tente novamente daqui a pouco; a sua subscrição não é afetada.",
+    "empty": "Ainda não há faturas. Vão aparecer aqui após o seu primeiro pagamento.",
+    "invoice": "Fatura",
+    "view": "Ver",
+    "viewFrom": "fatura de {date}",
+    "status": {
+      "paid": "Paga",
+      "open": "Por pagar",
+      "void": "Anulada",
+      "uncollectible": "Não cobrada",
+      "draft": "Rascunho"
+    }
+  },
+  "goodToKnow": {
+    "title": "Bom saber",
+    "fees": "<b>Sem comissões por reserva.</b> <muted>Um preço fixo, por mais movimento que tenha.</muted>",
+    "cancel": "<b>Cancele quando quiser.</b> <muted>Mantém o acesso até ao fim do período pago.</muted>",
+    "vat": "<b>IVA incluído.</b> <muted>O preço já inclui o IVA grego (24%), pelo que nada é acrescentado.</muted>",
+    "data": "<b>Os seus dados continuam a ser seus.</b> <muted>Se o plano expirar, nada é eliminado. Pode continuar a iniciar sessão e exportar.</muted>"
+  },
+  "stripeUnreachable": "Não foi possível contactar a Stripe. Verifique a ligação e tente novamente."
+}

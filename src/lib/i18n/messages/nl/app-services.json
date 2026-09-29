@@ -1,0 +1,84 @@
+{
+  "title": "Diensten",
+  "description": "Wat klanten kunnen boeken. Stel duur, prijs, buffertijd in en wie elke dienst uitvoert.",
+  "list": {
+    "count": "{count, plural, one {# dienst} other {# diensten}} · sleep om de volgorde op je boekingspagina te wijzigen",
+    "export": "Exporteren",
+    "add": "Dienst toevoegen",
+    "buffer": "+ {count} min buffer",
+    "upcoming": "{count} gepland",
+    "free": "Gratis",
+    "actions": "Acties voor {name}",
+    "edit": "Bewerken",
+    "pause": "Boekingen pauzeren",
+    "resume": "Boekingen hervatten"
+  },
+  "empty": {
+    "title": "Je hebt nog geen diensten toegevoegd",
+    "description": "Voeg je eerste dienst toe, zodat klanten kunnen gaan boeken. Je kunt een duur, een optionele prijs en de uitvoerder instellen.",
+    "add": "Je eerste dienst toevoegen"
+  },
+  "badges": {
+    "paused": "Gepauzeerd",
+    "hidden": "Verborgen op pagina",
+    "unassigned": "Niemand toegewezen"
+  },
+  "toasts": {
+    "paused": "Dienst gepauzeerd. Die kan niet worden geboekt",
+    "resumed": "Dienst weer actief",
+    "saved": "Opgeslagen",
+    "deleted": "Verwijderd"
+  },
+  "delete": {
+    "menu": "Verwijderen",
+    "title": "“{name}” verwijderen?",
+    "withUpcoming": "Deze dienst heeft <b>{count, plural, one {# geplande afspraak} other {# geplande afspraken}}</b>. Die blijven staan; de dienst kan alleen niet meer opnieuw worden geboekt. Eerdere afspraken behouden hun geschiedenis.",
+    "body": "Klanten kunnen deze dienst niet meer boeken. Eerdere afspraken behouden hun geschiedenis.",
+    "confirm": "Dienst verwijderen"
+  },
+  "form": {
+    "addTitle": "Een dienst toevoegen",
+    "editTitle": "Dienst bewerken",
+    "description": "Klanten zien de naam, omschrijving, duur en prijs.",
+    "fixFields": "Corrigeer de gemarkeerde velden.",
+    "name": "Naam van de dienst",
+    "namePlaceholder": "bijv. Knippen en föhnen",
+    "descriptionLabel": "Omschrijving",
+    "descriptionPlaceholder": "Wat erbij zit, voor wie het is, wat je moet voorbereiden.",
+    "duration": "Duur",
+    "custom": "Aangepast",
+    "customLabel": "Aangepaste duur in minuten",
+    "minSuffix": "min",
+    "price": "Prijs",
+    "priceHint": "Laat leeg om de prijs te verbergen; vul 0 in als het gratis is.",
+    "category": "Categorie",
+    "categoryHint": "Groepeert diensten op je boekingspagina.",
+    "categoryPlaceholder": "bijv. Kleuren",
+    "noCategory": "Geen categorie",
+    "existingCategory": "Kies een bestaande categorie",
+    "newCategory": "+ Nieuwe categorie",
+    "staff": "Wie voert het uit",
+    "noStaff": "Voeg eerst een teamlid toe.",
+    "nobodyAssigned": "Er is niemand toegewezen, dus klanten kunnen deze dienst niet boeken.",
+    "bufferBefore": "Buffer vooraf",
+    "bufferBeforeHint": "Voorbereidingstijd, geblokkeerd in je agenda.",
+    "bufferAfter": "Buffer achteraf",
+    "bufferAfterHint": "Tijd om op te ruimen voor de volgende boeking.",
+    "none": "Geen",
+    "minutes": "{count} min",
+    "colour": "Agendakleur",
+    "colourPicker": "Kleur",
+    "bookable": "Boekbaar",
+    "bookableHint": "Zet uit om deze dienst te pauzeren zonder hem te verwijderen.",
+    "visible": "Tonen op boekingspagina",
+    "visibleHint": "Verborgen diensten kunnen nog steeds door je team worden geboekt.",
+    "cancel": "Annuleren",
+    "save": "Wijzigingen opslaan"
+  },
+  "actions": {
+    "added": "Dienst toegevoegd",
+    "saved": "Dienst opgeslagen",
+    "removed": "Dienst verwijderd. Eerdere afspraken behouden hun geschiedenis.",
+    "categoryRemoved": "Categorie verwijderd"
+  }
+}

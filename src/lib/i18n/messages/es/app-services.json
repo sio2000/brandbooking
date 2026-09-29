@@ -1,0 +1,84 @@
+{
+  "title": "Servicios",
+  "description": "Lo que pueden reservar tus clientes. Define la duración, el precio, los tiempos de margen y quién realiza cada servicio.",
+  "list": {
+    "count": "{count, plural, one {# servicio} other {# servicios}} · arrastra para cambiar el orden en tu página de reservas",
+    "export": "Exportar",
+    "add": "Añadir servicio",
+    "buffer": "+ {count} min de margen",
+    "upcoming": "{count} próximas",
+    "free": "Gratis",
+    "actions": "Acciones para {name}",
+    "edit": "Editar",
+    "pause": "Pausar reservas",
+    "resume": "Reanudar reservas"
+  },
+  "empty": {
+    "title": "Todavía no has añadido ningún servicio",
+    "description": "Añade tu primer servicio para que tus clientes empiecen a reservar. Puedes definir una duración, un precio opcional y quién lo realiza.",
+    "add": "Añadir tu primer servicio"
+  },
+  "badges": {
+    "paused": "En pausa",
+    "hidden": "Oculto en la página",
+    "unassigned": "Nadie asignado"
+  },
+  "toasts": {
+    "paused": "Servicio en pausa. No se puede reservar",
+    "resumed": "Servicio activo de nuevo",
+    "saved": "Guardado",
+    "deleted": "Eliminado"
+  },
+  "delete": {
+    "menu": "Eliminar",
+    "title": "¿Eliminar «{name}»?",
+    "withUpcoming": "Este servicio tiene <b>{count, plural, one {# cita próxima} other {# citas próximas}}</b>. Seguirán reservadas; simplemente el servicio ya no se podrá reservar. Las citas pasadas conservan su historial.",
+    "body": "Tus clientes ya no podrán reservarlo. Las citas pasadas conservan su historial.",
+    "confirm": "Eliminar servicio"
+  },
+  "form": {
+    "addTitle": "Añadir un servicio",
+    "editTitle": "Editar servicio",
+    "description": "Tus clientes ven el nombre, la descripción, la duración y el precio.",
+    "fixFields": "Corrige los campos marcados.",
+    "name": "Nombre del servicio",
+    "namePlaceholder": "p. ej., Corte y peinado",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Qué incluye, para quién es, qué hay que preparar.",
+    "duration": "Duración",
+    "custom": "Otra",
+    "customLabel": "Duración personalizada en minutos",
+    "minSuffix": "min",
+    "price": "Precio",
+    "priceHint": "Déjalo vacío para no mostrar el precio; escribe 0 si es gratis.",
+    "category": "Categoría",
+    "categoryHint": "Agrupa los servicios en tu página de reservas.",
+    "categoryPlaceholder": "p. ej., Color",
+    "noCategory": "Sin categoría",
+    "existingCategory": "Elegir una categoría existente",
+    "newCategory": "+ Nueva categoría",
+    "staff": "Quién lo realiza",
+    "noStaff": "Añade primero a un miembro del equipo.",
+    "nobodyAssigned": "No hay nadie asignado, así que tus clientes no podrán reservar este servicio.",
+    "bufferBefore": "Margen antes",
+    "bufferBeforeHint": "Tiempo de preparación, bloqueado en tu calendario.",
+    "bufferAfter": "Margen después",
+    "bufferAfterHint": "Tiempo para recoger antes de la siguiente reserva.",
+    "none": "Ninguno",
+    "minutes": "{count} min",
+    "colour": "Color en el calendario",
+    "colourPicker": "Color",
+    "bookable": "Reservable",
+    "bookableHint": "Desactívalo para pausar este servicio sin eliminarlo.",
+    "visible": "Mostrar en la página de reservas",
+    "visibleHint": "Tu equipo puede seguir reservando los servicios ocultos.",
+    "cancel": "Cancelar",
+    "save": "Guardar cambios"
+  },
+  "actions": {
+    "added": "Servicio añadido",
+    "saved": "Servicio guardado",
+    "removed": "Servicio eliminado. Las citas pasadas conservan su historial.",
+    "categoryRemoved": "Categoría eliminada"
+  }
+}

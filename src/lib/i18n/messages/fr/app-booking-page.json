@@ -1,0 +1,143 @@
+{
+  "title": "Page de réservation",
+  "description": "Votre page publique où vos clients réservent. Publiez-la, partagez-la partout et donnez-lui votre style.",
+  "publish": {
+    "live": "Votre page de réservation est en ligne",
+    "paused": "La réservation en ligne est en pause",
+    "draft": "Votre page de réservation est un brouillon",
+    "badgeLive": "En ligne",
+    "badgePaused": "En pause",
+    "badgeDraft": "Brouillon",
+    "noSubscription": "Les réservations sont actuellement désactivées faute d’abonnement actif.",
+    "preview": "Aperçu",
+    "resume": "Reprendre les réservations",
+    "publish": "Publier",
+    "verifyEmail": "Confirmez d’abord votre adresse e-mail. Le lien se trouve dans votre boîte de réception.",
+    "needsService": "Ajoutez au moins une prestation active avec un membre de l’équipe assigné, puis publiez."
+  },
+  "pause": {
+    "summary": "Mettre la réservation en ligne en pause (mode vacances)",
+    "message": "Message pour vos clients",
+    "messageHint": "Affiché sur votre page de réservation pendant la pause.",
+    "messagePlaceholder": "Nous sommes en congés jusqu’au 3 septembre. À bientôt !",
+    "until": "Rouvrir automatiquement le",
+    "pause": "Mettre en pause",
+    "unpublish": "Dépublier"
+  },
+  "celebrate": {
+    "title": "Votre page de réservation est en ligne.",
+    "body": "Partagez le lien sur Instagram, votre fiche d’établissement Google ou WhatsApp, ou imprimez le code QR pour votre comptoir.",
+    "dismiss": "Fermer"
+  },
+  "copy": {
+    "copy": "Copier",
+    "link": "Copier le lien",
+    "bookingLink": "Copier le lien de réservation",
+    "copied": "Copié",
+    "linkCopied": "Lien copié dans le presse-papiers"
+  },
+  "share": {
+    "title": "Partager",
+    "description": "Placez votre lien partout où vos clients vous trouvent.",
+    "linkLabel": "Lien de réservation",
+    "email": "E-mail",
+    "qrAlt": "Code QR menant à {url}",
+    "qr": "Code QR",
+    "qrDescription": "Pour votre comptoir, vos flyers ou vos cartes de visite. Les réservations faites avec ce code sont comptées comme « Code QR ».",
+    "print": "Imprimer",
+    "campaigns": "Liens de campagne (savoir d’où viennent les réservations)",
+    "campaignsBody": "Ajoutez des paramètres UTM et les réservations afficheront la campagne dans les Statistiques :"
+  },
+  "embed": {
+    "title": "Ajouter la réservation à votre site",
+    "description": "Collez une seule ligne dans votre site. La réservation s’ouvre dans une fenêtre sécurisée et autonome, sans perturber le design de votre site.",
+    "button": "Bouton de réservation",
+    "inline": "Intégré",
+    "buttonDescription": "Un bouton qui ouvre la réservation dans une fenêtre contextuelle.",
+    "inlineDescription": "Tout le parcours de réservation intégré à l’endroit où vous placez le code.",
+    "code": "Code d’intégration",
+    "copy": "Copier le code",
+    "copied": "Code copié"
+  },
+  "branding": {
+    "title": "Apparence",
+    "description": "Votre logo, votre couverture et votre couleur. L’aperçu se met à jour pendant que vous modifiez.",
+    "preview": "Aperçu en direct",
+    "sampleService": "Prestation d’exemple",
+    "sampleBook": "Réserver",
+    "sampleConfirm": "Confirmer la réservation",
+    "logo": "Logo",
+    "logoHint": "Carré, au moins 64 px.",
+    "cover": "Image de couverture",
+    "coverHint": "Large, au moins 800×200 px.",
+    "colour": "Couleur de marque",
+    "customColour": "Couleur de marque personnalisée",
+    "custom": "Personnalisée",
+    "policy": "Conditions de réservation",
+    "policyHint": "Affichées sur votre page et dans les e-mails de confirmation, par ex. retards, acomptes, annulations.",
+    "showStaff": "Afficher les membres de l’équipe sur votre page",
+    "showStaffHint": "Laissez vos clients choisir avec qui ils souhaitent réserver.",
+    "social": "Réseaux sociaux",
+    "save": "Enregistrer l’apparence"
+  },
+  "upload": {
+    "uploadLogo": "Importer le logo",
+    "uploadCover": "Importer l’image de couverture",
+    "removeLogo": "Supprimer le logo",
+    "removeCover": "Supprimer l’image de couverture",
+    "tooLarge": "Ce fichier dépasse 5 Mo.",
+    "uploaded": "Importé",
+    "replace": "Remplacer",
+    "upload": "Importer",
+    "formats": "JPG, PNG ou WebP jusqu’à 5 Mo."
+  },
+  "seo": {
+    "title": "Aperçu dans la recherche et les réseaux sociaux",
+    "description": "Comment votre page apparaît sur Google et quand elle est partagée.",
+    "preview": "Aperçu du résultat de recherche",
+    "pageTitle": "Titre de la page",
+    "pageDescription": "Description",
+    "indexing": "Autoriser les moteurs de recherche à afficher cette page",
+    "indexingHint": "Désactivez si vous partagez le lien uniquement en privé.",
+    "save": "Enregistrer"
+  },
+  "link": {
+    "title": "Lien de réservation",
+    "description": "Le modifier rend inactifs les liens déjà partagés (y compris les codes QR imprimés).",
+    "available": "Disponible",
+    "taken": "Déjà utilisé",
+    "invalid": "Non valide",
+    "change": "Modifier le lien"
+  },
+  "customer": {
+    "embedLabel": "Réserver",
+    "seoTitle": "{name} · Réservation en ligne",
+    "seoDescription": "Réservez un rendez-vous en ligne chez {name}.",
+    "shareText": "Réservez un rendez-vous chez {name} : {url}",
+    "shareSubject": "Réservez chez {name}"
+  },
+  "qrPrint": {
+    "metaTitle": "Imprimer le code QR",
+    "bookOnline": "Réservez en ligne",
+    "scan": "Scannez pour réserver votre prochain rendez-vous",
+    "print": "Imprimer"
+  },
+  "toasts": {
+    "saved": "Enregistré"
+  },
+  "errors": {
+    "slugTaken": "Ce lien de réservation est déjà utilisé.",
+    "cannotPublish": "Ajoutez au moins une prestation active avec un membre de l’équipe assigné avant de publier."
+  },
+  "actions": {
+    "published": "Votre page de réservation est en ligne 🎉",
+    "paused": "Réservation en ligne mise en pause",
+    "unpublished": "Page de réservation dépubliée",
+    "brandingSaved": "Apparence enregistrée",
+    "seoSaved": "Paramètres de recherche enregistrés",
+    "linkUpdated": "Lien de réservation mis à jour",
+    "imageUpdated": "Image mise à jour",
+    "imageRemoved": "Image supprimée",
+    "chooseImage": "Choisissez une image."
+  }
+}

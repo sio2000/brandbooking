@@ -38,16 +38,16 @@ export function BarList({
           <li key={i.key} className="group">
             <div className="flex items-baseline justify-between gap-3 text-sm">
               <span className="min-w-0 truncate">{i.label}</span>
-              <span className="tabular shrink-0 text-right">
+              <span className="tabular shrink-0 text-end">
                 <span className="font-semibold">{i.display}</span>
                 {i.detail && (
-                  <span className="ml-1.5 text-xs text-muted-foreground">{i.detail}</span>
+                  <span className="ms-1.5 text-xs text-muted-foreground">{i.detail}</span>
                 )}
               </span>
             </div>
             <div className="mt-1.5 h-2.5 w-full" aria-hidden>
               <div
-                className="h-full rounded-r-[4px] transition-[filter] duration-150 group-hover:brightness-110"
+                className="h-full rounded-e-[4px] transition-[filter] duration-150 group-hover:brightness-110"
                 style={{ width: i.value > 0 ? `max(${pct}%, 3px)` : 0, background: color }}
               />
             </div>

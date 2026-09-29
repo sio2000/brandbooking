@@ -1,0 +1,127 @@
+{
+  "title": "账单",
+  "description": "一个简单的套餐，包含所有功能。不按预订收费，没有意外费用。",
+  "loading": "正在加载账单",
+  "price": {
+    "perMonth": "{price}/月",
+    "periodSuffix": "/ 月",
+    "note": "整个团队的所有功能均已包含。已含增值税：结账时不会另加任何费用。"
+  },
+  "checkout": {
+    "successTitle": "感谢您，一切就绪！",
+    "successBody": "您的订阅已生效。收据正在发送到您的收件箱。",
+    "pending": "感谢您！Stripe 确认付款后，您的订阅将立即生效，通常只需几秒钟。如果页面没有更新，请刷新。",
+    "refresh": "刷新",
+    "cancelledTitle": "结账已取消",
+    "cancelledBody": "别担心，您没有被扣费。",
+    "cancelledTrialBody": "别担心，您没有被扣费。您的免费试用照常继续。"
+  },
+  "status": {
+    "suspended": {
+      "badge": "已暂停",
+      "title": "您的账户已被暂停",
+      "body": "Hournook 客服已暂停此账户，因此您的预约页面已下线。请联系客服解决。您的数据安全无虞，仍可导出。"
+    },
+    "ending": {
+      "badge": "即将结束",
+      "title": "您的订阅结束时间：{date}",
+      "dateFallback": "本期结束时",
+      "body": "之后不会再扣费。在此之前一切照常；之后您的预约页面将不再接受新的预订。改变主意了？您可以在账单门户中恢复订阅。"
+    },
+    "trialing": {
+      "badge": "已订阅",
+      "title": "您已订阅",
+      "body": "您的免费试用将持续到{date}。届时将收取首笔 {price} 费用。",
+      "dateFallback": "试用结束"
+    },
+    "active": {
+      "badge": "有效",
+      "title": "您的订阅有效",
+      "renews": "将于 {date} 自动续订，费用为 {price}。",
+      "billed": "收费标准：{price}。"
+    },
+    "pastDue": {
+      "badge": "付款失败",
+      "title": "您上一次付款未成功",
+      "body": "Stripe 会自动重试，但请在{date}之前更新付款方式，以便继续接受预订。",
+      "dateFallback": "宽限期结束"
+    },
+    "trial": {
+      "badge": "免费试用",
+      "title": "{count, plural, other {免费试用还剩 # 天}}",
+      "body": "您的试用将于 {date} 结束。您可以随时订阅。如果剩余天数超过两天，剩余天数会保留，首笔费用将在试用结束时收取。"
+    },
+    "overdue": {
+      "badge": "付款逾期",
+      "title": "您的预约页面已暂停接受新预订",
+      "body": "我们未能收取您上一笔款项。请更新付款方式并结清未付发票，即可立即重新开放在线预约。所有数据均未删除。"
+    },
+    "canceled": {
+      "badge": "已取消",
+      "title": "您的订阅已结束",
+      "body": "您的预约页面不再接受新的预订。您的所有数据都还在。重新订阅即可立即重新开放。"
+    },
+    "noPlan": {
+      "badge": "无套餐",
+      "title": "您的免费试用已结束",
+      "body": "您的预约页面目前不接受新的预订，但您设置的一切都还在。订阅即可立即重新开放。",
+      "bodyEnded": "试用已于 {date} 结束。您的预约页面目前不接受新的预订，但您设置的一切都还在。订阅即可立即重新开放。"
+    }
+  },
+  "notConfigured": {
+    "title": "此服务器尚未设置账单功能",
+    "bodyTrial": "此 Hournook 安装未配置在线支付，因此无法在此开始或更改订阅。您的免费试用将按上述说明继续有效。",
+    "bodyAccount": "此 Hournook 安装未配置在线支付，因此无法在此开始或更改订阅。您的账户将按上述说明继续有效。"
+  },
+  "ownerOnly": "只有商家所有者可以订阅、更改付款方式或取消订阅。",
+  "cta": {
+    "subscribe": "以 {price} 订阅",
+    "updatePayment": "更新付款方式",
+    "resume": "恢复订阅",
+    "manage": "管理账单",
+    "updateCard": "更新银行卡",
+    "cancel": "取消订阅",
+    "secure": "您将在 Stripe 的安全结账页面付款，完成后直接返回此处。"
+  },
+  "included": {
+    "title": "包含内容",
+    "page": "专属预约页面、二维码和网站小组件",
+    "unlimited": "不限数量的预订、客户和服务",
+    "team": "整个团队均可使用，不按人数收费",
+    "calendar": "日历、可预约时间、假期和休假",
+    "emails": "邮件确认和自动提醒",
+    "analytics": "统计分析、数据导出和活动记录"
+  },
+  "paymentMethod": {
+    "title": "付款方式",
+    "notConfigured": "设置账单功能后才可使用。",
+    "loadFailed": "暂时无法加载您的银行卡信息。",
+    "none": "尚未绑定银行卡。订阅时再添加即可。"
+  },
+  "invoices": {
+    "title": "发票",
+    "description": "每次付款后，收据也会通过邮件发送给您。",
+    "notConfigured": "设置账单功能后，发票将显示在这里。",
+    "unavailableTitle": "发票暂时无法显示",
+    "unavailableBody": "无法连接 Stripe 加载您的发票。请稍后重试；您的订阅不受影响。",
+    "empty": "还没有发票。首次付款后会显示在这里。",
+    "invoice": "发票",
+    "view": "查看",
+    "viewFrom": "{date} 的发票",
+    "status": {
+      "paid": "已支付",
+      "open": "待支付",
+      "void": "已作废",
+      "uncollectible": "未收款",
+      "draft": "草稿"
+    }
+  },
+  "goodToKnow": {
+    "title": "温馨提示",
+    "fees": "<b>不按预订收费。</b> <muted>无论多忙，都是同一个固定价格。</muted>",
+    "cancel": "<b>随时可取消。</b> <muted>在已付费周期结束前，您仍可继续使用。</muted>",
+    "vat": "<b>已含增值税。</b> <muted>价格已包含希腊增值税（24%），不会另加任何费用。</muted>",
+    "data": "<b>您的数据始终归您所有。</b> <muted>套餐到期后不会删除任何内容。您仍可登录并导出数据。</muted>"
+  },
+  "stripeUnreachable": "无法连接 Stripe。请检查网络连接后重试。"
+}
