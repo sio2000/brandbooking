@@ -90,6 +90,7 @@ export async function createCheckoutSession(
     return createPortalSession(business)
   }
   const customer = await ensureCustomer(business)
+  await expireOpenCheckouts(customer)
   const trialEnd = business.trialEndsAt?.getTime() ?? 0
   // Carry the remaining free trial over so nobody pays for days they already had.
   // Stripe requires a trial end at least 48 hours in the future.
@@ -125,6 +126,20 @@ export async function createCheckoutSession(
   })
   if (!session.url) throw new AppError('internal')
   return session.url
+}
+
+/**
+ * Only the newest Checkout page can be paid: paying an older one left open in
+ * another tab would otherwise start a second subscription and charge twice.
+ * Best effort: a failure here must not stop the business from subscribing.
+ */
+async function expireOpenCheckouts(customer: string) {
+  try {
+    const open = await stripe().checkout.sessions.list({ customer, status: 'open', limit: 10 })
+    for (const s of open.data) await stripe().checkout.sessions.expire(s.id)
+  } catch (err) {
+    logger.warn('billing.expire_checkouts_failed', { customer, err })
+  }
 }
 
 export async function createPortalSession(business: Business): Promise<string> {

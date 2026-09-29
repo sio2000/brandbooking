@@ -122,7 +122,9 @@ describe('plan price', () => {
 
   it('is used for Checkout', async () => {
     await createCheckoutSession(s.ctx.business, s.owner.id)
-    const checkout = fake.requests.find((r) => r.path === '/v1/checkout/sessions')!
+    const checkout = fake.requests.find(
+      (r) => r.method === 'POST' && r.path === '/v1/checkout/sessions',
+    )!
     expect(checkout.params.get('line_items[0][price]')).toBe(await planPriceId())
   })
 })

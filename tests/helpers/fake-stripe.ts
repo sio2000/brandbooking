@@ -33,6 +33,9 @@ export async function startFakeStripe() {
     products: [] as unknown[],
     portalConfigs: [] as unknown[],
     webhooks: [] as Array<Record<string, unknown> & { id: string }>,
+    checkoutSessions: [] as Array<
+      { id: string; customer: string | null; status: string } & Record<string, unknown>
+    >,
     /** Subscriptions tests seed with `addSubscription` (retrieve/update/cancel). */
     subscriptions: new Map<string, FakeSubscription>(),
     /** Make the next N subscription updates fail with a 500 (retry tests). */
@@ -83,7 +86,9 @@ export async function startFakeStripe() {
     req.on('data', (c) => (body += c))
     req.on('end', () => {
       const path = (req.url ?? '').split('?')[0]!
-      const params = new URLSearchParams(body)
+      const params = new URLSearchParams(
+        req.method === 'GET' ? ((req.url ?? '').split('?')[1] ?? '') : body,
+      )
       requests.push({
         method: req.method ?? 'GET',
         path,
@@ -120,12 +125,31 @@ export async function startFakeStripe() {
         })
       }
       if (req.method === 'POST' && path === '/v1/checkout/sessions') {
-        return json(200, {
+        const session = {
           id: `cs_test_${id}`,
           object: 'checkout.session',
           mode: params.get('mode'),
+          customer: params.get('customer'),
+          status: 'open',
           url: `https://checkout.stripe.com/c/pay/cs_test_${id}`,
-        })
+        }
+        state.checkoutSessions.push(session)
+        return json(200, session)
+      }
+      if (req.method === 'GET' && path === '/v1/checkout/sessions') {
+        const data = state.checkoutSessions.filter(
+          (c) =>
+            (!params.get('customer') || c.customer === params.get('customer')) &&
+            (!params.get('status') || c.status === params.get('status')),
+        )
+        return json(200, { object: 'list', data, has_more: false, url: path })
+      }
+      const expire = path.match(/^\/v1\/checkout\/sessions\/([^/]+)\/expire$/)
+      if (req.method === 'POST' && expire) {
+        const session = state.checkoutSessions.find((c) => c.id === expire[1])
+        if (!session) return json(404, { error: { type: 'invalid_request_error' } })
+        session.status = 'expired'
+        return json(200, session)
       }
       if (req.method === 'POST' && path === '/v1/billing_portal/sessions') {
         return json(200, {

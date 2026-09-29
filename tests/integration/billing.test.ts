@@ -87,6 +87,7 @@ beforeAll(async () => {
 beforeEach(async () => {
   await resetDatabase()
   fake.requests.length = 0
+  fake.state.checkoutSessions.length = 0
   s = await setupBusiness()
 })
 afterAll(async () => {
@@ -104,7 +105,9 @@ describe('checkout', () => {
     const customerReq = fake.requests.find((r) => r.path === '/v1/customers')!
     expect(customerReq.params.get('metadata[business_id]')).toBe(s.ctx.business.id)
     expect(customerReq.idempotencyKey).toBe(`customer:${s.ctx.business.id}`)
-    const checkout = fake.requests.find((r) => r.path === '/v1/checkout/sessions')!
+    const checkout = fake.requests.find(
+      (r) => r.method === 'POST' && r.path === '/v1/checkout/sessions',
+    )!
     expect(checkout.params.get('mode')).toBe('subscription')
     expect(checkout.params.get('line_items[0][price]')).toBe(PRICE)
     expect(checkout.params.get('line_items[0][quantity]')).toBe('1')
@@ -122,6 +125,15 @@ describe('checkout', () => {
       .where(eq(subscriptions.businessId, s.ctx.business.id))
     expect(sub!.stripeCustomerId).toMatch(/^cus_test_/)
     expect(sub!.status).toBeNull() // nothing is "paid" until Stripe says so via webhook
+  })
+
+  it('expires an older open Checkout page so two tabs can never start two subscriptions', async () => {
+    await createCheckoutSession(s.ctx.business, s.owner.id)
+    await createCheckoutSession(s.ctx.business, s.owner.id)
+    const [first, second] = fake.state.checkoutSessions
+    expect(first!.status).toBe('expired')
+    expect(second!.status).toBe('open')
+    expect(first!.customer).toBe(second!.customer)
   })
 
   it('opens the billing portal instead of a second checkout when already subscribed', async () => {
