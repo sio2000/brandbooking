@@ -1,0 +1,7 @@
+{
+  "language": {
+    "label": "Idioma",
+    "change": "Mudar de idioma, atual: {language}",
+    "translationNote": "Esta página é uma tradução disponibilizada por conveniência. Se divergir da versão em inglês, prevalece a versão em inglês."
+  }
+}

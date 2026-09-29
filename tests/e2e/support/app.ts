@@ -89,6 +89,7 @@ async function insertUser(
     name: row!.name,
     emailVerified: row!.emailVerifiedAt !== null,
     isPlatformAdmin: row!.isPlatformAdmin,
+    locale: row!.locale,
   }
 }
 

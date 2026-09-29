@@ -5,6 +5,8 @@ import { headers } from 'next/headers'
 import { AppProviders } from '@/components/providers/app-providers'
 import { themeScript } from '@/components/providers/theme'
 import { site, socialImage } from '@/lib/site'
+import { LOCALE_META } from '@/lib/i18n/config'
+import { getLocale } from '@/server/i18n'
 import './globals.css'
 
 const inter = localFont({
@@ -54,8 +56,14 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nonce = (await headers()).get('x-nonce') ?? undefined
+  const { tag, dir } = LOCALE_META[await getLocale()]
   return (
-    <html lang="en" className={`${inter.variable} ${bricolage.variable}`} suppressHydrationWarning>
+    <html
+      lang={tag}
+      dir={dir}
+      className={`${inter.variable} ${bricolage.variable}`}
+      suppressHydrationWarning
+    >
       <body className="min-h-dvh">
         <Script id="theme" strategy="beforeInteractive" nonce={nonce}>
           {themeScript}

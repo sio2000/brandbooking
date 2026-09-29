@@ -23,6 +23,8 @@ export type SessionUser = {
   name: string
   emailVerified: boolean
   isPlatformAdmin: boolean
+  /** Interface language (users.locale). */
+  locale: string
 }
 
 export type ValidatedSession = { sessionId: string; expiresAt: Date; user: SessionUser }
@@ -63,6 +65,7 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       name: users.name,
       emailVerifiedAt: users.emailVerifiedAt,
       isPlatformAdmin: users.isPlatformAdmin,
+      locale: users.locale,
     })
     .from(sessions)
     .innerJoin(users, eq(users.id, sessions.userId))
@@ -92,6 +95,7 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       name: row.name,
       emailVerified: row.emailVerifiedAt !== null,
       isPlatformAdmin: row.isPlatformAdmin || isBootstrapAdmin(row.email, row.emailVerifiedAt),
+      locale: row.locale,
     },
   }
 }

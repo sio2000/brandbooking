@@ -1,0 +1,7 @@
+{
+  "language": {
+    "label": "Język",
+    "change": "Zmień język, obecny: {language}",
+    "translationNote": "Ta strona jest tłumaczeniem udostępnionym dla wygody. W razie rozbieżności z wersją angielską obowiązuje wersja angielska."
+  }
+}

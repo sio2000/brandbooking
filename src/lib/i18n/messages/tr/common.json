@@ -1,0 +1,7 @@
+{
+  "language": {
+    "label": "Dil",
+    "change": "Dili değiştir, geçerli: {language}",
+    "translationNote": "Bu sayfa kolaylık sağlamak için sunulan bir çeviridir. İngilizce sürümden farklılık gösterirse İngilizce sürüm geçerlidir."
+  }
+}

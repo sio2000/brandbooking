@@ -27,7 +27,8 @@
     "admin:grant": "tsx scripts/grant-admin.ts",
     "stripe:setup": "tsx scripts/stripe-setup.ts",
     "db:rollback": "tsx scripts/migrate.ts --down",
-    "build:netlify": "node scripts/netlify-build.mjs"
+    "build:netlify": "node scripts/netlify-build.mjs",
+    "i18n:registry": "node scripts/i18n-registry.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^11.1.1",
@@ -56,6 +57,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "@fontsource-variable/inter": "^5.3.0",
     "@netlify/plugin-nextjs": "^5.16.0",
     "@next/env": "^16.3.6",
     "@playwright/test": "^1.63.0",
@@ -65,6 +67,7 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "country-flag-icons": "^1.6.20",
     "eslint": "^10.11.0",
     "eslint-config-next": "^16.3.6",
     "jsqr": "^1.4.0",

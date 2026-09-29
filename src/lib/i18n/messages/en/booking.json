@@ -1,0 +1,22 @@
+{
+  "steps": {
+    "service": "Service",
+    "staff": "Team member",
+    "date": "Date",
+    "time": "Time",
+    "details": "Your details",
+    "confirm": "Confirm"
+  },
+  "anyStaff": "Any available",
+  "anyStaffHint": "We’ll match you with whoever is free.",
+  "noSlots": "No free times on this day.",
+  "noSlotsHint": "Try another date. Days with availability are highlighted.",
+  "timesShownIn": "Times shown in {tz}",
+  "confirmTitle": "You’re booked!",
+  "pendingTitle": "Request received",
+  "pendingBody": "{business} will confirm your appointment shortly. We’ve emailed you the details.",
+  "confirmedBody": "We’ve sent a confirmation to {email}.",
+  "pausedTitle": "Online booking is paused",
+  "pausedDefault": "We’re currently not accepting online bookings.",
+  "privacyNote": "Your details are shared only with {business} to manage your appointment."
+}

@@ -1,0 +1,7 @@
+{
+  "language": {
+    "label": "语言",
+    "change": "切换语言，当前：{language}",
+    "translationNote": "本页面为方便阅读而提供的译文。如与英文版本有出入，以英文版本为准。"
+  }
+}

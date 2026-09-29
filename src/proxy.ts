@@ -1,4 +1,15 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import {
+  BOOKING_LOCALE_COOKIE,
+  DEFAULT_LOCALE,
+  LOCALE_COOKIE,
+  isLocale,
+  isMarketingPath,
+  localizedPath,
+  matchAcceptLanguage,
+  splitLocalePath,
+  type Locale,
+} from '@/lib/i18n/config'
 
 const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
 const bareHost = (host: string) => host.replace(/^www\./, '')
@@ -7,9 +18,17 @@ const bareHost = (host: string) => host.replace(/^www\./, '')
  * Runs before every page render:
  *  - assigns a request id (propagated to logs and audit records),
  *  - sets a strict, nonce-based Content Security Policy,
- *  - allows framing only for the embeddable booking widget.
+ *  - allows framing only for the embeddable booking widget,
+ *  - picks the page language (see `resolveLocale`).
  */
 export function proxy(request: NextRequest) {
+  const lang = resolveLocale(request)
+  if (lang.redirect) {
+    const res = NextResponse.redirect(lang.redirect, 307)
+    res.headers.set('Vary', 'Accept-Language, Cookie')
+    return res
+  }
+
   const nonce = btoa(crypto.randomUUID())
   const requestId = request.headers.get('x-request-id')?.slice(0, 64) || crypto.randomUUID()
   const isDev = process.env.NODE_ENV === 'development'
@@ -40,7 +59,15 @@ export function proxy(request: NextRequest) {
   // them all.
   headers.set('Content-Security-Policy', csp)
   headers.set('x-request-id', requestId)
-  const response = NextResponse.next({ request: { headers } })
+  headers.set('x-hn-path', request.nextUrl.pathname)
+  if (lang.locale) headers.set('x-hn-locale', lang.locale)
+  else headers.delete('x-hn-locale')
+  const response = lang.rewrite
+    ? NextResponse.rewrite(lang.rewrite, { request: { headers } })
+    : NextResponse.next({ request: { headers } })
+  for (const [name, value] of lang.cookies) {
+    response.cookies.set(name, value, { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' })
+  }
   response.headers.set('Content-Security-Policy', csp)
   response.headers.set('x-request-id', requestId)
   if (!isEmbed) response.headers.set('X-Frame-Options', 'DENY')
@@ -52,15 +79,73 @@ export function proxy(request: NextRequest) {
   return response
 }
 
+type LocaleDecision = {
+  /** The language this page renders in, when the URL decides it. */
+  locale?: Locale
+  rewrite?: URL
+  redirect?: URL
+  cookies: [string, string][]
+}
+
+/**
+ * Marketing pages live under /{locale}/… for every language but English
+ * (/el/pricing is served by /pricing). A first visit to an English URL is
+ * sent to the visitor's language when their browser prefers one we have;
+ * the language menu's choice (cookie) wins over the browser from then on.
+ * Booking pages take ?lang=… (remembered in a cookie), otherwise the
+ * business's booking-page language applies.
+ */
+export function resolveLocale(request: NextRequest): LocaleDecision {
+  const url = request.nextUrl
+  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value
+  const { locale: prefixed, path } = splitLocalePath(url.pathname)
+
+  if (prefixed && isMarketingPath(path)) {
+    const rewrite = url.clone()
+    rewrite.pathname = path
+    return {
+      locale: prefixed,
+      rewrite,
+      cookies: isLocale(cookieLocale) ? [] : [[LOCALE_COOKIE, prefixed]],
+    }
+  }
+  if (url.pathname === '/en' || url.pathname.startsWith('/en/')) {
+    const target = url.pathname.slice(3) || '/'
+    if (isMarketingPath(target)) {
+      const redirect = url.clone()
+      redirect.pathname = target
+      return { redirect, cookies: [] }
+    }
+  }
+  if (isMarketingPath(url.pathname)) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+      return { locale: DEFAULT_LOCALE, cookies: [] }
+    }
+    const preferred = isLocale(cookieLocale)
+      ? cookieLocale
+      : matchAcceptLanguage(request.headers.get('accept-language'))
+    if (preferred && preferred !== DEFAULT_LOCALE) {
+      const redirect = url.clone()
+      redirect.pathname = localizedPath(url.pathname, preferred)
+      return { redirect, cookies: [] }
+    }
+    return { locale: DEFAULT_LOCALE, cookies: [] }
+  }
+  if (/^\/(book|embed|manage)\//.test(url.pathname)) {
+    const asked = url.searchParams.get('lang')
+    if (isLocale(asked)) return { locale: asked, cookies: [[BOOKING_LOCALE_COOKIE, asked]] }
+    const remembered = request.cookies.get(BOOKING_LOCALE_COOKIE)?.value
+    if (isLocale(remembered)) return { locale: remembered, cookies: [] }
+  }
+  return { cookies: [] }
+}
+
 export const config = {
   matcher: [
     {
       source:
-        '/((?!api/|_next/static|_next/image|media/|favicon.ico|icon.svg|apple-icon.png|brand/|embed.js|robots.txt|sitemap.xml|manifest.webmanifest).*)',
-      missing: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' },
-      ],
+        '/((?!api/|_next/static|_next/image|media/|favicon.ico|icon.svg|apple-icon.png|brand/|flags/|fonts/|embed.js|robots.txt|sitemap.xml|manifest.webmanifest).*)',
+      // Prefetches run through the proxy too: /el/pricing only exists after its rewrite.
     },
   ],
 }

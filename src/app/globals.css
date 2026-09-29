@@ -4,6 +4,43 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
+ * Greek and Cyrillic glyphs of Inter, downloaded only by pages that use them
+ * (unicode-range). Chinese, Japanese, Hindi and Arabic use the system's fonts.
+ */
+@font-face {
+  font-family: 'Inter Intl';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-greek-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Inter Intl';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-greek-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+1F00-1FFF;
+}
+@font-face {
+  font-family: 'Inter Intl';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Inter Intl';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+/*
  * Hournook design tokens.
  * Warm paper neutrals + evergreen primary + apricot accent. Every text/background
  * pair used for body copy meets WCAG 2.2 AA (4.5:1); large text and UI parts ≥ 3:1.
@@ -191,8 +228,10 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-primary: var(--ink-primary);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    var(--font-inter), 'Inter Intl', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display:
+    var(--font-bricolage), var(--font-inter), 'Inter Intl', ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 0.5rem;
   --radius-md: 0.625rem;

@@ -7,3 +7,4 @@ test-results
 package-lock.json
 src/server/db/migrations/*.sql
 .next-*/
+src/lib/i18n/registry.ts

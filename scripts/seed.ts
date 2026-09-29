@@ -117,6 +117,7 @@ async function main() {
     name: owner!.name,
     emailVerified: true,
     isPlatformAdmin: false,
+    locale: 'en',
   }
 
   const business = await createBusiness(
