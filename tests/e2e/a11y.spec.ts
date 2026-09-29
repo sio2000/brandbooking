@@ -102,10 +102,10 @@ for (const colorScheme of ['light', 'dark'] as const) {
       await expectNoViolations(page, 'manage: cancel dialog')
     })
 
-    test('/book/<slug>: every step of the booking flow has no WCAG A/AA violations', async ({
+    test('/<slug>: every step of the booking flow has no WCAG A/AA violations', async ({
       page,
     }) => {
-      await page.goto(`/book/${BIZ_A.slug}`)
+      await page.goto(`/${BIZ_A.slug}`)
       await expect(page.getByRole('heading', { name: 'Choose a service' })).toBeVisible()
       await expectNoViolations(page, 'book: service')
       await chooseService(page, SERVICES_A.cut)
@@ -166,7 +166,7 @@ async function tabTo(page: Page, target: Locator, maxPresses = 80) {
 
 test('the public booking flow can be completed with the keyboard alone', async ({ page }) => {
   const customer = uniqueCustomer('Kay')
-  await page.goto(`/book/${BIZ_A.slug}`)
+  await page.goto(`/${BIZ_A.slug}`)
   await expect(page.getByRole('heading', { name: 'Choose a service' })).toBeVisible()
 
   const service = page.getByRole('button', { name: new RegExp(`^${SERVICES_A.cut}`) })

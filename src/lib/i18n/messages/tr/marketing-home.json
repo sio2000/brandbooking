@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "Web siteme ihtiyacım var mı?",
-        "a": "Hayır. Rezervasyon sayfanız, rezervasyonlar için web sitenizdir: Instagram, Facebook, Google, WhatsApp veya SMS ile paylaşabileceğiniz hournook.com/book/isletmeniz gibi bir bağlantı. Zaten bir web siteniz varsa rezervasyon widget’ını ona ekleyebilirsiniz."
+        "a": "Hayır. Rezervasyon sayfanız, rezervasyonlar için web sitenizdir: Instagram, Facebook, Google, WhatsApp veya SMS ile paylaşabileceğiniz hournook.com/isletmeniz gibi bir bağlantı. Zaten bir web siteniz varsa rezervasyon widget’ını ona ekleyebilirsiniz."
       },
       "clients": {
         "q": "Müşterilerim nasıl randevu alır?",

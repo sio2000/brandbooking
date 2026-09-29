@@ -221,7 +221,7 @@ Every Stripe id stored so far belongs to **test mode**:
 3. Check:
    - Stripe → Payments: €10.00 succeeded; the invoice is paid, with the address you entered.
    - Developers → Webhooks → the endpoint: every delivery answered **200**.
-   - The app: Billing shows active, the card and the invoice; `/book/<your-slug>` takes a
+   - The app: Billing shows active, the card and the invoice; `/<your-slug>` takes a
      booking.
    - Workadu issued the document and it reached myAADE.
 4. Refund: Stripe → Payments → the payment → **Refund** (full €10.00). A refund does **not**

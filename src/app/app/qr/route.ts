@@ -2,6 +2,7 @@ import QRCode from 'qrcode'
 import { requireTenantAction } from '@/server/tenancy/context'
 import { appUrl } from '@/server/env'
 import { jsonError } from '@/server/http'
+import { bookingPath } from '@/lib/booking-url'
 
 /** QR code for the business's booking page (tagged ?src=qr for attribution). */
 export async function GET(req: Request) {
@@ -10,7 +11,7 @@ export async function GET(req: Request) {
     const url = new URL(req.url)
     const format = url.searchParams.get('format') === 'png' ? 'png' : 'svg'
     const download = url.searchParams.has('download')
-    const target = appUrl(`/book/${ctx.business.slug}?src=qr`)
+    const target = appUrl(`${bookingPath(ctx.business.slug)}?src=qr`)
     const opts = {
       errorCorrectionLevel: 'M' as const,
       margin: 2,

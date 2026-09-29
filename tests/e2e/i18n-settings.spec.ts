@@ -264,7 +264,7 @@ test.describe('dashboard languages', () => {
     // A new visitor with an English browser gets the German booking page.
     const visitor = await browser.newContext({ locale: 'en-GB' })
     const anon = await visitor.newPage()
-    await anon.goto(`/book/${BIZ_A.slug}`)
+    await anon.goto(`/${BIZ_A.slug}`)
     await expect(anon.locator('html')).toHaveAttribute('lang', 'de-DE')
     await visitor.close()
   })

@@ -100,7 +100,7 @@ async function billingPage(s: Setup, query = '') {
 }
 
 async function bookingPage(s: Setup) {
-  const res = await fetch(new URL(`/book/${s.ctx.business.slug}`, app.url))
+  const res = await fetch(new URL(`/${s.ctx.business.slug}`, app.url))
   return (await res.text()).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ')
 }
 

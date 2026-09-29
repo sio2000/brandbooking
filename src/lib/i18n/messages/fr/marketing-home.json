@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "Ai-je besoin d’un site web ?",
-        "a": "Non. Votre page de réservation fait office de site pour les réservations : un lien comme hournook.com/book/votre-entreprise à partager sur Instagram, Facebook, Google, WhatsApp ou par SMS. Si vous avez déjà un site, vous pouvez y ajouter le widget de réservation."
+        "a": "Non. Votre page de réservation fait office de site pour les réservations : un lien comme hournook.com/votre-entreprise à partager sur Instagram, Facebook, Google, WhatsApp ou par SMS. Si vous avez déjà un site, vous pouvez y ajouter le widget de réservation."
       },
       "clients": {
         "q": "Comment mes clients réservent-ils ?",

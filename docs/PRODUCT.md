@@ -61,7 +61,7 @@ details & category, booking link with live availability check, time zone and
 hours, first service, team, preferences) with sensible defaults (Mon–Fri
 9–17); setup checklist on the dashboard until the page is ready to publish.
 
-**Public booking page** (`/book/<slug>`) — business hero with logo, cover,
+**Public booking page** (`/<slug>`, e.g. www.hournook.com/linden-studio; old `/book/<slug>` links redirect) — business hero with logo, cover,
 brand colour, description, contact and social links; service list grouped by
 category with prices and durations; staff choice or "anyone"; month calendar
 with available days and time slots (business time zone, optional toggle to the

@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "Czy potrzebuję strony internetowej?",
-        "a": "Nie. Strona rezerwacji to Twoja strona do rezerwacji: link w rodzaju hournook.com/book/twoja-firma, który udostępnisz na Instagramie, Facebooku, w Google, na WhatsAppie lub SMS-em. Jeśli masz już stronę, możesz dodać do niej widżet rezerwacji."
+        "a": "Nie. Strona rezerwacji to Twoja strona do rezerwacji: link w rodzaju hournook.com/twoja-firma, który udostępnisz na Instagramie, Facebooku, w Google, na WhatsAppie lub SMS-em. Jeśli masz już stronę, możesz dodać do niej widżet rezerwacji."
       },
       "clients": {
         "q": "Jak klienci rezerwują wizyty?",

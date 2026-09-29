@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "我需要有自己的网站吗？",
-        "a": "不需要。预约页面就是您用于预约的网站：一个类似 hournook.com/book/your-business 的链接，可以分享到 Instagram、Facebook、Google、WhatsApp 或通过短信发送。如果您已有网站，也可以把预约组件嵌入其中。"
+        "a": "不需要。预约页面就是您用于预约的网站：一个类似 hournook.com/your-business 的链接，可以分享到 Instagram、Facebook、Google、WhatsApp 或通过短信发送。如果您已有网站，也可以把预约组件嵌入其中。"
       },
       "clients": {
         "q": "客户如何预约？",

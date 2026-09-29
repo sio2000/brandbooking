@@ -31,6 +31,7 @@ import { CopyButton } from '@/components/admin/copy-button'
 import { SuspendBusiness } from '@/components/admin/suspend-business'
 import { BusinessActions } from '@/components/admin/business-actions'
 import { formatNumber } from '@/lib/format'
+import { bookingPath } from '@/lib/booking-url'
 
 export const metadata: Metadata = { title: 'Business details' }
 
@@ -94,7 +95,7 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
           <>
             {published && (
               <Button asChild variant="secondary" size="sm">
-                <a href={`/book/${b.slug}`} target="_blank" rel="noopener noreferrer">
+                <a href={bookingPath(b.slug)} target="_blank" rel="noopener noreferrer">
                   <ExternalLink aria-hidden />
                   Booking page
                   <span className="sr-only">(opens in a new tab)</span>

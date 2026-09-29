@@ -53,6 +53,7 @@ import { saveWeeklyHoursAction } from '@/app/app/_actions/availability'
 import { brandingAction, uploadImageAction } from '@/app/app/_actions/booking-page'
 import { resendVerificationAction, signOutAction } from '@/app/(auth)/actions'
 import { LanguageSelect } from './language-select'
+import { bookingPath } from '@/lib/booking-url'
 
 const STEPS = ['business', 'hours', 'services', 'rules', 'branding', 'publish'] as const
 const CURRENCIES = [
@@ -400,7 +401,7 @@ function StepBusiness({
           hint={slugStatus?.available ? t('business.available') : t('business.linkHint')}
         >
           <InputGroup
-            prefix={`${origin.replace(/^https?:\/\//, '')}/book/`}
+            prefix={`${origin.replace(/^https?:\/\//, '')}/`}
             value={v.slug}
             onChange={(e) => {
               setSlugTouched(true)
@@ -1013,7 +1014,7 @@ function StepPublish({
   const [pending, setPending] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
   const [sent, setSent] = React.useState(false)
-  const url = `${origin}/book/${biz.slug}`
+  const url = `${origin}${bookingPath(biz.slug)}`
   return (
     <form
       noValidate
@@ -1094,7 +1095,7 @@ function Done({
   onFinish: () => void
 }) {
   const t = useT('onboarding')
-  const url = `${origin}/book/${biz.slug}`
+  const url = `${origin}${bookingPath(biz.slug)}`
   return (
     <div className="flex flex-col items-center py-10 text-center">
       <SuccessCheck />
@@ -1121,6 +1122,8 @@ function Done({
           </a>
         </Button>
         <Button asChild variant="secondary">
+          {/* A file download from a route handler, not a page: a plain link on purpose. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/app/qr?format=png&download=1">{t('done.qr')}</a>
         </Button>
         <Button onClick={onFinish}>

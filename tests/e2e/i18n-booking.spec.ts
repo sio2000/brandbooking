@@ -61,7 +61,7 @@ test.describe('booking pages in the customer’s language', () => {
     page,
   }) => {
     await setBusinessLocale(BIZ_B.slug, 'el')
-    await page.goto(`/book/${BIZ_B.slug}`)
+    await page.goto(`/${BIZ_B.slug}`)
     await expect(page.locator('html')).toHaveAttribute('lang', 'el-GR')
     // One service with one team member: the page opens on the date step.
     await expect(page.getByRole('heading', { name: 'Επιλέξτε ημερομηνία και ώρα' })).toBeVisible()
@@ -82,12 +82,12 @@ test.describe('booking pages in the customer’s language', () => {
   })
 
   test('?lang=ja shows Japanese and is remembered across reloads and visits', async ({ page }) => {
-    await page.goto(`/book/${BIZ_A.slug}?lang=ja`)
+    await page.goto(`/${BIZ_A.slug}?lang=ja`)
     await expect(page.locator('html')).toHaveAttribute('lang', 'ja-JP')
     await expect(page.getByRole('heading', { name: 'サービスを選択' })).toBeVisible()
     await page.reload()
     await expect(page.getByRole('heading', { name: 'サービスを選択' })).toBeVisible()
-    await page.goto(`/book/${BIZ_A.slug}`)
+    await page.goto(`/${BIZ_A.slug}`)
     await expect(page.getByRole('heading', { name: 'サービスを選択' })).toBeVisible()
     await expect(page.getByText('オンライン予約 by Hournook')).toBeVisible()
 
@@ -104,7 +104,7 @@ test.describe('booking pages in the customer’s language', () => {
     browser,
   }) => {
     const customer = uniqueCustomer('Lucia')
-    await page.goto(`/book/${BIZ_A.slug}?lang=es`)
+    await page.goto(`/${BIZ_A.slug}?lang=es`)
     await expect(page.getByRole('heading', { name: 'Elige un servicio' })).toBeVisible()
     await page.getByRole('button', { name: new RegExp(`^${SERVICES_A.cut}`) }).click()
     const staff = page.getByRole('radiogroup', { name: '¿Con quién quieres tu cita?' })
@@ -163,7 +163,7 @@ test.describe('booking pages in the customer’s language', () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 })
-    await page.goto(`/book/${BIZ_A.slug}?lang=ar`)
+    await page.goto(`/${BIZ_A.slug}?lang=ar`)
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
     await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
     await expect(page.getByRole('heading', { name: 'اختر خدمة' })).toBeVisible()

@@ -126,7 +126,7 @@ test.describe('business owner journey', () => {
     await expect(page.getByRole('heading', { name: 'Your booking page is live' })).toBeVisible()
 
     // --- Public page shows every service ---
-    await page.goto(`/book/${slug}`)
+    await page.goto(`/${slug}`)
     await expect(page.getByRole('heading', { level: 1, name: businessName })).toBeVisible()
     await expect(page.getByRole('button', { name: /^Deep Tissue Massage/ })).toBeVisible()
     await expect(page.getByRole('button', { name: /^Sports Massage/ })).toBeVisible()

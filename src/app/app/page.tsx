@@ -44,6 +44,7 @@ import {
 import { todayIn } from '@/lib/tz'
 import { cn } from '@/lib/utils'
 import { FadeIn } from '@/components/dashboard/motion'
+import { bookingPath } from '@/lib/booking-url'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT('app-home')
@@ -79,7 +80,7 @@ export default async function OverviewPage() {
         ? ta(`events.${action}`)
         : action
   const tz = b.timezone
-  const bookingUrl = appUrl(`/book/${b.slug}`)
+  const bookingUrl = appUrl(bookingPath(b.slug))
   const now = ov.now
   const todays = ov.todays.filter((a) => a.status !== 'cancelled')
   const next = ov.upcoming.find((a) => a.startsAt.getTime() > now)

@@ -91,7 +91,7 @@ async function main() {
   const [existing] = await db().select().from(businesses).where(eq(businesses.slug, DEMO_SLUG))
   if (existing && !reset) {
     console.log(
-      `Demo business already exists → http://localhost:3000/book/${DEMO_SLUG}\nLogin: ${OWNER_EMAIL} / ${PASSWORD}  (use --reset to recreate)`,
+      `Demo business already exists → http://localhost:3000/${DEMO_SLUG}\nLogin: ${OWNER_EMAIL} / ${PASSWORD}  (use --reset to recreate)`,
     )
     return
   }
@@ -433,7 +433,7 @@ async function main() {
     .from(businessMembers)
     .where(eq(businessMembers.businessId, business.id))
   console.log(`Seeded demo business with ${created} appointments (member ${m?.role}).`)
-  console.log(`Booking page: http://localhost:3000/book/${DEMO_SLUG}`)
+  console.log(`Booking page: http://localhost:3000/${DEMO_SLUG}`)
   console.log(`Owner login:  ${OWNER_EMAIL} / ${PASSWORD}`)
   console.log(`Admin login:  ${ADMIN_EMAIL} / ${PASSWORD}`)
   void randomUUID

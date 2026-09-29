@@ -193,6 +193,8 @@ export function AppointmentsView(props: {
           </div>
           {props.canExport && (
             <Button asChild variant="secondary" size="sm">
+              {/* A CSV download from a route handler, not a page: a plain link on purpose. */}
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
               <a href="/app/export/appointments">
                 <Download /> {t('list.export')}
               </a>

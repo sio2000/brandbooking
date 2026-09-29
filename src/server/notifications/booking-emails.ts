@@ -28,6 +28,7 @@ import type { EmailMessage } from './providers'
 import type { TemplateId } from './outbox'
 import { accountLocale, emailLang } from './i18n'
 import { googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
+import { bookingPath } from '@/lib/booking-url'
 
 /**
  * Renders outbox rows into emails from *current* database state, so a
@@ -387,7 +388,7 @@ export async function renderBookingEmail(
                   {
                     type: 'button',
                     label: t('cancelled.bookAgain'),
-                    url: appUrl(`/book/${b.slug}`),
+                    url: appUrl(bookingPath(b.slug)),
                   } as EmailBlock,
                 ]
               : []),

@@ -1,7 +1,7 @@
 import { test as setup } from '@playwright/test'
 import postgres from 'postgres'
-import { assertE2eDatabase, E2E_DATABASE_URL } from './support/env'
-import { closeDb, seed } from './support/app'
+import { assertE2eDatabase, E2E_BASE_URL, E2E_DATABASE_URL } from './support/env'
+import { BIZ_A, closeDb, seed } from './support/app'
 import { migrateUp } from '@/server/db/migrator'
 
 /**
@@ -11,7 +11,7 @@ import { migrateUp } from '@/server/db/migrator'
  * `_e2e`.
  */
 setup('reset and seed the E2E database', async () => {
-  setup.setTimeout(120_000)
+  setup.setTimeout(420_000)
   assertE2eDatabase(E2E_DATABASE_URL)
   const sql = postgres(E2E_DATABASE_URL, { max: 1, onnotice: () => {} })
   try {
@@ -24,4 +24,32 @@ setup('reset and seed the E2E database', async () => {
   }
   await seed()
   await closeDb()
+  await warmUp()
 })
+
+/**
+ * The dev server compiles each route on its first request, which can take
+ * longer than a test's whole timeout on a busy machine. Request the main
+ * routes once here, so timed tests only ever meet compiled pages.
+ */
+async function warmUp() {
+  const paths = [
+    '/',
+    '/pricing',
+    '/el',
+    '/login',
+    '/signup',
+    '/app',
+    '/onboarding',
+    `/${BIZ_A.slug}`,
+    `/embed/${BIZ_A.slug}`,
+    '/manage/not-a-real-token',
+    '/terms',
+  ]
+  for (const p of paths) {
+    await fetch(new URL(p, E2E_BASE_URL), {
+      redirect: 'manual',
+      signal: AbortSignal.timeout(180_000),
+    }).catch(() => {})
+  }
+}

@@ -5,6 +5,7 @@ import { appUrl } from '@/server/env'
 import { getT } from '@/server/i18n'
 import { DEFAULT_LOCALE, LOCALE_META, isLocale } from '@/lib/i18n/config'
 import { PrintButton } from '@/components/dashboard/print-button'
+import { bookingPath } from '@/lib/booking-url'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT('app-booking-page')
@@ -20,7 +21,7 @@ export default async function QrPrintPage() {
     getT('app-booking-page'),
     getT('app-booking-page', posterLocale),
   ])
-  const url = appUrl(`/book/${ctx.business.slug}?src=qr`)
+  const url = appUrl(`${bookingPath(ctx.business.slug)}?src=qr`)
   const svg = await QRCode.toString(url, {
     type: 'svg',
     margin: 0,
@@ -41,7 +42,7 @@ export default async function QrPrintPage() {
         <div className="mx-auto mt-8 w-64" dangerouslySetInnerHTML={{ __html: svg }} />
         <p className="mt-8 text-lg font-medium">{poster('qrPrint.scan')}</p>
         <p className="mt-1 text-sm break-all text-[#645d53]" dir="ltr">
-          {appUrl(`/book/${ctx.business.slug}`).replace(/^https?:\/\//, '')}
+          {appUrl(bookingPath(ctx.business.slug)).replace(/^https?:\/\//, '')}
         </p>
       </div>
       <PrintButton label={t('qrPrint.print')} />

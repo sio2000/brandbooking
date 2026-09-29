@@ -371,7 +371,7 @@ function Phone({
           className="mx-3 mt-2 flex items-center justify-center gap-1 rounded-lg bg-[#f1efe9] px-2 py-1.5 text-[10.5px] text-[#57524a]"
         >
           <Lock className="size-2.5 shrink-0" />
-          <span className="truncate">{`hournook.com/book/${industry.slug}`}</span>
+          <span className="truncate">{`hournook.com/${industry.slug}`}</span>
         </div>
 
         <AnimatePresence initial={false} mode="popLayout">

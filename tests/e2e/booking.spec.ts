@@ -7,11 +7,13 @@ import {
   book,
   businessBySlug,
   db,
+  loginAs,
   notificationsFor,
   SERVICES_A,
   STAFF_A,
   staffByName,
   uniqueCustomer,
+  USERS,
 } from './support/app'
 import {
   chooseLaterDay,
@@ -23,7 +25,7 @@ import {
   toReview,
 } from './support/flows'
 
-const BOOK_URL = `/book/${BIZ_A.slug}`
+const BOOK_URL = `/${BIZ_A.slug}`
 
 test.describe('public booking', () => {
   test('customer books without an account @mobile', async ({ page }) => {
@@ -193,5 +195,43 @@ test.describe('public booking', () => {
     expect(mine).toHaveLength(1)
     expect(mine[0]!.appt.startsAt.getTime()).not.toBe(takenStart!.getTime())
     expect(mine[0]!.appt.staffId).toBe(sam.id)
+  })
+})
+
+test.describe('booking links: hournook.com/{slug}', () => {
+  test('old /book/{slug} links and printed QR codes move permanently, keeping their parameters', async ({
+    request,
+  }) => {
+    const res = await request.get(`/book/${BIZ_A.slug}?src=qr&lang=el`, { maxRedirects: 0 })
+    expect(res.status()).toBe(308)
+    expect(new URL(res.headers()['location']!, 'http://x').pathname).toBe(`/${BIZ_A.slug}`)
+    expect(new URL(res.headers()['location']!, 'http://x').search).toBe('?src=qr&lang=el')
+  })
+
+  test('the booking page lives at /{slug} with that canonical URL; site pages keep their names', async ({
+    page,
+    request,
+  }) => {
+    await page.goto(`/${BIZ_A.slug}`)
+    await expect(page.getByRole('heading', { level: 1, name: BIZ_A.name })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      new RegExp(`/${BIZ_A.slug}$`),
+    )
+    // A real page is never taken over by a booking link…
+    await page.goto('/pricing')
+    await expect(page.getByRole('heading', { level: 1 })).not.toHaveText(BIZ_A.name)
+    // …and an unknown link is a clean 404.
+    expect((await request.get('/no-such-business-here')).status()).toBe(404)
+  })
+
+  test('the dashboard shares the short link @owner', async ({ browser }) => {
+    const context = await browser.newContext()
+    await loginAs(context, USERS.ownerA.email)
+    const page = await context.newPage()
+    await page.goto('/app/booking-page')
+    await expect(page.getByText(`/book/${BIZ_A.slug}`)).toHaveCount(0)
+    await expect(page.locator(`input[value$="/${BIZ_A.slug}"]`).first()).toBeVisible()
+    await context.close()
   })
 })

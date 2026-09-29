@@ -189,7 +189,7 @@ test.describe('QA: complete business lifecycle', () => {
       expect([s2.priceCents, s2.durationMinutes]).toEqual([SVC2.cents, 30])
     })
 
-    const qrUrl = `${E2E_BASE_URL}/book/${'__slug__'}?src=qr`
+    const qrUrl = `${E2E_BASE_URL}/${'__slug__'}?src=qr`
     await test.step('E2E #2 the QR code decodes to the public booking page; only owners can get it', async () => {
       const png = await page.request.get('/app/qr?format=png')
       expect(png.status()).toBe(200)
@@ -324,7 +324,7 @@ test.describe('QA: complete business lifecycle', () => {
     let thirdId = ''
     await test.step('E2E #6 second booking, then the customer cancels it; the time is released', async () => {
       const c = await anonymousPage(browser)
-      await c.goto(`/book/${slug}`)
+      await c.goto(`/${slug}`)
       await chooseService(c, SVC2.name)
       await chooseDay(c, 2)
       await chooseTime(c, 3)
@@ -453,7 +453,7 @@ test.describe('QA: complete business lifecycle', () => {
       await page.getByRole('menuitem', { name: 'Pause bookings' }).click()
       await expect.poll(async () => (await serviceByName(b.id, SVC2.name)).isActive).toBe(false)
       const anon = await anonymousPage(browser)
-      await anon.goto(`/book/${slug}`)
+      await anon.goto(`/${slug}`)
       // With one bookable service left, the page goes straight to it.
       await expect(anon.getByText(SVC.name).first()).toBeVisible()
       await expect(anon.getByText(SVC2.name)).toHaveCount(0)
@@ -518,7 +518,7 @@ test.describe('QA: complete business lifecycle', () => {
         expect(rows).toHaveLength(0)
       }
       const anon = await anonymousPage(browser)
-      expect((await anon.goto(`/book/${slug}`))!.status()).toBe(404)
+      expect((await anon.goto(`/${slug}`))!.status()).toBe(404)
       await anon.goto(manageLink)
       await expect(
         anon.getByRole('heading', { name: 'We couldn’t find this booking' }),
@@ -614,7 +614,7 @@ test.describe('QA: long contact details on the booking page', () => {
       const widths = test.info().project.name === 'mobile' ? [0] : [1920, 1280]
       for (const width of widths) {
         if (width) await page.setViewportSize({ width, height: 900 })
-        await page.goto(`/book/${BIZ_A.slug}`)
+        await page.goto(`/${BIZ_A.slug}`)
         const card = page.getByRole('complementary', { name: 'Contact information' })
         await expect(card).toBeVisible()
         const overflowPx = await card.evaluate((el) => {

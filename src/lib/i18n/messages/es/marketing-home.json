@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "¿Necesito una página web?",
-        "a": "No. Tu página de reservas es tu web para reservas: un enlace como hournook.com/book/tu-negocio que puedes compartir en Instagram, Facebook, Google, WhatsApp o por SMS. Si ya tienes web, puedes añadirle el widget de reservas."
+        "a": "No. Tu página de reservas es tu web para reservas: un enlace como hournook.com/tu-negocio que puedes compartir en Instagram, Facebook, Google, WhatsApp o por SMS. Si ya tienes web, puedes añadirle el widget de reservas."
       },
       "clients": {
         "q": "¿Cómo reservan mis clientes?",

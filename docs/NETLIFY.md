@@ -86,7 +86,7 @@ for the new URL.
 2. Verify the email (Resend inbox, or with `ALLOW_LOG_EMAIL_IN_PRODUCTION=1` find
    the `email.logged` line in Netlify → _Logs_ → _Functions_ → `___netlify-server-handler`).
 3. Complete onboarding and publish the booking page; book an appointment from
-   `/book/<your-slug>` in a private window.
+   `/<your-slug>` in a private window.
 4. _Billing_ → subscribe with Stripe's test card `4242 4242 4242 4242`, any future
    date, any CVC. The webhook activates the subscription within seconds.
 5. `/admin` shows the platform admin panel (health shows the last scheduler run).

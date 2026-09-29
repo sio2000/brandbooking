@@ -372,11 +372,15 @@ function ShareCard({ bookingUrl, customerText }: Parameters<typeof BookingPageVi
             <p className="text-[13px] text-muted-foreground">{t('share.qrDescription')}</p>
             <div className="flex flex-wrap gap-2">
               <Button asChild size="sm" variant="secondary">
+                {/* A file download from a route handler, not a page: a plain link on purpose. */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/app/qr?format=png&download=1">
                   <Download /> PNG {/* i18n-ignore */}
                 </a>
               </Button>
               <Button asChild size="sm" variant="secondary">
+                {/* A file download from a route handler, not a page: a plain link on purpose. */}
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/app/qr?format=svg&download=1">
                   <Download /> SVG {/* i18n-ignore */}
                 </a>
@@ -813,7 +817,7 @@ function LinkCard({ business: b, origin }: Parameters<typeof BookingPageView>[0]
       <CardBody className="grid grid-cols-1 gap-2">
         <FormError message={error} />
         <InputGroup
-          prefix={`${origin.replace(/^https?:\/\//, '')}/book/`}
+          prefix={`${origin.replace(/^https?:\/\//, '')}/`}
           value={slug}
           onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
           aria-label={t('link.title')}

@@ -9,6 +9,7 @@ import { DEFAULT_LOCALE, LOCALE_META, isLocale } from '@/lib/i18n/config'
 import { Translations } from '@/components/i18n/translations'
 import { PageContainer, PageHeader } from '@/components/dashboard/page-header'
 import { BookingPageView } from '@/components/dashboard/booking-page/booking-page-view'
+import { bookingPath } from '@/lib/booking-url'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT('app-booking-page')
@@ -28,7 +29,7 @@ export default async function BookingPageSettings() {
     // Text that customers read (shared links, the website button) uses the booking page's language.
     getT('app-booking-page', pageLocale),
   ])
-  const bookingUrl = appUrl(`/book/${b.slug}`)
+  const bookingUrl = appUrl(bookingPath(b.slug))
   return (
     <PageContainer>
       <PageHeader title={t('title')} description={t('description')} />

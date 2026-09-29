@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "Mi serve un sito web?",
-        "a": "No. La tua pagina di prenotazione è il tuo sito per le prenotazioni: un link come hournook.com/book/la-tua-attivita da condividere su Instagram, Facebook, Google, WhatsApp o via SMS. Se hai già un sito, puoi aggiungerci il widget di prenotazione."
+        "a": "No. La tua pagina di prenotazione è il tuo sito per le prenotazioni: un link come hournook.com/la-tua-attivita da condividere su Instagram, Facebook, Google, WhatsApp o via SMS. Se hai già un sito, puoi aggiungerci il widget di prenotazione."
       },
       "clients": {
         "q": "Come prenotano i miei clienti?",

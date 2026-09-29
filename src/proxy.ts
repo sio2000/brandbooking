@@ -10,6 +10,7 @@ import {
   splitLocalePath,
   type Locale,
 } from '@/lib/i18n/config'
+import { legacyBookingRedirect, rootBookingSlug } from '@/lib/booking-url'
 
 const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
 const bareHost = (host: string) => host.replace(/^www\./, '')
@@ -24,6 +25,7 @@ const bareHost = (host: string) => host.replace(/^www\./, '')
 export function proxy(request: NextRequest) {
   const lang = resolveLocale(request)
   if (lang.redirect) {
+    if (lang.permanent) return NextResponse.redirect(lang.redirect, 308)
     const res = NextResponse.redirect(lang.redirect, 307)
     res.headers.set('Vary', 'Accept-Language, Cookie')
     return res
@@ -84,6 +86,8 @@ type LocaleDecision = {
   locale?: Locale
   rewrite?: URL
   redirect?: URL
+  /** A move that never changes (old /book/{slug} links), cacheable by browsers and search engines. */
+  permanent?: boolean
   cookies: [string, string][]
 }
 
@@ -92,11 +96,20 @@ type LocaleDecision = {
  * (/el/pricing is served by /pricing). A first visit to an English URL is
  * sent to the visitor's language when their browser prefers one we have;
  * the language menu's choice (cookie) wins over the browser from then on.
- * Booking pages take ?lang=… (remembered in a cookie), otherwise the
- * business's booking-page language applies.
+ * Booking pages (/{slug}, /embed/{slug}, /manage/{token}) take ?lang=…
+ * (remembered in a cookie), otherwise the business's booking-page language
+ * applies.
  */
 export function resolveLocale(request: NextRequest): LocaleDecision {
   const url = request.nextUrl
+  // Booking pages moved from /book/{slug} to /{slug}: shared links, QR codes
+  // and bookmarks keep working, with their ?src / ?lang / utm parameters.
+  const moved = legacyBookingRedirect(url.pathname)
+  if (moved) {
+    const redirect = url.clone()
+    redirect.pathname = moved
+    return { redirect, permanent: true, cookies: [] }
+  }
   const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value
   const { locale: prefixed, path } = splitLocalePath(url.pathname)
 
@@ -136,7 +149,7 @@ export function resolveLocale(request: NextRequest): LocaleDecision {
     }
     return { locale: DEFAULT_LOCALE, cookies: [] }
   }
-  if (/^\/(book|embed|manage)\//.test(url.pathname)) {
+  if (/^\/(book|embed|manage)\//.test(url.pathname) || rootBookingSlug(url.pathname)) {
     const asked = url.searchParams.get('lang')
     if (isLocale(asked)) return { locale: asked, cookies: [[BOOKING_LOCALE_COOKIE, asked]] }
     const remembered = request.cookies.get(BOOKING_LOCALE_COOKIE)?.value

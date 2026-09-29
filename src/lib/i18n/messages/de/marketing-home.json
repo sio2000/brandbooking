@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "Brauche ich eine Website?",
-        "a": "Nein. Ihre Buchungsseite ist Ihre Website für Buchungen: ein Link wie hournook.com/book/ihr-unternehmen, den Sie auf Instagram, Facebook, Google, WhatsApp oder per SMS teilen. Wenn Sie schon eine Website haben, können Sie dort das Buchungs-Widget einbauen."
+        "a": "Nein. Ihre Buchungsseite ist Ihre Website für Buchungen: ein Link wie hournook.com/ihr-unternehmen, den Sie auf Instagram, Facebook, Google, WhatsApp oder per SMS teilen. Wenn Sie schon eine Website haben, können Sie dort das Buchungs-Widget einbauen."
       },
       "clients": {
         "q": "Wie buchen meine Kunden?",

@@ -1,6 +1,19 @@
 import type { MetadataRoute } from 'next'
 import { site } from '@/lib/site'
 
+/** Areas search engines never need: the dashboard, admin, APIs and one-off links. */
+const PRIVATE = [
+  '/app',
+  '/admin',
+  '/api',
+  '/manage',
+  '/embed',
+  '/onboarding',
+  '/invite',
+  '/reset-password',
+  '/verify-email',
+]
+
 /**
  * Only the production domain is indexable. Staging and preview deployments
  * (e.g. *.netlify.app) disallow crawling entirely so they never compete with
@@ -21,18 +34,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/book/'],
-        disallow: [
-          '/app',
-          '/admin',
-          '/api',
-          '/manage',
-          '/embed',
-          '/onboarding',
-          '/invite',
-          '/reset-password',
-          '/verify-email',
-        ],
+        allow: '/',
+        // Each private area is blocked as "/x$" (the page itself) and "/x/"
+        // (everything under it), never as a bare "/x" prefix: robots rules
+        // match prefixes, and booking pages live at /{slug}, so "/app" would
+        // also hide a business at /apple-salon from search engines.
+        disallow: PRIVATE.flatMap((p) => [`${p}$`, `${p}/`]),
       },
     ],
     sitemap: `${site.url}/sitemap.xml`,

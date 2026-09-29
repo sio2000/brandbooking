@@ -5,7 +5,7 @@
 Hournook is a multi-tenant online appointment booking SaaS for small service
 businesses — salons, barbers, therapists, trainers, consultants, clinics. A
 business signs up, sets its services, team and opening hours, and gets a public
-booking page (`/book/<slug>`) where customers book in under a minute without
+booking page (`/<slug>`, e.g. www.hournook.com/linden-studio) where customers book in under a minute without
 creating an account. One plan: **€10 / month per business**, with a free trial.
 
 |         |                                                                                                       |
@@ -49,7 +49,7 @@ Demo logins created by the seed (development only — the seed refuses to run in
 | Business owner | `demo@hournook.dev`  | `demo-password-2026` |
 | Platform admin | `admin@hournook.dev` | `demo-password-2026` |
 
-Public booking page: <http://localhost:3000/book/linden-studio>
+Public booking page: <http://localhost:3000/linden-studio>
 
 Without Docker: create a `hournook` role/database yourself (the migrations need the
 `citext`, `btree_gist` and `pg_trgm` extensions, which ship with PostgreSQL) and

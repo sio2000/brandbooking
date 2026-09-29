@@ -6,6 +6,7 @@ import { db } from '@/server/db/client'
 import { appointments, businesses } from '@/server/db/schema'
 import { parseManageToken } from '@/server/booking/manage-token'
 import { getSession } from '@/server/auth/session'
+import { rootBookingSlug } from '@/lib/booking-url'
 import {
   DEFAULT_LOCALE,
   LOCALE_COOKIE,
@@ -22,8 +23,18 @@ import { createTranslator, type Translator } from '@/lib/i18n/translator'
 export const LOCALE_HEADER = 'x-hn-locale'
 export const PATH_HEADER = 'x-hn-path'
 
-const bookingSlug = (path: string) => path.match(/^\/(?:book|embed)\/([^/?#]+)/)?.[1]
+/** The business slug of a booking page path: /{slug}, /embed/{slug} or an old /book/{slug}. */
+const bookingSlug = (path: string) =>
+  path.match(/^\/(?:book|embed)\/([^/?#]+)/)?.[1] ?? rootBookingSlug(path) ?? undefined
 const manageToken = (path: string) => path.match(/^\/manage\/([^/?#]+)/)?.[1]
+
+function safeDecode(s: string) {
+  try {
+    return decodeURIComponent(s)
+  } catch {
+    return s
+  }
+}
 
 /**
  * The language of this request, decided once per request:
@@ -44,9 +55,11 @@ export const getLocale = cache(async (): Promise<Locale> => {
     const [row] = await db()
       .select({ locale: businesses.locale })
       .from(businesses)
-      .where(eq(businesses.slug, decodeURIComponent(slug).toLowerCase()))
+      .where(eq(businesses.slug, safeDecode(slug).toLowerCase()))
       .limit(1)
-    return isLocale(row?.locale) ? row.locale : DEFAULT_LOCALE
+    // An unknown link (a typo, a deleted business) falls through to the
+    // visitor's own language for the "not found" page.
+    if (isLocale(row?.locale)) return row.locale
   }
   const token = manageToken(h.get(PATH_HEADER) ?? '')
   const appointmentId = token ? parseManageToken(token)?.appointmentId : undefined

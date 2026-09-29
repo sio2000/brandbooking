@@ -269,7 +269,7 @@
     "items": {
       "website": {
         "q": "ウェブサイトは必要ですか？",
-        "a": "いいえ。予約ページがそのまま予約用のウェブサイトになります。hournook.com/book/your-business のようなリンクを、Instagram、Facebook、Google、WhatsApp、SMS で共有できます。すでにウェブサイトをお持ちなら、予約ウィジェットを埋め込むこともできます。"
+        "a": "いいえ。予約ページがそのまま予約用のウェブサイトになります。hournook.com/your-business のようなリンクを、Instagram、Facebook、Google、WhatsApp、SMS で共有できます。すでにウェブサイトをお持ちなら、予約ウィジェットを埋め込むこともできます。"
       },
       "clients": {
         "q": "お客様はどうやって予約しますか？",

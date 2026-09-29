@@ -40,7 +40,7 @@ const PAGES: Array<{ path: string; who: Who }> = [
   { path: '/pricing', who: 'anonymous' },
   { path: '/login', who: 'anonymous' },
   { path: '/signup', who: 'anonymous' },
-  { path: `/book/${BIZ_A.slug}`, who: 'anonymous' },
+  { path: `/${BIZ_A.slug}`, who: 'anonymous' },
   { path: `/embed/${BIZ_A.slug}`, who: 'anonymous' },
   { path: '/app', who: 'owner' },
   { path: '/app/calendar', who: 'owner' },
@@ -72,7 +72,7 @@ for (const width of [320, 390]) {
     }
 
     test('booking flow: date & time and details steps', async ({ page }) => {
-      await page.goto(`/book/${BIZ_A.slug}`)
+      await page.goto(`/${BIZ_A.slug}`)
       await chooseService(page, SERVICES_A.cut)
       await chooseStaff(page, 'Any available')
       await chooseLaterDay(page)

@@ -27,6 +27,7 @@ import { LanguageSwitcher } from '@/components/i18n/language-switcher'
 import { SlotPicker, type AvailabilityResponse } from './slot-picker'
 import { SuccessCheck } from './success-check'
 import type { getManagedBooking } from '@/server/booking/public'
+import { bookingPath } from '@/lib/booking-url'
 
 type Data = Awaited<ReturnType<typeof getManagedBooking>>
 
@@ -43,7 +44,8 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
   const t = useT('manage')
   const te = useT('errors')
   const tm = useT('email')
-  const locale = bookingFormatLocale(useLocale().locale)
+  const pageLocale = useLocale().locale
+  const locale = bookingFormatLocale(pageLocale)
   const a = data.appointment
   const b = data.business
   const [mode, setMode] = React.useState<'view' | 'reschedule' | 'rescheduled'>('view')
@@ -374,7 +376,11 @@ export function ManageBooking({ token, data }: { token: string; data: Data }) {
         </p>
       )}
       <p className="mt-10 text-center text-sm">
-        <Link href={`/book/${b.slug}`} className="font-medium text-primary hover:underline">
+        <Link
+          // Same language as this page, even in a browser that never saw the booking page.
+          href={`${bookingPath(b.slug)}?lang=${pageLocale}`}
+          className="font-medium text-primary hover:underline"
+        >
           {t('bookAnother')}
         </Link>
       </p>

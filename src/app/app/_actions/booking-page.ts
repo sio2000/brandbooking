@@ -19,7 +19,7 @@ import { isSlugAvailable } from '@/server/business/onboarding'
 
 function done() {
   revalidatePath('/app', 'layout')
-  revalidatePath('/book/[slug]', 'page')
+  revalidatePath('/[slug]', 'page')
 }
 
 const MESSAGES = {

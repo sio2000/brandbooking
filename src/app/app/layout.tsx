@@ -13,6 +13,7 @@ import { MobileNav, Sidebar } from '@/components/dashboard/sidebar'
 import { Topbar } from '@/components/dashboard/topbar'
 import { CommandPaletteProvider } from '@/components/dashboard/command-palette'
 import { AccountBanner } from '@/components/dashboard/banners'
+import { bookingPath } from '@/lib/booking-url'
 
 /**
  * Catalogues every dashboard page may need on the client: all `app-*`
@@ -49,7 +50,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       .map((i) => ({ ...i, label: t(`nav.items.${i.key}`) })),
   })).filter((g) => g.items.length)
   const bookingUrl =
-    ctx.business.publishStatus === 'draft' ? null : appUrl(`/book/${ctx.business.slug}`)
+    ctx.business.publishStatus === 'draft' ? null : appUrl(bookingPath(ctx.business.slug))
   const can = {
     createAppointment: ctx.can('appointments.manage_all') || ctx.can('appointments.manage_own'),
     services: ctx.can('services.manage'),

@@ -10,6 +10,7 @@ import {
 import { isValidTimeZone } from '../tz'
 import { vmsg } from './messages'
 import { LOCALES } from '../i18n/config'
+import { RESERVED_SLUGS } from '../booking-url'
 
 /** One of the 15 supported languages (account language, booking-page language). */
 export const localeSchema = z.enum(LOCALES, { message: vmsg('locale.invalid') })
@@ -20,40 +21,8 @@ export const checkbox = z
   .optional()
   .transform((v) => v === true || v === 'on' || v === 'true')
 
-export const RESERVED_SLUGS = new Set([
-  'app',
-  'admin',
-  'api',
-  'book',
-  'manage',
-  'login',
-  'signup',
-  'logout',
-  'pricing',
-  'privacy',
-  'terms',
-  'cookies',
-  'onboarding',
-  'verify-email',
-  'reset-password',
-  'forgot-password',
-  'invite',
-  'media',
-  'embed',
-  'help',
-  'support',
-  'about',
-  'blog',
-  'static',
-  'assets',
-  'www',
-  'mail',
-  'status',
-  'hournook',
-  'settings',
-  'billing',
-  'dashboard',
-])
+/** Names a business cannot take as its booking link (see src/lib/booking-url.ts). */
+export { RESERVED_SLUGS }
 
 export const slugSchema = z
   .string()

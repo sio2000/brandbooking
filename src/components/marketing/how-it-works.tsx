@@ -239,7 +239,7 @@ function ShareScene({ animate }: { animate: boolean }) {
       <div className="flex w-full items-center gap-2 rounded-2xl border border-border bg-surface p-2 ps-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)]">
         <Link2 className="size-4 shrink-0 text-primary" />
         <span dir="ltr" className="min-w-0 flex-1 truncate text-start text-[14px] font-medium">
-          {`hournook.com/book/${industry('barber', t, locale).slug}`}
+          {`hournook.com/${industry('barber', t, locale).slug}`}
         </span>
         <span className="relative grid h-9 min-w-[92px] shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground px-3 text-[13px] font-semibold whitespace-nowrap text-background">
           {/* Sizes the button to the longer of the two labels. */}

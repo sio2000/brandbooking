@@ -5,6 +5,7 @@ import { businesses } from '@/server/db/schema'
 import { LOCALES, MARKETING_PATHS, localizedPath } from '@/lib/i18n/config'
 import { hreflangLinks } from '@/lib/i18n/seo'
 import { absoluteUrl } from '@/lib/site'
+import { bookingPath } from '@/lib/booking-url'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600
@@ -39,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...statics,
     ...pages.map((p) => ({
-      url: absoluteUrl(`/book/${p.slug}`),
+      url: absoluteUrl(bookingPath(p.slug)),
       lastModified: p.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: 0.7,

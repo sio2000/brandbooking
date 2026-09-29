@@ -127,6 +127,8 @@ export function ServicesView({
         </p>
         <div className="flex gap-2">
           <Button asChild variant="secondary" size="sm">
+            {/* A CSV download from a route handler, not a page: a plain link on purpose. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/app/export/services">
               <Download /> {t('list.export')}
             </a>

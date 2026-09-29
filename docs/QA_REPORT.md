@@ -32,7 +32,7 @@
 ## 1. Application map (discovery)
 
 **Δημόσιες σελίδες:** `/`, `/pricing`, `/support`, `/terms`, `/privacy`, `/dpa`, `/cookies`,
-`/legal`, `/book/[slug]` (σελίδα κρατήσεων), `/embed/[slug]` (widget), `/manage/[token]`
+`/legal`, `/[slug]` (σελίδα κρατήσεων· τα παλιά `/book/[slug]` κάνουν ανακατεύθυνση), `/embed/[slug]` (widget), `/manage/[token]`
 (διαχείριση κράτησης από τον πελάτη), `/manage/[token]/ics`.
 
 **Λογαριασμός:** `/signup`, `/login`, `/verify-email`, `/forgot-password`, `/reset-password`,
