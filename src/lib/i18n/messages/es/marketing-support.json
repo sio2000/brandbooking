@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Ayuda",
+    "description": "Ayuda para empezar con Hournook, compartir tu página de reservas y la facturación, y cómo contactar con nosotros."
+  },
+  "hero": {
+    "eyebrow": "Ayuda",
+    "title": "¿Cómo podemos ayudarte?",
+    "lead": "Guías rápidas sobre lo que más nos preguntan. Si te atascas, tienes los datos de contacto al final de esta página."
+  },
+  "topicsLabel": "Temas de ayuda",
+  "contactLink": "Contacto",
+  "topics": {
+    "gettingStarted": {
+      "title": "Primeros pasos",
+      "steps": {
+        "account": "Crea tu cuenta y verifica tu correo electrónico.",
+        "details": "Añade los datos de tu negocio, el logotipo y la zona horaria.",
+        "services": "Añade servicios con su duración y precio.",
+        "hours": "Configura tu horario semanal y añade vacaciones o días de cierre.",
+        "team": "Invita a los miembros del equipo y elige qué servicios ofrece cada persona.",
+        "publish": "Publica tu página de reservas cuando estés contento con ella."
+      }
+    },
+    "sharing": {
+      "title": "Compartir tu página de reservas",
+      "steps": {
+        "link": "Copia tu enlace de reservas y añádelo a tu biografía de Instagram, a tu Perfil de Empresa de Google o a tu firma de correo.",
+        "widget": "Pega el código del widget en tu propia web para que tus clientes reserven sin salir de ella.",
+        "qr": "Descarga el código QR e imprímelo para el mostrador, el escaparate o tus folletos.",
+        "analytics": "Consulta las estadísticas para ver cuál de ellos te trae más reservas."
+      }
+    },
+    "billing": {
+      "title": "Facturación",
+      "steps": {
+        "trial": "Tu prueba gratuita de {days} días empieza al registrarte. Sin tarjeta.",
+        "subscribe": "Suscríbete por {price}/mes desde tus ajustes de facturación cuando quieras.",
+        "portal": "Abre el portal de facturación de Stripe para cambiar la tarjeta, descargar facturas o cancelar.",
+        "vat": "El precio incluye el IVA (24 %). Recibes una factura por cada pago."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactar con soporte",
+    "lead": "Cuéntanos qué intentabas hacer y, si puedes, el correo electrónico de tu cuenta. No envíes contraseñas ni datos de tarjeta.",
+    "helpCentre": "Centro de ayuda",
+    "newTab": "(se abre en una pestaña nueva)",
+    "soon": "El contacto de soporte llegará pronto. Mientras tanto, las guías de arriba responden a las preguntas más habituales.",
+    "customers": "¿Has reservado una cita con un negocio? Contacta directamente con ese negocio; encontrarás sus datos en su página de reservas y en tu correo de confirmación."
+  },
+  "seeAlso": {
+    "label": "Ver también:",
+    "pricing": "Precio",
+    "privacy": "Privacidad",
+    "terms": "Condiciones"
+  }
+}

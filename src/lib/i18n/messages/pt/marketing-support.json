@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Apoio",
+    "description": "Ajuda para começar a usar a Hournook, partilhar a sua página de reservas e tratar da faturação, e como nos contactar."
+  },
+  "hero": {
+    "eyebrow": "Apoio",
+    "title": "Como podemos ajudar?",
+    "lead": "Guias rápidos sobre as dúvidas mais frequentes. Se ficar sem saber o que fazer, os contactos estão no fim desta página."
+  },
+  "topicsLabel": "Temas de ajuda",
+  "contactLink": "Contacto",
+  "topics": {
+    "gettingStarted": {
+      "title": "Primeiros passos",
+      "steps": {
+        "account": "Crie a sua conta e confirme o seu endereço de email.",
+        "details": "Adicione os dados do negócio, o logótipo e o fuso horário.",
+        "services": "Adicione serviços com a respetiva duração e preço.",
+        "hours": "Defina o horário semanal e acrescente férias ou dias de encerramento.",
+        "team": "Convide membros da equipa e escolha os serviços que cada pessoa presta.",
+        "publish": "Publique a sua página de reservas quando estiver satisfeito com ela."
+      }
+    },
+    "sharing": {
+      "title": "Partilhar a página de reservas",
+      "steps": {
+        "link": "Copie a ligação de reservas e adicione-a à biografia do Instagram, ao Perfil da Empresa no Google ou à assinatura de email.",
+        "widget": "Cole o código do widget no seu site para que os clientes reservem sem sair dele.",
+        "qr": "Descarregue o código QR e imprima-o para o balcão, a montra ou os folhetos.",
+        "analytics": "Consulte as estatísticas para ver qual destes canais traz mais reservas."
+      }
+    },
+    "billing": {
+      "title": "Faturação",
+      "steps": {
+        "trial": "O período experimental de {days} dias começa com o registo. Sem cartão.",
+        "subscribe": "Subscreva por {price}/mês nas definições de faturação quando estiver pronto.",
+        "portal": "Abra o portal de faturação da Stripe para alterar o cartão, descarregar faturas ou cancelar.",
+        "vat": "O preço inclui IVA (24%). Recebe uma fatura por cada pagamento."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactar o apoio",
+    "lead": "Diga-nos o que estava a tentar fazer e, se possível, o endereço de email da sua conta. Não envie palavras-passe nem dados do cartão.",
+    "helpCentre": "Centro de ajuda",
+    "newTab": "(abre num novo separador)",
+    "soon": "O contacto de apoio estará disponível em breve. Entretanto, os guias acima respondem às perguntas mais comuns.",
+    "customers": "Fez uma marcação num negócio? Contacte diretamente esse negócio; encontra os dados dele na respetiva página de reservas e no email de confirmação."
+  },
+  "seeAlso": {
+    "label": "Ver também:",
+    "pricing": "Preço",
+    "privacy": "Privacidade",
+    "terms": "Termos"
+  }
+}

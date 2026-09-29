@@ -41,7 +41,7 @@ test.describe('landing page', () => {
 
     const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent())!)
     const types = (ld['@graph'] as Array<{ '@type': string; url?: string }>).map((n) => n['@type'])
-    expect(types).toEqual(['Organization', 'WebSite', 'SoftwareApplication'])
+    expect(types).toEqual(['Organization', 'WebSite', 'SoftwareApplication', 'FAQPage'])
     for (const node of ld['@graph'] as Array<{ url?: string }>) {
       if (node.url) expect(node.url.startsWith(SITE)).toBe(true)
     }

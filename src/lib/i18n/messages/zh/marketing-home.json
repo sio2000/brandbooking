@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook：为预约制商家打造的在线预约软件",
+    "description": "专属预约页面、日历、客户列表和自动提醒，适用于美发店、美甲店、理发店、诊所、健身教练、顾问以及所有预约制商家。每月 {price}，{days} 天免费试用，无需绑卡。"
+  },
+  "hero": {
+    "titleLead": "在线预约，服务您的",
+    "titleSr": "预约制生意",
+    "phrase": "{phrase}。",
+    "lead": "几分钟就能拥有自己的预约页面。客户在手机上选择服务和空闲时段，预约自动进入您的日历。确认和提醒邮件由系统替您发送。",
+    "cta": "创建您的预约页面",
+    "how": "使用方式",
+    "perks": {
+      "trial": "{days} 天免费",
+      "noCard": "无需绑卡",
+      "price": "之后每月 {price}，含增值税",
+      "cancel": "随时取消"
+    },
+    "srDescription": "动画示例：客户在商家的 Hournook 预约页面上预约，随后商家收到通知，客户收到确认邮件。示例依次展示美甲工作室、理发店、诊所、美容院、健身工作室和咨询公司。所有名称均为虚构。",
+    "pause": "暂停动画",
+    "play": "播放动画",
+    "notify": {
+      "title": "新预约",
+      "now": "刚刚",
+      "mailTitle": "确认邮件已发送",
+      "mailTo": "发给 {customer} · 附改期链接",
+      "reminder": "提前一天提醒"
+    },
+    "phone": {
+      "bookOnline": "在线预约 · {staff}",
+      "chooseService": "选择服务",
+      "freeTimes": "{day} · 可约时段",
+      "book": "预约 {service} · {time}",
+      "choose": "选择服务和时间",
+      "booked": "预约成功！",
+      "withStaff": "{service} · {staff}",
+      "when": "时间",
+      "duration": "时长",
+      "sent": "确认邮件已发送至您的邮箱",
+      "free": "免费",
+      "dayTime": "{day} {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "美甲工作室",
+      "business": "妮娅美甲工作室",
+      "slug": "niya-nails",
+      "category": "美甲",
+      "monogram": "妮",
+      "staff": "妮娅",
+      "customer": "王丽",
+      "services": {
+        "s1": "光疗美甲",
+        "s2": "经典修甲",
+        "s3": "足部护理"
+      }
+    },
+    "barber": {
+      "phrase": "理发店",
+      "business": "北岸理发馆",
+      "slug": "beian-barber",
+      "category": "理发",
+      "monogram": "北",
+      "staff": "李强",
+      "customer": "张伟",
+      "services": {
+        "s1": "理发",
+        "s2": "理发加修胡",
+        "s3": "修剪胡须"
+      }
+    },
+    "medical": {
+      "phrase": "诊所",
+      "business": "港湾家庭诊所",
+      "slug": "ganwan-clinic",
+      "category": "医疗",
+      "monogram": "港",
+      "staff": "陈医生",
+      "customer": "刘洋",
+      "services": {
+        "s1": "门诊咨询",
+        "s2": "复诊",
+        "s3": "年度体检"
+      }
+    },
+    "beauty": {
+      "phrase": "美容院",
+      "business": "流光美肤工作室",
+      "slug": "liuguang-beauty",
+      "category": "美容",
+      "monogram": "流",
+      "staff": "林静",
+      "customer": "赵敏",
+      "services": {
+        "s1": "招牌面部护理",
+        "s2": "睫毛翘睫",
+        "s3": "眉形设计"
+      }
+    },
+    "fitness": {
+      "phrase": "健身工作室",
+      "business": "型动健身",
+      "slug": "xingdong-fitness",
+      "category": "健身",
+      "monogram": "型",
+      "staff": "马克",
+      "customer": "孙涛",
+      "services": {
+        "s1": "私人训练",
+        "s2": "体能评估",
+        "s3": "双人训练"
+      }
+    },
+    "consulting": {
+      "phrase": "咨询公司",
+      "business": "雅登咨询",
+      "slug": "yadeng-consulting",
+      "category": "咨询",
+      "monogram": "雅",
+      "staff": "何琳",
+      "customer": "周楠",
+      "services": {
+        "s1": "战略研讨",
+        "s2": "咨询会谈",
+        "s3": "初次沟通"
+      }
+    },
+    "people": {
+      "p1": "陈安",
+      "p2": "吴磊",
+      "p3": "郑凯",
+      "p4": "孙涛",
+      "p5": "王丽",
+      "p6": "黄浩",
+      "p7": "许婷"
+    }
+  },
+  "marquee": {
+    "hairSalons": "美发店",
+    "barbers": "理发店",
+    "nailStudios": "美甲店",
+    "lashBrow": "美睫美眉",
+    "beautySalons": "美容院",
+    "massageSpa": "按摩与水疗",
+    "physio": "理疗师",
+    "therapists": "心理治疗与咨询",
+    "medical": "诊所",
+    "dentists": "牙科",
+    "nutritionists": "营养师",
+    "trainers": "私人教练",
+    "yoga": "瑜伽与普拉提馆",
+    "coaches": "教练与导师"
+  },
+  "how": {
+    "kicker": "使用方式",
+    "title": "三步搞定，预约自动上门。",
+    "steps": {
+      "services": {
+        "title": "添加服务",
+        "text": "名称、时长和价格，大约五分钟。"
+      },
+      "share": {
+        "title": "分享一个链接",
+        "text": "Instagram、Google、WhatsApp 或打印的二维码。"
+      },
+      "booked": {
+        "title": "接收预约",
+        "text": "预约进入日历，提醒自动发出。"
+      }
+    },
+    "yourServices": "您的服务",
+    "colour": "染发",
+    "openingHours": "营业时间",
+    "ready": "预约页面已就绪",
+    "copy": "复制",
+    "copied": "已复制",
+    "instagram": "Instagram 简介",
+    "google": "Google 商家资料",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "本周",
+    "bookings": "{count, plural, other {# 个预订}}",
+    "newBooking": "新预约"
+  },
+  "features": {
+    "kicker": "您将获得",
+    "title": "全部包含，无需重复设置。",
+    "lead": "一个套餐，每月 {price}，含增值税。",
+    "tiles": {
+      "page": {
+        "title": "专属预约页面",
+        "text": "一个链接展示您的服务、价格和空闲时段。客户全天候自助预约。"
+      },
+      "noDouble": {
+        "title": "杜绝重复预约",
+        "text": "客户只能看到您真正有空的时间，自动避开营业时间外、休息和休假。"
+      },
+      "reminders": {
+        "title": "提醒自动发送",
+        "text": "预约后立即确认，提前 24 小时和 2 小时提醒。减少爽约。"
+      },
+      "reschedule": {
+        "title": "客户自助改期",
+        "text": "每封邮件都附有链接，客户可在您设定的规则内改期或取消。"
+      },
+      "team": {
+        "title": "团队共用一个日历",
+        "text": "所有人的预约一目了然，每位成员有各自的营业时间和服务。"
+      },
+      "reports": {
+        "title": "经营情况一目了然",
+        "text": "预订量、爽约、最忙的日子，以及客户来自哪里。"
+      }
+    },
+    "visual": {
+      "bookedFor": "已预约 {time}",
+      "free": "空闲，可预约",
+      "busy": "已约或休息",
+      "booked": "已预约",
+      "confirmation": "确认已发送",
+      "before24": "提前 24 小时",
+      "before2": "提前 2 小时",
+      "reminder": "提醒",
+      "was": "原时间",
+      "now": "新时间",
+      "noCalls": "无需电话，无需消息",
+      "training": "训练"
+    }
+  },
+  "trust": {
+    "kicker": "为什么可以信任我们",
+    "title": "简单工具的背后，是一家小而诚实的公司。",
+    "lead": "我们刚起步，所以不会给您看编造的评价或夸大的数字。以下内容您都可以自行核实。",
+    "company": {
+      "title": "正式注册的欧洲企业",
+      "text": "Hournook 由位于希腊塞萨洛尼基的 {company} 开发和运营。我们的信息公开在<link>法律声明</link>中。"
+    },
+    "gdpr": {
+      "title": "符合 GDPR",
+      "text": "每个账户都附带<link>数据处理协议</link>。我们绝不出售数据，也不用于广告。"
+    },
+    "data": {
+      "title": "数据始终属于您",
+      "text": "随时将客户和预约导出为电子表格。无合约，随时可取消。"
+    },
+    "secure": {
+      "title": "默认安全",
+      "text": "加密连接、受保护的密码，每家商家的数据彼此隔离。付款由 Stripe 处理。"
+    },
+    "people": {
+      "title": "真人回复",
+      "text": "用英语或希腊语发送邮件至 <mail>{email}</mail>。我们会在两个工作日内回复。"
+    }
+  },
+  "pricing": {
+    "kicker": "价格",
+    "title": "一个套餐，每月 {price}。",
+    "lead": "整个团队的所有功能全部包含。不按预订收费，无开通费，无合约。",
+    "points": {
+      "trial": "免费试用 {days} 天，无需绑卡",
+      "cancel": "随时在仪表板中取消",
+      "export": "数据归您所有：随时可以导出"
+    }
+  },
+  "faq": {
+    "kicker": "常见问题",
+    "title": "好问题，直接答。",
+    "lead": "还有其他问题？<link>访问帮助中心</link>或给我们发邮件。",
+    "items": {
+      "website": {
+        "q": "我需要有自己的网站吗？",
+        "a": "不需要。预约页面就是您用于预约的网站：一个类似 hournook.com/book/your-business 的链接，可以分享到 Instagram、Facebook、Google、WhatsApp 或通过短信发送。如果您已有网站，也可以把预约组件嵌入其中。"
+      },
+      "clients": {
+        "q": "客户如何预约？",
+        "a": "客户在手机或电脑上打开您的链接，选择服务和您真正有空的时段，然后填写姓名、邮箱和电话。无需下载应用，也无需注册账户。确认邮件会立即送达。"
+      },
+      "trial": {
+        "q": "免费试用结束后会怎样？",
+        "a": "不会自动发生任何事。我们从不预先要求绑卡。如果 Hournook 适合您，以每月 {price} 订阅即可继续接收预约；如果不合适，您的预约页面只是不再接受新的预约。"
+      },
+      "fees": {
+        "q": "会按预订次数或团队人数收费吗？",
+        "a": "不会。每家商家每月 {price}，包含不限次数的预订、整个团队和全部功能。我们绝不从您的收入中抽成。"
+      },
+      "cancel": {
+        "q": "客户可以取消或改期吗？",
+        "a": "可以，通过确认邮件中的链接操作，但只能在您设定的范围内（例如最晚提前 24 小时）。您也可以关闭此功能。"
+      },
+      "pay": {
+        "q": "客户可以在线付款吗？",
+        "a": "目前还不行。客户仍像现在一样在到店时付款。Hournook 会为您显示已完成预约的金额。"
+      },
+      "gdpr": {
+        "q": "客户数据安全吗？符合 GDPR 吗？",
+        "a": "安全，且符合。数据在传输过程中加密，每家商家完全隔离，每个账户都附带符合 GDPR 的数据处理协议。您可以随时导出或删除某位客户的数据。"
+      },
+      "setup": {
+        "q": "我不太懂技术，设置起来难吗？",
+        "a": "只需几分钟：填写商家名称，添加服务及其时长和价格，再设置营业时间。我们会根据您的行业推荐常见服务，之后一切都可以修改。如果遇到困难，给我们发邮件，会有真人回复您。"
+      }
+    }
+  },
+  "cta": {
+    "title": "十分钟，您的预约页面就能上线。",
+    "text": "免费试用 {days} 天。无需绑卡，无合约。消息更少，预约更多。",
+    "primary": "创建您的预约页面",
+    "secondary": "我已有账户"
+  }
+}

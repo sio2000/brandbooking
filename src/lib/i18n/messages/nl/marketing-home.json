@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook: online boekingssoftware voor bedrijven die op afspraak werken",
+    "description": "Je eigen boekingspagina, agenda, klantenlijst en automatische herinneringen voor kappers, nagelstudio’s, barbiers, praktijken, trainers, adviseurs en elk bedrijf dat op afspraak werkt. {price}/maand, gratis proefperiode van {days} dagen, zonder creditcard."
+  },
+  "hero": {
+    "titleLead": "Online afspraken voor",
+    "titleSr": "je bedrijf dat op afspraak werkt",
+    "phrase": "{phrase}.",
+    "lead": "Je eigen boekingspagina in een paar minuten. Klanten kiezen op hun telefoon een dienst en een vrij tijdstip, en de afspraak staat in je agenda. Bevestigingen en herinneringen worden automatisch verstuurd.",
+    "cta": "Maak je boekingspagina",
+    "how": "Zo werkt het",
+    "perks": {
+      "trial": "{days} dagen gratis",
+      "noCard": "Geen creditcard nodig",
+      "price": "Daarna {price}/maand, incl. btw",
+      "cancel": "Altijd opzegbaar"
+    },
+    "srDescription": "Geanimeerd voorbeeld: klanten boeken een afspraak op de Hournook-boekingspagina van een bedrijf, daarna krijgt het bedrijf een melding en de klant een bevestigingsmail. De voorbeelden wisselen tussen een nagelstudio, barbershop, praktijk, schoonheidssalon, trainingsstudio en adviesbureau. Alle namen zijn verzonnen.",
+    "pause": "Animatie pauzeren",
+    "play": "Animatie afspelen",
+    "notify": {
+      "title": "Nieuwe boeking",
+      "now": "nu",
+      "mailTitle": "Bevestiging verstuurd",
+      "mailTo": "Aan {customer} · met link om te verzetten",
+      "reminder": "Herinnering de dag ervoor"
+    },
+    "phone": {
+      "bookOnline": "Online boeken · bij {staff}",
+      "chooseService": "Kies een dienst",
+      "freeTimes": "{day} · vrije tijden",
+      "book": "{service} boeken · {time}",
+      "choose": "Kies een dienst en tijd",
+      "booked": "Je afspraak staat!",
+      "withStaff": "{service} bij {staff}",
+      "when": "Wanneer",
+      "duration": "Duur",
+      "sent": "Bevestiging naar je e-mail gestuurd",
+      "free": "Gratis",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "je nagelstudio",
+      "business": "Nagelstudio Nia",
+      "slug": "nagelstudio-nia",
+      "category": "Nagels",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Maria P.",
+      "services": {
+        "s1": "Gellak-manicure",
+        "s2": "Klassieke manicure",
+        "s3": "Pedicure"
+      }
+    },
+    "barber": {
+      "phrase": "je barbershop",
+      "business": "Barbershop Noord",
+      "slug": "barbershop-noord",
+      "category": "Barbier",
+      "monogram": "BN",
+      "staff": "Levi",
+      "customer": "Niels G.",
+      "services": {
+        "s1": "Knippen",
+        "s2": "Knippen & baard",
+        "s3": "Baard trimmen"
+      }
+    },
+    "medical": {
+      "phrase": "je praktijk",
+      "business": "Huisartsenpraktijk De Haven",
+      "slug": "praktijk-de-haven",
+      "category": "Zorg",
+      "monogram": "DH",
+      "staff": "dr. Koster",
+      "customer": "Daan W.",
+      "services": {
+        "s1": "Consult",
+        "s2": "Controleafspraak",
+        "s3": "Jaarlijkse check-up"
+      }
+    },
+    "beauty": {
+      "phrase": "je schoonheidssalon",
+      "business": "Lumen Huidstudio",
+      "slug": "lumen-huidstudio",
+      "category": "Beauty",
+      "monogram": "L",
+      "staff": "Johanna",
+      "customer": "Chloë M.",
+      "services": {
+        "s1": "Gezichtsbehandeling",
+        "s2": "Wimperlift",
+        "s3": "Wenkbrauwen modelleren"
+      }
+    },
+    "fitness": {
+      "phrase": "je trainingsstudio",
+      "business": "Forma Training",
+      "slug": "forma-training",
+      "category": "Fitness",
+      "monogram": "F",
+      "staff": "Marco",
+      "customer": "Sam C.",
+      "services": {
+        "s1": "Personal training",
+        "s2": "Fitheidstest",
+        "s3": "Duotraining"
+      }
+    },
+    "consulting": {
+      "phrase": "je adviesbureau",
+      "business": "Arden Advies",
+      "slug": "arden-advies",
+      "category": "Advies",
+      "monogram": "A",
+      "staff": "Helena",
+      "customer": "Olivia B.",
+      "services": {
+        "s1": "Strategiesessie",
+        "s2": "Adviesgesprek",
+        "s3": "Kennismakingsgesprek"
+      }
+    },
+    "people": {
+      "p1": "Anna M.",
+      "p2": "Joris P.",
+      "p3": "Jonas K.",
+      "p4": "Sam C.",
+      "p5": "Maria P.",
+      "p6": "Lars T.",
+      "p7": "Eline K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Kapsalons",
+    "barbers": "Barbiers",
+    "nailStudios": "Nagelstudio’s",
+    "lashBrow": "Wimper- en wenkbrauwstylisten",
+    "beautySalons": "Schoonheidssalons",
+    "massageSpa": "Massage & spa",
+    "physio": "Fysiotherapeuten",
+    "therapists": "Therapeuten & psychologen",
+    "medical": "Medische praktijken",
+    "dentists": "Tandartsen",
+    "nutritionists": "Diëtisten",
+    "trainers": "Personal trainers",
+    "yoga": "Yoga- & pilatesstudio’s",
+    "coaches": "Coaches"
+  },
+  "how": {
+    "kicker": "Zo werkt het",
+    "title": "Drie stappen. Daarna komen de boekingen vanzelf.",
+    "steps": {
+      "services": {
+        "title": "Voeg je diensten toe",
+        "text": "Naam, duur en prijs. Ongeveer vijf minuten."
+      },
+      "share": {
+        "title": "Deel één link",
+        "text": "Instagram, Google, WhatsApp of een geprinte QR-code."
+      },
+      "booked": {
+        "title": "Word geboekt",
+        "text": "Boekingen komen in je agenda, herinneringen gaan vanzelf de deur uit."
+      }
+    },
+    "yourServices": "Je diensten",
+    "colour": "Kleuren",
+    "openingHours": "Openingstijden",
+    "ready": "Boekingspagina klaar",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd",
+    "instagram": "Instagram-bio",
+    "google": "Google-profiel",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "Deze week",
+    "bookings": "{count, plural, one {# boeking} other {# boekingen}}",
+    "newBooking": "Nieuwe boeking"
+  },
+  "features": {
+    "kicker": "Wat je krijgt",
+    "title": "Alles inbegrepen. Niets twee keer instellen.",
+    "lead": "Eén abonnement, {price} per maand, inclusief btw.",
+    "tiles": {
+      "page": {
+        "title": "Je eigen boekingspagina",
+        "text": "Eén link met je diensten, prijzen en vrije tijden. Klanten boeken zelf, dag en nacht."
+      },
+      "noDouble": {
+        "title": "Geen dubbele boekingen",
+        "text": "Klanten zien alleen tijden waarop je echt vrij bent, rekening houdend met je werktijden, pauzes en vrije dagen."
+      },
+      "reminders": {
+        "title": "Herinneringen gaan vanzelf",
+        "text": "Direct een bevestiging, herinneringen 24 uur en 2 uur van tevoren. Minder no-shows."
+      },
+      "reschedule": {
+        "title": "Klanten verzetten zelf",
+        "text": "Met een link in elke e-mail kunnen ze verzetten of annuleren, binnen de regels die jij bepaalt."
+      },
+      "team": {
+        "title": "Eén agenda voor het hele team",
+        "text": "Ieders afspraken naast elkaar, iedereen met eigen werktijden en diensten."
+      },
+      "reports": {
+        "title": "Zie hoe het gaat",
+        "text": "Boekingen, no-shows, drukste dagen en waar je klanten vandaan komen."
+      }
+    },
+    "visual": {
+      "bookedFor": "Geboekt om {time}",
+      "free": "Vrij, te boeken",
+      "busy": "Geboekt of pauze",
+      "booked": "Geboekt",
+      "confirmation": "Bevestiging verstuurd",
+      "before24": "24 uur vooraf",
+      "before2": "2 uur vooraf",
+      "reminder": "Herinnering",
+      "was": "Was",
+      "now": "Nu",
+      "noCalls": "Geen telefoontjes, geen berichten",
+      "training": "Training"
+    }
+  },
+  "trust": {
+    "kicker": "Waarom je ons kunt vertrouwen",
+    "title": "Een klein, eerlijk bedrijf achter een eenvoudige tool.",
+    "lead": "We zijn nieuw, dus we laten je geen verzonnen reviews of grote getallen zien. Dit kun je zelf controleren.",
+    "company": {
+      "title": "Een geregistreerd Europees bedrijf",
+      "text": "Hournook wordt gemaakt en beheerd door {company} in Thessaloniki, Griekenland. Onze gegevens staan openbaar in de <link>juridische informatie</link>."
+    },
+    "gdpr": {
+      "title": "AVG ingebouwd",
+      "text": "Bij elk account hoort een <link>verwerkersovereenkomst</link>. We verkopen nooit gegevens en gebruiken ze niet voor advertenties."
+    },
+    "data": {
+      "title": "Je gegevens blijven van jou",
+      "text": "Exporteer klanten en afspraken wanneer je wilt naar een spreadsheet. Geen contract, altijd opzegbaar."
+    },
+    "secure": {
+      "title": "Standaard veilig",
+      "text": "Versleutelde verbindingen, beschermde wachtwoorden en elk bedrijf strikt gescheiden. Betalingen lopen via Stripe."
+    },
+    "people": {
+      "title": "Echte mensen geven antwoord",
+      "text": "Mail naar <mail>{email}</mail> in het Engels of Grieks. We antwoorden binnen twee werkdagen."
+    }
+  },
+  "pricing": {
+    "kicker": "Prijs",
+    "title": "Eén abonnement. {price} per maand.",
+    "lead": "Alles inbegrepen voor je hele team. Geen kosten per boeking, geen opstartkosten, geen contract.",
+    "points": {
+      "trial": "Probeer het {days} dagen gratis, zonder creditcard",
+      "cancel": "Altijd opzegbaar via je dashboard",
+      "export": "Je gegevens blijven van jou: exporteer ze wanneer je wilt"
+    }
+  },
+  "faq": {
+    "kicker": "Vragen",
+    "title": "Goede vragen, eerlijke antwoorden.",
+    "lead": "Iets anders? <link>Bekijk de hulppagina</link> of mail ons.",
+    "items": {
+      "website": {
+        "q": "Heb ik een website nodig?",
+        "a": "Nee. Je boekingspagina is je website voor boekingen: een link zoals hournook.com/book/jouw-bedrijf die je deelt via Instagram, Facebook, Google, WhatsApp of sms. Heb je al een website? Dan kun je de boekingswidget daaraan toevoegen."
+      },
+      "clients": {
+        "q": "Hoe boeken mijn klanten?",
+        "a": "Ze openen je link op hun telefoon of computer, kiezen een dienst en een van de tijden waarop je echt vrij bent, en vullen hun naam, e-mailadres en telefoonnummer in. Geen app en geen account nodig. Ze krijgen direct een bevestigingsmail."
+      },
+      "trial": {
+        "q": "Wat gebeurt er na de gratis proefperiode?",
+        "a": "Er gebeurt niets automatisch. We vragen nooit vooraf om een creditcard. Bevalt Hournook? Neem dan een abonnement voor {price}/maand om boekingen te blijven aannemen. Zo niet, dan neemt je boekingspagina gewoon geen nieuwe boekingen meer aan."
+      },
+      "fees": {
+        "q": "Zijn er kosten per boeking of per teamlid?",
+        "a": "Nee. {price}/maand per bedrijf is inclusief onbeperkt boekingen, je hele team en alle functies. We nemen nooit een deel van wat jij rekent."
+      },
+      "cancel": {
+        "q": "Kunnen klanten hun afspraak annuleren of verzetten?",
+        "a": "Ja, via de link in hun bevestigingsmail, maar alleen binnen de grenzen die jij instelt (bijvoorbeeld tot 24 uur van tevoren). Je kunt dit ook uitzetten."
+      },
+      "pay": {
+        "q": "Kunnen klanten online betalen?",
+        "a": "Op dit moment niet. Klanten betalen je zoals nu, bij de afspraak. Hournook laat je de waarde van je afgeronde afspraken zien."
+      },
+      "gdpr": {
+        "q": "Zijn de gegevens van mijn klanten veilig en AVG-proof?",
+        "a": "Ja. Gegevens worden versleuteld verstuurd, elk bedrijf is volledig gescheiden en bij elk account hoort een verwerkersovereenkomst volgens de AVG. Je kunt de gegevens van een klant op elk moment exporteren of wissen."
+      },
+      "setup": {
+        "q": "Ik ben niet zo technisch. Is het moeilijk om in te stellen?",
+        "a": "Instellen duurt een paar minuten: geef je bedrijf een naam, voeg je diensten toe met duur en prijs, en stel je openingstijden in. We stellen gangbare diensten voor jouw soort bedrijf voor, en je kunt later alles aanpassen. Kom je er niet uit? Mail ons en een echt mens antwoordt."
+      }
+    }
+  },
+  "cta": {
+    "title": "Je boekingspagina kan binnen tien minuten live staan.",
+    "text": "Start {days} dagen gratis. Geen creditcard, geen contract. Gewoon minder berichten en meer boekingen.",
+    "primary": "Maak je boekingspagina",
+    "secondary": "Ik heb al een account"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · 预约，不再来回沟通。",
+    "description": "为预约制商家打造的在线预约软件：专属预约页面、日历、客户档案和数据统计，每月 {price}。{days} 天免费试用，无需绑卡。",
+    "socialAlt": "Hournook：为预约制商家打造的在线预约软件"
+  },
+  "skipToContent": "跳到正文",
+  "homeLabel": "Hournook 首页",
+  "nav": {
+    "main": "主导航",
+    "mobile": "移动端导航",
+    "how": "使用方式",
+    "features": "功能",
+    "pricing": "价格",
+    "faq": "常见问题",
+    "support": "帮助"
+  },
+  "header": {
+    "signIn": "登录",
+    "startFree": "免费试用",
+    "openMenu": "打开菜单",
+    "menu": "菜单"
+  },
+  "footer": {
+    "blurb": "为预约制商家提供在线预约、日历、客户档案和数据统计。一个套餐，每月 {price}。",
+    "theme": "主题",
+    "columns": {
+      "product": "产品",
+      "account": "账户",
+      "legal": "法律信息"
+    },
+    "links": {
+      "how": "使用方式",
+      "features": "功能",
+      "pricing": "价格",
+      "faq": "常见问题",
+      "startTrial": "开始免费试用",
+      "signIn": "登录",
+      "support": "帮助",
+      "terms": "服务条款",
+      "privacy": "隐私政策",
+      "dpa": "数据处理",
+      "cookies": "Cookie 政策",
+      "legal": "法律声明"
+    },
+    "copyright": "© {year} Hournook，{company} 旗下产品。保留所有权利。",
+    "tagline": "预约，不再来回沟通。"
+  },
+  "notFound": {
+    "title": "找不到这个页面",
+    "text": "链接可能已过期或输入有误。",
+    "home": "首页",
+    "dashboard": "仪表板"
+  },
+  "error": {
+    "title": "页面未能正常加载",
+    "text": "我们这边出了点问题，您的数据是安全的。请重试；如果问题持续出现，请带上下方的参考编号联系客服。",
+    "reference": "参考编号：{digest}",
+    "retry": "重试",
+    "home": "返回首页"
+  }
+}

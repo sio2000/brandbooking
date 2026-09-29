@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Afspraken zonder heen-en-weer.",
+    "description": "Online boekingssoftware voor bedrijven die op afspraak werken: je eigen boekingspagina, agenda, klantgegevens en statistieken voor {price}/maand. Gratis proefperiode van {days} dagen, zonder creditcard.",
+    "socialAlt": "Hournook: online boekingssoftware voor bedrijven die op afspraak werken"
+  },
+  "skipToContent": "Naar de inhoud",
+  "homeLabel": "Hournook home",
+  "nav": {
+    "main": "Hoofdmenu",
+    "mobile": "Mobiel menu",
+    "how": "Zo werkt het",
+    "features": "Functies",
+    "pricing": "Prijs",
+    "faq": "Vragen",
+    "support": "Hulp"
+  },
+  "header": {
+    "signIn": "Inloggen",
+    "startFree": "Probeer gratis",
+    "openMenu": "Menu openen",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Online boeken, agenda, klantgegevens en statistieken voor bedrijven die op afspraak werken. Eén abonnement, {price}/maand.",
+    "theme": "Thema",
+    "columns": {
+      "product": "Product",
+      "account": "Account",
+      "legal": "Juridisch"
+    },
+    "links": {
+      "how": "Zo werkt het",
+      "features": "Functies",
+      "pricing": "Prijs",
+      "faq": "Veelgestelde vragen",
+      "startTrial": "Start je gratis proefperiode",
+      "signIn": "Inloggen",
+      "support": "Hulp",
+      "terms": "Gebruiksvoorwaarden",
+      "privacy": "Privacybeleid",
+      "dpa": "Gegevensverwerking",
+      "cookies": "Cookiebeleid",
+      "legal": "Juridische informatie"
+    },
+    "copyright": "© {year} Hournook, een product van {company}. Alle rechten voorbehouden.",
+    "tagline": "Afspraken zonder heen-en-weer."
+  },
+  "notFound": {
+    "title": "We konden die pagina niet vinden",
+    "text": "De link is misschien verouderd of verkeerd getypt.",
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "error": {
+    "title": "Deze pagina is niet goed geladen",
+    "text": "Er ging iets mis aan onze kant. Je gegevens zijn veilig. Probeer het opnieuw en neem, als het blijft gebeuren, contact op met support met de referentie hieronder.",
+    "reference": "Referentie: {digest}",
+    "retry": "Opnieuw proberen",
+    "home": "Naar de homepage"
+  }
+}

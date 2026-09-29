@@ -30,7 +30,7 @@ export function Faq({
         <Accordion.Item key={item.q} value={`item-${i}`} className="group/item">
           <Accordion.Header asChild>
             <Heading className="font-sans text-base tracking-normal">
-              <Accordion.Trigger className="group flex min-h-14 w-full items-center justify-between gap-4 px-4 py-4 text-left font-semibold transition-colors outline-none group-first/item:rounded-t-2xl hover:text-primary focus-visible:bg-surface-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset group-last/item:data-[state=closed]:rounded-b-2xl sm:px-6 sm:text-[17px]">
+              <Accordion.Trigger className="group flex min-h-14 w-full items-center justify-between gap-4 px-4 py-4 text-start font-semibold transition-colors outline-none group-first/item:rounded-t-2xl hover:text-primary focus-visible:bg-surface-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset group-last/item:data-[state=closed]:rounded-b-2xl sm:px-6 sm:text-[17px]">
                 {item.q}
                 <span
                   aria-hidden

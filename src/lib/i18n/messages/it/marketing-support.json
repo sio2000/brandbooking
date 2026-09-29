@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Assistenza",
+    "description": "Aiuto per iniziare con Hournook, condividere la tua pagina di prenotazione e gestire la fatturazione, e come contattarci."
+  },
+  "hero": {
+    "eyebrow": "Assistenza",
+    "title": "Come possiamo aiutarti?",
+    "lead": "Guide rapide sulle domande più frequenti. Se ti blocchi, trovi i contatti in fondo a questa pagina."
+  },
+  "topicsLabel": "Argomenti di aiuto",
+  "contactLink": "Contatti",
+  "topics": {
+    "gettingStarted": {
+      "title": "Primi passi",
+      "steps": {
+        "account": "Crea il tuo account e verifica il tuo indirizzo email.",
+        "details": "Aggiungi i dati della tua attività, il logo e il fuso orario.",
+        "services": "Aggiungi i servizi con durata e prezzo.",
+        "hours": "Imposta gli orari settimanali, poi aggiungi ferie o giorni di chiusura.",
+        "team": "Invita i membri del team e scegli quali servizi offre ciascuno.",
+        "publish": "Pubblica la tua pagina di prenotazione quando ti soddisfa."
+      }
+    },
+    "sharing": {
+      "title": "Condividere la pagina di prenotazione",
+      "steps": {
+        "link": "Copia il tuo link di prenotazione e aggiungilo alla bio di Instagram, al Profilo dell’attività su Google o alla firma email.",
+        "widget": "Incolla il codice del widget nel tuo sito, così i clienti prenotano senza uscirne.",
+        "qr": "Scarica il codice QR e stampalo per il bancone, la vetrina o i volantini.",
+        "analytics": "Controlla le statistiche per vedere quale canale porta più prenotazioni."
+      }
+    },
+    "billing": {
+      "title": "Fatturazione",
+      "steps": {
+        "trial": "La prova gratuita di {days} giorni inizia con la registrazione. Nessuna carta richiesta.",
+        "subscribe": "Abbonati a {price}/mese dalle impostazioni di fatturazione quando sei pronto.",
+        "portal": "Apri il portale di fatturazione di Stripe per cambiare carta, scaricare fatture o disdire.",
+        "vat": "Il prezzo include l’IVA (24%). Ricevi una fattura per ogni pagamento."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contatta l’assistenza",
+    "lead": "Raccontaci cosa stavi cercando di fare e, se puoi, l’indirizzo email del tuo account. Non inviare password o dati della carta.",
+    "helpCentre": "Centro assistenza",
+    "newTab": "(si apre in una nuova scheda)",
+    "soon": "I contatti dell’assistenza arriveranno presto. Nel frattempo, le guide qui sopra rispondono alle domande più comuni.",
+    "customers": "Hai prenotato un appuntamento presso un’attività? Contatta direttamente l’attività: trovi i suoi recapiti nella sua pagina di prenotazione e nell’email di conferma."
+  },
+  "seeAlso": {
+    "label": "Vedi anche:",
+    "pricing": "Prezzo",
+    "privacy": "Privacy",
+    "terms": "Termini"
+  }
+}

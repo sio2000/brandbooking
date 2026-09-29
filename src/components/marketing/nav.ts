@@ -1,7 +1,7 @@
-/** Landing-page navigation (hash targets are sections on the home page). */
+/** Landing-page navigation (hash targets are sections on the home page; labels in `marketing-shell:nav`). */
 export const marketingNav = [
-  { href: '/#how', label: 'How it works', section: 'how' },
-  { href: '/#features', label: 'Features', section: 'features' },
-  { href: '/#pricing', label: 'Pricing', section: 'pricing' },
-  { href: '/#faq', label: 'FAQ', section: 'faq' },
+  { href: '/#how', key: 'how', section: 'how' },
+  { href: '/#features', key: 'features', section: 'features' },
+  { href: '/#pricing', key: 'pricing', section: 'pricing' },
+  { href: '/#faq', key: 'faq', section: 'faq' },
 ] as const

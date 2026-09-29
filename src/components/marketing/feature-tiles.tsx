@@ -3,8 +3,10 @@
 import * as React from 'react'
 import * as m from 'motion/react-m'
 import { ArrowRight, BellRing, Check, Mail, X } from 'lucide-react'
+import { useLocale, useT } from '@/components/i18n/provider'
 import { cn } from '@/lib/utils'
-import { useHydrated, useReducedMotion } from './primitives'
+import { clock, clockParts, industry, weekday, weekdayTime } from './industries'
+import { ClockSlot, useHydrated, useReducedMotion } from './primitives'
 
 /**
  * What you get: six features, each explained by a small animation that plays
@@ -18,51 +20,27 @@ const EASE = [0.22, 1, 0.36, 1] as const
 type Anim = { animate: boolean }
 
 const TILES: Array<{
-  title: string
-  text: string
+  key: 'page' | 'noDouble' | 'reminders' | 'reschedule' | 'team' | 'reports'
   Visual: (p: Anim) => React.ReactElement
 }> = [
-  {
-    title: 'Your own booking page',
-    text: 'One link with your services, prices and free times. Clients book themselves, day or night.',
-    Visual: BookingPageVisual,
-  },
-  {
-    title: 'No double bookings',
-    text: 'Clients only see times you are really free, around your hours, breaks and days off.',
-    Visual: FreeTimesVisual,
-  },
-  {
-    title: 'Reminders sent for you',
-    text: 'Confirmation right away, reminders 24 hours and 2 hours before. Fewer no-shows.',
-    Visual: RemindersVisual,
-  },
-  {
-    title: 'Clients reschedule themselves',
-    text: 'A link in every email lets them move or cancel, within the rules you set.',
-    Visual: RescheduleVisual,
-  },
-  {
-    title: 'One calendar for the team',
-    text: 'Everyone’s appointments side by side, each with their own hours and services.',
-    Visual: TeamVisual,
-  },
-  {
-    title: 'See how it’s going',
-    text: 'Bookings, no-shows, busiest days and where your clients come from.',
-    Visual: ReportsVisual,
-  },
+  { key: 'page', Visual: BookingPageVisual },
+  { key: 'noDouble', Visual: FreeTimesVisual },
+  { key: 'reminders', Visual: RemindersVisual },
+  { key: 'reschedule', Visual: RescheduleVisual },
+  { key: 'team', Visual: TeamVisual },
+  { key: 'reports', Visual: ReportsVisual },
 ]
 
 export function FeatureTiles() {
+  const t = useT('marketing-home')
   const hydrated = useHydrated()
   const reduced = useReducedMotion()
   const animate = hydrated && !reduced
   return (
     <ul className="-mx-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
-      {TILES.map(({ title, text, Visual }) => (
+      {TILES.map(({ key, Visual }) => (
         <li
-          key={title}
+          key={key}
           className="w-[82%] shrink-0 snap-start overflow-hidden rounded-[22px] border border-border bg-surface sm:w-auto"
         >
           <m.div
@@ -78,8 +56,12 @@ export function FeatureTiles() {
             <Visual animate={animate} />
           </m.div>
           <div className="p-5">
-            <h3 className="font-sans text-[17px] font-semibold tracking-normal">{title}</h3>
-            <p className="mt-1.5 text-[14.5px] leading-relaxed text-muted-foreground">{text}</p>
+            <h3 className="font-sans text-[17px] font-semibold tracking-normal">
+              {t(`features.tiles.${key}.title`)}
+            </h3>
+            <p className="mt-1.5 text-[14.5px] leading-relaxed text-muted-foreground">
+              {t(`features.tiles.${key}.text`)}
+            </p>
           </div>
         </li>
       ))}
@@ -118,33 +100,40 @@ function Step({
 }
 
 function BookingPageVisual(_: Anim) {
-  const times = ['09:30', '11:00', '15:30', '17:00']
+  const t = useT('marketing-home')
+  const { locale } = useLocale()
+  const barber = industry('barber', t, locale)
+  const haircut = barber.services[0]!
+  const times = [9 * 60 + 30, 11 * 60, 15 * 60 + 30, 17 * 60]
+  const booked = 15 * 60 + 30
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 px-5">
       <div className="w-full max-w-[270px] rounded-2xl border border-border bg-surface p-3 shadow-sm">
         <div className="flex items-center gap-2.5">
-          <span className="grid size-9 place-items-center rounded-xl bg-primary text-[13px] font-bold text-primary-foreground">
-            NB
+          <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary text-[13px] font-bold text-primary-foreground">
+            {barber.monogram}
           </span>
           <div className="min-w-0 text-[12.5px] leading-tight">
-            <p className="font-semibold">Northside Barbers</p>
-            <p className="text-muted-foreground">Haircut · 30 min · €22</p>
+            <p className="truncate font-semibold">{barber.business}</p>
+            <p className="truncate text-muted-foreground">
+              {haircut.name} · {haircut.duration} · {haircut.price}
+            </p>
           </div>
         </div>
         <div className="mt-3 grid grid-cols-4 gap-1.5">
-          {times.map((t, i) => (
+          {times.map((min, i) => (
             <Step
-              key={t}
+              key={min}
               delay={0.1 + i * 0.08}
               from={{ opacity: 0, scale: 0.7 }}
               className={cn(
-                'tabular grid h-8 place-items-center rounded-lg border text-[11.5px] font-semibold',
-                t === '15:30'
+                'tabular grid h-8 place-items-center rounded-lg border text-[11.5px] font-semibold whitespace-nowrap',
+                min === booked
                   ? 'border-primary bg-primary text-primary-foreground'
                   : 'border-border',
               )}
             >
-              {t}
+              <ClockSlot {...clockParts(min, locale)} />
             </Step>
           ))}
         </div>
@@ -152,15 +141,20 @@ function BookingPageVisual(_: Anim) {
       <Step
         delay={0.75}
         from={{ opacity: 0, y: 8 }}
-        className="flex shrink-0 items-center gap-1.5 rounded-full bg-success-soft px-3 py-1 text-[12px] font-semibold text-success-soft-foreground"
+        className="flex max-w-full shrink-0 items-center gap-1.5 rounded-full bg-success-soft px-3 py-1 text-[12px] font-semibold text-success-soft-foreground"
       >
-        <Check className="size-3.5" strokeWidth={3} /> Booked for 15:30
+        <Check className="size-3.5 shrink-0" strokeWidth={3} />
+        <span className="truncate">
+          {t('features.visual.bookedFor', { time: clock(booked, locale) })}
+        </span>
       </Step>
     </div>
   )
 }
 
 function FreeTimesVisual(_: Anim) {
+  const t = useT('marketing-home')
+  const { locale } = useLocale()
   // A day from 9 to 18: busy blocks (grey) and the free times clients see (teal).
   const busy = [
     [0, 18],
@@ -172,10 +166,10 @@ function FreeTimesVisual(_: Anim) {
   ]
   return (
     <div className="absolute inset-0 flex flex-col justify-center gap-3 px-6">
-      <div className="flex justify-between text-[11px] text-subtle-foreground">
-        <span>09:00</span>
-        <span>13:30</span>
-        <span>18:00</span>
+      <div className="tabular flex justify-between text-[11px] text-subtle-foreground">
+        <span>{clock(9 * 60, locale)}</span>
+        <span>{clock(13 * 60 + 30, locale)}</span>
+        <span>{clock(18 * 60, locale)}</span>
       </div>
       <div className="relative h-11 rounded-xl border border-border bg-surface">
         {busy.map(([a, b], i) => (
@@ -185,7 +179,7 @@ function FreeTimesVisual(_: Anim) {
             from={{ opacity: 0 }}
             to={{ opacity: 1 }}
             className="absolute inset-y-1.5 rounded-lg bg-[repeating-linear-gradient(135deg,var(--border-strong)_0_2px,transparent_2px_6px)]"
-            style={{ left: `${a}%`, width: `${b! - a!}%` }}
+            style={{ insetInlineStart: `${a}%`, width: `${b! - a!}%` }}
           />
         ))}
         {free.map(([a, b], i) => (
@@ -194,18 +188,19 @@ function FreeTimesVisual(_: Anim) {
             delay={0.35 + i * 0.15}
             from={{ opacity: 0, scaleX: 0.4 }}
             to={{ opacity: 1, scaleX: 1 }}
-            className="absolute inset-y-1.5 origin-left rounded-lg bg-primary/85"
-            style={{ left: `${a}%`, width: `${b! - a!}%` }}
+            className="absolute inset-y-1.5 origin-left rounded-lg bg-primary/85 rtl:origin-right"
+            style={{ insetInlineStart: `${a}%`, width: `${b! - a!}%` }}
           />
         ))}
       </div>
-      <div className="flex items-center gap-4 text-[11.5px] text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11.5px] text-muted-foreground">
         <span className="flex items-center gap-1.5">
-          <span className="size-2.5 rounded-sm bg-primary/85" /> Free, bookable
+          <span className="size-2.5 shrink-0 rounded-sm bg-primary/85" />{' '}
+          {t('features.visual.free')}
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="size-2.5 rounded-sm bg-[repeating-linear-gradient(135deg,var(--border-strong)_0_2px,transparent_2px_4px)]" />{' '}
-          Booked or break
+          <span className="size-2.5 shrink-0 rounded-sm bg-[repeating-linear-gradient(135deg,var(--border-strong)_0_2px,transparent_2px_4px)]" />{' '}
+          {t('features.visual.busy')}
         </span>
       </div>
     </div>
@@ -213,10 +208,11 @@ function FreeTimesVisual(_: Anim) {
 }
 
 function RemindersVisual(_: Anim) {
+  const t = useT('marketing-home')
   const items = [
-    [Check, 'Booked', 'Confirmation sent'],
-    [Mail, '24 h before', 'Reminder'],
-    [BellRing, '2 h before', 'Reminder'],
+    [Check, t('features.visual.booked'), t('features.visual.confirmation')],
+    [Mail, t('features.visual.before24'), t('features.visual.reminder')],
+    [BellRing, t('features.visual.before2'), t('features.visual.reminder')],
   ] as const
   return (
     <div className="absolute inset-0 flex items-center px-5">
@@ -225,7 +221,7 @@ function RemindersVisual(_: Anim) {
           delay={0.1}
           from={{ scaleX: 0 }}
           to={{ scaleX: 1 }}
-          className="absolute top-[18px] right-[16%] left-[16%] h-0.5 origin-left bg-primary/40"
+          className="absolute inset-x-[16%] top-[18px] h-0.5 origin-left bg-primary/40 rtl:origin-right"
         />
         <div className="relative grid grid-cols-3">
           {items.map(([Icon, when, what], i) => (
@@ -233,7 +229,7 @@ function RemindersVisual(_: Anim) {
               key={when}
               delay={0.2 + i * 0.3}
               from={{ opacity: 0, y: 8 }}
-              className="flex flex-col items-center text-center"
+              className="flex min-w-0 flex-col items-center px-1 text-center"
             >
               <span
                 className={cn(
@@ -243,8 +239,8 @@ function RemindersVisual(_: Anim) {
               >
                 <Icon className="size-4" strokeWidth={i === 0 ? 3 : 2} />
               </span>
-              <span className="mt-2 text-[12.5px] font-semibold">{when}</span>
-              <span className="text-[11.5px] text-muted-foreground">{what}</span>
+              <span className="mt-2 text-[12.5px] leading-tight font-semibold">{when}</span>
+              <span className="text-[11.5px] leading-tight text-muted-foreground">{what}</span>
             </Step>
           ))}
         </div>
@@ -254,6 +250,8 @@ function RemindersVisual(_: Anim) {
 }
 
 function RescheduleVisual(_: Anim) {
+  const t = useT('marketing-home')
+  const { locale, dir } = useLocale()
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-5">
       <div className="flex items-center gap-3">
@@ -263,64 +261,73 @@ function RescheduleVisual(_: Anim) {
           delay={0.5}
           className="relative rounded-xl border border-border bg-surface px-3 py-2 text-center"
         >
-          <p className="text-[11px] text-muted-foreground">Was</p>
-          <p className="tabular text-[14px] font-semibold">Tue 15:30</p>
+          <p className="text-[11px] text-muted-foreground">{t('features.visual.was')}</p>
+          <p className="tabular text-[14px] font-semibold whitespace-nowrap">
+            {weekdayTime(1, 15 * 60 + 30, locale)}
+          </p>
           <Step
             delay={0.55}
             from={{ scaleX: 0 }}
             to={{ scaleX: 1 }}
-            className="absolute top-1/2 right-2 left-2 h-0.5 origin-left bg-foreground/60"
+            className="absolute inset-x-2 top-1/2 h-0.5 origin-left bg-foreground/60 rtl:origin-right"
           />
         </Step>
-        <Step delay={0.7} from={{ opacity: 0, x: -8 }}>
-          <ArrowRight className="size-5 text-primary" />
+        <Step delay={0.7} from={{ opacity: 0, x: dir === 'rtl' ? 8 : -8 }}>
+          <ArrowRight className="size-5 text-primary rtl:-scale-x-100" />
         </Step>
         <Step
           delay={0.9}
           from={{ opacity: 0, scale: 0.85 }}
           className="rounded-xl border border-primary bg-primary-soft px-3 py-2 text-center"
         >
-          <p className="text-[11px] text-primary-soft-foreground">Now</p>
-          <p className="tabular text-[14px] font-semibold text-primary-soft-foreground">
-            Thu 17:00
+          <p className="text-[11px] text-primary-soft-foreground">{t('features.visual.now')}</p>
+          <p className="tabular text-[14px] font-semibold whitespace-nowrap text-primary-soft-foreground">
+            {weekdayTime(3, 17 * 60, locale)}
           </p>
         </Step>
       </div>
       <Step
         delay={1.2}
         from={{ opacity: 0, y: 6 }}
-        className="flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 text-[12px] text-muted-foreground shadow-sm"
+        className="flex max-w-full items-center gap-1.5 rounded-full bg-surface px-3 py-1 text-[12px] text-muted-foreground shadow-sm"
       >
-        <X className="size-3.5 text-subtle-foreground" /> No calls, no messages
+        <X className="size-3.5 shrink-0 text-subtle-foreground" />
+        <span className="truncate">{t('features.visual.noCalls')}</span>
       </Step>
     </div>
   )
 }
 
 function TeamVisual(_: Anim) {
+  const t = useT('marketing-home')
+  const { locale } = useLocale()
+  const barber = industry('barber', t, locale)
+  const nails = industry('nails', t, locale)
+  const fitness = industry('fitness', t, locale)
+  const initial = (name: string) => Array.from(name)[0] ?? ''
   const team: Array<[string, string, Array<[number, number, string]>]> = [
     [
-      'Leo',
-      'L',
+      barber.staff,
+      initial(barber.staff),
       [
-        [0, 2, 'Haircut'],
-        [3, 1, 'Beard trim'],
+        [0, 2, barber.services[0]!.name],
+        [3, 1, barber.services[2]!.name],
       ],
     ],
     [
-      'Nia',
-      'N',
+      nails.staff,
+      initial(nails.staff),
       [
-        [1, 2, 'Gel manicure'],
-        [3, 1, 'Pedicure'],
+        [1, 2, nails.services[0]!.name],
+        [3, 1, nails.services[2]!.name],
       ],
     ],
     [
-      'Marco',
-      'M',
+      fitness.staff,
+      initial(fitness.staff),
       [
-        [0, 1, 'Training'],
-        [2, 2, 'Duo session'],
+        [0, 1, t('features.visual.training')],
+        [2, 2, fitness.services[2]!.name],
       ],
     ],
   ]
@@ -340,7 +347,7 @@ function TeamVisual(_: Anim) {
                 key={label}
                 delay={0.15 + c * 0.15 + i * 0.2}
                 from={{ opacity: 0, y: -8 }}
-                className="truncate rounded-md border-l-[3px] border-primary bg-primary-soft px-1.5 py-0.5 text-[11px] font-semibold text-primary-soft-foreground"
+                className="truncate rounded-md border-s-[3px] border-primary bg-primary-soft px-1.5 py-0.5 text-[11px] font-semibold text-primary-soft-foreground"
                 style={{ gridRow: `${row + 1} / span ${span}` }}
               >
                 {label}
@@ -354,6 +361,7 @@ function TeamVisual(_: Anim) {
 }
 
 function ReportsVisual(_: Anim) {
+  const { locale } = useLocale()
   const bars = [38, 55, 47, 72, 64, 90, 58]
   return (
     <div className="absolute inset-0 flex flex-col justify-end gap-2 px-6 pt-5 pb-4">
@@ -373,11 +381,13 @@ function ReportsVisual(_: Anim) {
         ))}
       </div>
       <div className="flex justify-between text-[11px] text-subtle-foreground">
-        {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-          <span key={i} className="flex-1 text-center">
-            {d}
-          </span>
-        ))}
+        {[0, 1, 2, 3, 4, 5, 6]
+          .map((i) => weekday(i, locale, 'narrow'))
+          .map((d, i) => (
+            <span key={i} className="flex-1 text-center">
+              {d}
+            </span>
+          ))}
       </div>
     </div>
   )

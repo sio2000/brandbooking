@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   BadgeEuro,
@@ -11,70 +10,43 @@ import { Faq, type FaqItem } from '@/components/marketing/faq'
 import { PricingCard } from '@/components/marketing/pricing-card'
 import { Reveal } from '@/components/marketing/reveal'
 import { Container, Eyebrow, SectionHeader } from '@/components/marketing/section'
-import { site, socialImage } from '@/lib/site'
+import { localizedPath } from '@/lib/i18n/config'
+import { site } from '@/lib/site'
+import { getFormatLocale, getLocale, getT } from '@/server/i18n'
+import { marketingMetadata } from '@/server/marketing-metadata'
+import { getPlanPrice } from '@/server/pricing'
 
-const title = 'Pricing'
-const description = `Everything you need to accept bookings online for ${site.price.display}/month: unlimited bookings, your own booking page, calendar, reminders, team members and more. ${site.trialDays}-day free trial, no card required.`
-
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: '/pricing' },
-  openGraph: {
-    images: [socialImage],
-    type: 'website',
-    url: '/pricing',
-    title: `${title} · ${site.name}`,
-    description,
-  },
+export async function generateMetadata() {
+  const [t, price] = await Promise.all([
+    getT('marketing-pricing'),
+    getFormatLocale().then(getPlanPrice),
+  ])
+  return marketingMetadata({
+    path: '/pricing',
+    title: t('meta.title'),
+    description: t('meta.description', { price: price.display, days: site.trialDays }),
+  })
 }
 
 const promises = [
-  {
-    Icon: InfinityIcon,
-    title: 'Unlimited bookings',
-    text: 'Take as many appointments as you like.',
-  },
-  {
-    Icon: BadgeEuro,
-    title: 'No per-booking fees',
-    text: 'We never take a cut of what you charge.',
-  },
-  {
-    Icon: CreditCard,
-    title: 'No card to start',
-    text: `Try everything for ${site.trialDays} days first.`,
-  },
-]
+  { Icon: InfinityIcon, key: 'unlimited' },
+  { Icon: BadgeEuro, key: 'noFees' },
+  { Icon: CreditCard, key: 'noCard' },
+] as const
 
-const billingFaq: FaqItem[] = [
-  {
-    q: 'Do I need a card for the free trial?',
-    a: `No. Start your ${site.trialDays}-day trial with just your email address. You only add a payment method when you decide to subscribe.`,
-  },
-  {
-    q: 'How does billing work?',
-    a: `Your subscription is ${site.price.display} per month, billed in advance through Stripe, our payment provider. Receipts and invoices are available from the billing portal.`,
-  },
-  {
-    q: 'How do I cancel?',
-    a: 'Open the Stripe billing portal from your billing settings and cancel there. No emails or calls needed. Cancelling stops future renewals.',
-  },
-  {
-    q: 'Is VAT included?',
-    a: `Yes. ${site.price.display} a month is the full price, including Greek VAT of 24%. Nothing is added at checkout, and you receive an invoice for every payment.`,
-  },
-  {
-    q: 'Can I update my card or billing details?',
-    a: 'Yes. The billing portal lets you change your payment method, update billing details and download past invoices at any time.',
-  },
-  {
-    q: 'Do team members cost extra?',
-    a: 'No. Team members are included in the same plan, so your whole team can use the calendar and take bookings.',
-  },
-]
+const FAQ_KEYS = ['card', 'how', 'cancel', 'vat', 'update', 'team'] as const
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const [t, locale, price] = await Promise.all([
+    getT('marketing-pricing'),
+    getLocale(),
+    getFormatLocale().then(getPlanPrice),
+  ])
+  const vars = { price: price.display, days: site.trialDays }
+  const billingFaq: FaqItem[] = FAQ_KEYS.map((k) => ({
+    q: t(`faq.${k}.q`),
+    a: t(`faq.${k}.a`, vars),
+  }))
   return (
     <>
       <section aria-labelledby="pricing-title" className="relative isolate overflow-hidden">
@@ -84,16 +56,15 @@ export default function PricingPage() {
         />
         <Container className="pt-14 pb-16 sm:pt-20 lg:pt-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Eyebrow className="justify-center">Pricing</Eyebrow>
+            <Eyebrow className="justify-center">{t('hero.eyebrow')}</Eyebrow>
             <h1
               id="pricing-title"
               className="mt-4 text-[2.35rem] leading-[1.05] font-bold tracking-[-0.03em] text-balance sm:text-6xl"
             >
-              Everything you need to accept bookings online.
+              {t('hero.title')}
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
-              One simple plan for {site.price.display} a month. Every feature included, whatever the
-              size of your business.
+              {t('hero.lead', vars)}
             </p>
           </div>
 
@@ -102,9 +73,9 @@ export default function PricingPage() {
           </Reveal>
 
           <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
-            {promises.map(({ Icon, title, text }) => (
+            {promises.map(({ Icon, key }) => (
               <li
-                key={title}
+                key={key}
                 className="flex items-start gap-3 rounded-xl p-2 sm:flex-col sm:items-center sm:text-center"
               >
                 <span
@@ -114,15 +85,15 @@ export default function PricingPage() {
                   <Icon className="size-[18px]" />
                 </span>
                 <span>
-                  <span className="block font-semibold">{title}</span>
-                  <span className="mt-0.5 block text-[15px] text-muted-foreground">{text}</span>
+                  <span className="block font-semibold">{t(`promises.${key}.title`)}</span>
+                  <span className="mt-0.5 block text-[15px] text-muted-foreground">
+                    {t(`promises.${key}.text`, vars)}
+                  </span>
                 </span>
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-[13px] text-muted-foreground">
-            Prices in euros, VAT included.
-          </p>
+          <p className="mt-8 text-center text-[13px] text-muted-foreground">{t('vatNote')}</p>
         </Container>
       </section>
 
@@ -134,22 +105,22 @@ export default function PricingPage() {
           <div>
             <SectionHeader
               id="billing-faq-title"
-              eyebrow="Billing"
-              title="Billing questions"
-              lead="Straight answers about trials, invoices and cancelling. Anything else, we’re happy to help."
+              eyebrow={t('billing.eyebrow')}
+              title={t('billing.title')}
+              lead={t('billing.lead')}
             />
             <div className="mt-8 flex flex-col gap-2 text-[15px]">
               <Link
-                href="/support"
+                href={localizedPath('/support', locale)}
                 className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline"
               >
-                <LifeBuoy aria-hidden className="size-4" /> Visit support
+                <LifeBuoy aria-hidden className="size-4 shrink-0" /> {t('billing.support')}
               </Link>
               <Link
-                href="/terms#trial-and-billing"
+                href={localizedPath('/terms#trial-and-billing', locale)}
                 className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md font-semibold text-primary hover:underline"
               >
-                <ReceiptText aria-hidden className="size-4" /> Billing terms
+                <ReceiptText aria-hidden className="size-4 shrink-0" /> {t('billing.terms')}
               </Link>
             </div>
           </div>

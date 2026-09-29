@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Prezzo",
+    "description": "Tutto ciò che ti serve per ricevere prenotazioni online a {price}/mese: prenotazioni illimitate, la tua pagina di prenotazione, calendario, promemoria, membri del team e altro ancora. Prova gratuita di {days} giorni, senza carta."
+  },
+  "hero": {
+    "eyebrow": "Prezzo",
+    "title": "Tutto ciò che ti serve per ricevere prenotazioni online.",
+    "lead": "Un unico piano semplice a {price} al mese. Tutte le funzioni incluse, qualunque sia la dimensione della tua attività."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Prenotazioni illimitate",
+      "text": "Ricevi tutti gli appuntamenti che vuoi."
+    },
+    "noFees": {
+      "title": "Nessuna commissione",
+      "text": "Non prendiamo mai una percentuale su quello che fai pagare."
+    },
+    "noCard": {
+      "title": "Si parte senza carta",
+      "text": "Prova tutto per {days} giorni."
+    }
+  },
+  "vatNote": "Prezzi in euro, IVA inclusa.",
+  "billing": {
+    "eyebrow": "Fatturazione",
+    "title": "Domande sulla fatturazione",
+    "lead": "Risposte chiare su prova gratuita, fatture e disdetta. Per tutto il resto, siamo felici di aiutarti.",
+    "support": "Vai all’assistenza",
+    "terms": "Condizioni di fatturazione"
+  },
+  "faq": {
+    "card": {
+      "q": "Serve una carta per la prova gratuita?",
+      "a": "No. Inizia la prova di {days} giorni solo con il tuo indirizzo email. Aggiungi un metodo di pagamento solo quando decidi di abbonarti."
+    },
+    "how": {
+      "q": "Come funziona la fatturazione?",
+      "a": "L’abbonamento costa {price} al mese, addebitati in anticipo tramite Stripe, il nostro fornitore di pagamenti. Ricevute e fatture sono disponibili nel portale di fatturazione."
+    },
+    "cancel": {
+      "q": "Come faccio a disdire?",
+      "a": "Apri il portale di fatturazione di Stripe dalle impostazioni di fatturazione e disdici da lì. Niente email né telefonate. La disdetta blocca i rinnovi futuri."
+    },
+    "vat": {
+      "q": "L’IVA è inclusa?",
+      "a": "Sì. {price} al mese è il prezzo finale, IVA greca del 24% inclusa. Al pagamento non si aggiunge nulla e ricevi una fattura per ogni pagamento."
+    },
+    "update": {
+      "q": "Posso cambiare carta o dati di fatturazione?",
+      "a": "Sì. Dal portale di fatturazione puoi cambiare metodo di pagamento, aggiornare i dati di fatturazione e scaricare le fatture passate in qualsiasi momento."
+    },
+    "team": {
+      "q": "I membri del team costano di più?",
+      "a": "No. I membri del team sono inclusi nello stesso piano, così tutto il tuo team può usare il calendario e ricevere prenotazioni."
+    }
+  },
+  "card": {
+    "badge": "Un solo piano · tutto incluso",
+    "perMonth": "/ mese · IVA inclusa",
+    "trial": "Prova gratuita di {days} giorni. Nessuna carta per iniziare. Nessuna commissione sulle prenotazioni.",
+    "cta": "Inizia la prova gratuita",
+    "seeAll": "Scopri tutto ciò che è incluso",
+    "inclusions": {
+      "unlimited": "Prenotazioni illimitate",
+      "page": "La tua pagina di prenotazione",
+      "profile": "Profilo dell’attività",
+      "services": "Servizi",
+      "availability": "Disponibilità e ferie",
+      "calendar": "Gestione appuntamenti e calendario",
+      "customers": "Gestione clienti",
+      "emails": "Conferme e promemoria via email",
+      "analytics": "Statistiche",
+      "team": "Membri del team",
+      "secure": "Account protetto",
+      "responsive": "Pagina di prenotazione per ogni schermo",
+      "qr": "Codice QR e widget da incorporare"
+    }
+  }
+}

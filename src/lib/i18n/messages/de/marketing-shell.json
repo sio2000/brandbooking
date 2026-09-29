@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Termine ohne Hin und Her.",
+    "description": "Online-Terminbuchung für Unternehmen, die mit Terminen arbeiten: eigene Buchungsseite, Kalender, Kundenkartei und Auswertungen für {price}/Monat. {days} Tage kostenlos testen, keine Karte nötig.",
+    "socialAlt": "Hournook: Online-Terminbuchung für Unternehmen, die mit Terminen arbeiten"
+  },
+  "skipToContent": "Zum Inhalt springen",
+  "homeLabel": "Hournook Startseite",
+  "nav": {
+    "main": "Hauptnavigation",
+    "mobile": "Mobile Navigation",
+    "how": "So funktioniert’s",
+    "features": "Funktionen",
+    "pricing": "Preis",
+    "faq": "FAQ",
+    "support": "Hilfe"
+  },
+  "header": {
+    "signIn": "Anmelden",
+    "startFree": "Gratis testen",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü"
+  },
+  "footer": {
+    "blurb": "Online-Buchung, Kalender, Kundenkartei und Auswertungen für Unternehmen, die mit Terminen arbeiten. Ein Tarif, {price}/Monat.",
+    "theme": "Design",
+    "columns": {
+      "product": "Produkt",
+      "account": "Konto",
+      "legal": "Rechtliches"
+    },
+    "links": {
+      "how": "So funktioniert’s",
+      "features": "Funktionen",
+      "pricing": "Preis",
+      "faq": "FAQ",
+      "startTrial": "Kostenlos testen",
+      "signIn": "Anmelden",
+      "support": "Hilfe",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "dpa": "Auftragsverarbeitung",
+      "cookies": "Cookie-Richtlinie",
+      "legal": "Impressum"
+    },
+    "copyright": "© {year} Hournook, ein Produkt von {company}. Alle Rechte vorbehalten.",
+    "tagline": "Termine ohne Hin und Her."
+  },
+  "notFound": {
+    "title": "Diese Seite haben wir nicht gefunden",
+    "text": "Der Link ist vielleicht veraltet oder falsch geschrieben.",
+    "home": "Startseite",
+    "dashboard": "Dashboard"
+  },
+  "error": {
+    "title": "Diese Seite wurde nicht richtig geladen",
+    "text": "Bei uns ist etwas schiefgelaufen. Ihre Daten sind sicher. Versuchen Sie es erneut; wenn das Problem bleibt, wenden Sie sich mit der folgenden Referenz an den Support.",
+    "reference": "Referenz: {digest}",
+    "retry": "Erneut versuchen",
+    "home": "Zur Startseite"
+  }
+}

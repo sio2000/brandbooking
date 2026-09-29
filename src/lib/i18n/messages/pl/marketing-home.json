@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook: system rezerwacji online dla firm pracujących na wizyty",
+    "description": "Własna strona rezerwacji, kalendarz, lista klientów i automatyczne przypomnienia dla salonów fryzjerskich, stylistek paznokci, barberów, gabinetów, trenerów, doradców i każdej firmy, która pracuje na wizyty. {price} miesięcznie, {days} dni za darmo, bez karty."
+  },
+  "hero": {
+    "titleLead": "Rezerwacje online dla",
+    "titleSr": "Twojej firmy pracującej na wizyty",
+    "phrase": "{phrase}.",
+    "lead": "Własna strona rezerwacji w kilka minut. Klienci wybierają usługę i wolny termin na telefonie, a wizyta trafia do Twojego kalendarza. Potwierdzenia i przypomnienia wysyłają się same.",
+    "cta": "Utwórz stronę rezerwacji",
+    "how": "Jak to działa",
+    "perks": {
+      "trial": "{days} dni za darmo",
+      "noCard": "Bez karty",
+      "price": "Potem {price}/mies. z VAT",
+      "cancel": "Rezygnujesz, kiedy chcesz"
+    },
+    "srDescription": "Animowany przykład: klienci rezerwują wizytę na stronie rezerwacji Hournook danej firmy, firma dostaje powiadomienie, a klient e-mail z potwierdzeniem. Przykłady się zmieniają: studio paznokci, barber shop, gabinet lekarski, salon kosmetyczny, studio treningowe i firma doradcza. Wszystkie nazwy są fikcyjne.",
+    "pause": "Zatrzymaj animację",
+    "play": "Odtwórz animację",
+    "notify": {
+      "title": "Nowa rezerwacja",
+      "now": "teraz",
+      "mailTitle": "Wysłano potwierdzenie",
+      "mailTo": "Do: {customer} · z linkiem do zmiany terminu",
+      "reminder": "Przypomnienie dzień wcześniej"
+    },
+    "phone": {
+      "bookOnline": "Rezerwuj online · {staff}",
+      "chooseService": "Wybierz usługę",
+      "freeTimes": "{day} · wolne terminy",
+      "book": "Rezerwuj: {service} · {time}",
+      "choose": "Wybierz usługę i godzinę",
+      "booked": "Zarezerwowano!",
+      "withStaff": "{service} · {staff}",
+      "when": "Kiedy",
+      "duration": "Czas trwania",
+      "sent": "Potwierdzenie wysłane na Twój e-mail",
+      "free": "Bezpłatnie",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "Twojego studia paznokci",
+      "business": "Studio Paznokci Nia",
+      "slug": "studio-paznokci-nia",
+      "category": "Paznokcie",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Maria P.",
+      "services": {
+        "s1": "Manicure hybrydowy",
+        "s2": "Manicure klasyczny",
+        "s3": "Pedicure"
+      }
+    },
+    "barber": {
+      "phrase": "Twojego barber shopu",
+      "business": "Barber Północ",
+      "slug": "barber-polnoc",
+      "category": "Barber",
+      "monogram": "BP",
+      "staff": "Leon",
+      "customer": "Mikołaj G.",
+      "services": {
+        "s1": "Strzyżenie",
+        "s2": "Strzyżenie i broda",
+        "s3": "Trymowanie brody"
+      }
+    },
+    "medical": {
+      "phrase": "Twojego gabinetu",
+      "business": "Przychodnia Rodzinna Port",
+      "slug": "przychodnia-port",
+      "category": "Medycyna",
+      "monogram": "PR",
+      "staff": "dr Kowalski",
+      "customer": "Daniel W.",
+      "services": {
+        "s1": "Konsultacja",
+        "s2": "Wizyta kontrolna",
+        "s3": "Coroczny przegląd"
+      }
+    },
+    "beauty": {
+      "phrase": "Twojego salonu urody",
+      "business": "Salon Urody Lumen",
+      "slug": "salon-lumen",
+      "category": "Uroda",
+      "monogram": "L",
+      "staff": "Joanna",
+      "customer": "Klara M.",
+      "services": {
+        "s1": "Zabieg na twarz",
+        "s2": "Laminacja rzęs",
+        "s3": "Regulacja brwi"
+      }
+    },
+    "fitness": {
+      "phrase": "Twojego studia treningowego",
+      "business": "Forma Trening",
+      "slug": "forma-trening",
+      "category": "Fitness",
+      "monogram": "F",
+      "staff": "Marek",
+      "customer": "Szymon C.",
+      "services": {
+        "s1": "Trening personalny",
+        "s2": "Ocena sprawności",
+        "s3": "Trening w parze"
+      }
+    },
+    "consulting": {
+      "phrase": "Twojej firmy doradczej",
+      "business": "Arden Doradztwo",
+      "slug": "arden-doradztwo",
+      "category": "Doradztwo",
+      "monogram": "A",
+      "staff": "Helena",
+      "customer": "Oliwia B.",
+      "services": {
+        "s1": "Sesja strategiczna",
+        "s2": "Konsultacja",
+        "s3": "Rozmowa wstępna"
+      }
+    },
+    "people": {
+      "p1": "Anna M.",
+      "p2": "Krzysztof P.",
+      "p3": "Jan K.",
+      "p4": "Szymon C.",
+      "p5": "Maria P.",
+      "p6": "Łukasz T.",
+      "p7": "Ela K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Salony fryzjerskie",
+    "barbers": "Barberzy",
+    "nailStudios": "Studia paznokci",
+    "lashBrow": "Stylistki rzęs i brwi",
+    "beautySalons": "Salony kosmetyczne",
+    "massageSpa": "Masaż i spa",
+    "physio": "Fizjoterapeuci",
+    "therapists": "Terapeuci i psycholodzy",
+    "medical": "Gabinety lekarskie",
+    "dentists": "Dentyści",
+    "nutritionists": "Dietetycy",
+    "trainers": "Trenerzy personalni",
+    "yoga": "Studia jogi i pilatesu",
+    "coaches": "Coachowie"
+  },
+  "how": {
+    "kicker": "Jak to działa",
+    "title": "Trzy kroki. Potem rezerwacje przychodzą same.",
+    "steps": {
+      "services": {
+        "title": "Dodaj swoje usługi",
+        "text": "Nazwa, czas trwania i cena. Około pięciu minut."
+      },
+      "share": {
+        "title": "Udostępnij jeden link",
+        "text": "Instagram, Google, WhatsApp albo wydrukowany kod QR."
+      },
+      "booked": {
+        "title": "Przyjmuj rezerwacje",
+        "text": "Rezerwacje trafiają do kalendarza, a przypomnienia wysyłają się same."
+      }
+    },
+    "yourServices": "Twoje usługi",
+    "colour": "Koloryzacja",
+    "openingHours": "Godziny otwarcia",
+    "ready": "Strona rezerwacji gotowa",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano",
+    "instagram": "Bio na Instagramie",
+    "google": "Profil w Google",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "Ten tydzień",
+    "bookings": "{count, plural, one {# rezerwacja} few {# rezerwacje} many {# rezerwacji} other {# rezerwacji}}",
+    "newBooking": "Nowa rezerwacja"
+  },
+  "features": {
+    "kicker": "Co dostajesz",
+    "title": "Wszystko w cenie. Nic nie ustawiasz dwa razy.",
+    "lead": "Jeden plan, {price} miesięcznie z VAT.",
+    "tiles": {
+      "page": {
+        "title": "Własna strona rezerwacji",
+        "text": "Jeden link z Twoimi usługami, cenami i wolnymi terminami. Klienci rezerwują sami, w dzień i w nocy."
+      },
+      "noDouble": {
+        "title": "Koniec z podwójnymi rezerwacjami",
+        "text": "Klienci widzą tylko terminy, w których naprawdę masz czas, z uwzględnieniem godzin pracy, przerw i dni wolnych."
+      },
+      "reminders": {
+        "title": "Przypomnienia wysyłane za Ciebie",
+        "text": "Potwierdzenie od razu, przypomnienia 24 godziny i 2 godziny przed wizytą. Mniej nieobecności."
+      },
+      "reschedule": {
+        "title": "Klienci sami zmieniają termin",
+        "text": "Link w każdym e-mailu pozwala przełożyć lub odwołać wizytę, zgodnie z zasadami, które ustalisz."
+      },
+      "team": {
+        "title": "Jeden kalendarz dla zespołu",
+        "text": "Wizyty wszystkich obok siebie, każda osoba z własnymi godzinami i usługami."
+      },
+      "reports": {
+        "title": "Zobacz, jak Ci idzie",
+        "text": "Rezerwacje, nieobecności, najbardziej zajęte dni i skąd przychodzą Twoi klienci."
+      }
+    },
+    "visual": {
+      "bookedFor": "Zarezerwowano na {time}",
+      "free": "Wolne, do rezerwacji",
+      "busy": "Zajęte lub przerwa",
+      "booked": "Rezerwacja",
+      "confirmation": "Wysłano potwierdzenie",
+      "before24": "24 godz. przed",
+      "before2": "2 godz. przed",
+      "reminder": "Przypomnienie",
+      "was": "Było",
+      "now": "Jest",
+      "noCalls": "Bez telefonów i wiadomości",
+      "training": "Trening"
+    }
+  },
+  "trust": {
+    "kicker": "Dlaczego możesz nam zaufać",
+    "title": "Mała, uczciwa firma stojąca za prostym narzędziem.",
+    "lead": "Jesteśmy nowi, więc nie pokażemy Ci zmyślonych opinii ani wielkich liczb. Oto co możesz sprawdzić sam.",
+    "company": {
+      "title": "Zarejestrowana europejska firma",
+      "text": "Hournook tworzy i prowadzi {company} z Salonik w Grecji. Nasze dane są publicznie dostępne w <link>nocie prawnej</link>."
+    },
+    "gdpr": {
+      "title": "Zgodność z RODO",
+      "text": "Każde konto obejmuje <link>umowę powierzenia przetwarzania danych</link>. Nigdy nie sprzedajemy danych ani nie używamy ich do reklam."
+    },
+    "data": {
+      "title": "Twoje dane są Twoje",
+      "text": "Eksportuj klientów i wizyty do arkusza, kiedy chcesz. Bez umowy, rezygnujesz w dowolnej chwili."
+    },
+    "secure": {
+      "title": "Bezpiecznie od początku",
+      "text": "Szyfrowane połączenia, chronione hasła i każda firma oddzielona od innych. Płatności obsługuje Stripe."
+    },
+    "people": {
+      "title": "Odpowiadają prawdziwi ludzie",
+      "text": "Napisz na <mail>{email}</mail> po angielsku lub po grecku. Odpowiadamy w ciągu dwóch dni roboczych."
+    }
+  },
+  "pricing": {
+    "kicker": "Cena",
+    "title": "Jeden plan. {price} miesięcznie.",
+    "lead": "Wszystko w cenie dla całego zespołu. Bez opłat za rezerwację, bez opłaty wdrożeniowej, bez umowy.",
+    "points": {
+      "trial": "Wypróbuj za darmo przez {days} dni, bez karty",
+      "cancel": "Zrezygnuj w dowolnej chwili w panelu",
+      "export": "Dane są Twoje: eksportuj je, kiedy chcesz"
+    }
+  },
+  "faq": {
+    "kicker": "Pytania",
+    "title": "Dobre pytania, konkretne odpowiedzi.",
+    "lead": "Coś jeszcze? <link>Zajrzyj do pomocy</link> albo napisz do nas.",
+    "items": {
+      "website": {
+        "q": "Czy potrzebuję strony internetowej?",
+        "a": "Nie. Strona rezerwacji to Twoja strona do rezerwacji: link w rodzaju hournook.com/book/twoja-firma, który udostępnisz na Instagramie, Facebooku, w Google, na WhatsAppie lub SMS-em. Jeśli masz już stronę, możesz dodać do niej widżet rezerwacji."
+      },
+      "clients": {
+        "q": "Jak klienci rezerwują wizyty?",
+        "a": "Otwierają Twój link na telefonie lub komputerze, wybierają usługę i jeden z terminów, w których naprawdę masz czas, a potem podają imię, e-mail i telefon. Bez aplikacji i bez zakładania konta. E-mail z potwierdzeniem dostają od razu."
+      },
+      "trial": {
+        "q": "Co się dzieje po okresie próbnym?",
+        "a": "Nic nie dzieje się automatycznie. Nigdy nie prosimy o kartę z góry. Jeśli Hournook Ci pasuje, wykup subskrypcję za {price} miesięcznie, aby dalej przyjmować rezerwacje. Jeśli nie, Twoja strona po prostu przestanie przyjmować nowe rezerwacje."
+      },
+      "fees": {
+        "q": "Czy są opłaty za rezerwację albo za członka zespołu?",
+        "a": "Nie. {price} miesięcznie za firmę obejmuje nielimitowane rezerwacje, cały zespół i wszystkie funkcje. Nigdy nie bierzemy prowizji od Twoich cen."
+      },
+      "cancel": {
+        "q": "Czy klienci mogą odwołać lub przełożyć wizytę?",
+        "a": "Tak, przez link w e-mailu z potwierdzeniem, ale tylko w ustalonych przez Ciebie granicach (na przykład nie później niż 24 godziny przed wizytą). Możesz też wyłączyć tę opcję."
+      },
+      "pay": {
+        "q": "Czy klienci mogą płacić online?",
+        "a": "Na razie nie. Klienci płacą Ci tak jak dziś, na wizycie. Hournook pokazuje wartość Twoich zrealizowanych wizyt."
+      },
+      "gdpr": {
+        "q": "Czy dane moich klientów są bezpieczne i zgodne z RODO?",
+        "a": "Tak. Dane są szyfrowane podczas przesyłania, każda firma jest całkowicie oddzielona, a każde konto obejmuje umowę powierzenia przetwarzania danych zgodną z RODO. Dane klienta możesz wyeksportować lub usunąć w dowolnej chwili."
+      },
+      "setup": {
+        "q": "Nie znam się na technologii. Czy konfiguracja jest trudna?",
+        "a": "Konfiguracja zajmuje kilka minut: nazwij firmę, dodaj usługi z czasem trwania i ceną, ustaw godziny otwarcia. Podpowiemy typowe usługi dla Twojej branży, a wszystko możesz później zmienić. Jeśli utkniesz, napisz do nas, a odpowie prawdziwy człowiek."
+      }
+    }
+  },
+  "cta": {
+    "title": "Twoja strona rezerwacji może działać już za dziesięć minut.",
+    "text": "Zacznij za darmo na {days} dni. Bez karty i bez umowy. Po prostu mniej wiadomości i więcej rezerwacji.",
+    "primary": "Utwórz stronę rezerwacji",
+    "secondary": "Mam już konto"
+  }
+}

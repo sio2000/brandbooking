@@ -32,6 +32,20 @@ export function useHydrated() {
   )
 }
 
+/**
+ * A time inside a small slot button: the clock, with the day period ("μ.μ.",
+ * "pm") on a second, smaller line in 12-hour languages so it fits the cell.
+ */
+export function ClockSlot({ time, period }: { time: string; period: string }) {
+  if (!period) return <>{time}</>
+  return (
+    <span className="flex flex-col items-center leading-none">
+      <span>{time}</span>
+      <span className="mt-px text-[8.5px] font-medium">{period}</span>
+    </span>
+  )
+}
+
 /** Small uppercase section label, optionally numbered ("02 — Calendar"). */
 export function Kicker({
   index,

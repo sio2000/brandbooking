@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook: Online booking software for appointment-based businesses",
+    "description": "Your own booking page, calendar, customer list and automatic reminders for salons, nail studios, barbers, clinics, trainers, consultants and every business that runs on appointments. {price}/month, {days}-day free trial, no card required."
+  },
+  "hero": {
+    "titleLead": "Online booking for your",
+    "titleSr": "appointment-based business",
+    "phrase": "{phrase}.",
+    "lead": "Get your own booking page in minutes. Clients choose a service and a free time on their phone, and the appointment lands in your calendar. Confirmation and reminder emails are sent for you.",
+    "cta": "Create your booking page",
+    "how": "How it works",
+    "perks": {
+      "trial": "{days} days free",
+      "noCard": "No card needed",
+      "price": "{price}/month after, VAT included",
+      "cancel": "Cancel anytime"
+    },
+    "srDescription": "Animated example: customers book an appointment on a business’s Hournook booking page, then the business is notified and the customer receives a confirmation email. Examples rotate through a nail studio, barbershop, clinic, beauty salon, training studio and consultancy. All names are fictional.",
+    "pause": "Pause animation",
+    "play": "Play animation",
+    "notify": {
+      "title": "New booking",
+      "now": "now",
+      "mailTitle": "Confirmation sent",
+      "mailTo": "To {customer} · with a link to reschedule",
+      "reminder": "Reminder the day before"
+    },
+    "phone": {
+      "bookOnline": "Book online · with {staff}",
+      "chooseService": "Choose a service",
+      "freeTimes": "{day} · free times",
+      "book": "Book {service} · {time}",
+      "choose": "Choose a service and time",
+      "booked": "You’re booked!",
+      "withStaff": "{service} with {staff}",
+      "when": "When",
+      "duration": "Duration",
+      "sent": "Confirmation sent to your email",
+      "free": "Free",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "nail studio",
+      "business": "Nia Nail Studio",
+      "slug": "nia-nail-studio",
+      "category": "Nails",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Maria P.",
+      "services": {
+        "s1": "Gel manicure",
+        "s2": "Classic manicure",
+        "s3": "Pedicure"
+      }
+    },
+    "barber": {
+      "phrase": "barbershop",
+      "business": "Northside Barbers",
+      "slug": "northside-barbers",
+      "category": "Barbershop",
+      "monogram": "NB",
+      "staff": "Leo",
+      "customer": "Nikos G.",
+      "services": {
+        "s1": "Haircut",
+        "s2": "Haircut & beard",
+        "s3": "Beard trim"
+      }
+    },
+    "medical": {
+      "phrase": "clinic",
+      "business": "Harbor Family Clinic",
+      "slug": "harbor-family-clinic",
+      "category": "Medical",
+      "monogram": "HF",
+      "staff": "Dr. Kostas",
+      "customer": "Daniel W.",
+      "services": {
+        "s1": "Consultation",
+        "s2": "Follow-up visit",
+        "s3": "Annual check-up"
+      }
+    },
+    "beauty": {
+      "phrase": "beauty salon",
+      "business": "Lumen Skin Studio",
+      "slug": "lumen-skin-studio",
+      "category": "Beauty",
+      "monogram": "L",
+      "staff": "Ioanna",
+      "customer": "Chloé M.",
+      "services": {
+        "s1": "Signature facial",
+        "s2": "Lash lift",
+        "s3": "Brow shaping"
+      }
+    },
+    "fitness": {
+      "phrase": "training studio",
+      "business": "Forma Training",
+      "slug": "forma-training",
+      "category": "Fitness",
+      "monogram": "F",
+      "staff": "Marco",
+      "customer": "Sam C.",
+      "services": {
+        "s1": "Personal training",
+        "s2": "Fitness assessment",
+        "s3": "Duo session"
+      }
+    },
+    "consulting": {
+      "phrase": "consultancy",
+      "business": "Arden Advisory",
+      "slug": "arden-advisory",
+      "category": "Consulting",
+      "monogram": "A",
+      "staff": "Helena",
+      "customer": "Olivia B.",
+      "services": {
+        "s1": "Strategy session",
+        "s2": "Consultation",
+        "s3": "Intro call"
+      }
+    },
+    "people": {
+      "p1": "Anna M.",
+      "p2": "Chris P.",
+      "p3": "Jonas K.",
+      "p4": "Sam C.",
+      "p5": "Maria P.",
+      "p6": "Leo T.",
+      "p7": "Eleni K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Hair salons",
+    "barbers": "Barbers",
+    "nailStudios": "Nail studios",
+    "lashBrow": "Lash & brow artists",
+    "beautySalons": "Beauty salons",
+    "massageSpa": "Massage & spa",
+    "physio": "Physiotherapists",
+    "therapists": "Therapists & psychologists",
+    "medical": "Medical practices",
+    "dentists": "Dentists",
+    "nutritionists": "Nutritionists",
+    "trainers": "Personal trainers",
+    "yoga": "Yoga & pilates studios",
+    "coaches": "Coaches"
+  },
+  "how": {
+    "kicker": "How it works",
+    "title": "Three steps. Then bookings come to you.",
+    "steps": {
+      "services": {
+        "title": "Add your services",
+        "text": "Name, length and price. About five minutes."
+      },
+      "share": {
+        "title": "Share one link",
+        "text": "Instagram, Google, WhatsApp or a printed QR code."
+      },
+      "booked": {
+        "title": "Get booked",
+        "text": "Bookings land in your calendar, reminders go out."
+      }
+    },
+    "yourServices": "Your services",
+    "colour": "Colour",
+    "openingHours": "Opening hours",
+    "ready": "Booking page ready",
+    "copy": "Copy",
+    "copied": "Copied",
+    "instagram": "Instagram bio",
+    "google": "Google profile",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "This week",
+    "bookings": "{count, plural, one {# booking} other {# bookings}}",
+    "newBooking": "New booking"
+  },
+  "features": {
+    "kicker": "What you get",
+    "title": "Everything included. Nothing to set up twice.",
+    "lead": "One plan, {price} a month, VAT included.",
+    "tiles": {
+      "page": {
+        "title": "Your own booking page",
+        "text": "One link with your services, prices and free times. Clients book themselves, day or night."
+      },
+      "noDouble": {
+        "title": "No double bookings",
+        "text": "Clients only see times you are really free, around your hours, breaks and days off."
+      },
+      "reminders": {
+        "title": "Reminders sent for you",
+        "text": "Confirmation right away, reminders 24 hours and 2 hours before. Fewer no-shows."
+      },
+      "reschedule": {
+        "title": "Clients reschedule themselves",
+        "text": "A link in every email lets them move or cancel, within the rules you set."
+      },
+      "team": {
+        "title": "One calendar for the team",
+        "text": "Everyone’s appointments side by side, each with their own hours and services."
+      },
+      "reports": {
+        "title": "See how it’s going",
+        "text": "Bookings, no-shows, busiest days and where your clients come from."
+      }
+    },
+    "visual": {
+      "bookedFor": "Booked for {time}",
+      "free": "Free, bookable",
+      "busy": "Booked or break",
+      "booked": "Booked",
+      "confirmation": "Confirmation sent",
+      "before24": "24 h before",
+      "before2": "2 h before",
+      "reminder": "Reminder",
+      "was": "Was",
+      "now": "Now",
+      "noCalls": "No calls, no messages",
+      "training": "Training"
+    }
+  },
+  "trust": {
+    "kicker": "Why trust us",
+    "title": "A small, honest company behind a simple tool.",
+    "lead": "We are new, so we won’t show you invented reviews or big numbers. Here is what you can check for yourself.",
+    "company": {
+      "title": "A registered European business",
+      "text": "Hournook is made and run by {company} in Thessaloniki, Greece. Our details are public in the <link>legal notice</link>."
+    },
+    "gdpr": {
+      "title": "GDPR built in",
+      "text": "A <link>data processing agreement</link> is included with every account. We never sell data or use it for ads."
+    },
+    "data": {
+      "title": "Your data stays yours",
+      "text": "Export clients and appointments to a spreadsheet at any time. No contract, cancel whenever you like."
+    },
+    "secure": {
+      "title": "Secure by default",
+      "text": "Encrypted connections, protected passwords and every business kept separate. Payments are handled by Stripe."
+    },
+    "people": {
+      "title": "Real people answer",
+      "text": "Email <mail>{email}</mail> in English or Greek. We reply within two business days."
+    }
+  },
+  "pricing": {
+    "kicker": "Pricing",
+    "title": "One plan. {price} a month.",
+    "lead": "Everything included for your whole team. No per-booking fees, no set-up fee, no contract.",
+    "points": {
+      "trial": "Try it free for {days} days, no card needed",
+      "cancel": "Cancel anytime from your dashboard",
+      "export": "Keep your data: export it whenever you want"
+    }
+  },
+  "faq": {
+    "kicker": "Questions",
+    "title": "Good questions, straight answers.",
+    "lead": "Something else? <link>Visit support</link> or email us.",
+    "items": {
+      "website": {
+        "q": "Do I need a website?",
+        "a": "No. Your booking page is your website for bookings: a link like hournook.com/book/your-business that you can share on Instagram, Facebook, Google, WhatsApp or by text. If you already have a website, you can add the booking widget to it."
+      },
+      "clients": {
+        "q": "How do my clients book?",
+        "a": "They open your link on their phone or computer, pick a service and one of the times you are actually free, and enter their name, email and phone. No app and no account needed. They get a confirmation email straight away."
+      },
+      "trial": {
+        "q": "What happens after the free trial?",
+        "a": "Nothing happens automatically. We never ask for a card up front. If Hournook works for you, subscribe for {price}/month to keep taking bookings. If not, your booking page simply stops accepting new bookings."
+      },
+      "fees": {
+        "q": "Are there fees per booking or per team member?",
+        "a": "No. {price}/month per business includes unlimited bookings, your whole team and every feature. We never take a cut of what you charge."
+      },
+      "cancel": {
+        "q": "Can clients cancel or move their appointment?",
+        "a": "Yes, from the link in their confirmation email, but only within the limits you set (for example, not later than 24 hours before). You can also switch this off."
+      },
+      "pay": {
+        "q": "Can clients pay online?",
+        "a": "Not at the moment. Clients pay you the way they do today, at the appointment. Hournook shows you the value of your completed appointments."
+      },
+      "gdpr": {
+        "q": "Is my clients’ data safe and GDPR compliant?",
+        "a": "Yes. Data is encrypted in transit, each business is fully separated, and a GDPR data processing agreement is included for every account. You can export or erase a client’s data at any time."
+      },
+      "setup": {
+        "q": "I’m not good with technology. Is it hard to set up?",
+        "a": "Setup takes a few minutes: name your business, add your services with their length and price, and set your opening hours. We suggest typical services for your type of business, and you can change everything later. If you get stuck, email us and a real person answers."
+      }
+    }
+  },
+  "cta": {
+    "title": "Your booking page could be live in ten minutes.",
+    "text": "Start free for {days} days. No card, no contract. Just fewer messages and more bookings.",
+    "primary": "Create your booking page",
+    "secondary": "I already have an account"
+  }
+}

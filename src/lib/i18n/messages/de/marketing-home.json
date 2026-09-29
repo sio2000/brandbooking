@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook: Online-Terminbuchung für Unternehmen mit Terminen",
+    "description": "Eigene Buchungsseite, Kalender, Kundenliste und automatische Erinnerungen für Friseure, Nagelstudios, Barbershops, Praxen, Trainer, Berater und jedes Unternehmen, das mit Terminen arbeitet. {price}/Monat, {days} Tage kostenlos testen, keine Karte nötig."
+  },
+  "hero": {
+    "titleLead": "Online-Terminbuchung für",
+    "titleSr": "Ihr Unternehmen mit Terminen",
+    "phrase": "{phrase}.",
+    "lead": "Ihre eigene Buchungsseite in wenigen Minuten. Kunden wählen auf dem Handy eine Leistung und eine freie Zeit, und der Termin landet in Ihrem Kalender. Bestätigungen und Erinnerungen werden automatisch verschickt.",
+    "cta": "Buchungsseite erstellen",
+    "how": "So funktioniert’s",
+    "perks": {
+      "trial": "{days} Tage kostenlos",
+      "noCard": "Keine Karte nötig",
+      "price": "Danach {price}/Monat inkl. MwSt.",
+      "cancel": "Jederzeit kündbar"
+    },
+    "srDescription": "Animiertes Beispiel: Kunden buchen einen Termin auf der Hournook-Buchungsseite eines Unternehmens, danach wird das Unternehmen benachrichtigt und der Kunde erhält eine Bestätigungs-E-Mail. Die Beispiele wechseln zwischen Nagelstudio, Barbershop, Praxis, Kosmetikstudio, Trainingsstudio und Beratung. Alle Namen sind frei erfunden.",
+    "pause": "Animation anhalten",
+    "play": "Animation abspielen",
+    "notify": {
+      "title": "Neue Buchung",
+      "now": "jetzt",
+      "mailTitle": "Bestätigung verschickt",
+      "mailTo": "An {customer} · mit Link zum Verschieben",
+      "reminder": "Erinnerung am Vortag"
+    },
+    "phone": {
+      "bookOnline": "Online buchen · bei {staff}",
+      "chooseService": "Leistung wählen",
+      "freeTimes": "{day} · freie Zeiten",
+      "book": "{service} buchen · {time}",
+      "choose": "Leistung und Zeit wählen",
+      "booked": "Termin gebucht!",
+      "withStaff": "{service} bei {staff}",
+      "when": "Wann",
+      "duration": "Dauer",
+      "sent": "Bestätigung per E-Mail verschickt",
+      "free": "Kostenlos",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "Ihr Nagelstudio",
+      "business": "Nagelstudio Nia",
+      "slug": "nagelstudio-nia",
+      "category": "Nägel",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Maria P.",
+      "services": {
+        "s1": "Gel-Maniküre",
+        "s2": "Klassische Maniküre",
+        "s3": "Pediküre"
+      }
+    },
+    "barber": {
+      "phrase": "Ihren Barbershop",
+      "business": "Nordstadt Barbers",
+      "slug": "nordstadt-barbers",
+      "category": "Barbershop",
+      "monogram": "NB",
+      "staff": "Leo",
+      "customer": "Niklas G.",
+      "services": {
+        "s1": "Haarschnitt",
+        "s2": "Haarschnitt & Bart",
+        "s3": "Bartpflege"
+      }
+    },
+    "medical": {
+      "phrase": "Ihre Praxis",
+      "business": "Hausarztpraxis am Hafen",
+      "slug": "praxis-am-hafen",
+      "category": "Medizin",
+      "monogram": "HP",
+      "staff": "Dr. Krause",
+      "customer": "Daniel W.",
+      "services": {
+        "s1": "Sprechstunde",
+        "s2": "Kontrolltermin",
+        "s3": "Jahres-Check-up"
+      }
+    },
+    "beauty": {
+      "phrase": "Ihr Kosmetikstudio",
+      "business": "Lumen Kosmetik",
+      "slug": "lumen-kosmetik",
+      "category": "Kosmetik",
+      "monogram": "L",
+      "staff": "Johanna",
+      "customer": "Clara M.",
+      "services": {
+        "s1": "Gesichtsbehandlung",
+        "s2": "Wimpernlifting",
+        "s3": "Augenbrauen zupfen"
+      }
+    },
+    "fitness": {
+      "phrase": "Ihr Trainingsstudio",
+      "business": "Forma Training",
+      "slug": "forma-training",
+      "category": "Fitness",
+      "monogram": "F",
+      "staff": "Marco",
+      "customer": "Sam C.",
+      "services": {
+        "s1": "Personal Training",
+        "s2": "Fitness-Check",
+        "s3": "Duo-Training"
+      }
+    },
+    "consulting": {
+      "phrase": "Ihre Beratung",
+      "business": "Arden Beratung",
+      "slug": "arden-beratung",
+      "category": "Beratung",
+      "monogram": "A",
+      "staff": "Helena",
+      "customer": "Olivia B.",
+      "services": {
+        "s1": "Strategiesitzung",
+        "s2": "Beratungsgespräch",
+        "s3": "Kennenlerngespräch"
+      }
+    },
+    "people": {
+      "p1": "Anna M.",
+      "p2": "Christian P.",
+      "p3": "Jonas K.",
+      "p4": "Sam C.",
+      "p5": "Maria P.",
+      "p6": "Lukas T.",
+      "p7": "Lena K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Friseursalons",
+    "barbers": "Barbershops",
+    "nailStudios": "Nagelstudios",
+    "lashBrow": "Wimpern- & Brauenstylisten",
+    "beautySalons": "Kosmetikstudios",
+    "massageSpa": "Massage & Spa",
+    "physio": "Physiotherapeuten",
+    "therapists": "Therapeuten & Psychologen",
+    "medical": "Arztpraxen",
+    "dentists": "Zahnärzte",
+    "nutritionists": "Ernährungsberater",
+    "trainers": "Personal Trainer",
+    "yoga": "Yoga- & Pilates-Studios",
+    "coaches": "Coaches"
+  },
+  "how": {
+    "kicker": "So funktioniert’s",
+    "title": "Drei Schritte. Dann kommen die Buchungen zu Ihnen.",
+    "steps": {
+      "services": {
+        "title": "Leistungen anlegen",
+        "text": "Name, Dauer und Preis. Etwa fünf Minuten."
+      },
+      "share": {
+        "title": "Einen Link teilen",
+        "text": "Instagram, Google, WhatsApp oder ein gedruckter QR-Code."
+      },
+      "booked": {
+        "title": "Gebucht werden",
+        "text": "Buchungen landen in Ihrem Kalender, Erinnerungen gehen automatisch raus."
+      }
+    },
+    "yourServices": "Ihre Leistungen",
+    "colour": "Färben",
+    "openingHours": "Öffnungszeiten",
+    "ready": "Buchungsseite ist bereit",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "instagram": "Instagram-Bio",
+    "google": "Google-Profil",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "Diese Woche",
+    "bookings": "{count, plural, one {# Buchung} other {# Buchungen}}",
+    "newBooking": "Neue Buchung"
+  },
+  "features": {
+    "kicker": "Was Sie bekommen",
+    "title": "Alles inklusive. Nichts doppelt einrichten.",
+    "lead": "Ein Tarif, {price} im Monat, inklusive MwSt.",
+    "tiles": {
+      "page": {
+        "title": "Ihre eigene Buchungsseite",
+        "text": "Ein Link mit Ihren Leistungen, Preisen und freien Zeiten. Kunden buchen selbst, rund um die Uhr."
+      },
+      "noDouble": {
+        "title": "Keine Doppelbuchungen",
+        "text": "Kunden sehen nur Zeiten, in denen Sie wirklich frei sind – passend zu Öffnungszeiten, Pausen und freien Tagen."
+      },
+      "reminders": {
+        "title": "Erinnerungen automatisch",
+        "text": "Bestätigung sofort, Erinnerungen 24 Stunden und 2 Stunden vorher. Weniger versäumte Termine."
+      },
+      "reschedule": {
+        "title": "Kunden verschieben selbst",
+        "text": "Ein Link in jeder E-Mail lässt sie verschieben oder absagen – nach den Regeln, die Sie festlegen."
+      },
+      "team": {
+        "title": "Ein Kalender fürs ganze Team",
+        "text": "Alle Termine nebeneinander, jede Person mit eigenen Zeiten und Leistungen."
+      },
+      "reports": {
+        "title": "Sehen, wie es läuft",
+        "text": "Buchungen, nicht erschienene Kunden, die vollsten Tage und woher Ihre Kunden kommen."
+      }
+    },
+    "visual": {
+      "bookedFor": "Gebucht für {time}",
+      "free": "Frei, buchbar",
+      "busy": "Gebucht oder Pause",
+      "booked": "Gebucht",
+      "confirmation": "Bestätigung verschickt",
+      "before24": "24 Std. vorher",
+      "before2": "2 Std. vorher",
+      "reminder": "Erinnerung",
+      "was": "Vorher",
+      "now": "Jetzt",
+      "noCalls": "Keine Anrufe, keine Nachrichten",
+      "training": "Training"
+    }
+  },
+  "trust": {
+    "kicker": "Warum Sie uns vertrauen können",
+    "title": "Ein kleines, ehrliches Unternehmen hinter einem einfachen Werkzeug.",
+    "lead": "Wir sind neu, deshalb zeigen wir Ihnen keine erfundenen Bewertungen oder großen Zahlen. Das hier können Sie selbst prüfen.",
+    "company": {
+      "title": "Ein eingetragenes europäisches Unternehmen",
+      "text": "Hournook wird von {company} in Thessaloniki, Griechenland, entwickelt und betrieben. Unsere Angaben stehen öffentlich im <link>Impressum</link>."
+    },
+    "gdpr": {
+      "title": "DSGVO eingebaut",
+      "text": "Zu jedem Konto gehört ein <link>Auftragsverarbeitungsvertrag</link>. Wir verkaufen niemals Daten und nutzen sie nicht für Werbung."
+    },
+    "data": {
+      "title": "Ihre Daten bleiben Ihre",
+      "text": "Exportieren Sie Kunden und Termine jederzeit in eine Tabelle. Kein Vertrag, jederzeit kündbar."
+    },
+    "secure": {
+      "title": "Sicher von Anfang an",
+      "text": "Verschlüsselte Verbindungen, geschützte Passwörter und jedes Unternehmen sauber getrennt. Zahlungen wickelt Stripe ab."
+    },
+    "people": {
+      "title": "Echte Menschen antworten",
+      "text": "Schreiben Sie an <mail>{email}</mail> auf Englisch oder Griechisch. Wir antworten innerhalb von zwei Werktagen."
+    }
+  },
+  "pricing": {
+    "kicker": "Preis",
+    "title": "Ein Tarif. {price} im Monat.",
+    "lead": "Alles inklusive für Ihr ganzes Team. Keine Gebühr pro Buchung, keine Einrichtungsgebühr, kein Vertrag.",
+    "points": {
+      "trial": "{days} Tage kostenlos testen, keine Karte nötig",
+      "cancel": "Jederzeit im Dashboard kündbar",
+      "export": "Ihre Daten gehören Ihnen: jederzeit exportierbar"
+    }
+  },
+  "faq": {
+    "kicker": "Fragen",
+    "title": "Gute Fragen, klare Antworten.",
+    "lead": "Noch etwas anderes? <link>Zur Hilfe</link> oder schreiben Sie uns.",
+    "items": {
+      "website": {
+        "q": "Brauche ich eine Website?",
+        "a": "Nein. Ihre Buchungsseite ist Ihre Website für Buchungen: ein Link wie hournook.com/book/ihr-unternehmen, den Sie auf Instagram, Facebook, Google, WhatsApp oder per SMS teilen. Wenn Sie schon eine Website haben, können Sie dort das Buchungs-Widget einbauen."
+      },
+      "clients": {
+        "q": "Wie buchen meine Kunden?",
+        "a": "Sie öffnen Ihren Link auf Handy oder Computer, wählen eine Leistung und eine der Zeiten, in denen Sie tatsächlich frei sind, und geben Name, E-Mail-Adresse und Telefonnummer ein. Keine App und kein Konto nötig. Die Bestätigungs-E-Mail kommt sofort."
+      },
+      "trial": {
+        "q": "Was passiert nach dem kostenlosen Test?",
+        "a": "Nichts passiert automatisch. Wir fragen nie vorab nach einer Karte. Wenn Hournook zu Ihnen passt, schließen Sie ein Abonnement für {price}/Monat ab und nehmen weiter Buchungen an. Wenn nicht, nimmt Ihre Buchungsseite einfach keine neuen Buchungen mehr an."
+      },
+      "fees": {
+        "q": "Gibt es Gebühren pro Buchung oder pro Teammitglied?",
+        "a": "Nein. {price}/Monat pro Unternehmen umfasst unbegrenzte Buchungen, Ihr ganzes Team und alle Funktionen. Wir verdienen nie an Ihren Preisen mit."
+      },
+      "cancel": {
+        "q": "Können Kunden ihren Termin absagen oder verschieben?",
+        "a": "Ja, über den Link in ihrer Bestätigungs-E-Mail, aber nur innerhalb der Grenzen, die Sie festlegen (zum Beispiel bis spätestens 24 Stunden vorher). Sie können das auch ganz abschalten."
+      },
+      "pay": {
+        "q": "Können Kunden online bezahlen?",
+        "a": "Derzeit nicht. Kunden bezahlen Sie wie gewohnt beim Termin. Hournook zeigt Ihnen den Wert Ihrer abgeschlossenen Termine."
+      },
+      "gdpr": {
+        "q": "Sind die Daten meiner Kunden sicher und DSGVO-konform?",
+        "a": "Ja. Daten werden bei der Übertragung verschlüsselt, jedes Unternehmen ist vollständig getrennt, und zu jedem Konto gehört ein Auftragsverarbeitungsvertrag nach DSGVO. Sie können die Daten eines Kunden jederzeit exportieren oder löschen."
+      },
+      "setup": {
+        "q": "Ich bin nicht so technikaffin. Ist die Einrichtung schwierig?",
+        "a": "Die Einrichtung dauert wenige Minuten: Geben Sie Ihrem Unternehmen einen Namen, legen Sie Ihre Leistungen mit Dauer und Preis an und tragen Sie Ihre Öffnungszeiten ein. Wir schlagen typische Leistungen für Ihre Branche vor, und Sie können später alles ändern. Wenn Sie nicht weiterkommen, schreiben Sie uns – ein echter Mensch antwortet."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ihre Buchungsseite kann in zehn Minuten online sein.",
+    "text": "{days} Tage kostenlos starten. Keine Karte, kein Vertrag. Einfach weniger Nachrichten und mehr Buchungen.",
+    "primary": "Buchungsseite erstellen",
+    "secondary": "Ich habe schon ein Konto"
+  }
+}

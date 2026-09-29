@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Prijs",
+    "description": "Alles wat je nodig hebt om online boekingen aan te nemen voor {price}/maand: onbeperkte boekingen, je eigen boekingspagina, agenda, herinneringen, teamleden en meer. Gratis proefperiode van {days} dagen, zonder creditcard."
+  },
+  "hero": {
+    "eyebrow": "Prijs",
+    "title": "Alles wat je nodig hebt om online boekingen aan te nemen.",
+    "lead": "Eén eenvoudig abonnement voor {price} per maand. Alle functies inbegrepen, hoe groot je bedrijf ook is."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Onbeperkt boekingen",
+      "text": "Neem zoveel afspraken aan als je wilt."
+    },
+    "noFees": {
+      "title": "Geen kosten per boeking",
+      "text": "We nemen nooit een deel van wat jij rekent."
+    },
+    "noCard": {
+      "title": "Starten zonder creditcard",
+      "text": "Probeer eerst alles {days} dagen uit."
+    }
+  },
+  "vatNote": "Prijzen in euro, inclusief btw.",
+  "billing": {
+    "eyebrow": "Facturering",
+    "title": "Vragen over facturering",
+    "lead": "Duidelijke antwoorden over de proefperiode, facturen en opzeggen. Voor al het andere helpen we je graag.",
+    "support": "Naar hulp",
+    "terms": "Factureringsvoorwaarden"
+  },
+  "faq": {
+    "card": {
+      "q": "Heb ik een creditcard nodig voor de gratis proefperiode?",
+      "a": "Nee. Start je proefperiode van {days} dagen met alleen je e-mailadres. Een betaalmethode voeg je pas toe als je besluit een abonnement te nemen."
+    },
+    "how": {
+      "q": "Hoe werkt de facturering?",
+      "a": "Je abonnement kost {price} per maand en wordt vooraf gefactureerd via Stripe, onze betaalprovider. Bonnen en facturen vind je in het factureringsportaal."
+    },
+    "cancel": {
+      "q": "Hoe zeg ik op?",
+      "a": "Open het factureringsportaal van Stripe via je factureringsinstellingen en zeg daar op. Zonder mails of telefoontjes. Opzeggen stopt toekomstige verlengingen."
+    },
+    "vat": {
+      "q": "Is de btw inbegrepen?",
+      "a": "Ja. {price} per maand is de volledige prijs, inclusief 24% Griekse btw. Bij het afrekenen komt er niets bij en je krijgt voor elke betaling een factuur."
+    },
+    "update": {
+      "q": "Kan ik mijn kaart of factuurgegevens wijzigen?",
+      "a": "Ja. In het factureringsportaal wijzig je op elk moment je betaalmethode, werk je je factuurgegevens bij en download je eerdere facturen."
+    },
+    "team": {
+      "q": "Kosten teamleden extra?",
+      "a": "Nee. Teamleden zitten in hetzelfde abonnement, zodat je hele team de agenda kan gebruiken en boekingen kan aannemen."
+    }
+  },
+  "card": {
+    "badge": "Eén abonnement · alles inbegrepen",
+    "perMonth": "/ maand · incl. btw",
+    "trial": "Gratis proefperiode van {days} dagen. Geen creditcard nodig. Geen kosten per boeking.",
+    "cta": "Start je gratis proefperiode",
+    "seeAll": "Bekijk alles wat erbij zit",
+    "inclusions": {
+      "unlimited": "Onbeperkt boekingen",
+      "page": "Je eigen boekingspagina",
+      "profile": "Bedrijfsprofiel",
+      "services": "Diensten",
+      "availability": "Beschikbaarheid & vakanties",
+      "calendar": "Afsprakenbeheer & agenda",
+      "customers": "Klantenbeheer",
+      "emails": "Bevestigingen & herinneringen per e-mail",
+      "analytics": "Statistieken",
+      "team": "Teamleden",
+      "secure": "Beveiligd account",
+      "responsive": "Boekingspagina voor elk scherm",
+      "qr": "QR-code & widget voor je website"
+    }
+  }
+}

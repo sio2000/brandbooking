@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import { Logo } from '@/components/brand/logo'
+import { useLocalizedHref, useT } from '@/components/i18n/provider'
+import { LanguageSwitcher } from '@/components/i18n/language-switcher'
 import { Button } from '@/components/ui/button'
-import { site } from '@/lib/site'
+import { splitLocalePath } from '@/lib/i18n/config'
 import { cn } from '@/lib/utils'
 import { MobileNav } from './mobile-nav'
 import { marketingNav } from './nav'
@@ -19,16 +21,19 @@ const subscribeScroll = (cb: () => void) => {
 /**
  * Sticky header: transparent over the hero, then a hairline border and a
  * translucent backdrop once the page scrolls. On the home page the link for
- * the section in view is marked current.
+ * the section in view is marked current. The section links need room for the
+ * longest languages, so below `lg` they move into the menu sheet.
  */
 export function SiteHeader() {
+  const t = useT('marketing-shell')
+  const href = useLocalizedHref()
   const scrolled = React.useSyncExternalStore(
     subscribeScroll,
     () => window.scrollY > 8,
     () => false,
   )
   const pathname = usePathname()
-  const active = useActiveSection(pathname === '/')
+  const active = useActiveSection(splitLocalePath(pathname).path === '/')
 
   return (
     <header
@@ -40,28 +45,32 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-16 items-center gap-3">
-        <Link href="/" className="-ml-1 rounded-md p-1" aria-label={`${site.name} home`}>
+        <Link
+          href={href('/')}
+          className="-ms-1 shrink-0 rounded-md p-1"
+          aria-label={t('homeLabel')}
+        >
           <Logo />
         </Link>
-        <nav aria-label="Main" className="ml-4 hidden md:block lg:ml-8">
+        <nav aria-label={t('nav.main')} className="ms-6 hidden lg:block xl:ms-8">
           <ul className="flex items-center gap-0.5">
             {marketingNav.map((item) => {
               const current = active === item.section
               return (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={href(item.href)}
                     aria-current={current ? 'true' : undefined}
                     className={cn(
-                      'relative inline-flex h-9 items-center rounded-lg px-3 text-[14px] font-medium transition-colors',
+                      'relative inline-flex h-9 items-center rounded-lg px-3 text-[14px] font-medium whitespace-nowrap transition-colors',
                       current ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
-                    {item.label}
+                    {t(`nav.${item.key}`)}
                     <span
                       aria-hidden
                       className={cn(
-                        'absolute inset-x-3 -bottom-px h-px origin-left bg-foreground transition-transform duration-300 ease-[var(--ease-out-soft)]',
+                        'absolute inset-x-3 -bottom-px h-px origin-left bg-foreground transition-transform duration-300 ease-[var(--ease-out-soft)] rtl:origin-right',
                         current ? 'scale-x-100' : 'scale-x-0',
                       )}
                     />
@@ -71,12 +80,13 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          <Button asChild variant="ghost" className="hidden sm:inline-flex">
-            <Link href="/login">Sign in</Link>
+        <div className="ms-auto flex min-w-0 items-center gap-1.5 sm:gap-2">
+          <LanguageSwitcher mode="marketing" compact className="hidden md:inline-flex" />
+          <Button asChild variant="ghost" className="hidden whitespace-nowrap sm:inline-flex">
+            <Link href="/login">{t('header.signIn')}</Link>
           </Button>
-          <Button asChild className="h-10 px-4">
-            <Link href="/signup">Start free</Link>
+          <Button asChild className="h-10 px-4 whitespace-nowrap max-[379px]:px-3">
+            <Link href="/signup">{t('header.startFree')}</Link>
           </Button>
           <MobileNav />
         </div>

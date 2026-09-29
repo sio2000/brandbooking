@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Preis",
+    "description": "Alles, was Sie für Online-Buchungen brauchen, für {price}/Monat: unbegrenzte Buchungen, eigene Buchungsseite, Kalender, Erinnerungen, Teammitglieder und mehr. {days} Tage kostenlos testen, keine Karte nötig."
+  },
+  "hero": {
+    "eyebrow": "Preis",
+    "title": "Alles, was Sie für Online-Buchungen brauchen.",
+    "lead": "Ein einfacher Tarif für {price} im Monat. Alle Funktionen inklusive, egal wie groß Ihr Unternehmen ist."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Unbegrenzte Buchungen",
+      "text": "Nehmen Sie so viele Termine an, wie Sie möchten."
+    },
+    "noFees": {
+      "title": "Keine Gebühr pro Buchung",
+      "text": "Wir verdienen nie an Ihren Preisen mit."
+    },
+    "noCard": {
+      "title": "Start ohne Karte",
+      "text": "Testen Sie zuerst alles {days} Tage lang."
+    }
+  },
+  "vatNote": "Preise in Euro, inklusive MwSt.",
+  "billing": {
+    "eyebrow": "Abrechnung",
+    "title": "Fragen zur Abrechnung",
+    "lead": "Klare Antworten zu Testphase, Rechnungen und Kündigung. Bei allem anderen helfen wir gern.",
+    "support": "Zur Hilfe",
+    "terms": "Abrechnungsbedingungen"
+  },
+  "faq": {
+    "card": {
+      "q": "Brauche ich für den kostenlosen Test eine Karte?",
+      "a": "Nein. Starten Sie Ihren {days}-tägigen Test nur mit Ihrer E-Mail-Adresse. Eine Zahlungsmethode hinterlegen Sie erst, wenn Sie sich für ein Abonnement entscheiden."
+    },
+    "how": {
+      "q": "Wie funktioniert die Abrechnung?",
+      "a": "Ihr Abonnement kostet {price} pro Monat und wird im Voraus über Stripe, unseren Zahlungsdienstleister, abgerechnet. Belege und Rechnungen finden Sie im Abrechnungsportal."
+    },
+    "cancel": {
+      "q": "Wie kündige ich?",
+      "a": "Öffnen Sie das Stripe-Abrechnungsportal in Ihren Abrechnungseinstellungen und kündigen Sie dort. Ganz ohne E-Mails oder Anrufe. Mit der Kündigung enden alle künftigen Verlängerungen."
+    },
+    "vat": {
+      "q": "Ist die Mehrwertsteuer enthalten?",
+      "a": "Ja. {price} im Monat ist der Endpreis, inklusive 24 % griechischer Mehrwertsteuer. Beim Bezahlen kommt nichts hinzu, und Sie erhalten für jede Zahlung eine Rechnung."
+    },
+    "update": {
+      "q": "Kann ich meine Karte oder Rechnungsdaten ändern?",
+      "a": "Ja. Im Abrechnungsportal können Sie jederzeit die Zahlungsmethode ändern, Rechnungsdaten aktualisieren und frühere Rechnungen herunterladen."
+    },
+    "team": {
+      "q": "Kosten Teammitglieder extra?",
+      "a": "Nein. Teammitglieder sind im selben Tarif enthalten, sodass Ihr ganzes Team den Kalender nutzen und Buchungen annehmen kann."
+    }
+  },
+  "card": {
+    "badge": "Ein Tarif · alles inklusive",
+    "perMonth": "/ Monat · inkl. MwSt.",
+    "trial": "{days} Tage kostenlos testen. Keine Karte nötig. Keine Gebühr pro Buchung.",
+    "cta": "Kostenlos testen",
+    "seeAll": "Alle enthaltenen Leistungen ansehen",
+    "inclusions": {
+      "unlimited": "Unbegrenzte Buchungen",
+      "page": "Eigene Buchungsseite",
+      "profile": "Unternehmensprofil",
+      "services": "Leistungen",
+      "availability": "Verfügbarkeit & Urlaub",
+      "calendar": "Terminverwaltung & Kalender",
+      "customers": "Kundenverwaltung",
+      "emails": "Bestätigungen & Erinnerungen per E-Mail",
+      "analytics": "Auswertungen",
+      "team": "Teammitglieder",
+      "secure": "Sicheres Konto",
+      "responsive": "Buchungsseite für jedes Gerät",
+      "qr": "QR-Code & einbettbares Widget"
+    }
+  }
+}

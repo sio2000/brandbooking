@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Rezerwacje bez wymiany wiadomości.",
+    "description": "System rezerwacji online dla firm, które pracują na wizyty: własna strona rezerwacji, kalendarz, kartoteka klientów i statystyki za {price} miesięcznie. {days} dni za darmo, bez karty.",
+    "socialAlt": "Hournook: system rezerwacji online dla firm, które pracują na wizyty"
+  },
+  "skipToContent": "Przejdź do treści",
+  "homeLabel": "Strona główna Hournook",
+  "nav": {
+    "main": "Główna nawigacja",
+    "mobile": "Nawigacja mobilna",
+    "how": "Jak to działa",
+    "features": "Funkcje",
+    "pricing": "Cena",
+    "faq": "Pytania",
+    "support": "Pomoc"
+  },
+  "header": {
+    "signIn": "Zaloguj się",
+    "startFree": "Wypróbuj",
+    "openMenu": "Otwórz menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Rezerwacje online, kalendarz, kartoteka klientów i statystyki dla firm, które pracują na wizyty. Jeden plan, {price} miesięcznie.",
+    "theme": "Motyw",
+    "columns": {
+      "product": "Produkt",
+      "account": "Konto",
+      "legal": "Informacje prawne"
+    },
+    "links": {
+      "how": "Jak to działa",
+      "features": "Funkcje",
+      "pricing": "Cena",
+      "faq": "Częste pytania",
+      "startTrial": "Zacznij bezpłatny okres próbny",
+      "signIn": "Zaloguj się",
+      "support": "Pomoc",
+      "terms": "Regulamin",
+      "privacy": "Polityka prywatności",
+      "dpa": "Przetwarzanie danych",
+      "cookies": "Polityka plików cookie",
+      "legal": "Nota prawna"
+    },
+    "copyright": "© {year} Hournook, produkt firmy {company}. Wszelkie prawa zastrzeżone.",
+    "tagline": "Rezerwacje bez wymiany wiadomości."
+  },
+  "notFound": {
+    "title": "Nie znaleźliśmy tej strony",
+    "text": "Link może być nieaktualny albo zawierać literówkę.",
+    "home": "Strona główna",
+    "dashboard": "Panel"
+  },
+  "error": {
+    "title": "Ta strona nie załadowała się poprawnie",
+    "text": "Coś poszło nie tak po naszej stronie. Twoje dane są bezpieczne. Spróbuj ponownie, a jeśli problem się powtarza, napisz do pomocy i podaj poniższy kod.",
+    "reference": "Kod: {digest}",
+    "retry": "Spróbuj ponownie",
+    "home": "Strona główna"
+  }
+}

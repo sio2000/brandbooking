@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook : logiciel de réservation en ligne pour les entreprises sur rendez-vous",
+    "description": "Votre propre page de réservation, agenda, liste de clients et rappels automatiques pour les salons de coiffure, ongleries, barbiers, cabinets médicaux, coachs sportifs, consultants et toute entreprise qui travaille sur rendez-vous. {price}/mois, essai gratuit de {days} jours, sans carte bancaire."
+  },
+  "hero": {
+    "titleLead": "La réservation en ligne pour",
+    "titleSr": "votre entreprise sur rendez-vous",
+    "phrase": "{phrase}.",
+    "lead": "Votre propre page de réservation en quelques minutes. Vos clients choisissent une prestation et un créneau libre sur leur téléphone, et le rendez-vous arrive dans votre agenda. Les e-mails de confirmation et de rappel partent tout seuls.",
+    "cta": "Créer votre page de réservation",
+    "how": "Fonctionnement",
+    "perks": {
+      "trial": "{days} jours gratuits",
+      "noCard": "Sans carte bancaire",
+      "price": "Puis {price}/mois, TVA comprise",
+      "cancel": "Résiliable à tout moment"
+    },
+    "srDescription": "Exemple animé : des clients réservent un rendez-vous sur la page de réservation Hournook d’une entreprise, puis l’entreprise est prévenue et le client reçoit un e-mail de confirmation. Les exemples défilent : onglerie, barbier, cabinet médical, institut de beauté, salle de sport et cabinet de conseil. Tous les noms sont fictifs.",
+    "pause": "Mettre l’animation en pause",
+    "play": "Lire l’animation",
+    "notify": {
+      "title": "Nouvelle réservation",
+      "now": "à l’instant",
+      "mailTitle": "Confirmation envoyée",
+      "mailTo": "À {customer} · avec un lien pour déplacer",
+      "reminder": "Rappel la veille"
+    },
+    "phone": {
+      "bookOnline": "Réserver en ligne · avec {staff}",
+      "chooseService": "Choisissez une prestation",
+      "freeTimes": "{day} · créneaux libres",
+      "book": "Réserver {service} · {time}",
+      "choose": "Choisissez une prestation et un horaire",
+      "booked": "C’est réservé !",
+      "withStaff": "{service} avec {staff}",
+      "when": "Quand",
+      "duration": "Durée",
+      "sent": "Confirmation envoyée par e-mail",
+      "free": "Gratuit",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "votre onglerie",
+      "business": "Onglerie Nia",
+      "slug": "onglerie-nia",
+      "category": "Ongles",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Marie P.",
+      "services": {
+        "s1": "Manucure semi-permanente",
+        "s2": "Manucure classique",
+        "s3": "Pédicure"
+      }
+    },
+    "barber": {
+      "phrase": "votre barbier",
+      "business": "Barbier du Nord",
+      "slug": "barbier-du-nord",
+      "category": "Barbier",
+      "monogram": "BN",
+      "staff": "Léo",
+      "customer": "Nicolas G.",
+      "services": {
+        "s1": "Coupe",
+        "s2": "Coupe et barbe",
+        "s3": "Taille de barbe"
+      }
+    },
+    "medical": {
+      "phrase": "votre cabinet médical",
+      "business": "Cabinet médical du Port",
+      "slug": "cabinet-du-port",
+      "category": "Santé",
+      "monogram": "CP",
+      "staff": "Dr Costa",
+      "customer": "Daniel V.",
+      "services": {
+        "s1": "Consultation",
+        "s2": "Visite de contrôle",
+        "s3": "Bilan annuel"
+      }
+    },
+    "beauty": {
+      "phrase": "votre institut de beauté",
+      "business": "Institut Lumen",
+      "slug": "institut-lumen",
+      "category": "Beauté",
+      "monogram": "L",
+      "staff": "Jeanne",
+      "customer": "Chloé M.",
+      "services": {
+        "s1": "Soin du visage",
+        "s2": "Rehaussement de cils",
+        "s3": "Restructuration des sourcils"
+      }
+    },
+    "fitness": {
+      "phrase": "votre salle de sport",
+      "business": "Forma Coaching",
+      "slug": "forma-coaching",
+      "category": "Sport",
+      "monogram": "F",
+      "staff": "Marco",
+      "customer": "Samuel C.",
+      "services": {
+        "s1": "Coaching individuel",
+        "s2": "Bilan forme",
+        "s3": "Séance en duo"
+      }
+    },
+    "consulting": {
+      "phrase": "votre cabinet de conseil",
+      "business": "Arden Conseil",
+      "slug": "arden-conseil",
+      "category": "Conseil",
+      "monogram": "A",
+      "staff": "Hélène",
+      "customer": "Olivia B.",
+      "services": {
+        "s1": "Séance stratégie",
+        "s2": "Consultation",
+        "s3": "Appel découverte"
+      }
+    },
+    "people": {
+      "p1": "Anne M.",
+      "p2": "Christophe P.",
+      "p3": "Julien K.",
+      "p4": "Samuel C.",
+      "p5": "Marie P.",
+      "p6": "Louis T.",
+      "p7": "Élise K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Salons de coiffure",
+    "barbers": "Barbiers",
+    "nailStudios": "Ongleries",
+    "lashBrow": "Cils et sourcils",
+    "beautySalons": "Instituts de beauté",
+    "massageSpa": "Massage et spa",
+    "physio": "Kinésithérapeutes",
+    "therapists": "Thérapeutes et psychologues",
+    "medical": "Cabinets médicaux",
+    "dentists": "Dentistes",
+    "nutritionists": "Nutritionnistes",
+    "trainers": "Coachs sportifs",
+    "yoga": "Studios de yoga et de pilates",
+    "coaches": "Coachs"
+  },
+  "how": {
+    "kicker": "Fonctionnement",
+    "title": "Trois étapes. Ensuite, les réservations viennent à vous.",
+    "steps": {
+      "services": {
+        "title": "Ajoutez vos prestations",
+        "text": "Nom, durée et prix. Environ cinq minutes."
+      },
+      "share": {
+        "title": "Partagez un lien",
+        "text": "Instagram, Google, WhatsApp ou un QR code imprimé."
+      },
+      "booked": {
+        "title": "Recevez des réservations",
+        "text": "Les réservations arrivent dans votre agenda, les rappels partent tout seuls."
+      }
+    },
+    "yourServices": "Vos prestations",
+    "colour": "Couleur",
+    "openingHours": "Horaires d’ouverture",
+    "ready": "Page de réservation prête",
+    "copy": "Copier",
+    "copied": "Copié",
+    "instagram": "Bio Instagram",
+    "google": "Fiche Google",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "Cette semaine",
+    "bookings": "{count, plural, one {# réservation} other {# réservations}}",
+    "newBooking": "Nouvelle réservation"
+  },
+  "features": {
+    "kicker": "Ce que vous obtenez",
+    "title": "Tout est inclus. Rien à configurer deux fois.",
+    "lead": "Une seule formule, {price} par mois, TVA comprise.",
+    "tiles": {
+      "page": {
+        "title": "Votre propre page de réservation",
+        "text": "Un lien avec vos prestations, vos prix et vos créneaux libres. Vos clients réservent eux-mêmes, de jour comme de nuit."
+      },
+      "noDouble": {
+        "title": "Fini les doubles réservations",
+        "text": "Vos clients ne voient que les créneaux où vous êtes vraiment libre, selon vos horaires, pauses et jours de repos."
+      },
+      "reminders": {
+        "title": "Des rappels envoyés pour vous",
+        "text": "Confirmation immédiate, rappels 24 heures et 2 heures avant. Moins de rendez-vous manqués."
+      },
+      "reschedule": {
+        "title": "Les clients déplacent eux-mêmes",
+        "text": "Un lien dans chaque e-mail leur permet de déplacer ou d’annuler, selon les règles que vous fixez."
+      },
+      "team": {
+        "title": "Un agenda pour toute l’équipe",
+        "text": "Les rendez-vous de chacun côte à côte, chacun avec ses horaires et ses prestations."
+      },
+      "reports": {
+        "title": "Suivez votre activité",
+        "text": "Réservations, absences, jours les plus chargés et provenance de vos clients."
+      }
+    },
+    "visual": {
+      "bookedFor": "Réservé à {time}",
+      "free": "Libre, réservable",
+      "busy": "Réservé ou pause",
+      "booked": "Réservé",
+      "confirmation": "Confirmation envoyée",
+      "before24": "24 h avant",
+      "before2": "2 h avant",
+      "reminder": "Rappel",
+      "was": "Avant",
+      "now": "Maintenant",
+      "noCalls": "Ni appels, ni messages",
+      "training": "Entraînement"
+    }
+  },
+  "trust": {
+    "kicker": "Pourquoi nous faire confiance",
+    "title": "Une petite entreprise honnête derrière un outil simple.",
+    "lead": "Nous sommes nouveaux : pas d’avis inventés ni de chiffres gonflés. Voici ce que vous pouvez vérifier vous-même.",
+    "company": {
+      "title": "Une entreprise européenne enregistrée",
+      "text": "Hournook est conçu et exploité par {company} à Thessalonique, en Grèce. Nos coordonnées figurent dans les <link>mentions légales</link>."
+    },
+    "gdpr": {
+      "title": "RGPD intégré",
+      "text": "Un <link>accord de traitement des données</link> est inclus dans chaque compte. Nous ne vendons jamais de données et ne les utilisons pas pour la publicité."
+    },
+    "data": {
+      "title": "Vos données restent à vous",
+      "text": "Exportez vos clients et rendez-vous dans un tableur à tout moment. Sans engagement, résiliable quand vous voulez."
+    },
+    "secure": {
+      "title": "Sécurisé par défaut",
+      "text": "Connexions chiffrées, mots de passe protégés et chaque entreprise cloisonnée. Les paiements sont gérés par Stripe."
+    },
+    "people": {
+      "title": "De vraies personnes vous répondent",
+      "text": "Écrivez à <mail>{email}</mail> en anglais ou en grec. Nous répondons sous deux jours ouvrés."
+    }
+  },
+  "pricing": {
+    "kicker": "Tarif",
+    "title": "Une seule formule. {price} par mois.",
+    "lead": "Tout est inclus pour toute votre équipe. Aucuns frais par réservation, aucuns frais d’installation, sans engagement.",
+    "points": {
+      "trial": "Essai gratuit de {days} jours, sans carte bancaire",
+      "cancel": "Résiliable à tout moment depuis votre tableau de bord",
+      "export": "Vos données vous appartiennent : exportez-les quand vous voulez"
+    }
+  },
+  "faq": {
+    "kicker": "Questions",
+    "title": "De bonnes questions, des réponses franches.",
+    "lead": "Autre chose ? <link>Consultez l’aide</link> ou écrivez-nous.",
+    "items": {
+      "website": {
+        "q": "Ai-je besoin d’un site web ?",
+        "a": "Non. Votre page de réservation fait office de site pour les réservations : un lien comme hournook.com/book/votre-entreprise à partager sur Instagram, Facebook, Google, WhatsApp ou par SMS. Si vous avez déjà un site, vous pouvez y ajouter le widget de réservation."
+      },
+      "clients": {
+        "q": "Comment mes clients réservent-ils ?",
+        "a": "Ils ouvrent votre lien sur leur téléphone ou leur ordinateur, choisissent une prestation et l’un des créneaux où vous êtes vraiment libre, puis saisissent leur nom, leur e-mail et leur téléphone. Ni application ni compte à créer. Ils reçoivent aussitôt un e-mail de confirmation."
+      },
+      "trial": {
+        "q": "Que se passe-t-il après l’essai gratuit ?",
+        "a": "Rien d’automatique. Nous ne demandons jamais de carte à l’avance. Si Hournook vous convient, abonnez-vous pour {price}/mois pour continuer à recevoir des réservations. Sinon, votre page de réservation cesse simplement d’accepter de nouvelles réservations."
+      },
+      "fees": {
+        "q": "Y a-t-il des frais par réservation ou par membre de l’équipe ?",
+        "a": "Non. {price}/mois par entreprise comprend les réservations illimitées, toute votre équipe et toutes les fonctionnalités. Nous ne prenons jamais de commission sur vos tarifs."
+      },
+      "cancel": {
+        "q": "Les clients peuvent-ils annuler ou déplacer leur rendez-vous ?",
+        "a": "Oui, via le lien de leur e-mail de confirmation, mais uniquement dans les limites que vous fixez (par exemple, au plus tard 24 heures avant). Vous pouvez aussi désactiver cette option."
+      },
+      "pay": {
+        "q": "Les clients peuvent-ils payer en ligne ?",
+        "a": "Pas pour le moment. Vos clients vous paient comme aujourd’hui, lors du rendez-vous. Hournook vous indique la valeur de vos rendez-vous effectués."
+      },
+      "gdpr": {
+        "q": "Les données de mes clients sont-elles protégées et conformes au RGPD ?",
+        "a": "Oui. Les données sont chiffrées pendant leur transfert, chaque entreprise est entièrement cloisonnée et un accord de traitement des données conforme au RGPD est inclus dans chaque compte. Vous pouvez exporter ou effacer les données d’un client à tout moment."
+      },
+      "setup": {
+        "q": "Je ne suis pas à l’aise avec la technologie. Est-ce compliqué à configurer ?",
+        "a": "La configuration prend quelques minutes : nommez votre entreprise, ajoutez vos prestations avec leur durée et leur prix, et indiquez vos horaires. Nous vous proposons des prestations courantes pour votre activité, et vous pouvez tout modifier ensuite. En cas de difficulté, écrivez-nous : une vraie personne vous répondra."
+      }
+    }
+  },
+  "cta": {
+    "title": "Votre page de réservation peut être en ligne dans dix minutes.",
+    "text": "Commencez gratuitement pendant {days} jours. Sans carte, sans engagement. Juste moins de messages et plus de réservations.",
+    "primary": "Créer votre page de réservation",
+    "secondary": "J’ai déjà un compte"
+  }
+}

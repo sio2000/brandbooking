@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Fiyat",
+    "description": "Online rezervasyon almak için gereken her şey aylık {price}: sınırsız rezervasyon, size özel rezervasyon sayfası, takvim, hatırlatmalar, ekip üyeleri ve daha fazlası. {days} gün ücretsiz deneme, kart gerekmez."
+  },
+  "hero": {
+    "eyebrow": "Fiyat",
+    "title": "Online rezervasyon almak için gereken her şey.",
+    "lead": "Aylık {price} tutarında tek ve basit bir paket. İşletmeniz ne büyüklükte olursa olsun tüm özellikler dahil."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Sınırsız rezervasyon",
+      "text": "İstediğiniz kadar randevu alın."
+    },
+    "noFees": {
+      "title": "Rezervasyon başına ücret yok",
+      "text": "Kazancınızdan asla pay almayız."
+    },
+    "noCard": {
+      "title": "Kartsız başlayın",
+      "text": "Önce her şeyi {days} gün boyunca deneyin."
+    }
+  },
+  "vatNote": "Fiyatlar euro cinsindendir, KDV dahildir.",
+  "billing": {
+    "eyebrow": "Faturalandırma",
+    "title": "Faturalandırma soruları",
+    "lead": "Deneme süresi, faturalar ve iptal hakkında net yanıtlar. Başka konularda da yardımcı olmaktan memnuniyet duyarız.",
+    "support": "Desteğe git",
+    "terms": "Faturalandırma koşulları"
+  },
+  "faq": {
+    "card": {
+      "q": "Ücretsiz deneme için kart gerekiyor mu?",
+      "a": "Hayır. {days} günlük denemenizi yalnızca e-posta adresinizle başlatın. Ödeme yöntemini yalnızca abone olmaya karar verdiğinizde eklersiniz."
+    },
+    "how": {
+      "q": "Faturalandırma nasıl işliyor?",
+      "a": "Aboneliğiniz aylık {price} tutarındadır ve ödeme sağlayıcımız Stripe üzerinden peşin tahsil edilir. Makbuzlar ve faturalar faturalandırma portalında yer alır."
+    },
+    "cancel": {
+      "q": "Nasıl iptal ederim?",
+      "a": "Faturalandırma ayarlarınızdan Stripe faturalandırma portalını açın ve oradan iptal edin. E-posta ya da telefon gerekmez. İptal, gelecekteki yenilemeleri durdurur."
+    },
+    "vat": {
+      "q": "KDV dahil mi?",
+      "a": "Evet. Aylık {price}, %24 Yunanistan KDV’si dahil nihai fiyattır. Ödeme sırasında hiçbir şey eklenmez ve her ödeme için fatura alırsınız."
+    },
+    "update": {
+      "q": "Kartımı veya fatura bilgilerimi değiştirebilir miyim?",
+      "a": "Evet. Faturalandırma portalından istediğiniz zaman ödeme yönteminizi değiştirebilir, fatura bilgilerinizi güncelleyebilir ve geçmiş faturaları indirebilirsiniz."
+    },
+    "team": {
+      "q": "Ekip üyeleri için ek ücret var mı?",
+      "a": "Hayır. Ekip üyeleri aynı pakete dahildir; böylece tüm ekibiniz takvimi kullanabilir ve rezervasyon alabilir."
+    }
+  },
+  "card": {
+    "badge": "Tek paket · her şey dahil",
+    "perMonth": "/ ay · KDV dahil",
+    "trial": "{days} gün ücretsiz deneme. Başlamak için kart gerekmez. Rezervasyon başına ücret yok.",
+    "cta": "Ücretsiz denemeyi başlatın",
+    "seeAll": "Pakette neler olduğunu görün",
+    "inclusions": {
+      "unlimited": "Sınırsız rezervasyon",
+      "page": "Size özel rezervasyon sayfası",
+      "profile": "İşletme profili",
+      "services": "Hizmetler",
+      "availability": "Müsaitlik ve tatiller",
+      "calendar": "Randevu yönetimi ve takvim",
+      "customers": "Müşteri yönetimi",
+      "emails": "E-posta ile onay ve hatırlatmalar",
+      "analytics": "İstatistikler",
+      "team": "Ekip üyeleri",
+      "secure": "Güvenli hesap",
+      "responsive": "Her ekrana uyumlu rezervasyon sayfası",
+      "qr": "QR kod ve web sitesine eklenebilen widget"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Aide",
+    "description": "De l’aide pour bien démarrer avec Hournook, partager votre page de réservation et gérer la facturation, et comment nous contacter."
+  },
+  "hero": {
+    "eyebrow": "Aide",
+    "title": "Comment pouvons-nous vous aider ?",
+    "lead": "Des guides rapides sur les questions les plus fréquentes. Si vous êtes bloqué, nos coordonnées se trouvent en bas de cette page."
+  },
+  "topicsLabel": "Sujets d’aide",
+  "contactLink": "Contact",
+  "topics": {
+    "gettingStarted": {
+      "title": "Bien démarrer",
+      "steps": {
+        "account": "Créez votre compte et confirmez votre adresse e-mail.",
+        "details": "Ajoutez les informations de votre entreprise, votre logo et votre fuseau horaire.",
+        "services": "Ajoutez vos prestations avec leur durée et leur prix.",
+        "hours": "Définissez vos horaires de la semaine, puis ajoutez vos congés ou jours de fermeture.",
+        "team": "Invitez les membres de votre équipe et choisissez les prestations de chacun.",
+        "publish": "Publiez votre page de réservation quand elle vous convient."
+      }
+    },
+    "sharing": {
+      "title": "Partager votre page de réservation",
+      "steps": {
+        "link": "Copiez votre lien de réservation et ajoutez-le à votre bio Instagram, à votre fiche d’établissement Google ou à votre signature e-mail.",
+        "widget": "Collez le code du widget intégrable sur votre site pour que vos clients réservent sans le quitter.",
+        "qr": "Téléchargez le QR code et imprimez-le pour votre comptoir, votre vitrine ou vos flyers.",
+        "analytics": "Consultez les statistiques pour voir ce qui vous apporte le plus de réservations."
+      }
+    },
+    "billing": {
+      "title": "Facturation",
+      "steps": {
+        "trial": "Votre essai gratuit de {days} jours commence à l’inscription. Sans carte bancaire.",
+        "subscribe": "Abonnez-vous pour {price}/mois depuis vos paramètres de facturation quand vous êtes prêt.",
+        "portal": "Ouvrez le portail de facturation Stripe pour changer de carte, télécharger vos factures ou résilier.",
+        "vat": "Le prix inclut la TVA (24 %). Vous recevez une facture pour chaque paiement."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contacter l’assistance",
+    "lead": "Dites-nous ce que vous essayiez de faire et, si possible, l’adresse e-mail de votre compte. N’envoyez jamais de mot de passe ni de données de carte.",
+    "helpCentre": "Centre d’aide",
+    "newTab": "(s’ouvre dans un nouvel onglet)",
+    "soon": "Le contact de l’assistance arrive bientôt. En attendant, les guides ci-dessus répondent aux questions les plus fréquentes.",
+    "customers": "Vous avez réservé un rendez-vous auprès d’une entreprise ? Contactez-la directement : vous trouverez ses coordonnées sur sa page de réservation et dans votre e-mail de confirmation."
+  },
+  "seeAlso": {
+    "label": "Voir aussi :",
+    "pricing": "Tarif",
+    "privacy": "Confidentialité",
+    "terms": "Conditions"
+  }
+}

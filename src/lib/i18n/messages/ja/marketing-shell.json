@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · やり取りなしで予約完了。",
+    "description": "予約制ビジネスのためのオンライン予約システム。専用の予約ページ、カレンダー、顧客管理、分析がそろって月額 {price}。{days} 日間の無料トライアル、カード登録不要。",
+    "socialAlt": "Hournook：予約制ビジネスのためのオンライン予約システム"
+  },
+  "skipToContent": "本文へスキップ",
+  "homeLabel": "Hournook ホーム",
+  "nav": {
+    "main": "メイン",
+    "mobile": "モバイルメニュー",
+    "how": "使い方",
+    "features": "機能",
+    "pricing": "料金",
+    "faq": "よくある質問",
+    "support": "サポート"
+  },
+  "header": {
+    "signIn": "ログイン",
+    "startFree": "無料で試す",
+    "openMenu": "メニューを開く",
+    "menu": "メニュー"
+  },
+  "footer": {
+    "blurb": "予約制ビジネスのためのオンライン予約、カレンダー、顧客管理、分析。プランはひとつ、月額 {price}。",
+    "theme": "テーマ",
+    "columns": {
+      "product": "製品",
+      "account": "アカウント",
+      "legal": "法的情報"
+    },
+    "links": {
+      "how": "使い方",
+      "features": "機能",
+      "pricing": "料金",
+      "faq": "よくある質問",
+      "startTrial": "無料トライアルを始める",
+      "signIn": "ログイン",
+      "support": "サポート",
+      "terms": "利用規約",
+      "privacy": "プライバシーポリシー",
+      "dpa": "データ処理契約",
+      "cookies": "Cookie ポリシー",
+      "legal": "法的表示"
+    },
+    "copyright": "© {year} Hournook（{company} の製品）。無断複製・転載を禁じます。",
+    "tagline": "やり取りなしで予約完了。"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "text": "リンクが古いか、入力が間違っている可能性があります。",
+    "home": "ホーム",
+    "dashboard": "ダッシュボード"
+  },
+  "error": {
+    "title": "ページを正しく読み込めませんでした",
+    "text": "こちら側で問題が発生しました。データは安全です。もう一度お試しください。問題が続く場合は、下記の参照番号を添えてサポートまでご連絡ください。",
+    "reference": "参照番号：{digest}",
+    "retry": "再試行",
+    "home": "ホームへ戻る"
+  }
+}

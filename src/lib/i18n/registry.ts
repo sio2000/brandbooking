@@ -10,6 +10,10 @@ import type emailBilling from './messages/en/email-billing.json'
 import type emailBooking from './messages/en/email-booking.json'
 import type errors from './messages/en/errors.json'
 import type manage from './messages/en/manage.json'
+import type marketingHome from './messages/en/marketing-home.json'
+import type marketingPricing from './messages/en/marketing-pricing.json'
+import type marketingShell from './messages/en/marketing-shell.json'
+import type marketingSupport from './messages/en/marketing-support.json'
 import type onboarding from './messages/en/onboarding.json'
 import type validation from './messages/en/validation.json'
 
@@ -23,12 +27,16 @@ export type Catalogues = {
   'email-booking': typeof emailBooking
   'errors': typeof errors
   'manage': typeof manage
+  'marketing-home': typeof marketingHome
+  'marketing-pricing': typeof marketingPricing
+  'marketing-shell': typeof marketingShell
+  'marketing-support': typeof marketingSupport
   'onboarding': typeof onboarding
   'validation': typeof validation
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["auth","booking","common","email","email-account","email-billing","email-booking","errors","manage","onboarding","validation"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["auth","booking","common","email","email-account","email-billing","email-booking","errors","manage","marketing-home","marketing-pricing","marketing-shell","marketing-support","onboarding","validation"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -44,6 +52,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/ar/email-booking.json'),
     'errors': () => import('./messages/ar/errors.json'),
     'manage': () => import('./messages/ar/manage.json'),
+    'marketing-home': () => import('./messages/ar/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ar/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ar/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ar/marketing-support.json'),
     'onboarding': () => import('./messages/ar/onboarding.json'),
     'validation': () => import('./messages/ar/validation.json'),
   },
@@ -57,6 +69,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/de/email-booking.json'),
     'errors': () => import('./messages/de/errors.json'),
     'manage': () => import('./messages/de/manage.json'),
+    'marketing-home': () => import('./messages/de/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/de/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/de/marketing-shell.json'),
+    'marketing-support': () => import('./messages/de/marketing-support.json'),
     'onboarding': () => import('./messages/de/onboarding.json'),
     'validation': () => import('./messages/de/validation.json'),
   },
@@ -70,6 +86,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/el/email-booking.json'),
     'errors': () => import('./messages/el/errors.json'),
     'manage': () => import('./messages/el/manage.json'),
+    'marketing-home': () => import('./messages/el/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/el/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/el/marketing-shell.json'),
+    'marketing-support': () => import('./messages/el/marketing-support.json'),
     'onboarding': () => import('./messages/el/onboarding.json'),
     'validation': () => import('./messages/el/validation.json'),
   },
@@ -83,6 +103,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/en/email-booking.json'),
     'errors': () => import('./messages/en/errors.json'),
     'manage': () => import('./messages/en/manage.json'),
+    'marketing-home': () => import('./messages/en/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/en/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/en/marketing-shell.json'),
+    'marketing-support': () => import('./messages/en/marketing-support.json'),
     'onboarding': () => import('./messages/en/onboarding.json'),
     'validation': () => import('./messages/en/validation.json'),
   },
@@ -96,6 +120,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/es/email-booking.json'),
     'errors': () => import('./messages/es/errors.json'),
     'manage': () => import('./messages/es/manage.json'),
+    'marketing-home': () => import('./messages/es/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/es/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/es/marketing-shell.json'),
+    'marketing-support': () => import('./messages/es/marketing-support.json'),
     'onboarding': () => import('./messages/es/onboarding.json'),
     'validation': () => import('./messages/es/validation.json'),
   },
@@ -109,6 +137,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/fr/email-booking.json'),
     'errors': () => import('./messages/fr/errors.json'),
     'manage': () => import('./messages/fr/manage.json'),
+    'marketing-home': () => import('./messages/fr/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/fr/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/fr/marketing-shell.json'),
+    'marketing-support': () => import('./messages/fr/marketing-support.json'),
     'onboarding': () => import('./messages/fr/onboarding.json'),
     'validation': () => import('./messages/fr/validation.json'),
   },
@@ -122,6 +154,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/hi/email-booking.json'),
     'errors': () => import('./messages/hi/errors.json'),
     'manage': () => import('./messages/hi/manage.json'),
+    'marketing-home': () => import('./messages/hi/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/hi/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/hi/marketing-shell.json'),
+    'marketing-support': () => import('./messages/hi/marketing-support.json'),
     'onboarding': () => import('./messages/hi/onboarding.json'),
     'validation': () => import('./messages/hi/validation.json'),
   },
@@ -135,6 +171,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/it/email-booking.json'),
     'errors': () => import('./messages/it/errors.json'),
     'manage': () => import('./messages/it/manage.json'),
+    'marketing-home': () => import('./messages/it/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/it/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/it/marketing-shell.json'),
+    'marketing-support': () => import('./messages/it/marketing-support.json'),
     'onboarding': () => import('./messages/it/onboarding.json'),
     'validation': () => import('./messages/it/validation.json'),
   },
@@ -148,6 +188,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/ja/email-booking.json'),
     'errors': () => import('./messages/ja/errors.json'),
     'manage': () => import('./messages/ja/manage.json'),
+    'marketing-home': () => import('./messages/ja/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ja/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ja/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ja/marketing-support.json'),
     'onboarding': () => import('./messages/ja/onboarding.json'),
     'validation': () => import('./messages/ja/validation.json'),
   },
@@ -161,6 +205,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/nl/email-booking.json'),
     'errors': () => import('./messages/nl/errors.json'),
     'manage': () => import('./messages/nl/manage.json'),
+    'marketing-home': () => import('./messages/nl/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/nl/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/nl/marketing-shell.json'),
+    'marketing-support': () => import('./messages/nl/marketing-support.json'),
     'onboarding': () => import('./messages/nl/onboarding.json'),
     'validation': () => import('./messages/nl/validation.json'),
   },
@@ -174,6 +222,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/pl/email-booking.json'),
     'errors': () => import('./messages/pl/errors.json'),
     'manage': () => import('./messages/pl/manage.json'),
+    'marketing-home': () => import('./messages/pl/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/pl/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/pl/marketing-shell.json'),
+    'marketing-support': () => import('./messages/pl/marketing-support.json'),
     'onboarding': () => import('./messages/pl/onboarding.json'),
     'validation': () => import('./messages/pl/validation.json'),
   },
@@ -187,6 +239,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/pt/email-booking.json'),
     'errors': () => import('./messages/pt/errors.json'),
     'manage': () => import('./messages/pt/manage.json'),
+    'marketing-home': () => import('./messages/pt/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/pt/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/pt/marketing-shell.json'),
+    'marketing-support': () => import('./messages/pt/marketing-support.json'),
     'onboarding': () => import('./messages/pt/onboarding.json'),
     'validation': () => import('./messages/pt/validation.json'),
   },
@@ -200,6 +256,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/ru/email-booking.json'),
     'errors': () => import('./messages/ru/errors.json'),
     'manage': () => import('./messages/ru/manage.json'),
+    'marketing-home': () => import('./messages/ru/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ru/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ru/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ru/marketing-support.json'),
     'onboarding': () => import('./messages/ru/onboarding.json'),
     'validation': () => import('./messages/ru/validation.json'),
   },
@@ -213,6 +273,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/tr/email-booking.json'),
     'errors': () => import('./messages/tr/errors.json'),
     'manage': () => import('./messages/tr/manage.json'),
+    'marketing-home': () => import('./messages/tr/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/tr/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/tr/marketing-shell.json'),
+    'marketing-support': () => import('./messages/tr/marketing-support.json'),
     'onboarding': () => import('./messages/tr/onboarding.json'),
     'validation': () => import('./messages/tr/validation.json'),
   },
@@ -226,6 +290,10 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-booking': () => import('./messages/zh/email-booking.json'),
     'errors': () => import('./messages/zh/errors.json'),
     'manage': () => import('./messages/zh/manage.json'),
+    'marketing-home': () => import('./messages/zh/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/zh/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/zh/marketing-shell.json'),
+    'marketing-support': () => import('./messages/zh/marketing-support.json'),
     'onboarding': () => import('./messages/zh/onboarding.json'),
     'validation': () => import('./messages/zh/validation.json'),
   },
