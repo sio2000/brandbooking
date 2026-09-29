@@ -544,14 +544,13 @@ describe('customer self-service links', () => {
 
   it('treats links as expired 30 days after the appointment', async () => {
     const res = await book()
+    // One clock reading: separate Date.now() calls can differ by a millisecond
+    // and break the blocked_from <= starts_at check.
+    const start = new Date(Date.now() - 40 * 86_400_000)
+    const end = new Date(start.getTime() + 3600_000)
     await db()
       .update(appointments)
-      .set({
-        startsAt: new Date(Date.now() - 40 * 86_400_000),
-        endsAt: new Date(Date.now() - 40 * 86_400_000 + 3600_000),
-        blockedFrom: new Date(Date.now() - 40 * 86_400_000),
-        blockedUntil: new Date(Date.now() - 40 * 86_400_000 + 3600_000),
-      })
+      .set({ startsAt: start, endsAt: end, blockedFrom: start, blockedUntil: end })
       .where(eq(appointments.id, res.appointmentId))
     await expectAppError(getManagedBooking(res.manageToken, meta()), 'token_expired')
   })
