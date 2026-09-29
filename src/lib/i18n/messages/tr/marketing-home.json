@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "title": "Hournook: randevuyla çalışan işletmeler için online randevu yazılımı",
+    "description": "Kuaförler, tırnak stüdyoları, berberler, klinikler, antrenörler, danışmanlar ve randevuyla çalışan her işletme için size özel rezervasyon sayfası, takvim, müşteri listesi ve otomatik hatırlatmalar. Aylık {price}, {days} gün ücretsiz deneme, kart gerekmez."
+  },
+  "hero": {
+    "titleLead": "Online randevu sistemi,",
+    "titleSr": "randevuyla çalışan işletmeniz için",
+    "phrase": "{phrase}.",
+    "lead": "Dakikalar içinde kendi rezervasyon sayfanıza sahip olun. Müşteriler telefonlarından bir hizmet ve boş bir saat seçer, randevu takviminize düşer. Onay ve hatırlatma e-postaları sizin yerinize gönderilir.",
+    "cta": "Rezervasyon sayfanızı oluşturun",
+    "how": "Nasıl çalışır",
+    "perks": {
+      "trial": "{days} gün ücretsiz",
+      "noCard": "Kart gerekmez",
+      "price": "Sonra aylık {price}, KDV dahil",
+      "cancel": "İstediğiniz zaman iptal"
+    },
+    "srDescription": "Animasyonlu örnek: müşteriler bir işletmenin Hournook rezervasyon sayfasından randevu alır, ardından işletmeye bildirim gider ve müşteri onay e-postası alır. Örnekler sırayla tırnak stüdyosu, berber, klinik, güzellik salonu, spor stüdyosu ve danışmanlık firması arasında değişir. Tüm isimler hayalidir.",
+    "pause": "Animasyonu duraklat",
+    "play": "Animasyonu oynat",
+    "notify": {
+      "title": "Yeni rezervasyon",
+      "now": "şimdi",
+      "mailTitle": "Onay gönderildi",
+      "mailTo": "Alıcı: {customer} · saat değiştirme bağlantısıyla",
+      "reminder": "Bir gün önce hatırlatma"
+    },
+    "phone": {
+      "bookOnline": "Online randevu · {staff} ile",
+      "chooseService": "Hizmet seçin",
+      "freeTimes": "{day} · boş saatler",
+      "book": "{service} · {time} için randevu al",
+      "choose": "Hizmet ve saat seçin",
+      "booked": "Randevunuz alındı!",
+      "withStaff": "{service} · {staff}",
+      "when": "Ne zaman",
+      "duration": "Süre",
+      "sent": "Onay e-postanıza gönderildi",
+      "free": "Ücretsiz",
+      "dayTime": "{day}, {time}"
+    }
+  },
+  "demo": {
+    "nails": {
+      "phrase": "tırnak stüdyonuz için",
+      "business": "Nia Tırnak Stüdyosu",
+      "slug": "nia-tirnak",
+      "category": "Tırnak",
+      "monogram": "N",
+      "staff": "Nia",
+      "customer": "Meltem P.",
+      "services": {
+        "s1": "Kalıcı oje",
+        "s2": "Klasik manikür",
+        "s3": "Pedikür"
+      }
+    },
+    "barber": {
+      "phrase": "berberiniz için",
+      "business": "Kuzey Berber",
+      "slug": "kuzey-berber",
+      "category": "Berber",
+      "monogram": "KB",
+      "staff": "Levent",
+      "customer": "Nihat G.",
+      "services": {
+        "s1": "Saç kesimi",
+        "s2": "Saç ve sakal",
+        "s3": "Sakal düzeltme"
+      }
+    },
+    "medical": {
+      "phrase": "kliniğiniz için",
+      "business": "Liman Aile Kliniği",
+      "slug": "liman-klinik",
+      "category": "Sağlık",
+      "monogram": "LK",
+      "staff": "Dr. Kaya",
+      "customer": "Deniz V.",
+      "services": {
+        "s1": "Muayene",
+        "s2": "Kontrol muayenesi",
+        "s3": "Yıllık check-up"
+      }
+    },
+    "beauty": {
+      "phrase": "güzellik salonunuz için",
+      "business": "Lümen Güzellik",
+      "slug": "lumen-guzellik",
+      "category": "Güzellik",
+      "monogram": "L",
+      "staff": "Ayşe",
+      "customer": "Ceren M.",
+      "services": {
+        "s1": "Cilt bakımı",
+        "s2": "Kirpik lifting",
+        "s3": "Kaş şekillendirme"
+      }
+    },
+    "fitness": {
+      "phrase": "spor stüdyonuz için",
+      "business": "Forma Antrenman",
+      "slug": "forma-antrenman",
+      "category": "Fitness",
+      "monogram": "F",
+      "staff": "Murat",
+      "customer": "Selim C.",
+      "services": {
+        "s1": "Kişisel antrenman",
+        "s2": "Fitness değerlendirmesi",
+        "s3": "İkili antrenman"
+      }
+    },
+    "consulting": {
+      "phrase": "danışmanlık firmanız için",
+      "business": "Arden Danışmanlık",
+      "slug": "arden-danismanlik",
+      "category": "Danışmanlık",
+      "monogram": "A",
+      "staff": "Elif",
+      "customer": "Özge B.",
+      "services": {
+        "s1": "Strateji oturumu",
+        "s2": "Danışmanlık görüşmesi",
+        "s3": "Tanışma görüşmesi"
+      }
+    },
+    "people": {
+      "p1": "Ayşe M.",
+      "p2": "Can P.",
+      "p3": "Emre K.",
+      "p4": "Selim C.",
+      "p5": "Meltem P.",
+      "p6": "Levent T.",
+      "p7": "Elif K."
+    }
+  },
+  "marquee": {
+    "hairSalons": "Kuaförler",
+    "barbers": "Berberler",
+    "nailStudios": "Tırnak stüdyoları",
+    "lashBrow": "Kirpik ve kaş uzmanları",
+    "beautySalons": "Güzellik salonları",
+    "massageSpa": "Masaj ve spa",
+    "physio": "Fizyoterapistler",
+    "therapists": "Terapistler ve psikologlar",
+    "medical": "Muayenehaneler",
+    "dentists": "Diş hekimleri",
+    "nutritionists": "Diyetisyenler",
+    "trainers": "Kişisel antrenörler",
+    "yoga": "Yoga ve pilates stüdyoları",
+    "coaches": "Koçlar"
+  },
+  "how": {
+    "kicker": "Nasıl çalışır",
+    "title": "Üç adım. Sonra rezervasyonlar size gelir.",
+    "steps": {
+      "services": {
+        "title": "Hizmetlerinizi ekleyin",
+        "text": "Ad, süre ve fiyat. Yaklaşık beş dakika."
+      },
+      "share": {
+        "title": "Tek bir bağlantı paylaşın",
+        "text": "Instagram, Google, WhatsApp veya basılı bir QR kod."
+      },
+      "booked": {
+        "title": "Rezervasyon alın",
+        "text": "Rezervasyonlar takviminize düşer, hatırlatmalar kendiliğinden gider."
+      }
+    },
+    "yourServices": "Hizmetleriniz",
+    "colour": "Boya",
+    "openingHours": "Çalışma saatleri",
+    "ready": "Rezervasyon sayfası hazır",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "instagram": "Instagram biyografisi",
+    "google": "Google profili",
+    "whatsapp": "WhatsApp",
+    "thisWeek": "Bu hafta",
+    "bookings": "{count, plural, one {# rezervasyon} other {# rezervasyon}}",
+    "newBooking": "Yeni rezervasyon"
+  },
+  "features": {
+    "kicker": "Neler sunuyoruz",
+    "title": "Her şey dahil. Hiçbir şeyi iki kez ayarlamanız gerekmez.",
+    "lead": "Tek paket, aylık {price}, KDV dahil.",
+    "tiles": {
+      "page": {
+        "title": "Size özel rezervasyon sayfası",
+        "text": "Hizmetleriniz, fiyatlarınız ve boş saatlerinizle tek bir bağlantı. Müşteriler gece gündüz kendi randevularını alır."
+      },
+      "noDouble": {
+        "title": "Çakışan randevu yok",
+        "text": "Müşteriler yalnızca gerçekten boş olduğunuz saatleri görür; çalışma saatleriniz, molalarınız ve izin günleriniz hesaba katılır."
+      },
+      "reminders": {
+        "title": "Hatırlatmalar otomatik",
+        "text": "Anında onay, 24 saat ve 2 saat önce hatırlatma. Daha az gelmeyen müşteri."
+      },
+      "reschedule": {
+        "title": "Müşteriler saati kendileri değiştirir",
+        "text": "Her e-postadaki bağlantıyla, belirlediğiniz kurallar dahilinde randevuyu taşıyabilir veya iptal edebilirler."
+      },
+      "team": {
+        "title": "Tüm ekip için tek takvim",
+        "text": "Herkesin randevuları yan yana; her kişinin kendi çalışma saatleri ve hizmetleri."
+      },
+      "reports": {
+        "title": "İşlerin gidişatını görün",
+        "text": "Rezervasyonlar, gelmeyenler, en yoğun günler ve müşterilerinizin nereden geldiği."
+      }
+    },
+    "visual": {
+      "bookedFor": "{time} için rezerve edildi",
+      "free": "Boş, randevu alınabilir",
+      "busy": "Dolu veya mola",
+      "booked": "Rezervasyon",
+      "confirmation": "Onay gönderildi",
+      "before24": "24 saat önce",
+      "before2": "2 saat önce",
+      "reminder": "Hatırlatma",
+      "was": "Önce",
+      "now": "Şimdi",
+      "noCalls": "Telefon yok, mesaj yok",
+      "training": "Antrenman"
+    }
+  },
+  "trust": {
+    "kicker": "Neden bize güvenebilirsiniz",
+    "title": "Basit bir aracın arkasında küçük ve dürüst bir şirket.",
+    "lead": "Yeniyiz; bu yüzden size uydurma yorumlar ya da şişirilmiş rakamlar göstermeyeceğiz. Kendiniz kontrol edebileceğiniz şeyler şunlar.",
+    "company": {
+      "title": "Tescilli bir Avrupa işletmesi",
+      "text": "Hournook, Yunanistan’ın Selanik şehrinde {company} tarafından geliştirilir ve işletilir. Bilgilerimiz <link>yasal bilgiler</link> sayfasında herkese açıktır."
+    },
+    "gdpr": {
+      "title": "GDPR’a hazır",
+      "text": "Her hesaba bir <link>veri işleme sözleşmesi</link> dahildir. Verileri asla satmayız ve reklam için kullanmayız."
+    },
+    "data": {
+      "title": "Verileriniz sizindir",
+      "text": "Müşterileri ve randevuları istediğiniz zaman bir tabloya aktarın. Sözleşme yok, istediğiniz zaman iptal edin."
+    },
+    "secure": {
+      "title": "Varsayılan olarak güvenli",
+      "text": "Şifreli bağlantılar, korunan parolalar ve her işletme birbirinden ayrı. Ödemeleri Stripe yönetir."
+    },
+    "people": {
+      "title": "Gerçek insanlar yanıtlar",
+      "text": "<mail>{email}</mail> adresine İngilizce veya Yunanca yazın. İki iş günü içinde yanıt veririz."
+    }
+  },
+  "pricing": {
+    "kicker": "Fiyat",
+    "title": "Tek paket. Aylık {price}.",
+    "lead": "Tüm ekibiniz için her şey dahil. Rezervasyon başına ücret yok, kurulum ücreti yok, sözleşme yok.",
+    "points": {
+      "trial": "{days} gün ücretsiz deneyin, kart gerekmez",
+      "cancel": "Panelinizden istediğiniz zaman iptal edin",
+      "export": "Verileriniz sizin: istediğiniz zaman dışa aktarın"
+    }
+  },
+  "faq": {
+    "kicker": "Sorular",
+    "title": "İyi sorular, net yanıtlar.",
+    "lead": "Başka bir sorunuz mu var? <link>Destek sayfasına göz atın</link> ya da bize yazın.",
+    "items": {
+      "website": {
+        "q": "Web siteme ihtiyacım var mı?",
+        "a": "Hayır. Rezervasyon sayfanız, rezervasyonlar için web sitenizdir: Instagram, Facebook, Google, WhatsApp veya SMS ile paylaşabileceğiniz hournook.com/book/isletmeniz gibi bir bağlantı. Zaten bir web siteniz varsa rezervasyon widget’ını ona ekleyebilirsiniz."
+      },
+      "clients": {
+        "q": "Müşterilerim nasıl randevu alır?",
+        "a": "Bağlantınızı telefonlarında veya bilgisayarlarında açar, bir hizmet ve gerçekten boş olduğunuz saatlerden birini seçer, adlarını, e-postalarını ve telefonlarını girerler. Uygulama ve hesap gerekmez. Onay e-postası hemen gelir."
+      },
+      "trial": {
+        "q": "Ücretsiz deneme bitince ne olur?",
+        "a": "Otomatik olarak hiçbir şey olmaz. Başta asla kart istemeyiz. Hournook işinize yararsa rezervasyon almaya devam etmek için aylık {price} ile abone olun. Aksi halde rezervasyon sayfanız yeni rezervasyon almayı bırakır, o kadar."
+      },
+      "fees": {
+        "q": "Rezervasyon veya ekip üyesi başına ücret var mı?",
+        "a": "Hayır. İşletme başına aylık {price}; sınırsız rezervasyonu, tüm ekibinizi ve her özelliği kapsar. Kazancınızdan asla pay almayız."
+      },
+      "cancel": {
+        "q": "Müşteriler randevularını iptal edebilir veya taşıyabilir mi?",
+        "a": "Evet, onay e-postasındaki bağlantıdan; ama yalnızca belirlediğiniz sınırlar içinde (örneğin en geç 24 saat öncesine kadar). Bu özelliği kapatabilirsiniz de."
+      },
+      "pay": {
+        "q": "Müşteriler online ödeme yapabilir mi?",
+        "a": "Şu an için hayır. Müşteriler size bugün olduğu gibi randevuda ödeme yapar. Hournook tamamlanan randevularınızın değerini gösterir."
+      },
+      "gdpr": {
+        "q": "Müşterilerimin verileri güvende mi ve GDPR’a uygun mu?",
+        "a": "Evet. Veriler aktarım sırasında şifrelenir, her işletme tamamen ayrıdır ve her hesaba GDPR kapsamında bir veri işleme sözleşmesi dahildir. Bir müşterinin verilerini istediğiniz zaman dışa aktarabilir veya silebilirsiniz."
+      },
+      "setup": {
+        "q": "Teknolojiyle aram iyi değil. Kurulum zor mu?",
+        "a": "Kurulum birkaç dakika sürer: işletmenize bir ad verin, hizmetlerinizi süre ve fiyatlarıyla ekleyin, çalışma saatlerinizi belirleyin. İşletme türünüze uygun hizmetler öneririz ve her şeyi sonradan değiştirebilirsiniz. Takılırsanız bize yazın, gerçek bir insan yanıt verir."
+      }
+    }
+  },
+  "cta": {
+    "title": "Rezervasyon sayfanız on dakikada yayında olabilir.",
+    "text": "{days} gün ücretsiz başlayın. Kart yok, sözleşme yok. Sadece daha az mesaj ve daha fazla rezervasyon.",
+    "primary": "Rezervasyon sayfanızı oluşturun",
+    "secondary": "Zaten hesabım var"
+  }
+}

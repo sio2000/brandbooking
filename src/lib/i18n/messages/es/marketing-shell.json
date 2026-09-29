@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Reservas sin idas y venidas.",
+    "description": "Software de reservas online para negocios que trabajan con citas: tu propia página de reservas, calendario, fichas de clientes y estadísticas por {price}/mes. Prueba gratuita de {days} días, sin tarjeta.",
+    "socialAlt": "Hournook: software de reservas online para negocios que trabajan con citas"
+  },
+  "skipToContent": "Saltar al contenido",
+  "homeLabel": "Inicio de Hournook",
+  "nav": {
+    "main": "Principal",
+    "mobile": "Menú móvil",
+    "how": "Cómo funciona",
+    "features": "Funciones",
+    "pricing": "Precio",
+    "faq": "Preguntas",
+    "support": "Ayuda"
+  },
+  "header": {
+    "signIn": "Iniciar sesión",
+    "startFree": "Prueba gratis",
+    "openMenu": "Abrir menú",
+    "menu": "Menú"
+  },
+  "footer": {
+    "blurb": "Reservas online, calendario, fichas de clientes y estadísticas para negocios que trabajan con citas. Un solo plan, {price}/mes.",
+    "theme": "Tema",
+    "columns": {
+      "product": "Producto",
+      "account": "Cuenta",
+      "legal": "Legal"
+    },
+    "links": {
+      "how": "Cómo funciona",
+      "features": "Funciones",
+      "pricing": "Precio",
+      "faq": "Preguntas frecuentes",
+      "startTrial": "Empezar la prueba gratuita",
+      "signIn": "Iniciar sesión",
+      "support": "Ayuda",
+      "terms": "Condiciones del servicio",
+      "privacy": "Política de privacidad",
+      "dpa": "Tratamiento de datos",
+      "cookies": "Política de cookies",
+      "legal": "Aviso legal"
+    },
+    "copyright": "© {year} Hournook, un producto de {company}. Todos los derechos reservados.",
+    "tagline": "Reservas sin idas y venidas."
+  },
+  "notFound": {
+    "title": "No hemos encontrado esta página",
+    "text": "Puede que el enlace sea antiguo o esté mal escrito.",
+    "home": "Inicio",
+    "dashboard": "Panel"
+  },
+  "error": {
+    "title": "Esta página no se ha cargado bien",
+    "text": "Algo ha fallado por nuestra parte. Tus datos están a salvo. Vuelve a intentarlo y, si sigue pasando, escribe a soporte con la referencia de abajo.",
+    "reference": "Referencia: {digest}",
+    "retry": "Reintentar",
+    "home": "Ir al inicio"
+  }
+}

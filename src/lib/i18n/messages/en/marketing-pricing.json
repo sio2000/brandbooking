@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Pricing",
+    "description": "Everything you need to accept bookings online for {price}/month: unlimited bookings, your own booking page, calendar, reminders, team members and more. {days}-day free trial, no card required."
+  },
+  "hero": {
+    "eyebrow": "Pricing",
+    "title": "Everything you need to accept bookings online.",
+    "lead": "One simple plan for {price} a month. Every feature included, whatever the size of your business."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Unlimited bookings",
+      "text": "Take as many appointments as you like."
+    },
+    "noFees": {
+      "title": "No per-booking fees",
+      "text": "We never take a cut of what you charge."
+    },
+    "noCard": {
+      "title": "No card to start",
+      "text": "Try everything for {days} days first."
+    }
+  },
+  "vatNote": "Prices in euros, VAT included.",
+  "billing": {
+    "eyebrow": "Billing",
+    "title": "Billing questions",
+    "lead": "Straight answers about trials, invoices and cancelling. Anything else, we’re happy to help.",
+    "support": "Visit support",
+    "terms": "Billing terms"
+  },
+  "faq": {
+    "card": {
+      "q": "Do I need a card for the free trial?",
+      "a": "No. Start your {days}-day trial with just your email address. You only add a payment method when you decide to subscribe."
+    },
+    "how": {
+      "q": "How does billing work?",
+      "a": "Your subscription is {price} per month, billed in advance through Stripe, our payment provider. Receipts and invoices are available from the billing portal."
+    },
+    "cancel": {
+      "q": "How do I cancel?",
+      "a": "Open the Stripe billing portal from your billing settings and cancel there. No emails or calls needed. Cancelling stops future renewals."
+    },
+    "vat": {
+      "q": "Is VAT included?",
+      "a": "Yes. {price} a month is the full price, including Greek VAT of 24%. Nothing is added at checkout, and you receive an invoice for every payment."
+    },
+    "update": {
+      "q": "Can I update my card or billing details?",
+      "a": "Yes. The billing portal lets you change your payment method, update billing details and download past invoices at any time."
+    },
+    "team": {
+      "q": "Do team members cost extra?",
+      "a": "No. Team members are included in the same plan, so your whole team can use the calendar and take bookings."
+    }
+  },
+  "card": {
+    "badge": "One plan · everything included",
+    "perMonth": "/ month · VAT included",
+    "trial": "{days}-day free trial. No card required to start. No per-booking fees.",
+    "cta": "Start your free trial",
+    "seeAll": "See everything that’s included",
+    "inclusions": {
+      "unlimited": "Unlimited bookings",
+      "page": "Your own booking page",
+      "profile": "Business profile",
+      "services": "Services",
+      "availability": "Availability & holidays",
+      "calendar": "Appointment management & calendar",
+      "customers": "Customer management",
+      "emails": "Email confirmations & reminders",
+      "analytics": "Analytics",
+      "team": "Team members",
+      "secure": "Secure account",
+      "responsive": "Responsive booking page",
+      "qr": "QR code & embeddable widget"
+    }
+  }
+}

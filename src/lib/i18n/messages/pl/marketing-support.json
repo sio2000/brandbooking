@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Pomoc",
+    "description": "Pomoc w pierwszych krokach z Hournook, udostępnianiu strony rezerwacji i płatnościach oraz informacje, jak się z nami skontaktować."
+  },
+  "hero": {
+    "eyebrow": "Pomoc",
+    "title": "Jak możemy pomóc?",
+    "lead": "Krótkie poradniki o tym, o co pytacie najczęściej. Jeśli utkniesz, dane kontaktowe znajdziesz na dole tej strony."
+  },
+  "topicsLabel": "Tematy pomocy",
+  "contactLink": "Kontakt",
+  "topics": {
+    "gettingStarted": {
+      "title": "Pierwsze kroki",
+      "steps": {
+        "account": "Załóż konto i potwierdź adres e-mail.",
+        "details": "Dodaj dane firmy, logo i strefę czasową.",
+        "services": "Dodaj usługi wraz z czasem trwania i ceną.",
+        "hours": "Ustaw godziny pracy w tygodniu, a potem dodaj urlopy lub dni wolne.",
+        "team": "Zaproś członków zespołu i wybierz, jakie usługi oferuje każda osoba.",
+        "publish": "Opublikuj stronę rezerwacji, gdy będzie gotowa."
+      }
+    },
+    "sharing": {
+      "title": "Udostępnianie strony rezerwacji",
+      "steps": {
+        "link": "Skopiuj link do rezerwacji i dodaj go do bio na Instagramie, Profilu Firmy w Google lub stopki e-maila.",
+        "widget": "Wklej kod widżetu na swoją stronę, aby klienci rezerwowali bez jej opuszczania.",
+        "qr": "Pobierz kod QR i wydrukuj go na ladę, witrynę lub ulotki.",
+        "analytics": "Sprawdź w statystykach, który z tych kanałów przynosi najwięcej rezerwacji."
+      }
+    },
+    "billing": {
+      "title": "Płatności",
+      "steps": {
+        "trial": "Twój {days}-dniowy bezpłatny okres próbny zaczyna się przy rejestracji. Bez karty.",
+        "subscribe": "Gdy zechcesz, wykup subskrypcję za {price} miesięcznie w ustawieniach płatności.",
+        "portal": "Otwórz portal płatności Stripe, aby zmienić kartę, pobrać faktury lub zrezygnować.",
+        "vat": "Cena zawiera VAT (24%). Za każdą płatność dostajesz fakturę."
+      }
+    }
+  },
+  "contact": {
+    "title": "Kontakt z pomocą",
+    "lead": "Napisz, co próbowałeś zrobić, i jeśli możesz, podaj adres e-mail swojego konta. Nie wysyłaj haseł ani danych karty.",
+    "helpCentre": "Centrum pomocy",
+    "newTab": "(otwiera się w nowej karcie)",
+    "soon": "Dane kontaktowe pojawią się wkrótce. Do tego czasu poradniki powyżej odpowiadają na najczęstsze pytania.",
+    "customers": "Umówiłeś wizytę w jakiejś firmie? Skontaktuj się bezpośrednio z nią; jej dane znajdziesz na stronie rezerwacji i w e-mailu z potwierdzeniem."
+  },
+  "seeAlso": {
+    "label": "Zobacz też:",
+    "pricing": "Cena",
+    "privacy": "Prywatność",
+    "terms": "Regulamin"
+  }
+}

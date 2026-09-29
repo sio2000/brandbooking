@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Prenotazioni senza botta e risposta.",
+    "description": "Software di prenotazione online per attività che lavorano su appuntamento: la tua pagina di prenotazione, calendario, schede clienti e statistiche a {price}/mese. Prova gratuita di {days} giorni, senza carta.",
+    "socialAlt": "Hournook: software di prenotazione online per attività che lavorano su appuntamento"
+  },
+  "skipToContent": "Vai al contenuto",
+  "homeLabel": "Home di Hournook",
+  "nav": {
+    "main": "Principale",
+    "mobile": "Menu mobile",
+    "how": "Come funziona",
+    "features": "Funzioni",
+    "pricing": "Prezzo",
+    "faq": "Domande",
+    "support": "Assistenza"
+  },
+  "header": {
+    "signIn": "Accedi",
+    "startFree": "Prova gratis",
+    "openMenu": "Apri il menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Prenotazioni online, calendario, schede clienti e statistiche per le attività che lavorano su appuntamento. Un solo piano, {price}/mese.",
+    "theme": "Tema",
+    "columns": {
+      "product": "Prodotto",
+      "account": "Account",
+      "legal": "Note legali"
+    },
+    "links": {
+      "how": "Come funziona",
+      "features": "Funzioni",
+      "pricing": "Prezzo",
+      "faq": "Domande frequenti",
+      "startTrial": "Inizia la prova gratuita",
+      "signIn": "Accedi",
+      "support": "Assistenza",
+      "terms": "Termini di servizio",
+      "privacy": "Informativa sulla privacy",
+      "dpa": "Trattamento dei dati",
+      "cookies": "Cookie policy",
+      "legal": "Note legali"
+    },
+    "copyright": "© {year} Hournook, un prodotto di {company}. Tutti i diritti riservati.",
+    "tagline": "Prenotazioni senza botta e risposta."
+  },
+  "notFound": {
+    "title": "Non abbiamo trovato questa pagina",
+    "text": "Il link potrebbe essere vecchio o scritto male.",
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "error": {
+    "title": "Questa pagina non si è caricata correttamente",
+    "text": "Qualcosa è andato storto da parte nostra. I tuoi dati sono al sicuro. Riprova e, se continua a succedere, contatta l’assistenza indicando il codice qui sotto.",
+    "reference": "Codice: {digest}",
+    "retry": "Riprova",
+    "home": "Torna alla home"
+  }
+}

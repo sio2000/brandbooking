@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Hulp",
+    "description": "Hulp bij het starten met Hournook, het delen van je boekingspagina en facturering, en hoe je ons bereikt."
+  },
+  "hero": {
+    "eyebrow": "Hulp",
+    "title": "Waarmee kunnen we je helpen?",
+    "lead": "Korte handleidingen voor de meest gestelde vragen. Kom je er niet uit? Onderaan deze pagina staan onze contactgegevens."
+  },
+  "topicsLabel": "Hulponderwerpen",
+  "contactLink": "Contact",
+  "topics": {
+    "gettingStarted": {
+      "title": "Aan de slag",
+      "steps": {
+        "account": "Maak je account aan en bevestig je e-mailadres.",
+        "details": "Voeg je bedrijfsgegevens, logo en tijdzone toe.",
+        "services": "Voeg diensten toe met hun duur en prijs.",
+        "hours": "Stel je werktijden per week in en voeg daarna vakanties of sluitingsdagen toe.",
+        "team": "Nodig teamleden uit en kies welke diensten ieder aanbiedt.",
+        "publish": "Publiceer je boekingspagina als je er tevreden over bent."
+      }
+    },
+    "sharing": {
+      "title": "Je boekingspagina delen",
+      "steps": {
+        "link": "Kopieer je boekingslink en zet hem in je Instagram-bio, je Google-bedrijfsprofiel of je e-mailhandtekening.",
+        "widget": "Plak de widgetcode in je eigen website, zodat klanten boeken zonder je site te verlaten.",
+        "qr": "Download de QR-code en print hem voor je balie, etalage of flyers.",
+        "analytics": "Bekijk in de statistieken welk kanaal de meeste boekingen oplevert."
+      }
+    },
+    "billing": {
+      "title": "Facturering",
+      "steps": {
+        "trial": "Je gratis proefperiode van {days} dagen begint bij het aanmelden. Geen creditcard nodig.",
+        "subscribe": "Neem een abonnement voor {price}/maand via je factureringsinstellingen zodra je er klaar voor bent.",
+        "portal": "Open het factureringsportaal van Stripe om je kaart te wijzigen, facturen te downloaden of op te zeggen.",
+        "vat": "De prijs is inclusief btw (24%). Je krijgt voor elke betaling een factuur."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact met support",
+    "lead": "Vertel ons wat je probeerde te doen en, als het kan, het e-mailadres van je account. Stuur nooit wachtwoorden of kaartgegevens.",
+    "helpCentre": "Helpcentrum",
+    "newTab": "(opent in een nieuw tabblad)",
+    "soon": "Contactgegevens voor support volgen binnenkort. Tot die tijd beantwoorden de handleidingen hierboven de meest gestelde vragen.",
+    "customers": "Een afspraak geboekt bij een bedrijf? Neem dan rechtstreeks contact op met dat bedrijf; je vindt de gegevens op de boekingspagina en in je bevestigingsmail."
+  },
+  "seeAlso": {
+    "label": "Zie ook:",
+    "pricing": "Prijs",
+    "privacy": "Privacy",
+    "terms": "Voorwaarden"
+  }
+}

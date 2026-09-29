@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Destek",
+    "description": "Hournook’a başlarken, rezervasyon sayfanızı paylaşırken ve faturalandırmada yardım; bize nasıl ulaşabileceğiniz."
+  },
+  "hero": {
+    "eyebrow": "Destek",
+    "title": "Size nasıl yardımcı olabiliriz?",
+    "lead": "En çok sorulan konular için kısa rehberler. Takılırsanız iletişim bilgileri bu sayfanın en altında."
+  },
+  "topicsLabel": "Yardım konuları",
+  "contactLink": "İletişim",
+  "topics": {
+    "gettingStarted": {
+      "title": "Başlarken",
+      "steps": {
+        "account": "Hesabınızı oluşturun ve e-posta adresinizi doğrulayın.",
+        "details": "İşletme bilgilerinizi, logonuzu ve saat diliminizi ekleyin.",
+        "services": "Hizmetleri süreleri ve fiyatlarıyla ekleyin.",
+        "hours": "Haftalık çalışma saatlerinizi belirleyin, ardından tatilleri veya kapalı günleri ekleyin.",
+        "team": "Ekip üyelerini davet edin ve her birinin hangi hizmetleri sunduğunu seçin.",
+        "publish": "Hazır olduğunuzda rezervasyon sayfanızı yayınlayın."
+      }
+    },
+    "sharing": {
+      "title": "Rezervasyon sayfanızı paylaşma",
+      "steps": {
+        "link": "Rezervasyon bağlantınızı kopyalayıp Instagram biyografinize, Google İşletme Profilinize veya e-posta imzanıza ekleyin.",
+        "widget": "Müşterileriniz sitenizden ayrılmadan randevu alabilsin diye widget kodunu kendi web sitenize yapıştırın.",
+        "qr": "QR kodu indirip tezgâhınız, vitrininiz veya broşürleriniz için yazdırın.",
+        "analytics": "Hangisinin en çok rezervasyon getirdiğini istatistiklerden görün."
+      }
+    },
+    "billing": {
+      "title": "Faturalandırma",
+      "steps": {
+        "trial": "{days} günlük ücretsiz denemeniz kaydolduğunuzda başlar. Kart gerekmez.",
+        "subscribe": "Hazır olduğunuzda faturalandırma ayarlarından aylık {price} ile abone olun.",
+        "portal": "Kartınızı güncellemek, fatura indirmek veya iptal etmek için Stripe faturalandırma portalını açın.",
+        "vat": "Fiyata KDV (%24) dahildir. Her ödeme için fatura alırsınız."
+      }
+    }
+  },
+  "contact": {
+    "title": "Destekle iletişime geçin",
+    "lead": "Ne yapmaya çalıştığınızı ve mümkünse hesabınızdaki e-posta adresini yazın. Lütfen şifre veya kart bilgisi göndermeyin.",
+    "helpCentre": "Yardım merkezi",
+    "newTab": "(yeni sekmede açılır)",
+    "soon": "Destek iletişim bilgileri yakında eklenecek. O zamana kadar yukarıdaki rehberler en sık sorulan soruları yanıtlıyor.",
+    "customers": "Bir işletmeden randevu mu aldınız? Lütfen doğrudan o işletmeyle iletişime geçin; bilgilerini rezervasyon sayfasında ve onay e-postanızda bulabilirsiniz."
+  },
+  "seeAlso": {
+    "label": "Ayrıca bakın:",
+    "pricing": "Fiyat",
+    "privacy": "Gizlilik",
+    "terms": "Koşullar"
+  }
+}

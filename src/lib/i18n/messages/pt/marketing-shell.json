@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Marcações sem troca de mensagens.",
+    "description": "Software de marcações online para negócios que trabalham por marcação: a sua própria página de reservas, agenda, fichas de clientes e estatísticas por {price}/mês. Período experimental de {days} dias, sem cartão.",
+    "socialAlt": "Hournook: software de marcações online para negócios que trabalham por marcação"
+  },
+  "skipToContent": "Saltar para o conteúdo",
+  "homeLabel": "Página inicial da Hournook",
+  "nav": {
+    "main": "Principal",
+    "mobile": "Menu móvel",
+    "how": "Como funciona",
+    "features": "Funcionalidades",
+    "pricing": "Preço",
+    "faq": "Perguntas",
+    "support": "Apoio"
+  },
+  "header": {
+    "signIn": "Iniciar sessão",
+    "startFree": "Experimentar",
+    "openMenu": "Abrir menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Marcações online, agenda, fichas de clientes e estatísticas para negócios que trabalham por marcação. Um só plano, {price}/mês.",
+    "theme": "Tema",
+    "columns": {
+      "product": "Produto",
+      "account": "Conta",
+      "legal": "Informação legal"
+    },
+    "links": {
+      "how": "Como funciona",
+      "features": "Funcionalidades",
+      "pricing": "Preço",
+      "faq": "Perguntas frequentes",
+      "startTrial": "Iniciar período experimental",
+      "signIn": "Iniciar sessão",
+      "support": "Apoio",
+      "terms": "Termos de serviço",
+      "privacy": "Política de privacidade",
+      "dpa": "Tratamento de dados",
+      "cookies": "Política de cookies",
+      "legal": "Aviso legal"
+    },
+    "copyright": "© {year} Hournook, um produto da {company}. Todos os direitos reservados.",
+    "tagline": "Marcações sem troca de mensagens."
+  },
+  "notFound": {
+    "title": "Não encontrámos esta página",
+    "text": "A ligação pode estar desatualizada ou mal escrita.",
+    "home": "Início",
+    "dashboard": "Painel"
+  },
+  "error": {
+    "title": "Esta página não carregou corretamente",
+    "text": "Algo correu mal do nosso lado. Os seus dados estão seguros. Tente novamente e, se o problema persistir, contacte o apoio indicando a referência abaixo.",
+    "reference": "Referência: {digest}",
+    "retry": "Tentar novamente",
+    "home": "Ir para o início"
+  }
+}

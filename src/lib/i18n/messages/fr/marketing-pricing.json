@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Tarif",
+    "description": "Tout ce qu’il faut pour accepter des réservations en ligne pour {price}/mois : réservations illimitées, votre propre page de réservation, agenda, rappels, membres de l’équipe et plus encore. Essai gratuit de {days} jours, sans carte bancaire."
+  },
+  "hero": {
+    "eyebrow": "Tarif",
+    "title": "Tout ce qu’il faut pour accepter des réservations en ligne.",
+    "lead": "Une formule simple à {price} par mois. Toutes les fonctionnalités incluses, quelle que soit la taille de votre entreprise."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Réservations illimitées",
+      "text": "Acceptez autant de rendez-vous que vous le souhaitez."
+    },
+    "noFees": {
+      "title": "Aucuns frais par réservation",
+      "text": "Nous ne prenons jamais de commission sur vos tarifs."
+    },
+    "noCard": {
+      "title": "Sans carte pour commencer",
+      "text": "Essayez tout pendant {days} jours d’abord."
+    }
+  },
+  "vatNote": "Prix en euros, TVA comprise.",
+  "billing": {
+    "eyebrow": "Facturation",
+    "title": "Questions sur la facturation",
+    "lead": "Des réponses claires sur l’essai, les factures et la résiliation. Pour tout le reste, nous sommes là pour vous aider.",
+    "support": "Consulter l’aide",
+    "terms": "Conditions de facturation"
+  },
+  "faq": {
+    "card": {
+      "q": "Faut-il une carte bancaire pour l’essai gratuit ?",
+      "a": "Non. Commencez votre essai de {days} jours avec votre seule adresse e-mail. Vous n’ajoutez un moyen de paiement que lorsque vous décidez de vous abonner."
+    },
+    "how": {
+      "q": "Comment fonctionne la facturation ?",
+      "a": "Votre abonnement coûte {price} par mois, payé d’avance via Stripe, notre prestataire de paiement. Reçus et factures sont disponibles dans le portail de facturation."
+    },
+    "cancel": {
+      "q": "Comment résilier ?",
+      "a": "Ouvrez le portail de facturation Stripe depuis vos paramètres de facturation et résiliez-y. Aucun e-mail ni appel nécessaire. La résiliation arrête les renouvellements futurs."
+    },
+    "vat": {
+      "q": "La TVA est-elle comprise ?",
+      "a": "Oui. {price} par mois est le prix final, TVA grecque de 24 % comprise. Rien n’est ajouté au paiement et vous recevez une facture pour chaque paiement."
+    },
+    "update": {
+      "q": "Puis-je modifier ma carte ou mes informations de facturation ?",
+      "a": "Oui. Le portail de facturation vous permet à tout moment de changer de moyen de paiement, de mettre à jour vos informations de facturation et de télécharger vos anciennes factures."
+    },
+    "team": {
+      "q": "Les membres de l’équipe coûtent-ils plus cher ?",
+      "a": "Non. Les membres de l’équipe sont inclus dans la même formule : toute votre équipe peut utiliser l’agenda et prendre des réservations."
+    }
+  },
+  "card": {
+    "badge": "Une formule · tout inclus",
+    "perMonth": "/ mois · TVA comprise",
+    "trial": "Essai gratuit de {days} jours. Sans carte pour commencer. Aucuns frais par réservation.",
+    "cta": "Commencer l’essai gratuit",
+    "seeAll": "Voir tout ce qui est inclus",
+    "inclusions": {
+      "unlimited": "Réservations illimitées",
+      "page": "Votre propre page de réservation",
+      "profile": "Profil de l’entreprise",
+      "services": "Prestations",
+      "availability": "Disponibilités et congés",
+      "calendar": "Gestion des rendez-vous et agenda",
+      "customers": "Gestion des clients",
+      "emails": "Confirmations et rappels par e-mail",
+      "analytics": "Statistiques",
+      "team": "Membres de l’équipe",
+      "secure": "Compte sécurisé",
+      "responsive": "Page de réservation adaptée à tous les écrans",
+      "qr": "QR code et widget intégrable"
+    }
+  }
+}

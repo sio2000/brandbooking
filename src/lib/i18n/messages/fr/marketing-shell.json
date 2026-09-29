@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Des réservations sans allers-retours.",
+    "description": "Logiciel de réservation en ligne pour les entreprises qui travaillent sur rendez-vous : votre propre page de réservation, agenda, fichier clients et statistiques pour {price}/mois. Essai gratuit de {days} jours, sans carte bancaire.",
+    "socialAlt": "Hournook : logiciel de réservation en ligne pour les entreprises qui travaillent sur rendez-vous"
+  },
+  "skipToContent": "Aller au contenu",
+  "homeLabel": "Accueil Hournook",
+  "nav": {
+    "main": "Navigation principale",
+    "mobile": "Navigation mobile",
+    "how": "Fonctionnement",
+    "features": "Fonctionnalités",
+    "pricing": "Tarif",
+    "faq": "FAQ",
+    "support": "Aide"
+  },
+  "header": {
+    "signIn": "Se connecter",
+    "startFree": "Essai gratuit",
+    "openMenu": "Ouvrir le menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Réservation en ligne, agenda, fichier clients et statistiques pour les entreprises qui travaillent sur rendez-vous. Une seule formule, {price}/mois.",
+    "theme": "Thème",
+    "columns": {
+      "product": "Produit",
+      "account": "Compte",
+      "legal": "Informations légales"
+    },
+    "links": {
+      "how": "Fonctionnement",
+      "features": "Fonctionnalités",
+      "pricing": "Tarif",
+      "faq": "FAQ",
+      "startTrial": "Commencer l’essai gratuit",
+      "signIn": "Se connecter",
+      "support": "Aide",
+      "terms": "Conditions d’utilisation",
+      "privacy": "Politique de confidentialité",
+      "dpa": "Traitement des données",
+      "cookies": "Politique relative aux cookies",
+      "legal": "Mentions légales"
+    },
+    "copyright": "© {year} Hournook, un produit de {company}. Tous droits réservés.",
+    "tagline": "Des réservations sans allers-retours."
+  },
+  "notFound": {
+    "title": "Nous n’avons pas trouvé cette page",
+    "text": "Le lien est peut-être ancien ou mal saisi.",
+    "home": "Accueil",
+    "dashboard": "Tableau de bord"
+  },
+  "error": {
+    "title": "Cette page ne s’est pas chargée correctement",
+    "text": "Un problème est survenu de notre côté. Vos données sont en sécurité. Réessayez et, si cela se reproduit, contactez l’assistance en indiquant la référence ci-dessous.",
+    "reference": "Référence : {digest}",
+    "retry": "Réessayer",
+    "home": "Retour à l’accueil"
+  }
+}

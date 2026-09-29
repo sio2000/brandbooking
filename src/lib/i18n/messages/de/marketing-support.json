@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Hilfe",
+    "description": "Hilfe zum Einstieg in Hournook, zum Teilen Ihrer Buchungsseite und zur Abrechnung, und wie Sie uns erreichen."
+  },
+  "hero": {
+    "eyebrow": "Hilfe",
+    "title": "Wie können wir helfen?",
+    "lead": "Kurze Anleitungen zu den häufigsten Fragen. Wenn Sie nicht weiterkommen, finden Sie die Kontaktdaten unten auf dieser Seite."
+  },
+  "topicsLabel": "Hilfethemen",
+  "contactLink": "Kontakt",
+  "topics": {
+    "gettingStarted": {
+      "title": "Erste Schritte",
+      "steps": {
+        "account": "Erstellen Sie Ihr Konto und bestätigen Sie Ihre E-Mail-Adresse.",
+        "details": "Ergänzen Sie Unternehmensdaten, Logo und Zeitzone.",
+        "services": "Legen Sie Leistungen mit Dauer und Preis an.",
+        "hours": "Legen Sie Ihre Wochenzeiten fest und tragen Sie Urlaub oder Schließtage ein.",
+        "team": "Laden Sie Teammitglieder ein und wählen Sie, welche Leistungen jede Person anbietet.",
+        "publish": "Veröffentlichen Sie Ihre Buchungsseite, sobald Sie zufrieden sind."
+      }
+    },
+    "sharing": {
+      "title": "Buchungsseite teilen",
+      "steps": {
+        "link": "Kopieren Sie Ihren Buchungslink und fügen Sie ihn in Ihre Instagram-Bio, Ihr Google-Unternehmensprofil oder Ihre E-Mail-Signatur ein.",
+        "widget": "Fügen Sie den Code des einbettbaren Widgets in Ihre Website ein, damit Kunden buchen können, ohne sie zu verlassen.",
+        "qr": "Laden Sie den QR-Code herunter und drucken Sie ihn für Tresen, Schaufenster oder Flyer aus.",
+        "analytics": "Sehen Sie in den Auswertungen, was davon die meisten Buchungen bringt."
+      }
+    },
+    "billing": {
+      "title": "Abrechnung",
+      "steps": {
+        "trial": "Ihr {days}-tägiger kostenloser Test beginnt mit der Registrierung. Keine Karte nötig.",
+        "subscribe": "Schließen Sie das Abonnement für {price}/Monat in Ihren Abrechnungseinstellungen ab, wenn Sie so weit sind.",
+        "portal": "Im Stripe-Abrechnungsportal ändern Sie Ihre Karte, laden Rechnungen herunter oder kündigen.",
+        "vat": "Der Preis enthält die Mehrwertsteuer (24 %). Sie erhalten für jede Zahlung eine Rechnung."
+      }
+    }
+  },
+  "contact": {
+    "title": "Support kontaktieren",
+    "lead": "Beschreiben Sie, was Sie tun wollten, und nennen Sie nach Möglichkeit die E-Mail-Adresse Ihres Kontos. Bitte senden Sie keine Passwörter oder Kartendaten.",
+    "helpCentre": "Hilfe-Center",
+    "newTab": "(öffnet in neuem Tab)",
+    "soon": "Kontaktmöglichkeiten folgen in Kürze. Bis dahin beantworten die Anleitungen oben die häufigsten Fragen.",
+    "customers": "Sie haben einen Termin bei einem Unternehmen gebucht? Bitte wenden Sie sich direkt an das Unternehmen; die Kontaktdaten finden Sie auf seiner Buchungsseite und in Ihrer Bestätigungs-E-Mail."
+  },
+  "seeAlso": {
+    "label": "Siehe auch:",
+    "pricing": "Preis",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
+  }
+}

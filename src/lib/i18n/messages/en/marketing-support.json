@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Support",
+    "description": "Help with getting started on Hournook, sharing your booking page and billing, and how to reach us."
+  },
+  "hero": {
+    "eyebrow": "Support",
+    "title": "How can we help?",
+    "lead": "Quick guides for the things people ask about most. If you’re stuck, the contact details are at the bottom of this page."
+  },
+  "topicsLabel": "Help topics",
+  "contactLink": "Contact",
+  "topics": {
+    "gettingStarted": {
+      "title": "Getting started",
+      "steps": {
+        "account": "Create your account and verify your email address.",
+        "details": "Add your business details, logo and time zone.",
+        "services": "Add services with their length and price.",
+        "hours": "Set your weekly hours, then add holidays or closed days.",
+        "team": "Invite team members and choose which services each person offers.",
+        "publish": "Publish your booking page when you’re happy with it."
+      }
+    },
+    "sharing": {
+      "title": "Sharing your booking page",
+      "steps": {
+        "link": "Copy your booking link and add it to your Instagram bio, Google Business Profile or email signature.",
+        "widget": "Paste the embeddable widget code into your own website so customers can book without leaving it.",
+        "qr": "Download the QR code and print it for your counter, window or flyers.",
+        "analytics": "Check analytics to see which of these brings in the most bookings."
+      }
+    },
+    "billing": {
+      "title": "Billing",
+      "steps": {
+        "trial": "Your {days}-day free trial starts when you sign up. No card needed.",
+        "subscribe": "Subscribe for {price}/month from your billing settings when you’re ready.",
+        "portal": "Open the Stripe billing portal to update your card, download invoices or cancel.",
+        "vat": "The price includes VAT (24%). You receive an invoice for every payment."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact support",
+    "lead": "Tell us what you were trying to do and, if you can, the email address on your account. Please don’t send passwords or card details.",
+    "helpCentre": "Help centre",
+    "newTab": "(opens in a new tab)",
+    "soon": "Support contact coming soon. In the meantime, the guides above cover the most common questions.",
+    "customers": "Booked an appointment with a business? Please contact that business directly; you’ll find their details on their booking page and in your confirmation email."
+  },
+  "seeAlso": {
+    "label": "See also:",
+    "pricing": "Pricing",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  }
+}

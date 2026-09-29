@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Cena",
+    "description": "Wszystko, czego potrzebujesz do przyjmowania rezerwacji online, za {price} miesięcznie: nielimitowane rezerwacje, własna strona rezerwacji, kalendarz, przypomnienia, członkowie zespołu i więcej. {days} dni za darmo, bez karty."
+  },
+  "hero": {
+    "eyebrow": "Cena",
+    "title": "Wszystko, czego potrzebujesz do rezerwacji online.",
+    "lead": "Jeden prosty plan za {price} miesięcznie. Wszystkie funkcje w cenie, niezależnie od wielkości Twojej firmy."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Nielimitowane rezerwacje",
+      "text": "Przyjmuj tyle wizyt, ile chcesz."
+    },
+    "noFees": {
+      "title": "Bez opłat za rezerwację",
+      "text": "Nigdy nie bierzemy prowizji od Twoich cen."
+    },
+    "noCard": {
+      "title": "Start bez karty",
+      "text": "Najpierw wypróbuj wszystko przez {days} dni."
+    }
+  },
+  "vatNote": "Ceny w euro, z VAT.",
+  "billing": {
+    "eyebrow": "Płatności",
+    "title": "Pytania o płatności",
+    "lead": "Konkretne odpowiedzi o okresie próbnym, fakturach i rezygnacji. W innych sprawach też chętnie pomożemy.",
+    "support": "Przejdź do pomocy",
+    "terms": "Warunki płatności"
+  },
+  "faq": {
+    "card": {
+      "q": "Czy do okresu próbnego potrzebuję karty?",
+      "a": "Nie. Zacznij {days}-dniowy okres próbny, podając tylko adres e-mail. Metodę płatności dodajesz dopiero wtedy, gdy zdecydujesz się na subskrypcję."
+    },
+    "how": {
+      "q": "Jak wyglądają płatności?",
+      "a": "Subskrypcja kosztuje {price} miesięcznie i jest pobierana z góry przez Stripe, naszego operatora płatności. Potwierdzenia i faktury znajdziesz w portalu płatności."
+    },
+    "cancel": {
+      "q": "Jak zrezygnować?",
+      "a": "Otwórz portal płatności Stripe z ustawień płatności i zrezygnuj tam. Bez maili i telefonów. Rezygnacja wstrzymuje kolejne odnowienia."
+    },
+    "vat": {
+      "q": "Czy cena zawiera VAT?",
+      "a": "Tak. {price} miesięcznie to cena końcowa z greckim VAT 24%. Przy płatności nic nie jest doliczane, a za każdą płatność dostajesz fakturę."
+    },
+    "update": {
+      "q": "Czy mogę zmienić kartę lub dane do faktury?",
+      "a": "Tak. W portalu płatności w każdej chwili zmienisz metodę płatności, zaktualizujesz dane do faktury i pobierzesz wcześniejsze faktury."
+    },
+    "team": {
+      "q": "Czy członkowie zespołu kosztują dodatkowo?",
+      "a": "Nie. Członkowie zespołu są w tym samym planie, więc cały zespół może korzystać z kalendarza i przyjmować rezerwacje."
+    }
+  },
+  "card": {
+    "badge": "Jeden plan · wszystko w cenie",
+    "perMonth": "/ miesiąc · z VAT",
+    "trial": "{days} dni za darmo. Bez karty na start. Bez opłat za rezerwację.",
+    "cta": "Zacznij okres próbny",
+    "seeAll": "Zobacz wszystko, co zawiera plan",
+    "inclusions": {
+      "unlimited": "Nielimitowane rezerwacje",
+      "page": "Własna strona rezerwacji",
+      "profile": "Profil firmy",
+      "services": "Usługi",
+      "availability": "Dostępność i urlopy",
+      "calendar": "Zarządzanie wizytami i kalendarz",
+      "customers": "Zarządzanie klientami",
+      "emails": "Potwierdzenia i przypomnienia e-mailem",
+      "analytics": "Statystyki",
+      "team": "Członkowie zespołu",
+      "secure": "Bezpieczne konto",
+      "responsive": "Strona rezerwacji na każdy ekran",
+      "qr": "Kod QR i widżet na stronę"
+    }
+  }
+}

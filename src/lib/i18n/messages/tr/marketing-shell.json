@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Mesajlaşmadan randevu.",
+    "description": "Randevuyla çalışan işletmeler için online randevu yazılımı: size özel rezervasyon sayfası, takvim, müşteri kayıtları ve istatistikler, aylık {price}. {days} gün ücretsiz deneme, kart gerekmez.",
+    "socialAlt": "Hournook: randevuyla çalışan işletmeler için online randevu yazılımı"
+  },
+  "skipToContent": "İçeriğe geç",
+  "homeLabel": "Hournook ana sayfa",
+  "nav": {
+    "main": "Ana menü",
+    "mobile": "Mobil menü",
+    "how": "Nasıl çalışır",
+    "features": "Özellikler",
+    "pricing": "Fiyat",
+    "faq": "SSS",
+    "support": "Destek"
+  },
+  "header": {
+    "signIn": "Giriş yap",
+    "startFree": "Ücretsiz dene",
+    "openMenu": "Menüyü aç",
+    "menu": "Menü"
+  },
+  "footer": {
+    "blurb": "Randevuyla çalışan işletmeler için online rezervasyon, takvim, müşteri kayıtları ve istatistikler. Tek paket, aylık {price}.",
+    "theme": "Tema",
+    "columns": {
+      "product": "Ürün",
+      "account": "Hesap",
+      "legal": "Yasal"
+    },
+    "links": {
+      "how": "Nasıl çalışır",
+      "features": "Özellikler",
+      "pricing": "Fiyat",
+      "faq": "Sık sorulan sorular",
+      "startTrial": "Ücretsiz denemeyi başlat",
+      "signIn": "Giriş yap",
+      "support": "Destek",
+      "terms": "Hizmet koşulları",
+      "privacy": "Gizlilik politikası",
+      "dpa": "Veri işleme",
+      "cookies": "Çerez politikası",
+      "legal": "Yasal bilgiler"
+    },
+    "copyright": "© {year} Hournook, bir {company} ürünüdür. Tüm hakları saklıdır.",
+    "tagline": "Mesajlaşmadan randevu."
+  },
+  "notFound": {
+    "title": "Bu sayfayı bulamadık",
+    "text": "Bağlantı eski ya da hatalı yazılmış olabilir.",
+    "home": "Ana sayfa",
+    "dashboard": "Panel"
+  },
+  "error": {
+    "title": "Bu sayfa düzgün yüklenmedi",
+    "text": "Bizim tarafımızda bir sorun oluştu. Verileriniz güvende. Tekrar deneyin; sorun devam ederse aşağıdaki referansla destek ekibine yazın.",
+    "reference": "Referans: {digest}",
+    "retry": "Tekrar dene",
+    "home": "Ana sayfaya dön"
+  }
+}

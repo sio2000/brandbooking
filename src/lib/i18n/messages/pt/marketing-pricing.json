@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Preço",
+    "description": "Tudo o que precisa para aceitar reservas online por {price}/mês: reservas ilimitadas, a sua própria página de reservas, agenda, lembretes, membros da equipa e muito mais. Período experimental de {days} dias, sem cartão."
+  },
+  "hero": {
+    "eyebrow": "Preço",
+    "title": "Tudo o que precisa para aceitar reservas online.",
+    "lead": "Um plano simples por {price} por mês. Todas as funcionalidades incluídas, seja qual for a dimensão do seu negócio."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Reservas ilimitadas",
+      "text": "Aceite todas as marcações que quiser."
+    },
+    "noFees": {
+      "title": "Sem comissões por reserva",
+      "text": "Nunca ficamos com uma parte do que cobra."
+    },
+    "noCard": {
+      "title": "Comece sem cartão",
+      "text": "Experimente tudo durante {days} dias primeiro."
+    }
+  },
+  "vatNote": "Preços em euros, IVA incluído.",
+  "billing": {
+    "eyebrow": "Faturação",
+    "title": "Perguntas sobre faturação",
+    "lead": "Respostas claras sobre o período experimental, as faturas e o cancelamento. Para tudo o resto, teremos todo o gosto em ajudar.",
+    "support": "Ir para o apoio",
+    "terms": "Condições de faturação"
+  },
+  "faq": {
+    "card": {
+      "q": "É preciso cartão para o período experimental?",
+      "a": "Não. Comece o período experimental de {days} dias apenas com o seu endereço de email. Só adiciona um método de pagamento quando decidir subscrever."
+    },
+    "how": {
+      "q": "Como funciona a faturação?",
+      "a": "A sua subscrição custa {price} por mês, cobrados antecipadamente através da Stripe, o nosso prestador de pagamentos. Os recibos e as faturas estão disponíveis no portal de faturação."
+    },
+    "cancel": {
+      "q": "Como cancelo?",
+      "a": "Abra o portal de faturação da Stripe a partir das definições de faturação e cancele aí. Sem emails nem telefonemas. O cancelamento impede renovações futuras."
+    },
+    "vat": {
+      "q": "O IVA está incluído?",
+      "a": "Sim. {price} por mês é o preço final, com IVA grego de 24% incluído. Nada é acrescentado no pagamento e recebe uma fatura por cada pagamento."
+    },
+    "update": {
+      "q": "Posso alterar o cartão ou os dados de faturação?",
+      "a": "Sim. No portal de faturação pode alterar o método de pagamento, atualizar os dados de faturação e descarregar faturas anteriores a qualquer momento."
+    },
+    "team": {
+      "q": "Os membros da equipa têm custo adicional?",
+      "a": "Não. Os membros da equipa estão incluídos no mesmo plano, para que toda a equipa possa usar a agenda e aceitar reservas."
+    }
+  },
+  "card": {
+    "badge": "Um só plano · tudo incluído",
+    "perMonth": "/ mês · IVA incluído",
+    "trial": "Período experimental de {days} dias. Sem cartão para começar. Sem comissões por reserva.",
+    "cta": "Iniciar o período experimental",
+    "seeAll": "Ver tudo o que está incluído",
+    "inclusions": {
+      "unlimited": "Reservas ilimitadas",
+      "page": "A sua própria página de reservas",
+      "profile": "Perfil do negócio",
+      "services": "Serviços",
+      "availability": "Disponibilidade e férias",
+      "calendar": "Gestão de marcações e agenda",
+      "customers": "Gestão de clientes",
+      "emails": "Confirmações e lembretes por email",
+      "analytics": "Estatísticas",
+      "team": "Membros da equipa",
+      "secure": "Conta segura",
+      "responsive": "Página de reservas adaptada a qualquer ecrã",
+      "qr": "Código QR e widget para o seu site"
+    }
+  }
+}

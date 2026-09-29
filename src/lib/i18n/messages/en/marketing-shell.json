@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "defaultTitle": "Hournook · Booking, without the back-and-forth.",
+    "description": "Online booking software for businesses that run on appointments: your own booking page, calendar, customer records and analytics for {price}/month. {days}-day free trial, no card required.",
+    "socialAlt": "Hournook: online booking software for businesses that run on appointments"
+  },
+  "skipToContent": "Skip to content",
+  "homeLabel": "Hournook home",
+  "nav": {
+    "main": "Main",
+    "mobile": "Mobile",
+    "how": "How it works",
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "support": "Support"
+  },
+  "header": {
+    "signIn": "Sign in",
+    "startFree": "Start free",
+    "openMenu": "Open menu",
+    "menu": "Menu"
+  },
+  "footer": {
+    "blurb": "Online booking, calendar, customer records and analytics for businesses that run on appointments. One plan, {price}/month.",
+    "theme": "Theme",
+    "columns": {
+      "product": "Product",
+      "account": "Account",
+      "legal": "Legal"
+    },
+    "links": {
+      "how": "How it works",
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "startTrial": "Start free trial",
+      "signIn": "Sign in",
+      "support": "Support",
+      "terms": "Terms of service",
+      "privacy": "Privacy policy",
+      "dpa": "Data processing",
+      "cookies": "Cookie policy",
+      "legal": "Legal notice"
+    },
+    "copyright": "© {year} Hournook, a product of {company}. All rights reserved.",
+    "tagline": "Booking, without the back-and-forth."
+  },
+  "notFound": {
+    "title": "We couldn’t find that page",
+    "text": "The link may be old or mistyped.",
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "error": {
+    "title": "This page didn’t load properly",
+    "text": "Something went wrong on our side. Your data is safe. Try again, and if it keeps happening, contact support with the reference below.",
+    "reference": "Reference: {digest}",
+    "retry": "Try again",
+    "home": "Go home"
+  }
+}

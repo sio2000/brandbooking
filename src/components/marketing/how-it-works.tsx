@@ -4,7 +4,9 @@ import * as React from 'react'
 import { AnimatePresence } from 'motion/react'
 import * as m from 'motion/react-m'
 import { AtSign, BellRing, Check, Copy, Globe2, Link2, MessageCircle } from 'lucide-react'
+import { useLocale, useT } from '@/components/i18n/provider'
 import { cn } from '@/lib/utils'
+import { durationLabel, industry, priceLabel, weekday, weekdayTime } from './industries'
 import { useHydrated, useReducedMotion } from './primitives'
 
 /**
@@ -14,16 +16,13 @@ import { useHydrated, useReducedMotion } from './primitives'
  * No-JS and reduced motion show each step's finished state.
  */
 
-const STEPS = [
-  { title: 'Add your services', text: 'Name, length and price. About five minutes.' },
-  { title: 'Share one link', text: 'Instagram, Google, WhatsApp or a printed QR code.' },
-  { title: 'Get booked', text: 'Bookings land in your calendar, reminders go out.' },
-] as const
+const STEPS = ['services', 'share', 'booked'] as const
 
 const STEP_MS = 4200
 const EASE = [0.22, 1, 0.36, 1] as const
 
 export function HowItWorks() {
+  const t = useT('marketing-home')
   const hydrated = useHydrated()
   const reduced = useReducedMotion()
   const animate = hydrated && !reduced
@@ -59,7 +58,7 @@ export function HowItWorks() {
         {STEPS.map((s, i) => {
           const active = i === step
           return (
-            <li key={s.title}>
+            <li key={s}>
               <button
                 type="button"
                 onClick={() => {
@@ -68,7 +67,7 @@ export function HowItWorks() {
                 }}
                 aria-current={active ? 'step' : undefined}
                 className={cn(
-                  'group relative flex w-full flex-col overflow-hidden rounded-2xl border p-3 text-left transition-colors duration-300 sm:p-4 lg:flex-row lg:items-start lg:gap-4 lg:p-5',
+                  'group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border p-3 text-start transition-colors duration-300 sm:p-4 lg:flex-row lg:items-start lg:gap-4 lg:p-5',
                   active
                     ? 'border-primary/40 bg-surface shadow-[0_12px_30px_-18px_rgb(15_118_110/0.45)]'
                     : 'border-transparent hover:bg-surface/70',
@@ -84,12 +83,12 @@ export function HowItWorks() {
                 >
                   {i + 1}
                 </span>
-                <span className="mt-2 block lg:mt-0.5">
-                  <span className="block text-[13.5px] leading-tight font-semibold sm:text-[15px] lg:text-[19px]">
-                    {s.title}
+                <span className="mt-2 block min-w-0 lg:mt-0.5">
+                  <span className="block text-[13.5px] leading-tight font-semibold [overflow-wrap:anywhere] hyphens-auto sm:text-[15px] lg:text-[19px]">
+                    {t(`how.steps.${s}.title`)}
                   </span>
                   <span className="mt-1 hidden text-[14.5px] leading-snug text-muted-foreground lg:block">
-                    {s.text}
+                    {t(`how.steps.${s}.text`)}
                   </span>
                 </span>
                 {/* Progress of the active step */}
@@ -98,7 +97,7 @@ export function HowItWorks() {
                     <span
                       key={`${step}-${playing}`}
                       className={cn(
-                        'block h-full origin-left bg-primary',
+                        'block h-full origin-left bg-primary rtl:origin-right',
                         playing ? 'animate-[hn-progress_linear_forwards]' : 'scale-x-0',
                       )}
                       style={playing ? { animationDuration: `${STEP_MS}ms` } : undefined}
@@ -132,7 +131,7 @@ export function HowItWorks() {
           </m.div>
         </AnimatePresence>
       </div>
-      <p className="sr-only lg:hidden">{STEPS[step]!.text}</p>
+      <p className="sr-only lg:hidden">{t(`how.steps.${STEPS[step]!}.text`)}</p>
     </div>
   )
 }
@@ -164,34 +163,42 @@ function In({
 }
 
 function ServicesScene({ animate }: { animate: boolean }) {
+  const t = useT('marketing-home')
+  const { locale, dir } = useLocale()
+  const barber = industry('barber', t, locale)
   const rows = [
-    ['Haircut', '30 min', '€22'],
-    ['Haircut & beard', '45 min', '€30'],
-    ['Colour', '1 h 30 min', '€55'],
+    [barber.services[0]!.name, 30, 22],
+    [barber.services[1]!.name, 45, 30],
+    [t('how.colour'), 90, 55],
   ] as const
+  const from = dir === 'rtl' ? 18 : -18
   return (
     <div className="w-full max-w-[400px] rounded-2xl border border-border bg-surface p-4 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)] sm:p-5">
-      <p className="text-[12px] font-semibold tracking-[0.12em] text-subtle-foreground uppercase">
-        Your services
+      <p className="truncate text-[12px] font-semibold tracking-[0.12em] text-subtle-foreground uppercase">
+        {t('how.yourServices')}
       </p>
       <div className="mt-3 space-y-2">
-        {rows.map(([name, d, p], i) => (
-          <In key={name} delay={0.25 + i * 0.45} animate={animate} from={{ opacity: 0, x: -18 }}>
-            <div className="flex items-center justify-between rounded-xl border border-border px-3 py-2.5 text-[14px]">
-              <span className="font-medium">{name}</span>
-              <span className="tabular flex items-center gap-2 text-muted-foreground">
-                <span className="rounded-md bg-surface-2 px-1.5 py-0.5 text-[12px]">{d}</span>
-                <span className="font-semibold text-foreground">{p}</span>
+        {rows.map(([name, minutes, euros], i) => (
+          <In key={name} delay={0.25 + i * 0.45} animate={animate} from={{ opacity: 0, x: from }}>
+            <div className="flex items-center justify-between gap-2 rounded-xl border border-border px-3 py-2.5 text-[14px]">
+              <span className="min-w-0 truncate font-medium">{name}</span>
+              <span className="tabular flex shrink-0 items-center gap-2 text-muted-foreground">
+                <span className="rounded-md bg-surface-2 px-1.5 py-0.5 text-[12px]">
+                  {durationLabel(minutes, locale)}
+                </span>
+                <span className="font-semibold text-foreground">
+                  {priceLabel(euros, locale, '')}
+                </span>
               </span>
             </div>
           </In>
         ))}
       </div>
-      <p className="mt-4 text-[12px] font-semibold tracking-[0.12em] text-subtle-foreground uppercase">
-        Opening hours
+      <p className="mt-4 truncate text-[12px] font-semibold tracking-[0.12em] text-subtle-foreground uppercase">
+        {t('how.openingHours')}
       </p>
       <div className="mt-2 grid grid-cols-7 gap-1.5">
-        {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => weekday(i, locale, 'narrow')).map((d, i) => (
           <In key={i} delay={1.6 + i * 0.12} animate={animate} from={{ opacity: 0, scale: 0.6 }}>
             <span
               className={cn(
@@ -207,8 +214,9 @@ function ServicesScene({ animate }: { animate: boolean }) {
         ))}
       </div>
       <In delay={2.6} animate={animate} className="mt-4 flex justify-end">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-success-soft px-3 py-1 text-[12.5px] font-semibold text-success-soft-foreground">
-          <Check className="size-3.5" strokeWidth={3} /> Booking page ready
+        <span className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-success-soft px-3 py-1 text-[12.5px] font-semibold text-success-soft-foreground">
+          <Check className="size-3.5 shrink-0" strokeWidth={3} />
+          <span className="truncate">{t('how.ready')}</span>
         </span>
       </In>
     </div>
@@ -216,26 +224,34 @@ function ServicesScene({ animate }: { animate: boolean }) {
 }
 
 function ShareScene({ animate }: { animate: boolean }) {
+  const t = useT('marketing-home')
+  const { locale, dir } = useLocale()
   const targets = [
-    [AtSign, 'Instagram bio'],
-    [Globe2, 'Google profile'],
-    [MessageCircle, 'WhatsApp'],
+    [AtSign, t('how.instagram')],
+    [Globe2, t('how.google')],
+    [MessageCircle, t('how.whatsapp')],
   ] as const
+  const from = dir === 'rtl' ? 16 : -16
   return (
     <div className="flex w-full max-w-[460px] flex-col items-center gap-5">
-      <div className="flex w-full items-center gap-2 rounded-2xl border border-border bg-surface p-2 pl-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)]">
+      <div className="flex w-full items-center gap-2 rounded-2xl border border-border bg-surface p-2 ps-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)]">
         <Link2 className="size-4 shrink-0 text-primary" />
-        <span className="min-w-0 flex-1 truncate text-[14px] font-medium">
-          hournook.com/book/northside-barbers
+        <span dir="ltr" className="min-w-0 flex-1 truncate text-start text-[14px] font-medium">
+          {`hournook.com/book/${industry('barber', t, locale).slug}`}
         </span>
-        <span className="relative grid h-9 w-[92px] shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground text-[13px] font-semibold text-background">
+        <span className="relative grid h-9 min-w-[92px] shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground px-3 text-[13px] font-semibold whitespace-nowrap text-background">
+          {/* Sizes the button to the longer of the two labels. */}
+          <span aria-hidden className="invisible flex items-center gap-1.5">
+            <Check className="size-3.5" />
+            {t('how.copy').length > t('how.copied').length ? t('how.copy') : t('how.copied')}
+          </span>
           <m.span
             className="absolute inset-0 flex items-center justify-center gap-1.5"
             initial={animate ? { y: 0 } : false}
             animate={{ y: '-100%' }}
             transition={{ duration: 0.35, ease: EASE, delay: animate ? 0.8 : 0 }}
           >
-            <Copy className="size-3.5" /> Copy
+            <Copy className="size-3.5" /> {t('how.copy')}
           </m.span>
           <m.span
             className="absolute inset-0 flex items-center justify-center gap-1.5 bg-primary text-primary-foreground"
@@ -243,20 +259,20 @@ function ShareScene({ animate }: { animate: boolean }) {
             animate={{ y: 0 }}
             transition={{ duration: 0.35, ease: EASE, delay: animate ? 0.8 : 0 }}
           >
-            <Check className="size-3.5" strokeWidth={3} /> Copied
+            <Check className="size-3.5" strokeWidth={3} /> {t('how.copied')}
           </m.span>
         </span>
       </div>
-      <div className="grid w-full grid-cols-[1fr_auto] items-center gap-4">
-        <div className="space-y-2">
+      <div className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+        <div className="min-w-0 space-y-2">
           {targets.map(([Icon, label], i) => (
-            <In key={label} delay={1.3 + i * 0.35} animate={animate} from={{ opacity: 0, x: -16 }}>
+            <In key={label} delay={1.3 + i * 0.35} animate={animate} from={{ opacity: 0, x: from }}>
               <div className="flex items-center gap-2.5 rounded-xl border border-border bg-surface px-3 py-2 text-[13.5px]">
-                <span className="grid size-7 place-items-center rounded-lg bg-primary-soft text-primary">
+                <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
                   <Icon className="size-4" />
                 </span>
-                <span className="font-medium">{label}</span>
-                <Check className="ml-auto size-4 text-primary" strokeWidth={3} />
+                <span className="min-w-0 truncate font-medium">{label}</span>
+                <Check className="ms-auto size-4 shrink-0 text-primary" strokeWidth={3} />
               </div>
             </In>
           ))}
@@ -331,31 +347,36 @@ function QrDraw({ animate }: { animate: boolean }) {
 }
 
 function BookedScene({ animate }: { animate: boolean }) {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-  // [day, row, rows tall, label]
-  const blocks: Array<[number, number, number, string]> = [
-    [0, 0, 2, 'Anna M.'],
-    [1, 1, 1, 'Chris P.'],
-    [2, 0, 1, 'Jonas K.'],
-    [3, 2, 2, 'Sam C.'],
-    [4, 1, 2, 'Maria P.'],
-    [1, 3, 1, 'Leo T.'],
-    [2, 2, 1, 'Eleni K.'],
+  const t = useT('marketing-home')
+  const { locale } = useLocale()
+  const days = [0, 1, 2, 3, 4].map((d) => weekday(d, locale, 'short'))
+  // [day, row, rows tall, person]
+  const blocks: Array<[number, number, number, `p${1 | 2 | 3 | 4 | 5 | 6 | 7}`]> = [
+    [0, 0, 2, 'p1'],
+    [1, 1, 1, 'p2'],
+    [2, 0, 1, 'p3'],
+    [3, 2, 2, 'p4'],
+    [4, 1, 2, 'p5'],
+    [1, 3, 1, 'p6'],
+    [2, 2, 1, 'p7'],
   ]
   return (
     <div className="relative w-full max-w-[480px]">
       <div className="rounded-2xl border border-border bg-surface p-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)] sm:p-4">
-        <div className="flex items-center justify-between">
-          <p className="text-[14px] font-semibold">This week</p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="truncate text-[14px] font-semibold">{t('how.thisWeek')}</p>
           <In delay={2.3} animate={animate}>
-            <span className="tabular rounded-full bg-primary-soft px-2.5 py-0.5 text-[12.5px] font-semibold text-primary">
-              7 bookings
+            <span className="tabular rounded-full bg-primary-soft px-2.5 py-0.5 text-[12.5px] font-semibold whitespace-nowrap text-primary">
+              {t('how.bookings', { count: blocks.length })}
             </span>
           </In>
         </div>
         <div className="mt-3 grid grid-cols-5 gap-1.5">
           {days.map((d) => (
-            <span key={d} className="text-center text-[11.5px] font-medium text-muted-foreground">
+            <span
+              key={d}
+              className="truncate text-center text-[11.5px] font-medium text-muted-foreground"
+            >
               {d}
             </span>
           ))}
@@ -371,13 +392,13 @@ function BookedScene({ animate }: { animate: boolean }) {
           {blocks.map(([day, row, span, who], i) => (
             <m.span
               key={who}
-              className="overflow-hidden rounded-lg border-l-[3px] border-primary bg-primary-soft px-1.5 py-1 text-[10.5px] leading-tight font-semibold text-primary-soft-foreground sm:text-[11.5px]"
+              className="overflow-hidden rounded-lg border-s-[3px] border-primary bg-primary-soft px-1.5 py-1 text-[10.5px] leading-tight font-semibold text-primary-soft-foreground sm:text-[11.5px]"
               style={{ gridColumn: day + 1, gridRow: `${row + 1} / span ${span}` }}
               initial={animate ? { opacity: 0, y: -12, scale: 0.9 } : false}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, ease: EASE, delay: animate ? 0.3 + i * 0.25 : 0 }}
             >
-              <span className="block truncate">{who}</span>
+              <span className="block truncate">{t(`demo.people.${who}`)}</span>
             </m.span>
           ))}
         </div>
@@ -386,15 +407,17 @@ function BookedScene({ animate }: { animate: boolean }) {
         delay={2.1}
         animate={animate}
         from={{ opacity: 0, y: -14, scale: 0.95 }}
-        className="absolute right-3 -bottom-4 w-[min(240px,72%)] rounded-2xl border border-border bg-surface/95 p-2.5 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur"
+        className="absolute end-3 -bottom-4 w-[min(240px,72%)] rounded-2xl border border-border bg-surface/95 p-2.5 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur"
       >
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground">
             <BellRing className="size-4" />
           </span>
           <div className="min-w-0 text-[12px] leading-snug">
-            <p className="font-semibold">New booking</p>
-            <p className="truncate text-muted-foreground">Sam C. · Thu 15:30</p>
+            <p className="truncate font-semibold">{t('how.newBooking')}</p>
+            <p className="truncate text-muted-foreground">
+              {t('demo.people.p4')} · {weekdayTime(3, 15 * 60 + 30, locale)}
+            </p>
           </div>
         </div>
       </In>

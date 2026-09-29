@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Precio",
+    "description": "Todo lo que necesitas para aceptar reservas online por {price}/mes: reservas ilimitadas, tu propia página de reservas, calendario, recordatorios, miembros del equipo y mucho más. Prueba gratuita de {days} días, sin tarjeta."
+  },
+  "hero": {
+    "eyebrow": "Precio",
+    "title": "Todo lo que necesitas para aceptar reservas online.",
+    "lead": "Un plan sencillo por {price} al mes. Todas las funciones incluidas, sea cual sea el tamaño de tu negocio."
+  },
+  "promises": {
+    "unlimited": {
+      "title": "Reservas ilimitadas",
+      "text": "Acepta todas las citas que quieras."
+    },
+    "noFees": {
+      "title": "Sin comisiones por reserva",
+      "text": "Nunca nos quedamos con una parte de lo que cobras."
+    },
+    "noCard": {
+      "title": "Empieza sin tarjeta",
+      "text": "Prueba todo durante {days} días primero."
+    }
+  },
+  "vatNote": "Precios en euros, IVA incluido.",
+  "billing": {
+    "eyebrow": "Facturación",
+    "title": "Preguntas sobre facturación",
+    "lead": "Respuestas claras sobre la prueba, las facturas y la cancelación. Para cualquier otra cosa, estaremos encantados de ayudarte.",
+    "support": "Ir a la ayuda",
+    "terms": "Condiciones de facturación"
+  },
+  "faq": {
+    "card": {
+      "q": "¿Necesito una tarjeta para la prueba gratuita?",
+      "a": "No. Empieza tu prueba de {days} días solo con tu correo electrónico. Solo añades un método de pago cuando decides suscribirte."
+    },
+    "how": {
+      "q": "¿Cómo funciona la facturación?",
+      "a": "Tu suscripción cuesta {price} al mes y se cobra por adelantado a través de Stripe, nuestro proveedor de pagos. Tienes los recibos y las facturas en el portal de facturación."
+    },
+    "cancel": {
+      "q": "¿Cómo cancelo?",
+      "a": "Abre el portal de facturación de Stripe desde tus ajustes de facturación y cancela allí. Sin correos ni llamadas. Al cancelar se detienen las renovaciones futuras."
+    },
+    "vat": {
+      "q": "¿Está incluido el IVA?",
+      "a": "Sí. {price} al mes es el precio final, con el IVA griego del 24 % incluido. No se añade nada al pagar y recibes una factura por cada pago."
+    },
+    "update": {
+      "q": "¿Puedo cambiar mi tarjeta o mis datos de facturación?",
+      "a": "Sí. En el portal de facturación puedes cambiar el método de pago, actualizar los datos de facturación y descargar facturas anteriores cuando quieras."
+    },
+    "team": {
+      "q": "¿Los miembros del equipo cuestan más?",
+      "a": "No. Los miembros del equipo están incluidos en el mismo plan, así que todo tu equipo puede usar el calendario y aceptar reservas."
+    }
+  },
+  "card": {
+    "badge": "Un solo plan · todo incluido",
+    "perMonth": "/ mes · IVA incluido",
+    "trial": "Prueba gratuita de {days} días. Sin tarjeta para empezar. Sin comisiones por reserva.",
+    "cta": "Empieza tu prueba gratuita",
+    "seeAll": "Ver todo lo que incluye",
+    "inclusions": {
+      "unlimited": "Reservas ilimitadas",
+      "page": "Tu propia página de reservas",
+      "profile": "Perfil del negocio",
+      "services": "Servicios",
+      "availability": "Disponibilidad y vacaciones",
+      "calendar": "Gestión de citas y calendario",
+      "customers": "Gestión de clientes",
+      "emails": "Confirmaciones y recordatorios por correo",
+      "analytics": "Estadísticas",
+      "team": "Miembros del equipo",
+      "secure": "Cuenta segura",
+      "responsive": "Página de reservas adaptada a cualquier pantalla",
+      "qr": "Código QR y widget para tu web"
+    }
+  }
+}

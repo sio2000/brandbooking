@@ -5,16 +5,24 @@ import type booking from './messages/en/booking.json'
 import type common from './messages/en/common.json'
 import type email from './messages/en/email.json'
 import type errors from './messages/en/errors.json'
+import type marketingHome from './messages/en/marketing-home.json'
+import type marketingPricing from './messages/en/marketing-pricing.json'
+import type marketingShell from './messages/en/marketing-shell.json'
+import type marketingSupport from './messages/en/marketing-support.json'
 
 export type Catalogues = {
   'booking': typeof booking
   'common': typeof common
   'email': typeof email
   'errors': typeof errors
+  'marketing-home': typeof marketingHome
+  'marketing-pricing': typeof marketingPricing
+  'marketing-shell': typeof marketingShell
+  'marketing-support': typeof marketingSupport
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["booking","common","email","errors"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["booking","common","email","errors","marketing-home","marketing-pricing","marketing-shell","marketing-support"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -22,50 +30,110 @@ type Loader = () => Promise<{ default: unknown }>
 export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>> = {
   ar: {
     'common': () => import('./messages/ar/common.json'),
+    'marketing-home': () => import('./messages/ar/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ar/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ar/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ar/marketing-support.json'),
   },
   de: {
     'common': () => import('./messages/de/common.json'),
+    'marketing-home': () => import('./messages/de/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/de/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/de/marketing-shell.json'),
+    'marketing-support': () => import('./messages/de/marketing-support.json'),
   },
   el: {
     'common': () => import('./messages/el/common.json'),
+    'marketing-home': () => import('./messages/el/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/el/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/el/marketing-shell.json'),
+    'marketing-support': () => import('./messages/el/marketing-support.json'),
   },
   en: {
     'booking': () => import('./messages/en/booking.json'),
     'common': () => import('./messages/en/common.json'),
     'email': () => import('./messages/en/email.json'),
     'errors': () => import('./messages/en/errors.json'),
+    'marketing-home': () => import('./messages/en/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/en/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/en/marketing-shell.json'),
+    'marketing-support': () => import('./messages/en/marketing-support.json'),
   },
   es: {
     'common': () => import('./messages/es/common.json'),
+    'marketing-home': () => import('./messages/es/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/es/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/es/marketing-shell.json'),
+    'marketing-support': () => import('./messages/es/marketing-support.json'),
   },
   fr: {
     'common': () => import('./messages/fr/common.json'),
+    'marketing-home': () => import('./messages/fr/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/fr/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/fr/marketing-shell.json'),
+    'marketing-support': () => import('./messages/fr/marketing-support.json'),
   },
   hi: {
     'common': () => import('./messages/hi/common.json'),
+    'marketing-home': () => import('./messages/hi/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/hi/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/hi/marketing-shell.json'),
+    'marketing-support': () => import('./messages/hi/marketing-support.json'),
   },
   it: {
     'common': () => import('./messages/it/common.json'),
+    'marketing-home': () => import('./messages/it/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/it/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/it/marketing-shell.json'),
+    'marketing-support': () => import('./messages/it/marketing-support.json'),
   },
   ja: {
     'common': () => import('./messages/ja/common.json'),
+    'marketing-home': () => import('./messages/ja/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ja/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ja/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ja/marketing-support.json'),
   },
   nl: {
     'common': () => import('./messages/nl/common.json'),
+    'marketing-home': () => import('./messages/nl/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/nl/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/nl/marketing-shell.json'),
+    'marketing-support': () => import('./messages/nl/marketing-support.json'),
   },
   pl: {
     'common': () => import('./messages/pl/common.json'),
+    'marketing-home': () => import('./messages/pl/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/pl/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/pl/marketing-shell.json'),
+    'marketing-support': () => import('./messages/pl/marketing-support.json'),
   },
   pt: {
     'common': () => import('./messages/pt/common.json'),
+    'marketing-home': () => import('./messages/pt/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/pt/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/pt/marketing-shell.json'),
+    'marketing-support': () => import('./messages/pt/marketing-support.json'),
   },
   ru: {
     'common': () => import('./messages/ru/common.json'),
+    'marketing-home': () => import('./messages/ru/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/ru/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/ru/marketing-shell.json'),
+    'marketing-support': () => import('./messages/ru/marketing-support.json'),
   },
   tr: {
     'common': () => import('./messages/tr/common.json'),
+    'marketing-home': () => import('./messages/tr/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/tr/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/tr/marketing-shell.json'),
+    'marketing-support': () => import('./messages/tr/marketing-support.json'),
   },
   zh: {
     'common': () => import('./messages/zh/common.json'),
+    'marketing-home': () => import('./messages/zh/marketing-home.json'),
+    'marketing-pricing': () => import('./messages/zh/marketing-pricing.json'),
+    'marketing-shell': () => import('./messages/zh/marketing-shell.json'),
+    'marketing-support': () => import('./messages/zh/marketing-support.json'),
   },
 }
