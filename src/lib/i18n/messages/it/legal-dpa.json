@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Accordo sul trattamento dei dati",
+    "description": "L’accordo sul trattamento dei dati di {brand} (articolo 28 del GDPR) per le attività: come trattiamo per tuo conto i dati personali dei tuoi clienti."
+  },
+  "title": "Accordo sul trattamento dei dati",
+  "intro": "Quando i tuoi clienti prenotano tramite {brand}, sei tu a decidere come vengono utilizzati i loro dati e noi li trattiamo per tuo conto. Il presente accordo definisce i nostri obblighi in qualità di tuo responsabile del trattamento ai sensi dell’articolo 28 del GDPR. Fa parte dei Termini di servizio, quindi si applica automaticamente a ogni account.",
+  "s1": {
+    "title": "Parti e ambito di applicazione",
+    "p1": "Il presente Accordo sul trattamento dei dati (l’«Accordo sul trattamento») è concluso tra l’attività che ha un account {brand} (il «Titolare», «tu») e <provider></provider> (il «Responsabile», «noi»). Fa parte dei <terms>Termini di servizio</terms> e si applica automaticamente, senza bisogno di una firma separata, ogni volta che trattiamo dati personali per tuo conto nel fornire {brand}.",
+    "p2": "Termini quali «dati personali», «trattamento», «titolare del trattamento», «responsabile del trattamento», «interessato» e «violazione dei dati personali» hanno il significato attribuito loro dal Regolamento (UE) 2016/679 (il «GDPR»). In caso di contrasto tra il presente Accordo sul trattamento e i Termini in materia di protezione dei dati, prevale il presente Accordo sul trattamento."
+  },
+  "s2": {
+    "title": "Dettagli del trattamento",
+    "items": {
+      "i1": "<strong>Oggetto e finalità:</strong> fornirti {brand}: hosting della tua pagina di prenotazione, ricezione e gestione delle prenotazioni, conservazione delle schede clienti, invio di email relative agli appuntamenti per tuo conto, statistiche, esportazioni e assistenza.",
+      "i2": "<strong>Durata:</strong> per tutto il tempo in cui utilizzi {brand} e fino alla cancellazione dei dati come descritto di seguito.",
+      "i3": "<strong>Natura del trattamento:</strong> raccolta tramite la pagina di prenotazione o i tuoi inserimenti, conservazione, organizzazione, estrazione, visualizzazione a te e al tuo team, trasmissione via email, esportazione e cancellazione.",
+      "i4": "<strong>Interessati:</strong> i tuoi clienti e potenziali clienti che prenotano o che aggiungi; il tuo personale e i membri del tuo team.",
+      "i5": "<strong>Categorie di dati personali:</strong> nome, indirizzo email, numero di telefono, dettagli degli appuntamenti (servizio, membro del personale, data, ora, prezzo, stato, cronologia), messaggi dei clienti, note che scrivi, nonché nomi e turni del personale.",
+      "i6": "<strong>Categorie particolari:</strong> {brand} non è progettato per categorie particolari di dati (come i dati relativi alla salute). Non le inserirai, a meno che la legge non te lo consenta e tu abbia predisposto le garanzie richieste; se lo fai, le misure di sicurezza del presente Accordo sul trattamento si applicano anche a esse."
+    }
+  },
+  "s3": {
+    "title": "Trattamento solo su tua istruzione",
+    "p1": "Trattiamo i dati personali soltanto su tua istruzione documentata, costituita dai presenti Termini e dal presente Accordo sul trattamento, nonché dalle impostazioni e azioni che utilizzi in {brand}. Non li utilizziamo per nostre finalità, non li vendiamo né li combiniamo con altri dati, salvo che il diritto dell’UE o il diritto greco ci impongano di trattarli; in tal caso ti informiamo prima, a meno che la legge non lo vieti.",
+    "p2": "Ti informeremo immediatamente se, a nostro parere, un’istruzione viola il GDPR o altre disposizioni in materia di protezione dei dati."
+  },
+  "s4": {
+    "title": "Riservatezza",
+    "p1": "Tutte le persone da noi autorizzate ad accedere ai dati personali sono vincolate alla riservatezza e vi accedono solo nella misura necessaria a fornire, proteggere o supportare il servizio."
+  },
+  "s5": {
+    "title": "Misure di sicurezza (articolo 32)",
+    "p1": "Mettiamo in atto misure tecniche e organizzative adeguate, tenendo conto dello stato dell’arte, dei costi e dei rischi. Attualmente comprendono:",
+    "items": {
+      "i1": "Cifratura in transito (HTTPS con HSTS; connessioni cifrate al database).",
+      "i2": "Cifratura a riposo fornita dai nostri fornitori di hosting e di database.",
+      "i3": "Separazione logica dei dati di ciascuna attività, applicata a ogni richiesta, e autorizzazioni basate sui ruoli per i membri del team.",
+      "i4": "Robusto hashing unidirezionale delle password, cookie di sessione sicuri, limitazione dei tentativi di accesso e blocco dell’account, nonché limitazione della frequenza delle azioni sensibili.",
+      "i5": "Una content security policy e altre intestazioni di sicurezza su ogni pagina.",
+      "i6": "Un registro di audit delle azioni rilevanti su account e dati.",
+      "i7": "Backup gestiti dal nostro fornitore di database, che consentono il ripristino dopo un incidente.",
+      "i8": "Accesso ai sistemi di produzione riservato al titolare del fornitore, con autenticazione a più fattori sugli account presso i fornitori.",
+      "i9": "Minimizzazione dei dati e cancellazione automatica come indicato nella nostra informativa sulla privacy."
+    },
+    "p2": "Possiamo aggiornare queste misure purché il livello complessivo di sicurezza non si riduca."
+  },
+  "s6": {
+    "title": "Sub-responsabili del trattamento",
+    "p1": "Ci concedi un’autorizzazione generale a ricorrere a sub-responsabili del trattamento. I sub-responsabili che attualmente trattano i dati dei tuoi clienti sono:",
+    "p2": "Imponiamo a ciascun sub-responsabile obblighi in materia di protezione dei dati equivalenti a quelli del presente Accordo sul trattamento e restiamo responsabili nei tuoi confronti del loro adempimento. Informeremo via email i titolari di account almeno 30 giorni prima di aggiungere o sostituire un sub-responsabile. Puoi opporti per ragionevoli motivi legati alla protezione dei dati entro tale termine; se non possiamo ragionevolmente accogliere l’opposizione, puoi recedere dal servizio interessato e ricevere un rimborso pro rata dei corrispettivi pagati in anticipo."
+  },
+  "s7": {
+    "title": "Trasferimenti internazionali",
+    "p1": "Quando un sub-responsabile tratta dati personali al di fuori dello Spazio economico europeo, garantiamo che il trasferimento sia conforme al capo V del GDPR, mediante una decisione di adeguatezza (come il Quadro UE-USA per la protezione dei dati per i fornitori certificati) o le clausole contrattuali tipo della Commissione europea con misure supplementari ove necessario."
+  },
+  "s8": {
+    "title": "Assistenza per le richieste degli interessati e la conformità",
+    "p1": "{brand} ti consente di rispondere autonomamente alla maggior parte delle richieste: consultare, rettificare ed esportare i dati dei clienti, cancellare un cliente ed eliminare la tua attività. Se riceviamo una richiesta direttamente da uno dei tuoi clienti, non vi risponderemo noi (se non per indirizzarlo a te) e te la inoltreremo senza ingiustificato ritardo.",
+    "p2": "Tenendo conto della natura del trattamento e delle informazioni a nostra disposizione, ti assisteremo inoltre, in misura ragionevole, nell’adempimento dei tuoi obblighi in materia di sicurezza, notifica delle violazioni, valutazioni d’impatto sulla protezione dei dati e consultazione preventiva (articoli da 32 a 36 GDPR)."
+  },
+  "s9": {
+    "title": "Violazioni dei dati personali",
+    "p1": "Ti informeremo senza ingiustificato ritardo, e comunque entro 48 ore dal momento in cui ne siamo venuti a conoscenza, di qualsiasi violazione dei dati personali che riguardi i tuoi dati, mediante email al titolare dell’account. La comunicazione descriverà, per quanto noto in quel momento, la natura della violazione, le categorie e il numero approssimativo di interessati e di registrazioni coinvolti, le probabili conseguenze e le misure adottate o proposte. Adotteremo misure ragionevoli per contenere la violazione e forniremo ulteriori informazioni non appena disponibili, affinché tu possa adempiere ai tuoi obblighi di notifica all’autorità di controllo e di comunicazione agli interessati."
+  },
+  "s10": {
+    "title": "Cancellazione e restituzione dei dati",
+    "p1": "Puoi esportare i tuoi dati in qualsiasi momento. Quando cancelli un cliente, i suoi dati personali vengono rimossi immediatamente e per le tue statistiche restano solo registrazioni anonime degli appuntamenti. Quando elimini la tua attività, tutti i suoi dati vengono cancellati immediatamente dai nostri sistemi in produzione. In entrambi i casi i dati vengono sovrascritti nei backup del nostro fornitore di database entro 30 giorni, salvo che il diritto dell’UE o il diritto greco ci impongano di conservarli. Se il tuo abbonamento termina senza che tu abbia eliminato la tua attività, i tuoi dati restano a tua disposizione finché non li elimini."
+  },
+  "s11": {
+    "title": "Informazioni e audit",
+    "p1": "Metteremo a disposizione le informazioni ragionevolmente necessarie per dimostrare il rispetto dell’articolo 28 GDPR e risponderemo alle tue domande scritte sul nostro trattamento. Se ciò non è sufficiente, puoi verificare la nostra conformità, anche tramite un revisore indipendente vincolato alla riservatezza, con un preavviso scritto di almeno 30 giorni, non più di una volta all’anno (salvo richiesta di un’autorità di controllo o dopo una violazione), durante l’orario lavorativo e in modo da non compromettere i dati di altri clienti o la nostra sicurezza. Ciascuna parte sostiene i propri costi."
+  },
+  "s12": {
+    "title": "Responsabilità e durata",
+    "p1": "La responsabilità ai sensi del presente Accordo sul trattamento è soggetta alle limitazioni previste dai Termini, salvo che la legge non le consenta. Il presente Accordo sul trattamento cessa automaticamente quando smettiamo di trattare dati personali per tuo conto; gli obblighi di cancellazione e riservatezza restano validi fino ad allora. È regolato dalla stessa legge e dallo stesso foro dei Termini."
+  },
+  "s13": {
+    "title": "Contatti",
+    "p1": "Domande sul presente Accordo sul trattamento o richieste di una copia controfirmata: <email>{email}</email>."
+  }
+}

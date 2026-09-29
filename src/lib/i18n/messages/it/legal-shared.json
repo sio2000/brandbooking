@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Note legali",
+  "lastUpdated": "Ultimo aggiornamento: {date} · Versione {version}",
+  "toc": "In questa pagina",
+  "documentsNav": "Documenti legali",
+  "documents": {
+    "terms": "Termini di servizio",
+    "privacy": "Informativa sulla privacy",
+    "dpa": "Accordo sul trattamento dei dati",
+    "cookies": "Informativa sui cookie",
+    "legal": "Note legali"
+  },
+  "translation": {
+    "original": "Leggi l’originale in inglese"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), imprenditore individuale che opera con il nome commerciale {tradingName}, {address}. Codice fiscale greco (ΑΦΜ) {vatNumber}, Registro generale del commercio greco (Γ.Ε.ΜΗ.) n. {gemiNumber}",
+  "subprocessors": {
+    "caption": "Sub-responsabili del trattamento",
+    "provider": "Fornitore",
+    "purpose": "Cosa fa per noi",
+    "location": "Sede",
+    "netlify": {
+      "purpose": "Hosting dell’applicazione, funzioni serverless, distribuzione dei contenuti, attività pianificate, log dell’applicazione e archiviazione delle immagini caricate",
+      "country": "Stati Uniti"
+    },
+    "neon": {
+      "purpose": "Database PostgreSQL: account, attività, clienti, appuntamenti e relativi backup",
+      "country": "Stati Uniti (database ospitato su Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Invio di email transazionali: conferme, modifiche e promemoria delle prenotazioni; email relative all’account e alla sicurezza",
+      "country": "Stati Uniti (email inviate dalla sua regione UE, in Irlanda)"
+    },
+    "stripe": {
+      "purpose": "Pagamenti degli abbonamenti, fatture e portale di fatturazione per le attività (non riceve mai dati dei Clienti finali)",
+      "country": "Irlanda"
+    }
+  }
+}

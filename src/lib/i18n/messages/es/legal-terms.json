@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Condiciones del servicio",
+    "description": "El acuerdo entre {brand} y los negocios que lo utilizan: prueba, suscripción, tus datos, uso aceptable, responsabilidad y cómo contactarnos."
+  },
+  "title": "Condiciones del servicio",
+  "intro": "El acuerdo entre {brand} y los negocios que lo utilizan, escrito para que se pueda leer. En resumen: {days} días gratis sin tarjeta, después {price} al mes, cancelas cuando quieras, tus datos siguen siendo tuyos y tratamos los datos de tus clientes solo para prestarte el servicio.",
+  "s1": {
+    "title": "Quiénes somos y qué cubren estas condiciones",
+    "p1": "{brand} es prestado por <provider></provider> («{brand}», «nosotros»).",
+    "p2": "Estas condiciones del servicio (las «Condiciones») son un contrato entre nosotros y el negocio o profesional que crea una cuenta de {brand} («tú», el «Cliente»). Incluyen nuestro <dpa>Acuerdo de encargo del tratamiento</dpa> (el «Acuerdo de tratamiento»), que se aplica a los datos personales de tus clientes que {brand} trata por tu cuenta. Nuestra <privacy>Política de privacidad</privacy> explica cómo tratamos los datos personales de los que somos responsables nosotros mismos.",
+    "p3": "Aceptas estas Condiciones cuando marcas la casilla al registrarte y creas una cuenta. Si las aceptas en nombre de un negocio, confirmas que estás autorizado para obligar a ese negocio."
+  },
+  "s2": {
+    "title": "Solo para uso profesional",
+    "p1": "{brand} se ofrece únicamente a empresas, profesionales autónomos y organizaciones, para su uso en el ejercicio de su actividad comercial, empresarial, artesanal o profesional. No se ofrece a consumidores. Debes tener al menos 18 años para crear una cuenta.",
+    "p2": "Las personas que reservan una cita a través de tu página de reservas (los «Clientes finales») no necesitan una cuenta y no son parte de estas Condiciones. Tu relación con ellas (los servicios que prestas, tus precios, tus normas de cancelación) es exclusivamente entre tú y ellas."
+  },
+  "s3": {
+    "title": "El servicio",
+    "p1": "{brand} es un software en línea que te permite publicar una página de reservas, gestionar servicios, horarios de apertura, personal, citas y fichas de clientes, ver estadísticas sencillas de tu negocio y enviar por correo electrónico confirmaciones, cambios y recordatorios de citas. Lo prestamos «como servicio» a través de internet; no hay que instalar nada.",
+    "p2": "Desarrollamos {brand} de forma continua. Podemos añadir, modificar o eliminar funciones. Si un cambio reduce de forma sustancial la funcionalidad principal por la que pagas, te avisaremos con al menos 30 días de antelación y podrás cancelar antes de que surta efecto.",
+    "p3": "{brand} no procesa pagos de tus citas y no es un agente, intermediario ni mercado entre tú y tus Clientes finales."
+  },
+  "s4": {
+    "title": "Tu cuenta y tu equipo",
+    "items": {
+      "i1": "Proporciona información exacta al registrarte y mantenla actualizada.",
+      "i2": "Mantén tu contraseña en secreto y no compartas cuentas. En su lugar, invita a miembros del equipo; eres responsable de lo que hagan en tu cuenta las personas que invites.",
+      "i3": "Avísanos sin demora en <email>{email}</email> si crees que alguien ha accedido a tu cuenta sin permiso."
+    }
+  },
+  "s5": {
+    "title": "Prueba gratuita, precio, facturación y cancelación",
+    "trial": {
+      "title": "Prueba gratuita",
+      "p1": "Cada nuevo negocio disfruta de una prueba gratuita de {days} días con todas las funciones. No se necesita tarjeta de pago para empezarla, y la prueba no se convierte en una suscripción de pago salvo que te suscribas. Si no te suscribes antes de que termine la prueba, tu página de reservas deja de aceptar nuevas reservas; tus datos permanecen en tu cuenta y puedes suscribirte en cualquier momento para continuar."
+    },
+    "price": {
+      "title": "Suscripción y precio",
+      "items": {
+        "i1": "La suscripción cuesta {price} por negocio al mes, se factura mensualmente por adelantado e incluye todas las funciones. No hay cuotas de alta ni comisiones por reserva.",
+        "i2": "El precio incluye el IVA al tipo griego del 24 %. No se añade nada al pagar y recibes una factura por cada pago.",
+        "i3": "Los pagos los procesa nuestro proveedor de pagos, Stripe. Al suscribirte, nos autorizas a cargar, a través de Stripe, tu método de pago en cada periodo de facturación hasta que canceles.",
+        "i4": "Podemos cambiar el precio para periodos de facturación futuros avisándote por correo electrónico con al menos 30 días de antelación a que el cambio se te aplique. Si no estás de acuerdo, puedes cancelar antes de que se aplique el nuevo precio."
+      }
+    },
+    "cancellation": {
+      "title": "Cancelación y reembolsos",
+      "items": {
+        "i1": "Puedes cancelar en cualquier momento desde <em>Facturación</em> en tu panel. La cancelación surte efecto al final del periodo de facturación que ya hayas pagado; hasta entonces, todo sigue funcionando.",
+        "i2": "Las cuotas ya pagadas no son reembolsables por meses parciales, salvo que la ley exija un reembolso o que pongamos fin a tu suscripción sin culpa por tu parte (en cuyo caso reembolsamos la parte no utilizada del periodo)."
+      }
+    },
+    "failed": {
+      "title": "Pagos fallidos",
+      "p1": "Si un pago falla, nosotros y Stripe lo intentaremos de nuevo y te avisaremos. Si sigue impagado 7 días después del primer fallo, tu página de reservas deja de aceptar nuevas reservas hasta que se realice el pago. Tus datos no se eliminan por un pago fallido."
+    }
+  },
+  "s6": {
+    "title": "Tu contenido y los datos de tus clientes",
+    "p1": "Conservas todos los derechos sobre el contenido que introduces en {brand}: datos del negocio, imágenes, servicios, precios y fichas de clientes («Tu Contenido»). Nos concedes una licencia no exclusiva, mundial y gratuita para alojar, copiar, mostrar y tratar Tu Contenido solo en la medida necesaria para prestarte, proteger y dar soporte al servicio, incluida la presentación pública de tu página de reservas.",
+    "p2": "Respecto de los datos personales de tus Clientes finales y de tu personal, <strong>tú eres el responsable del tratamiento</strong> y <strong>{brand} es tu encargado del tratamiento</strong>. El <dpa>Acuerdo de tratamiento</dpa> establece nuestras obligaciones como encargado y forma parte de estas Condiciones.",
+    "p3": "Eres responsable de Tu Contenido y de contar con una base jurídica conforme al RGPD y demás normativa aplicable para recoger y utilizar los datos de tus clientes, incluido informarles al respecto. {brand} es una herramienta de reservas, no un sistema médico ni de historias clínicas: no almacenes datos de salud ni otras categorías especiales de datos (por ejemplo, en notas de clientes o de citas) salvo que la ley te lo permita y hayas adoptado las garantías que exige.",
+    "p4": "Puedes exportar tus datos (clientes, citas, servicios y datos del negocio) en cualquier momento desde el panel, incluso después de cancelar."
+  },
+  "s7": {
+    "title": "Uso aceptable",
+    "p1": "No debes usar {brand}, ni permitir que nadie lo use, para:",
+    "items": {
+      "i1": "ofrecer, anunciar u organizar servicios ilegales, o servicios para los que no tengas la licencia o la cualificación exigida legalmente;",
+      "i2": "publicar contenido ilícito, engañoso, discriminatorio o difamatorio, que infrinja la propiedad intelectual o la privacidad de terceros, o que sea sexualmente explícito;",
+      "i3": "enviar spam o mensajes comerciales a través de los correos de reserva, o añadir personas como clientes sin una base jurídica;",
+      "i4": "suplantar a otro negocio o persona, o crear páginas de reservas para un negocio al que no representas;",
+      "i5": "acceder a datos de otros negocios, probar, sondear o eludir nuestras medidas de seguridad, introducir software malicioso, extraer datos del servicio de forma automatizada o someterlo a una carga excesiva;",
+      "i6": "revender, sublicenciar, copiar o aplicar ingeniería inversa al servicio, salvo que la ley lo permita expresamente."
+    }
+  },
+  "s8": {
+    "title": "Notificación de contenido ilícito y nuestras decisiones",
+    "p1": "Las páginas de reservas se publican a petición de los negocios que las crean. Cualquier persona, incluidas las autoridades, puede notificar contenido que considere ilícito o contrario a estas Condiciones escribiendo a nuestro punto único de contacto, <email>{email}</email>, en inglés o en griego. Incluye:",
+    "items": {
+      "i1": "la dirección web (URL) del contenido y qué es exactamente lo que se denuncia;",
+      "i2": "por qué lo consideras ilícito o contrario a estas Condiciones;",
+      "i3": "tu nombre y dirección de correo electrónico (no es necesario en notificaciones de material de abuso sexual infantil); y",
+      "i4": "una declaración de que crees de buena fe que la notificación es exacta y completa."
+    },
+    "p2": "Acusamos recibo, revisamos las notificaciones con diligencia y objetividad e informamos a quien notifica de nuestra decisión. Si retiramos o restringimos un contenido o una cuenta, comunicamos al negocio afectado los motivos y cómo impugnar la decisión; puedes impugnarla respondiendo a ese mensaje y la revisaremos de nuevo. No utilizamos sistemas automatizados para tomar estas decisiones.",
+    "p3": "Podemos retirar contenido, suspender una página de reservas o suspender una cuenta cuando sea necesario para cumplir la ley, poner fin a un incumplimiento grave de estas Condiciones o proteger a los Clientes finales, a otros usuarios o el servicio. Cuando proceda, nos pondremos antes en contacto contigo."
+  },
+  "s9": {
+    "title": "Nuestra propiedad intelectual",
+    "p1": "{brand}, su software, diseño, textos y marcas nos pertenecen a nosotros o a nuestros licenciantes. Estas Condiciones te dan derecho a usar el servicio para tu negocio mientras tu cuenta esté activa; no transfieren ninguna titularidad. Si nos envías comentarios o sugerencias, podemos usarlos libremente y sin obligación alguna contigo."
+  },
+  "s10": {
+    "title": "Disponibilidad y soporte",
+    "p1": "Trabajamos para que {brand} esté disponible, sea seguro y fiable y para resolver los problemas con rapidez, pero no garantizamos un funcionamiento ininterrumpido ni libre de errores. El mantenimiento programado se realiza, cuando es posible, en horas de poca actividad. El servicio depende de infraestructura de terceros (alojamiento, base de datos, envío de correo, pagos), y la entrega del correo electrónico depende también de los servidores de correo y filtros antispam de los destinatarios, por lo que no podemos garantizar que llegue cada correo.",
+    "p2": "El soporte se presta por correo electrónico en <email>{email}</email>, en inglés o en griego, en días laborables. Procuramos responder en un plazo de dos días laborables."
+  },
+  "s11": {
+    "title": "Fin del acuerdo",
+    "items": {
+      "i1": "<strong>Por tu parte:</strong> cancela tu suscripción en cualquier momento (véase más arriba) y elimina tu negocio desde <em>Ajustes → Privacidad y datos</em> y tu cuenta de usuario desde <em>Ajustes de la cuenta</em> cuando quieras.",
+      "i2": "<strong>Por nuestra parte, con preaviso:</strong> podemos poner fin al acuerdo por cualquier motivo con un preaviso de al menos 30 días por correo electrónico, reembolsando las cuotas pagadas por adelantado correspondientes al periodo posterior a la terminación.",
+      "i3": "<strong>Por nuestra parte, de forma inmediata:</strong> podemos suspender o cerrar una cuenta si incumples grave o reiteradamente estas Condiciones o la ley, si un pago sigue vencido tras el aviso o si una autoridad competente lo exige."
+    },
+    "p1": "Eliminar un negocio borra de forma permanente e inmediata sus clientes, citas, servicios y archivos subidos de nuestros sistemas en producción; las copias en las copias de seguridad de nuestro proveedor de base de datos se sobrescriben en un plazo de 30 días. Exporta antes todo lo que quieras conservar. Conservamos los registros de facturación durante el tiempo que exige la legislación tributaria, como se explica en la <privacy>Política de privacidad</privacy>."
+  },
+  "s12": {
+    "title": "Garantías",
+    "p1": "Prestamos {brand} con una pericia y diligencia razonables y conforme a su descripción. Aparte de ello, y en la medida en que la ley lo permita, el servicio se presta «tal cual» y no damos ninguna otra garantía, por ejemplo, de que cumpla todos tus requisitos particulares o de que te aporte un número determinado de reservas."
+  },
+  "s13": {
+    "title": "Responsabilidad",
+    "p1": "Nada de lo dispuesto en estas Condiciones limita ni excluye la responsabilidad que no pueda limitarse ni excluirse por ley, incluida la responsabilidad por dolo o culpa grave, o por muerte o lesiones personales.",
+    "p2": "En lo demás, en la medida en que la ley lo permita:",
+    "items": {
+      "i1": "ninguna de las partes responde, en caso de culpa leve, de daños indirectos o consecuenciales, ni del lucro cesante o la pérdida de ingresos, negocio, fondo de comercio o datos que podría haberse evitado utilizando la función de exportación;",
+      "i2": "la responsabilidad total de cada parte derivada de estas Condiciones o relacionada con ellas en cualquier periodo de 12 meses se limita a la mayor de las siguientes cantidades: (a) las cuotas que nos hayas pagado en los 12 meses anteriores al hecho que origine la reclamación y (b) 100 €."
+    },
+    "p3": "Nos indemnizarás frente a reclamaciones de terceros (incluidos Clientes finales y autoridades) causadas por Tu Contenido, por los servicios que prestas a tus Clientes finales o por tu incumplimiento de estas Condiciones o de la normativa de protección de datos, incluidos los gastos jurídicos razonables."
+  },
+  "s14": {
+    "title": "Confidencialidad",
+    "p1": "Cada parte mantendrá la confidencialidad de la información empresarial no pública de la otra y solo la utilizará para los fines de este acuerdo, salvo que la ley o una autoridad competente exijan su divulgación. Esta obligación se mantiene durante tres años tras la terminación del acuerdo y, respecto de los datos personales, mientras sea de aplicación el Acuerdo de tratamiento."
+  },
+  "s15": {
+    "title": "Fuerza mayor",
+    "p1": "Ninguna de las partes es responsable de retrasos o incumplimientos causados por acontecimientos ajenos a su control razonable, como catástrofes naturales, guerras, epidemias, huelgas, fallos de las redes públicas o del suministro eléctrico, o interrupciones en proveedores de infraestructura, siempre que adopte medidas razonables para limitar sus efectos."
+  },
+  "s16": {
+    "title": "Cambios en estas condiciones",
+    "p1": "Podemos actualizar estas Condiciones, por ejemplo para reflejar cambios en el servicio o en la ley. Informaremos por correo electrónico a los titulares de cuentas de los cambios sustanciales con al menos 30 días de antelación a su entrada en vigor, salvo que la ley exija un cambio antes. Si no estás de acuerdo, puedes cancelar antes de que se aplique el cambio; seguir usando {brand} después de esa fecha supone que aceptas las nuevas Condiciones. La versión y la fecha que figuran al principio de esta página indican qué versión se aplica."
+  },
+  "s17": {
+    "title": "Disposiciones generales",
+    "items": {
+      "i1": "Estas Condiciones (junto con el Acuerdo de tratamiento) constituyen el acuerdo íntegro entre nosotros sobre {brand} y sustituyen cualquier conversación anterior.",
+      "i2": "Si alguna disposición se declara inválida, el resto seguirá en vigor y la disposición inválida se sustituirá por otra válida que se acerque lo más posible a su finalidad.",
+      "i3": "No puedes ceder este acuerdo sin nuestro consentimiento. Nosotros podemos cederlo a un sucesor de nuestro negocio y te lo comunicaremos si lo hacemos.",
+      "i4": "Las notificaciones dirigidas a ti se envían a la dirección de correo electrónico del titular de la cuenta; las dirigidas a nosotros, a <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Ley aplicable y jurisdicción",
+    "p1": "Estas Condiciones y cualquier controversia relacionada con ellas se rigen por la ley griega. Los tribunales de Salónica (Grecia) tienen competencia exclusiva, salvo que una norma imperativa disponga otra cosa. No se aplica la Convención de las Naciones Unidas sobre los Contratos de Compraventa Internacional de Mercaderías."
+  },
+  "s19": {
+    "title": "Contacto",
+    "p1": "<provider></provider>. Correo electrónico: <email>{email}</email>. Consulta también nuestro <legal>aviso legal</legal>. Los servicios de {tradingName} distintos de {brand} se rigen por condiciones propias."
+  }
+}

@@ -1,22 +1,16 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ContactEmail, LegalDocument, type LegalSection } from '@/components/marketing/legal'
+import {
+  ContactEmail,
+  LegalDocument,
+  legalMetadata,
+  legalText,
+  type LegalSection,
+} from '@/components/marketing/legal'
 import { company } from '@/lib/legal'
-import { site, socialImage } from '@/lib/site'
+import { site } from '@/lib/site'
 
-const description = `Who provides ${site.name}: business name, address, VAT and registry numbers, and how to contact us.`
-
-export const metadata: Metadata = {
-  title: 'Legal notice',
-  description,
-  alternates: { canonical: '/legal' },
-  openGraph: {
-    images: [socialImage],
-    type: 'article',
-    url: '/legal',
-    title: `Legal notice · ${site.name}`,
-    description,
-  },
+export function generateMetadata(): Promise<Metadata> {
+  return legalMetadata('legal-notice', '/legal')
 }
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -28,89 +22,50 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   )
 }
 
-export default function LegalNoticePage() {
+export default async function LegalNoticePage() {
+  const { locale, t, p, list } = await legalText('legal-notice')
+  // The registered name is Greek; Greek readers see it first.
+  const [name, altName] =
+    locale === 'el'
+      ? [company.legalNameEl, company.legalName]
+      : [company.legalName, company.legalNameEl]
+  const section = (id: string, n: number, body: React.ReactNode): LegalSection => ({
+    id,
+    title: t(`s${n}.title`),
+    body,
+  })
+
   const sections: LegalSection[] = [
-    {
-      id: 'provider',
-      title: 'Service provider',
-      body: (
-        <dl className="mt-4 divide-y divide-border rounded-xl border border-border px-4 sm:px-5">
-          <Row label="Business name">
-            {company.legalName}
-            <span className="block text-sm text-muted-foreground">{company.legalNameEl}</span>
-          </Row>
-          <Row label="Legal form">Sole proprietorship (ατομική επιχείρηση), Greece</Row>
-          <Row label="Trading as">
-            {company.tradingName} ({site.name} is a product of {company.tradingName})
-          </Row>
-          <Row label="Address">
+    section(
+      'provider',
+      1,
+      <dl className="mt-4 divide-y divide-border rounded-xl border border-border px-4 sm:px-5">
+        <Row label={t('s1.businessName')}>
+          {name}
+          <span className="block text-sm text-muted-foreground">{altName}</span>
+        </Row>
+        <Row label={t('s1.legalForm')}>{t('s1.legalFormValue')}</Row>
+        <Row label={t('s1.tradingAs')}>{t('s1.tradingAsValue')}</Row>
+        <Row label={t('s1.address')}>
+          <span dir="ltr">
             {company.address.street}, {company.address.postalCode} {company.address.city},{' '}
             {company.address.country}
-          </Row>
-          <Row label="Email">
-            <ContactEmail />
-          </Row>
-          <Row label="VAT number (ΑΦΜ)">{company.vatNumber}</Row>
-          <Row label="Commercial registry">
-            General Commercial Registry of Greece (Γ.Ε.ΜΗ.), no. {company.gemiNumber}
-          </Row>
-          <Row label="Website">{site.url.replace(/^https:\/\//, '')}</Row>
-        </dl>
-      ),
-    },
-    {
-      id: 'contact-point',
-      title: 'Single point of contact',
-      body: (
-        <p>
-          Under the EU Digital Services Act, our single point of contact for users and for
-          authorities of EU member states, the European Commission and the European Board for
-          Digital Services is <ContactEmail subject="DSA contact" />. We can be contacted in English
-          and Greek. To report illegal content, see{' '}
-          <Link href="/terms#illegal-content">Reporting illegal content</Link>.
-        </p>
-      ),
-    },
-    {
-      id: 'documents',
-      title: 'Legal documents',
-      body: (
-        <ul>
-          <li>
-            <Link href="/terms">Terms of service</Link>: the agreement with businesses using{' '}
-            {site.name}.
-          </li>
-          <li>
-            <Link href="/dpa">Data processing agreement</Link>: part of the terms, GDPR article 28.
-          </li>
-          <li>
-            <Link href="/privacy">Privacy policy</Link>: how we process personal data.
-          </li>
-          <li>
-            <Link href="/cookies">Cookie policy</Link>: the only cookies we use.
-          </li>
-        </ul>
-      ),
-    },
-    {
-      id: 'disputes',
-      title: 'Disputes',
-      body: (
-        <p>
-          {site.name} is offered to businesses only. We are neither obliged nor willing to take part
-          in dispute resolution proceedings before a consumer arbitration board. If you have a
-          complaint, please email us first and we will do our best to resolve it.
-        </p>
-      ),
-    },
+          </span>
+        </Row>
+        <Row label={t('s1.email')}>
+          <ContactEmail />
+        </Row>
+        <Row label={t('s1.vat')}>{company.vatNumber}</Row>
+        <Row label={t('s1.registry')}>
+          {t('s1.registryValue', { gemiNumber: company.gemiNumber })}
+        </Row>
+        <Row label={t('s1.website')}>{site.url.replace(/^https:\/\//, '')}</Row>
+      </dl>,
+    ),
+    section('contact-point', 2, p('s2.p1', { subject: 'DSA contact' })),
+    section('documents', 3, list('s3.items')),
+    section('disputes', 4, p('s4.p1')),
   ]
 
-  return (
-    <LegalDocument
-      path="/legal"
-      title="Legal notice"
-      intro={<p>Information about the provider of {site.name}, as required by EU and Greek law.</p>}
-      sections={sections}
-    />
-  )
+  return <LegalDocument path="/legal" title={t('title')} intro={p('intro')} sections={sections} />
 }

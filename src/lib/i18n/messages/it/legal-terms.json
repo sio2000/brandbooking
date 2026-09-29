@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Termini di servizio",
+    "description": "L’accordo tra {brand} e le attività che lo utilizzano: prova, abbonamento, i tuoi dati, uso consentito, responsabilità e come contattarci."
+  },
+  "title": "Termini di servizio",
+  "intro": "L’accordo tra {brand} e le attività che lo utilizzano, scritto per essere letto. In breve: {days} giorni gratis senza carta, poi {price} al mese, disdici quando vuoi, i tuoi dati restano tuoi e trattiamo i dati dei tuoi clienti solo per far funzionare il servizio per te.",
+  "s1": {
+    "title": "Chi siamo e cosa regolano questi termini",
+    "p1": "{brand} è fornito da <provider></provider> («{brand}», «noi»).",
+    "p2": "I presenti termini di servizio (i «Termini») sono un contratto tra noi e l’attività o il professionista che crea un account {brand} («tu», il «Cliente»). Comprendono il nostro <dpa>Accordo sul trattamento dei dati</dpa> (l’«Accordo sul trattamento»), che si applica ai dati personali dei tuoi clienti che {brand} tratta per tuo conto. La nostra <privacy>Informativa sulla privacy</privacy> spiega come trattiamo i dati personali di cui siamo noi stessi titolari.",
+    "p3": "Accetti i presenti Termini quando, al momento della registrazione, selezioni la casella e crei un account. Se li accetti per conto di un’attività, confermi di avere il potere di vincolare tale attività."
+  },
+  "s2": {
+    "title": "Solo per uso professionale",
+    "p1": "{brand} è offerto esclusivamente a imprese, lavoratori autonomi e organizzazioni, per l’uso nell’ambito della loro attività commerciale, imprenditoriale, artigianale o professionale. Non è offerto ai consumatori. Per creare un account devi avere almeno 18 anni.",
+    "p2": "Le persone che prenotano un appuntamento tramite la tua pagina di prenotazione (i «Clienti finali») non hanno bisogno di un account e non sono parti dei presenti Termini. Il tuo rapporto con loro (i servizi che offri, i tuoi prezzi, le tue regole di cancellazione) riguarda soltanto te e loro."
+  },
+  "s3": {
+    "title": "Il servizio",
+    "p1": "{brand} è un software online che ti consente di pubblicare una pagina di prenotazione, gestire servizi, orari di apertura, personale, appuntamenti e schede clienti, consultare semplici statistiche sulla tua attività e inviare via email conferme, modifiche e promemoria degli appuntamenti. Lo forniamo «come servizio» via internet; non c’è nulla da installare.",
+    "p2": "Sviluppiamo {brand} in modo continuo. Possiamo aggiungere, modificare o rimuovere funzionalità. Se una modifica riduce in modo sostanziale le funzionalità principali per cui paghi, te lo comunicheremo con almeno 30 giorni di anticipo e potrai disdire prima che diventi efficace.",
+    "p3": "{brand} non gestisce i pagamenti dei tuoi appuntamenti e non è un agente, un intermediario né un marketplace tra te e i tuoi Clienti finali."
+  },
+  "s4": {
+    "title": "Il tuo account e il tuo team",
+    "items": {
+      "i1": "Fornisci informazioni corrette al momento della registrazione e mantienile aggiornate.",
+      "i2": "Mantieni riservata la tua password e non condividere gli account. Invita invece i membri del team; sei responsabile di ciò che le persone che inviti fanno nel tuo account.",
+      "i3": "Avvisaci senza indugio all’indirizzo <email>{email}</email> se ritieni che qualcuno abbia avuto accesso al tuo account senza autorizzazione."
+    }
+  },
+  "s5": {
+    "title": "Prova gratuita, prezzo, fatturazione e disdetta",
+    "trial": {
+      "title": "Prova gratuita",
+      "p1": "Ogni nuova attività riceve una prova gratuita di {days} giorni con tutte le funzionalità. Per iniziarla non serve una carta di pagamento e la prova non si trasforma in un abbonamento a pagamento, a meno che tu non ti abboni. Se non ti abboni entro la fine della prova, la tua pagina di prenotazione smette di accettare nuove prenotazioni; i tuoi dati restano nel tuo account e puoi abbonarti in qualsiasi momento per continuare."
+    },
+    "price": {
+      "title": "Abbonamento e prezzo",
+      "items": {
+        "i1": "L’abbonamento costa {price} per attività al mese, fatturato mensilmente in anticipo, e include tutte le funzionalità. Non ci sono costi di attivazione né commissioni per prenotazione.",
+        "i2": "Il prezzo include l’IVA all’aliquota greca del 24%. Al momento del pagamento non viene aggiunto nulla e ricevi una fattura per ogni pagamento.",
+        "i3": "I pagamenti sono gestiti dal nostro fornitore di servizi di pagamento, Stripe. Abbonandoti ci autorizzi ad addebitare, tramite Stripe, il tuo metodo di pagamento per ogni periodo di fatturazione fino alla disdetta.",
+        "i4": "Possiamo modificare il prezzo per i periodi di fatturazione futuri comunicandotelo via email almeno 30 giorni prima che la modifica si applichi a te. Se non sei d’accordo, puoi disdire prima che si applichi il nuovo prezzo."
+      }
+    },
+    "cancellation": {
+      "title": "Disdetta e rimborsi",
+      "items": {
+        "i1": "Puoi disdire in qualsiasi momento da <em>Fatturazione</em> nella tua dashboard. La disdetta ha effetto alla fine del periodo di fatturazione già pagato; fino ad allora tutto continua a funzionare.",
+        "i2": "I corrispettivi già pagati non sono rimborsabili per frazioni di mese, salvo che la legge imponga un rimborso o che siamo noi a porre fine al tuo abbonamento senza tua colpa (nel qual caso rimborsiamo la parte del periodo non utilizzata)."
+      }
+    },
+    "failed": {
+      "title": "Pagamenti non riusciti",
+      "p1": "Se un pagamento non va a buon fine, noi e Stripe riproveremo e ti avviseremo. Se risulta ancora non pagato 7 giorni dopo il primo tentativo fallito, la tua pagina di prenotazione smette di accettare nuove prenotazioni fino al pagamento. I tuoi dati non vengono cancellati a causa di un pagamento non riuscito."
+    }
+  },
+  "s6": {
+    "title": "I tuoi contenuti e i dati dei tuoi clienti",
+    "p1": "Mantieni tutti i diritti sui contenuti che inserisci in {brand}: dati dell’attività, immagini, servizi, prezzi e schede clienti (i «Tuoi Contenuti»). Ci concedi una licenza non esclusiva, mondiale e gratuita per ospitare, copiare, visualizzare e trattare i Tuoi Contenuti solo nella misura necessaria a fornirti, proteggere e supportare il servizio, inclusa la visualizzazione pubblica della tua pagina di prenotazione.",
+    "p2": "Per i dati personali dei tuoi Clienti finali e del tuo personale, <strong>tu sei il titolare del trattamento</strong> e <strong>{brand} è il tuo responsabile del trattamento</strong>. L’<dpa>Accordo sul trattamento</dpa> definisce i nostri obblighi in qualità di responsabile del trattamento e costituisce parte integrante dei presenti Termini.",
+    "p3": "Sei responsabile dei Tuoi Contenuti e di disporre di una base giuridica, ai sensi del GDPR e delle altre leggi applicabili, per raccogliere e utilizzare i dati dei tuoi clienti, anche informandoli al riguardo. {brand} è uno strumento di prenotazione, non un sistema medico o di cartelle cliniche: non conservare dati sanitari o altre categorie particolari di dati (ad esempio nelle note sui clienti o sugli appuntamenti), a meno che la legge non te lo consenta e tu abbia adottato le garanzie da essa richieste.",
+    "p4": "Puoi esportare i tuoi dati (clienti, appuntamenti, servizi e dati dell’attività) in qualsiasi momento dalla dashboard, anche dopo la disdetta."
+  },
+  "s7": {
+    "title": "Uso consentito",
+    "p1": "Non devi utilizzare {brand}, né consentire ad altri di utilizzarlo, per:",
+    "items": {
+      "i1": "offrire, pubblicizzare o organizzare servizi illegali, o servizi per i quali non disponi dell’abilitazione o della qualifica richiesta dalla legge;",
+      "i2": "pubblicare contenuti illeciti, ingannevoli, discriminatori, diffamatori, lesivi della proprietà intellettuale o della riservatezza altrui, o sessualmente espliciti;",
+      "i3": "inviare spam o messaggi promozionali tramite le email di prenotazione, o aggiungere persone come clienti senza una base giuridica;",
+      "i4": "spacciarti per un’altra attività o persona, o creare pagine di prenotazione per un’attività che non rappresenti;",
+      "i5": "accedere ai dati di altre attività, testare, sondare o aggirare le nostre misure di sicurezza, introdurre malware, estrarre dati dal servizio in modo automatizzato o sottoporlo a un carico eccessivo;",
+      "i6": "rivendere, concedere in sublicenza, copiare o decompilare il servizio, salvo nei casi espressamente consentiti dalla legge."
+    }
+  },
+  "s8": {
+    "title": "Segnalazione di contenuti illegali e nostre decisioni",
+    "p1": "Le pagine di prenotazione sono pubblicate su richiesta delle attività che le creano. Chiunque, comprese le autorità, può segnalare contenuti che ritiene illegali o contrari ai presenti Termini scrivendo al nostro punto di contatto unico, <email>{email}</email>, in inglese o in greco. Indica:",
+    "items": {
+      "i1": "l’indirizzo web (URL) del contenuto e che cosa esattamente è oggetto della segnalazione;",
+      "i2": "perché lo ritieni illegale o contrario ai presenti Termini;",
+      "i3": "il tuo nome e indirizzo email (non richiesti per le segnalazioni di materiale pedopornografico); e",
+      "i4": "una dichiarazione con cui affermi di ritenere in buona fede che la segnalazione sia accurata e completa."
+    },
+    "p2": "Confermiamo la ricezione, esaminiamo le segnalazioni con diligenza e obiettività e comunichiamo la nostra decisione a chi ha effettuato la segnalazione. Se rimuoviamo o limitiamo un contenuto o un account, comunichiamo all’attività interessata i motivi e come contestare la decisione; puoi contestarla rispondendo a quel messaggio e la riesamineremo. Non utilizziamo sistemi automatizzati per prendere queste decisioni.",
+    "p3": "Possiamo rimuovere contenuti, sospendere una pagina di prenotazione o sospendere un account quando ciò sia necessario per rispettare la legge, far cessare una grave violazione dei presenti Termini o tutelare i Clienti finali, altri utenti o il servizio. Ove opportuno, ti contattiamo prima."
+  },
+  "s9": {
+    "title": "La nostra proprietà intellettuale",
+    "p1": "{brand}, il suo software, il design, i testi e i marchi appartengono a noi o ai nostri licenzianti. I presenti Termini ti conferiscono il diritto di utilizzare il servizio per la tua attività finché il tuo account è attivo; non trasferiscono alcuna titolarità. Se ci invii feedback o suggerimenti, possiamo utilizzarli liberamente e senza alcun obbligo nei tuoi confronti."
+  },
+  "s10": {
+    "title": "Disponibilità e assistenza",
+    "p1": "Ci impegniamo a mantenere {brand} disponibile, sicuro e affidabile e a risolvere rapidamente i problemi, ma non garantiamo un funzionamento ininterrotto o privo di errori. La manutenzione programmata viene effettuata, ove possibile, negli orari di minore utilizzo. Il servizio si basa su infrastrutture di terzi (hosting, database, invio di email, pagamenti) e la consegna delle email dipende anche dai server di posta e dai filtri antispam dei destinatari; pertanto non possiamo garantire che ogni email arrivi a destinazione.",
+    "p2": "L’assistenza è fornita via email all’indirizzo <email>{email}</email>, in inglese o in greco, nei giorni lavorativi. Cerchiamo di rispondere entro due giorni lavorativi."
+  },
+  "s11": {
+    "title": "Cessazione dell’accordo",
+    "items": {
+      "i1": "<strong>Da parte tua:</strong> disdici l’abbonamento in qualsiasi momento (vedi sopra) ed elimina la tua attività da <em>Impostazioni → Privacy e dati</em> e il tuo account utente da <em>Impostazioni account</em> quando vuoi.",
+      "i2": "<strong>Da parte nostra, con preavviso:</strong> possiamo recedere dall’accordo per qualsiasi motivo con un preavviso di almeno 30 giorni via email, rimborsando i corrispettivi pagati in anticipo per il periodo successivo alla cessazione.",
+      "i3": "<strong>Da parte nostra, con effetto immediato:</strong> possiamo sospendere o chiudere un account se violi in modo grave o ripetuto i presenti Termini o la legge, se un pagamento resta scaduto dopo il sollecito o se lo richiede un’autorità competente."
+    },
+    "p1": "L’eliminazione di un’attività cancella definitivamente e subito dai nostri sistemi in produzione i suoi clienti, appuntamenti, servizi e file caricati; le copie presenti nei backup del nostro fornitore di database vengono sovrascritte entro 30 giorni. Esporta prima tutto ciò che vuoi conservare. Conserviamo i documenti di fatturazione per il tempo richiesto dalla normativa fiscale, come spiegato nell’<privacy>Informativa sulla privacy</privacy>."
+  },
+  "s12": {
+    "title": "Garanzie",
+    "p1": "Forniamo {brand} con ragionevole competenza e diligenza e in conformità alla sua descrizione. Oltre a ciò, e nella misura consentita dalla legge, il servizio è fornito «così com’è» e non prestiamo alcuna altra garanzia, ad esempio che soddisfi tutte le tue esigenze specifiche o che ti procuri un determinato numero di prenotazioni."
+  },
+  "s13": {
+    "title": "Responsabilità",
+    "p1": "Nessuna disposizione dei presenti Termini limita o esclude la responsabilità che non può essere limitata o esclusa per legge, compresa la responsabilità per dolo o colpa grave, o per morte o lesioni personali.",
+    "p2": "Per il resto, nella misura consentita dalla legge:",
+    "items": {
+      "i1": "nessuna delle parti risponde, in caso di colpa lieve, di danni indiretti o consequenziali, né di perdite di profitto, ricavi, affari, avviamento o dati che avrebbero potuto essere evitate utilizzando la funzione di esportazione;",
+      "i2": "la responsabilità complessiva di ciascuna parte derivante dai presenti Termini o a essi connessa, in qualsiasi periodo di 12 mesi, è limitata al maggiore tra (a) i corrispettivi che ci hai pagato nei 12 mesi precedenti il fatto che ha dato origine alla pretesa e (b) 100 €."
+    },
+    "p3": "Ci terrai indenni dalle pretese di terzi (compresi Clienti finali e autorità) derivanti dai Tuoi Contenuti, dai servizi che fornisci ai tuoi Clienti finali o dalla tua violazione dei presenti Termini o della normativa sulla protezione dei dati, comprese le ragionevoli spese legali."
+  },
+  "s14": {
+    "title": "Riservatezza",
+    "p1": "Ciascuna parte manterrà riservate le informazioni aziendali non pubbliche dell’altra e le utilizzerà solo per le finalità del presente accordo, salvo che la divulgazione sia richiesta dalla legge o da un’autorità competente. Questo obbligo dura tre anni dopo la cessazione dell’accordo e, per i dati personali, per tutto il tempo in cui si applica l’Accordo sul trattamento."
+  },
+  "s15": {
+    "title": "Eventi al di fuori del nostro controllo",
+    "p1": "Nessuna delle parti è responsabile di ritardi o inadempimenti causati da eventi al di fuori del suo ragionevole controllo, come calamità naturali, guerre, epidemie, scioperi, guasti delle reti pubbliche o dell’alimentazione elettrica, o interruzioni presso i fornitori di infrastrutture, a condizione che adotti misure ragionevoli per limitarne l’impatto."
+  },
+  "s16": {
+    "title": "Modifiche ai presenti termini",
+    "p1": "Possiamo aggiornare i presenti Termini, ad esempio per riflettere modifiche al servizio o alla legge. Comunicheremo via email ai titolari di account le modifiche sostanziali almeno 30 giorni prima della loro entrata in vigore, salvo che la legge imponga una modifica più rapida. Se non sei d’accordo, puoi disdire prima che la modifica si applichi; continuare a usare {brand} dopo tale data significa accettare i nuovi Termini. La versione e la data indicate in cima a questa pagina mostrano quale versione si applica."
+  },
+  "s17": {
+    "title": "Disposizioni generali",
+    "items": {
+      "i1": "I presenti Termini (insieme all’Accordo sul trattamento) costituiscono l’intero accordo tra noi relativo a {brand} e sostituiscono qualsiasi intesa precedente.",
+      "i2": "Se una disposizione viene dichiarata invalida, le restanti rimangono in vigore e la disposizione invalida è sostituita da una valida che si avvicini il più possibile al suo scopo.",
+      "i3": "Non puoi cedere il presente accordo senza il nostro consenso. Noi possiamo cederlo a un successore della nostra attività e te lo comunicheremo.",
+      "i4": "Le comunicazioni a te dirette sono inviate all’indirizzo email del titolare dell’account; quelle dirette a noi vanno inviate a <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Legge applicabile e foro competente",
+    "p1": "I presenti Termini e qualsiasi controversia a essi relativa sono regolati dalla legge greca. Il foro di Salonicco (Grecia) ha competenza esclusiva, salvo diversa disposizione di norme inderogabili. Non si applica la Convenzione delle Nazioni Unite sui contratti di compravendita internazionale di merci."
+  },
+  "s19": {
+    "title": "Contatti",
+    "p1": "<provider></provider>. Email: <email>{email}</email>. Consulta anche le nostre <legal>note legali</legal>. Per i servizi di {tradingName} diversi da {brand} si applicano condizioni separate."
+  }
+}

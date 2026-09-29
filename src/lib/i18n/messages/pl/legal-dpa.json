@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Umowa powierzenia przetwarzania danych",
+    "description": "Umowa powierzenia przetwarzania danych {brand} (art. 28 RODO) dla firm: jak przetwarzamy dane osobowe twoich klientów w twoim imieniu."
+  },
+  "title": "Umowa powierzenia przetwarzania danych",
+  "intro": "Gdy twoi klienci rezerwują przez {brand}, to ty decydujesz, jak wykorzystywane są ich dane, a my przetwarzamy je dla ciebie. Niniejsza umowa określa nasze obowiązki jako twojego podmiotu przetwarzającego zgodnie z art. 28 RODO. Stanowi część Warunków świadczenia usług, dlatego obowiązuje automatycznie dla każdego konta.",
+  "s1": {
+    "title": "Strony i zakres",
+    "p1": "Niniejsza Umowa powierzenia przetwarzania danych („Umowa powierzenia”) zostaje zawarta między firmą posiadającą konto {brand} („Administrator”, „ty”) a <provider></provider> („Podmiot przetwarzający”, „my”). Stanowi część <terms>Warunków świadczenia usług</terms> i obowiązuje automatycznie, bez konieczności odrębnego podpisu, za każdym razem, gdy przetwarzamy dane osobowe w twoim imieniu w ramach świadczenia {brand}.",
+    "p2": "Pojęcia takie jak „dane osobowe”, „przetwarzanie”, „administrator”, „podmiot przetwarzający”, „osoba, której dane dotyczą” i „naruszenie ochrony danych osobowych” mają znaczenie nadane im w rozporządzeniu (UE) 2016/679 („RODO”). W razie sprzeczności między niniejszą Umową powierzenia a Warunkami w zakresie ochrony danych pierwszeństwo ma niniejsza Umowa powierzenia."
+  },
+  "s2": {
+    "title": "Szczegóły przetwarzania",
+    "items": {
+      "i1": "<strong>Przedmiot i cel:</strong> świadczenie {brand} na twoją rzecz: hosting twojej strony rezerwacji, przyjmowanie rezerwacji i zarządzanie nimi, przechowywanie kartotek klientów, wysyłanie w twoim imieniu e-maili dotyczących wizyt, statystyki, eksporty i wsparcie.",
+      "i2": "<strong>Czas trwania:</strong> tak długo, jak korzystasz z {brand}, i do czasu usunięcia danych w sposób opisany poniżej.",
+      "i3": "<strong>Charakter przetwarzania:</strong> zbieranie za pośrednictwem strony rezerwacji lub twoich wpisów, przechowywanie, porządkowanie, pobieranie, wyświetlanie tobie i twojemu zespołowi, przesyłanie e-mailem, eksport i usuwanie.",
+      "i4": "<strong>Osoby, których dane dotyczą:</strong> twoi klienci i potencjalni klienci, którzy dokonują rezerwacji lub których dodajesz; twój personel i członkowie twojego zespołu.",
+      "i5": "<strong>Kategorie danych osobowych:</strong> imię i nazwisko, adres e-mail, numer telefonu, szczegóły wizyt (usługa, członek personelu, data, godzina, cena, status, historia), wiadomości od klientów, twoje notatki oraz imiona, nazwiska i grafiki personelu.",
+      "i6": "<strong>Szczególne kategorie:</strong> {brand} nie jest przeznaczony do przetwarzania szczególnych kategorii danych (takich jak dane dotyczące zdrowia). Nie będziesz ich wprowadzać, chyba że prawo ci na to pozwala i zapewniłeś wymagane zabezpieczenia; jeśli to zrobisz, środki bezpieczeństwa z niniejszej Umowy powierzenia mają zastosowanie także do nich."
+    }
+  },
+  "s3": {
+    "title": "Przetwarzanie wyłącznie na twoje polecenie",
+    "p1": "Przetwarzamy dane osobowe wyłącznie na twoje udokumentowane polecenie, którym są niniejsze Warunki i niniejsza Umowa powierzenia oraz ustawienia i działania, z których korzystasz w {brand}. Nie wykorzystujemy ich do własnych celów, nie sprzedajemy ich ani nie łączymy z innymi danymi, chyba że prawo Unii lub prawo greckie nakłada na nas obowiązek ich przetwarzania; w takim przypadku informujemy cię o tym wcześniej, o ile prawo tego nie zabrania.",
+    "p2": "Niezwłocznie poinformujemy cię, jeśli naszym zdaniem wydane polecenie narusza RODO lub inne przepisy o ochronie danych."
+  },
+  "s4": {
+    "title": "Poufność",
+    "p1": "Wszystkie osoby upoważnione przez nas do dostępu do danych osobowych są zobowiązane do zachowania poufności i uzyskują do nich dostęp wyłącznie w zakresie niezbędnym do świadczenia, zabezpieczania lub wspierania usługi."
+  },
+  "s5": {
+    "title": "Środki bezpieczeństwa (art. 32)",
+    "p1": "Wdrażamy odpowiednie środki techniczne i organizacyjne, uwzględniając stan wiedzy technicznej, koszty i ryzyka. Obecnie obejmują one:",
+    "items": {
+      "i1": "Szyfrowanie podczas przesyłania (HTTPS z HSTS; szyfrowane połączenia z bazą danych).",
+      "i2": "Szyfrowanie przechowywanych danych zapewniane przez naszych dostawców hostingu i bazy danych.",
+      "i3": "Logiczne oddzielenie danych każdej firmy, egzekwowane przy każdym żądaniu, oraz uprawnienia członków zespołu oparte na rolach.",
+      "i4": "Silne jednokierunkowe haszowanie haseł, bezpieczne pliki cookie sesji, ograniczanie prób logowania i blokowanie kont oraz ograniczanie liczby wrażliwych działań.",
+      "i5": "Politykę bezpieczeństwa treści i inne nagłówki bezpieczeństwa na każdej stronie.",
+      "i6": "Dziennik audytu istotnych działań dotyczących kont i danych.",
+      "i7": "Kopie zapasowe prowadzone przez naszego dostawcę bazy danych, umożliwiające przywrócenie danych po incydencie.",
+      "i8": "Dostęp do systemów produkcyjnych ograniczony do właściciela usługodawcy, z uwierzytelnianiem wieloskładnikowym na kontach u dostawców.",
+      "i9": "Minimalizację danych i automatyczne usuwanie zgodnie z naszą polityką prywatności."
+    },
+    "p2": "Możemy aktualizować te środki, o ile ogólny poziom bezpieczeństwa nie ulegnie obniżeniu."
+  },
+  "s6": {
+    "title": "Podmioty podprzetwarzające",
+    "p1": "Udzielasz nam ogólnej zgody na korzystanie z usług podmiotów podprzetwarzających. Podmiotami podprzetwarzającymi, które obecnie przetwarzają dane twoich klientów, są:",
+    "p2": "Nakładamy na każdy podmiot podprzetwarzający obowiązki w zakresie ochrony danych równoważne obowiązkom wynikającym z niniejszej Umowy powierzenia i pozostajemy wobec ciebie odpowiedzialni za ich wykonanie. Poinformujemy właścicieli kont e-mailem co najmniej 30 dni przed dodaniem lub zastąpieniem podmiotu podprzetwarzającego. W tym terminie możesz wnieść sprzeciw z uzasadnionych przyczyn dotyczących ochrony danych; jeśli nie będziemy w stanie rozsądnie uwzględnić sprzeciwu, możesz wypowiedzieć umowę w zakresie danej usługi i otrzymać proporcjonalny zwrot opłat uiszczonych z góry."
+  },
+  "s7": {
+    "title": "Przekazywanie danych do państw trzecich",
+    "p1": "Gdy podmiot podprzetwarzający przetwarza dane osobowe poza Europejskim Obszarem Gospodarczym, zapewniamy, że przekazanie jest zgodne z rozdziałem V RODO – na podstawie decyzji stwierdzającej odpowiedni stopień ochrony (takiej jak Ramowe zasady ochrony prywatności danych UE–USA w przypadku certyfikowanych dostawców) lub standardowych klauzul umownych Komisji Europejskiej, w razie potrzeby z dodatkowymi środkami."
+  },
+  "s8": {
+    "title": "Pomoc w obsłudze żądań osób, których dane dotyczą, i w zapewnianiu zgodności",
+    "p1": "{brand} pozwala ci samodzielnie obsłużyć większość żądań: wyświetlać, poprawiać i eksportować dane klientów, usunąć klienta i usunąć firmę. Jeśli otrzymamy żądanie bezpośrednio od jednego z twoich klientów, nie odpowiemy na nie sami (poza wskazaniem mu ciebie) i bez zbędnej zwłoki przekażemy je tobie.",
+    "p2": "Uwzględniając charakter przetwarzania oraz dostępne nam informacje, w rozsądnym zakresie pomożemy ci również wywiązać się z obowiązków dotyczących bezpieczeństwa, zgłaszania naruszeń, ocen skutków dla ochrony danych oraz uprzednich konsultacji (art. 32–36 RODO)."
+  },
+  "s9": {
+    "title": "Naruszenia ochrony danych osobowych",
+    "p1": "Powiadomimy cię bez zbędnej zwłoki, a w każdym razie w ciągu 48 godzin od stwierdzenia naruszenia ochrony danych osobowych dotyczącego twoich danych, e-mailem wysłanym do właściciela konta. Powiadomienie opisze, w zakresie znanym w danym momencie, charakter naruszenia, kategorie i przybliżoną liczbę osób, których dane dotyczą, oraz rekordów, których naruszenie dotyczy, prawdopodobne konsekwencje, a także podjęte lub proponowane środki. Podejmiemy rozsądne działania w celu ograniczenia naruszenia i będziemy przekazywać dalsze informacje w miarę ich uzyskiwania, abyś mógł wypełnić własne obowiązki zgłoszenia naruszenia organowi nadzorczemu i zawiadomienia osób, których dane dotyczą."
+  },
+  "s10": {
+    "title": "Usunięcie i zwrot danych",
+    "p1": "Możesz w każdej chwili wyeksportować swoje dane. Gdy usuniesz klienta, jego dane osobowe są natychmiast usuwane, a na potrzeby twoich statystyk pozostają jedynie anonimowe zapisy wizyt. Gdy usuniesz firmę, wszystkie jej dane są natychmiast usuwane z naszych systemów produkcyjnych. W obu przypadkach dane są nadpisywane w kopiach zapasowych naszego dostawcy bazy danych w ciągu 30 dni, chyba że prawo Unii lub prawo greckie wymaga od nas ich zachowania. Jeśli twoja subskrypcja się zakończy, a ty nie usuniesz firmy, twoje dane pozostają do twojej dyspozycji, dopóki ich nie usuniesz."
+  },
+  "s11": {
+    "title": "Informacje i audyty",
+    "p1": "Udostępnimy informacje rozsądnie niezbędne do wykazania przestrzegania art. 28 RODO i odpowiemy na twoje pisemne pytania dotyczące przetwarzania. Jeśli to nie wystarczy, możesz przeprowadzić audyt naszej zgodności, w tym za pośrednictwem niezależnego audytora zobowiązanego do zachowania poufności, z co najmniej 30-dniowym pisemnym uprzedzeniem, nie częściej niż raz w roku (chyba że wymaga tego organ nadzorczy lub po naruszeniu), w godzinach pracy i w sposób, który nie zagraża danym innych klientów ani naszemu bezpieczeństwu. Każda ze stron ponosi własne koszty."
+  },
+  "s12": {
+    "title": "Odpowiedzialność i okres obowiązywania",
+    "p1": "Odpowiedzialność z tytułu niniejszej Umowy powierzenia podlega ograniczeniom przewidzianym w Warunkach, chyba że prawo ich nie dopuszcza. Niniejsza Umowa powierzenia wygasa automatycznie, gdy przestaniemy przetwarzać dane osobowe w twoim imieniu; do tego czasu obowiązują zobowiązania dotyczące usunięcia danych i poufności. Podlega temu samemu prawu i tym samym sądom co Warunki."
+  },
+  "s13": {
+    "title": "Kontakt",
+    "p1": "Pytania dotyczące niniejszej Umowy powierzenia lub prośby o egzemplarz podpisany również przez nas: <email>{email}</email>."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Informativa sui cookie",
+    "description": "{brand} utilizza solo cookie strettamente necessari: nessun cookie analitico o pubblicitario. Scopri esattamente cosa viene memorizzato e perché."
+  },
+  "title": "Informativa sui cookie",
+  "intro": "{brand} riduce i cookie al minimo necessario per gestire un servizio sicuro. Ecco tutto ciò che memorizziamo nel tuo browser e perché.",
+  "s1": {
+    "title": "In breve",
+    "items": {
+      "i1": "Utilizziamo solo cookie strettamente necessari per farti accedere e mantenere sicura la tua sessione.",
+      "i2": "Non utilizziamo cookie analitici, pubblicitari o di tracciamento dei social media.",
+      "i3": "Le statistiche della pagina di prenotazione sono anonime e senza cookie. Non viene memorizzato nulla sui dispositivi dei tuoi clienti."
+    }
+  },
+  "s2": {
+    "title": "Cookie che utilizziamo",
+    "p1": "Questi cookie sono impostati direttamente da {brand} (cookie di prima parte). Vengono impostati solo per chi accede a un account aziendale.",
+    "table": {
+      "caption": "Cookie impostati da {brand}",
+      "name": "Nome",
+      "purpose": "Finalità",
+      "duration": "Durata",
+      "set": "Impostato",
+      "session": {
+        "devNote": "(<code>{devName}</code> negli ambienti di sviluppo senza HTTPS)",
+        "purpose": "Ti mantiene connesso. Contiene solo un token di sessione casuale; non può essere letto dagli script della pagina e viene inviato solo tramite connessioni sicure.",
+        "duration": "Fino a 30 giorni di inattività, rinnovato mentre usi l’app. Rimosso quando esci.",
+        "when": "Dopo l’accesso"
+      },
+      "business": {
+        "purpose": "Ricorda in quale attività stai lavorando se appartieni a più di una.",
+        "duration": "Finché non chiudi il browser o esci.",
+        "when": "Dopo l’accesso e il cambio di attività"
+      }
+    },
+    "p2": "Questi cookie sono strettamente necessari per fornire il servizio che hai richiesto; pertanto, ai sensi della direttiva e-Privacy (art. 5, par. 3) e della legge greca 3471/2006 (art. 4, par. 5), non richiedono il consenso. Per questo non mostriamo un banner dei cookie. Se in futuro aggiungessimo cookie facoltativi, ti chiederemmo prima il consenso."
+  },
+  "s3": {
+    "title": "Archiviazione locale",
+    "p1": "Se scegli un tema di colori (chiaro, scuro o di sistema), memorizziamo la scelta nell’archiviazione locale del tuo browser con la chiave <code>{key}</code>. Resta sul tuo dispositivo e non viene mai inviata ai nostri server. Puoi cancellarla in qualsiasi momento dalle impostazioni del browser."
+  },
+  "s4": {
+    "title": "Pagine di prenotazione e widget incorporabile",
+    "p1": "Quando i clienti aprono la pagina di prenotazione di un’attività (direttamente, tramite un codice QR o tramite il widget incorporato nel sito web dell’attività), {brand} non imposta cookie analitici o pubblicitari. Per mostrare alle attività l’andamento della loro pagina di prenotazione, contiamo in forma anonima fasi come «pagina visualizzata» e «prenotazione completata», senza cookie, identificativi dei dispositivi o dati personali.",
+    "p2": "Un sito web che incorpora il widget può utilizzare i propri cookie. Questi sono gestiti da quel sito web, non da {brand}."
+  },
+  "s5": {
+    "title": "Pagamenti con Stripe",
+    "p1": "Quando il titolare di un’attività si abbona o gestisce la fatturazione, viene indirizzato a pagine ospitate da Stripe. Stripe può impostare lì i propri cookie, ad esempio per prevenire le frodi, secondo le proprie informative sui cookie e sulla privacy."
+  },
+  "s6": {
+    "title": "Gestione dei cookie",
+    "p1": "Puoi bloccare o cancellare i cookie dalle impostazioni del browser. Se blocchi il cookie di sessione, non potrai accedere a {brand}; le pagine di prenotazione continueranno a funzionare."
+  },
+  "s7": {
+    "title": "Domande",
+    "p1": "Contattaci all’indirizzo <email>{email}</email>. Per saperne di più su come trattiamo i dati personali, consulta l’<privacy>informativa sulla privacy</privacy>."
+  }
+}

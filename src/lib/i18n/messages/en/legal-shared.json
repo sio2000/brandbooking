@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Legal",
+  "lastUpdated": "Last updated {date} · Version {version}",
+  "toc": "On this page",
+  "documentsNav": "Legal documents",
+  "documents": {
+    "terms": "Terms of service",
+    "privacy": "Privacy policy",
+    "dpa": "Data processing agreement",
+    "cookies": "Cookie policy",
+    "legal": "Legal notice"
+  },
+  "translation": {
+    "original": "Read the English original"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), sole proprietor trading as {tradingName}, {address}. VAT no. (ΑΦΜ) {vatNumber}, General Commercial Registry (Γ.Ε.ΜΗ.) no. {gemiNumber}",
+  "subprocessors": {
+    "caption": "Sub-processors",
+    "provider": "Provider",
+    "purpose": "What it does for us",
+    "location": "Location",
+    "netlify": {
+      "purpose": "Application hosting, serverless functions, content delivery, scheduled jobs, application logs and storage of uploaded images",
+      "country": "United States"
+    },
+    "neon": {
+      "purpose": "PostgreSQL database: accounts, businesses, customers, appointments and backups of them",
+      "country": "United States (database hosted on Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Delivery of transactional emails: booking confirmations, changes and reminders; account and security emails",
+      "country": "United States (emails sent from its EU region, Ireland)"
+    },
+    "stripe": {
+      "purpose": "Subscription payments, invoices and the billing portal for businesses (never receives End Customer data)",
+      "country": "Ireland"
+    }
+  }
+}

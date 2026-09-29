@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "Acuerdo de encargo del tratamiento",
+    "description": "El acuerdo de encargo del tratamiento de {brand} (artículo 28 del RGPD) para negocios: cómo tratamos por tu cuenta los datos personales de tus clientes."
+  },
+  "title": "Acuerdo de encargo del tratamiento",
+  "intro": "Cuando tus clientes reservan a través de {brand}, tú decides cómo se usan sus datos y nosotros los tratamos por tu cuenta. Este acuerdo establece nuestras obligaciones como tu encargado del tratamiento conforme al artículo 28 del RGPD. Forma parte de las Condiciones del servicio, por lo que se aplica automáticamente a todas las cuentas.",
+  "s1": {
+    "title": "Partes y ámbito",
+    "p1": "Este Acuerdo de encargo del tratamiento (el «Acuerdo de tratamiento») se celebra entre el negocio que tiene una cuenta de {brand} (el «Responsable», «tú») y <provider></provider> (el «Encargado», «nosotros»). Forma parte de las <terms>Condiciones del servicio</terms> y se aplica automáticamente, sin necesidad de firma aparte, siempre que tratemos datos personales por tu cuenta al prestar {brand}.",
+    "p2": "Términos como «datos personales», «tratamiento», «responsable del tratamiento», «encargado del tratamiento», «interesado» y «violación de la seguridad de los datos personales» tienen el significado que les da el Reglamento (UE) 2016/679 (el «RGPD»). Si este Acuerdo de tratamiento y las Condiciones se contradicen en materia de protección de datos, prevalece este Acuerdo de tratamiento."
+  },
+  "s2": {
+    "title": "Detalles del tratamiento",
+    "items": {
+      "i1": "<strong>Objeto y finalidad:</strong> prestarte {brand}: alojar tu página de reservas, recibir y gestionar reservas, almacenar fichas de clientes, enviar correos de citas en tu nombre, estadísticas, exportaciones y soporte.",
+      "i2": "<strong>Duración:</strong> mientras uses {brand} y hasta que los datos se eliminen como se describe más abajo.",
+      "i3": "<strong>Naturaleza del tratamiento:</strong> recogida a través de la página de reservas o de lo que introduzcas, conservación, organización, consulta, presentación a ti y a tu equipo, transmisión por correo electrónico, exportación y supresión.",
+      "i4": "<strong>Interesados:</strong> tus clientes y posibles clientes que reservan o a quienes añades; tu personal y los miembros de tu equipo.",
+      "i5": "<strong>Categorías de datos personales:</strong> nombre, dirección de correo electrónico, número de teléfono, detalles de las citas (servicio, miembro del personal, fecha, hora, precio, estado, historial), mensajes de los clientes, notas que escribas, y nombres y horarios del personal.",
+      "i6": "<strong>Categorías especiales:</strong> {brand} no está diseñado para categorías especiales de datos (como los datos de salud). No las introducirás salvo que la ley te lo permita y hayas asegurado las garantías necesarias; si lo haces, las medidas de seguridad de este Acuerdo de tratamiento también se les aplican."
+    }
+  },
+  "s3": {
+    "title": "Tratamiento solo siguiendo tus instrucciones",
+    "p1": "Tratamos los datos personales únicamente siguiendo tus instrucciones documentadas, que son estas Condiciones y este Acuerdo de tratamiento, así como los ajustes y acciones que utilices en {brand}. No los usamos para nuestros propios fines, no los vendemos ni los combinamos con otros datos, salvo que el Derecho de la UE o el Derecho griego nos obliguen a tratarlos; en ese caso te informaremos previamente, salvo que la ley lo prohíba.",
+    "p2": "Te informaremos inmediatamente si, en nuestra opinión, una instrucción infringe el RGPD u otra normativa de protección de datos."
+  },
+  "s4": {
+    "title": "Confidencialidad",
+    "p1": "Todas las personas autorizadas por nosotros para acceder a los datos personales están sujetas a un deber de confidencialidad y solo acceden a ellos en la medida necesaria para prestar, proteger o dar soporte al servicio."
+  },
+  "s5": {
+    "title": "Medidas de seguridad (artículo 32)",
+    "p1": "Aplicamos medidas técnicas y organizativas apropiadas, teniendo en cuenta el estado de la técnica, los costes y los riesgos. Actualmente incluyen:",
+    "items": {
+      "i1": "Cifrado en tránsito (HTTPS con HSTS; conexiones cifradas a la base de datos).",
+      "i2": "Cifrado en reposo proporcionado por nuestros proveedores de alojamiento y de base de datos.",
+      "i3": "Separación lógica de los datos de cada negocio, aplicada en cada solicitud, y permisos basados en funciones para los miembros del equipo.",
+      "i4": "Hash unidireccional robusto de las contraseñas, cookies de sesión seguras, limitación de intentos de inicio de sesión y bloqueo de cuentas, y limitación de frecuencia de las acciones sensibles.",
+      "i5": "Una política de seguridad de contenidos y otras cabeceras de seguridad en todas las páginas.",
+      "i6": "Un registro de auditoría de las acciones relevantes sobre cuentas y datos.",
+      "i7": "Copias de seguridad mantenidas por nuestro proveedor de base de datos que permiten la restauración tras un incidente.",
+      "i8": "Acceso a los sistemas de producción restringido al titular del proveedor, con autenticación multifactor en las cuentas de los proveedores.",
+      "i9": "Minimización de datos y eliminación automática según lo previsto en nuestra política de privacidad."
+    },
+    "p2": "Podemos actualizar estas medidas siempre que no se reduzca el nivel global de seguridad."
+  },
+  "s6": {
+    "title": "Subencargados del tratamiento",
+    "p1": "Nos otorgas una autorización general para recurrir a subencargados del tratamiento. Los subencargados que tratan actualmente los datos de tus clientes son:",
+    "p2": "Imponemos a cada subencargado obligaciones de protección de datos equivalentes a las de este Acuerdo de tratamiento y seguimos siendo responsables ante ti de su cumplimiento. Avisaremos por correo electrónico a los titulares de cuentas con al menos 30 días de antelación antes de añadir o sustituir un subencargado. Puedes oponerte por motivos razonables de protección de datos dentro de ese plazo; si no podemos atender razonablemente tu objeción, puedes resolver el servicio afectado y recibir el reembolso proporcional de las cuotas pagadas por adelantado."
+  },
+  "s7": {
+    "title": "Transferencias internacionales",
+    "p1": "Cuando un subencargado trate datos personales fuera del Espacio Económico Europeo, nos aseguramos de que la transferencia cumpla el capítulo V del RGPD, mediante una decisión de adecuación (como el Marco de Privacidad de Datos UE-EE. UU. para proveedores certificados) o las cláusulas contractuales tipo de la Comisión Europea con medidas complementarias cuando sea necesario."
+  },
+  "s8": {
+    "title": "Asistencia con las solicitudes de los interesados y el cumplimiento",
+    "p1": "{brand} te permite responder tú mismo a la mayoría de las solicitudes: consultar, rectificar y exportar datos de clientes, borrar a un cliente y eliminar tu negocio. Si recibimos una solicitud directamente de uno de tus clientes, no la responderemos nosotros (salvo para remitirle a ti) y te la trasladaremos sin dilación indebida.",
+    "p2": "Teniendo en cuenta la naturaleza del tratamiento y la información de que disponemos, también te ayudaremos razonablemente a cumplir tus obligaciones en materia de seguridad, notificación de violaciones, evaluaciones de impacto relativas a la protección de datos y consulta previa (artículos 32 a 36 del RGPD)."
+  },
+  "s9": {
+    "title": "Violaciones de la seguridad de los datos personales",
+    "p1": "Te notificaremos sin dilación indebida, y en cualquier caso en un plazo de 48 horas desde que tengamos conocimiento de una violación de la seguridad de los datos personales que afecte a tus datos, mediante correo electrónico al titular de la cuenta. La notificación describirá, en la medida en que se conozca en ese momento, la naturaleza de la violación, las categorías y el número aproximado de interesados y registros afectados, las consecuencias probables y las medidas adoptadas o propuestas. Adoptaremos medidas razonables para contener la violación y facilitaremos más información a medida que esté disponible, para que puedas cumplir tus propias obligaciones de notificación a la autoridad de control y de comunicación a los interesados."
+  },
+  "s10": {
+    "title": "Supresión y devolución de los datos",
+    "p1": "Puedes exportar tus datos en cualquier momento. Cuando borras a un cliente, sus datos personales se eliminan de inmediato y solo quedan registros de citas anónimos para tus estadísticas. Cuando eliminas tu negocio, todos sus datos se borran de inmediato de nuestros sistemas en producción. En ambos casos, los datos se sobrescriben en las copias de seguridad de nuestro proveedor de base de datos en un plazo de 30 días, salvo que el Derecho de la UE o el Derecho griego nos obliguen a conservarlos. Si tu suscripción termina sin que elimines tu negocio, tus datos siguen a tu disposición hasta que los elimines."
+  },
+  "s11": {
+    "title": "Información y auditorías",
+    "p1": "Pondremos a tu disposición la información razonablemente necesaria para demostrar el cumplimiento del artículo 28 del RGPD y responderemos a tus preguntas por escrito sobre nuestro tratamiento. Si no fuera suficiente, puedes auditar nuestro cumplimiento, también a través de un auditor independiente sujeto a confidencialidad, con un preaviso por escrito de al menos 30 días, no más de una vez al año (salvo que lo exija una autoridad de control o tras una violación), en horario laboral y de forma que no comprometa los datos de otros clientes ni nuestra seguridad. Cada parte asume sus propios costes."
+  },
+  "s12": {
+    "title": "Responsabilidad y duración",
+    "p1": "La responsabilidad derivada de este Acuerdo de tratamiento está sujeta a las limitaciones de las Condiciones, salvo que la ley no las permita. Este Acuerdo de tratamiento finaliza automáticamente cuando dejamos de tratar datos personales por tu cuenta; las obligaciones de supresión y confidencialidad se mantienen hasta entonces. Se rige por la misma ley y los mismos tribunales que las Condiciones."
+  },
+  "s13": {
+    "title": "Contacto",
+    "p1": "Preguntas sobre este Acuerdo de tratamiento o solicitudes de una copia firmada también por nosotros: <email>{email}</email>."
+  }
+}

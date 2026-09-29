@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Yasal bildirim",
+    "description": "{brand}’u kim sağlıyor: işletme adı, adres, vergi ve sicil numaraları ve bize nasıl ulaşabileceğiniz."
+  },
+  "title": "Yasal bildirim",
+  "intro": "AB hukuku ve Yunan hukuku uyarınca gerekli olan, {brand} sağlayıcısına ilişkin bilgiler.",
+  "s1": {
+    "title": "Hizmet sağlayıcı",
+    "businessName": "İşletme adı",
+    "legalForm": "Hukuki şekil",
+    "legalFormValue": "Şahıs işletmesi (ατομική επιχείρηση), Yunanistan",
+    "tradingAs": "Ticari ad",
+    "tradingAsValue": "{tradingName} ({brand}, {tradingName} ürünüdür)",
+    "address": "Adres",
+    "email": "E-posta",
+    "vat": "Vergi numarası (ΑΦΜ)",
+    "registry": "Ticaret sicili",
+    "registryValue": "Yunanistan Genel Ticaret Sicili (Γ.Ε.ΜΗ.), no. {gemiNumber}",
+    "website": "Web sitesi"
+  },
+  "s2": {
+    "title": "Tek irtibat noktası",
+    "p1": "AB Dijital Hizmetler Yasası uyarınca kullanıcılar ile AB üye devletlerinin makamları, Avrupa Komisyonu ve Avrupa Dijital Hizmetler Kurulu için tek irtibat noktamız <email>{email}</email> adresidir. Bize İngilizce ve Yunanca ulaşabilirsiniz. Yasa dışı içeriği bildirmek için <illegal>Yasa dışı içeriğin bildirilmesi</illegal> bölümüne bakın."
+  },
+  "s3": {
+    "title": "Yasal belgeler",
+    "items": {
+      "i1": "<terms>Hizmet koşulları</terms>: {brand}’u kullanan işletmelerle yapılan sözleşme.",
+      "i2": "<dpa>Veri işleme sözleşmesi</dpa>: koşulların bir parçası, GDPR madde 28.",
+      "i3": "<privacy>Gizlilik politikası</privacy>: kişisel verileri nasıl işlediğimiz.",
+      "i4": "<cookies>Çerez politikası</cookies>: kullandığımız tek çerezler."
+    }
+  },
+  "s4": {
+    "title": "Uyuşmazlıklar",
+    "p1": "{brand} yalnızca işletmelere sunulur. Tüketici hakem heyeti önündeki uyuşmazlık çözüm süreçlerine katılma yükümlülüğümüz veya isteğimiz yoktur. Bir şikâyetiniz varsa lütfen önce bize e-posta gönderin; sorunu çözmek için elimizden geleni yaparız."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Rechtliches",
+  "lastUpdated": "Zuletzt aktualisiert am {date} · Version {version}",
+  "toc": "Auf dieser Seite",
+  "documentsNav": "Rechtliche Dokumente",
+  "documents": {
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzerklärung",
+    "dpa": "Auftragsverarbeitungsvertrag",
+    "cookies": "Cookie-Richtlinie",
+    "legal": "Impressum"
+  },
+  "translation": {
+    "original": "Englisches Original lesen"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), Einzelunternehmer, handelnd unter {tradingName}, {address}. USt-IdNr./Steuernummer (ΑΦΜ) {vatNumber}, Allgemeines Handelsregister Griechenlands (Γ.Ε.ΜΗ.) Nr. {gemiNumber}",
+  "subprocessors": {
+    "caption": "Unterauftragsverarbeiter",
+    "provider": "Anbieter",
+    "purpose": "Was er für uns tut",
+    "location": "Standort",
+    "netlify": {
+      "purpose": "Hosting der Anwendung, Serverless-Funktionen, Content Delivery, geplante Aufgaben, Anwendungsprotokolle und Speicherung hochgeladener Bilder",
+      "country": "Vereinigte Staaten"
+    },
+    "neon": {
+      "purpose": "PostgreSQL-Datenbank: Konten, Unternehmen, Kunden, Termine und deren Sicherungskopien",
+      "country": "Vereinigte Staaten (Datenbank gehostet bei Amazon Web Services)"
+    },
+    "resend": {
+      "purpose": "Zustellung transaktionaler E-Mails: Buchungsbestätigungen, Änderungen und Erinnerungen; Konto- und Sicherheits-E-Mails",
+      "country": "Vereinigte Staaten (E-Mails werden aus der EU-Region in Irland versendet)"
+    },
+    "stripe": {
+      "purpose": "Abonnementzahlungen, Rechnungen und das Abrechnungsportal für Unternehmen (erhält niemals Daten von Endkunden)",
+      "country": "Irland"
+    }
+  }
+}

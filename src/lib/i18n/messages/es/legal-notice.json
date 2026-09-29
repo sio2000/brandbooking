@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Aviso legal",
+    "description": "Quién presta {brand}: nombre del negocio, dirección, números fiscal y de registro, y cómo contactarnos."
+  },
+  "title": "Aviso legal",
+  "intro": "Información sobre el prestador de {brand}, conforme a lo exigido por el Derecho de la UE y el Derecho griego.",
+  "s1": {
+    "title": "Prestador del servicio",
+    "businessName": "Nombre del negocio",
+    "legalForm": "Forma jurídica",
+    "legalFormValue": "Empresario individual (ατομική επιχείρηση), Grecia",
+    "tradingAs": "Nombre comercial",
+    "tradingAsValue": "{tradingName} ({brand} es un producto de {tradingName})",
+    "address": "Dirección",
+    "email": "Correo electrónico",
+    "vat": "Número de identificación fiscal (ΑΦΜ)",
+    "registry": "Registro mercantil",
+    "registryValue": "Registro General Mercantil de Grecia (Γ.Ε.ΜΗ.), n.º {gemiNumber}",
+    "website": "Sitio web"
+  },
+  "s2": {
+    "title": "Punto único de contacto",
+    "p1": "Conforme al Reglamento de Servicios Digitales de la UE, nuestro punto único de contacto para los usuarios y para las autoridades de los Estados miembros de la UE, la Comisión Europea y la Junta Europea de Servicios Digitales es <email>{email}</email>. Puedes contactarnos en inglés y en griego. Para notificar contenido ilícito, consulta <illegal>Notificación de contenido ilícito</illegal>."
+  },
+  "s3": {
+    "title": "Documentos legales",
+    "items": {
+      "i1": "<terms>Condiciones del servicio</terms>: el acuerdo con los negocios que usan {brand}.",
+      "i2": "<dpa>Acuerdo de encargo del tratamiento</dpa>: parte de las condiciones, artículo 28 del RGPD.",
+      "i3": "<privacy>Política de privacidad</privacy>: cómo tratamos los datos personales.",
+      "i4": "<cookies>Política de cookies</cookies>: las únicas cookies que usamos."
+    }
+  },
+  "s4": {
+    "title": "Litigios",
+    "p1": "{brand} se ofrece únicamente a negocios. No estamos obligados ni dispuestos a participar en procedimientos de resolución de litigios ante una entidad de arbitraje de consumo. Si tienes una queja, escríbenos primero por correo electrónico y haremos todo lo posible por resolverla."
+  }
+}

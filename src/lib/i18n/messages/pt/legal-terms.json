@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Termos de serviço",
+    "description": "O acordo entre o {brand} e os negócios que o utilizam: período experimental, subscrição, os seus dados, utilização aceitável, responsabilidade e como nos contactar."
+  },
+  "title": "Termos de serviço",
+  "intro": "O acordo entre o {brand} e os negócios que o utilizam, escrito para ser lido. Em resumo: {days} dias grátis sem cartão, depois {price} por mês, cancelamento a qualquer momento, os seus dados continuam a ser seus e tratamos os dados dos seus clientes apenas para lhe prestar o serviço.",
+  "s1": {
+    "title": "Quem somos e o que estes termos abrangem",
+    "p1": "O {brand} é prestado por <provider></provider> («{brand}», «nós»).",
+    "p2": "Estes termos de serviço (os «Termos») constituem um contrato entre nós e o negócio ou profissional que cria uma conta {brand} («o utilizador», o «Cliente»). Incluem o nosso <dpa>Acordo de tratamento de dados</dpa> (o «Acordo de tratamento»), que se aplica aos dados pessoais dos seus clientes que o {brand} trata por sua conta. A nossa <privacy>Política de privacidade</privacy> explica como tratamos os dados pessoais pelos quais somos nós próprios responsáveis.",
+    "p3": "Aceita estes Termos quando assinala a caixa no registo e cria uma conta. Se os aceitar em nome de um negócio, confirma que tem poderes para vincular esse negócio."
+  },
+  "s2": {
+    "title": "Apenas para uso profissional",
+    "p1": "O {brand} é disponibilizado apenas a empresas, profissionais independentes e organizações, para utilização no âmbito da sua atividade comercial, empresarial, artesanal ou profissional. Não é disponibilizado a consumidores. É necessário ter pelo menos 18 anos para criar uma conta.",
+    "p2": "As pessoas que fazem uma marcação através da sua página de reservas (os «Clientes finais») não precisam de conta e não são partes nestes Termos. A sua relação com elas (os serviços que presta, os seus preços, as suas regras de cancelamento) diz respeito apenas a si e a elas."
+  },
+  "s3": {
+    "title": "O serviço",
+    "p1": "O {brand} é um software online que lhe permite publicar uma página de reservas, gerir serviços, horários de funcionamento, pessoal, marcações e fichas de clientes, consultar estatísticas simples do seu negócio e enviar por e-mail confirmações, alterações e lembretes de marcações. Prestamo-lo «como serviço» através da internet; não é preciso instalar nada.",
+    "p2": "Desenvolvemos o {brand} de forma contínua. Podemos acrescentar, alterar ou remover funcionalidades. Se uma alteração reduzir substancialmente a funcionalidade essencial pela qual paga, informá-lo-emos com pelo menos 30 dias de antecedência e poderá cancelar antes de a alteração produzir efeitos.",
+    "p3": "O {brand} não processa pagamentos das suas marcações e não é agente, intermediário nem mercado entre si e os seus Clientes finais."
+  },
+  "s4": {
+    "title": "A sua conta e a sua equipa",
+    "items": {
+      "i1": "Forneça informações exatas no registo e mantenha-as atualizadas.",
+      "i2": "Mantenha a sua palavra-passe confidencial e não partilhe contas. Em vez disso, convide membros da equipa; é responsável pelo que as pessoas que convidar fizerem na sua conta.",
+      "i3": "Informe-nos sem demora através de <email>{email}</email> se considerar que a sua conta foi acedida sem autorização."
+    }
+  },
+  "s5": {
+    "title": "Período experimental, preço, faturação e cancelamento",
+    "trial": {
+      "title": "Período experimental",
+      "p1": "Cada novo negócio beneficia de um período experimental gratuito de {days} dias com todas as funcionalidades. Não é necessário cartão de pagamento para o iniciar e o período experimental não se converte numa subscrição paga, a menos que subscreva. Se não subscrever até ao fim do período experimental, a sua página de reservas deixa de aceitar novas reservas; os seus dados permanecem na sua conta e pode subscrever a qualquer momento para continuar."
+    },
+    "price": {
+      "title": "Subscrição e preço",
+      "items": {
+        "i1": "A subscrição custa {price} por negócio e por mês, faturada mensalmente e antecipadamente, e inclui todas as funcionalidades. Não há taxas de adesão nem comissões por reserva.",
+        "i2": "O preço inclui IVA à taxa grega de 24%. Nada é acrescentado no pagamento e recebe uma fatura por cada pagamento.",
+        "i3": "Os pagamentos são processados pelo nosso prestador de serviços de pagamento, a Stripe. Ao subscrever, autoriza-nos a debitar, através da Stripe, o seu meio de pagamento em cada período de faturação até cancelar.",
+        "i4": "Podemos alterar o preço para períodos de faturação futuros, informando-o por e-mail pelo menos 30 dias antes de a alteração se lhe aplicar. Se não concordar, pode cancelar antes de o novo preço se aplicar."
+      }
+    },
+    "cancellation": {
+      "title": "Cancelamento e reembolsos",
+      "items": {
+        "i1": "Pode cancelar a qualquer momento em <em>Faturação</em> no seu painel. O cancelamento produz efeitos no final do período de faturação já pago; até lá, tudo continua a funcionar.",
+        "i2": "Os montantes já pagos não são reembolsáveis relativamente a meses incompletos, exceto quando a lei exija um reembolso ou quando cessarmos a sua subscrição sem culpa sua (caso em que reembolsamos a parte não utilizada do período)."
+      }
+    },
+    "failed": {
+      "title": "Pagamentos falhados",
+      "p1": "Se um pagamento falhar, nós e a Stripe tentaremos novamente e informá-lo-emos. Se continuar por pagar 7 dias após a primeira falha, a sua página de reservas deixa de aceitar novas reservas até que o pagamento seja efetuado. Os seus dados não são eliminados devido a um pagamento falhado."
+    }
+  },
+  "s6": {
+    "title": "O seu conteúdo e os dados dos seus clientes",
+    "p1": "Mantém todos os direitos sobre o conteúdo que introduz no {brand}: dados do negócio, imagens, serviços, preços e fichas de clientes (o «Seu Conteúdo»). Concede-nos uma licença não exclusiva, mundial e gratuita para alojar, copiar, apresentar e tratar o Seu Conteúdo apenas na medida necessária para lhe prestar, proteger e apoiar o serviço, incluindo a apresentação pública da sua página de reservas.",
+    "p2": "Relativamente aos dados pessoais dos seus Clientes finais e do seu pessoal, <strong>o utilizador é o responsável pelo tratamento</strong> e <strong>o {brand} é o seu subcontratante</strong>. O <dpa>Acordo de tratamento</dpa> estabelece as nossas obrigações enquanto subcontratante e faz parte integrante destes Termos.",
+    "p3": "É responsável pelo Seu Conteúdo e por dispor de um fundamento jurídico, nos termos do RGPD e da demais legislação aplicável, para recolher e utilizar os dados dos seus clientes, incluindo informá-los a esse respeito. O {brand} é uma ferramenta de reservas e não um sistema médico ou de registos de saúde: não armazene dados de saúde nem outras categorias especiais de dados (por exemplo, em notas de clientes ou de marcações), a menos que a lei o permita e tenha adotado as garantias que esta exige.",
+    "p4": "Pode exportar os seus dados (clientes, marcações, serviços e dados do negócio) a qualquer momento a partir do painel, incluindo após cancelar."
+  },
+  "s7": {
+    "title": "Utilização aceitável",
+    "p1": "Não pode utilizar o {brand}, nem permitir que alguém o utilize, para:",
+    "items": {
+      "i1": "oferecer, publicitar ou organizar serviços ilegais, ou serviços para os quais não esteja licenciado ou habilitado quando a lei exija uma licença ou habilitação;",
+      "i2": "publicar conteúdos ilícitos, enganosos, discriminatórios, difamatórios, que violem a propriedade intelectual ou a privacidade de terceiros, ou sexualmente explícitos;",
+      "i3": "enviar spam ou mensagens de marketing através dos e-mails de reserva, ou adicionar pessoas como clientes sem fundamento jurídico;",
+      "i4": "fazer-se passar por outro negócio ou pessoa, ou criar páginas de reservas para um negócio que não representa;",
+      "i5": "aceder a dados de outros negócios, testar, sondar ou contornar as nossas medidas de segurança, introduzir software malicioso, extrair dados do serviço de forma automatizada ou sujeitá-lo a uma carga excessiva;",
+      "i6": "revender, sublicenciar, copiar ou fazer engenharia inversa do serviço, exceto quando a lei o permita expressamente."
+    }
+  },
+  "s8": {
+    "title": "Denúncia de conteúdos ilegais e as nossas decisões",
+    "p1": "As páginas de reservas são publicadas a pedido dos negócios que as criam. Qualquer pessoa, incluindo as autoridades, pode denunciar conteúdos que considere ilegais ou contrários a estes Termos escrevendo para o nosso ponto de contacto único, <email>{email}</email>, em inglês ou em grego. Indique:",
+    "items": {
+      "i1": "o endereço web (URL) do conteúdo e o que exatamente está em causa;",
+      "i2": "por que razão o considera ilegal ou contrário a estes Termos;",
+      "i3": "o seu nome e endereço de e-mail (não obrigatórios em denúncias de material de abuso sexual de crianças); e",
+      "i4": "uma declaração de que acredita, de boa-fé, que a denúncia é exata e completa."
+    },
+    "p2": "Confirmamos a receção, analisamos as denúncias com diligência e objetividade e comunicamos a nossa decisão ao denunciante. Se removermos ou restringirmos um conteúdo ou uma conta, informamos o negócio em causa dos motivos e de como contestar a decisão; pode contestá-la respondendo a essa mensagem e voltaremos a analisá-la. Não utilizamos sistemas automatizados para tomar estas decisões.",
+    "p3": "Podemos remover conteúdos, suspender uma página de reservas ou suspender uma conta quando tal seja necessário para cumprir a lei, pôr termo a uma violação grave destes Termos ou proteger os Clientes finais, outros utilizadores ou o serviço. Quando adequado, contactamo-lo previamente."
+  },
+  "s9": {
+    "title": "A nossa propriedade intelectual",
+    "p1": "O {brand}, o seu software, design, textos e marcas pertencem-nos a nós ou aos nossos licenciantes. Estes Termos conferem-lhe o direito de utilizar o serviço para o seu negócio enquanto a sua conta estiver ativa; não transferem qualquer titularidade. Se nos enviar comentários ou sugestões, podemos utilizá-los livremente e sem qualquer obrigação para consigo."
+  },
+  "s10": {
+    "title": "Disponibilidade e apoio",
+    "p1": "Trabalhamos para manter o {brand} disponível, seguro e fiável e para resolver rapidamente os problemas, mas não garantimos um funcionamento ininterrupto ou isento de erros. A manutenção programada é feita, sempre que possível, em horários de menor utilização. O serviço depende de infraestruturas de terceiros (alojamento, base de dados, envio de e-mails, pagamentos) e a entrega de e-mails depende também dos servidores de correio e dos filtros de spam dos destinatários, pelo que não podemos garantir que todos os e-mails cheguem ao destino.",
+    "p2": "O apoio é prestado por e-mail através de <email>{email}</email>, em inglês ou em grego, em dias úteis. Procuramos responder no prazo de dois dias úteis."
+  },
+  "s11": {
+    "title": "Cessação do acordo",
+    "items": {
+      "i1": "<strong>Por iniciativa sua:</strong> cancele a sua subscrição a qualquer momento (ver acima) e elimine o seu negócio em <em>Definições → Privacidade e dados</em> e a sua conta de utilizador em <em>Definições da conta</em> sempre que quiser.",
+      "i2": "<strong>Por iniciativa nossa, com pré-aviso:</strong> podemos pôr termo ao acordo por qualquer motivo mediante pré-aviso de pelo menos 30 dias por e-mail, reembolsando os montantes pagos antecipadamente relativos ao período posterior à cessação.",
+      "i3": "<strong>Por iniciativa nossa, com efeito imediato:</strong> podemos suspender ou encerrar uma conta se violar grave ou reiteradamente estes Termos ou a lei, se um pagamento continuar em atraso após aviso, ou se uma autoridade competente o exigir."
+    },
+    "p1": "A eliminação de um negócio apaga definitiva e imediatamente os seus clientes, marcações, serviços e ficheiros carregados dos nossos sistemas em produção; as cópias nas cópias de segurança do nosso fornecedor de base de dados são substituídas no prazo de 30 dias. Exporte previamente tudo o que pretenda conservar. Conservamos os registos de faturação durante o período exigido pela legislação fiscal, conforme explicado na <privacy>Política de privacidade</privacy>."
+  },
+  "s12": {
+    "title": "Garantias",
+    "p1": "Prestamos o {brand} com a competência e o cuidado razoáveis e em conformidade com a sua descrição. Para além disso, e na medida em que a lei o permita, o serviço é prestado «tal como está» e não damos quaisquer outras garantias, por exemplo, de que satisfará todos os seus requisitos específicos ou lhe trará um determinado número de reservas."
+  },
+  "s13": {
+    "title": "Responsabilidade",
+    "p1": "Nada nestes Termos limita ou exclui a responsabilidade que não possa ser limitada ou excluída por lei, incluindo a responsabilidade por dolo ou negligência grave, ou por morte ou danos pessoais.",
+    "p2": "Quanto ao resto, na medida permitida por lei:",
+    "items": {
+      "i1": "nenhuma das partes é responsável, em caso de negligência leve, por danos indiretos ou consequenciais, nem por lucros cessantes ou perda de receitas, negócios, clientela ou dados que poderia ter sido evitada utilizando a função de exportação;",
+      "i2": "a responsabilidade total de cada parte decorrente destes Termos ou com eles relacionada, em qualquer período de 12 meses, está limitada ao maior dos seguintes montantes: (a) os valores que nos pagou nos 12 meses anteriores ao facto que deu origem à reclamação e (b) 100 €."
+    },
+    "p3": "Indemnizar-nos-á por reclamações de terceiros (incluindo Clientes finais e autoridades) causadas pelo Seu Conteúdo, pelos serviços que presta aos seus Clientes finais ou pela sua violação destes Termos ou da legislação de proteção de dados, incluindo custas e honorários jurídicos razoáveis."
+  },
+  "s14": {
+    "title": "Confidencialidade",
+    "p1": "Cada parte manterá confidenciais as informações comerciais não públicas da outra e só as utilizará para os fins deste acordo, salvo se a divulgação for exigida por lei ou por uma autoridade competente. Esta obrigação mantém-se durante três anos após a cessação do acordo e, quanto aos dados pessoais, enquanto o Acordo de tratamento se aplicar."
+  },
+  "s15": {
+    "title": "Acontecimentos fora do nosso controlo",
+    "p1": "Nenhuma das partes é responsável por atrasos ou incumprimentos causados por acontecimentos fora do seu controlo razoável, como catástrofes naturais, guerra, epidemias, greves, falhas de redes públicas ou de energia, ou interrupções em prestadores de infraestruturas, desde que tome medidas razoáveis para limitar o seu impacto."
+  },
+  "s16": {
+    "title": "Alterações a estes termos",
+    "p1": "Podemos atualizar estes Termos, por exemplo para refletir alterações ao serviço ou à lei. Informaremos os titulares de contas por e-mail sobre alterações substanciais pelo menos 30 dias antes de produzirem efeitos, salvo se a lei exigir uma alteração mais cedo. Se não concordar, pode cancelar antes de a alteração se aplicar; continuar a utilizar o {brand} após essa data significa que aceita os novos Termos. A versão e a data no topo desta página indicam qual a versão aplicável."
+  },
+  "s17": {
+    "title": "Disposições gerais",
+    "items": {
+      "i1": "Estes Termos (juntamente com o Acordo de tratamento) constituem a totalidade do acordo entre nós relativamente ao {brand} e substituem quaisquer negociações anteriores.",
+      "i2": "Se alguma disposição for considerada inválida, as restantes mantêm-se em vigor e a disposição inválida é substituída por uma válida que se aproxime o mais possível da sua finalidade.",
+      "i3": "Não pode transmitir este acordo sem o nosso consentimento. Podemos transmiti-lo a um sucessor do nosso negócio e informá-lo-emos se o fizermos.",
+      "i4": "As comunicações dirigidas ao utilizador são enviadas para o endereço de e-mail do titular da conta; as comunicações dirigidas a nós devem ser enviadas para <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Lei aplicável e foro",
+    "p1": "Estes Termos e qualquer litígio a eles relativo regem-se pela lei grega. Os tribunais de Salónica (Grécia) têm competência exclusiva, salvo disposição imperativa em contrário. Não se aplica a Convenção das Nações Unidas sobre Contratos de Compra e Venda Internacional de Mercadorias."
+  },
+  "s19": {
+    "title": "Contacto",
+    "p1": "<provider></provider>. E-mail: <email>{email}</email>. Consulte também o nosso <legal>aviso legal</legal>. Aos serviços da {tradingName} que não sejam o {brand} aplicam-se termos próprios."
+  }
+}

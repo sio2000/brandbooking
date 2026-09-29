@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Privacybeleid",
+    "description": "Welke persoonsgegevens {brand} verwerkt, waarom, op welke rechtsgrond, wie ons helpt, hoelang we ze bewaren en hoe je je rechten onder de AVG uitoefent."
+  },
+  "title": "Privacybeleid",
+  "intro": "Hoe {brand} persoonsgegevens verwerkt op grond van de Algemene verordening gegevensbescherming van de EU (AVG) en de Griekse wet 4624/2019, of je nu een bedrijf runt op {brand} of een afspraak hebt geboekt bij een van die bedrijven.",
+  "s1": {
+    "title": "Wie verantwoordelijk is",
+    "p1": "{brand} wordt aangeboden door <provider></provider> (‘wij’, ‘ons’).",
+    "p2": "Voor vragen over privacy of om je rechten uit te oefenen, mail je naar <email>{email}</email>. We hebben geen functionaris voor gegevensbescherming aangesteld, omdat de wet dat voor onze activiteiten niet vereist; privacyverzoeken worden rechtstreeks behandeld door de eigenaar van het bedrijf."
+  },
+  "s2": {
+    "title": "Twee rollen: verwerkingsverantwoordelijke en verwerker",
+    "p1": "{brand} wordt gebruikt door twee groepen mensen, en onze rol verschilt per groep:",
+    "items": {
+      "i1": "<strong>Bedrijven en hun teamleden</strong> die een {brand}-account hebben. Voor hun account-, facturerings-, ondersteunings- en beveiligingsgegevens zijn wij de <strong>verwerkingsverantwoordelijke</strong>. Dit beleid beschrijft die verwerking.",
+      "i2": "<strong>Klanten van die bedrijven</strong> die via een boekingspagina boeken of die een bedrijf zelf toevoegt. Het bedrijf bepaalt waarom en hoe deze gegevens worden gebruikt, dus <strong>het bedrijf is de verwerkingsverantwoordelijke</strong> en wij treden op als zijn <strong>verwerker</strong> op grond van onze <dpa>Verwerkersovereenkomst</dpa>. Voor jou geldt de privacyverklaring van het bedrijf zelf."
+    },
+    "p2": "Heb je bij een bedrijf geboekt en wil je je gegevens inzien, corrigeren of verwijderen, neem dan rechtstreeks contact op met het bedrijf; het kan dit doen vanuit zijn dashboard. Als je ons schrijft, sturen we je verzoek door naar het bedrijf en helpen we het bij het antwoorden."
+  },
+  "s3": {
+    "title": "Welke gegevens worden verwerkt",
+    "account": {
+      "title": "Accountgegevens (wij zijn verwerkingsverantwoordelijke)",
+      "items": {
+        "i1": "Naam, e-mailadres, of het e-mailadres is geverifieerd, taal.",
+        "i2": "Je wachtwoord, uitsluitend opgeslagen als gezouten eenrichtingshash, zodat wij het niet kunnen lezen.",
+        "i3": "Wanneer en welke versie van onze voorwaarden je bij het aanmelden hebt aanvaard.",
+        "i4": "Inlogsessies met IP-adres en browsertype, om je ingelogd te houden en je account te beschermen."
+      }
+    },
+    "business": {
+      "title": "Bedrijfsgegevens (wij zijn verwerkingsverantwoordelijke voor de facturering; verwerker voor de rest)",
+      "items": {
+        "i1": "Naam, categorie en adres van het bedrijf, contactgegevens die je wilt publiceren, tijdzone, instellingen van de boekingspagina, logo’s en foto’s.",
+        "i2": "Diensten, prijzen, openingstijden, sluitingsdagen, boekingsregels, medewerkers en hun rollen."
+      }
+    },
+    "customer": {
+      "title": "Klant- en afspraakgegevens (wij zijn verwerker)",
+      "items": {
+        "i1": "Naam, e-mailadres en telefoonnummer van degene die boekt, een eventueel toegevoegd bericht en privénotities van het bedrijf.",
+        "i2": "Dienst, medewerker, datum, tijd, duur, prijs, status en wijzigingsgeschiedenis (bijvoorbeeld verzet of geannuleerd, en door wie), en hoe de boeking is gemaakt (boekingspagina, ingesloten widget of QR-code, en een verwijzende site of campagnetag indien beschikbaar)."
+      }
+    },
+    "billing": {
+      "title": "Factureringsgegevens (wij zijn verwerkingsverantwoordelijke)",
+      "items": {
+        "i1": "Abonnementsstatus en klant- en abonnements-ID’s bij Stripe. Kaartgegevens worden ingevoerd op de pagina’s van Stripe; we ontvangen of bewaren nooit volledige kaartnummers.",
+        "i2": "Facturen en betalingsgegevens die de fiscale en boekhoudwetgeving vereist."
+      }
+    },
+    "security": {
+      "title": "Beveiligings- en servicegegevens (wij zijn verwerkingsverantwoordelijke)",
+      "items": {
+        "i1": "Een auditlog van belangrijke handelingen (bijvoorbeeld inloggen, gewijzigde instellingen, exports en verwijderingen) met het IP-adres en een verzoek-ID.",
+        "i2": "Kortlevende tellers voor snelheidsbeperking die misbruik tegenhouden.",
+        "i3": "Technische serverlogs die onze hostingaanbieder bijhoudt.",
+        "i4": "Statistieken van de boekingspagina: tellingen van boekingsstappen (zoals ‘pagina bekeken’ of ‘boeking voltooid’) met een verkeersbron. Ze zijn <strong>cookieloos</strong> en bevatten geen namen, contactgegevens, IP-adressen of apparaat-ID’s."
+      }
+    },
+    "support": {
+      "title": "Ondersteuning",
+      "items": {
+        "i1": "E-mails die je ons stuurt en onze antwoorden."
+      }
+    },
+    "p1": "We kopen geen persoonsgegevens, gebruiken geen tracking- of advertentiecookies en gebruiken geen analysediensten die profielen van bezoekers opstellen."
+  },
+  "s4": {
+    "title": "Waarom we ze gebruiken en onze rechtsgrond",
+    "items": {
+      "i1": "<strong>De dienst leveren aan bedrijven:</strong> accounts, boekingspagina’s, agenda, klantenlijsten, teamfuncties, exports en service-e-mails (verificatie, wachtwoordherstel, uitnodigingen, factureringsberichten): noodzakelijk voor de uitvoering van onze overeenkomst met jou (art. 6, lid 1, onder b), AVG).",
+      "i2": "<strong>Verwerking van klant- en afspraakgegevens:</strong> uitsluitend in opdracht van het bedrijf, op grond van de <dpa>Verwerkersovereenkomst</dpa> (art. 28 AVG). Het bedrijf is verantwoordelijk voor zijn eigen rechtsgrond.",
+      "i3": "<strong>Facturering en boekhouding:</strong> overeenkomst (art. 6, lid 1, onder b)) en onze wettelijke verplichtingen op grond van de Griekse fiscale en boekhoudwetgeving (art. 6, lid 1, onder c)).",
+      "i4": "<strong>Beveiliging en voorkoming van fraude en misbruik:</strong> auditlogs, snelheidsbeperkingen en serverlogs: ons gerechtvaardigd belang om de dienst en de gebruikers ervan veilig te houden (art. 6, lid 1, onder f)).",
+      "i5": "<strong>Ondersteuning:</strong> je berichten beantwoorden: overeenkomst of, als je geen klant bent, ons gerechtvaardigd belang om te antwoorden (art. 6, lid 1, onder b) of f)).",
+      "i6": "<strong>{brand} verbeteren:</strong> gebruik van geaggregeerde, niet-identificerende informatie over hoe functies worden gebruikt: ons gerechtvaardigd belang (art. 6, lid 1, onder f)).",
+      "i7": "<strong>Rechtsvorderingen en verzoeken van autoriteiten:</strong> waar nodig om rechtsvorderingen in te stellen, uit te oefenen of te onderbouwen of om aan de wet te voldoen (art. 6, lid 1, onder c) en f))."
+    }
+  },
+  "s5": {
+    "title": "Geen verkoop, geen advertenties, geen geautomatiseerde besluiten",
+    "p1": "We verkopen of verhuren geen persoonsgegevens, gebruiken klant- of accountgegevens niet voor advertenties en versturen geen marketingmails zonder je toestemming. We nemen geen besluiten die uitsluitend op geautomatiseerde verwerking, waaronder profilering, zijn gebaseerd en waaraan voor jou rechtsgevolgen zijn verbonden of die jou anderszins in aanmerkelijke mate treffen."
+  },
+  "s6": {
+    "title": "Wie gegevens ontvangt",
+    "p1": "Persoonsgegevens worden alleen gedeeld met de hieronder genoemde aanbieders, die ze in onze opdracht verwerken op grond van verwerkersovereenkomsten, en alleen voor zover elk van hen dat nodig heeft:",
+    "p2": "Stripe verwerkt betalingsgegevens daarnaast als zelfstandige verwerkingsverantwoordelijke op grond van zijn eigen privacybeleid (bijvoorbeeld ter voorkoming van fraude en om aan financiële regelgeving te voldoen). We kunnen gegevens ook verstrekken aan autoriteiten, rechtbanken of professionele adviseurs (zoals onze accountant of advocaat) wanneer de wet dat vereist of toestaat."
+  },
+  "s7": {
+    "title": "Doorgiften buiten de EER",
+    "p1": "Sommige van onze aanbieders zijn gevestigd in de Verenigde Staten of kunnen vanuit daar toegang krijgen tot gegevens. Wanneer persoonsgegevens buiten de Europese Economische Ruimte worden doorgegeven, baseren we ons op een adequaatheidsbesluit van de Europese Commissie (voor aanbieders die zijn gecertificeerd onder het EU-VS-kader voor gegevensbescherming) of op de modelcontractbepalingen van de Europese Commissie, samen met de aanvullende waarborgen die onze aanbieders bieden, zoals versleuteling tijdens de overdracht en in rust. Je kunt ons om meer informatie over deze waarborgen vragen."
+  },
+  "s8": {
+    "title": "Hoelang we gegevens bewaren",
+    "items": {
+      "i1": "<strong>Account- en bedrijfsgegevens</strong>: zolang het account bestaat. Wanneer een bedrijfs- of gebruikersaccount wordt verwijderd, worden de gegevens direct uit onze productiesystemen verwijderd en binnen 30 dagen uit de back-ups van onze databaseaanbieder.",
+      "i2": "<strong>Klant- en afspraakgegevens</strong>: zolang het bedrijf ze bewaart, totdat het bedrijf de klant wist of totdat het bedrijf wordt verwijderd.",
+      "i3": "<strong>Inlogsessies</strong>: verlopen na 30 dagen zonder activiteit en worden daarna verwijderd.",
+      "i4": "<strong>Links voor e-mailverificatie en wachtwoordherstel</strong>: worden 7 dagen na het verlopen verwijderd.",
+      "i5": "<strong>E-mails die we versturen</strong>: de inhoud wordt na 180 dagen gewist. Bij afspraakmails blijft een afleverrecord (ontvanger, type, status en datum) bij de afspraak; records van accountmails worden na 180 dagen verwijderd.",
+      "i6": "<strong>Auditlog</strong>: IP-adressen worden na 180 dagen verwijderd en vermeldingen na twee jaar.",
+      "i7": "<strong>Tellers voor snelheidsbeperking</strong>: worden binnen een uur na het verlopen verwijderd.",
+      "i8": "<strong>Statistieken van de boekingspagina</strong> (anoniem): worden na ongeveer 13 maanden verwijderd.",
+      "i9": "<strong>Facturen en factureringsgegevens</strong>: zolang de Griekse fiscale en boekhoudwetgeving dat vereist: doorgaans vijf jaar na het einde van het belastingjaar, langer als de wet die termijn verlengt.",
+      "i10": "<strong>Ondersteuningsmails</strong>: zolang nodig om je verzoek af te handelen en tot twee jaar daarna, tenzij een langere termijn nodig is voor een rechtsvordering."
+    }
+  },
+  "s9": {
+    "title": "Je rechten",
+    "p1": "Op grond van de AVG heb je het recht om:",
+    "items": {
+      "i1": "<strong>inzage</strong> te krijgen in je persoonsgegevens en een kopie te ontvangen;",
+      "i2": "onjuiste gegevens te laten <strong>rectificeren</strong>;",
+      "i3": "je gegevens te laten <strong>wissen</strong> wanneer er geen reden meer is om ze te bewaren;",
+      "i4": "de verwerking in bepaalde gevallen te laten <strong>beperken</strong>;",
+      "i5": "de gegevens die je ons hebt verstrekt te ontvangen in een gestructureerde, machineleesbare vorm (<strong>overdraagbaarheid</strong>);",
+      "i6": "op elk moment, om redenen die verband houden met je specifieke situatie, <strong>bezwaar</strong> te maken tegen verwerking op basis van onze gerechtvaardigde belangen; en",
+      "i7": "gegeven toestemming in te trekken, zonder dat dit afbreuk doet aan de verwerking vóór de intrekking."
+    },
+    "p2": "Bedrijven kunnen het meeste hiervan zelf doen: gegevens bewerken in de instellingen, gegevens exporteren vanuit het dashboard en het bedrijf of gebruikersaccount verwijderen in de instellingen. Voor al het andere mail je naar <email>{email}</email>. We antwoorden binnen een maand (met twee maanden te verlengen bij complexe verzoeken, in welk geval we je laten weten waarom). We kunnen je eerst vragen je identiteit te bevestigen.",
+    "p3": "Je hebt ook het recht een klacht in te dienen bij een toezichthoudende autoriteit, met name in het EU-land waar je woont of werkt of waar de inbreuk heeft plaatsgevonden. In Griekenland is dat de Griekse Autoriteit voor gegevensbescherming (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Athene, <authority>www.dpa.gr</authority>. We stellen het op prijs als je ons eerst de kans geeft je zorg weg te nemen."
+  },
+  "s10": {
+    "title": "Ben je verplicht ons je gegevens te geven?",
+    "p1": "Om een account aan te maken hebben we je naam, e-mailadres en een wachtwoord nodig; zonder die gegevens kunnen we de dienst niet leveren. Al het andere is optioneel of informatie die je bedrijf zelf wil toevoegen."
+  },
+  "s11": {
+    "title": "Beveiliging",
+    "p1": "We gebruiken versleutelde verbindingen (HTTPS met HSTS), versleutelde databaseverbindingen, sterke eenrichtingshashing van wachtwoorden, inlogcookies die paginascripts niet kunnen lezen, strikte scheiding van de gegevens van elk bedrijf, op rollen gebaseerde rechten voor teamleden, snelheidsbeperking van gevoelige handelingen, een contentbeveiligingsbeleid en een auditlog. Onze aanbieders versleutelen opgeslagen gegevens. Geen enkele onlinedienst is volledig veilig; bij een inbreuk in verband met persoonsgegevens melden we die, waar vereist, binnen 72 uur aan de toezichthoudende autoriteit, informeren we betrokken bedrijven zonder onredelijke vertraging en informeren we jou rechtstreeks wanneer de wet dat vereist."
+  },
+  "s12": {
+    "title": "Cookies",
+    "p1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen en je sessie te beveiligen, en de lokale opslag van je browser om je keuze voor een licht of donker thema te onthouden. We gebruiken geen analyse-, advertentie- of socialemediacookies en tonen daarom geen cookiebanner. Zie het <cookies>cookiebeleid</cookies> voor details."
+  },
+  "s13": {
+    "title": "Kinderen",
+    "p1": "{brand}-accounts zijn bedoeld voor bedrijven en mogen alleen door volwassenen worden aangemaakt. We verzamelen niet bewust gegevens van kinderen voor eigen doeleinden. Bedrijven die boekingen voor kinderen aannemen (bijvoorbeeld bijles) zijn als verwerkingsverantwoordelijke zelf verantwoordelijk voor het rechtmatig verzamelen van hun gegevens."
+  },
+  "s14": {
+    "title": "Wijzigingen van dit beleid",
+    "p1": "We werken dit beleid bij wanneer onze verwerking verandert. De datum en versie bovenaan geven aan wanneer het voor het laatst is gewijzigd; bij wezenlijke wijzigingen sturen we accounteigenaren ook vooraf een e-mail."
+  },
+  "s15": {
+    "title": "Contact",
+    "p1": "<provider></provider>. E-mail: <email>{email}</email>."
+  }
+}

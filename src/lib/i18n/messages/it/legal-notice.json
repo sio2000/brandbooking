@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Note legali",
+    "description": "Chi fornisce {brand}: denominazione, indirizzo, codice fiscale e numero di registro, e come contattarci."
+  },
+  "title": "Note legali",
+  "intro": "Informazioni sul fornitore di {brand}, come richiesto dal diritto dell’UE e dal diritto greco.",
+  "s1": {
+    "title": "Fornitore del servizio",
+    "businessName": "Denominazione",
+    "legalForm": "Forma giuridica",
+    "legalFormValue": "Impresa individuale (ατομική επιχείρηση), Grecia",
+    "tradingAs": "Nome commerciale",
+    "tradingAsValue": "{tradingName} ({brand} è un prodotto di {tradingName})",
+    "address": "Indirizzo",
+    "email": "Email",
+    "vat": "Codice fiscale (ΑΦΜ)",
+    "registry": "Registro delle imprese",
+    "registryValue": "Registro generale del commercio della Grecia (Γ.Ε.ΜΗ.), n. {gemiNumber}",
+    "website": "Sito web"
+  },
+  "s2": {
+    "title": "Punto di contatto unico",
+    "p1": "Ai sensi del regolamento dell’UE sui servizi digitali, il nostro punto di contatto unico per gli utenti e per le autorità degli Stati membri dell’UE, la Commissione europea e il Comitato europeo per i servizi digitali è <email>{email}</email>. Puoi contattarci in inglese e in greco. Per segnalare contenuti illegali, vedi <illegal>Segnalazione di contenuti illegali</illegal>."
+  },
+  "s3": {
+    "title": "Documenti legali",
+    "items": {
+      "i1": "<terms>Termini di servizio</terms>: l’accordo con le attività che utilizzano {brand}.",
+      "i2": "<dpa>Accordo sul trattamento dei dati</dpa>: parte dei termini, articolo 28 GDPR.",
+      "i3": "<privacy>Informativa sulla privacy</privacy>: come trattiamo i dati personali.",
+      "i4": "<cookies>Informativa sui cookie</cookies>: gli unici cookie che utilizziamo."
+    }
+  },
+  "s4": {
+    "title": "Controversie",
+    "p1": "{brand} è offerto esclusivamente alle imprese. Non siamo obbligati né disposti a partecipare a procedure di risoluzione delle controversie dinanzi a un organismo di conciliazione per i consumatori. Se hai un reclamo, scrivici prima via email e faremo del nostro meglio per risolverlo."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Nutzungsbedingungen",
+    "description": "Der Vertrag zwischen {brand} und den Unternehmen, die es nutzen: Testphase, Abonnement, Ihre Daten, zulässige Nutzung, Haftung und wie Sie uns erreichen."
+  },
+  "title": "Nutzungsbedingungen",
+  "intro": "Der Vertrag zwischen {brand} und den Unternehmen, die es nutzen, so geschrieben, dass man ihn lesen kann. Kurz gesagt: {days} Tage kostenlos ohne Karte, danach {price} pro Monat, jederzeit kündbar, Ihre Daten bleiben Ihre, und wir verarbeiten die Daten Ihrer Kunden nur, um den Dienst für Sie zu betreiben.",
+  "s1": {
+    "title": "Wer wir sind und was diese Bedingungen regeln",
+    "p1": "{brand} wird bereitgestellt von <provider></provider> („{brand}“, „wir“, „uns“).",
+    "p2": "Diese Nutzungsbedingungen (die „Bedingungen“) sind ein Vertrag zwischen uns und dem Unternehmen oder der Fachkraft, das bzw. die ein {brand}-Konto anlegt („Sie“, der „Kunde“). Sie umfassen unseren <dpa>Auftragsverarbeitungsvertrag</dpa> (der „AVV“), der für die personenbezogenen Daten Ihrer Kunden gilt, die {brand} für Sie verarbeitet. Unsere <privacy>Datenschutzerklärung</privacy> erläutert, wie wir mit personenbezogenen Daten umgehen, für die wir selbst verantwortlich sind.",
+    "p3": "Sie nehmen diese Bedingungen an, wenn Sie bei der Registrierung das entsprechende Kästchen anhaken und ein Konto anlegen. Nehmen Sie sie im Namen eines Unternehmens an, bestätigen Sie, dass Sie berechtigt sind, dieses Unternehmen zu verpflichten."
+  },
+  "s2": {
+    "title": "Nur für die geschäftliche Nutzung",
+    "p1": "{brand} wird ausschließlich Unternehmen, Selbstständigen und Organisationen zur Nutzung im Rahmen ihrer gewerblichen, geschäftlichen, handwerklichen oder beruflichen Tätigkeit angeboten. Es wird nicht an Verbraucher angeboten. Um ein Konto anzulegen, müssen Sie mindestens 18 Jahre alt sein.",
+    "p2": "Personen, die über Ihre Buchungsseite einen Termin buchen („Endkunden“), benötigen kein Konto und sind nicht Partei dieser Bedingungen. Ihre Beziehung zu ihnen (die Leistungen, die Sie erbringen, Ihre Preise, Ihre Stornobedingungen) besteht allein zwischen Ihnen und ihnen."
+  },
+  "s3": {
+    "title": "Der Dienst",
+    "p1": "{brand} ist eine Online-Software, mit der Sie eine Buchungsseite veröffentlichen, Leistungen, Öffnungszeiten, Mitarbeitende, Termine und Kundendaten verwalten, einfache Geschäftsstatistiken einsehen sowie Terminbestätigungen, -änderungen und -erinnerungen per E-Mail versenden können. Wir stellen sie „als Dienst“ über das Internet bereit; es muss nichts installiert werden.",
+    "p2": "Wir entwickeln {brand} laufend weiter. Wir können Funktionen hinzufügen, ändern oder entfernen. Schränkt eine Änderung die Kernfunktionen, für die Sie bezahlen, wesentlich ein, informieren wir Sie mindestens 30 Tage im Voraus, und Sie können kündigen, bevor die Änderung wirksam wird.",
+    "p3": "{brand} wickelt keine Zahlungen für Ihre Termine ab und ist weder Vertreter noch Vermittler oder Marktplatz zwischen Ihnen und Ihren Endkunden."
+  },
+  "s4": {
+    "title": "Ihr Konto und Ihr Team",
+    "items": {
+      "i1": "Machen Sie bei der Registrierung zutreffende Angaben und halten Sie diese aktuell.",
+      "i2": "Halten Sie Ihr Passwort geheim und teilen Sie keine Konten. Laden Sie stattdessen Teammitglieder ein; Sie sind dafür verantwortlich, was die von Ihnen eingeladenen Personen in Ihrem Konto tun.",
+      "i3": "Informieren Sie uns unverzüglich unter <email>{email}</email>, wenn Sie annehmen, dass unbefugt auf Ihr Konto zugegriffen wurde."
+    }
+  },
+  "s5": {
+    "title": "Kostenloser Test, Preis, Abrechnung und Kündigung",
+    "trial": {
+      "title": "Kostenloser Test",
+      "p1": "Jedes neue Unternehmen erhält einen {days}-tägigen kostenlosen Test mit allen Funktionen. Für den Start ist keine Zahlungskarte erforderlich, und der Test geht nicht in ein kostenpflichtiges Abonnement über, sofern Sie kein Abonnement abschließen. Schließen Sie bis zum Ende des Tests kein Abonnement ab, nimmt Ihre Buchungsseite keine neuen Buchungen mehr an; Ihre Daten bleiben in Ihrem Konto, und Sie können jederzeit ein Abonnement abschließen, um fortzufahren."
+    },
+    "price": {
+      "title": "Abonnement und Preis",
+      "items": {
+        "i1": "Das Abonnement kostet {price} pro Unternehmen und Monat, wird monatlich im Voraus abgerechnet und umfasst alle Funktionen. Es gibt keine Einrichtungsgebühren und keine Gebühren pro Buchung.",
+        "i2": "Der Preis enthält die Umsatzsteuer zum griechischen Satz von 24 %. Beim Bezahlvorgang wird nichts aufgeschlagen, und Sie erhalten für jede Zahlung eine Rechnung.",
+        "i3": "Zahlungen werden von unserem Zahlungsdienstleister Stripe abgewickelt. Mit dem Abschluss des Abonnements ermächtigen Sie uns, Ihr Zahlungsmittel über Stripe für jeden Abrechnungszeitraum zu belasten, bis Sie kündigen.",
+        "i4": "Wir können den Preis für künftige Abrechnungszeiträume ändern, indem wir Sie mindestens 30 Tage vor Wirksamwerden der Änderung für Sie per E-Mail informieren. Sind Sie nicht einverstanden, können Sie kündigen, bevor der neue Preis gilt."
+      }
+    },
+    "cancellation": {
+      "title": "Kündigung und Erstattungen",
+      "items": {
+        "i1": "Sie können jederzeit unter <em>Abrechnung</em> in Ihrem Dashboard kündigen. Die Kündigung wird zum Ende des bereits bezahlten Abrechnungszeitraums wirksam; bis dahin funktioniert alles weiter.",
+        "i2": "Bereits gezahlte Entgelte werden für angebrochene Monate nicht erstattet, es sei denn, das Gesetz schreibt eine Erstattung vor oder wir beenden Ihr Abonnement, ohne dass Sie dies zu vertreten haben (in diesem Fall erstatten wir den nicht genutzten Teil des Zeitraums)."
+      }
+    },
+    "failed": {
+      "title": "Fehlgeschlagene Zahlungen",
+      "p1": "Schlägt eine Zahlung fehl, versuchen wir und Stripe es erneut und benachrichtigen Sie. Ist der Betrag 7 Tage nach dem ersten Fehlschlag weiterhin offen, nimmt Ihre Buchungsseite bis zur Zahlung keine neuen Buchungen mehr an. Ihre Daten werden wegen einer fehlgeschlagenen Zahlung nicht gelöscht."
+    }
+  },
+  "s6": {
+    "title": "Ihre Inhalte und die Daten Ihrer Kunden",
+    "p1": "Sie behalten alle Rechte an den Inhalten, die Sie in {brand} einstellen: Unternehmensangaben, Bilder, Leistungen, Preise und Kundendaten („Ihre Inhalte“). Sie räumen uns eine nicht ausschließliche, weltweite, unentgeltliche Lizenz ein, Ihre Inhalte zu hosten, zu kopieren, anzuzeigen und zu verarbeiten, soweit dies erforderlich ist, um den Dienst für Sie bereitzustellen, abzusichern und zu unterstützen, einschließlich der öffentlichen Anzeige Ihrer Buchungsseite.",
+    "p2": "Für personenbezogene Daten Ihrer Endkunden und Mitarbeitenden <strong>sind Sie der Verantwortliche</strong> und <strong>{brand} ist Ihr Auftragsverarbeiter</strong>. Der <dpa>AVV</dpa> legt unsere Pflichten als Auftragsverarbeiter fest und ist Bestandteil dieser Bedingungen.",
+    "p3": "Sie sind für Ihre Inhalte verantwortlich und dafür, dass Sie nach der DSGVO und sonstigem anwendbarem Recht über eine Rechtsgrundlage für die Erhebung und Nutzung der Daten Ihrer Kunden verfügen, einschließlich deren Information hierüber. {brand} ist ein Buchungswerkzeug und kein medizinisches System oder System für Gesundheitsakten: Speichern Sie keine Gesundheitsdaten oder andere besondere Kategorien von Daten (etwa in Kunden- oder Terminnotizen), es sei denn, das Gesetz erlaubt es Ihnen und Sie haben die dafür vorgeschriebenen Garantien getroffen.",
+    "p4": "Sie können Ihre Daten (Kunden, Termine, Leistungen und Unternehmensangaben) jederzeit aus dem Dashboard exportieren, auch nach einer Kündigung."
+  },
+  "s7": {
+    "title": "Zulässige Nutzung",
+    "p1": "Sie dürfen {brand} nicht nutzen oder von anderen nutzen lassen, um:",
+    "items": {
+      "i1": "illegale Leistungen anzubieten, zu bewerben oder zu vermitteln oder Leistungen, für die Sie nicht zugelassen oder qualifiziert sind, wenn eine Zulassung oder Qualifikation gesetzlich vorgeschrieben ist;",
+      "i2": "Inhalte zu veröffentlichen, die rechtswidrig, irreführend, diskriminierend oder ehrverletzend sind, geistiges Eigentum oder die Privatsphäre anderer verletzen oder sexuell explizit sind;",
+      "i3": "Spam oder Werbenachrichten über Buchungs-E-Mails zu versenden oder Personen ohne Rechtsgrundlage als Kunden anzulegen;",
+      "i4": "sich als ein anderes Unternehmen oder eine andere Person auszugeben oder Buchungsseiten für ein Unternehmen zu erstellen, das Sie nicht vertreten;",
+      "i5": "auf Daten anderer Unternehmen zuzugreifen, unsere Sicherheitsmaßnahmen zu testen, auszuforschen oder zu umgehen, Schadsoftware einzuschleusen, den Dienst automatisiert auszulesen oder ihn unangemessen zu belasten;",
+      "i6": "den Dienst weiterzuverkaufen, unterzulizenzieren, zu kopieren oder zurückzuentwickeln, soweit das Gesetz dies nicht ausdrücklich erlaubt."
+    }
+  },
+  "s8": {
+    "title": "Meldung rechtswidriger Inhalte und unsere Entscheidungen",
+    "p1": "Buchungsseiten werden im Auftrag der Unternehmen veröffentlicht, die sie erstellen. Jede Person, einschließlich Behörden, kann Inhalte, die sie für rechtswidrig oder für einen Verstoß gegen diese Bedingungen hält, an unsere zentrale Kontaktstelle <email>{email}</email> melden, auf Englisch oder Griechisch. Bitte geben Sie an:",
+    "items": {
+      "i1": "die Webadresse (URL) des Inhalts und worum es genau geht;",
+      "i2": "warum Sie ihn für rechtswidrig oder für einen Verstoß gegen diese Bedingungen halten;",
+      "i3": "Ihren Namen und Ihre E-Mail-Adresse (nicht erforderlich bei Meldungen von Darstellungen sexuellen Missbrauchs von Kindern); und",
+      "i4": "eine Erklärung, dass Sie in gutem Glauben davon ausgehen, dass die Meldung richtig und vollständig ist."
+    },
+    "p2": "Wir bestätigen den Eingang, prüfen Meldungen sorgfältig und objektiv und teilen der meldenden Person unsere Entscheidung mit. Entfernen oder beschränken wir Inhalte oder ein Konto, teilen wir dem betroffenen Unternehmen die Gründe mit und wie es die Entscheidung anfechten kann; Sie können sie anfechten, indem Sie auf diese Nachricht antworten, und wir prüfen sie dann erneut. Wir setzen für diese Entscheidungen keine automatisierten Systeme ein.",
+    "p3": "Wir können Inhalte entfernen, eine Buchungsseite sperren oder ein Konto sperren, wenn dies erforderlich ist, um gesetzliche Vorgaben einzuhalten, einen schwerwiegenden Verstoß gegen diese Bedingungen zu beenden oder Endkunden, andere Nutzer oder den Dienst zu schützen. Wo angemessen, kontaktieren wir Sie vorher."
+  },
+  "s9": {
+    "title": "Unser geistiges Eigentum",
+    "p1": "{brand}, seine Software, sein Design, seine Texte und Marken gehören uns oder unseren Lizenzgebern. Diese Bedingungen geben Ihnen das Recht, den Dienst für Ihr Unternehmen zu nutzen, solange Ihr Konto aktiv ist; sie übertragen keinerlei Eigentum. Wenn Sie uns Feedback oder Vorschläge senden, dürfen wir diese frei und ohne Verpflichtung Ihnen gegenüber nutzen."
+  },
+  "s10": {
+    "title": "Verfügbarkeit und Support",
+    "p1": "Wir setzen uns dafür ein, dass {brand} verfügbar, sicher und zuverlässig ist, und beheben Probleme schnell, garantieren aber keinen unterbrechungs- oder fehlerfreien Betrieb. Geplante Wartungen erfolgen nach Möglichkeit zu ruhigen Zeiten. Der Dienst stützt sich auf Infrastruktur Dritter (Hosting, Datenbank, E-Mail-Zustellung, Zahlungen), und die E-Mail-Zustellung hängt auch von den Mailservern und Spamfiltern der Empfänger ab; daher können wir nicht garantieren, dass jede E-Mail ankommt.",
+    "p2": "Support wird per E-Mail unter <email>{email}</email> auf Englisch oder Griechisch an Werktagen geleistet. Wir bemühen uns, innerhalb von zwei Werktagen zu antworten."
+  },
+  "s11": {
+    "title": "Beendigung des Vertrags",
+    "items": {
+      "i1": "<strong>Durch Sie:</strong> Kündigen Sie Ihr Abonnement jederzeit (siehe oben), und löschen Sie Ihr Unternehmen unter <em>Einstellungen → Datenschutz & Daten</em> und Ihr Benutzerkonto unter <em>Kontoeinstellungen</em>, wann immer Sie möchten.",
+      "i2": "<strong>Durch uns, mit Frist:</strong> Wir können den Vertrag aus beliebigem Grund mit einer Frist von mindestens 30 Tagen per E-Mail kündigen und erstatten vorausbezahlte Entgelte für den Zeitraum nach Vertragsende.",
+      "i3": "<strong>Durch uns, fristlos:</strong> Wir können ein Konto sperren oder schließen, wenn Sie schwerwiegend oder wiederholt gegen diese Bedingungen oder das Gesetz verstoßen, wenn eine Zahlung nach Mahnung weiterhin aussteht oder wenn eine zuständige Behörde es verlangt."
+    },
+    "p1": "Das Löschen eines Unternehmens löscht dessen Kunden, Termine, Leistungen und hochgeladene Dateien sofort und endgültig aus unseren Live-Systemen; Kopien in den Sicherungen unseres Datenbankanbieters werden innerhalb von 30 Tagen überschrieben. Bitte exportieren Sie vorher alles, was Sie behalten möchten. Abrechnungsunterlagen bewahren wir so lange auf, wie das Steuerrecht es verlangt, wie in der <privacy>Datenschutzerklärung</privacy> erläutert."
+  },
+  "s12": {
+    "title": "Gewährleistung",
+    "p1": "Wir erbringen {brand} mit angemessener Sachkunde und Sorgfalt und entsprechend seiner Beschreibung. Darüber hinaus und soweit gesetzlich zulässig wird der Dienst „wie besehen“ bereitgestellt, und wir übernehmen keine weiteren Gewährleistungen, etwa dafür, dass er alle Ihre besonderen Anforderungen erfüllt oder Ihnen eine bestimmte Anzahl von Buchungen bringt."
+  },
+  "s13": {
+    "title": "Haftung",
+    "p1": "Nichts in diesen Bedingungen beschränkt oder schließt eine Haftung aus, die gesetzlich nicht beschränkt oder ausgeschlossen werden kann, einschließlich der Haftung für Vorsatz (dolus) oder grobe Fahrlässigkeit oder für Tod oder Körperverletzung.",
+    "p2": "Im Übrigen gilt, soweit gesetzlich zulässig:",
+    "items": {
+      "i1": "Keine Partei haftet bei leichter Fahrlässigkeit für mittelbare Schäden oder Folgeschäden oder für entgangenen Gewinn, Umsatz, Geschäft, Firmenwert oder für Datenverluste, die durch Nutzung der Exportfunktion hätten vermieden werden können;",
+      "i2": "die Gesamthaftung jeder Partei aus oder im Zusammenhang mit diesen Bedingungen ist innerhalb von 12 Monaten auf den höheren der folgenden Beträge begrenzt: (a) die Entgelte, die Sie uns in den 12 Monaten vor dem anspruchsbegründenden Ereignis gezahlt haben, und (b) 100 €."
+    },
+    "p3": "Sie stellen uns von Ansprüchen Dritter (einschließlich Endkunden und Behörden) frei, die durch Ihre Inhalte, durch die Leistungen, die Sie Ihren Endkunden erbringen, oder durch Ihren Verstoß gegen diese Bedingungen oder das Datenschutzrecht verursacht werden, einschließlich angemessener Rechtsverfolgungskosten."
+  },
+  "s14": {
+    "title": "Vertraulichkeit",
+    "p1": "Jede Partei behandelt die nicht öffentlichen Geschäftsinformationen der anderen vertraulich und nutzt sie nur für die Zwecke dieses Vertrags, es sei denn, eine Offenlegung ist gesetzlich oder von einer zuständigen Behörde vorgeschrieben. Dies gilt für drei Jahre nach Vertragsende und für personenbezogene Daten so lange, wie der AVV gilt."
+  },
+  "s15": {
+    "title": "Ereignisse außerhalb unserer Kontrolle",
+    "p1": "Keine Partei ist für Verzögerungen oder Ausfälle verantwortlich, die durch Ereignisse außerhalb ihrer zumutbaren Kontrolle verursacht werden, etwa Naturkatastrophen, Krieg, Epidemien, Streiks, Ausfälle öffentlicher Netze oder der Stromversorgung oder Störungen bei Infrastrukturanbietern, sofern sie angemessene Schritte unternimmt, um die Auswirkungen zu begrenzen."
+  },
+  "s16": {
+    "title": "Änderungen dieser Bedingungen",
+    "p1": "Wir können diese Bedingungen aktualisieren, etwa um Änderungen des Dienstes oder der Rechtslage abzubilden. Über wesentliche Änderungen informieren wir Kontoinhaber mindestens 30 Tage vor deren Wirksamwerden per E-Mail, sofern das Gesetz keine frühere Änderung verlangt. Sind Sie nicht einverstanden, können Sie vor Wirksamwerden der Änderung kündigen; wenn Sie {brand} nach diesem Datum weiter nutzen, akzeptieren Sie die neuen Bedingungen. Version und Datum oben auf dieser Seite zeigen, welche Fassung gilt."
+  },
+  "s17": {
+    "title": "Allgemeines",
+    "items": {
+      "i1": "Diese Bedingungen (mit dem AVV) bilden die gesamte Vereinbarung zwischen uns über {brand} und ersetzen alle früheren Absprachen.",
+      "i2": "Ist eine Bestimmung unwirksam, bleibt der Rest in Kraft, und die unwirksame Bestimmung wird durch eine wirksame ersetzt, die ihrem Zweck am nächsten kommt.",
+      "i3": "Sie dürfen diesen Vertrag nicht ohne unsere Zustimmung übertragen. Wir können ihn auf einen Nachfolger unseres Unternehmens übertragen und teilen Ihnen dies gegebenenfalls mit.",
+      "i4": "Mitteilungen an Sie werden an die E-Mail-Adresse des Kontoinhabers gesendet; Mitteilungen an uns gehen an <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Anwendbares Recht und Gerichtsstand",
+    "p1": "Diese Bedingungen und alle Streitigkeiten darüber unterliegen griechischem Recht. Ausschließlich zuständig sind die Gerichte von Thessaloniki, Griechenland, soweit zwingendes Recht nichts anderes bestimmt. Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf findet keine Anwendung."
+  },
+  "s19": {
+    "title": "Kontakt",
+    "p1": "<provider></provider>. E-Mail: <email>{email}</email>. Siehe auch unser <legal>Impressum</legal>. Für andere Dienste von {tradingName} als {brand} gelten gesonderte Bedingungen."
+  }
+}

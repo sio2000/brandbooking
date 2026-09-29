@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Informacje prawne",
+    "description": "Kto świadczy usługę {brand}: nazwa firmy, adres, numery podatkowy i rejestrowy oraz sposób kontaktu."
+  },
+  "title": "Informacje prawne",
+  "intro": "Informacje o usługodawcy {brand} wymagane przez prawo UE i prawo greckie.",
+  "s1": {
+    "title": "Usługodawca",
+    "businessName": "Nazwa firmy",
+    "legalForm": "Forma prawna",
+    "legalFormValue": "Jednoosobowa działalność gospodarcza (ατομική επιχείρηση), Grecja",
+    "tradingAs": "Nazwa handlowa",
+    "tradingAsValue": "{tradingName} ({brand} jest produktem {tradingName})",
+    "address": "Adres",
+    "email": "E-mail",
+    "vat": "Numer identyfikacji podatkowej (ΑΦΜ)",
+    "registry": "Rejestr handlowy",
+    "registryValue": "Generalny Rejestr Handlowy Grecji (Γ.Ε.ΜΗ.), nr {gemiNumber}",
+    "website": "Strona internetowa"
+  },
+  "s2": {
+    "title": "Pojedynczy punkt kontaktowy",
+    "p1": "Zgodnie z unijnym aktem o usługach cyfrowych naszym pojedynczym punktem kontaktowym dla użytkowników oraz dla organów państw członkowskich UE, Komisji Europejskiej i Europejskiej Rady ds. Usług Cyfrowych jest <email>{email}</email>. Możesz kontaktować się z nami po angielsku i po grecku. Aby zgłosić nielegalne treści, zobacz <illegal>Zgłaszanie nielegalnych treści</illegal>."
+  },
+  "s3": {
+    "title": "Dokumenty prawne",
+    "items": {
+      "i1": "<terms>Warunki świadczenia usług</terms>: umowa z firmami korzystającymi z {brand}.",
+      "i2": "<dpa>Umowa powierzenia przetwarzania danych</dpa>: część warunków, art. 28 RODO.",
+      "i3": "<privacy>Polityka prywatności</privacy>: jak przetwarzamy dane osobowe.",
+      "i4": "<cookies>Polityka plików cookie</cookies>: jedyne pliki cookie, których używamy."
+    }
+  },
+  "s4": {
+    "title": "Spory",
+    "p1": "{brand} jest oferowany wyłącznie firmom. Nie jesteśmy zobowiązani ani skłonni uczestniczyć w postępowaniach w sprawie rozwiązywania sporów przed podmiotem polubownego rozwiązywania sporów konsumenckich. Jeśli masz skargę, najpierw napisz do nas e-mail, a zrobimy wszystko, by ją rozwiązać."
+  }
+}

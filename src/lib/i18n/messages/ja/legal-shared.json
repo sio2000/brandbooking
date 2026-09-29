@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · 法的情報",
+  "lastUpdated": "最終更新日：{date} · バージョン {version}",
+  "toc": "このページの内容",
+  "documentsNav": "法的文書",
+  "documents": {
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "dpa": "データ処理契約",
+    "cookies": "Cookieポリシー",
+    "legal": "運営者情報"
+  },
+  "translation": {
+    "original": "英語の原文を読む"
+  },
+  "provider": "<strong>{legalName}</strong>（{legalNameEl}）、{tradingName} の屋号で事業を営む個人事業主、{address}。ギリシャ納税者番号（ΑΦΜ）{vatNumber}、ギリシャ一般商業登記簿（Γ.Ε.ΜΗ.）登録番号 {gemiNumber}",
+  "subprocessors": {
+    "caption": "再処理者",
+    "provider": "事業者",
+    "purpose": "当社のために行う業務",
+    "location": "所在地",
+    "netlify": {
+      "purpose": "アプリケーションのホスティング、サーバーレス関数、コンテンツ配信、定期ジョブ、アプリケーションログ、アップロードされた画像の保存",
+      "country": "米国"
+    },
+    "neon": {
+      "purpose": "PostgreSQL データベース：アカウント、事業者、顧客、予約およびそれらのバックアップ",
+      "country": "米国（データベースは Amazon Web Services 上でホスト）"
+    },
+    "resend": {
+      "purpose": "トランザクションメールの配信：予約の確認・変更・リマインダー、アカウントおよびセキュリティに関するメール",
+      "country": "米国（メールはアイルランドの EU リージョンから送信）"
+    },
+    "stripe": {
+      "purpose": "事業者向けのサブスクリプション決済、請求書および請求ポータル（エンド顧客のデータは一切受け取りません）",
+      "country": "アイルランド"
+    }
+  }
+}

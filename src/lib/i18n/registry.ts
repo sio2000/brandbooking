@@ -9,6 +9,12 @@ import type emailAccount from './messages/en/email-account.json'
 import type emailBilling from './messages/en/email-billing.json'
 import type emailBooking from './messages/en/email-booking.json'
 import type errors from './messages/en/errors.json'
+import type legalCookies from './messages/en/legal-cookies.json'
+import type legalDpa from './messages/en/legal-dpa.json'
+import type legalNotice from './messages/en/legal-notice.json'
+import type legalPrivacy from './messages/en/legal-privacy.json'
+import type legalShared from './messages/en/legal-shared.json'
+import type legalTerms from './messages/en/legal-terms.json'
 import type manage from './messages/en/manage.json'
 import type marketingHome from './messages/en/marketing-home.json'
 import type marketingPricing from './messages/en/marketing-pricing.json'
@@ -26,6 +32,12 @@ export type Catalogues = {
   'email-billing': typeof emailBilling
   'email-booking': typeof emailBooking
   'errors': typeof errors
+  'legal-cookies': typeof legalCookies
+  'legal-dpa': typeof legalDpa
+  'legal-notice': typeof legalNotice
+  'legal-privacy': typeof legalPrivacy
+  'legal-shared': typeof legalShared
+  'legal-terms': typeof legalTerms
   'manage': typeof manage
   'marketing-home': typeof marketingHome
   'marketing-pricing': typeof marketingPricing
@@ -36,7 +48,7 @@ export type Catalogues = {
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["auth","booking","common","email","email-account","email-billing","email-booking","errors","manage","marketing-home","marketing-pricing","marketing-shell","marketing-support","onboarding","validation"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["auth","booking","common","email","email-account","email-billing","email-booking","errors","legal-cookies","legal-dpa","legal-notice","legal-privacy","legal-shared","legal-terms","manage","marketing-home","marketing-pricing","marketing-shell","marketing-support","onboarding","validation"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -51,6 +63,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/ar/email-billing.json'),
     'email-booking': () => import('./messages/ar/email-booking.json'),
     'errors': () => import('./messages/ar/errors.json'),
+    'legal-cookies': () => import('./messages/ar/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ar/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ar/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ar/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ar/legal-shared.json'),
+    'legal-terms': () => import('./messages/ar/legal-terms.json'),
     'manage': () => import('./messages/ar/manage.json'),
     'marketing-home': () => import('./messages/ar/marketing-home.json'),
     'marketing-pricing': () => import('./messages/ar/marketing-pricing.json'),
@@ -68,6 +86,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/de/email-billing.json'),
     'email-booking': () => import('./messages/de/email-booking.json'),
     'errors': () => import('./messages/de/errors.json'),
+    'legal-cookies': () => import('./messages/de/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/de/legal-dpa.json'),
+    'legal-notice': () => import('./messages/de/legal-notice.json'),
+    'legal-privacy': () => import('./messages/de/legal-privacy.json'),
+    'legal-shared': () => import('./messages/de/legal-shared.json'),
+    'legal-terms': () => import('./messages/de/legal-terms.json'),
     'manage': () => import('./messages/de/manage.json'),
     'marketing-home': () => import('./messages/de/marketing-home.json'),
     'marketing-pricing': () => import('./messages/de/marketing-pricing.json'),
@@ -85,6 +109,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/el/email-billing.json'),
     'email-booking': () => import('./messages/el/email-booking.json'),
     'errors': () => import('./messages/el/errors.json'),
+    'legal-cookies': () => import('./messages/el/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/el/legal-dpa.json'),
+    'legal-notice': () => import('./messages/el/legal-notice.json'),
+    'legal-privacy': () => import('./messages/el/legal-privacy.json'),
+    'legal-shared': () => import('./messages/el/legal-shared.json'),
+    'legal-terms': () => import('./messages/el/legal-terms.json'),
     'manage': () => import('./messages/el/manage.json'),
     'marketing-home': () => import('./messages/el/marketing-home.json'),
     'marketing-pricing': () => import('./messages/el/marketing-pricing.json'),
@@ -102,6 +132,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/en/email-billing.json'),
     'email-booking': () => import('./messages/en/email-booking.json'),
     'errors': () => import('./messages/en/errors.json'),
+    'legal-cookies': () => import('./messages/en/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/en/legal-dpa.json'),
+    'legal-notice': () => import('./messages/en/legal-notice.json'),
+    'legal-privacy': () => import('./messages/en/legal-privacy.json'),
+    'legal-shared': () => import('./messages/en/legal-shared.json'),
+    'legal-terms': () => import('./messages/en/legal-terms.json'),
     'manage': () => import('./messages/en/manage.json'),
     'marketing-home': () => import('./messages/en/marketing-home.json'),
     'marketing-pricing': () => import('./messages/en/marketing-pricing.json'),
@@ -119,6 +155,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/es/email-billing.json'),
     'email-booking': () => import('./messages/es/email-booking.json'),
     'errors': () => import('./messages/es/errors.json'),
+    'legal-cookies': () => import('./messages/es/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/es/legal-dpa.json'),
+    'legal-notice': () => import('./messages/es/legal-notice.json'),
+    'legal-privacy': () => import('./messages/es/legal-privacy.json'),
+    'legal-shared': () => import('./messages/es/legal-shared.json'),
+    'legal-terms': () => import('./messages/es/legal-terms.json'),
     'manage': () => import('./messages/es/manage.json'),
     'marketing-home': () => import('./messages/es/marketing-home.json'),
     'marketing-pricing': () => import('./messages/es/marketing-pricing.json'),
@@ -136,6 +178,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/fr/email-billing.json'),
     'email-booking': () => import('./messages/fr/email-booking.json'),
     'errors': () => import('./messages/fr/errors.json'),
+    'legal-cookies': () => import('./messages/fr/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/fr/legal-dpa.json'),
+    'legal-notice': () => import('./messages/fr/legal-notice.json'),
+    'legal-privacy': () => import('./messages/fr/legal-privacy.json'),
+    'legal-shared': () => import('./messages/fr/legal-shared.json'),
+    'legal-terms': () => import('./messages/fr/legal-terms.json'),
     'manage': () => import('./messages/fr/manage.json'),
     'marketing-home': () => import('./messages/fr/marketing-home.json'),
     'marketing-pricing': () => import('./messages/fr/marketing-pricing.json'),
@@ -153,6 +201,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/hi/email-billing.json'),
     'email-booking': () => import('./messages/hi/email-booking.json'),
     'errors': () => import('./messages/hi/errors.json'),
+    'legal-cookies': () => import('./messages/hi/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/hi/legal-dpa.json'),
+    'legal-notice': () => import('./messages/hi/legal-notice.json'),
+    'legal-privacy': () => import('./messages/hi/legal-privacy.json'),
+    'legal-shared': () => import('./messages/hi/legal-shared.json'),
+    'legal-terms': () => import('./messages/hi/legal-terms.json'),
     'manage': () => import('./messages/hi/manage.json'),
     'marketing-home': () => import('./messages/hi/marketing-home.json'),
     'marketing-pricing': () => import('./messages/hi/marketing-pricing.json'),
@@ -170,6 +224,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/it/email-billing.json'),
     'email-booking': () => import('./messages/it/email-booking.json'),
     'errors': () => import('./messages/it/errors.json'),
+    'legal-cookies': () => import('./messages/it/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/it/legal-dpa.json'),
+    'legal-notice': () => import('./messages/it/legal-notice.json'),
+    'legal-privacy': () => import('./messages/it/legal-privacy.json'),
+    'legal-shared': () => import('./messages/it/legal-shared.json'),
+    'legal-terms': () => import('./messages/it/legal-terms.json'),
     'manage': () => import('./messages/it/manage.json'),
     'marketing-home': () => import('./messages/it/marketing-home.json'),
     'marketing-pricing': () => import('./messages/it/marketing-pricing.json'),
@@ -187,6 +247,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/ja/email-billing.json'),
     'email-booking': () => import('./messages/ja/email-booking.json'),
     'errors': () => import('./messages/ja/errors.json'),
+    'legal-cookies': () => import('./messages/ja/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ja/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ja/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ja/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ja/legal-shared.json'),
+    'legal-terms': () => import('./messages/ja/legal-terms.json'),
     'manage': () => import('./messages/ja/manage.json'),
     'marketing-home': () => import('./messages/ja/marketing-home.json'),
     'marketing-pricing': () => import('./messages/ja/marketing-pricing.json'),
@@ -204,6 +270,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/nl/email-billing.json'),
     'email-booking': () => import('./messages/nl/email-booking.json'),
     'errors': () => import('./messages/nl/errors.json'),
+    'legal-cookies': () => import('./messages/nl/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/nl/legal-dpa.json'),
+    'legal-notice': () => import('./messages/nl/legal-notice.json'),
+    'legal-privacy': () => import('./messages/nl/legal-privacy.json'),
+    'legal-shared': () => import('./messages/nl/legal-shared.json'),
+    'legal-terms': () => import('./messages/nl/legal-terms.json'),
     'manage': () => import('./messages/nl/manage.json'),
     'marketing-home': () => import('./messages/nl/marketing-home.json'),
     'marketing-pricing': () => import('./messages/nl/marketing-pricing.json'),
@@ -221,6 +293,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/pl/email-billing.json'),
     'email-booking': () => import('./messages/pl/email-booking.json'),
     'errors': () => import('./messages/pl/errors.json'),
+    'legal-cookies': () => import('./messages/pl/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/pl/legal-dpa.json'),
+    'legal-notice': () => import('./messages/pl/legal-notice.json'),
+    'legal-privacy': () => import('./messages/pl/legal-privacy.json'),
+    'legal-shared': () => import('./messages/pl/legal-shared.json'),
+    'legal-terms': () => import('./messages/pl/legal-terms.json'),
     'manage': () => import('./messages/pl/manage.json'),
     'marketing-home': () => import('./messages/pl/marketing-home.json'),
     'marketing-pricing': () => import('./messages/pl/marketing-pricing.json'),
@@ -238,6 +316,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/pt/email-billing.json'),
     'email-booking': () => import('./messages/pt/email-booking.json'),
     'errors': () => import('./messages/pt/errors.json'),
+    'legal-cookies': () => import('./messages/pt/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/pt/legal-dpa.json'),
+    'legal-notice': () => import('./messages/pt/legal-notice.json'),
+    'legal-privacy': () => import('./messages/pt/legal-privacy.json'),
+    'legal-shared': () => import('./messages/pt/legal-shared.json'),
+    'legal-terms': () => import('./messages/pt/legal-terms.json'),
     'manage': () => import('./messages/pt/manage.json'),
     'marketing-home': () => import('./messages/pt/marketing-home.json'),
     'marketing-pricing': () => import('./messages/pt/marketing-pricing.json'),
@@ -255,6 +339,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/ru/email-billing.json'),
     'email-booking': () => import('./messages/ru/email-booking.json'),
     'errors': () => import('./messages/ru/errors.json'),
+    'legal-cookies': () => import('./messages/ru/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/ru/legal-dpa.json'),
+    'legal-notice': () => import('./messages/ru/legal-notice.json'),
+    'legal-privacy': () => import('./messages/ru/legal-privacy.json'),
+    'legal-shared': () => import('./messages/ru/legal-shared.json'),
+    'legal-terms': () => import('./messages/ru/legal-terms.json'),
     'manage': () => import('./messages/ru/manage.json'),
     'marketing-home': () => import('./messages/ru/marketing-home.json'),
     'marketing-pricing': () => import('./messages/ru/marketing-pricing.json'),
@@ -272,6 +362,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/tr/email-billing.json'),
     'email-booking': () => import('./messages/tr/email-booking.json'),
     'errors': () => import('./messages/tr/errors.json'),
+    'legal-cookies': () => import('./messages/tr/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/tr/legal-dpa.json'),
+    'legal-notice': () => import('./messages/tr/legal-notice.json'),
+    'legal-privacy': () => import('./messages/tr/legal-privacy.json'),
+    'legal-shared': () => import('./messages/tr/legal-shared.json'),
+    'legal-terms': () => import('./messages/tr/legal-terms.json'),
     'manage': () => import('./messages/tr/manage.json'),
     'marketing-home': () => import('./messages/tr/marketing-home.json'),
     'marketing-pricing': () => import('./messages/tr/marketing-pricing.json'),
@@ -289,6 +385,12 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'email-billing': () => import('./messages/zh/email-billing.json'),
     'email-booking': () => import('./messages/zh/email-booking.json'),
     'errors': () => import('./messages/zh/errors.json'),
+    'legal-cookies': () => import('./messages/zh/legal-cookies.json'),
+    'legal-dpa': () => import('./messages/zh/legal-dpa.json'),
+    'legal-notice': () => import('./messages/zh/legal-notice.json'),
+    'legal-privacy': () => import('./messages/zh/legal-privacy.json'),
+    'legal-shared': () => import('./messages/zh/legal-shared.json'),
+    'legal-terms': () => import('./messages/zh/legal-terms.json'),
     'manage': () => import('./messages/zh/manage.json'),
     'marketing-home': () => import('./messages/zh/marketing-home.json'),
     'marketing-pricing': () => import('./messages/zh/marketing-pricing.json'),

@@ -1,0 +1,39 @@
+{
+  "eyebrow": "{brand} · Yasal",
+  "lastUpdated": "Son güncelleme: {date} · Sürüm {version}",
+  "toc": "Bu sayfada",
+  "documentsNav": "Yasal belgeler",
+  "documents": {
+    "terms": "Hizmet koşulları",
+    "privacy": "Gizlilik politikası",
+    "dpa": "Veri işleme sözleşmesi",
+    "cookies": "Çerez politikası",
+    "legal": "Yasal bildirim"
+  },
+  "translation": {
+    "original": "İngilizce aslını okuyun"
+  },
+  "provider": "<strong>{legalName}</strong> ({legalNameEl}), {tradingName} ticari adıyla faaliyet gösteren şahıs işletmesi, {address}. Yunanistan vergi numarası (ΑΦΜ) {vatNumber}, Yunanistan Genel Ticaret Sicili (Γ.Ε.ΜΗ.) no. {gemiNumber}",
+  "subprocessors": {
+    "caption": "Alt işleyenler",
+    "provider": "Sağlayıcı",
+    "purpose": "Bizim için ne yapar",
+    "location": "Konum",
+    "netlify": {
+      "purpose": "Uygulama barındırma, sunucusuz işlevler, içerik dağıtımı, zamanlanmış görevler, uygulama günlükleri ve yüklenen görsellerin depolanması",
+      "country": "Amerika Birleşik Devletleri"
+    },
+    "neon": {
+      "purpose": "PostgreSQL veritabanı: hesaplar, işletmeler, müşteriler, randevular ve bunların yedekleri",
+      "country": "Amerika Birleşik Devletleri (veritabanı Amazon Web Services üzerinde barındırılır)"
+    },
+    "resend": {
+      "purpose": "İşlemsel e-postaların iletilmesi: rezervasyon onayları, değişiklikleri ve hatırlatmaları; hesap ve güvenlik e-postaları",
+      "country": "Amerika Birleşik Devletleri (e-postalar İrlanda’daki AB bölgesinden gönderilir)"
+    },
+    "stripe": {
+      "purpose": "İşletmeler için abonelik ödemeleri, faturalar ve faturalandırma portalı (Nihai Müşteri verilerini hiçbir zaman almaz)",
+      "country": "İrlanda"
+    }
+  }
+}

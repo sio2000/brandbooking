@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "法律声明",
+    "description": "{brand} 的提供者：商家名称、地址、税号和登记号，以及联系方式。"
+  },
+  "title": "法律声明",
+  "intro": "根据欧盟和希腊法律要求披露的 {brand} 提供者信息。",
+  "s1": {
+    "title": "服务提供者",
+    "businessName": "商家名称",
+    "legalForm": "法律形式",
+    "legalFormValue": "个体经营（ατομική επιχείρηση），希腊",
+    "tradingAs": "商号",
+    "tradingAsValue": "{tradingName}（{brand} 是 {tradingName} 旗下的产品）",
+    "address": "地址",
+    "email": "电子邮件",
+    "vat": "税号（ΑΦΜ）",
+    "registry": "商业登记",
+    "registryValue": "希腊商业总登记处（Γ.Ε.ΜΗ.），登记号 {gemiNumber}",
+    "website": "网站"
+  },
+  "s2": {
+    "title": "单一联络点",
+    "p1": "根据欧盟《数字服务法》，我们面向用户以及欧盟成员国主管机关、欧盟委员会和欧洲数字服务委员会的单一联络点为 <email>{email}</email>。您可以使用英语或希腊语与我们联系。如需举报违法内容，请参阅<illegal>违法内容举报</illegal>。"
+  },
+  "s3": {
+    "title": "法律文件",
+    "items": {
+      "i1": "<terms>服务条款</terms>：与使用 {brand} 的商家之间的协议。",
+      "i2": "<dpa>数据处理协议</dpa>：条款的组成部分，GDPR 第 28 条。",
+      "i3": "<privacy>隐私政策</privacy>：我们如何处理个人数据。",
+      "i4": "<cookies>Cookie 政策</cookies>：我们使用的全部 Cookie。"
+    }
+  },
+  "s4": {
+    "title": "争议",
+    "p1": "{brand} 仅向商家提供。我们没有义务也不愿意参与消费者仲裁机构的争议解决程序。如您有任何投诉，请先发送电子邮件给我们，我们将尽力解决。"
+  }
+}

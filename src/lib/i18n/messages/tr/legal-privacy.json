@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Gizlilik politikası",
+    "description": "{brand}’un hangi kişisel verileri, neden ve hangi hukuki dayanakla işlediği, bize kimlerin yardım ettiği, verileri ne kadar süre sakladığımız ve GDPR kapsamındaki haklarınızı nasıl kullanacağınız."
+  },
+  "title": "Gizlilik politikası",
+  "intro": "İster {brand} üzerinde bir işletme yönetin ister bu işletmelerden birinden randevu almış olun, {brand}’un kişisel verileri AB Genel Veri Koruma Tüzüğü (GDPR) ve 4624/2019 sayılı Yunan kanunu kapsamında nasıl işlediği.",
+  "s1": {
+    "title": "Veri sorumlusu kimdir",
+    "p1": "{brand}, <provider></provider> tarafından sağlanmaktadır (“biz”).",
+    "p2": "Gizlilikle ilgili sorularınız için veya haklarınızı kullanmak için <email>{email}</email> adresine yazın. Faaliyetlerimiz için yasa gerektirmediğinden bir veri koruma görevlisi atamadık; gizlilik talepleri doğrudan işletme sahibi tarafından ele alınır."
+  },
+  "s2": {
+    "title": "İki rol: veri sorumlusu ve veri işleyen",
+    "p1": "{brand}’u iki grup kişi kullanır ve her biri için rolümüz farklıdır:",
+    "items": {
+      "i1": "{brand} hesabı olan <strong>işletmeler ve ekip üyeleri</strong>. Bunların hesap, faturalandırma, destek ve güvenlik verileri için <strong>veri sorumlusu</strong> biziz. Bu politika söz konusu işlemeyi açıklar.",
+      "i2": "Bir rezervasyon sayfası üzerinden rezervasyon yapan veya işletmenin kendisinin eklediği <strong>bu işletmelerin müşterileri</strong>. Bu verilerin neden ve nasıl kullanılacağına işletme karar verir; bu nedenle <strong>veri sorumlusu işletmedir</strong> ve biz <dpa>Veri İşleme Sözleşmemiz</dpa> kapsamında onun <strong>veri işleyeni</strong> olarak hareket ederiz. Sizin için işletmenin kendi gizlilik bildirimi geçerlidir."
+    },
+    "p2": "Bir işletmeden randevu aldıysanız ve bilgilerinizi görmek, düzeltmek veya silmek istiyorsanız lütfen doğrudan işletmeyle iletişime geçin; işletme bunu kendi panelinden yapabilir. Bize yazarsanız talebinizi işletmeye iletir ve yanıt vermesine yardımcı oluruz."
+  },
+  "s3": {
+    "title": "Hangi veriler işlenir",
+    "account": {
+      "title": "Hesap verileri (veri sorumlusu biziz)",
+      "items": {
+        "i1": "Ad, e-posta adresi, e-postanın doğrulanıp doğrulanmadığı, dil.",
+        "i2": "Şifreniz; yalnızca tuzlanmış tek yönlü karma (hash) olarak saklanır, bu nedenle onu okuyamayız.",
+        "i3": "Kayıt sırasında koşullarımızın hangi sürümünü ne zaman kabul ettiğiniz.",
+        "i4": "Oturumunuzu açık tutmak ve hesabınızı korumak için IP adresi ve tarayıcı türüyle birlikte oturum açma bilgileri."
+      }
+    },
+    "business": {
+      "title": "İşletme verileri (faturalandırma için veri sorumlusu, diğerleri için veri işleyen biziz)",
+      "items": {
+        "i1": "İşletme adı, kategorisi, adresi, yayınlamayı seçtiğiniz iletişim bilgileri, saat dilimi, rezervasyon sayfası ayarları, logolar ve fotoğraflar.",
+        "i2": "Hizmetler, fiyatlar, çalışma saatleri, kapalı günler, rezervasyon kuralları, personel ve rolleri."
+      }
+    },
+    "customer": {
+      "title": "Müşteri ve randevu verileri (veri işleyen biziz)",
+      "items": {
+        "i1": "Rezervasyon yapan kişinin adı, e-posta adresi ve telefon numarası, eklediği mesajlar ve işletmenin yazdığı özel notlar.",
+        "i2": "Hizmet, personel, tarih, saat, süre, fiyat, durum ve değişiklik geçmişi (örneğin yeniden planlandığı veya iptal edildiği ve bunu kimin yaptığı) ile rezervasyonun nasıl yapıldığı (rezervasyon sayfası, yerleşik widget veya QR kodu ve varsa yönlendiren site ya da kampanya etiketi)."
+      }
+    },
+    "billing": {
+      "title": "Faturalandırma verileri (veri sorumlusu biziz)",
+      "items": {
+        "i1": "Abonelik durumu ile Stripe müşteri ve abonelik tanımlayıcıları. Kart bilgileri Stripe’ın sayfalarına girilir; tam kart numaralarını hiçbir zaman almayız veya saklamayız.",
+        "i2": "Vergi ve muhasebe mevzuatının gerektirdiği faturalar ve ödeme kayıtları."
+      }
+    },
+    "security": {
+      "title": "Güvenlik ve hizmet kayıtları (veri sorumlusu biziz)",
+      "items": {
+        "i1": "Önemli işlemlerin (örneğin oturum açmalar, ayar değişiklikleri, dışa aktarmalar ve silmeler) IP adresi ve istek tanımlayıcısıyla birlikte tutulduğu bir denetim günlüğü.",
+        "i2": "Kötüye kullanımı engelleyen kısa ömürlü hız sınırlama sayaçları.",
+        "i3": "Barındırma sağlayıcımızın tuttuğu teknik sunucu günlükleri.",
+        "i4": "Rezervasyon sayfası istatistikleri: rezervasyon adımlarının (“sayfa görüntülendi” veya “rezervasyon tamamlandı” gibi) trafik kaynağıyla birlikte sayımları. Bunlar <strong>çerezsizdir</strong> ve ad, iletişim bilgisi, IP adresi veya cihaz tanımlayıcısı içermez."
+      }
+    },
+    "support": {
+      "title": "Destek",
+      "items": {
+        "i1": "Bize gönderdiğiniz e-postalar ve yanıtlarımız."
+      }
+    },
+    "p1": "Kişisel veri satın almayız, izleme veya reklam çerezleri kullanmayız ve ziyaretçilerin profilini çıkaran analiz hizmetleri kullanmayız."
+  },
+  "s4": {
+    "title": "Verileri neden kullanıyoruz ve hukuki dayanağımız",
+    "items": {
+      "i1": "<strong>İşletmelere hizmet sunmak:</strong> hesaplar, rezervasyon sayfaları, takvim, müşteri listeleri, ekip özellikleri, dışa aktarmalar ve hizmet e-postaları (doğrulama, şifre sıfırlama, davetler, faturalandırma bildirimleri): sizinle yaptığımız sözleşmenin ifası için gereklidir (GDPR md. 6(1)(b)).",
+      "i2": "<strong>Müşteri ve randevu verilerinin işlenmesi:</strong> yalnızca işletmenin talimatıyla, <dpa>Veri İşleme Sözleşmesi</dpa> kapsamında (GDPR md. 28). İşletme kendi hukuki dayanağından sorumludur.",
+      "i3": "<strong>Faturalandırma ve muhasebe:</strong> sözleşme (md. 6(1)(b)) ve Yunan vergi ve muhasebe mevzuatı kapsamındaki yasal yükümlülüklerimiz (md. 6(1)(c)).",
+      "i4": "<strong>Güvenlik, dolandırıcılık ve kötüye kullanımın önlenmesi:</strong> denetim günlükleri, hız sınırları ve sunucu günlükleri: hizmeti ve kullanıcılarını güvende tutmaya yönelik meşru menfaatimiz (md. 6(1)(f)).",
+      "i5": "<strong>Destek:</strong> mesajlarınızı yanıtlamak: sözleşme veya müşterimiz değilseniz yanıt vermeye yönelik meşru menfaatimiz (md. 6(1)(b) veya (f)).",
+      "i6": "<strong>{brand}’u geliştirmek:</strong> özelliklerin nasıl kullanıldığına dair toplu ve kimliği belirlemeyen bilgilerin kullanılması: meşru menfaatimiz (md. 6(1)(f)).",
+      "i7": "<strong>Hukuki talepler ve yetkili makamların talepleri:</strong> hukuki taleplerin tesisi, kullanılması veya savunulması ya da yasaya uyulması için gerekli olduğunda (md. 6(1)(c) ve (f))."
+    }
+  },
+  "s5": {
+    "title": "Satış yok, reklam yok, otomatik karar yok",
+    "p1": "Kişisel verileri satmayız veya kiralamayız, müşteri ya da hesap verilerini reklam için kullanmayız ve onayınız olmadan pazarlama e-postası göndermeyiz. Sizin hakkınızda hukuki sonuç doğuran veya sizi benzer şekilde önemli ölçüde etkileyen, profil oluşturma dahil yalnızca otomatik işlemeye dayalı kararlar almayız."
+  },
+  "s6": {
+    "title": "Verileri kimler alır",
+    "p1": "Kişisel veriler yalnızca aşağıdaki sağlayıcılarla paylaşılır; bu sağlayıcılar verileri veri işleme sözleşmeleri kapsamında talimatlarımız doğrultusunda ve yalnızca her birinin ihtiyaç duyduğu ölçüde işler:",
+    "p2": "Stripe ödeme verilerini ayrıca kendi gizlilik politikası kapsamında bağımsız bir veri sorumlusu olarak da işler (örneğin dolandırıcılığı önlemek ve finansal düzenlemelere uymak için). Yasanın gerektirdiği veya izin verdiği durumlarda verileri yetkili makamlara, mahkemelere veya profesyonel danışmanlara (muhasebecimiz veya avukatımız gibi) da açıklayabiliriz."
+  },
+  "s7": {
+    "title": "AEA dışına aktarımlar",
+    "p1": "Sağlayıcılarımızdan bazıları Amerika Birleşik Devletleri’nde yerleşiktir veya verilere oradan erişebilir. Kişisel veriler Avrupa Ekonomik Alanı dışına aktarıldığında, Avrupa Komisyonu’nun bir yeterlilik kararına (AB-ABD Veri Gizliliği Çerçevesi kapsamında sertifikalı sağlayıcılar için) veya Avrupa Komisyonu’nun standart sözleşme hükümlerine, sağlayıcılarımızın sunduğu aktarım sırasında ve depolamada şifreleme gibi ek güvencelerle birlikte dayanırız. Bu güvenceler hakkında bizden daha fazla bilgi isteyebilirsiniz."
+  },
+  "s8": {
+    "title": "Verileri ne kadar süre saklarız",
+    "items": {
+      "i1": "<strong>Hesap ve işletme verileri</strong>: hesap var olduğu sürece. Bir işletme veya kullanıcı hesabı silindiğinde verileri canlı sistemlerimizden derhal, veritabanı sağlayıcımızın yedeklerinden ise 30 gün içinde silinir.",
+      "i2": "<strong>Müşteri ve randevu verileri</strong>: işletme bunları sakladığı sürece, işletme müşteriyi silene kadar veya işletme silinene kadar.",
+      "i3": "<strong>Oturumlar</strong>: 30 gün hareketsizlikten sonra sona erer ve ardından silinir.",
+      "i4": "<strong>E-posta doğrulama ve şifre sıfırlama bağlantıları</strong>: süreleri dolduktan 7 gün sonra silinir.",
+      "i5": "<strong>Gönderdiğimiz e-postalar</strong>: içerik 180 gün sonra silinir. Randevu e-postaları için bir iletim kaydı (alıcı, tür, durum ve tarih) randevuyla birlikte kalır; hesap e-postalarının kayıtları 180 gün sonra silinir.",
+      "i6": "<strong>Denetim günlüğü</strong>: IP adresleri 180 gün sonra kaldırılır, kayıtlar iki yıl sonra silinir.",
+      "i7": "<strong>Hız sınırlama sayaçları</strong>: süreleri dolduktan sonra bir saat içinde silinir.",
+      "i8": "<strong>Rezervasyon sayfası istatistikleri</strong> (anonim): yaklaşık 13 ay sonra silinir.",
+      "i9": "<strong>Faturalar ve faturalandırma kayıtları</strong>: Yunan vergi ve muhasebe mevzuatının gerektirdiği süre boyunca: genellikle vergi yılının sonundan itibaren beş yıl, yasa bu süreyi uzatırsa daha uzun.",
+      "i10": "<strong>Destek e-postaları</strong>: talebinizi ele almak için gereken süre boyunca ve sonrasında en fazla iki yıl; hukuki bir talep için daha uzun bir süre gerekmedikçe."
+    }
+  },
+  "s9": {
+    "title": "Haklarınız",
+    "p1": "GDPR kapsamında şu haklara sahipsiniz:",
+    "items": {
+      "i1": "kişisel verilerinize <strong>erişim</strong> ve bunların bir kopyasını alma;",
+      "i2": "yanlış verilerin <strong>düzeltilmesini</strong> isteme;",
+      "i3": "saklanmaları için artık bir neden kalmadığında verilerinizin <strong>silinmesini</strong> isteme;",
+      "i4": "belirli durumlarda işlemenin <strong>kısıtlanmasını</strong> isteme;",
+      "i5": "bize sağladığınız verileri yapılandırılmış, makinede okunabilir bir biçimde alma (<strong>taşınabilirlik</strong>);",
+      "i6": "özel durumunuzla ilgili nedenlerle, meşru menfaatlerimize dayanan işlemeye her zaman <strong>itiraz</strong> etme; ve",
+      "i7": "verdiğiniz herhangi bir onayı, geri çekmeden önceki işlemeyi etkilemeksizin geri çekme."
+    },
+    "p2": "İşletmeler bunların çoğunu kendileri yapabilir: bilgileri ayarlardan düzenleyebilir, verileri panelden dışa aktarabilir ve işletmeyi veya kullanıcı hesabını ayarlardan silebilir. Diğer her şey için <email>{email}</email> adresine yazın. Bir ay içinde yanıt veririz (karmaşık taleplerde bu süre iki ay daha uzatılabilir; bu durumda nedenini size bildiririz). Önce kimliğinizi doğrulamanızı isteyebiliriz.",
+    "p3": "Ayrıca, özellikle yaşadığınız veya çalıştığınız ya da ihlalin gerçekleştiği AB ülkesinde bir denetim makamına şikâyette bulunma hakkınız vardır. Yunanistan’da bu makam Yunanistan Kişisel Verileri Koruma Kurumu’dur (Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα), Kifisias Avenue 1–3, 115 23 Atina, <authority>www.dpa.gr</authority>. Endişenizi gidermek için önce bize fırsat vermenizi takdirle karşılarız."
+  },
+  "s10": {
+    "title": "Verilerinizi bize vermek zorunda mısınız?",
+    "p1": "Hesap oluşturmak için adınıza, e-posta adresinize ve bir şifreye ihtiyacımız vardır; bunlar olmadan hizmeti sunamayız. Geri kalan her şey isteğe bağlıdır ya da işletmenizin eklemeyi seçtiği bilgilerdir."
+  },
+  "s11": {
+    "title": "Güvenlik",
+    "p1": "Şifreli bağlantılar (HSTS ile HTTPS), şifreli veritabanı bağlantıları, güçlü tek yönlü şifre karma işlemi, sayfa betiklerinin okuyamadığı oturum çerezleri, her işletmenin verilerinin sıkı biçimde ayrılması, ekip üyeleri için rol tabanlı izinler, hassas işlemlerde hız sınırlaması, bir içerik güvenliği politikası ve bir denetim günlüğü kullanırız. Sağlayıcılarımız depolanan verileri şifreler. Hiçbir çevrim içi hizmet tamamen güvenli değildir; kişisel veri ihlali olması hâlinde, gerektiğinde 72 saat içinde denetim makamına bildirimde bulunur, etkilenen işletmeleri gereksiz gecikme olmaksızın bilgilendirir ve yasanın gerektirdiği durumlarda sizi doğrudan bilgilendiririz."
+  },
+  "s12": {
+    "title": "Çerezler",
+    "p1": "Yalnızca oturum açmanız ve oturumunuzun güvenliği için kesinlikle gerekli çerezleri ve açık/koyu tema seçiminizi hatırlamak için tarayıcınızın yerel depolamasını kullanırız. Analiz, reklam veya sosyal medya çerezleri kullanmadığımız için çerez bildirimi göstermeyiz. Ayrıntılar için <cookies>çerez politikasına</cookies> bakın."
+  },
+  "s13": {
+    "title": "Çocuklar",
+    "p1": "{brand} hesapları işletmeler içindir ve yalnızca yetişkinler tarafından oluşturulabilir. Kendi amaçlarımız için bilerek çocuklardan veri toplamayız. Çocuklar için rezervasyon kabul eden işletmeler (örneğin özel ders), veri sorumlusu olarak çocukların verilerini hukuka uygun biçimde toplamaktan sorumludur."
+  },
+  "s14": {
+    "title": "Bu politikadaki değişiklikler",
+    "p1": "İşleme faaliyetlerimiz değiştiğinde bu politikayı güncelleriz. Üst kısımdaki tarih ve sürüm son değişikliğin ne zaman yapıldığını gösterir; esaslı değişiklikleri ayrıca hesap sahiplerine önceden e-postayla bildiririz."
+  },
+  "s15": {
+    "title": "İletişim",
+    "p1": "<provider></provider>. E-posta: <email>{email}</email>."
+  }
+}

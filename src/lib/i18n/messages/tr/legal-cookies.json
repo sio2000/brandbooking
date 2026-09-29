@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Çerez politikası",
+    "description": "{brand} yalnızca kesinlikle gerekli çerezleri kullanır: analiz veya reklam çerezi yoktur. Neyin neden saklandığını tam olarak görün."
+  },
+  "title": "Çerez politikası",
+  "intro": "{brand}, çerezleri güvenli bir hizmet için gereken en düşük düzeyde tutar. Tarayıcınızda sakladığımız her şey ve nedenleri burada.",
+  "s1": {
+    "title": "Kısaca",
+    "items": {
+      "i1": "Yalnızca oturum açmanız ve oturumunuzun güvenliği için kesinlikle gerekli çerezleri kullanırız.",
+      "i2": "Analiz, reklam veya sosyal medya izleme çerezleri kullanmayız.",
+      "i3": "Rezervasyon sayfası istatistikleri anonimdir ve çerez kullanmaz. Müşterilerinizin cihazlarında hiçbir şey saklanmaz."
+    }
+  },
+  "s2": {
+    "title": "Kullandığımız çerezler",
+    "p1": "Bu çerezler doğrudan {brand} tarafından yerleştirilir (birinci taraf çerezleri). Yalnızca bir işletme hesabında oturum açan kişiler için yerleştirilir.",
+    "table": {
+      "caption": "{brand} tarafından yerleştirilen çerezler",
+      "name": "Ad",
+      "purpose": "Amaç",
+      "duration": "Süre",
+      "set": "Ne zaman yerleştirilir",
+      "session": {
+        "devNote": "(HTTPS olmayan geliştirme ortamlarında <code>{devName}</code>)",
+        "purpose": "Oturumunuzu açık tutar. Yalnızca rastgele bir oturum belirteci içerir; sayfa betikleri tarafından okunamaz ve yalnızca güvenli bağlantılar üzerinden gönderilir.",
+        "duration": "Hareketsizlik hâlinde en fazla 30 gün; uygulamayı kullandıkça yenilenir. Oturumu kapattığınızda silinir.",
+        "when": "Oturum açtıktan sonra"
+      },
+      "business": {
+        "purpose": "Birden fazla işletmeye bağlıysanız hangi işletmede çalıştığınızı hatırlar.",
+        "duration": "Tarayıcınızı kapatana veya oturumu kapatana kadar.",
+        "when": "Oturum açıp işletme değiştirdikten sonra"
+      }
+    },
+    "p2": "Bu çerezler talep ettiğiniz hizmeti sunmak için kesinlikle gereklidir; bu nedenle e-Gizlilik Direktifi (md. 5(3)) ve 3471/2006 sayılı Yunan kanunu (md. 4(5)) uyarınca onay gerektirmez. Bu yüzden çerez bildirimi göstermeyiz. İleride isteğe bağlı çerezler eklersek önce onayınızı isteriz."
+  },
+  "s3": {
+    "title": "Yerel depolama",
+    "p1": "Bir renk teması (açık, koyu veya sistem) seçerseniz bu seçimi tarayıcınızın yerel depolamasında <code>{key}</code> anahtarıyla hatırlarız. Cihazınızda kalır ve sunucularımıza hiçbir zaman gönderilmez. Tarayıcı ayarlarınızdan istediğiniz zaman silebilirsiniz."
+  },
+  "s4": {
+    "title": "Rezervasyon sayfaları ve yerleştirilebilir widget",
+    "p1": "Müşteriler bir işletmenin rezervasyon sayfasını açtığında (doğrudan, bir QR kodu aracılığıyla veya işletmenin web sitesine yerleştirilmiş widget aracılığıyla), {brand} analiz veya reklam amaçlı çerez yerleştirmez. İşletmelere rezervasyon sayfalarının performansını göstermek için “sayfa görüntülendi” ve “rezervasyon tamamlandı” gibi adımları çerez, cihaz tanımlayıcısı veya kişisel veri olmadan anonim olarak sayarız.",
+    "p2": "Widget’ı yerleştiren bir web sitesi kendi çerezlerini kullanabilir. Bu çerezler {brand} tarafından değil, o web sitesi tarafından kontrol edilir."
+  },
+  "s5": {
+    "title": "Stripe ile ödemeler",
+    "p1": "Bir işletme sahibi abone olduğunda veya faturalandırmayı yönettiğinde Stripe tarafından barındırılan sayfalara yönlendirilir. Stripe orada, örneğin dolandırıcılığı önlemek için, kendi çerez ve gizlilik politikaları kapsamında kendi çerezlerini yerleştirebilir."
+  },
+  "s6": {
+    "title": "Çerezleri yönetme",
+    "p1": "Çerezleri tarayıcı ayarlarınızdan engelleyebilir veya silebilirsiniz. Oturum çerezini engellerseniz {brand}’ta oturum açamazsınız; rezervasyon sayfaları çalışmaya devam eder."
+  },
+  "s7": {
+    "title": "Sorular",
+    "p1": "Bize <email>{email}</email> adresinden ulaşın. Kişisel verileri nasıl işlediğimiz hakkında daha fazla bilgi için <privacy>gizlilik politikasına</privacy> bakın."
+  }
+}

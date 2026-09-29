@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Política de cookies",
+    "description": "O {brand} utiliza apenas cookies estritamente necessários: nenhum cookie de análise ou de publicidade. Veja exatamente o que é armazenado e porquê."
+  },
+  "title": "Política de cookies",
+  "intro": "O {brand} reduz os cookies ao mínimo necessário para prestar um serviço seguro. Eis tudo o que armazenamos no seu navegador e porquê.",
+  "s1": {
+    "title": "Em resumo",
+    "items": {
+      "i1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão e mantê-la segura.",
+      "i2": "Não utilizamos cookies de análise, de publicidade nem de rastreio de redes sociais.",
+      "i3": "As estatísticas da página de reservas são anónimas e não utilizam cookies. Nada é armazenado nos dispositivos dos seus clientes."
+    }
+  },
+  "s2": {
+    "title": "Cookies que utilizamos",
+    "p1": "Estes cookies são definidos pelo próprio {brand} (cookies próprios). Só são definidos para as pessoas que iniciam sessão numa conta de negócio.",
+    "table": {
+      "caption": "Cookies definidos pelo {brand}",
+      "name": "Nome",
+      "purpose": "Finalidade",
+      "duration": "Duração",
+      "set": "Definido",
+      "session": {
+        "devNote": "(<code>{devName}</code> em ambientes de desenvolvimento sem HTTPS)",
+        "purpose": "Mantém a sua sessão iniciada. Contém apenas um token de sessão aleatório; não pode ser lido pelos scripts da página e só é enviado através de ligações seguras.",
+        "duration": "Até 30 dias sem atividade, renovado enquanto utiliza a aplicação. Removido ao terminar sessão.",
+        "when": "Após iniciar sessão"
+      },
+      "business": {
+        "purpose": "Memoriza em que negócio está a trabalhar, se pertencer a mais do que um.",
+        "duration": "Até fechar o navegador ou terminar sessão.",
+        "when": "Após iniciar sessão e mudar de negócio"
+      }
+    },
+    "p2": "Estes cookies são estritamente necessários para prestar o serviço que pediu, pelo que, nos termos da Diretiva relativa à privacidade e às comunicações eletrónicas (art. 5.º, n.º 3) e da lei grega 3471/2006 (art. 4.º, n.º 5), não exigem consentimento. É por isso que não apresentamos um banner de cookies. Se algum dia acrescentarmos cookies opcionais, pediremos primeiro o seu consentimento."
+  },
+  "s3": {
+    "title": "Armazenamento local",
+    "p1": "Se escolher um tema de cores (claro, escuro ou do sistema), memorizamos essa escolha no armazenamento local do seu navegador com a chave <code>{key}</code>. Fica no seu dispositivo e nunca é enviada para os nossos servidores. Pode apagá-la a qualquer momento nas definições do seu navegador."
+  },
+  "s4": {
+    "title": "Páginas de reservas e o widget incorporável",
+    "p1": "Quando os clientes abrem a página de reservas de um negócio (diretamente, através de um código QR ou do widget incorporado no site do negócio), o {brand} não define cookies de análise nem de publicidade. Para mostrar aos negócios o desempenho da sua página de reservas, contamos de forma anónima passos como «página vista» e «reserva concluída», sem cookies, identificadores de dispositivos nem dados pessoais.",
+    "p2": "Um site que incorpore o widget pode utilizar os seus próprios cookies. Esses cookies são controlados por esse site e não pelo {brand}."
+  },
+  "s5": {
+    "title": "Pagamentos com a Stripe",
+    "p1": "Quando o titular de um negócio subscreve ou gere a faturação, é encaminhado para páginas alojadas pela Stripe. A Stripe pode aí definir os seus próprios cookies, por exemplo para prevenir a fraude, nos termos das suas próprias políticas de cookies e de privacidade."
+  },
+  "s6": {
+    "title": "Gerir cookies",
+    "p1": "Pode bloquear ou apagar cookies nas definições do seu navegador. Se bloquear o cookie de sessão, não conseguirá iniciar sessão no {brand}; as páginas de reservas continuarão a funcionar."
+  },
+  "s7": {
+    "title": "Perguntas",
+    "p1": "Contacte-nos através de <email>{email}</email>. Para saber mais sobre a forma como tratamos os dados pessoais, consulte a <privacy>política de privacidade</privacy>."
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Hizmet koşulları",
+    "description": "{brand} ile onu kullanan işletmeler arasındaki sözleşme: deneme süresi, abonelik, verileriniz, kabul edilebilir kullanım, sorumluluk ve bize nasıl ulaşacağınız."
+  },
+  "title": "Hizmet koşulları",
+  "intro": "{brand} ile onu kullanan işletmeler arasındaki, okunmak için yazılmış sözleşme. Kısaca: kart gerekmeden {days} gün ücretsiz, ardından ayda {price}, istediğiniz zaman iptal, verileriniz sizin kalır ve müşterilerinizin verilerini yalnızca hizmeti sizin için çalıştırmak amacıyla işleriz.",
+  "s1": {
+    "title": "Biz kimiz ve bu koşullar neleri kapsar",
+    "p1": "{brand}, <provider></provider> tarafından sağlanmaktadır (“{brand}”, “biz”).",
+    "p2": "Bu hizmet koşulları (“Koşullar”), bizimle {brand} hesabı oluşturan işletme veya profesyonel (“siz”, “Müşteri”) arasında bir sözleşmedir. Koşullar, {brand}’un sizin adınıza işlediği müşterilerinizin kişisel verilerine uygulanan <dpa>Veri İşleme Sözleşmemizi</dpa> (“Veri İşleme Sözleşmesi”) içerir. <privacy>Gizlilik Politikamız</privacy>, bizzat sorumlu olduğumuz kişisel verileri nasıl işlediğimizi açıklar.",
+    "p3": "Kayıt sırasında kutuyu işaretleyip hesap oluşturduğunuzda bu Koşulları kabul etmiş olursunuz. Koşulları bir işletme adına kabul ediyorsanız, o işletmeyi bağlamaya yetkili olduğunuzu onaylarsınız."
+  },
+  "s2": {
+    "title": "Yalnızca ticari kullanım",
+    "p1": "{brand} yalnızca işletmelere, serbest çalışan profesyonellere ve kuruluşlara, ticari, mesleki, zanaat veya iş faaliyetleri kapsamında kullanılmak üzere sunulur. Tüketicilere sunulmaz. Hesap oluşturmak için en az 18 yaşında olmanız gerekir.",
+    "p2": "Rezervasyon sayfanız üzerinden randevu alan kişilerin (“Nihai Müşteriler”) hesaba ihtiyacı yoktur ve bu Koşulların tarafı değildir. Onlarla ilişkiniz (sunduğunuz hizmetler, fiyatlarınız, iptal kurallarınız) yalnızca sizinle onlar arasındadır."
+  },
+  "s3": {
+    "title": "Hizmet",
+    "p1": "{brand}; rezervasyon sayfası yayınlamanızı, hizmetleri, çalışma saatlerini, personeli, randevuları ve müşteri kayıtlarını yönetmenizi, basit işletme istatistiklerini görüntülemenizi ve randevu onaylarını, değişikliklerini ve hatırlatmalarını e-postayla göndermenizi sağlayan çevrim içi bir yazılımdır. Onu internet üzerinden “hizmet olarak” sunarız; kurulacak bir şey yoktur.",
+    "p2": "{brand}’u sürekli geliştiririz. Özellik ekleyebilir, değiştirebilir veya kaldırabiliriz. Bir değişiklik, ödeme yaptığınız temel işlevleri önemli ölçüde azaltırsa sizi en az 30 gün önceden bilgilendiririz ve değişiklik yürürlüğe girmeden önce iptal edebilirsiniz.",
+    "p3": "{brand} randevularınız için ödeme işlemez ve sizinle Nihai Müşterileriniz arasında temsilci, aracı veya pazar yeri değildir."
+  },
+  "s4": {
+    "title": "Hesabınız ve ekibiniz",
+    "items": {
+      "i1": "Kayıt sırasında doğru bilgi verin ve bu bilgileri güncel tutun.",
+      "i2": "Şifrenizi gizli tutun ve hesap paylaşmayın. Bunun yerine ekip üyelerini davet edin; davet ettiğiniz kişilerin hesabınızda yaptıklarından siz sorumlusunuz.",
+      "i3": "Hesabınıza izinsiz erişildiğini düşünüyorsanız bize gecikmeksizin <email>{email}</email> adresinden bildirin."
+    }
+  },
+  "s5": {
+    "title": "Ücretsiz deneme, fiyat, faturalandırma ve iptal",
+    "trial": {
+      "title": "Ücretsiz deneme",
+      "p1": "Her yeni işletme, tüm özellikleri içeren {days} günlük ücretsiz deneme alır. Başlatmak için ödeme kartı gerekmez ve abone olmadığınız sürece deneme ücretli aboneliğe dönüşmez. Deneme süresi bitene kadar abone olmazsanız rezervasyon sayfanız yeni rezervasyon kabul etmeyi durdurur; verileriniz hesabınızda kalır ve devam etmek için istediğiniz zaman abone olabilirsiniz."
+    },
+    "price": {
+      "title": "Abonelik ve fiyat",
+      "items": {
+        "i1": "Abonelik, işletme başına aylık {price} tutarındadır, her ay peşin faturalandırılır ve tüm özellikleri içerir. Kurulum ücreti veya rezervasyon başına ücret yoktur.",
+        "i2": "Fiyata %24 oranındaki Yunanistan KDV’si dahildir. Ödeme sırasında üzerine hiçbir şey eklenmez ve her ödeme için fatura alırsınız.",
+        "i3": "Ödemeler ödeme hizmet sağlayıcımız Stripe tarafından işlenir. Abone olarak, iptal edene kadar her faturalandırma döneminde ödeme yönteminizden Stripe aracılığıyla tahsilat yapmamıza yetki vermiş olursunuz.",
+        "i4": "Gelecekteki faturalandırma dönemleri için fiyatı, değişiklik size uygulanmadan en az 30 gün önce e-postayla bildirerek değiştirebiliriz. Kabul etmiyorsanız yeni fiyat uygulanmadan önce iptal edebilirsiniz."
+      }
+    },
+    "cancellation": {
+      "title": "İptal ve iadeler",
+      "items": {
+        "i1": "Panelinizdeki <em>Faturalandırma</em> bölümünden istediğiniz zaman iptal edebilirsiniz. İptal, ödemesini yaptığınız faturalandırma döneminin sonunda yürürlüğe girer; o zamana kadar her şey çalışmaya devam eder.",
+        "i2": "Ödenmiş ücretler kısmi aylar için iade edilmez; yasanın iade gerektirdiği veya aboneliğinizi sizin kusurunuz olmaksızın sonlandırdığımız durumlar hariçtir (bu durumda dönemin kullanılmayan kısmını iade ederiz)."
+      }
+    },
+    "failed": {
+      "title": "Başarısız ödemeler",
+      "p1": "Bir ödeme başarısız olursa biz ve Stripe yeniden deneriz ve sizi bilgilendiririz. İlk başarısızlıktan 7 gün sonra hâlâ ödenmemişse rezervasyon sayfanız ödeme yapılana kadar yeni rezervasyon kabul etmez. Başarısız bir ödeme nedeniyle verileriniz silinmez."
+    }
+  },
+  "s6": {
+    "title": "İçeriğiniz ve müşterilerinizin verileri",
+    "p1": "{brand}’a girdiğiniz içerik üzerindeki tüm haklar sizde kalır: işletme bilgileri, görseller, hizmetler, fiyatlar ve müşteri kayıtları (“İçeriğiniz”). Bize, İçeriğinizi yalnızca hizmeti size sunmak, güvenliğini sağlamak ve desteklemek için gerektiği ölçüde, rezervasyon sayfanızın herkese gösterilmesi de dahil olmak üzere, barındırmak, kopyalamak, görüntülemek ve işlemek için münhasır olmayan, dünya çapında, telifsiz bir lisans verirsiniz.",
+    "p2": "Nihai Müşterilerinizin ve personelinizin kişisel verileri bakımından <strong>veri sorumlusu sizsiniz</strong> ve <strong>{brand} sizin veri işleyeninizdir</strong>. <dpa>Veri İşleme Sözleşmesi</dpa>, veri işleyen olarak yükümlülüklerimizi belirler ve bu Koşulların bir parçasıdır.",
+    "p3": "İçeriğinizden ve müşterilerinizin verilerini toplamak ve kullanmak için GDPR ve diğer geçerli mevzuat kapsamında hukuki bir dayanağa sahip olmaktan, bu konuda onları bilgilendirmek de dahil olmak üzere, siz sorumlusunuz. {brand} bir rezervasyon aracıdır; tıbbi bir sistem veya sağlık kayıt sistemi değildir: yasa izin vermedikçe ve yasanın gerektirdiği güvenceleri almadıkça sağlık verilerini veya diğer özel nitelikli verileri (örneğin müşteri ya da randevu notlarında) saklamayın.",
+    "p4": "Verilerinizi (müşteriler, randevular, hizmetler ve işletme bilgileri) iptalden sonra da dahil olmak üzere istediğiniz zaman panelden dışa aktarabilirsiniz."
+  },
+  "s7": {
+    "title": "Kabul edilebilir kullanım",
+    "p1": "{brand}’u aşağıdaki amaçlarla kullanamaz veya başkasının kullanmasına izin veremezsiniz:",
+    "items": {
+      "i1": "yasa dışı hizmetler ya da yasal olarak lisans veya yeterlilik gerektiren ve sizin bu lisansa veya yeterliliğe sahip olmadığınız hizmetler sunmak, tanıtmak veya düzenlemek;",
+      "i2": "hukuka aykırı, yanıltıcı, ayrımcı, karalayıcı, başkalarının fikri mülkiyetini veya gizliliğini ihlal eden ya da müstehcen içerik yayınlamak;",
+      "i3": "rezervasyon e-postaları aracılığıyla spam veya pazarlama mesajı göndermek ya da hukuki dayanak olmaksızın kişileri müşteri olarak eklemek;",
+      "i4": "başka bir işletmenin veya kişinin kimliğine bürünmek ya da temsil etmediğiniz bir işletme için rezervasyon sayfası oluşturmak;",
+      "i5": "diğer işletmelerin verilerine erişmek, güvenlik önlemlerimizi test etmek, yoklamak veya atlatmak, kötü amaçlı yazılım yüklemek, hizmetten otomatik veri çekmek ya da hizmete makul olmayan bir yük bindirmek;",
+      "i6": "yasanın açıkça izin verdiği durumlar dışında hizmeti yeniden satmak, alt lisanslamak, kopyalamak veya tersine mühendislik uygulamak."
+    }
+  },
+  "s8": {
+    "title": "Yasa dışı içeriğin bildirilmesi ve kararlarımız",
+    "p1": "Rezervasyon sayfaları, onları oluşturan işletmelerin talebi üzerine yayınlanır. Yetkili makamlar da dahil olmak üzere herkes, yasa dışı olduğunu veya bu Koşulları ihlal ettiğini düşündüğü içeriği tek irtibat noktamıza, <email>{email}</email> adresine İngilizce veya Yunanca yazarak bildirebilir. Lütfen şunları belirtin:",
+    "items": {
+      "i1": "içeriğin web adresi (URL) ve tam olarak neyin söz konusu olduğu;",
+      "i2": "içeriği neden yasa dışı veya bu Koşullara aykırı bulduğunuz;",
+      "i3": "adınız ve e-posta adresiniz (çocukların cinsel istismarını içeren materyal bildirimlerinde gerekmez); ve",
+      "i4": "bildirimin doğru ve eksiksiz olduğuna iyi niyetle inandığınıza dair bir beyan."
+    },
+    "p2": "Bildirimin alındığını teyit eder, bildirimleri özenle ve nesnel biçimde inceler ve bildirimde bulunan kişiye kararımızı iletiriz. Bir içeriği veya hesabı kaldırır ya da kısıtlarsak ilgili işletmeye gerekçeleri ve karara nasıl itiraz edeceğini bildiririz; bu mesajı yanıtlayarak karara itiraz edebilirsiniz ve kararı yeniden inceleriz. Bu kararları vermek için otomatik sistemler kullanmayız.",
+    "p3": "Yasaya uymak, bu Koşulların ciddi bir ihlalini durdurmak veya Nihai Müşterileri, diğer kullanıcıları ya da hizmeti korumak için gerekli olduğunda içeriği kaldırabilir, bir rezervasyon sayfasını askıya alabilir veya bir hesabı askıya alabiliriz. Uygun olduğunda önce sizinle iletişime geçeriz."
+  },
+  "s9": {
+    "title": "Fikri mülkiyetimiz",
+    "p1": "{brand}, yazılımı, tasarımı, metinleri ve markaları bize veya lisans verenlerimize aittir. Bu Koşullar, hesabınız etkin olduğu sürece hizmeti işletmeniz için kullanma hakkı verir; herhangi bir mülkiyeti devretmez. Bize geri bildirim veya öneri gönderirseniz, bunları size karşı herhangi bir yükümlülük olmaksızın serbestçe kullanabiliriz."
+  },
+  "s10": {
+    "title": "Erişilebilirlik ve destek",
+    "p1": "{brand}’u erişilebilir, güvenli ve güvenilir tutmak ve sorunları hızla gidermek için çalışırız, ancak kesintisiz veya hatasız çalışmayı garanti etmeyiz. Planlı bakım mümkün olduğunda yoğunluğun az olduğu saatlerde yapılır. Hizmet üçüncü taraf altyapısına (barındırma, veritabanı, e-posta iletimi, ödemeler) dayanır ve e-postaların iletilmesi alıcıların posta sunucularına ve spam filtrelerine de bağlıdır; bu nedenle her e-postanın ulaşacağını garanti edemeyiz.",
+    "p2": "Destek, iş günlerinde İngilizce veya Yunanca olarak <email>{email}</email> adresinden e-postayla sağlanır. İki iş günü içinde yanıt vermeyi hedefleriz."
+  },
+  "s11": {
+    "title": "Sözleşmenin sona ermesi",
+    "items": {
+      "i1": "<strong>Sizin tarafınızdan:</strong> aboneliğinizi istediğiniz zaman iptal edin (yukarıya bakın); işletmenizi <em>Ayarlar → Gizlilik ve veriler</em> bölümünden, kullanıcı hesabınızı ise <em>Hesap ayarları</em> bölümünden dilediğiniz zaman silin.",
+      "i2": "<strong>Bizim tarafımızdan, bildirimle:</strong> sözleşmeyi herhangi bir nedenle, en az 30 gün önceden e-postayla bildirimde bulunarak sona erdirebilir ve fesihten sonraki döneme ilişkin peşin ödenmiş ücretleri iade ederiz.",
+      "i3": "<strong>Bizim tarafımızdan, derhal:</strong> bu Koşulları veya yasayı ciddi ya da tekrarlı biçimde ihlal etmeniz, ödemenin bildirime rağmen gecikmiş kalması veya yetkili bir makamın talep etmesi hâlinde bir hesabı askıya alabilir ya da kapatabiliriz."
+    },
+    "p1": "Bir işletmenin silinmesi; müşterilerini, randevularını, hizmetlerini ve yüklenen dosyalarını canlı sistemlerimizden derhal ve kalıcı olarak siler; veritabanı sağlayıcımızın yedeklerindeki kopyaların üzerine 30 gün içinde yazılır. Saklamak istediğiniz her şeyi önce dışa aktarın. Faturalandırma kayıtlarını, <privacy>Gizlilik Politikasında</privacy> açıklandığı üzere, vergi mevzuatının gerektirdiği süre boyunca saklarız."
+  },
+  "s12": {
+    "title": "Garantiler",
+    "p1": "{brand}’u makul beceri ve özenle ve tanımına uygun olarak sunarız. Bunun dışında ve yasanın izin verdiği ölçüde hizmet “olduğu gibi” sunulur ve örneğin tüm özel gereksinimlerinizi karşılayacağı veya size belirli sayıda rezervasyon getireceği gibi başka hiçbir garanti vermeyiz."
+  },
+  "s13": {
+    "title": "Sorumluluk",
+    "p1": "Bu Koşullardaki hiçbir hüküm, kasıt (dolus) veya ağır ihmal ya da ölüm veya yaralanma nedeniyle doğan sorumluluk da dahil olmak üzere, yasa gereği sınırlandırılamayan veya hariç tutulamayan sorumluluğu sınırlamaz veya hariç tutmaz.",
+    "p2": "Bunun dışında, yasanın izin verdiği ölçüde:",
+    "items": {
+      "i1": "taraflardan hiçbiri, hafif ihmalden kaynaklanan dolaylı veya sonuç niteliğindeki zararlardan ya da kâr, gelir, iş, itibar kaybından veya dışa aktarma işlevi kullanılarak önlenebilecek veri kaybından sorumlu değildir;",
+      "i2": "her bir tarafın bu Koşullardan doğan veya bunlarla bağlantılı toplam sorumluluğu, herhangi bir 12 aylık dönemde (a) talebe yol açan olaydan önceki 12 ayda bize ödediğiniz ücretler ile (b) 100 € tutarlarından yüksek olanıyla sınırlıdır."
+    },
+    "p3": "İçeriğinizden, Nihai Müşterilerinize sunduğunuz hizmetlerden ya da bu Koşulları veya veri koruma mevzuatını ihlal etmenizden kaynaklanan üçüncü taraf taleplerine (Nihai Müşteriler ve yetkili makamlar dahil) karşı, makul hukuki masraflar da dahil olmak üzere, bizi tazmin edersiniz."
+  },
+  "s14": {
+    "title": "Gizlilik",
+    "p1": "Taraflardan her biri, diğerinin kamuya açık olmayan ticari bilgilerini gizli tutar ve yasa ya da yetkili bir makam açıklanmasını gerektirmedikçe bunları yalnızca bu sözleşmenin amaçları doğrultusunda kullanır. Bu yükümlülük sözleşmenin sona ermesinden sonra üç yıl, kişisel veriler bakımından ise Veri İşleme Sözleşmesi uygulandığı sürece devam eder."
+  },
+  "s15": {
+    "title": "Kontrolümüz dışındaki olaylar",
+    "p1": "Taraflardan hiçbiri, doğal afetler, savaş, salgınlar, grevler, kamu ağlarının veya elektriğin kesilmesi ya da altyapı sağlayıcılarındaki kesintiler gibi makul kontrolü dışındaki olayların neden olduğu gecikme veya aksaklıklardan, etkiyi sınırlamak için makul adımlar atması koşuluyla sorumlu değildir."
+  },
+  "s16": {
+    "title": "Bu koşullardaki değişiklikler",
+    "p1": "Bu Koşulları, örneğin hizmetteki veya mevzuattaki değişiklikleri yansıtmak için güncelleyebiliriz. Esaslı değişiklikleri, yasa daha erken bir değişiklik gerektirmedikçe, yürürlüğe girmeden en az 30 gün önce hesap sahiplerine e-postayla bildiririz. Kabul etmiyorsanız değişiklik uygulanmadan önce iptal edebilirsiniz; bu tarihten sonra {brand}’u kullanmaya devam etmeniz yeni Koşulları kabul ettiğiniz anlamına gelir. Bu sayfanın üst kısmındaki sürüm ve tarih hangi sürümün geçerli olduğunu gösterir."
+  },
+  "s17": {
+    "title": "Genel hükümler",
+    "items": {
+      "i1": "Bu Koşullar (Veri İşleme Sözleşmesi ile birlikte), {brand} hakkında aramızdaki sözleşmenin tamamını oluşturur ve önceki tüm görüşmelerin yerini alır.",
+      "i2": "Herhangi bir hüküm geçersiz sayılırsa geri kalanı yürürlükte kalır ve geçersiz hüküm, amacına en yakın geçerli bir hükümle değiştirilir.",
+      "i3": "Bu sözleşmeyi onayımız olmadan devredemezsiniz. Biz sözleşmeyi işletmemizin bir halefine devredebiliriz ve bu durumda sizi bilgilendiririz.",
+      "i4": "Size yapılacak bildirimler hesap sahibinin e-posta adresine gönderilir; bize yapılacak bildirimler <email>{email}</email> adresine gönderilir."
+    }
+  },
+  "s18": {
+    "title": "Uygulanacak hukuk ve yetkili mahkemeler",
+    "p1": "Bu Koşullar ve bunlarla ilgili her türlü uyuşmazlık Yunan hukukuna tabidir. Emredici hukuk aksini öngörmedikçe Selanik (Yunanistan) mahkemeleri münhasıran yetkilidir. Milletlerarası Mal Satımına İlişkin Sözleşmeler Hakkında Birleşmiş Milletler Antlaşması uygulanmaz."
+  },
+  "s19": {
+    "title": "İletişim",
+    "p1": "<provider></provider>. E-posta: <email>{email}</email>. Ayrıca <legal>yasal bildirimimize</legal> bakın. {tradingName}’un {brand} dışındaki hizmetleri için ayrı koşullar geçerlidir."
+  }
+}

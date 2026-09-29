@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Terms of service",
+    "description": "The agreement between {brand} and the businesses that use it: trial, subscription, your data, acceptable use, liability and how to reach us."
+  },
+  "title": "Terms of service",
+  "intro": "The agreement between {brand} and the businesses that use it, written to be read. The short version: {days} days free without a card, then {price} per month, cancel any time, your data stays yours, and we process your customers’ data only to run the service for you.",
+  "s1": {
+    "title": "Who we are and what these terms cover",
+    "p1": "{brand} is provided by <provider></provider> (“{brand}”, “we”, “us”).",
+    "p2": "These terms of service (the “Terms”) are a contract between us and the business or professional that creates a {brand} account (“you”, the “Customer”). They include our <dpa>Data Processing Agreement</dpa> (the “DPA”), which applies to the personal data of your customers that {brand} processes for you. Our <privacy>Privacy Policy</privacy> explains how we handle personal data for which we are responsible ourselves.",
+    "p3": "You accept these Terms when you tick the box at sign-up and create an account. If you accept them on behalf of a business, you confirm that you are authorised to bind that business."
+  },
+  "s2": {
+    "title": "Business use only",
+    "p1": "{brand} is offered only to businesses, self-employed professionals and organisations, for use in their trade, business, craft or profession. It is not offered to consumers. You must be at least 18 years old to create an account.",
+    "p2": "People who book an appointment through your booking page (“End Customers”) do not need an account and are not parties to these Terms. Your relationship with them (the services you provide, your prices, your cancellation rules) is between you and them."
+  },
+  "s3": {
+    "title": "The service",
+    "p1": "{brand} is online software that lets you publish a booking page, manage services, opening hours, staff, appointments and customer records, view simple business statistics, and send appointment confirmations, changes and reminders by email. We provide it “as a service” over the internet; there is nothing to install.",
+    "p2": "We develop {brand} continuously. We may add, change or remove features. If a change materially reduces the core functionality you pay for, we will tell you at least 30 days in advance, and you may cancel before it takes effect.",
+    "p3": "{brand} does not process payments for your appointments and is not an agent, intermediary or marketplace between you and your End Customers."
+  },
+  "s4": {
+    "title": "Your account and team",
+    "items": {
+      "i1": "Give accurate information at sign-up and keep it up to date.",
+      "i2": "Keep your password confidential and do not share accounts. Invite team members instead; you are responsible for what people you invite do in your account.",
+      "i3": "Tell us without delay at <email>{email}</email> if you believe your account has been accessed without permission."
+    }
+  },
+  "s5": {
+    "title": "Free trial, price, billing and cancellation",
+    "trial": {
+      "title": "Free trial",
+      "p1": "Each new business gets a {days}-day free trial with all features. No payment card is needed to start it, and the trial does not turn into a paid subscription unless you subscribe. If you do not subscribe by the end of the trial, your booking page stops accepting new bookings; your data stays in your account and you can subscribe at any time to continue."
+    },
+    "price": {
+      "title": "Subscription and price",
+      "items": {
+        "i1": "The subscription costs {price} per business per month, billed monthly in advance, and includes all features. There are no set-up fees and no per-booking fees.",
+        "i2": "The price includes VAT at the Greek rate of 24%. Nothing is added on top at checkout, and you receive an invoice for every payment.",
+        "i3": "Payments are processed by our payment provider, Stripe. By subscribing you authorise us, through Stripe, to charge your payment method for each billing period until you cancel.",
+        "i4": "We may change the price for future billing periods by telling you by email at least 30 days before the change applies to you. If you do not agree, you can cancel before the new price applies."
+      }
+    },
+    "cancellation": {
+      "title": "Cancellation and refunds",
+      "items": {
+        "i1": "You can cancel at any time from <em>Billing</em> in your dashboard. Cancellation takes effect at the end of the billing period you have already paid for; until then, everything keeps working.",
+        "i2": "Fees already paid are not refundable for partial months, except where the law requires a refund or where we end your subscription without you being at fault (in which case we refund the unused part of the period)."
+      }
+    },
+    "failed": {
+      "title": "Failed payments",
+      "p1": "If a payment fails, we and Stripe will try again and let you know. If it is still unpaid 7 days after the first failure, your booking page stops accepting new bookings until payment is made. Your data is not deleted because of a failed payment."
+    }
+  },
+  "s6": {
+    "title": "Your content and your customers’ data",
+    "p1": "You keep all rights in the content you put into {brand}: business details, images, services, prices and customer records (“Your Content”). You give us a non-exclusive, worldwide, royalty-free licence to host, copy, display and process Your Content only as needed to provide, secure and support the service for you, including showing your booking page to the public.",
+    "p2": "For personal data of your End Customers and staff, <strong>you are the controller</strong> and <strong>{brand} is your processor</strong>. The <dpa>DPA</dpa> sets out our obligations as processor and forms part of these Terms.",
+    "p3": "You are responsible for Your Content and for having a lawful basis under the GDPR and other applicable law to collect and use your customers’ data, including informing them about it. {brand} is a booking tool, not a medical or health-records system: do not store health or other special-category data (for example in customer or appointment notes) unless the law allows you to and you have taken the safeguards it requires.",
+    "p4": "You can export your data (customers, appointments, services and business details) at any time from the dashboard, including after you cancel."
+  },
+  "s7": {
+    "title": "Acceptable use",
+    "p1": "You must not use {brand}, or allow anyone to use it, to:",
+    "items": {
+      "i1": "offer, advertise or arrange illegal services, or services you are not licensed or qualified to provide where a licence or qualification is legally required;",
+      "i2": "publish content that is unlawful, misleading, discriminatory, defamatory, infringes anyone’s intellectual property or privacy, or is sexually explicit;",
+      "i3": "send spam or marketing messages through booking emails, or add people as customers without a lawful basis;",
+      "i4": "impersonate another business or person, or create booking pages for a business you do not represent;",
+      "i5": "access other businesses’ data, test, probe or circumvent our security, introduce malware, scrape the service, or place an unreasonable load on it;",
+      "i6": "resell, sublicense, copy or reverse-engineer the service, except where the law expressly allows it."
+    }
+  },
+  "s8": {
+    "title": "Reporting illegal content and our decisions",
+    "p1": "Booking pages are published at the request of the businesses that create them. Anyone, including authorities, can report content they believe is illegal or breaches these Terms by writing to our single point of contact, <email>{email}</email>, in English or Greek. Please include:",
+    "items": {
+      "i1": "the web address (URL) of the content and what exactly is concerned;",
+      "i2": "why you consider it illegal or in breach of these Terms;",
+      "i3": "your name and email address (not required for reports of child sexual abuse material); and",
+      "i4": "a statement that you believe in good faith that the report is accurate and complete."
+    },
+    "p2": "We confirm receipt, review reports diligently and objectively, and tell the reporter what we decided. If we remove or restrict content or an account, we tell the business concerned the reasons and how to contest the decision; you can contest it by replying to that message and we will review it again. We do not use automated systems to make these decisions.",
+    "p3": "We may remove content, suspend a booking page or suspend an account where it is necessary to comply with the law, to stop a serious breach of these Terms, or to protect End Customers, other users or the service. Where appropriate we contact you first."
+  },
+  "s9": {
+    "title": "Our intellectual property",
+    "p1": "{brand}, its software, design, texts and trademarks belong to us or our licensors. These Terms give you the right to use the service for your business while your account is active; they do not transfer any ownership. If you send us feedback or suggestions, we may use them freely and without obligation to you."
+  },
+  "s10": {
+    "title": "Availability and support",
+    "p1": "We work to keep {brand} available, secure and reliable and to fix problems quickly, but we do not guarantee uninterrupted or error-free operation. Planned maintenance is done at quiet times where possible. The service relies on third-party infrastructure (hosting, database, email delivery, payments), and email delivery also depends on recipients’ mail servers and spam filters, so we cannot guarantee that every email arrives.",
+    "p2": "Support is provided by email at <email>{email}</email>, in English or Greek, on business days. We aim to answer within two business days."
+  },
+  "s11": {
+    "title": "Ending the agreement",
+    "items": {
+      "i1": "<strong>By you:</strong> cancel your subscription at any time (see above), and delete your business from <em>Settings → Privacy & data</em> and your user account from <em>Account settings</em> whenever you wish.",
+      "i2": "<strong>By us, with notice:</strong> we may end the agreement for any reason by giving you at least 30 days’ notice by email, refunding any prepaid fees for the period after termination.",
+      "i3": "<strong>By us, immediately:</strong> we may suspend or close an account if you seriously or repeatedly breach these Terms or the law, if payment remains overdue after notice, or if a competent authority requires it."
+    },
+    "p1": "Deleting a business permanently deletes its customers, appointments, services and uploaded files from our live systems straight away; copies in our database provider’s backups are overwritten within 30 days. Please export anything you want to keep first. We keep billing records for as long as tax law requires, as explained in the <privacy>Privacy Policy</privacy>."
+  },
+  "s12": {
+    "title": "Warranties",
+    "p1": "We provide {brand} with reasonable skill and care and in line with its description. Apart from that, and to the extent the law allows, the service is provided “as is” and we give no other warranties, for example that it will meet all your particular requirements or bring you a particular number of bookings."
+  },
+  "s13": {
+    "title": "Liability",
+    "p1": "Nothing in these Terms limits or excludes liability that cannot be limited or excluded by law, including liability for intent (dolus) or gross negligence, or for death or personal injury.",
+    "p2": "Otherwise, to the extent permitted by law:",
+    "items": {
+      "i1": "neither party is liable for indirect or consequential loss, or for loss of profit, revenue, business, goodwill or data that could have been avoided by using the export function, arising from slight negligence;",
+      "i2": "each party’s total liability arising from or in connection with these Terms in any 12 months is limited to the greater of (a) the fees you paid us in the 12 months before the event giving rise to the claim and (b) €100."
+    },
+    "p3": "You will compensate us for claims by third parties (including End Customers and authorities) caused by Your Content, by the services you provide to your End Customers, or by your breach of these Terms or of data protection law, including reasonable legal costs."
+  },
+  "s14": {
+    "title": "Confidentiality",
+    "p1": "Each party will keep the other’s non-public business information confidential and use it only for the purposes of this agreement, unless disclosure is required by law or by a competent authority. This lasts for three years after the agreement ends and, for personal data, for as long as the DPA applies."
+  },
+  "s15": {
+    "title": "Events outside our control",
+    "p1": "Neither party is responsible for delays or failures caused by events beyond its reasonable control, such as natural disasters, war, epidemics, strikes, failures of public networks or power, or outages at infrastructure providers, provided it takes reasonable steps to limit the impact."
+  },
+  "s16": {
+    "title": "Changes to these terms",
+    "p1": "We may update these Terms, for example to reflect changes to the service or the law. We will email account owners about material changes at least 30 days before they take effect, unless a change is required sooner by law. If you do not agree, you may cancel before the change applies; continuing to use {brand} after that date means you accept the new Terms. The version and date at the top of this page show which version applies."
+  },
+  "s17": {
+    "title": "General",
+    "items": {
+      "i1": "These Terms (with the DPA) are the entire agreement between us about {brand} and replace any earlier discussions.",
+      "i2": "If any provision is found invalid, the rest remains in force and the invalid provision is replaced by a valid one that comes closest to its purpose.",
+      "i3": "You may not transfer this agreement without our consent. We may transfer it to a successor of our business, and will tell you if we do.",
+      "i4": "Notices to you are sent to the email address of the account owner; notices to us go to <email>{email}</email>."
+    }
+  },
+  "s18": {
+    "title": "Governing law and courts",
+    "p1": "These Terms and any dispute about them are governed by Greek law. The courts of Thessaloniki, Greece, have exclusive jurisdiction, unless mandatory law provides otherwise. The United Nations Convention on Contracts for the International Sale of Goods does not apply."
+  },
+  "s19": {
+    "title": "Contact",
+    "p1": "<provider></provider>. Email: <email>{email}</email>. See also our <legal>legal notice</legal>. For {tradingName} services other than {brand}, separate terms apply."
+  }
+}
