@@ -5,7 +5,13 @@
  * The track is laid out left to right in every language (the loop depends on
  * it); in right-to-left languages it runs the other way.
  */
-export function BusinessMarquee({ items, rtl = false }: { items: readonly string[]; rtl?: boolean }) {
+export function BusinessMarquee({
+  items,
+  rtl = false,
+}: {
+  items: readonly string[]
+  rtl?: boolean
+}) {
   const row = (copy: number) =>
     items.map((t) => (
       <span key={`${copy}-${t}`} className="flex shrink-0 items-center gap-5 pr-5">

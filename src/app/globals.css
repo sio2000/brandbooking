@@ -423,3 +423,16 @@
   --primary-soft-foreground: color-mix(in oklab, var(--brand) 40%, white);
   --ring: color-mix(in oklab, var(--brand) 62%, white);
 }
+
+/*
+ * Arabic letters join and Devanagari letters hang from a shared headline:
+ * the tight display tracking breaks both, and their vowel marks need taller
+ * lines than Latin display type. Unlayered, so it wins over the utilities.
+ */
+:lang(ar),
+:lang(hi) {
+  letter-spacing: normal;
+}
+:is(.text-display, .text-h2, .text-h3):is(:lang(ar), :lang(hi)) {
+  line-height: 1.3;
+}

@@ -183,7 +183,8 @@ export default async function SupportPage() {
                   {url && (
                     <Button asChild size="lg" variant={email ? 'secondary' : 'primary'}>
                       <a href={url} rel="noopener noreferrer" target="_blank">
-                        {t('contact.helpCentre')} <ArrowUpRight aria-hidden className="rtl:-scale-x-100" />
+                        {t('contact.helpCentre')}{' '}
+                        <ArrowUpRight aria-hidden className="rtl:-scale-x-100" />
                         <span className="sr-only">{t('contact.newTab')}</span>
                       </a>
                     </Button>

@@ -33,16 +33,7 @@ export async function generateMetadata() {
   })
 }
 
-const FAQ_KEYS = [
-  'website',
-  'clients',
-  'trial',
-  'fees',
-  'cancel',
-  'pay',
-  'gdpr',
-  'setup',
-] as const
+const FAQ_KEYS = ['website', 'clients', 'trial', 'fees', 'cancel', 'pay', 'gdpr', 'setup'] as const
 
 export default async function HomePage() {
   const [t, shell, locale, price] = await Promise.all([
@@ -118,7 +109,10 @@ export default async function HomePage() {
     ],
   }
 
-  const link = (path: string) => (c: React.ReactNode) => <Link href={href(path)}>{c}</Link>
+  const link = (path: string) =>
+    function InlineLink(c: React.ReactNode) {
+      return <Link href={href(path)}>{c}</Link>
+    }
   const trust = [
     {
       Icon: Globe2,
@@ -151,10 +145,7 @@ export default async function HomePage() {
         <Container className="pt-8 pb-16 sm:pt-12 lg:pt-16 lg:pb-24">
           <HeroShowcase price={price.display} />
         </Container>
-        <BusinessMarquee
-          items={BUSINESS_TYPES.map((k) => t(`marquee.${k}`))}
-          rtl={dir === 'rtl'}
-        />
+        <BusinessMarquee items={BUSINESS_TYPES.map((k) => t(`marquee.${k}`))} rtl={dir === 'rtl'} />
       </section>
 
       {/* How it works */}

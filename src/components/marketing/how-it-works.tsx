@@ -198,20 +198,22 @@ function ServicesScene({ animate }: { animate: boolean }) {
         {t('how.openingHours')}
       </p>
       <div className="mt-2 grid grid-cols-7 gap-1.5">
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => weekday(i, locale, 'narrow')).map((d, i) => (
-          <In key={i} delay={1.6 + i * 0.12} animate={animate} from={{ opacity: 0, scale: 0.6 }}>
-            <span
-              className={cn(
-                'grid h-8 place-items-center rounded-lg text-[12px] font-semibold',
-                i < 6
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-surface-2 text-subtle-foreground',
-              )}
-            >
-              {d}
-            </span>
-          </In>
-        ))}
+        {[0, 1, 2, 3, 4, 5, 6]
+          .map((i) => weekday(i, locale, 'narrow'))
+          .map((d, i) => (
+            <In key={i} delay={1.6 + i * 0.12} animate={animate} from={{ opacity: 0, scale: 0.6 }}>
+              <span
+                className={cn(
+                  'grid h-8 place-items-center rounded-lg text-[12px] font-semibold',
+                  i < 6
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-surface-2 text-subtle-foreground',
+                )}
+              >
+                {d}
+              </span>
+            </In>
+          ))}
       </div>
       <In delay={2.6} animate={animate} className="mt-4 flex justify-end">
         <span className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-success-soft px-3 py-1 text-[12.5px] font-semibold text-success-soft-foreground">

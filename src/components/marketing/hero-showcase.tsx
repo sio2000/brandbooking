@@ -136,7 +136,7 @@ export function HeroShowcase({ price }: { price: string }) {
           {t('hero.titleLead')} <span className="sr-only">{t('hero.titleSr')}</span>
           <span
             aria-hidden
-            className="relative block h-[1.08em] overflow-hidden text-primary"
+            className="relative block h-[1.08em] overflow-hidden text-primary [&:lang(ar)]:h-[1.4em] [&:lang(hi)]:h-[1.4em]"
             // The language's longest phrase sets the size, so no phrase is ever cut off.
             style={{ fontSize: `min(1em, calc(100cqi / ${phraseEm.toFixed(2)}))` }}
           >

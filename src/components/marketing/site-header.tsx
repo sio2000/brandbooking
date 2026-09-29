@@ -45,7 +45,11 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-16 items-center gap-3">
-        <Link href={href('/')} className="-ms-1 shrink-0 rounded-md p-1" aria-label={t('homeLabel')}>
+        <Link
+          href={href('/')}
+          className="-ms-1 shrink-0 rounded-md p-1"
+          aria-label={t('homeLabel')}
+        >
           <Logo />
         </Link>
         <nav aria-label={t('nav.main')} className="ms-6 hidden lg:block xl:ms-8">

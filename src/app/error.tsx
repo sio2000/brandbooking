@@ -3,13 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import {
-  DEFAULT_LOCALE,
-  LOCALES,
-  LOCALE_META,
-  localizedPath,
-  type Locale,
-} from '@/lib/i18n/config'
+import { DEFAULT_LOCALE, LOCALES, LOCALE_META, localizedPath, type Locale } from '@/lib/i18n/config'
 import { loadMessages } from '@/lib/i18n/load'
 import en from '@/lib/i18n/messages/en/marketing-shell.json'
 import { createTranslator, type MessageTree } from '@/lib/i18n/translator'
@@ -39,9 +33,7 @@ export default function ErrorPage({
   reset: () => void
 }) {
   const locale = usePageLocale()
-  const [messages, setMessages] = React.useState<{ locale: Locale; tree: MessageTree } | null>(
-    null,
-  )
+  const [messages, setMessages] = React.useState<{ locale: Locale; tree: MessageTree } | null>(null)
   React.useEffect(() => {
     let live = true
     loadMessages(locale, 'marketing-shell')

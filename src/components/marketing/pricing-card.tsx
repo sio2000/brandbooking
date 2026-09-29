@@ -96,7 +96,8 @@ export async function PricingCard({
             href={localizedPath('/pricing', locale)}
             className="mt-6 inline-flex min-h-11 items-center gap-1 rounded-md text-sm font-semibold text-primary hover:underline"
           >
-            {t('card.seeAll')} <ArrowRight aria-hidden className="size-4 shrink-0 rtl:-scale-x-100" />
+            {t('card.seeAll')}{' '}
+            <ArrowRight aria-hidden className="size-4 shrink-0 rtl:-scale-x-100" />
           </Link>
         )}
       </div>

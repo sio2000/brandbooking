@@ -41,7 +41,7 @@ export function ClockSlot({ time, period }: { time: string; period: string }) {
   return (
     <span className="flex flex-col items-center leading-none">
       <span>{time}</span>
-      <span className="mt-px text-[8.5px] font-medium opacity-80">{period}</span>
+      <span className="mt-px text-[8.5px] font-medium">{period}</span>
     </span>
   )
 }

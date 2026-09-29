@@ -93,9 +93,7 @@ export default async function PricingPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-[13px] text-muted-foreground">
-            {t('vatNote')}
-          </p>
+          <p className="mt-8 text-center text-[13px] text-muted-foreground">{t('vatNote')}</p>
         </Container>
       </section>
 

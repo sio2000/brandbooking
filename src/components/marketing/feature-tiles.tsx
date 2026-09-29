@@ -381,11 +381,13 @@ function ReportsVisual(_: Anim) {
         ))}
       </div>
       <div className="flex justify-between text-[11px] text-subtle-foreground">
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => weekday(i, locale, 'narrow')).map((d, i) => (
-          <span key={i} className="flex-1 text-center">
-            {d}
-          </span>
-        ))}
+        {[0, 1, 2, 3, 4, 5, 6]
+          .map((i) => weekday(i, locale, 'narrow'))
+          .map((d, i) => (
+            <span key={i} className="flex-1 text-center">
+              {d}
+            </span>
+          ))}
       </div>
     </div>
   )
