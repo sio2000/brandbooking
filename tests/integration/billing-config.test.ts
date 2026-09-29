@@ -254,6 +254,12 @@ describe('webhook endpoint provisioning', () => {
       .from(platformSettings)
       .where(eq(platformSettings.key, `stripe.webhook:${url}`))
     expect(own).toBeTruthy()
+    // The old shared row is gone, so a secret can only ever belong to one URL.
+    const legacy = await db()
+      .select()
+      .from(platformSettings)
+      .where(eq(platformSettings.key, 'stripe.webhook'))
+    expect(legacy).toHaveLength(0)
   })
 
   it('replaces an endpoint whose secret it cannot read', async () => {

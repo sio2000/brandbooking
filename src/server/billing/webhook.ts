@@ -12,6 +12,7 @@ import { logger } from '@/server/observability/logger'
 import { addInboxItems, enqueueEmail, membersToNotify } from '@/server/notifications/outbox'
 import { stripe, type Stripe } from './stripe'
 import { webhookSecrets } from './config'
+import { isLiveStripeKey } from './plan-price-store'
 
 /**
  * Stripe webhook processing.
@@ -25,6 +26,9 @@ import { webhookSecrets } from './config'
  *     (event.created is compared with the last applied event).
  *  4. The handler and the "processed" marker commit in one transaction, so a
  *     crash mid-way leaves the event retryable rather than half-applied.
+ *  5. Mode check: a test-mode event never changes anything while the app runs
+ *     on a live key (and vice versa), so a leftover test subscription can't
+ *     grant real access after go-live.
  */
 
 export type WebhookOutcome =
@@ -76,6 +80,10 @@ export async function handleStripeWebhook(
     typeof event.created !== 'number'
   ) {
     return { status: 400, result: 'invalid_payload' }
+  }
+  if (typeof event.livemode === 'boolean' && event.livemode !== isLiveStripeKey()) {
+    logger.warn('stripe.webhook.other_mode', { eventId: event.id, livemode: event.livemode })
+    return { status: 200, result: 'ignored' }
   }
   return processEvent(event)
 }

@@ -365,6 +365,15 @@ describe('subscription lifecycle', () => {
     expect(sub!.status).toBe('canceled')
   })
 
+  it('ignores events from the other Stripe mode (a test subscription never counts on a live site)', async () => {
+    const payload = JSON.parse(event('customer.subscription.created', subscription('active')))
+    payload.livemode = true // the app runs on a test key here
+    const body = JSON.stringify(payload)
+    const res = await handleStripeWebhook(body, sign(body))
+    expect(res).toEqual({ status: 200, result: 'ignored' })
+    expect(await db().select().from(subscriptions)).toHaveLength(0)
+  })
+
   it('ignores events for unknown businesses', async () => {
     const { res } = await send(
       'customer.subscription.created',

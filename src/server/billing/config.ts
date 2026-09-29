@@ -197,6 +197,14 @@ export async function webhookSecrets(): Promise<string[]> {
   return secrets
 }
 
+/** Removes the single row of older releases once `url` has its own (it is never read again). */
+async function dropLegacyWebhook(url: string) {
+  const legacy = await getSetting<StoredWebhook>(WEBHOOK_SETTING)
+  if (legacy?.url === url) {
+    await db().delete(platformSettings).where(eq(platformSettings.key, WEBHOOK_SETTING))
+  }
+}
+
 /** The endpoint this site registered for `url` (or, from older releases, the single shared row). */
 async function storedWebhook(url: string): Promise<StoredWebhook | null> {
   const own = await getSetting<StoredWebhook>(webhookKey(url))
@@ -230,6 +238,7 @@ export async function ensureWebhookEndpoint(
       await stripe().webhookEndpoints.update(keep.id, { enabled_events: WEBHOOK_EVENTS })
     // Move a secret from the old single row to this URL's own row.
     await setSetting(webhookKey(url), stored)
+    await dropLegacyWebhook(url)
     return { endpointId: keep.id, created: false }
   }
   for (const w of mine) await stripe().webhookEndpoints.del(w.id)
@@ -248,6 +257,7 @@ export async function ensureWebhookEndpoint(
     url,
     sealedSecret: seal(created.secret, SEAL_PURPOSE),
   } satisfies StoredWebhook)
+  await dropLegacyWebhook(url)
   delete cache.webhook
   return { endpointId: created.id, created: true }
 }
