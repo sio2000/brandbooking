@@ -34,6 +34,11 @@ function placeholders(msg: string): string[] {
   return [...names].sort()
 }
 
+/** Rich-text tags (<link>…</link>) a message uses, see src/components/i18n/rich.tsx. */
+function tags(msg: string): string[] {
+  return [...msg.matchAll(/<(\w+)>/g)].map((m) => m[1]!).sort()
+}
+
 describe('message formatting', () => {
   it('fills variables and leaves unknown ones visible', () => {
     expect(formatMessage('Hi {name}!', { name: 'Ann' }, 'en')).toBe('Hi Ann!')
@@ -120,6 +125,7 @@ describe('catalogues', () => {
         expect(extra, `keys not in English in ${locale}/${ns}`).toEqual([])
         for (const [k, v] of own) {
           expect(placeholders(v), `${locale}/${ns}:${k}`).toEqual(placeholders(enLeaves.get(k)!))
+          expect(tags(v), `${locale}/${ns}:${k} rich-text tags`).toEqual(tags(enLeaves.get(k)!))
           // Every message must parse and render without throwing.
           expect(() => formatMessage(v, { n: 2, count: 2 }, LOCALE_META[locale].tag)).not.toThrow()
         }

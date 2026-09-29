@@ -85,12 +85,30 @@ export function formatMinutesOfDay(minute: number, locale = DEFAULT_LOCALE) {
   )
 }
 
-export function formatDuration(minutes: number) {
+const unitCache = new Map<string, Intl.NumberFormat>()
+function unit(locale: string, u: 'hour' | 'minute') {
+  const key = `${locale}|${u}`
+  let f = unitCache.get(key)
+  if (!f) {
+    f = new Intl.NumberFormat(locale, { style: 'unit', unit: u, unitDisplay: 'short' })
+    unitCache.set(key, f)
+  }
+  return f
+}
+
+/** "45 min", "1 hr", "1 hr 30 min" in English; the language's own units elsewhere. */
+export function formatDuration(minutes: number, locale = DEFAULT_LOCALE) {
   const h = Math.floor(minutes / 60)
   const m = minutes % 60
-  if (h === 0) return `${m} min`
-  if (m === 0) return `${h} h`
-  return `${h} h ${m} min`
+  if (locale === DEFAULT_LOCALE) {
+    // Kept compact for English: "1 h 30 min".
+    if (h === 0) return `${m} min`
+    if (m === 0) return `${h} h`
+    return `${h} h ${m} min`
+  }
+  if (h === 0) return unit(locale, 'minute').format(m)
+  if (m === 0) return unit(locale, 'hour').format(h)
+  return `${unit(locale, 'hour').format(h)} ${unit(locale, 'minute').format(m)}`
 }
 
 const moneyCache = new Map<string, Intl.NumberFormat>()
