@@ -209,7 +209,7 @@ async function dispatch(tx: Tx, event: Stripe.Event): Promise<Handled> {
     case 'customer.subscription.paused':
     case 'customer.subscription.resumed': {
       const sub = event.data.object as Stripe.Subscription
-      return syncSubscription(tx, sub, new Date(event.created * 1000))
+      return syncSubscription(tx, sub, new Date(event.created * 1000), event.type)
     }
 
     case 'invoice.paid':
@@ -287,6 +287,7 @@ export async function syncSubscription(
   tx: Tx,
   sub: Stripe.Subscription,
   eventAt: Date,
+  eventType?: string,
 ): Promise<Handled> {
   const customerId = idOf(sub.customer)
   const businessId = await resolveBusiness(tx, {
@@ -304,6 +305,18 @@ export async function syncSubscription(
     .limit(1)
   // Ignore events older than what we've already applied (Stripe does not guarantee order).
   if (current?.lastEventAt && current.lastEventAt.getTime() > eventAt.getTime()) {
+    return { businessId, summary: { skipped: 'out_of_order' } }
+  }
+  // Stripe timestamps have one-second resolution, so "created" and the first
+  // "updated" (e.g. incomplete → active right after Checkout) often share a
+  // second. Within the same second, a late "created" is never newer than what
+  // was applied, and nothing revives a subscription already seen as canceled.
+  if (
+    current?.lastEventAt?.getTime() === eventAt.getTime() &&
+    current.stripeSubscriptionId === sub.id &&
+    (eventType === 'customer.subscription.created' ||
+      (current.status === 'canceled' && sub.status !== 'canceled'))
+  ) {
     return { businessId, summary: { skipped: 'out_of_order' } }
   }
   // A business has one live subscription; ignore stray updates for a replaced one.

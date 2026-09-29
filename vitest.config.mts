@@ -41,7 +41,7 @@ export default defineConfig({
           include: ['tests/stripe-live/**/*.test.ts'],
           environment: 'node',
           globalSetup: ['tests/helpers/global-setup.ts'],
-          setupFiles: ['tests/helpers/setup-env.ts'],
+          setupFiles: ['tests/helpers/setup-env.ts', 'tests/stripe-live/setup-proxy.ts'],
           fileParallelism: false,
           testTimeout: 60_000,
         },

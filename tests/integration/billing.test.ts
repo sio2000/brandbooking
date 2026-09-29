@@ -346,6 +346,25 @@ describe('subscription lifecycle', () => {
     expect(sub!.status).toBe('canceled')
   })
 
+  it('keeps the newer state when "created" arrives after "updated" in the same second', async () => {
+    // Checkout: created (incomplete) and updated (active) share a timestamp.
+    await send('customer.subscription.updated', subscription('active'), 0)
+    await send('customer.subscription.created', subscription('incomplete'), 0)
+    let [sub] = await db()
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.businessId, s.ctx.business.id))
+    expect(sub!.status).toBe('active')
+    // And nothing revives a subscription already seen as canceled in that second.
+    await send('customer.subscription.deleted', subscription('canceled'), 5)
+    await send('customer.subscription.updated', subscription('active'), 5)
+    ;[sub] = await db()
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.businessId, s.ctx.business.id))
+    expect(sub!.status).toBe('canceled')
+  })
+
   it('ignores events for unknown businesses', async () => {
     const { res } = await send(
       'customer.subscription.created',

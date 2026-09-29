@@ -256,6 +256,12 @@ export async function startAppServer(env: Record<string, string>): Promise<AppSe
     ...env,
   }
   delete childEnv.STRIPE_API_BASE // the real Stripe API, never the offline fake
+  if (childEnv.HTTPS_PROXY || childEnv.https_proxy) {
+    // Sandboxes that only allow outbound traffic through a proxy: tunnel the
+    // server's Stripe calls too (a no-op on a normal machine).
+    const preload = new URL('./proxy-preload.mjs', import.meta.url).pathname
+    childEnv.NODE_OPTIONS = `${childEnv.NODE_OPTIONS ?? ''} --import ${preload}`.trim()
+  }
   const child: ChildProcess = spawn('npx', ['next', 'dev', '--port', String(port)], {
     env: childEnv,
     stdio: ['ignore', 'pipe', 'pipe'],
