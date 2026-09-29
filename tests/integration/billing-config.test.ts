@@ -149,10 +149,33 @@ describe('customer portal configuration', () => {
     expect(creates('/v1/billing_portal/configurations')).toBe(1)
   })
 
-  it('reuses an existing active configuration', async () => {
-    fake.state.portalConfigs.push({ id: 'bpc_dashboard', active: true, is_default: true })
-    expect(await portalConfigurationId()).toBe('bpc_dashboard')
+  it('reuses the configuration it created earlier', async () => {
+    fake.state.portalConfigs.push({
+      id: 'bpc_hournook',
+      active: true,
+      is_default: false,
+      metadata: { app: 'hournook' },
+    })
+    expect(await portalConfigurationId()).toBe('bpc_hournook')
     expect(creates('/v1/billing_portal/configurations')).toBe(0)
+  })
+
+  it('never uses another product’s portal in a shared Stripe account', async () => {
+    // e.g. the account's default portal of another app, which may allow switching plans
+    fake.state.portalConfigs.push({
+      id: 'bpc_other_app',
+      active: true,
+      is_default: true,
+      metadata: {},
+    })
+    const id = await portalConfigurationId()
+    expect(id).not.toBe('bpc_other_app')
+    expect(creates('/v1/billing_portal/configurations')).toBe(1)
+    const req = fake.requests.find(
+      (r) => r.method === 'POST' && r.path === '/v1/billing_portal/configurations',
+    )!
+    expect(req.params.get('metadata[app]')).toBe('hournook')
+    expect(req.params.get('features[subscription_cancel][mode]')).toBe('at_period_end')
   })
 })
 
@@ -301,6 +324,7 @@ describe('switching Stripe mode (test keys → live keys at go-live)', () => {
       active: true,
       is_default: true,
       livemode: false,
+      metadata: { app: 'hournook' },
     })
     expect(await portalConfigurationId()).toBe('bpc_same_mode')
     expect(await dropForeignModeSettings()).toEqual([])

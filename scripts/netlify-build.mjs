@@ -43,6 +43,18 @@ if (missing.length) {
       'Set them in Netlify → Site configuration → Environment variables (see docs/NETLIFY.md), then redeploy.',
   )
 }
+// Stripe safety lock (src/server/env.ts): a live key is refused at runtime
+// unless STRIPE_LIVE_MODE=enabled, and then every page would fail. Stop here
+// instead, so the site keeps serving the previous deploy.
+const liveKey = ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'].find((k) =>
+  /^(sk|rk|pk)_live_/.test(clean(process.env[k])),
+)
+if (liveKey && clean(process.env.STRIPE_LIVE_MODE) !== 'enabled') {
+  fail(
+    `${liveKey} is a live-mode Stripe key, but STRIPE_LIVE_MODE is not "enabled".\n` +
+      'Add STRIPE_LIVE_MODE=enabled (Production context, all scopes) in Netlify, or use a test key, then redeploy.',
+  )
+}
 let parsed
 try {
   parsed = new URL(dbUrl)
@@ -82,11 +94,13 @@ if (clean(process.env.ADMIN_BOOTSTRAP_EMAIL) && process.env.ADMIN_BOOTSTRAP_PASS
   if (r.status !== 0) log('admin bootstrap: ERROR, skipped (see the message above)')
 }
 if (process.env.CONTEXT === 'production') {
-  // Registers the webhook for this site's URL; never fails the build.
+  // Registers the webhook for this site's URL.
+  // In live mode a failed setup (no webhook = payments never activate
+  // subscriptions) fails the build; in test mode it only warns.
   run(
     '2/3 Configuring Stripe (test mode unless live mode is explicitly enabled)',
     'npx',
-    ['tsx', 'scripts/stripe-setup.ts'],
+    ['tsx', 'scripts/stripe-setup.ts', ...(liveKey ? ['--strict'] : [])],
     {
       APP_URL: deploymentUrl() ?? '',
     },

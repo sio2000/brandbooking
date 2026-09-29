@@ -17,8 +17,10 @@ import { currentPlanPriceRow } from './plan-price-store'
  *  - Plan price: the price set in the admin panel (plan_prices table), else
  *    STRIPE_PRICE_ID, else the price with lookup key
  *    `hournook_monthly` (created on first use: €10/month by default).
- *  - Customer Portal: STRIPE_PORTAL_CONFIGURATION_ID, else an existing active
- *    configuration, else one created with the features the app relies on.
+ *  - Customer Portal: STRIPE_PORTAL_CONFIGURATION_ID, else the active
+ *    configuration the app created earlier (metadata app=hournook), else a new
+ *    one with the features the app relies on. Other configurations in the
+ *    account (e.g. another product's default) are never used.
  *  - Webhook secret: STRIPE_WEBHOOK_SECRET, else the secret of the endpoint the
  *    app registered for itself (`npm run stripe:setup`, run on deploy), stored
  *    encrypted in platform_settings, one row per endpoint URL: several sites
@@ -140,8 +142,10 @@ export async function portalConfigurationId(): Promise<string> {
   const stored = await getSetting<string>(PORTAL_SETTING)
   if (stored) return (cache.portal = stored)
 
-  const list = await stripe().billingPortal.configurations.list({ active: true, limit: 10 })
-  let config = list.data.find((c) => c.is_default) ?? list.data[0]
+  // Only a configuration made for Hournook: the Stripe account may also serve
+  // other products, whose default portal could offer their plans or settings.
+  const list = await stripe().billingPortal.configurations.list({ active: true, limit: 100 })
+  let config = list.data.find((c) => c.metadata?.app === 'hournook')
   if (!config) {
     config = await stripe().billingPortal.configurations.create({
       business_profile: { headline: 'Manage your Hournook subscription' },

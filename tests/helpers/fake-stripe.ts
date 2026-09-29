@@ -207,6 +207,7 @@ export async function startFakeStripe() {
           object: 'billing_portal.configuration',
           active: true,
           is_default: false,
+          metadata: { app: params.get('metadata[app]') },
         }
         state.portalConfigs.push(config)
         return json(200, config)
