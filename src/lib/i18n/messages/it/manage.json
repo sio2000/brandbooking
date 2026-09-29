@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "La tua prenotazione"
+  },
+  "error": {
+    "expired": "Questo link è scaduto",
+    "notFound": "Non abbiamo trovato questa prenotazione",
+    "body": "I link di prenotazione smettono di funzionare 30 giorni dopo l’appuntamento o se sono stati copiati in modo incompleto. Contatta direttamente l’attività se hai bisogno di aiuto con il tuo appuntamento."
+  },
+  "status": {
+    "confirmed": "Confermato",
+    "pending": "In attesa di conferma",
+    "cancelled": "Cancellato",
+    "completed": "Completato",
+    "no_show": "Non presentato"
+  },
+  "bookingWith": "La tua prenotazione presso",
+  "withStaff": "{duration} · con {name}",
+  "labels": {
+    "date": "Data",
+    "time": "Ora",
+    "price": "Prezzo",
+    "reference": "Codice prenotazione"
+  },
+  "moved": {
+    "title": "Il tuo appuntamento è stato spostato",
+    "body": "Ti abbiamo inviato il nuovo orario via email.",
+    "view": "Visualizza prenotazione"
+  },
+  "actions": {
+    "reschedule": "Sposta",
+    "cancel": "Cancella prenotazione"
+  },
+  "cancelDialog": {
+    "title": "Cancellare questa prenotazione?",
+    "description": "Il tuo appuntamento per {service} del {date} verrà cancellato e l’orario liberato. {business} riceverà una notifica.",
+    "reason": "Motivo",
+    "optional": "(facoltativo)",
+    "keep": "Indietro",
+    "cancelled": "La tua prenotazione è stata cancellata"
+  },
+  "deadlines": {
+    "personal": "{business} gestisce le modifiche di persona. Contatta direttamente l’attività.",
+    "passed": "Le modifiche online erano possibili fino al {date}. Per modifiche ora, contatta {business}."
+  },
+  "reschedule": {
+    "title": "Scegli un nuovo orario",
+    "keep": "Mantieni l’orario attuale",
+    "moveTo": "Sposta a {date}",
+    "pick": "Scegli un orario"
+  },
+  "network": {
+    "reschedule": "Errore di rete. Non è stato modificato nulla. Riprova.",
+    "cancel": "Errore di rete. La tua prenotazione non è stata cancellata. Riprova."
+  },
+  "contact": {
+    "label": "Contatta l’attività",
+    "title": "Domande? Contatta {business}"
+  },
+  "bookAnother": "Prenota un altro appuntamento"
+}

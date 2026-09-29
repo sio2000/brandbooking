@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Recebeu este email porque fez uma marcação.",
+  "manageCta": "Gerir reserva",
+  "addToCalendar": "Adicionar ao calendário",
+  "sentOnBehalf": "Enviado pelo Hournook em nome de {business}.",
+  "previous": "(anterior)",
+  "rows": {
+    "service": "Serviço",
+    "date": "Data",
+    "time": "Hora",
+    "with": "Com",
+    "price": "Preço",
+    "where": "Onde",
+    "customer": "Cliente",
+    "email": "Email",
+    "phone": "Telefone",
+    "reference": "Referência"
+  },
+  "calendar": {
+    "title": "{service} em {business}",
+    "bookingReference": "Referência da reserva {reference}",
+    "reference": "Referência {reference}",
+    "manage": "Gerir a reserva: {url}",
+    "referenceAndManage": "Referência {reference}. Gerir a reserva: {url}",
+    "google": "Google Calendar",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Marcação"
+  }
+}

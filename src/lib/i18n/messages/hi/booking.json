@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "सेवा",
+    "staff": "टीम सदस्य",
+    "date": "तारीख",
+    "time": "समय",
+    "datetime": "तारीख और समय",
+    "details": "आपकी जानकारी",
+    "confirm": "पुष्टि करें",
+    "done": "हो गया"
+  },
+  "anyStaff": "कोई भी उपलब्ध",
+  "anyStaffHint": "जो भी खाली होगा, वही आपकी सेवा करेगा।",
+  "noSlots": "इस दिन कोई समय खाली नहीं है।",
+  "noSlotsHint": "कोई दूसरी तारीख चुनें। जिन दिनों में उपलब्धता है, वे हाइलाइट किए गए हैं।",
+  "timesShownIn": "समय {tz} के अनुसार दिखाया गया है",
+  "confirmTitle": "आपकी बुकिंग हो गई!",
+  "pendingTitle": "अनुरोध मिल गया",
+  "pendingBody": "{business} जल्द ही आपके अपॉइंटमेंट की पुष्टि करेगा। हमने पूरी जानकारी आपको ईमेल कर दी है।",
+  "confirmedBody": "हमने {email} पर पुष्टि भेज दी है।",
+  "pausedTitle": "ऑनलाइन बुकिंग अभी रुकी हुई है",
+  "pausedDefault": "हम अभी ऑनलाइन बुकिंग नहीं ले रहे हैं।",
+  "privacyNote": "आपकी जानकारी केवल आपके अपॉइंटमेंट के प्रबंधन के लिए {business} के साथ साझा की जाती है।",
+  "privacyLink": "हमारी <link>गोपनीयता सूचना</link> देखें।",
+  "meta": {
+    "notFoundTitle": "बुकिंग पेज नहीं मिला",
+    "title": "{business} · ऑनलाइन बुकिंग",
+    "description": "{business} के साथ ऑनलाइन अपॉइंटमेंट बुक करें।"
+  },
+  "page": {
+    "previewBanner": "प्रीव्यू: यह पेज अभी प्रकाशित नहीं हुआ है। इसे केवल आप देख सकते हैं।",
+    "publish": "प्रकाशित करें",
+    "reopensOn": "बुकिंग {date} को फिर से शुरू होगी।",
+    "contactDirectly": "आप इस पेज पर दी गई संपर्क जानकारी से {business} से सीधे संपर्क कर सकते हैं।",
+    "poweredBy": "ऑनलाइन बुकिंग <link>Hournook</link> द्वारा"
+  },
+  "notFound": {
+    "title": "यह बुकिंग पेज मौजूद नहीं है",
+    "body": "लिंक जाँचें, या व्यवसाय से उनका मौजूदा बुकिंग लिंक माँगें।",
+    "home": "Hournook पर जाएँ"
+  },
+  "hero": {
+    "logoAlt": "{business} का लोगो",
+    "contact": "संपर्क जानकारी",
+    "bookingPolicy": "बुकिंग नीति"
+  },
+  "categories": {
+    "hairBeauty": "हेयर और ब्यूटी",
+    "barbershop": "बार्बरशॉप",
+    "nails": "नेल्स",
+    "spaMassage": "स्पा और मसाज",
+    "healthTherapy": "स्वास्थ्य और थेरेपी",
+    "fitnessCoaching": "फ़िटनेस और कोचिंग",
+    "medicalDental": "मेडिकल और डेंटल",
+    "consulting": "कंसल्टिंग",
+    "educationTutoring": "शिक्षा और ट्यूशन",
+    "photography": "फ़ोटोग्राफ़ी",
+    "petServices": "पालतू पशु सेवाएँ",
+    "automotive": "ऑटोमोटिव",
+    "homeServices": "घरेलू सेवाएँ",
+    "other": "अन्य"
+  },
+  "flow": {
+    "noServices": "अभी कोई भी सेवा ऑनलाइन बुकिंग के लिए उपलब्ध नहीं है।",
+    "contactBusiness": "कृपया {business} से सीधे संपर्क करें।",
+    "progress": "बुकिंग की प्रगति",
+    "stepOf": "चरण {current}/{total}:",
+    "chooseService": "सेवा चुनें",
+    "chooseStaff": "आप किससे मिलना चाहेंगे?",
+    "pickDateTime": "तारीख और समय चुनें",
+    "withStaff": "{name} के साथ",
+    "continue": "आगे बढ़ें",
+    "reviewBooking": "बुकिंग देखें",
+    "confirmTitle": "अपनी बुकिंग की पुष्टि करें",
+    "freeCancellationStart": "अपॉइंटमेंट शुरू होने तक ऑनलाइन मुफ़्त रद्द कर सकते हैं।",
+    "freeCancellation": "अपॉइंटमेंट से {deadline} पहले तक ऑनलाइन मुफ़्त रद्द कर सकते हैं।",
+    "deadlineDays": "{count, plural, one {# दिन} other {# दिन}}",
+    "deadlineHours": "{count, plural, one {# घंटा} other {# घंटे}}",
+    "deadlineMinutes": "{count, plural, one {# मिनट} other {# मिनट}}",
+    "previewNote": "यह एक प्रीव्यू है। असली बुकिंग लेना शुरू करने के लिए अपना बुकिंग पेज प्रकाशित करें। ग्राहक बिल्कुल यही प्रक्रिया देखेंगे।",
+    "previewDisabled": "प्रीव्यू में बुकिंग बंद है",
+    "requestBooking": "बुकिंग का अनुरोध भेजें",
+    "confirmBooking": "बुकिंग की पुष्टि करें",
+    "networkError": "सर्वर से कनेक्ट नहीं हो सका। अपना कनेक्शन जाँचें और फिर से कोशिश करें। अभी तक कुछ भी बुक नहीं हुआ है।",
+    "back": "वापस",
+    "otherServices": "अन्य सेवाएँ",
+    "free": "मुफ़्त",
+    "book": "बुक करें"
+  },
+  "details": {
+    "firstName": "पहला नाम",
+    "lastName": "उपनाम",
+    "email": "ईमेल",
+    "emailHint": "हम आपकी पुष्टि यहीं भेजेंगे।",
+    "phone": "फ़ोन",
+    "phoneHint": "इसका उपयोग केवल तभी होगा जब व्यवसाय को आपसे संपर्क करना हो।",
+    "message": "क्या कुछ और बताना चाहेंगे?",
+    "optional": "वैकल्पिक",
+    "honeypot": "वेबसाइट",
+    "errors": {
+      "firstName": "अपना पहला नाम लिखें।",
+      "lastName": "अपना उपनाम लिखें।",
+      "email": "सही ईमेल पता लिखें।",
+      "phoneRequired": "अपना फ़ोन नंबर लिखें।",
+      "phoneInvalid": "सही फ़ोन नंबर लिखें।",
+      "staffId": "कोई टीम सदस्य चुनें।"
+    }
+  },
+  "summary": {
+    "service": "सेवा",
+    "when": "कब",
+    "with": "किसके साथ",
+    "bookedFor": "किसके लिए",
+    "where": "कहाँ",
+    "price": "कीमत"
+  },
+  "success": {
+    "reference": "बुकिंग नंबर",
+    "manage": "देखें, समय बदलें या रद्द करें",
+    "bookAnother": "एक और अपॉइंटमेंट बुक करें"
+  },
+  "slots": {
+    "previousMonth": "पिछला महीना",
+    "nextMonth": "अगला महीना",
+    "chooseDate": "तारीख चुनें",
+    "dayAvailable": "{date}, {count, plural, one {# समय उपलब्ध} other {# समय उपलब्ध}}",
+    "dayUnavailable": "{date}, कोई समय उपलब्ध नहीं",
+    "showBusinessTime": "व्यवसाय का समय दिखाएँ",
+    "showMyTime": "मेरे टाइम ज़ोन में दिखाएँ",
+    "loadError": "उपलब्ध समय लोड नहीं हो सके",
+    "noDates": "इस अवधि में कोई तारीख उपलब्ध नहीं है। अगला महीना देखें।",
+    "morning": "सुबह",
+    "afternoon": "दोपहर",
+    "evening": "शाम",
+    "morningTimes": "सुबह के समय",
+    "afternoonTimes": "दोपहर के समय",
+    "eveningTimes": "शाम के समय"
+  }
+}

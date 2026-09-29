@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Reserva confirmada: {service} el {date}",
+    "subjectPending": "Solicitud de reserva recibida: {business}",
+    "preheader": "Nos vemos el {date}.",
+    "preheaderPending": "{business} confirmará tu solicitud en breve.",
+    "heading": "¡Reserva hecha, {name}!",
+    "headingPending": "Gracias, {name}. Solicitud recibida",
+    "body": "Tu cita con {business} está confirmada. Estos son los detalles:",
+    "bodyPending": "{business} revisará tu solicitud y la confirmará en breve. Te enviaremos otro email cuando esté confirmada."
+  },
+  "confirmed": {
+    "subject": "Confirmada: {service} el {date}",
+    "preheader": "{business} ha confirmado tu reserva.",
+    "heading": "Tu reserva está confirmada",
+    "body": "¡Buenas noticias, {name}! {business} ha confirmado tu cita."
+  },
+  "reminder": {
+    "subject": "Recordatorio: {service} el {date} a las {time}",
+    "preheader": "Se acerca tu cita con {business}.",
+    "heading": "Nos vemos pronto",
+    "body": "Hola, {name}: te recordamos tu próxima cita con {business}."
+  },
+  "rescheduled": {
+    "subject": "Cambio de hora: {service}, ahora el {date}",
+    "preheader": "Tu cita tiene una nueva hora.",
+    "heading": "Tu cita ha cambiado de hora",
+    "body": "Hola, {name}: tu cita con {business} ha cambiado de hora.",
+    "previousTime": "Hora anterior",
+    "newTime": "Nueva hora"
+  },
+  "cancelled": {
+    "subject": "Cancelada: {service} el {date}",
+    "preheader": "Tu cita se ha cancelado.",
+    "heading": "Cita cancelada",
+    "byCustomer": "Hola, {name}: como pediste, hemos cancelado tu cita con {business}.",
+    "byBusiness": "Hola, {name}: {business} ha cancelado tu cita. Sentimos las molestias.",
+    "message": "Mensaje de {business}: {reason}",
+    "bookAgain": "Reservar otra hora"
+  },
+  "member": {
+    "createdTitle": "Nueva reserva: {customer}",
+    "createdPendingTitle": "Nueva solicitud de reserva: {customer}",
+    "cancelledTitle": "Cancelada: {customer}, {date}",
+    "rescheduledTitle": "Cambio de hora: {customer}",
+    "createdIntro": "{customer} ha reservado {service}.",
+    "createdPendingIntro": "{customer} ha solicitado {service}. Confírmala o recházala en tu panel.",
+    "cancelledIntro": "{customer} ha cancelado su cita. La hora vuelve a estar disponible.",
+    "rescheduledIntro": "{customer} ha cambiado su cita a otra hora.",
+    "note": "Nota del cliente: {message}",
+    "open": "Abrir en Hournook",
+    "footer": "Recibes este email porque eres miembro de {business} en Hournook. Cambia tus preferencias de notificaciones en Ajustes."
+  }
+}

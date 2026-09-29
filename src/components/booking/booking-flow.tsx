@@ -27,8 +27,11 @@ import {
   formatTime,
   formatTimeZoneName,
 } from '@/lib/format'
-import { interpolate, messages } from '@/lib/i18n/messages'
-import { googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
+import { bookingFormatLocale } from '@/lib/booking-locale'
+import { localizedPath } from '@/lib/i18n/config'
+import { CALENDAR_APPS, googleCalendarUrl, outlookCalendarUrl } from '@/lib/calendar-links'
 import type { PlainDate } from '@/lib/plain-date'
 import { SlotPicker, type AvailabilityResponse } from './slot-picker'
 import { SuccessCheck } from './success-check'
@@ -103,6 +106,17 @@ export function BookingFlow({
   /** Owner/manager previewing an unpublished page: everything works except booking. */
   preview?: boolean
 }) {
+  const t = useT('booking')
+  const te = useT('errors')
+  const pageLocale = useLocale().locale
+  /** A server error in the page's language (the code is stable; the English text is the fallback). */
+  const errorText = React.useCallback(
+    (json: { code?: string; error?: string }) =>
+      json.code && json.code !== 'validation' && te.has(json.code)
+        ? te(json.code)
+        : (json.error ?? te('internal')),
+    [te],
+  )
   const initialService =
     services.find((s) => s.id === preselectServiceId) ??
     (services.length === 1 ? services[0] : undefined)
@@ -197,10 +211,10 @@ export function BookingFlow({
         cache: 'no-store',
       })
       const json = await res.json()
-      if (!json.ok) throw new Error(json.error ?? messages.errors.internal)
+      if (!json.ok) throw new Error(errorText(json))
       return json.data
     },
-    [business.slug, service, staffId],
+    [business.slug, service, staffId, errorText],
   )
 
   const onSelectDate = React.useCallback((d: PlainDate) => {
@@ -229,6 +243,7 @@ export function BookingFlow({
           utmCampaign: attribution.utmCampaign,
           referrerHost: referrerHost(),
           website: honeypot.current,
+          locale: pageLocale,
         }),
       })
       const json = await res.json()
@@ -240,22 +255,20 @@ export function BookingFlow({
       }
       if (json.code === 'slot_unavailable' || json.code === 'slot_invalid') {
         // Keep everything the customer typed; just ask for another time.
-        setSlotNotice(messages.errors.slot_unavailable)
+        setSlotNotice(te('slot_unavailable'))
         setStart(null)
         setRefreshKey((k) => k + 1)
         go('datetime')
         return
       }
       if (json.code === 'validation' && json.fields) {
-        setErrors(json.fields)
+        setErrors(fieldErrors(json.fields as Record<string, string>))
         go('details')
         return
       }
-      setFormError(json.error ?? messages.errors.internal)
+      setFormError(errorText(json))
     } catch {
-      setFormError(
-        'We couldn’t reach the server. Check your connection and try again. Nothing has been booked yet.',
-      )
+      setFormError(t('flow.networkError'))
     } finally {
       setSubmitting(false)
     }
@@ -263,37 +276,51 @@ export function BookingFlow({
 
   function validateDetails() {
     const e: Record<string, string> = {}
-    if (!details.firstName.trim()) e.firstName = 'Enter your first name.'
-    if (!details.lastName.trim()) e.lastName = 'Enter your last name.'
+    if (!details.firstName.trim()) e.firstName = t('details.errors.firstName')
+    if (!details.lastName.trim()) e.lastName = t('details.errors.lastName')
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(details.email.trim()))
-      e.email = 'Enter a valid email address.'
+      e.email = t('details.errors.email')
     if (rules.phoneRequirement === 'required' && !details.phone.trim())
-      e.phone = 'Enter your phone number.'
+      e.phone = t('details.errors.phoneRequired')
     else if (details.phone.trim() && !/^[+()\d\s.-]{6,40}$/.test(details.phone.trim()))
-      e.phone = 'Enter a valid phone number.'
+      e.phone = t('details.errors.phoneInvalid')
     setErrors(e)
     return Object.keys(e).length === 0
   }
 
+  /** Server-side field errors, shown in the page's language when the field is one we know. */
+  function fieldErrors(fields: Record<string, string>) {
+    const known: Record<string, string> = {
+      firstName: t('details.errors.firstName'),
+      lastName: t('details.errors.lastName'),
+      email: t('details.errors.email'),
+      phone: details.phone.trim()
+        ? t('details.errors.phoneInvalid')
+        : t('details.errors.phoneRequired'),
+      staffId: t('details.errors.staffId'),
+    }
+    return Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, known[k] ?? v]))
+  }
+
   const tz = business.timezone
-  const locale = business.locale
+  const locale = bookingFormatLocale(pageLocale)
   const selectedStaff = staff.find((m) => m.id === staffId)
   const stepIndex = steps.indexOf(step)
   const labels: Record<Step, string> = {
-    service: messages.booking.steps.service,
-    staff: messages.booking.steps.staff,
-    datetime: 'Date & time',
-    details: messages.booking.steps.details,
-    review: messages.booking.steps.confirm,
-    done: 'Done',
+    service: t('steps.service'),
+    staff: t('steps.staff'),
+    datetime: t('steps.datetime'),
+    details: t('steps.details'),
+    review: t('steps.confirm'),
+    done: t('steps.done'),
   }
 
   if (services.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-border-strong bg-surface p-8 text-center">
-        <p className="font-medium">No services are available to book online right now.</p>
+        <p className="font-medium">{t('flow.noServices')}</p>
         <p className="mt-1 text-sm text-muted-foreground">
-          Please contact {business.name} directly.
+          {t('flow.contactBusiness', { business: business.name })}
         </p>
       </div>
     )
@@ -302,7 +329,7 @@ export function BookingFlow({
   return (
     <div ref={topRef} className="scroll-mt-4">
       {step !== 'done' && (
-        <nav aria-label="Booking progress" className="mb-5">
+        <nav aria-label={t('flow.progress')} className="mb-5">
           <ol className="flex items-center gap-1.5">
             {steps.map((s, i) => (
               <li key={s} className="flex min-w-0 flex-1 flex-col gap-1.5">
@@ -320,7 +347,7 @@ export function BookingFlow({
                   aria-current={i === stepIndex ? 'step' : undefined}
                 >
                   <span className="sr-only">
-                    Step {i + 1} of {steps.length}:{' '}
+                    {t('flow.stepOf', { current: i + 1, total: steps.length })}{' '}
                   </span>
                   {labels[s]}
                 </span>
@@ -342,7 +369,7 @@ export function BookingFlow({
         >
           {step === 'service' && (
             <div>
-              <StepTitle id="step-service">Choose a service</StepTitle>
+              <StepTitle id="step-service">{t('flow.chooseService')}</StepTitle>
               <ServiceList
                 services={services}
                 categories={categories}
@@ -373,7 +400,7 @@ export function BookingFlow({
           {step === 'staff' && service && (
             <div>
               <BackButton onClick={() => go('service')} />
-              <StepTitle id="step-staff">Who would you like to see?</StepTitle>
+              <StepTitle id="step-staff">{t('flow.chooseStaff')}</StepTitle>
               <div
                 role="radiogroup"
                 aria-labelledby="step-staff"
@@ -392,8 +419,8 @@ export function BookingFlow({
                         <Users className="size-5" />
                       </span>
                     }
-                    title={messages.booking.anyStaff}
-                    subtitle={messages.booking.anyStaffHint}
+                    title={t('anyStaff')}
+                    subtitle={t('anyStaffHint')}
                   />
                 )}
                 {serviceStaff.map((m) => (
@@ -424,10 +451,10 @@ export function BookingFlow({
           {step === 'datetime' && service && (
             <div>
               <BackButton onClick={() => go(showStaffStep ? 'staff' : 'service')} />
-              <StepTitle id="step-datetime">Pick a date and time</StepTitle>
+              <StepTitle id="step-datetime">{t('flow.pickDateTime')}</StepTitle>
               <p className="-mt-2 mb-5 text-sm text-muted-foreground">
-                {service.name} · {formatDuration(service.durationMinutes)}
-                {selectedStaff ? ` · with ${selectedStaff.name}` : ''}
+                {service.name} · {formatDuration(service.durationMinutes, locale)}
+                {selectedStaff ? ` · ${t('flow.withStaff', { name: selectedStaff.name })}` : ''}
               </p>
               {slotNotice && (
                 <Alert tone="warning" className="mb-4">
@@ -446,7 +473,6 @@ export function BookingFlow({
                   setSlotNotice(null)
                   track('time')
                 }}
-                locale={locale}
               />
               <StickyAction>
                 <Button
@@ -455,7 +481,7 @@ export function BookingFlow({
                   disabled={!start}
                   onClick={() => go('details')}
                 >
-                  Continue <ChevronRight />
+                  {t('flow.continue')} <ChevronRight className="rtl:-scale-x-100" />
                 </Button>
               </StickyAction>
             </div>
@@ -473,9 +499,9 @@ export function BookingFlow({
               }}
             >
               <BackButton onClick={() => go('datetime')} />
-              <StepTitle id="step-details">Your details</StepTitle>
+              <StepTitle id="step-details">{t('steps.details')}</StepTitle>
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="First name" htmlFor="firstName" error={errors.firstName}>
+                <Field label={t('details.firstName')} htmlFor="firstName" error={errors.firstName}>
                   <Input
                     autoComplete="given-name"
                     value={details.firstName}
@@ -484,7 +510,7 @@ export function BookingFlow({
                     required
                   />
                 </Field>
-                <Field label="Last name" htmlFor="lastName" error={errors.lastName}>
+                <Field label={t('details.lastName')} htmlFor="lastName" error={errors.lastName}>
                   <Input
                     autoComplete="family-name"
                     value={details.lastName}
@@ -494,10 +520,10 @@ export function BookingFlow({
                   />
                 </Field>
                 <Field
-                  label="Email"
+                  label={t('details.email')}
                   htmlFor="email"
                   error={errors.email}
-                  hint="We’ll send your confirmation here."
+                  hint={t('details.emailHint')}
                   className="sm:col-span-2"
                 >
                   <Input
@@ -512,11 +538,12 @@ export function BookingFlow({
                 </Field>
                 {rules.phoneRequirement !== 'hidden' && (
                   <Field
-                    label="Phone"
+                    label={t('details.phone')}
                     htmlFor="phone"
                     error={errors.phone}
                     optional={rules.phoneRequirement === 'optional'}
-                    hint="Only used by the business if they need to reach you."
+                    optionalLabel={t('details.optional')}
+                    hint={t('details.phoneHint')}
                     className="sm:col-span-2"
                   >
                     <Input
@@ -531,9 +558,10 @@ export function BookingFlow({
                   </Field>
                 )}
                 <Field
-                  label="Anything we should know?"
+                  label={t('details.message')}
                   htmlFor="message"
                   optional
+                  optionalLabel={t('details.optional')}
                   className="sm:col-span-2"
                 >
                   <Textarea
@@ -544,25 +572,28 @@ export function BookingFlow({
                   />
                 </Field>
                 {/* Honeypot: hidden from people and assistive tech; bots fill it. */}
-                <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-                  <label htmlFor="hn-website">Website</label>
+                <div aria-hidden className="absolute -start-[9999px] h-0 w-0 overflow-hidden">
+                  <label htmlFor="hn-website">{t('details.honeypot')}</label>
                   <input id="hn-website" name="website" tabIndex={-1} autoComplete="off" />
                 </div>
               </div>
               <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground">
-                {interpolate(messages.booking.privacyNote, { business: business.name })} See our{' '}
-                <Link
-                  href="/privacy"
-                  className="underline underline-offset-2"
-                  target={compact ? '_blank' : undefined}
-                >
-                  privacy notice
-                </Link>
-                .
+                {t('privacyNote', { business: business.name })}{' '}
+                {rich(t('privacyLink'), {
+                  link: (c) => (
+                    <Link
+                      href={localizedPath('/privacy', pageLocale)}
+                      className="underline underline-offset-2"
+                      target={compact ? '_blank' : undefined}
+                    >
+                      {c}
+                    </Link>
+                  ),
+                })}
               </p>
               <StickyAction>
                 <Button size="lg" type="submit" className="w-full sm:w-auto">
-                  Review booking <ChevronRight />
+                  {t('flow.reviewBooking')} <ChevronRight className="rtl:-scale-x-100" />
                 </Button>
               </StickyAction>
             </form>
@@ -571,7 +602,7 @@ export function BookingFlow({
           {step === 'review' && service && start && (
             <div>
               <BackButton onClick={() => go('details')} />
-              <StepTitle id="step-review">Confirm your booking</StepTitle>
+              <StepTitle id="step-review">{t('flow.confirmTitle')}</StepTitle>
               <FormError message={formError} />
               <Summary
                 business={business}
@@ -586,11 +617,7 @@ export function BookingFlow({
               {(business.bookingPolicy || rules.allowCustomerCancel) && (
                 <div className="mt-4 rounded-xl bg-surface-2 px-4 py-3 text-[13px] leading-relaxed text-muted-foreground">
                   {rules.allowCustomerCancel && (
-                    <p>
-                      Free cancellation online until{' '}
-                      {cancelDeadlineText(rules.cancellationDeadlineMinutes)} before your
-                      appointment.
-                    </p>
+                    <p>{cancelDeadlineText(t, rules.cancellationDeadlineMinutes)}</p>
                   )}
                   {business.bookingPolicy && (
                     <p className="mt-1 whitespace-pre-line">{business.bookingPolicy}</p>
@@ -602,8 +629,7 @@ export function BookingFlow({
                   role="note"
                   className="mt-4 rounded-xl bg-warning-soft px-4 py-3 text-[13px] leading-relaxed text-warning-soft-foreground"
                 >
-                  This is a preview. Publish your booking page to start accepting real bookings.
-                  Customers will see exactly this flow.
+                  {t('flow.previewNote')}
                 </p>
               )}
               <StickyAction>
@@ -615,10 +641,10 @@ export function BookingFlow({
                   onClick={submit}
                 >
                   {preview
-                    ? 'Booking disabled in preview'
+                    ? t('flow.previewDisabled')
                     : rules.requiresConfirmation
-                      ? 'Request booking'
-                      : 'Confirm booking'}
+                      ? t('flow.requestBooking')
+                      : t('flow.confirmBooking')}
                 </Button>
               </StickyAction>
             </div>
@@ -656,11 +682,17 @@ function referrerHost() {
   }
 }
 
-function cancelDeadlineText(minutes: number) {
-  if (minutes === 0) return 'the start'
-  if (minutes % 1440 === 0) return `${minutes / 1440} day${minutes === 1440 ? '' : 's'}`
-  if (minutes % 60 === 0) return `${minutes / 60} hour${minutes === 60 ? '' : 's'}`
-  return `${minutes} minutes`
+type BookingT = ReturnType<typeof useT<'booking'>>
+
+function cancelDeadlineText(t: BookingT, minutes: number) {
+  if (minutes === 0) return t('flow.freeCancellationStart')
+  const deadline =
+    minutes % 1440 === 0
+      ? t('flow.deadlineDays', { count: minutes / 1440 })
+      : minutes % 60 === 0
+        ? t('flow.deadlineHours', { count: minutes / 60 })
+        : t('flow.deadlineMinutes', { count: minutes })
+  return t('flow.freeCancellation', { deadline })
 }
 
 function StepTitle({ id, children }: { id: string; children: React.ReactNode }) {
@@ -672,13 +704,14 @@ function StepTitle({ id, children }: { id: string; children: React.ReactNode }) 
 }
 
 function BackButton({ onClick }: { onClick: () => void }) {
+  const t = useT('booking')
   return (
     <button
       type="button"
       onClick={onClick}
-      className="mb-2 -ml-1 inline-flex h-9 items-center gap-1 rounded-lg px-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+      className="-ms-1 mb-2 inline-flex h-9 items-center gap-1 rounded-lg px-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
     >
-      <ArrowLeft className="size-4" /> Back
+      <ArrowLeft className="size-4 rtl:-scale-x-100" /> {t('flow.back')}
     </button>
   )
 }
@@ -712,7 +745,7 @@ function ChoiceCard({
       aria-checked={checked}
       onClick={onClick}
       className={cn(
-        'group flex min-h-16 items-center gap-3 rounded-2xl border bg-surface p-3.5 text-left shadow-xs transition-all duration-150 hover:-translate-y-px hover:border-primary hover:shadow-sm active:translate-y-0',
+        'group flex min-h-16 items-center gap-3 rounded-2xl border bg-surface p-3.5 text-start shadow-xs transition-all duration-150 hover:-translate-y-px hover:border-primary hover:shadow-sm active:translate-y-0',
         checked ? 'border-primary ring-1 ring-primary' : 'border-border',
       )}
     >
@@ -723,7 +756,7 @@ function ChoiceCard({
           <span className="block truncate text-[13px] text-muted-foreground">{subtitle}</span>
         )}
       </span>
-      <ChevronRight className="size-4 text-subtle-foreground transition-transform group-hover:translate-x-0.5" />
+      <ChevronRight className="size-4 text-subtle-foreground transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
     </button>
   )
 }
@@ -743,6 +776,7 @@ function ServiceList({
   selectedId?: string
   onSelect: (s: FlowService) => void
 }) {
+  const t = useT('booking')
   const groups = [
     ...categories.map((c) => ({
       id: c.id,
@@ -751,7 +785,7 @@ function ServiceList({
     })),
     {
       id: 'other',
-      name: categories.length ? 'Other services' : '',
+      name: categories.length ? t('flow.otherServices') : '',
       items: services.filter(
         (s) => !s.categoryId || !categories.some((c) => c.id === s.categoryId),
       ),
@@ -774,32 +808,39 @@ function ServiceList({
                   onClick={() => onSelect(s)}
                   aria-pressed={selectedId === s.id}
                   className={cn(
-                    'group flex w-full items-start gap-4 rounded-2xl border bg-surface p-4 text-left shadow-xs transition-all duration-150 hover:-translate-y-px hover:border-primary hover:shadow-sm active:translate-y-0',
+                    'group flex w-full items-start gap-4 rounded-2xl border bg-surface p-4 text-start shadow-xs transition-all duration-150 hover:-translate-y-px hover:border-primary hover:shadow-sm active:translate-y-0',
                     selectedId === s.id ? 'border-primary ring-1 ring-primary' : 'border-border',
                   )}
                 >
                   <span className="min-w-0 flex-1">
-                    <span className="block font-semibold">{s.name}</span>
+                    <span dir="auto" className="block font-semibold">
+                      {s.name}
+                    </span>
                     {s.description && (
-                      <span className="mt-0.5 line-clamp-2 block text-sm text-muted-foreground">
+                      <span
+                        dir="auto"
+                        className="mt-0.5 line-clamp-2 block text-sm text-muted-foreground"
+                      >
                         {s.description}
                       </span>
                     )}
                     <span className="mt-2 flex items-center gap-3 text-[13px] text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
                         <Clock className="size-3.5" aria-hidden />{' '}
-                        {formatDuration(s.durationMinutes)}
+                        {formatDuration(s.durationMinutes, locale)}
                       </span>
                     </span>
                   </span>
                   <span className="flex shrink-0 flex-col items-end gap-2">
                     {s.priceCents != null && (
                       <span className="tabular font-semibold">
-                        {s.priceCents === 0 ? 'Free' : formatMoney(s.priceCents, currency, locale)}
+                        {s.priceCents === 0
+                          ? t('flow.free')
+                          : formatMoney(s.priceCents, currency, locale)}
                       </span>
                     )}
                     <span className="inline-flex h-8 items-center rounded-lg bg-primary-soft px-3 text-[13px] font-medium text-primary-soft-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                      Book
+                      {t('flow.book')}
                     </span>
                   </span>
                 </button>
@@ -827,29 +868,35 @@ function Summary({
   customer?: string
   email?: string
 }) {
+  const t = useT('booking')
+  const locale = bookingFormatLocale(useLocale().locale)
   const end = new Date(new Date(start).getTime() + service.durationMinutes * 60_000)
   const tz = business.timezone
   const rows: Array<[React.ReactNode, string, string]> = [
     [
       <Check key="s" className="size-4" />,
-      'Service',
-      `${service.name} · ${formatDuration(service.durationMinutes)}`,
+      t('summary.service'),
+      `${service.name} · ${formatDuration(service.durationMinutes, locale)}`,
     ],
     [
       <CalendarPlus key="d" className="size-4" />,
-      'When',
-      `${formatDateLong(start, tz, business.locale)}, ${formatTime(start, tz, business.locale)} – ${formatTime(end, tz, business.locale)} (${formatTimeZoneName(start, tz, business.locale)})`,
+      t('summary.when'),
+      `${formatDateLong(start, tz, locale)}, ${formatTime(start, tz, locale)} – ${formatTime(end, tz, locale)} (${formatTimeZoneName(start, tz, locale)})`,
     ],
   ]
-  if (staffName) rows.push([<User2 key="w" className="size-4" />, 'With', staffName])
+  if (staffName) rows.push([<User2 key="w" className="size-4" />, t('summary.with'), staffName])
   if (customer?.trim())
     rows.push([
       <Mail key="c" className="size-4" />,
-      'Booked for',
+      t('summary.bookedFor'),
       `${customer.trim()}${email ? ` · ${email}` : ''}`,
     ])
   if (business.address.length)
-    rows.push([<MapPin key="a" className="size-4" />, 'Where', business.address.join(', ')])
+    rows.push([
+      <MapPin key="a" className="size-4" />,
+      t('summary.where'),
+      business.address.join(', '),
+    ])
   return (
     <dl className="divide-y divide-border rounded-2xl border border-border bg-surface shadow-xs">
       {rows.map(([icon, k, v]) => (
@@ -863,9 +910,9 @@ function Summary({
       ))}
       {service.priceCents != null && service.priceCents > 0 && (
         <div className="flex items-center justify-between px-4 py-3">
-          <dt className="text-sm text-muted-foreground">Price</dt>
+          <dt className="text-sm text-muted-foreground">{t('summary.price')}</dt>
           <dd className="tabular font-semibold">
-            {formatMoney(service.priceCents, business.currency, business.locale)}
+            {formatMoney(service.priceCents, business.currency, locale)}
           </dd>
         </div>
       )}
@@ -890,14 +937,16 @@ function Success({
   result: Result
   onBookAnother: () => void
 }) {
+  const t = useT('booking')
+  const tm = useT('email')
   const pending = result.status === 'pending'
   const end = new Date(new Date(start).getTime() + service.durationMinutes * 60_000)
   const ev = {
-    title: `${service.name} at ${business.name}`,
+    title: tm('calendar.title', { service: service.name, business: business.name }),
     start: new Date(start),
     end,
     location: business.address.join(', '),
-    details: `Booking reference ${result.reference}`,
+    details: tm('calendar.bookingReference', { reference: result.reference }),
   }
   const manageHref = `/manage/${result.manageToken}`
   return (
@@ -910,7 +959,7 @@ function Success({
         className="mt-5 font-display text-2xl font-bold sm:text-3xl"
         tabIndex={-1}
       >
-        {pending ? messages.booking.pendingTitle : messages.booking.confirmTitle}
+        {pending ? t('pendingTitle') : t('confirmTitle')}
       </motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
@@ -919,19 +968,17 @@ function Success({
         className="mt-2 max-w-md text-muted-foreground"
         role="status"
       >
-        {pending
-          ? interpolate(messages.booking.pendingBody, { business: business.name })
-          : interpolate(messages.booking.confirmedBody, { email })}
+        {pending ? t('pendingBody', { business: business.name }) : t('confirmedBody', { email })}
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
-        className="mt-6 w-full max-w-lg text-left"
+        className="mt-6 w-full max-w-lg text-start"
       >
         <Summary business={business} service={service} staffName={staffName} start={start} />
         <p className="mt-3 text-center text-[13px] text-muted-foreground">
-          Reference{' '}
+          {t('success.reference')}{' '}
           <span className="font-mono font-semibold text-foreground">{result.reference}</span>
         </p>
       </motion.div>
@@ -942,32 +989,32 @@ function Success({
         className="mt-6 flex w-full max-w-lg flex-col gap-2.5"
       >
         {!pending && (
-          <p className="text-left text-xs font-medium text-muted-foreground">
-            {messages.email.addToCalendar}
+          <p className="text-start text-xs font-medium text-muted-foreground">
+            {tm('addToCalendar')}
           </p>
         )}
         {!pending && (
           <div className="grid grid-cols-3 gap-2">
             <Button asChild variant="secondary" size="sm">
               <a href={googleCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
-                Google
+                {CALENDAR_APPS.google}
               </a>
             </Button>
             <Button asChild variant="secondary" size="sm">
               <a href={outlookCalendarUrl(ev)} target="_blank" rel="noopener noreferrer">
-                Outlook
+                {CALENDAR_APPS.outlook}
               </a>
             </Button>
             <Button asChild variant="secondary" size="sm">
-              <a href={`${manageHref}/ics`}>Apple (.ics)</a>
+              <a href={`${manageHref}/ics`}>{CALENDAR_APPS.apple}</a>
             </Button>
           </div>
         )}
         <Button asChild size="lg">
-          <Link href={manageHref}>View, reschedule or cancel</Link>
+          <Link href={manageHref}>{t('success.manage')}</Link>
         </Button>
         <Button variant="ghost" onClick={onBookAnother}>
-          Book another appointment
+          {t('success.bookAnother')}
         </Button>
       </motion.div>
     </div>

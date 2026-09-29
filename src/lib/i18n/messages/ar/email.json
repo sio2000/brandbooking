@@ -1,0 +1,30 @@
+{
+  "footerDefault": "تلقيت هذه الرسالة لأنك حجزت موعدًا.",
+  "manageCta": "إدارة الحجز",
+  "addToCalendar": "إضافة إلى التقويم",
+  "sentOnBehalf": "أرسلها Hournook نيابةً عن {business}.",
+  "previous": "(السابق)",
+  "rows": {
+    "service": "الخدمة",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "with": "مع",
+    "price": "السعر",
+    "where": "المكان",
+    "customer": "العميل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "reference": "رقم الحجز"
+  },
+  "calendar": {
+    "title": "{service} لدى {business}",
+    "bookingReference": "رقم الحجز {reference}",
+    "reference": "رقم الحجز {reference}",
+    "manage": "إدارة حجزك: {url}",
+    "referenceAndManage": "رقم الحجز {reference}. إدارة حجزك: {url}",
+    "google": "تقويم Google",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "موعد"
+  }
+}

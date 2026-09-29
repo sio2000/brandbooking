@@ -19,7 +19,8 @@ import {
 } from '@/lib/plain-date'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Alert } from '@/components/ui/feedback'
-import { messages, interpolate } from '@/lib/i18n/messages'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { bookingFormatLocale } from '@/lib/booking-locale'
 
 export type AvailabilityDay = {
   date: PlainDate
@@ -46,7 +47,6 @@ export function SlotPicker({
   selectedStart,
   onSelectDate,
   onSelectSlot,
-  locale = 'en',
 }: {
   fetchRange: Fetcher
   businessTimeZone: string
@@ -54,8 +54,10 @@ export function SlotPicker({
   selectedStart: string | null
   onSelectDate: (d: PlainDate) => void
   onSelectSlot: (start: string) => void
-  locale?: string
 }) {
+  const t = useT('booking')
+  const te = useT('errors')
+  const locale = bookingFormatLocale(useLocale().locale)
   // Remount (via `key`) to refetch — e.g. after a slot was taken.
   const [month, setMonth] = React.useState<PlainDate | null>(
     selectedDate ? monthStartPD(selectedDate) : null,
@@ -96,8 +98,7 @@ export function SlotPicker({
         if (first && first !== selectedDate) onSelectDate(first)
       })
       .catch(
-        (e: unknown) =>
-          !cancelled && setError(e instanceof Error ? e.message : messages.errors.internal),
+        (e: unknown) => !cancelled && setError(e instanceof Error ? e.message : te('internal')),
       )
       .finally(() => !cancelled && setLoading(false))
     return () => {
@@ -113,7 +114,7 @@ export function SlotPicker({
     setLoading(true)
     fetchRange(maxPD(m, bounds.today), minPD(monthEndPD(m), bounds.lastDate))
       .then((res) => merge(res.days))
-      .catch((e: unknown) => setError(e instanceof Error ? e.message : messages.errors.internal))
+      .catch((e: unknown) => setError(e instanceof Error ? e.message : te('internal')))
       .finally(() => setLoading(false))
   }
 
@@ -149,22 +150,26 @@ export function SlotPicker({
               onClick={() => month && goToMonth(addMonthsPD(month, -1))}
               disabled={!canPrev}
               className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30"
-              aria-label="Previous month"
+              aria-label={t('slots.previousMonth')}
             >
-              <ChevronLeft className="size-4" />
+              <ChevronLeft className="size-4 rtl:-scale-x-100" />
             </button>
             <button
               type="button"
               onClick={() => month && goToMonth(addMonthsPD(month, 1))}
               disabled={!canNext}
               className="grid size-9 place-items-center rounded-lg text-muted-foreground hover:bg-surface-2 hover:text-foreground disabled:opacity-30"
-              aria-label="Next month"
+              aria-label={t('slots.nextMonth')}
             >
-              <ChevronRight className="size-4" />
+              <ChevronRight className="size-4 rtl:-scale-x-100" />
             </button>
           </div>
         </div>
-        <div role="grid" aria-label="Choose a date" className="grid grid-cols-7 gap-1 text-center">
+        <div
+          role="grid"
+          aria-label={t('slots.chooseDate')}
+          className="grid grid-cols-7 gap-1 text-center"
+        >
           <div role="row" className="contents">
             {weekdays.map((w) => (
               <div
@@ -191,7 +196,14 @@ export function SlotPicker({
                         type="button"
                         disabled={!available || !inMonth}
                         onClick={() => onSelectDate(d)}
-                        aria-label={`${formatPlainDate(d, locale)}${available ? `, ${info!.slots.length} times available` : ', no times available'}`}
+                        aria-label={
+                          available
+                            ? t('slots.dayAvailable', {
+                                date: formatPlainDate(d, locale),
+                                count: info!.slots.length,
+                              })
+                            : t('slots.dayUnavailable', { date: formatPlainDate(d, locale) })
+                        }
                         className={cn(
                           'tabular relative mx-auto grid aspect-square w-full max-w-11 place-items-center rounded-xl text-sm transition-all duration-150',
                           !inMonth && 'invisible',
@@ -224,7 +236,7 @@ export function SlotPicker({
         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
             <Globe2 className="size-3.5" aria-hidden />
-            {interpolate(messages.booking.timesShownIn, {
+            {t('timesShownIn', {
               tz: `${tz.replace(/_/g, ' ')} (${formatTimeZoneName(new Date(), tz, locale)})`,
             })}
           </span>
@@ -234,7 +246,7 @@ export function SlotPicker({
               onClick={() => setUseViewerTz((v) => !v)}
               className="font-medium text-primary hover:underline"
             >
-              {useViewerTz ? 'Show business time' : 'Show my time zone'}
+              {useViewerTz ? t('slots.showBusinessTime') : t('slots.showMyTime')}
             </button>
           )}
         </div>
@@ -242,7 +254,7 @@ export function SlotPicker({
 
       <div className="min-h-64" aria-live="polite">
         {error && (
-          <Alert tone="danger" title="Couldn’t load available times">
+          <Alert tone="danger" title={t('slots.loadError')}>
             {error}
           </Alert>
         )}
@@ -260,13 +272,13 @@ export function SlotPicker({
         )}
         {!error && !loading && selectedDate && (day?.slots.length ?? 0) === 0 && (
           <div className="rounded-xl border border-dashed border-border-strong p-6 text-center">
-            <p className="text-sm font-medium">{messages.booking.noSlots}</p>
-            <p className="mt-1 text-[13px] text-muted-foreground">{messages.booking.noSlotsHint}</p>
+            <p className="text-sm font-medium">{t('noSlots')}</p>
+            <p className="mt-1 text-[13px] text-muted-foreground">{t('noSlotsHint')}</p>
           </div>
         )}
         {!error && !selectedDate && !loading && (
           <div className="rounded-xl border border-dashed border-border-strong p-6 text-center text-sm text-muted-foreground">
-            No available dates in this period. Try the next month.
+            {t('slots.noDates')}
           </div>
         )}
         <AnimatePresence mode="wait" initial={false}>
@@ -281,11 +293,11 @@ export function SlotPicker({
             >
               {(
                 [
-                  ['morning', 'Morning', Sunrise],
-                  ['afternoon', 'Afternoon', Sun],
-                  ['evening', 'Evening', Moon],
+                  ['morning', t('slots.morning'), t('slots.morningTimes'), Sunrise],
+                  ['afternoon', t('slots.afternoon'), t('slots.afternoonTimes'), Sun],
+                  ['evening', t('slots.evening'), t('slots.eveningTimes'), Moon],
                 ] as const
-              ).map(([key, label, Icon]) =>
+              ).map(([key, label, groupLabel, Icon]) =>
                 groups[key].length ? (
                   <div key={key}>
                     <p className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
@@ -293,7 +305,7 @@ export function SlotPicker({
                     </p>
                     <div
                       role="radiogroup"
-                      aria-label={`${label} times`}
+                      aria-label={groupLabel}
                       className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3"
                     >
                       {groups[key].map((start) => {

@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Your booking"
+  },
+  "error": {
+    "expired": "This link has expired",
+    "notFound": "We couldn’t find this booking",
+    "body": "Booking links stop working 30 days after the appointment, or if they’ve been copied incompletely. Contact the business directly if you need help with your appointment."
+  },
+  "status": {
+    "confirmed": "Confirmed",
+    "pending": "Awaiting confirmation",
+    "cancelled": "Cancelled",
+    "completed": "Completed",
+    "no_show": "Missed"
+  },
+  "bookingWith": "Your booking with",
+  "withStaff": "{duration} · with {name}",
+  "labels": {
+    "date": "Date",
+    "time": "Time",
+    "price": "Price",
+    "reference": "Reference"
+  },
+  "moved": {
+    "title": "Your appointment has moved",
+    "body": "We’ve emailed you the new time.",
+    "view": "View booking"
+  },
+  "actions": {
+    "reschedule": "Reschedule",
+    "cancel": "Cancel booking"
+  },
+  "cancelDialog": {
+    "title": "Cancel this booking?",
+    "description": "Your {service} on {date} will be cancelled and the time released. {business} will be notified.",
+    "reason": "Reason",
+    "optional": "(optional)",
+    "keep": "Cancel",
+    "cancelled": "Your booking has been cancelled"
+  },
+  "deadlines": {
+    "personal": "{business} handles changes personally. Please contact them.",
+    "passed": "Online changes were possible until {date}. For changes now, please contact {business}."
+  },
+  "reschedule": {
+    "title": "Choose a new time",
+    "keep": "Keep current time",
+    "moveTo": "Move to {date}",
+    "pick": "Pick a time"
+  },
+  "network": {
+    "reschedule": "Network error. Nothing was changed. Please try again.",
+    "cancel": "Network error. Your booking was not cancelled. Please try again."
+  },
+  "contact": {
+    "label": "Contact the business",
+    "title": "Questions? Contact {business}"
+  },
+  "bookAnother": "Book another appointment"
+}

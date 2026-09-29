@@ -1,5 +1,30 @@
 {
   "footerDefault": "You received this email because you booked an appointment.",
   "manageCta": "Manage booking",
-  "addToCalendar": "Add to calendar"
+  "addToCalendar": "Add to calendar",
+  "sentOnBehalf": "Sent by Hournook on behalf of {business}.",
+  "previous": "(previous)",
+  "rows": {
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "with": "With",
+    "price": "Price",
+    "where": "Where",
+    "customer": "Customer",
+    "email": "Email",
+    "phone": "Phone",
+    "reference": "Reference"
+  },
+  "calendar": {
+    "title": "{service} at {business}",
+    "bookingReference": "Booking reference {reference}",
+    "reference": "Reference {reference}",
+    "manage": "Manage your booking: {url}",
+    "referenceAndManage": "Reference {reference}. Manage your booking: {url}",
+    "google": "Google Calendar",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Appointment"
+  }
 }

@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Otrzymujesz tę wiadomość, ponieważ zarezerwowałeś wizytę.",
+  "manageCta": "Zarządzaj rezerwacją",
+  "addToCalendar": "Dodaj do kalendarza",
+  "sentOnBehalf": "Wysłano przez Hournook w imieniu {business}.",
+  "previous": "(poprzednio)",
+  "rows": {
+    "service": "Usługa",
+    "date": "Data",
+    "time": "Godzina",
+    "with": "U kogo",
+    "price": "Cena",
+    "where": "Gdzie",
+    "customer": "Klient",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "reference": "Numer rezerwacji"
+  },
+  "calendar": {
+    "title": "{service} – {business}",
+    "bookingReference": "Numer rezerwacji {reference}",
+    "reference": "Numer {reference}",
+    "manage": "Zarządzaj rezerwacją: {url}",
+    "referenceAndManage": "Numer {reference}. Zarządzaj rezerwacją: {url}",
+    "google": "Kalendarz Google",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Wizyta"
+  }
+}

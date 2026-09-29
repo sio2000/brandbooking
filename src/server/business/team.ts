@@ -143,6 +143,7 @@ export async function inviteMember(
     ctx.user.name,
     input.role,
     appUrl(`/invite/${encodeURIComponent(token)}`),
+    ctx.business.locale,
   )
   return { sent }
 }

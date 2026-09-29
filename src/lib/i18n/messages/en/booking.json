@@ -4,8 +4,10 @@
     "staff": "Team member",
     "date": "Date",
     "time": "Time",
+    "datetime": "Date & time",
     "details": "Your details",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "done": "Done"
   },
   "anyStaff": "Any available",
   "anyStaffHint": "We’ll match you with whoever is free.",
@@ -18,5 +20,120 @@
   "confirmedBody": "We’ve sent a confirmation to {email}.",
   "pausedTitle": "Online booking is paused",
   "pausedDefault": "We’re currently not accepting online bookings.",
-  "privacyNote": "Your details are shared only with {business} to manage your appointment."
+  "privacyNote": "Your details are shared only with {business} to manage your appointment.",
+  "privacyLink": "See our <link>privacy notice</link>.",
+  "meta": {
+    "notFoundTitle": "Booking page not found",
+    "title": "{business} · Online booking",
+    "description": "Book an appointment with {business} online."
+  },
+  "page": {
+    "previewBanner": "Preview: this page isn’t published yet. Only you can see it.",
+    "publish": "Publish",
+    "reopensOn": "Bookings reopen on {date}.",
+    "contactDirectly": "You can still reach {business} directly using the contact details on this page.",
+    "poweredBy": "Online booking by <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "This booking page doesn’t exist",
+    "body": "Check the link, or ask the business for their current booking link.",
+    "home": "Go to Hournook"
+  },
+  "hero": {
+    "logoAlt": "{business} logo",
+    "contact": "Contact information",
+    "bookingPolicy": "Booking policy"
+  },
+  "categories": {
+    "hairBeauty": "Hair & beauty",
+    "barbershop": "Barbershop",
+    "nails": "Nails",
+    "spaMassage": "Spa & massage",
+    "healthTherapy": "Health & therapy",
+    "fitnessCoaching": "Fitness & coaching",
+    "medicalDental": "Medical & dental",
+    "consulting": "Consulting",
+    "educationTutoring": "Education & tutoring",
+    "photography": "Photography",
+    "petServices": "Pet services",
+    "automotive": "Automotive",
+    "homeServices": "Home services",
+    "other": "Other"
+  },
+  "flow": {
+    "noServices": "No services are available to book online right now.",
+    "contactBusiness": "Please contact {business} directly.",
+    "progress": "Booking progress",
+    "stepOf": "Step {current} of {total}:",
+    "chooseService": "Choose a service",
+    "chooseStaff": "Who would you like to see?",
+    "pickDateTime": "Pick a date and time",
+    "withStaff": "with {name}",
+    "continue": "Continue",
+    "reviewBooking": "Review booking",
+    "confirmTitle": "Confirm your booking",
+    "freeCancellationStart": "Free cancellation online until the start before your appointment.",
+    "freeCancellation": "Free cancellation online until {deadline} before your appointment.",
+    "deadlineDays": "{count, plural, one {# day} other {# days}}",
+    "deadlineHours": "{count, plural, one {# hour} other {# hours}}",
+    "deadlineMinutes": "{count, plural, one {# minutes} other {# minutes}}",
+    "previewNote": "This is a preview. Publish your booking page to start accepting real bookings. Customers will see exactly this flow.",
+    "previewDisabled": "Booking disabled in preview",
+    "requestBooking": "Request booking",
+    "confirmBooking": "Confirm booking",
+    "networkError": "We couldn’t reach the server. Check your connection and try again. Nothing has been booked yet.",
+    "back": "Back",
+    "otherServices": "Other services",
+    "free": "Free",
+    "book": "Book"
+  },
+  "details": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "emailHint": "We’ll send your confirmation here.",
+    "phone": "Phone",
+    "phoneHint": "Only used by the business if they need to reach you.",
+    "message": "Anything we should know?",
+    "optional": "Optional",
+    "honeypot": "Website",
+    "errors": {
+      "firstName": "Enter your first name.",
+      "lastName": "Enter your last name.",
+      "email": "Enter a valid email address.",
+      "phoneRequired": "Enter your phone number.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "staffId": "Choose a team member."
+    }
+  },
+  "summary": {
+    "service": "Service",
+    "when": "When",
+    "with": "With",
+    "bookedFor": "Booked for",
+    "where": "Where",
+    "price": "Price"
+  },
+  "success": {
+    "reference": "Reference",
+    "manage": "View, reschedule or cancel",
+    "bookAnother": "Book another appointment"
+  },
+  "slots": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "chooseDate": "Choose a date",
+    "dayAvailable": "{date}, {count, plural, other {# times available}}",
+    "dayUnavailable": "{date}, no times available",
+    "showBusinessTime": "Show business time",
+    "showMyTime": "Show my time zone",
+    "loadError": "Couldn’t load available times",
+    "noDates": "No available dates in this period. Try the next month.",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "morningTimes": "Morning times",
+    "afternoonTimes": "Afternoon times",
+    "eveningTimes": "Evening times"
+  }
 }

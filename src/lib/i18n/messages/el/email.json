@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Λάβατε αυτό το email επειδή κλείσατε ραντεβού.",
+  "manageCta": "Διαχείριση κράτησης",
+  "addToCalendar": "Προσθήκη στο ημερολόγιο",
+  "sentOnBehalf": "Στάλθηκε μέσω Hournook από {business}.",
+  "previous": "(προηγούμενη)",
+  "rows": {
+    "service": "Υπηρεσία",
+    "date": "Ημερομηνία",
+    "time": "Ώρα",
+    "with": "Με",
+    "price": "Τιμή",
+    "where": "Πού",
+    "customer": "Πελάτης",
+    "email": "Email",
+    "phone": "Τηλέφωνο",
+    "reference": "Κωδικός κράτησης"
+  },
+  "calendar": {
+    "title": "{service} – {business}",
+    "bookingReference": "Κωδικός κράτησης {reference}",
+    "reference": "Κωδικός {reference}",
+    "manage": "Διαχείριση κράτησης: {url}",
+    "referenceAndManage": "Κωδικός {reference}. Διαχείριση κράτησης: {url}",
+    "google": "Google Calendar",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Ραντεβού"
+  }
+}

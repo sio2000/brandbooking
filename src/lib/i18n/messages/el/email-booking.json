@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Επιβεβαίωση κράτησης: {service}, {date}",
+    "subjectPending": "Λάβαμε το αίτημα κράτησης: {business}",
+    "preheader": "Σας περιμένουμε: {date}.",
+    "preheaderPending": "Θα λάβετε σύντομα επιβεβαίωση από {business}.",
+    "heading": "Το ραντεβού σας κλείστηκε, {name}!",
+    "headingPending": "Ευχαριστούμε, {name}. Λάβαμε το αίτημά σας",
+    "body": "Το ραντεβού σας με {business} επιβεβαιώθηκε. Δείτε τα στοιχεία:",
+    "bodyPending": "Η επιχείρηση {business} θα εξετάσει το αίτημά σας και θα το επιβεβαιώσει σύντομα. Θα λάβετε νέο email μόλις επιβεβαιωθεί."
+  },
+  "confirmed": {
+    "subject": "Επιβεβαιώθηκε: {service}, {date}",
+    "preheader": "Η επιχείρηση {business} επιβεβαίωσε την κράτησή σας.",
+    "heading": "Η κράτησή σας επιβεβαιώθηκε",
+    "body": "Καλά νέα, {name}! Η επιχείρηση {business} επιβεβαίωσε το ραντεβού σας."
+  },
+  "reminder": {
+    "subject": "Υπενθύμιση: {service}, {date} στις {time}",
+    "preheader": "Το ραντεβού σας με {business} πλησιάζει.",
+    "heading": "Τα λέμε σύντομα",
+    "body": "Γεια σας {name}, σας υπενθυμίζουμε το επερχόμενο ραντεβού σας με {business}."
+  },
+  "rescheduled": {
+    "subject": "Αλλαγή ώρας: {service}, νέα ημερομηνία {date}",
+    "preheader": "Το ραντεβού σας έχει νέα ώρα.",
+    "heading": "Το ραντεβού σας άλλαξε ώρα",
+    "body": "Γεια σας {name}, το ραντεβού σας με {business} μεταφέρθηκε.",
+    "previousTime": "Προηγούμενη ώρα",
+    "newTime": "Νέα ώρα"
+  },
+  "cancelled": {
+    "subject": "Ακυρώθηκε: {service}, {date}",
+    "preheader": "Το ραντεβού σας ακυρώθηκε.",
+    "heading": "Το ραντεβού ακυρώθηκε",
+    "byCustomer": "Γεια σας {name}, όπως ζητήσατε, ακυρώσαμε το ραντεβού σας με {business}.",
+    "byBusiness": "Γεια σας {name}, η επιχείρηση {business} ακύρωσε το ραντεβού σας. Λυπούμαστε για την αναστάτωση.",
+    "message": "Μήνυμα από {business}: {reason}",
+    "bookAgain": "Κλείστε νέα ώρα"
+  },
+  "member": {
+    "createdTitle": "Νέα κράτηση: {customer}",
+    "createdPendingTitle": "Νέο αίτημα κράτησης: {customer}",
+    "cancelledTitle": "Ακύρωση: {customer}, {date}",
+    "rescheduledTitle": "Αλλαγή ώρας: {customer}",
+    "createdIntro": "Νέο ραντεβού από {customer}: {service}.",
+    "createdPendingIntro": "Νέο αίτημα από {customer} για {service}. Επιβεβαιώστε ή απορρίψτε το από τον πίνακα ελέγχου.",
+    "cancelledIntro": "Ο πελάτης {customer} ακύρωσε το ραντεβού του. Η ώρα είναι ξανά διαθέσιμη.",
+    "rescheduledIntro": "Ο πελάτης {customer} μετέφερε το ραντεβού του σε νέα ώρα.",
+    "note": "Σημείωση πελάτη: {message}",
+    "open": "Άνοιγμα στο Hournook",
+    "footer": "Λαμβάνετε αυτό το email επειδή είστε μέλος της ομάδας {business} στο Hournook. Αλλάξτε τις προτιμήσεις ειδοποιήσεων στις Ρυθμίσεις."
+  }
+}

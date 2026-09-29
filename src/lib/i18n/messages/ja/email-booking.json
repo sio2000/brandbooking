@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "予約確定：{date} {service}",
+    "subjectPending": "予約リクエストを受け付けました：{business}",
+    "preheader": "{date} のご来店をお待ちしています。",
+    "preheaderPending": "まもなく {business} からリクエストの確定連絡があります。",
+    "heading": "{name} 様、予約が完了しました！",
+    "headingPending": "{name} 様、ありがとうございます。リクエストを受け付けました",
+    "body": "{business} のご予約が確定しました。詳細は以下のとおりです。",
+    "bodyPending": "{business} がリクエストを確認し、まもなく確定します。確定しましたら改めてメールでお知らせします。"
+  },
+  "confirmed": {
+    "subject": "確定：{date} {service}",
+    "preheader": "{business} がご予約を確定しました。",
+    "heading": "ご予約が確定しました",
+    "body": "{name} 様、{business} がご予約を確定しました。"
+  },
+  "reminder": {
+    "subject": "リマインダー：{date} {time} {service}",
+    "preheader": "{business} のご予約が近づいています。",
+    "heading": "まもなくご予約の日です",
+    "body": "{name} 様、{business} でのご予約が近づいていますのでお知らせします。"
+  },
+  "rescheduled": {
+    "subject": "日時変更：{service}、新しい日時は {date}",
+    "preheader": "ご予約の日時が変更されました。",
+    "heading": "予約日時が変更されました",
+    "body": "{name} 様、{business} のご予約日時が変更されました。",
+    "previousTime": "変更前の日時",
+    "newTime": "新しい日時"
+  },
+  "cancelled": {
+    "subject": "キャンセル：{date} {service}",
+    "preheader": "ご予約はキャンセルされました。",
+    "heading": "予約がキャンセルされました",
+    "byCustomer": "{name} 様、ご依頼どおり {business} のご予約をキャンセルしました。",
+    "byBusiness": "{name} 様、{business} によりご予約がキャンセルされました。ご迷惑をおかけし申し訳ございません。",
+    "message": "{business} からのメッセージ：{reason}",
+    "bookAgain": "新しい日時で予約する"
+  },
+  "member": {
+    "createdTitle": "新しい予約：{customer}",
+    "createdPendingTitle": "新しい予約リクエスト：{customer}",
+    "cancelledTitle": "キャンセル：{customer}、{date}",
+    "rescheduledTitle": "日時変更：{customer}",
+    "createdIntro": "{customer} 様が {service} を予約しました。",
+    "createdPendingIntro": "{customer} 様から {service} の予約リクエストがありました。ダッシュボードで承認または却下してください。",
+    "cancelledIntro": "{customer} 様が予約をキャンセルしました。枠は再び予約可能です。",
+    "rescheduledIntro": "{customer} 様が予約を別の日時に変更しました。",
+    "note": "お客様からのメモ：{message}",
+    "open": "Hournook で開く",
+    "footer": "このメールは、Hournook の {business} のメンバーの方にお送りしています。通知設定は「設定」から変更できます。"
+  }
+}

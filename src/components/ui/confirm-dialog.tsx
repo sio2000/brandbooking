@@ -15,6 +15,7 @@ export function ConfirmDialog({
   title,
   description,
   confirmLabel = 'Confirm',
+  cancelLabel = 'Cancel',
   tone = 'danger',
   confirmText,
   onConfirm,
@@ -26,6 +27,7 @@ export function ConfirmDialog({
   title: string
   description: React.ReactNode
   confirmLabel?: string
+  cancelLabel?: string
   tone?: 'danger' | 'primary'
   confirmText?: string
   onConfirm: () => Promise<unknown> | unknown
@@ -72,7 +74,7 @@ export function ConfirmDialog({
           )}
           <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
             <A.Cancel asChild>
-              <Button variant="secondary">Cancel</Button>
+              <Button variant="secondary">{cancelLabel}</Button>
             </A.Cancel>
             <Button
               variant={tone === 'danger' ? 'danger' : 'primary'}

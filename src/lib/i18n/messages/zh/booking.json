@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "服务",
+    "staff": "团队成员",
+    "date": "日期",
+    "time": "时间",
+    "datetime": "日期和时间",
+    "details": "您的信息",
+    "confirm": "确认",
+    "done": "完成"
+  },
+  "anyStaff": "任意空闲成员",
+  "anyStaffHint": "我们会为您安排有空的成员。",
+  "noSlots": "当天没有可预约的时间。",
+  "noSlotsHint": "请换个日期试试。可预约的日期已高亮显示。",
+  "timesShownIn": "时间以 {tz} 显示",
+  "confirmTitle": "预约成功！",
+  "pendingTitle": "已收到您的申请",
+  "pendingBody": "{business} 会尽快确认您的预约。详细信息已发送到您的邮箱。",
+  "confirmedBody": "确认邮件已发送至 {email}。",
+  "pausedTitle": "在线预约已暂停",
+  "pausedDefault": "我们目前暂不接受在线预约。",
+  "privacyNote": "您的信息仅会提供给 {business}，用于处理您的预约。",
+  "privacyLink": "请查看我们的<link>隐私声明</link>。",
+  "meta": {
+    "notFoundTitle": "未找到预约页面",
+    "title": "{business} · 在线预约",
+    "description": "在线预约 {business} 的服务。"
+  },
+  "page": {
+    "previewBanner": "预览：此页面尚未发布，只有您能看到。",
+    "publish": "发布",
+    "reopensOn": "预约将于 {date} 重新开放。",
+    "contactDirectly": "您仍可通过本页面上的联系方式直接联系 {business}。",
+    "poweredBy": "在线预约由 <link>Hournook</link> 提供"
+  },
+  "notFound": {
+    "title": "该预约页面不存在",
+    "body": "请检查链接，或向商家索取最新的预约链接。",
+    "home": "前往 Hournook"
+  },
+  "hero": {
+    "logoAlt": "{business} 的标志",
+    "contact": "联系方式",
+    "bookingPolicy": "预约须知"
+  },
+  "categories": {
+    "hairBeauty": "美发美容",
+    "barbershop": "理发店",
+    "nails": "美甲",
+    "spaMassage": "水疗按摩",
+    "healthTherapy": "健康理疗",
+    "fitnessCoaching": "健身教练",
+    "medicalDental": "医疗与牙科",
+    "consulting": "咨询",
+    "educationTutoring": "教育辅导",
+    "photography": "摄影",
+    "petServices": "宠物服务",
+    "automotive": "汽车服务",
+    "homeServices": "家政服务",
+    "other": "其他"
+  },
+  "flow": {
+    "noServices": "目前没有可在线预约的服务。",
+    "contactBusiness": "请直接联系 {business}。",
+    "progress": "预约进度",
+    "stepOf": "第 {current} 步，共 {total} 步：",
+    "chooseService": "选择服务",
+    "chooseStaff": "您想预约哪位成员？",
+    "pickDateTime": "选择日期和时间",
+    "withStaff": "服务人员：{name}",
+    "continue": "继续",
+    "reviewBooking": "核对预订",
+    "confirmTitle": "确认您的预订",
+    "freeCancellationStart": "预约开始前均可在线免费取消。",
+    "freeCancellation": "预约开始前 {deadline} 可在线免费取消。",
+    "deadlineDays": "{count, plural, other {# 天}}",
+    "deadlineHours": "{count, plural, other {# 小时}}",
+    "deadlineMinutes": "{count, plural, other {# 分钟}}",
+    "previewNote": "这是预览。发布预约页面后即可开始接受真实预订。客户看到的流程与此完全相同。",
+    "previewDisabled": "预览中无法预订",
+    "requestBooking": "提交预约申请",
+    "confirmBooking": "确认预订",
+    "networkError": "无法连接到服务器。请检查网络后重试。目前尚未完成任何预订。",
+    "back": "返回",
+    "otherServices": "其他服务",
+    "free": "免费",
+    "book": "预约"
+  },
+  "details": {
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "电子邮箱",
+    "emailHint": "我们会将确认信息发送到这里。",
+    "phone": "电话",
+    "phoneHint": "仅在商家需要联系您时使用。",
+    "message": "有什么需要告诉我们的吗？",
+    "optional": "选填",
+    "honeypot": "网站",
+    "errors": {
+      "firstName": "请输入您的名字。",
+      "lastName": "请输入您的姓氏。",
+      "email": "请输入有效的电子邮箱地址。",
+      "phoneRequired": "请输入您的电话号码。",
+      "phoneInvalid": "请输入有效的电话号码。",
+      "staffId": "请选择一位团队成员。"
+    }
+  },
+  "summary": {
+    "service": "服务",
+    "when": "时间",
+    "with": "服务人员",
+    "bookedFor": "预约人",
+    "where": "地点",
+    "price": "价格"
+  },
+  "success": {
+    "reference": "预订编号",
+    "manage": "查看、改期或取消",
+    "bookAnother": "再预约一次"
+  },
+  "slots": {
+    "previousMonth": "上个月",
+    "nextMonth": "下个月",
+    "chooseDate": "选择日期",
+    "dayAvailable": "{date}，{count, plural, other {# 个时段可预约}}",
+    "dayUnavailable": "{date}，无可预约时段",
+    "showBusinessTime": "显示商家时间",
+    "showMyTime": "按我的时区显示",
+    "loadError": "无法加载可预约时间",
+    "noDates": "该时间段内没有可预约的日期。请查看下个月。",
+    "morning": "上午",
+    "afternoon": "下午",
+    "evening": "晚上",
+    "morningTimes": "上午时段",
+    "afternoonTimes": "下午时段",
+    "eveningTimes": "晚上时段"
+  }
+}

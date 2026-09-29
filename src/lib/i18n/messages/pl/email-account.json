@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, rezerwacje online dla małych firm.",
+  "verify": {
+    "subject": "Potwierdź swój adres e-mail",
+    "preheader": "Potwierdź adres e-mail, aby dokończyć konfigurację Hournook.",
+    "heading": "Witaj, {name}",
+    "body": "Potwierdź adres e-mail, abyśmy mogli wysyłać Ci powiadomienia o rezerwacjach i chronić Twoje konto.",
+    "cta": "Potwierdź adres e-mail",
+    "expiry": "Link wygasa po 24 godzinach. Jeśli nie zakładałeś konta w Hournook, zignoruj tę wiadomość."
+  },
+  "reset": {
+    "subject": "Zresetuj hasło do Hournook",
+    "preheader": "Zresetuj hasło do Hournook.",
+    "heading": "Zresetuj hasło",
+    "body": "Otrzymaliśmy prośbę o zresetowanie hasła do Twojego konta. Kliknij przycisk poniżej, aby ustawić nowe.",
+    "cta": "Ustaw nowe hasło",
+    "expiry": "Link wygasa po 1 godzinie i można go użyć tylko raz. Jeśli to nie Ty, zignoruj tę wiadomość. Twoje hasło się nie zmieni."
+  },
+  "invite": {
+    "subject": "Zaproszenie do {business}",
+    "preheader": "{inviter} zaprasza Cię do {business} w Hournook.",
+    "heading": "Dołącz do {business}",
+    "body": "{inviter} zaprasza Cię do {business} w Hournook. Twoja rola: {role}. Zobaczysz swoje wizyty i będziesz zarządzać swoją dostępnością.",
+    "roleManager": "menedżer",
+    "roleMember": "członek zespołu",
+    "cta": "Przyjmij zaproszenie",
+    "expiry": "Zaproszenie wygasa po 7 dniach."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Wymagane działanie: płatność za {business} nie powiodła się",
+      "heading": "Nie udało się przetworzyć płatności",
+      "text": "Ostatnia płatność Hournook za {business} nie powiodła się. Spróbujemy ponownie automatycznie, ale zaktualizuj metodę płatności, aby strona rezerwacji nie została wstrzymana.",
+      "cta": "Zaktualizuj metodę płatności"
+    },
+    "active": {
+      "subject": "Twoja subskrypcja Hournook jest aktywna",
+      "heading": "Dziękujemy, wszystko gotowe",
+      "text": "Subskrypcja dla {business} jest aktywna. Strona rezerwacji będzie przyjmować rezerwacje bez przerw.",
+      "cta": "Zobacz płatności"
+    },
+    "canceled": {
+      "subject": "Twoja subskrypcja Hournook wygasła",
+      "heading": "Twoja subskrypcja wygasła",
+      "text": "Subskrypcja dla {business} została anulowana. Twoje dane są bezpieczne, a panel nadal jest dostępny, ale strona rezerwacji nie przyjmuje już nowych rezerwacji. Możesz ponownie wykupić subskrypcję w dowolnym momencie.",
+      "cta": "Odnów subskrypcję"
+    }
+  }
+}

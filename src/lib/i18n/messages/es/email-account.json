@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, reservas online para pequeños negocios.",
+  "verify": {
+    "subject": "Confirma tu dirección de email",
+    "preheader": "Confirma tu dirección de email para terminar de configurar Hournook.",
+    "heading": "Te damos la bienvenida, {name}",
+    "body": "Confirma tu dirección de email para que podamos enviarte avisos de reservas y mantener tu cuenta segura.",
+    "cta": "Confirmar email",
+    "expiry": "Este enlace caduca en 24 horas. Si no has creado una cuenta en Hournook, puedes ignorar este email."
+  },
+  "reset": {
+    "subject": "Restablece tu contraseña de Hournook",
+    "preheader": "Restablece tu contraseña de Hournook.",
+    "heading": "Restablece tu contraseña",
+    "body": "Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Usa el botón de abajo para elegir una nueva.",
+    "cta": "Elegir una nueva contraseña",
+    "expiry": "Este enlace caduca en 1 hora y solo se puede usar una vez. Si no lo has pedido tú, puedes ignorar este email. Tu contraseña no cambiará."
+  },
+  "invite": {
+    "subject": "Te han invitado a unirte a {business}",
+    "preheader": "{inviter} te ha invitado a unirte a {business} en Hournook.",
+    "heading": "Únete a {business}",
+    "body": "{inviter} te ha invitado a unirte a {business} en Hournook como {role}. Podrás ver tus citas y gestionar tu disponibilidad.",
+    "roleManager": "gerente",
+    "roleMember": "miembro del equipo",
+    "cta": "Aceptar invitación",
+    "expiry": "Esta invitación caduca en 7 días."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Acción necesaria: ha fallado el pago de {business}",
+      "heading": "No hemos podido procesar tu pago",
+      "text": "Tu último pago de Hournook para {business} no se ha completado. Lo volveremos a intentar automáticamente, pero actualiza tu método de pago para que tu página de reservas no se pause.",
+      "cta": "Actualizar método de pago"
+    },
+    "active": {
+      "subject": "Tu suscripción a Hournook está activa",
+      "heading": "Gracias, ya está todo listo",
+      "text": "Tu suscripción para {business} está activa. Tu página de reservas seguirá aceptando reservas sin interrupciones.",
+      "cta": "Ver facturación"
+    },
+    "canceled": {
+      "subject": "Tu suscripción a Hournook ha terminado",
+      "heading": "Tu suscripción ha terminado",
+      "text": "La suscripción para {business} se ha cancelado. Tus datos están a salvo y tu panel sigue disponible, pero tu página de reservas ya no acepta nuevas reservas. Puedes volver a suscribirte cuando quieras.",
+      "cta": "Volver a suscribirme"
+    }
+  }
+}

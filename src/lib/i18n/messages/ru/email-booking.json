@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Запись подтверждена: {service}, {date}",
+    "subjectPending": "Заявка на запись получена: {business}",
+    "preheader": "Ждём вас: {date}.",
+    "preheaderPending": "{business} скоро подтвердит вашу заявку.",
+    "heading": "Вы записаны, {name}!",
+    "headingPending": "Спасибо, {name}. Заявка получена",
+    "body": "Ваша запись в {business} подтверждена. Подробности:",
+    "bodyPending": "{business} рассмотрит вашу заявку и скоро её подтвердит. Мы пришлём ещё одно письмо, когда запись будет подтверждена."
+  },
+  "confirmed": {
+    "subject": "Подтверждено: {service}, {date}",
+    "preheader": "{business} подтвердил(а) вашу запись.",
+    "heading": "Ваша запись подтверждена",
+    "body": "Хорошие новости, {name}! {business} подтвердил(а) вашу запись."
+  },
+  "reminder": {
+    "subject": "Напоминание: {service}, {date} в {time}",
+    "preheader": "Скоро ваша запись в {business}.",
+    "heading": "До скорой встречи",
+    "body": "Здравствуйте, {name}! Напоминаем о вашей предстоящей записи в {business}."
+  },
+  "rescheduled": {
+    "subject": "Перенесено: {service}, теперь {date}",
+    "preheader": "У вашей записи новое время.",
+    "heading": "Ваша запись перенесена",
+    "body": "Здравствуйте, {name}! Ваша запись в {business} перенесена.",
+    "previousTime": "Прежнее время",
+    "newTime": "Новое время"
+  },
+  "cancelled": {
+    "subject": "Отменено: {service}, {date}",
+    "preheader": "Ваша запись отменена.",
+    "heading": "Запись отменена",
+    "byCustomer": "Здравствуйте, {name}! По вашей просьбе мы отменили запись в {business}.",
+    "byBusiness": "Здравствуйте, {name}! {business} отменил(а) вашу запись. Приносим извинения за неудобства.",
+    "message": "Сообщение от {business}: {reason}",
+    "bookAgain": "Выбрать другое время"
+  },
+  "member": {
+    "createdTitle": "Новая запись: {customer}",
+    "createdPendingTitle": "Новая заявка на запись: {customer}",
+    "cancelledTitle": "Отмена: {customer}, {date}",
+    "rescheduledTitle": "Перенос: {customer}",
+    "createdIntro": "Клиент {customer} записался на услугу «{service}».",
+    "createdPendingIntro": "Клиент {customer} оставил заявку на услугу «{service}». Подтвердите или отклоните её в панели.",
+    "cancelledIntro": "Клиент {customer} отменил запись. Время снова свободно.",
+    "rescheduledIntro": "Клиент {customer} перенёс запись на другое время.",
+    "note": "Комментарий клиента: {message}",
+    "open": "Открыть в Hournook",
+    "footer": "Вы получили это письмо, потому что состоите в команде {business} в Hournook. Уведомления можно настроить в настройках."
+  }
+}

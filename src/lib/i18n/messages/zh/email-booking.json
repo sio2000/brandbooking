@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "预订已确认：{date} {service}",
+    "subjectPending": "已收到预约申请：{business}",
+    "preheader": "{date} 见。",
+    "preheaderPending": "{business} 会尽快确认您的申请。",
+    "heading": "{name}，预约成功！",
+    "headingPending": "谢谢，{name}。已收到您的申请",
+    "body": "您在 {business} 的预约已确认。详情如下：",
+    "bodyPending": "{business} 会审核您的申请并尽快确认。确认后我们会再给您发送一封邮件。"
+  },
+  "confirmed": {
+    "subject": "已确认：{date} {service}",
+    "preheader": "{business} 已确认您的预订。",
+    "heading": "您的预订已确认",
+    "body": "好消息，{name}！{business} 已确认您的预约。"
+  },
+  "reminder": {
+    "subject": "提醒：{date} {time} {service}",
+    "preheader": "您在 {business} 的预约即将开始。",
+    "heading": "期待与您见面",
+    "body": "{name}，您好！温馨提醒您在 {business} 的预约即将到来。"
+  },
+  "rescheduled": {
+    "subject": "已改期：{service}，新时间 {date}",
+    "preheader": "您的预约时间已更改。",
+    "heading": "您的预约已改期",
+    "body": "{name}，您好！您在 {business} 的预约已改期。",
+    "previousTime": "原时间",
+    "newTime": "新时间"
+  },
+  "cancelled": {
+    "subject": "已取消：{date} {service}",
+    "preheader": "您的预约已取消。",
+    "heading": "预约已取消",
+    "byCustomer": "{name}，您好！我们已按您的要求取消了您在 {business} 的预约。",
+    "byBusiness": "{name}，您好！{business} 已取消您的预约，给您带来不便，敬请谅解。",
+    "message": "来自 {business} 的留言：{reason}",
+    "bookAgain": "重新预约时间"
+  },
+  "member": {
+    "createdTitle": "新预订：{customer}",
+    "createdPendingTitle": "新预约申请：{customer}",
+    "cancelledTitle": "已取消：{customer}，{date}",
+    "rescheduledTitle": "已改期：{customer}",
+    "createdIntro": "{customer} 预约了 {service}。",
+    "createdPendingIntro": "{customer} 申请预约 {service}。请在仪表板中确认或拒绝。",
+    "cancelledIntro": "{customer} 取消了预约，该时段已重新开放。",
+    "rescheduledIntro": "{customer} 将预约改到了新的时间。",
+    "note": "客户留言：{message}",
+    "open": "在 Hournook 中打开",
+    "footer": "您收到此邮件是因为您是 Hournook 上 {business} 的成员。可在设置中更改通知偏好。"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "बुकिंग की पुष्टि: {service}, {date}",
+    "subjectPending": "बुकिंग अनुरोध मिल गया: {business}",
+    "preheader": "{date} को मिलते हैं।",
+    "preheaderPending": "{business} जल्द ही आपके अनुरोध की पुष्टि करेगा।",
+    "heading": "{name}, आपकी बुकिंग हो गई!",
+    "headingPending": "धन्यवाद, {name}। अनुरोध मिल गया",
+    "body": "{business} के साथ आपके अपॉइंटमेंट की पुष्टि हो गई है। पूरी जानकारी:",
+    "bodyPending": "{business} आपके अनुरोध की समीक्षा करके जल्द ही पुष्टि करेगा। पुष्टि होते ही आपको एक और ईमेल मिलेगा।"
+  },
+  "confirmed": {
+    "subject": "पुष्टि हो गई: {service}, {date}",
+    "preheader": "{business} ने आपकी बुकिंग की पुष्टि कर दी है।",
+    "heading": "आपकी बुकिंग की पुष्टि हो गई है",
+    "body": "अच्छी खबर, {name}! {business} ने आपके अपॉइंटमेंट की पुष्टि कर दी है।"
+  },
+  "reminder": {
+    "subject": "रिमाइंडर: {service}, {date}, {time} बजे",
+    "preheader": "{business} के साथ आपका अपॉइंटमेंट जल्द ही है।",
+    "heading": "जल्द मिलते हैं",
+    "body": "नमस्ते {name}, यह {business} के साथ आपके आने वाले अपॉइंटमेंट का रिमाइंडर है।"
+  },
+  "rescheduled": {
+    "subject": "समय बदला: {service}, अब {date}",
+    "preheader": "आपके अपॉइंटमेंट का समय बदल गया है।",
+    "heading": "आपके अपॉइंटमेंट का समय बदल गया है",
+    "body": "नमस्ते {name}, {business} के साथ आपके अपॉइंटमेंट का समय बदल दिया गया है।",
+    "previousTime": "पिछला समय",
+    "newTime": "नया समय"
+  },
+  "cancelled": {
+    "subject": "रद्द: {service}, {date}",
+    "preheader": "आपका अपॉइंटमेंट रद्द कर दिया गया है।",
+    "heading": "अपॉइंटमेंट रद्द",
+    "byCustomer": "नमस्ते {name}, आपके अनुरोध पर हमने {business} के साथ आपका अपॉइंटमेंट रद्द कर दिया है।",
+    "byBusiness": "नमस्ते {name}, {business} ने आपका अपॉइंटमेंट रद्द कर दिया है। हुई असुविधा के लिए हमें खेद है।",
+    "message": "{business} का संदेश: {reason}",
+    "bookAgain": "नया समय बुक करें"
+  },
+  "member": {
+    "createdTitle": "नई बुकिंग: {customer}",
+    "createdPendingTitle": "नया बुकिंग अनुरोध: {customer}",
+    "cancelledTitle": "रद्द: {customer}, {date}",
+    "rescheduledTitle": "समय बदला: {customer}",
+    "createdIntro": "{customer} ने {service} बुक किया।",
+    "createdPendingIntro": "{customer} ने {service} का अनुरोध किया है। डैशबोर्ड में इसकी पुष्टि करें या अस्वीकार करें।",
+    "cancelledIntro": "{customer} ने अपना अपॉइंटमेंट रद्द कर दिया। वह समय फिर से उपलब्ध है।",
+    "rescheduledIntro": "{customer} ने अपना अपॉइंटमेंट नए समय पर कर दिया है।",
+    "note": "ग्राहक का नोट: {message}",
+    "open": "Hournook में खोलें",
+    "footer": "आपको यह ईमेल इसलिए मिल रहा है क्योंकि आप Hournook पर {business} के सदस्य हैं। सूचना सेटिंग्स में जाकर प्राथमिकताएँ बदलें।"
+  }
+}

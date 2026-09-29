@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, reservas online para pequenos negócios.",
+  "verify": {
+    "subject": "Confirme o seu endereço de email",
+    "preheader": "Confirme o seu endereço de email para concluir a configuração do Hournook.",
+    "heading": "Bem-vindo, {name}",
+    "body": "Confirme o seu endereço de email para que possamos enviar-lhe notificações de reservas e manter a sua conta segura.",
+    "cta": "Confirmar endereço de email",
+    "expiry": "Esta ligação expira dentro de 24 horas. Se não criou uma conta no Hournook, pode ignorar este email."
+  },
+  "reset": {
+    "subject": "Redefina a sua palavra-passe do Hournook",
+    "preheader": "Redefina a sua palavra-passe do Hournook.",
+    "heading": "Redefinir a palavra-passe",
+    "body": "Recebemos um pedido para redefinir a palavra-passe da sua conta. Utilize o botão abaixo para escolher uma nova.",
+    "cta": "Escolher nova palavra-passe",
+    "expiry": "Esta ligação expira dentro de 1 hora e só pode ser usada uma vez. Se não fez este pedido, pode ignorar este email. A sua palavra-passe não será alterada."
+  },
+  "invite": {
+    "subject": "Foi convidado para {business}",
+    "preheader": "{inviter} convidou-o para {business} no Hournook.",
+    "heading": "Junte-se a {business}",
+    "body": "{inviter} convidou-o para {business} no Hournook como {role}. Poderá ver as suas marcações e gerir a sua disponibilidade.",
+    "roleManager": "gestor",
+    "roleMember": "membro da equipa",
+    "cta": "Aceitar convite",
+    "expiry": "Este convite expira dentro de 7 dias."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Ação necessária: falha no pagamento de {business}",
+      "heading": "Não foi possível processar o seu pagamento",
+      "text": "O seu último pagamento do Hournook para {business} não foi concluído. Voltaremos a tentar automaticamente, mas atualize o método de pagamento para evitar que a sua página de reservas seja colocada em pausa.",
+      "cta": "Atualizar método de pagamento"
+    },
+    "active": {
+      "subject": "A sua subscrição do Hournook está ativa",
+      "heading": "Obrigado, está tudo pronto",
+      "text": "A sua subscrição para {business} está ativa. A sua página de reservas continuará a aceitar reservas sem interrupções.",
+      "cta": "Ver faturação"
+    },
+    "canceled": {
+      "subject": "A sua subscrição do Hournook terminou",
+      "heading": "A sua subscrição terminou",
+      "text": "A subscrição para {business} foi cancelada. Os seus dados estão seguros e o painel continua disponível, mas a sua página de reservas já não aceita novas reservas. Pode voltar a subscrever a qualquer momento.",
+      "cta": "Voltar a subscrever"
+    }
+  }
+}

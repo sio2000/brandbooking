@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "Dienst",
+    "staff": "Teamlid",
+    "date": "Datum",
+    "time": "Tijd",
+    "datetime": "Datum en tijd",
+    "details": "Je gegevens",
+    "confirm": "Bevestigen",
+    "done": "Klaar"
+  },
+  "anyStaff": "Maakt niet uit",
+  "anyStaffHint": "We koppelen je aan wie er vrij is.",
+  "noSlots": "Geen vrije tijden op deze dag.",
+  "noSlotsHint": "Probeer een andere datum. Dagen met beschikbaarheid zijn gemarkeerd.",
+  "timesShownIn": "Tijden in {tz}",
+  "confirmTitle": "Je afspraak staat!",
+  "pendingTitle": "Aanvraag ontvangen",
+  "pendingBody": "{business} bevestigt je afspraak binnenkort. We hebben je de details gemaild.",
+  "confirmedBody": "We hebben een bevestiging gestuurd naar {email}.",
+  "pausedTitle": "Online boeken is gepauzeerd",
+  "pausedDefault": "We nemen op dit moment geen online boekingen aan.",
+  "privacyNote": "Je gegevens worden alleen gedeeld met {business} om je afspraak te regelen.",
+  "privacyLink": "Lees onze <link>privacyverklaring</link>.",
+  "meta": {
+    "notFoundTitle": "Boekingspagina niet gevonden",
+    "title": "{business} · Online boeken",
+    "description": "Boek online een afspraak bij {business}."
+  },
+  "page": {
+    "previewBanner": "Voorbeeld: deze pagina is nog niet gepubliceerd. Alleen jij kunt hem zien.",
+    "publish": "Publiceren",
+    "reopensOn": "Boekingen gaan weer open op {date}.",
+    "contactDirectly": "Je kunt {business} nog steeds rechtstreeks bereiken via de contactgegevens op deze pagina.",
+    "poweredBy": "Online boeken via <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "Deze boekingspagina bestaat niet",
+    "body": "Controleer de link of vraag het bedrijf om de actuele boekingslink.",
+    "home": "Naar Hournook"
+  },
+  "hero": {
+    "logoAlt": "Logo van {business}",
+    "contact": "Contactgegevens",
+    "bookingPolicy": "Boekingsvoorwaarden"
+  },
+  "categories": {
+    "hairBeauty": "Kapper en schoonheid",
+    "barbershop": "Barbershop",
+    "nails": "Nagels",
+    "spaMassage": "Spa en massage",
+    "healthTherapy": "Gezondheid en therapie",
+    "fitnessCoaching": "Fitness en coaching",
+    "medicalDental": "Medisch en tandheelkunde",
+    "consulting": "Advies",
+    "educationTutoring": "Onderwijs en bijles",
+    "photography": "Fotografie",
+    "petServices": "Dierenservice",
+    "automotive": "Auto",
+    "homeServices": "Diensten aan huis",
+    "other": "Overig"
+  },
+  "flow": {
+    "noServices": "Er zijn op dit moment geen diensten online te boeken.",
+    "contactBusiness": "Neem rechtstreeks contact op met {business}.",
+    "progress": "Voortgang van je boeking",
+    "stepOf": "Stap {current} van {total}:",
+    "chooseService": "Kies een dienst",
+    "chooseStaff": "Bij wie wil je een afspraak?",
+    "pickDateTime": "Kies een datum en tijd",
+    "withStaff": "bij {name}",
+    "continue": "Verder",
+    "reviewBooking": "Boeking controleren",
+    "confirmTitle": "Bevestig je boeking",
+    "freeCancellationStart": "Gratis online annuleren tot het begin van je afspraak.",
+    "freeCancellation": "Gratis online annuleren tot {deadline} voor je afspraak.",
+    "deadlineDays": "{count, plural, one {# dag} other {# dagen}}",
+    "deadlineHours": "{count, plural, one {# uur} other {# uur}}",
+    "deadlineMinutes": "{count, plural, one {# minuut} other {# minuten}}",
+    "previewNote": "Dit is een voorbeeld. Publiceer je boekingspagina om echte boekingen te ontvangen. Klanten zien precies deze stappen.",
+    "previewDisabled": "Boeken uitgeschakeld in voorbeeld",
+    "requestBooking": "Boeking aanvragen",
+    "confirmBooking": "Boeking bevestigen",
+    "networkError": "We konden de server niet bereiken. Controleer je verbinding en probeer het opnieuw. Er is nog niets geboekt.",
+    "back": "Terug",
+    "otherServices": "Overige diensten",
+    "free": "Gratis",
+    "book": "Boeken"
+  },
+  "details": {
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "emailHint": "Hier sturen we je bevestiging naartoe.",
+    "phone": "Telefoon",
+    "phoneHint": "Alleen gebruikt als het bedrijf je moet bereiken.",
+    "message": "Is er iets wat we moeten weten?",
+    "optional": "Optioneel",
+    "honeypot": "Website",
+    "errors": {
+      "firstName": "Vul je voornaam in.",
+      "lastName": "Vul je achternaam in.",
+      "email": "Vul een geldig e-mailadres in.",
+      "phoneRequired": "Vul je telefoonnummer in.",
+      "phoneInvalid": "Vul een geldig telefoonnummer in.",
+      "staffId": "Kies een teamlid."
+    }
+  },
+  "summary": {
+    "service": "Dienst",
+    "when": "Wanneer",
+    "with": "Bij",
+    "bookedFor": "Geboekt voor",
+    "where": "Waar",
+    "price": "Prijs"
+  },
+  "success": {
+    "reference": "Boekingsnummer",
+    "manage": "Bekijken, verzetten of annuleren",
+    "bookAnother": "Nog een afspraak boeken"
+  },
+  "slots": {
+    "previousMonth": "Vorige maand",
+    "nextMonth": "Volgende maand",
+    "chooseDate": "Kies een datum",
+    "dayAvailable": "{date}, {count, plural, one {# tijd beschikbaar} other {# tijden beschikbaar}}",
+    "dayUnavailable": "{date}, geen tijden beschikbaar",
+    "showBusinessTime": "Toon tijd van het bedrijf",
+    "showMyTime": "Toon in mijn tijdzone",
+    "loadError": "Beschikbare tijden konden niet worden geladen",
+    "noDates": "Geen beschikbare datums in deze periode. Probeer de volgende maand.",
+    "morning": "Ochtend",
+    "afternoon": "Middag",
+    "evening": "Avond",
+    "morningTimes": "Tijden in de ochtend",
+    "afternoonTimes": "Tijden in de middag",
+    "eveningTimes": "Tijden in de avond"
+  }
+}

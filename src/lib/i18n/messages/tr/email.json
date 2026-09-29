@@ -1,0 +1,30 @@
+{
+  "footerDefault": "Bu e-postayı randevu aldığınız için aldınız.",
+  "manageCta": "Rezervasyonu yönet",
+  "addToCalendar": "Takvime ekle",
+  "sentOnBehalf": "{business} adına Hournook tarafından gönderildi.",
+  "previous": "(önceki)",
+  "rows": {
+    "service": "Hizmet",
+    "date": "Tarih",
+    "time": "Saat",
+    "with": "Kiminle",
+    "price": "Fiyat",
+    "where": "Nerede",
+    "customer": "Müşteri",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "reference": "Rezervasyon kodu"
+  },
+  "calendar": {
+    "title": "{service} – {business}",
+    "bookingReference": "Rezervasyon kodu {reference}",
+    "reference": "Kod {reference}",
+    "manage": "Rezervasyonunuzu yönetin: {url}",
+    "referenceAndManage": "Kod {reference}. Rezervasyonunuzu yönetin: {url}",
+    "google": "Google Takvim",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "Randevu"
+  }
+}

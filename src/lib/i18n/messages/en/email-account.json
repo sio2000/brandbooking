@@ -1,0 +1,49 @@
+{
+  "footer": "Hournook, online booking for small businesses.",
+  "verify": {
+    "subject": "Confirm your email address",
+    "preheader": "Confirm your email address to finish setting up Hournook.",
+    "heading": "Welcome, {name}",
+    "body": "Confirm your email address so we can send you booking notifications and keep your account secure.",
+    "cta": "Confirm email address",
+    "expiry": "This link expires in 24 hours. If you did not create a Hournook account, you can ignore this email."
+  },
+  "reset": {
+    "subject": "Reset your Hournook password",
+    "preheader": "Reset your Hournook password.",
+    "heading": "Reset your password",
+    "body": "We received a request to reset the password for your account. Use the button below to choose a new one.",
+    "cta": "Choose a new password",
+    "expiry": "This link expires in 1 hour and can be used once. If you did not ask for this, you can safely ignore this email. Your password will not change."
+  },
+  "invite": {
+    "subject": "You're invited to join {business}",
+    "preheader": "{inviter} invited you to join {business} on Hournook.",
+    "heading": "Join {business}",
+    "body": "{inviter} invited you to join {business} on Hournook as {role}. You'll be able to see your appointments and manage your availability.",
+    "roleManager": "a manager",
+    "roleMember": "a team member",
+    "cta": "Accept invitation",
+    "expiry": "This invitation expires in 7 days."
+  },
+  "billing": {
+    "paymentFailed": {
+      "subject": "Action needed: payment failed for {business}",
+      "heading": "We couldn’t process your payment",
+      "text": "Your latest Hournook payment for {business} didn’t go through. We’ll retry automatically, but please update your payment method to avoid your booking page being paused.",
+      "cta": "Update payment method"
+    },
+    "active": {
+      "subject": "Your Hournook subscription is active",
+      "heading": "Thanks, you’re all set",
+      "text": "Your subscription for {business} is active. Your booking page will keep accepting bookings without interruption.",
+      "cta": "View billing"
+    },
+    "canceled": {
+      "subject": "Your Hournook subscription has ended",
+      "heading": "Your subscription has ended",
+      "text": "The subscription for {business} has been cancelled. Your data is safe and your dashboard is still available, but your booking page no longer accepts new bookings. You can resubscribe at any time.",
+      "cta": "Resubscribe"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "steps": {
+    "service": "サービス",
+    "staff": "スタッフ",
+    "date": "日付",
+    "time": "時間",
+    "datetime": "日時",
+    "details": "お客様情報",
+    "confirm": "確認",
+    "done": "完了"
+  },
+  "anyStaff": "指名なし",
+  "anyStaffHint": "空いているスタッフが担当します。",
+  "noSlots": "この日は空き時間がありません。",
+  "noSlotsHint": "別の日付をお試しください。空きのある日は強調表示されています。",
+  "timesShownIn": "{tz} の時刻で表示しています",
+  "confirmTitle": "予約が完了しました！",
+  "pendingTitle": "リクエストを受け付けました",
+  "pendingBody": "まもなく {business} から予約の確定連絡があります。詳細はメールでお送りしました。",
+  "confirmedBody": "{email} に確認メールをお送りしました。",
+  "pausedTitle": "オンライン予約は一時停止中です",
+  "pausedDefault": "現在、オンライン予約を受け付けていません。",
+  "privacyNote": "ご入力いただいた情報は、予約管理のため {business} にのみ共有されます。",
+  "privacyLink": "詳しくは<link>プライバシーに関するお知らせ</link>をご覧ください。",
+  "meta": {
+    "notFoundTitle": "予約ページが見つかりません",
+    "title": "{business} · オンライン予約",
+    "description": "{business} のご予約はオンラインで。"
+  },
+  "page": {
+    "previewBanner": "プレビュー：このページはまだ公開されていません。あなただけが表示できます。",
+    "publish": "公開する",
+    "reopensOn": "予約の受付は {date} に再開します。",
+    "contactDirectly": "このページの連絡先から {business} に直接お問い合わせいただけます。",
+    "poweredBy": "オンライン予約 by <link>Hournook</link>"
+  },
+  "notFound": {
+    "title": "この予約ページは存在しません",
+    "body": "リンクをご確認いただくか、店舗に最新の予約リンクをお問い合わせください。",
+    "home": "Hournook へ移動"
+  },
+  "hero": {
+    "logoAlt": "{business} のロゴ",
+    "contact": "連絡先",
+    "bookingPolicy": "予約ポリシー"
+  },
+  "categories": {
+    "hairBeauty": "ヘア・美容",
+    "barbershop": "理容室",
+    "nails": "ネイル",
+    "spaMassage": "スパ・マッサージ",
+    "healthTherapy": "健康・セラピー",
+    "fitnessCoaching": "フィットネス・コーチング",
+    "medicalDental": "医療・歯科",
+    "consulting": "コンサルティング",
+    "educationTutoring": "教育・個別指導",
+    "photography": "写真撮影",
+    "petServices": "ペットサービス",
+    "automotive": "自動車サービス",
+    "homeServices": "住まいのサービス",
+    "other": "その他"
+  },
+  "flow": {
+    "noServices": "現在、オンラインで予約できるサービスはありません。",
+    "contactBusiness": "{business} に直接お問い合わせください。",
+    "progress": "予約の進行状況",
+    "stepOf": "ステップ {current}/{total}：",
+    "chooseService": "サービスを選択",
+    "chooseStaff": "担当スタッフを選んでください",
+    "pickDateTime": "日時を選択",
+    "withStaff": "担当：{name}",
+    "continue": "次へ",
+    "reviewBooking": "予約内容を確認",
+    "confirmTitle": "予約内容の確認",
+    "freeCancellationStart": "予約の開始時刻まで、オンラインで無料キャンセルできます。",
+    "freeCancellation": "予約の {deadline} 前まで、オンラインで無料キャンセルできます。",
+    "deadlineDays": "{count, plural, other {#日}}",
+    "deadlineHours": "{count, plural, other {#時間}}",
+    "deadlineMinutes": "{count, plural, other {#分}}",
+    "previewNote": "これはプレビューです。予約ページを公開すると、実際の予約を受け付けられます。お客様にはこのとおりの流れが表示されます。",
+    "previewDisabled": "プレビューでは予約できません",
+    "requestBooking": "予約をリクエスト",
+    "confirmBooking": "予約を確定",
+    "networkError": "サーバーに接続できませんでした。接続を確認して、もう一度お試しください。まだ予約は完了していません。",
+    "back": "戻る",
+    "otherServices": "その他のサービス",
+    "free": "無料",
+    "book": "予約する"
+  },
+  "details": {
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "emailHint": "確認メールをこちらにお送りします。",
+    "phone": "電話番号",
+    "phoneHint": "店舗から連絡が必要な場合にのみ使用されます。",
+    "message": "ご要望などがあればご記入ください",
+    "optional": "任意",
+    "honeypot": "ウェブサイト",
+    "errors": {
+      "firstName": "名を入力してください。",
+      "lastName": "姓を入力してください。",
+      "email": "有効なメールアドレスを入力してください。",
+      "phoneRequired": "電話番号を入力してください。",
+      "phoneInvalid": "有効な電話番号を入力してください。",
+      "staffId": "スタッフを選択してください。"
+    }
+  },
+  "summary": {
+    "service": "サービス",
+    "when": "日時",
+    "with": "担当",
+    "bookedFor": "予約者",
+    "where": "場所",
+    "price": "料金"
+  },
+  "success": {
+    "reference": "予約番号",
+    "manage": "確認・日時変更・キャンセル",
+    "bookAnother": "別の予約をする"
+  },
+  "slots": {
+    "previousMonth": "前の月",
+    "nextMonth": "次の月",
+    "chooseDate": "日付を選択",
+    "dayAvailable": "{date}、{count, plural, other {空き #件}}",
+    "dayUnavailable": "{date}、空きなし",
+    "showBusinessTime": "店舗の時刻で表示",
+    "showMyTime": "自分のタイムゾーンで表示",
+    "loadError": "空き時間を読み込めませんでした",
+    "noDates": "この期間に空きのある日はありません。次の月をご確認ください。",
+    "morning": "午前",
+    "afternoon": "午後",
+    "evening": "夕方以降",
+    "morningTimes": "午前の時間帯",
+    "afternoonTimes": "午後の時間帯",
+    "eveningTimes": "夕方以降の時間帯"
+  }
+}

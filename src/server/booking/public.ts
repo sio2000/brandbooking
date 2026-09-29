@@ -18,6 +18,7 @@ import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import type { RequestMeta } from '@/server/request'
 import { deriveSource, type PublicBookingInput } from '@/lib/validation/booking'
 import { addDays, addMonths, endOfMonth, isPlainDate, todayIn } from '@/lib/tz'
+import type { Locale } from '@/lib/i18n/config'
 import {
   bookAppointment,
   cancelAppointment,
@@ -249,6 +250,8 @@ export async function createPublicBooking(
   slug: string,
   input: PublicBookingInput,
   meta: RequestMeta,
+  /** The language the customer booked in (default: the business's booking-page language). */
+  locale?: Locale | null,
 ) {
   const b = await requireAccepting(slug)
   await enforceRateLimits([
@@ -280,6 +283,7 @@ export async function createPublicBooking(
     referrerHost: input.referrerHost,
     actor: { type: 'customer', ip: meta.ip, requestId: meta.requestId },
     enforceAvailability: true,
+    locale: locale ?? b.locale,
   })
   return {
     appointmentId: appointment.id,
@@ -489,7 +493,7 @@ export async function icsForToken(token: string) {
     .from(services)
     .where(and(eq(services.businessId, business.id), eq(services.id, appt.serviceId)))
     .limit(1)
-  return { appt, business, serviceName: svc?.name ?? 'Appointment' }
+  return { appt, business, serviceName: svc?.name ?? null }
 }
 
 export async function staffNamesForIds(businessId: string, ids: string[]) {

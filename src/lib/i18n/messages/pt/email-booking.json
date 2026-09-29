@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Reserva confirmada: {service} a {date}",
+    "subjectPending": "Pedido de reserva recebido: {business}",
+    "preheader": "Até {date}.",
+    "preheaderPending": "{business} vai confirmar o seu pedido em breve.",
+    "heading": "Reserva feita, {name}!",
+    "headingPending": "Obrigado, {name}. Pedido recebido",
+    "body": "A sua marcação em {business} está confirmada. Eis os detalhes:",
+    "bodyPending": "{business} vai analisar o seu pedido e confirmá-lo em breve. Receberá outro email assim que estiver confirmado."
+  },
+  "confirmed": {
+    "subject": "Confirmada: {service} a {date}",
+    "preheader": "{business} confirmou a sua reserva.",
+    "heading": "A sua reserva está confirmada",
+    "body": "Boas notícias, {name}! {business} confirmou a sua marcação."
+  },
+  "reminder": {
+    "subject": "Lembrete: {service} a {date} às {time}",
+    "preheader": "A sua marcação em {business} está a chegar.",
+    "heading": "Até breve",
+    "body": "Olá, {name}. Lembramos a sua próxima marcação em {business}."
+  },
+  "rescheduled": {
+    "subject": "Reagendada: {service}, agora a {date}",
+    "preheader": "A sua marcação tem uma nova hora.",
+    "heading": "A sua marcação foi reagendada",
+    "body": "Olá, {name}. A sua marcação em {business} foi reagendada.",
+    "previousTime": "Hora anterior",
+    "newTime": "Nova hora"
+  },
+  "cancelled": {
+    "subject": "Cancelada: {service} a {date}",
+    "preheader": "A sua marcação foi cancelada.",
+    "heading": "Marcação cancelada",
+    "byCustomer": "Olá, {name}. Conforme pedido, cancelámos a sua marcação em {business}.",
+    "byBusiness": "Olá, {name}. {business} cancelou a sua marcação. Lamentamos o incómodo.",
+    "message": "Mensagem de {business}: {reason}",
+    "bookAgain": "Reservar nova hora"
+  },
+  "member": {
+    "createdTitle": "Nova reserva: {customer}",
+    "createdPendingTitle": "Novo pedido de reserva: {customer}",
+    "cancelledTitle": "Cancelada: {customer}, {date}",
+    "rescheduledTitle": "Reagendada: {customer}",
+    "createdIntro": "{customer} reservou {service}.",
+    "createdPendingIntro": "{customer} pediu {service}. Confirme ou recuse o pedido no seu painel.",
+    "cancelledIntro": "{customer} cancelou a marcação. O horário está novamente disponível.",
+    "rescheduledIntro": "{customer} mudou a marcação para uma nova hora.",
+    "note": "Nota do cliente: {message}",
+    "open": "Abrir no Hournook",
+    "footer": "Recebe este email porque é membro de {business} no Hournook. Altere as preferências de notificação nas Definições."
+  }
+}

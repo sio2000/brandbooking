@@ -1,0 +1,30 @@
+{
+  "footerDefault": "您收到此邮件是因为您进行了预约。",
+  "manageCta": "管理预订",
+  "addToCalendar": "添加到日历",
+  "sentOnBehalf": "由 Hournook 代表 {business} 发送。",
+  "previous": "（原时间）",
+  "rows": {
+    "service": "服务",
+    "date": "日期",
+    "time": "时间",
+    "with": "服务人员",
+    "price": "价格",
+    "where": "地点",
+    "customer": "客户",
+    "email": "电子邮箱",
+    "phone": "电话",
+    "reference": "预订编号"
+  },
+  "calendar": {
+    "title": "{service} · {business}",
+    "bookingReference": "预订编号 {reference}",
+    "reference": "编号 {reference}",
+    "manage": "管理您的预订：{url}",
+    "referenceAndManage": "编号 {reference}。管理您的预订：{url}",
+    "google": "Google 日历",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "预约"
+  }
+}

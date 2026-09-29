@@ -5,12 +5,19 @@ import { company } from '@/lib/legal'
 import { absoluteUrl } from '@/lib/site'
 import { EmailSendError, emailProvider, type EmailMessage } from './providers'
 import { logger } from '@/server/observability/logger'
+import type { Locale } from '@/lib/i18n/config'
+import { translator } from '@/lib/i18n/load'
+import { accountLocale, emailLang } from './i18n'
 
 /**
  * Account emails carry single-use secrets (verification, password reset,
  * invitation links), so they are sent immediately instead of via the outbox:
  * the raw token is never persisted anywhere. If sending fails the user can
  * simply request a new link.
+ *
+ * Each email is in the recipient's account language (`users.locale`); an
+ * invitation to someone without an account uses the inviting business's
+ * booking-page language. Callers may pass the language explicitly.
  */
 
 const BRAND = 'Hournook'
@@ -64,73 +71,77 @@ async function deliver(message: EmailMessage): Promise<boolean> {
   }
 }
 
-export function sendVerificationEmail(to: string, name: string, url: string) {
+export async function sendVerificationEmail(
+  to: string,
+  name: string,
+  url: string,
+  locale?: Locale,
+) {
+  const lang = locale ?? (await accountLocale(to))
+  const t = await translator(lang, 'email-account')
   const { html, text } = renderEmail({
-    preheader: 'Confirm your email address to finish setting up Hournook.',
+    preheader: t('verify.preheader'),
     brandName: BRAND,
     logoUrl: LOGO_URL,
     blocks: [
-      { type: 'heading', text: `Welcome, ${name.split(' ')[0]}` },
-      {
-        type: 'text',
-        text: 'Confirm your email address so we can send you booking notifications and keep your account secure.',
-      },
-      { type: 'button', label: 'Confirm email address', url },
-      {
-        type: 'text',
-        muted: true,
-        text: 'This link expires in 24 hours. If you did not create a Hournook account, you can ignore this email.',
-      },
+      { type: 'heading', text: t('verify.heading', { name: name.split(' ')[0] }) },
+      { type: 'text', text: t('verify.body') },
+      { type: 'button', label: t('verify.cta'), url },
+      { type: 'text', muted: true, text: t('verify.expiry') },
     ],
-    footer: 'Hournook, online booking for small businesses.',
+    footer: t('footer'),
+    ...emailLang(lang),
   })
-  return deliver({ to, subject: 'Confirm your email address', html, text })
+  return deliver({ to, subject: t('verify.subject'), html, text })
 }
 
-export function sendPasswordResetEmail(to: string, url: string) {
+export async function sendPasswordResetEmail(to: string, url: string, locale?: Locale) {
+  const lang = locale ?? (await accountLocale(to))
+  const t = await translator(lang, 'email-account')
   const { html, text } = renderEmail({
-    preheader: 'Reset your Hournook password.',
+    preheader: t('reset.preheader'),
     brandName: BRAND,
     logoUrl: LOGO_URL,
     blocks: [
-      { type: 'heading', text: 'Reset your password' },
-      {
-        type: 'text',
-        text: 'We received a request to reset the password for your account. Use the button below to choose a new one.',
-      },
-      { type: 'button', label: 'Choose a new password', url },
-      {
-        type: 'text',
-        muted: true,
-        text: 'This link expires in 1 hour and can be used once. If you did not ask for this, you can safely ignore this email. Your password will not change.',
-      },
+      { type: 'heading', text: t('reset.heading') },
+      { type: 'text', text: t('reset.body') },
+      { type: 'button', label: t('reset.cta'), url },
+      { type: 'text', muted: true, text: t('reset.expiry') },
     ],
-    footer: 'Hournook, online booking for small businesses.',
+    footer: t('footer'),
+    ...emailLang(lang),
   })
-  return deliver({ to, subject: 'Reset your Hournook password', html, text })
+  return deliver({ to, subject: t('reset.subject'), html, text })
 }
 
-export function sendInvitationEmail(
+export async function sendInvitationEmail(
   to: string,
   businessName: string,
   inviterName: string,
   role: string,
   url: string,
+  /** The inviting business's language, for invitees without an account yet. */
+  businessLocale?: string | null,
 ) {
+  const lang = await accountLocale(to, businessLocale)
+  const t = await translator(lang, 'email-account')
+  const vars = {
+    business: businessName,
+    inviter: inviterName,
+    role: role === 'manager' ? t('invite.roleManager') : t('invite.roleMember'),
+  }
   const { html, text } = renderEmail({
-    preheader: `${inviterName} invited you to join ${businessName} on Hournook.`,
+    preheader: t('invite.preheader', vars),
     brandName: BRAND,
     logoUrl: LOGO_URL,
     blocks: [
-      { type: 'heading', text: `Join ${businessName}` },
-      {
-        type: 'text',
-        text: `${inviterName} invited you to join ${businessName} on Hournook as ${role === 'manager' ? 'a manager' : 'a team member'}. You'll be able to see your appointments and manage your availability.`,
-      },
-      { type: 'button', label: 'Accept invitation', url },
-      { type: 'text', muted: true, text: 'This invitation expires in 7 days.' },
+      { type: 'heading', text: t('invite.heading', vars) },
+      { type: 'text', text: t('invite.body', vars) },
+      { type: 'button', label: t('invite.cta'), url },
+      { type: 'text', muted: true, text: t('invite.expiry') },
     ],
-    footer: 'Hournook, online booking for small businesses.',
+    footer: t('footer'),
+    ...emailLang(lang),
   })
-  return deliver({ to, subject: `You're invited to join ${businessName}`, html, text })
+  return deliver({ to, subject: t('invite.subject', vars), html, text })
 }

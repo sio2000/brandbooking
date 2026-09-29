@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "تم تأكيد الحجز: {service} في {date}",
+    "subjectPending": "تم استلام طلب الحجز: {business}",
+    "preheader": "نراك في {date}.",
+    "preheaderPending": "سيؤكد {business} طلبك قريبًا.",
+    "heading": "تم الحجز يا {name}!",
+    "headingPending": "شكرًا يا {name}. تم استلام طلبك",
+    "body": "تم تأكيد موعدك لدى {business}. إليك التفاصيل:",
+    "bodyPending": "سيراجع {business} طلبك ويؤكده قريبًا. ستصلك رسالة أخرى فور تأكيده."
+  },
+  "confirmed": {
+    "subject": "تم التأكيد: {service} في {date}",
+    "preheader": "أكّد {business} حجزك.",
+    "heading": "تم تأكيد حجزك",
+    "body": "أخبار سارة يا {name}! أكّد {business} موعدك."
+  },
+  "reminder": {
+    "subject": "تذكير: {service} في {date} الساعة {time}",
+    "preheader": "اقترب موعدك لدى {business}.",
+    "heading": "نراك قريبًا",
+    "body": "مرحبًا {name}، نذكّرك بموعدك القادم لدى {business}."
+  },
+  "rescheduled": {
+    "subject": "تغيّر الموعد: {service} أصبح في {date}",
+    "preheader": "لموعدك وقت جديد.",
+    "heading": "تم تغيير موعدك",
+    "body": "مرحبًا {name}، تم تغيير موعدك لدى {business}.",
+    "previousTime": "الوقت السابق",
+    "newTime": "الوقت الجديد"
+  },
+  "cancelled": {
+    "subject": "تم الإلغاء: {service} في {date}",
+    "preheader": "تم إلغاء موعدك.",
+    "heading": "تم إلغاء الموعد",
+    "byCustomer": "مرحبًا {name}، ألغينا موعدك لدى {business} بناءً على طلبك.",
+    "byBusiness": "مرحبًا {name}، ألغى {business} موعدك. نعتذر عن أي إزعاج.",
+    "message": "رسالة من {business}: {reason}",
+    "bookAgain": "احجز وقتًا جديدًا"
+  },
+  "member": {
+    "createdTitle": "حجز جديد: {customer}",
+    "createdPendingTitle": "طلب حجز جديد: {customer}",
+    "cancelledTitle": "تم الإلغاء: {customer}، {date}",
+    "rescheduledTitle": "تغيّر الموعد: {customer}",
+    "createdIntro": "حجز {customer} خدمة {service}.",
+    "createdPendingIntro": "طلب {customer} خدمة {service}. أكّد الطلب أو ارفضه من لوحة التحكم.",
+    "cancelledIntro": "ألغى {customer} موعده، وأصبح الوقت متاحًا من جديد.",
+    "rescheduledIntro": "نقل {customer} موعده إلى وقت جديد.",
+    "note": "ملاحظة من العميل: {message}",
+    "open": "فتح في Hournook",
+    "footer": "تصلك هذه الرسالة لأنك عضو في {business} على Hournook. يمكنك تغيير تفضيلات الإشعارات من الإعدادات."
+  }
+}

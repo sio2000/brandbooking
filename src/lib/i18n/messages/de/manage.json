@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Ihre Buchung"
+  },
+  "error": {
+    "expired": "Dieser Link ist abgelaufen",
+    "notFound": "Wir konnten diese Buchung nicht finden",
+    "body": "Buchungslinks funktionieren bis 30 Tage nach dem Termin und nur, wenn sie vollständig kopiert wurden. Wenden Sie sich direkt an das Unternehmen, wenn Sie Hilfe zu Ihrem Termin brauchen."
+  },
+  "status": {
+    "confirmed": "Bestätigt",
+    "pending": "Wartet auf Bestätigung",
+    "cancelled": "Storniert",
+    "completed": "Abgeschlossen",
+    "no_show": "Nicht erschienen"
+  },
+  "bookingWith": "Ihre Buchung bei",
+  "withStaff": "{duration} · bei {name}",
+  "labels": {
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "price": "Preis",
+    "reference": "Buchungsnummer"
+  },
+  "moved": {
+    "title": "Ihr Termin wurde verschoben",
+    "body": "Wir haben Ihnen die neue Uhrzeit per E-Mail geschickt.",
+    "view": "Buchung ansehen"
+  },
+  "actions": {
+    "reschedule": "Verschieben",
+    "cancel": "Buchung stornieren"
+  },
+  "cancelDialog": {
+    "title": "Diese Buchung stornieren?",
+    "description": "Ihr Termin „{service}“ am {date} wird storniert und die Zeit wieder freigegeben. {business} wird benachrichtigt.",
+    "reason": "Grund",
+    "optional": "(optional)",
+    "keep": "Zurück",
+    "cancelled": "Ihre Buchung wurde storniert"
+  },
+  "deadlines": {
+    "personal": "Änderungen nimmt {business} persönlich vor. Bitte nehmen Sie direkt Kontakt auf.",
+    "passed": "Online-Änderungen waren bis {date} möglich. Für Änderungen wenden Sie sich jetzt bitte an {business}."
+  },
+  "reschedule": {
+    "title": "Neue Uhrzeit wählen",
+    "keep": "Aktuelle Uhrzeit behalten",
+    "moveTo": "Verschieben auf {date}",
+    "pick": "Uhrzeit wählen"
+  },
+  "network": {
+    "reschedule": "Netzwerkfehler. Es wurde nichts geändert. Bitte versuchen Sie es erneut.",
+    "cancel": "Netzwerkfehler. Ihre Buchung wurde nicht storniert. Bitte versuchen Sie es erneut."
+  },
+  "contact": {
+    "label": "Unternehmen kontaktieren",
+    "title": "Fragen? Kontaktieren Sie {business}"
+  },
+  "bookAnother": "Weiteren Termin buchen"
+}

@@ -4,68 +4,147 @@ import type { Locale } from './config'
 import type booking from './messages/en/booking.json'
 import type common from './messages/en/common.json'
 import type email from './messages/en/email.json'
+import type emailAccount from './messages/en/email-account.json'
+import type emailBooking from './messages/en/email-booking.json'
 import type errors from './messages/en/errors.json'
+import type manage from './messages/en/manage.json'
 
 export type Catalogues = {
   'booking': typeof booking
   'common': typeof common
   'email': typeof email
+  'email-account': typeof emailAccount
+  'email-booking': typeof emailBooking
   'errors': typeof errors
+  'manage': typeof manage
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["booking","common","email","errors"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["booking","common","email","email-account","email-booking","errors","manage"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
 /** Lazy loaders: a catalogue is only read when a page needs it. */
 export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>> = {
   ar: {
+    'booking': () => import('./messages/ar/booking.json'),
     'common': () => import('./messages/ar/common.json'),
+    'email': () => import('./messages/ar/email.json'),
+    'email-account': () => import('./messages/ar/email-account.json'),
+    'email-booking': () => import('./messages/ar/email-booking.json'),
+    'manage': () => import('./messages/ar/manage.json'),
   },
   de: {
+    'booking': () => import('./messages/de/booking.json'),
     'common': () => import('./messages/de/common.json'),
+    'email': () => import('./messages/de/email.json'),
+    'email-account': () => import('./messages/de/email-account.json'),
+    'email-booking': () => import('./messages/de/email-booking.json'),
+    'manage': () => import('./messages/de/manage.json'),
   },
   el: {
+    'booking': () => import('./messages/el/booking.json'),
     'common': () => import('./messages/el/common.json'),
+    'email': () => import('./messages/el/email.json'),
+    'email-account': () => import('./messages/el/email-account.json'),
+    'email-booking': () => import('./messages/el/email-booking.json'),
+    'manage': () => import('./messages/el/manage.json'),
   },
   en: {
     'booking': () => import('./messages/en/booking.json'),
     'common': () => import('./messages/en/common.json'),
     'email': () => import('./messages/en/email.json'),
+    'email-account': () => import('./messages/en/email-account.json'),
+    'email-booking': () => import('./messages/en/email-booking.json'),
     'errors': () => import('./messages/en/errors.json'),
+    'manage': () => import('./messages/en/manage.json'),
   },
   es: {
+    'booking': () => import('./messages/es/booking.json'),
     'common': () => import('./messages/es/common.json'),
+    'email': () => import('./messages/es/email.json'),
+    'email-account': () => import('./messages/es/email-account.json'),
+    'email-booking': () => import('./messages/es/email-booking.json'),
+    'manage': () => import('./messages/es/manage.json'),
   },
   fr: {
+    'booking': () => import('./messages/fr/booking.json'),
     'common': () => import('./messages/fr/common.json'),
+    'email': () => import('./messages/fr/email.json'),
+    'email-account': () => import('./messages/fr/email-account.json'),
+    'email-booking': () => import('./messages/fr/email-booking.json'),
+    'manage': () => import('./messages/fr/manage.json'),
   },
   hi: {
+    'booking': () => import('./messages/hi/booking.json'),
     'common': () => import('./messages/hi/common.json'),
+    'email': () => import('./messages/hi/email.json'),
+    'email-account': () => import('./messages/hi/email-account.json'),
+    'email-booking': () => import('./messages/hi/email-booking.json'),
+    'manage': () => import('./messages/hi/manage.json'),
   },
   it: {
+    'booking': () => import('./messages/it/booking.json'),
     'common': () => import('./messages/it/common.json'),
+    'email': () => import('./messages/it/email.json'),
+    'email-account': () => import('./messages/it/email-account.json'),
+    'email-booking': () => import('./messages/it/email-booking.json'),
+    'manage': () => import('./messages/it/manage.json'),
   },
   ja: {
+    'booking': () => import('./messages/ja/booking.json'),
     'common': () => import('./messages/ja/common.json'),
+    'email': () => import('./messages/ja/email.json'),
+    'email-account': () => import('./messages/ja/email-account.json'),
+    'email-booking': () => import('./messages/ja/email-booking.json'),
+    'manage': () => import('./messages/ja/manage.json'),
   },
   nl: {
+    'booking': () => import('./messages/nl/booking.json'),
     'common': () => import('./messages/nl/common.json'),
+    'email': () => import('./messages/nl/email.json'),
+    'email-account': () => import('./messages/nl/email-account.json'),
+    'email-booking': () => import('./messages/nl/email-booking.json'),
+    'manage': () => import('./messages/nl/manage.json'),
   },
   pl: {
+    'booking': () => import('./messages/pl/booking.json'),
     'common': () => import('./messages/pl/common.json'),
+    'email': () => import('./messages/pl/email.json'),
+    'email-account': () => import('./messages/pl/email-account.json'),
+    'email-booking': () => import('./messages/pl/email-booking.json'),
+    'manage': () => import('./messages/pl/manage.json'),
   },
   pt: {
+    'booking': () => import('./messages/pt/booking.json'),
     'common': () => import('./messages/pt/common.json'),
+    'email': () => import('./messages/pt/email.json'),
+    'email-account': () => import('./messages/pt/email-account.json'),
+    'email-booking': () => import('./messages/pt/email-booking.json'),
+    'manage': () => import('./messages/pt/manage.json'),
   },
   ru: {
+    'booking': () => import('./messages/ru/booking.json'),
     'common': () => import('./messages/ru/common.json'),
+    'email': () => import('./messages/ru/email.json'),
+    'email-account': () => import('./messages/ru/email-account.json'),
+    'email-booking': () => import('./messages/ru/email-booking.json'),
+    'manage': () => import('./messages/ru/manage.json'),
   },
   tr: {
+    'booking': () => import('./messages/tr/booking.json'),
     'common': () => import('./messages/tr/common.json'),
+    'email': () => import('./messages/tr/email.json'),
+    'email-account': () => import('./messages/tr/email-account.json'),
+    'email-booking': () => import('./messages/tr/email-booking.json'),
+    'manage': () => import('./messages/tr/manage.json'),
   },
   zh: {
+    'booking': () => import('./messages/zh/booking.json'),
     'common': () => import('./messages/zh/common.json'),
+    'email': () => import('./messages/zh/email.json'),
+    'email-account': () => import('./messages/zh/email-account.json'),
+    'email-booking': () => import('./messages/zh/email-booking.json'),
+    'manage': () => import('./messages/zh/manage.json'),
   },
 }

@@ -1,0 +1,30 @@
+{
+  "footerDefault": "このメールは、ご予約いただいた方にお送りしています。",
+  "manageCta": "予約を管理",
+  "addToCalendar": "カレンダーに追加",
+  "sentOnBehalf": "このメールは {business} に代わって Hournook から送信されています。",
+  "previous": "（変更前）",
+  "rows": {
+    "service": "サービス",
+    "date": "日付",
+    "time": "時間",
+    "with": "担当",
+    "price": "料金",
+    "where": "場所",
+    "customer": "お客様",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "reference": "予約番号"
+  },
+  "calendar": {
+    "title": "{service}（{business}）",
+    "bookingReference": "予約番号 {reference}",
+    "reference": "予約番号 {reference}",
+    "manage": "予約の管理：{url}",
+    "referenceAndManage": "予約番号 {reference}。予約の管理：{url}",
+    "google": "Google カレンダー",
+    "outlook": "Outlook",
+    "apple": "Apple / .ics",
+    "appointment": "予約"
+  }
+}

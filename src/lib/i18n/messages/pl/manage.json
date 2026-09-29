@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Twoja rezerwacja"
+  },
+  "error": {
+    "expired": "Ten link wygasł",
+    "notFound": "Nie znaleźliśmy tej rezerwacji",
+    "body": "Linki do rezerwacji przestają działać 30 dni po wizycie lub gdy zostały skopiowane niekompletnie. Jeśli potrzebujesz pomocy z wizytą, skontaktuj się bezpośrednio z firmą."
+  },
+  "status": {
+    "confirmed": "Potwierdzona",
+    "pending": "Oczekuje na potwierdzenie",
+    "cancelled": "Anulowana",
+    "completed": "Zakończona",
+    "no_show": "Nieobecność"
+  },
+  "bookingWith": "Twoja rezerwacja w",
+  "withStaff": "{duration} · u: {name}",
+  "labels": {
+    "date": "Data",
+    "time": "Godzina",
+    "price": "Cena",
+    "reference": "Numer rezerwacji"
+  },
+  "moved": {
+    "title": "Termin wizyty został zmieniony",
+    "body": "Nowy termin wysłaliśmy Ci e-mailem.",
+    "view": "Zobacz rezerwację"
+  },
+  "actions": {
+    "reschedule": "Zmień termin",
+    "cancel": "Anuluj rezerwację"
+  },
+  "cancelDialog": {
+    "title": "Anulować tę rezerwację?",
+    "description": "Twoja wizyta ({service}, {date}) zostanie anulowana, a termin zwolniony. {business} otrzyma powiadomienie.",
+    "reason": "Powód",
+    "optional": "(opcjonalnie)",
+    "keep": "Wróć",
+    "cancelled": "Twoja rezerwacja została anulowana"
+  },
+  "deadlines": {
+    "personal": "{business} wprowadza zmiany osobiście. Skontaktuj się z firmą.",
+    "passed": "Zmiany online były możliwe do {date}. Aby coś zmienić teraz, skontaktuj się z {business}."
+  },
+  "reschedule": {
+    "title": "Wybierz nowy termin",
+    "keep": "Zostaw obecny termin",
+    "moveTo": "Przenieś na {date}",
+    "pick": "Wybierz godzinę"
+  },
+  "network": {
+    "reschedule": "Błąd sieci. Nic nie zostało zmienione. Spróbuj ponownie.",
+    "cancel": "Błąd sieci. Rezerwacja nie została anulowana. Spróbuj ponownie."
+  },
+  "contact": {
+    "label": "Kontakt z firmą",
+    "title": "Masz pytania? Skontaktuj się z {business}"
+  },
+  "bookAnother": "Zarezerwuj kolejną wizytę"
+}

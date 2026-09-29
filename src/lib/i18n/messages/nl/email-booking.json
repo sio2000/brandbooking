@@ -1,0 +1,54 @@
+{
+  "received": {
+    "subject": "Boeking bevestigd: {service} op {date}",
+    "subjectPending": "Boekingsaanvraag ontvangen: {business}",
+    "preheader": "Tot {date}.",
+    "preheaderPending": "{business} bevestigt je aanvraag binnenkort.",
+    "heading": "Je afspraak staat, {name}!",
+    "headingPending": "Bedankt, {name}. Aanvraag ontvangen",
+    "body": "Je afspraak bij {business} is bevestigd. Dit zijn de details:",
+    "bodyPending": "{business} bekijkt je aanvraag en bevestigt die binnenkort. Je krijgt nog een e-mail zodra hij bevestigd is."
+  },
+  "confirmed": {
+    "subject": "Bevestigd: {service} op {date}",
+    "preheader": "{business} heeft je boeking bevestigd.",
+    "heading": "Je boeking is bevestigd",
+    "body": "Goed nieuws, {name}! {business} heeft je afspraak bevestigd."
+  },
+  "reminder": {
+    "subject": "Herinnering: {service} op {date} om {time}",
+    "preheader": "Je afspraak bij {business} komt eraan.",
+    "heading": "Tot snel",
+    "body": "Hoi {name}, een vriendelijke herinnering aan je komende afspraak bij {business}."
+  },
+  "rescheduled": {
+    "subject": "Verzet: {service}, nu op {date}",
+    "preheader": "Je afspraak heeft een nieuwe tijd.",
+    "heading": "Je afspraak is verzet",
+    "body": "Hoi {name}, je afspraak bij {business} is verzet.",
+    "previousTime": "Vorige tijd",
+    "newTime": "Nieuwe tijd"
+  },
+  "cancelled": {
+    "subject": "Geannuleerd: {service} op {date}",
+    "preheader": "Je afspraak is geannuleerd.",
+    "heading": "Afspraak geannuleerd",
+    "byCustomer": "Hoi {name}, zoals gevraagd hebben we je afspraak bij {business} geannuleerd.",
+    "byBusiness": "Hoi {name}, {business} heeft je afspraak geannuleerd. Onze excuses voor het ongemak.",
+    "message": "Bericht van {business}: {reason}",
+    "bookAgain": "Nieuwe tijd boeken"
+  },
+  "member": {
+    "createdTitle": "Nieuwe boeking: {customer}",
+    "createdPendingTitle": "Nieuwe boekingsaanvraag: {customer}",
+    "cancelledTitle": "Geannuleerd: {customer}, {date}",
+    "rescheduledTitle": "Verzet: {customer}",
+    "createdIntro": "{customer} heeft {service} geboekt.",
+    "createdPendingIntro": "{customer} heeft {service} aangevraagd. Bevestig of weiger de aanvraag in je dashboard.",
+    "cancelledIntro": "{customer} heeft de afspraak geannuleerd. De tijd is weer vrij.",
+    "rescheduledIntro": "{customer} heeft de afspraak naar een andere tijd verzet.",
+    "note": "Opmerking van de klant: {message}",
+    "open": "Openen in Hournook",
+    "footer": "Je ontvangt dit omdat je lid bent van {business} op Hournook. Wijzig je meldingsvoorkeuren in Instellingen."
+  }
+}

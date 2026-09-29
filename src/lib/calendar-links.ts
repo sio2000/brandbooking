@@ -1,5 +1,8 @@
 /** "Add to calendar" helpers: Google/Outlook deep links and RFC 5545 .ics files. */
 
+/** Calendar apps offered next to a booking, by their brand names (not translated). */
+export const CALENDAR_APPS = { google: 'Google', outlook: 'Outlook', apple: 'Apple (.ics)' }
+
 export type CalendarEvent = {
   title: string
   start: Date
@@ -7,6 +10,8 @@ export type CalendarEvent = {
   location?: string
   details?: string
   uid?: string
+  /** BCP 47 tag of the title and description text (RFC 5545 LANGUAGE parameter). */
+  language?: string
 }
 
 const utcStamp = (d: Date) =>
@@ -69,6 +74,10 @@ export function buildIcs(
     sequence?: number
   },
 ): string {
+  const lang =
+    e.language && /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(e.language)
+      ? `;LANGUAGE=${e.language}`
+      : ''
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -80,9 +89,9 @@ export function buildIcs(
     `DTSTAMP:${utcStamp(new Date())}`,
     `DTSTART:${utcStamp(e.start)}`,
     `DTEND:${utcStamp(e.end)}`,
-    `SUMMARY:${icsEscape(e.title)}`,
+    `SUMMARY${lang}:${icsEscape(e.title)}`,
     e.location ? `LOCATION:${icsEscape(e.location)}` : '',
-    e.details ? `DESCRIPTION:${icsEscape(e.details)}` : '',
+    e.details ? `DESCRIPTION${lang}:${icsEscape(e.details)}` : '',
     `STATUS:${e.status ?? 'CONFIRMED'}`,
     `SEQUENCE:${e.sequence ?? 0}`,
     'END:VEVENT',
