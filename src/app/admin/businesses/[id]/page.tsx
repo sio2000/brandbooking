@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ExternalLink, ReceiptText, ScrollText, ShieldCheck, Users } from 'lucide-react'
 import { z } from 'zod'
 import { getBusinessAdmin } from '@/server/admin/admin'
+import { stripeDashboardUrl } from '@/server/billing/plan-prices'
+import { isStripeConfigured } from '@/server/env'
+import { requireAdminPage } from '@/server/tenancy/context'
 import { isAppError } from '@/server/errors'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -26,6 +29,7 @@ import {
 } from '@/components/admin/primitives'
 import { CopyButton } from '@/components/admin/copy-button'
 import { SuspendBusiness } from '@/components/admin/suspend-business'
+import { BusinessActions } from '@/components/admin/business-actions'
 import { formatNumber } from '@/lib/format'
 
 export const metadata: Metadata = { title: 'Business details' }
@@ -48,12 +52,19 @@ const eventTone = {
 } as const
 
 export default async function AdminBusinessPage({ params }: PageProps<'/admin/businesses/[id]'>) {
+  await requireAdminPage()
   const { id } = await params
   const data = await load(id)
   const b = data.business
   const sub = data.sub
   const suspended = b.status === 'suspended'
   const published = b.publishStatus === 'published'
+  const stripeLinks = isStripeConfigured() && sub
+  const canCancel = Boolean(
+    sub?.stripeSubscriptionId &&
+    sub.status &&
+    !['canceled', 'incomplete_expired'].includes(sub.status),
+  )
 
   return (
     <>
@@ -103,8 +114,58 @@ export default async function AdminBusinessPage({ params }: PageProps<'/admin/bu
             </>
           )}
           {b.suspendedReason ? <>Reason: {b.suspendedReason}</> : 'No reason was recorded.'}
+          {b.suspensionSource === 'owner_ban' && (
+            <> The owner’s account is banned; unbanning it reactivates this business.</>
+          )}
         </Alert>
       )}
+
+      <Card className="mb-6">
+        <CardHeader
+          title="Actions"
+          description="Each action asks for confirmation and is recorded in the audit log."
+        />
+        <CardBody className="grid gap-3 pt-0">
+          <BusinessActions
+            business={{
+              id: b.id,
+              name: b.name,
+              slug: b.slug,
+              published: b.publishStatus !== 'draft',
+              canCancel,
+              cancelAtPeriodEnd: Boolean(sub?.cancelAtPeriodEnd),
+            }}
+          />
+          {stripeLinks && (
+            <div className="flex flex-wrap gap-2">
+              <Button asChild variant="ghost" size="sm">
+                <a
+                  href={stripeDashboardUrl(`customers/${sub.stripeCustomerId}`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink aria-hidden />
+                  Customer in Stripe
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </Button>
+              {sub.stripeSubscriptionId && (
+                <Button asChild variant="ghost" size="sm">
+                  <a
+                    href={stripeDashboardUrl(`subscriptions/${sub.stripeSubscriptionId}`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink aria-hidden />
+                    Subscription in Stripe
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </Button>
+              )}
+            </div>
+          )}
+        </CardBody>
+      </Card>
 
       <div className="grid grid-cols-1 gap-6">
         <section aria-labelledby="counts-heading">

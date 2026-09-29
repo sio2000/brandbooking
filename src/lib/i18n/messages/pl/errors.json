@@ -7,6 +7,7 @@
   "conflict": "Ktoś inny zdążył to zmienić. Odśwież stronę i spróbuj ponownie.",
   "internal": "Po naszej stronie wystąpił nieoczekiwany błąd. Spróbuj ponownie. Jeśli problem się powtarza, skontaktuj się z pomocą techniczną.",
   "invalid_credentials": "E-mail i hasło nie pasują do siebie. Sprawdź je i spróbuj ponownie.",
+  "account_banned": "To konto zostało zawieszone. Jeśli uważasz, że to pomyłka, skontaktuj się z pomocą techniczną.",
   "account_locked": "Zbyt wiele nieudanych prób logowania. Dla Twojego bezpieczeństwa logowanie jest wstrzymane na 15 minut.",
   "email_taken": "Konto z tym adresem e-mail już istnieje. Spróbuj się zalogować.",
   "email_not_verified": "Najpierw potwierdź swój adres e-mail. Możemy wysłać nowy link.",

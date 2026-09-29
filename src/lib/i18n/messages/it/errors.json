@@ -7,6 +7,7 @@
   "conflict": "Qualcun altro ha modificato questo elemento. Aggiorna la pagina e riprova.",
   "internal": "Si è verificato un problema imprevisto da parte nostra. Riprova. Se continua a succedere, contatta l’assistenza.",
   "invalid_credentials": "Email e password non corrispondono. Controllale e riprova.",
+  "account_banned": "Questo account è stato sospeso. Contatta l’assistenza se pensi che sia un errore.",
   "account_locked": "Troppi tentativi di accesso non riusciti. Per la tua sicurezza, l’accesso è sospeso per 15 minuti.",
   "email_taken": "Esiste già un account con questa email. Prova ad accedere.",
   "email_not_verified": "Prima conferma il tuo indirizzo email. Possiamo inviarti un nuovo link.",

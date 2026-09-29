@@ -7,6 +7,7 @@
   "conflict": "Bu içerik başka biri tarafından değiştirildi. Sayfayı yenileyip tekrar deneyin.",
   "internal": "Bizim tarafımızda beklenmedik bir sorun oluştu. Lütfen tekrar deneyin. Sorun devam ederse destek ekibiyle iletişime geçin.",
   "invalid_credentials": "E-posta ve şifre eşleşmiyor. Kontrol edip tekrar deneyin.",
+  "account_banned": "Bu hesap askıya alındı. Bunun bir hata olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.",
   "account_locked": "Çok fazla başarısız giriş denemesi yapıldı. Güvenliğiniz için giriş 15 dakika süreyle durduruldu.",
   "email_taken": "Bu e-posta ile kayıtlı bir hesap zaten var. Bunun yerine giriş yapmayı deneyin.",
   "email_not_verified": "Lütfen önce e-posta adresinizi doğrulayın. Size yeni bir bağlantı gönderebiliriz.",

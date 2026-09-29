@@ -57,19 +57,20 @@ set `DATABASE_URL`.
 
 ## Scripts
 
-| Command                                   | What it does                                                                         |
-| ----------------------------------------- | ------------------------------------------------------------------------------------ |
-| `npm run dev` / `build` / `start`         | Next.js dev server / production build / production server                            |
-| `npm run typecheck` / `lint` / `format`   | TypeScript, ESLint, Prettier                                                         |
-| `npm run db:migrate` / `db:rollback`      | Apply pending migrations / roll back the latest one                                  |
-| `npm run db:seed`                         | Load demo data (refuses in production)                                               |
-| `npm run db:reset`                        | Drop and recreate the local dev schema (refuses non-local/production)                |
-| `npm run worker`                          | Long-running scheduler (alternative to calling `/api/cron/tick`)                     |
-| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin (or set `PLATFORM_ADMIN_EMAILS`)              |
-| `npm run stripe:setup`                    | Create/verify the Stripe price, portal configuration and webhook (idempotent)        |
-| `npm test`                                | Unit + integration tests (integration uses `TEST_DATABASE_URL`, must end in `_test`) |
-| `npm run test:e2e`                        | Playwright end-to-end + accessibility tests (own `_e2e` database)                    |
-| `npm run test:stripe-live`                | Optional tests against the real Stripe API in **test mode**                          |
+| Command                                   | What it does                                                                               |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `npm run dev` / `build` / `start`         | Next.js dev server / production build / production server                                  |
+| `npm run typecheck` / `lint` / `format`   | TypeScript, ESLint, Prettier                                                               |
+| `npm run db:migrate` / `db:rollback`      | Apply pending migrations / roll back the latest one                                        |
+| `npm run db:seed`                         | Load demo data (refuses in production)                                                     |
+| `npm run db:reset`                        | Drop and recreate the local dev schema (refuses non-local/production)                      |
+| `npm run worker`                          | Long-running scheduler (alternative to calling `/api/cron/tick`)                           |
+| `npm run admin:grant -- user@example.com` | Make an existing user a platform admin (or set `PLATFORM_ADMIN_EMAILS`)                    |
+| `npm run admin:bootstrap`                 | Create/promote the admin from `ADMIN_BOOTSTRAP_EMAIL`/`_PASSWORD` (runs on Netlify builds) |
+| `npm run stripe:setup`                    | Create/verify the Stripe price, portal configuration and webhook (idempotent)              |
+| `npm test`                                | Unit + integration tests (integration uses `TEST_DATABASE_URL`, must end in `_test`)       |
+| `npm run test:e2e`                        | Playwright end-to-end + accessibility tests (own `_e2e` database)                          |
+| `npm run test:stripe-live`                | Optional tests against the real Stripe API in **test mode**                                |
 
 ## Documentation
 
@@ -79,6 +80,7 @@ set `DATABASE_URL`.
 - [docs/TESTING.md](docs/TESTING.md) — test strategy, how to run each suite, current results
 - [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) — production setup, Stripe, email, storage, cron, backups
 - [docs/NETLIFY.md](docs/NETLIFY.md) — step-by-step Netlify deployment (self-configuring)
+- [docs/ADMIN.md](docs/ADMIN.md) — platform admin panel: first admin, statistics, bans, price changes
 
 ## Project status
 

@@ -6,6 +6,7 @@ import type booking from './messages/en/booking.json'
 import type common from './messages/en/common.json'
 import type email from './messages/en/email.json'
 import type emailAccount from './messages/en/email-account.json'
+import type emailBilling from './messages/en/email-billing.json'
 import type emailBooking from './messages/en/email-booking.json'
 import type errors from './messages/en/errors.json'
 import type manage from './messages/en/manage.json'
@@ -18,6 +19,7 @@ export type Catalogues = {
   'common': typeof common
   'email': typeof email
   'email-account': typeof emailAccount
+  'email-billing': typeof emailBilling
   'email-booking': typeof emailBooking
   'errors': typeof errors
   'manage': typeof manage
@@ -26,7 +28,7 @@ export type Catalogues = {
 }
 export type Namespace = keyof Catalogues
 
-export const NAMESPACES = ["auth","booking","common","email","email-account","email-booking","errors","manage","onboarding","validation"] as const satisfies readonly Namespace[]
+export const NAMESPACES = ["auth","booking","common","email","email-account","email-billing","email-booking","errors","manage","onboarding","validation"] as const satisfies readonly Namespace[]
 
 type Loader = () => Promise<{ default: unknown }>
 
@@ -38,6 +40,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/ar/common.json'),
     'email': () => import('./messages/ar/email.json'),
     'email-account': () => import('./messages/ar/email-account.json'),
+    'email-billing': () => import('./messages/ar/email-billing.json'),
     'email-booking': () => import('./messages/ar/email-booking.json'),
     'errors': () => import('./messages/ar/errors.json'),
     'manage': () => import('./messages/ar/manage.json'),
@@ -50,6 +53,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/de/common.json'),
     'email': () => import('./messages/de/email.json'),
     'email-account': () => import('./messages/de/email-account.json'),
+    'email-billing': () => import('./messages/de/email-billing.json'),
     'email-booking': () => import('./messages/de/email-booking.json'),
     'errors': () => import('./messages/de/errors.json'),
     'manage': () => import('./messages/de/manage.json'),
@@ -62,6 +66,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/el/common.json'),
     'email': () => import('./messages/el/email.json'),
     'email-account': () => import('./messages/el/email-account.json'),
+    'email-billing': () => import('./messages/el/email-billing.json'),
     'email-booking': () => import('./messages/el/email-booking.json'),
     'errors': () => import('./messages/el/errors.json'),
     'manage': () => import('./messages/el/manage.json'),
@@ -74,6 +79,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/en/common.json'),
     'email': () => import('./messages/en/email.json'),
     'email-account': () => import('./messages/en/email-account.json'),
+    'email-billing': () => import('./messages/en/email-billing.json'),
     'email-booking': () => import('./messages/en/email-booking.json'),
     'errors': () => import('./messages/en/errors.json'),
     'manage': () => import('./messages/en/manage.json'),
@@ -86,6 +92,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/es/common.json'),
     'email': () => import('./messages/es/email.json'),
     'email-account': () => import('./messages/es/email-account.json'),
+    'email-billing': () => import('./messages/es/email-billing.json'),
     'email-booking': () => import('./messages/es/email-booking.json'),
     'errors': () => import('./messages/es/errors.json'),
     'manage': () => import('./messages/es/manage.json'),
@@ -98,6 +105,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/fr/common.json'),
     'email': () => import('./messages/fr/email.json'),
     'email-account': () => import('./messages/fr/email-account.json'),
+    'email-billing': () => import('./messages/fr/email-billing.json'),
     'email-booking': () => import('./messages/fr/email-booking.json'),
     'errors': () => import('./messages/fr/errors.json'),
     'manage': () => import('./messages/fr/manage.json'),
@@ -110,6 +118,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/hi/common.json'),
     'email': () => import('./messages/hi/email.json'),
     'email-account': () => import('./messages/hi/email-account.json'),
+    'email-billing': () => import('./messages/hi/email-billing.json'),
     'email-booking': () => import('./messages/hi/email-booking.json'),
     'errors': () => import('./messages/hi/errors.json'),
     'manage': () => import('./messages/hi/manage.json'),
@@ -122,6 +131,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/it/common.json'),
     'email': () => import('./messages/it/email.json'),
     'email-account': () => import('./messages/it/email-account.json'),
+    'email-billing': () => import('./messages/it/email-billing.json'),
     'email-booking': () => import('./messages/it/email-booking.json'),
     'errors': () => import('./messages/it/errors.json'),
     'manage': () => import('./messages/it/manage.json'),
@@ -134,6 +144,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/ja/common.json'),
     'email': () => import('./messages/ja/email.json'),
     'email-account': () => import('./messages/ja/email-account.json'),
+    'email-billing': () => import('./messages/ja/email-billing.json'),
     'email-booking': () => import('./messages/ja/email-booking.json'),
     'errors': () => import('./messages/ja/errors.json'),
     'manage': () => import('./messages/ja/manage.json'),
@@ -146,6 +157,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/nl/common.json'),
     'email': () => import('./messages/nl/email.json'),
     'email-account': () => import('./messages/nl/email-account.json'),
+    'email-billing': () => import('./messages/nl/email-billing.json'),
     'email-booking': () => import('./messages/nl/email-booking.json'),
     'errors': () => import('./messages/nl/errors.json'),
     'manage': () => import('./messages/nl/manage.json'),
@@ -158,6 +170,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/pl/common.json'),
     'email': () => import('./messages/pl/email.json'),
     'email-account': () => import('./messages/pl/email-account.json'),
+    'email-billing': () => import('./messages/pl/email-billing.json'),
     'email-booking': () => import('./messages/pl/email-booking.json'),
     'errors': () => import('./messages/pl/errors.json'),
     'manage': () => import('./messages/pl/manage.json'),
@@ -170,6 +183,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/pt/common.json'),
     'email': () => import('./messages/pt/email.json'),
     'email-account': () => import('./messages/pt/email-account.json'),
+    'email-billing': () => import('./messages/pt/email-billing.json'),
     'email-booking': () => import('./messages/pt/email-booking.json'),
     'errors': () => import('./messages/pt/errors.json'),
     'manage': () => import('./messages/pt/manage.json'),
@@ -182,6 +196,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/ru/common.json'),
     'email': () => import('./messages/ru/email.json'),
     'email-account': () => import('./messages/ru/email-account.json'),
+    'email-billing': () => import('./messages/ru/email-billing.json'),
     'email-booking': () => import('./messages/ru/email-booking.json'),
     'errors': () => import('./messages/ru/errors.json'),
     'manage': () => import('./messages/ru/manage.json'),
@@ -194,6 +209,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/tr/common.json'),
     'email': () => import('./messages/tr/email.json'),
     'email-account': () => import('./messages/tr/email-account.json'),
+    'email-billing': () => import('./messages/tr/email-billing.json'),
     'email-booking': () => import('./messages/tr/email-booking.json'),
     'errors': () => import('./messages/tr/errors.json'),
     'manage': () => import('./messages/tr/manage.json'),
@@ -206,6 +222,7 @@ export const loaders: Partial<Record<Locale, Partial<Record<Namespace, Loader>>>
     'common': () => import('./messages/zh/common.json'),
     'email': () => import('./messages/zh/email.json'),
     'email-account': () => import('./messages/zh/email-account.json'),
+    'email-billing': () => import('./messages/zh/email-billing.json'),
     'email-booking': () => import('./messages/zh/email-booking.json'),
     'errors': () => import('./messages/zh/errors.json'),
     'manage': () => import('./messages/zh/manage.json'),

@@ -15,7 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function LoginPage({ searchParams }: PageProps<'/login'>) {
   const sp = await searchParams
   const next = typeof sp.next === 'string' ? safeRedirectPath(sp.next) : undefined
-  if (await getSession()) redirect(next ?? '/app')
+  const session = await getSession()
+  if (session) redirect(next ?? (session.user.isPlatformAdmin ? '/admin' : '/app'))
   const t = await getT('auth')
   const notice = sp.reset
     ? t('login.noticeReset')

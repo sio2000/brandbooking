@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "您的 Hournook 价格将于 {date} 调整",
+    "preheader": "在 {date} 之前，您的当前价格保持不变。在此之前，您可以随时取消。",
+    "heading": "您的月费价格即将调整",
+    "intro": "我们正在调整 Hournook 套餐的价格。{business} 的价格将从每月 {oldPrice} 调整为 {newPrice}（含增值税）。",
+    "when": "您的当前价格将保持到 {date}。此后，您的订阅将按新价格续订。",
+    "oldLabel": "当前价格",
+    "newLabel": "新价格",
+    "fromLabel": "生效日期",
+    "perMonth": "每月 {price}（含增值税）",
+    "cancel": "您无需进行任何操作。如果您不希望按新价格继续，可以在 {date} 之前随时在“账单”页面取消订阅。",
+    "cta": "打开账单",
+    "footer": "您收到此邮件，是因为您是一家订阅了 Hournook 的商家的所有者。"
+  }
+}

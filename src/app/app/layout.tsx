@@ -37,6 +37,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     bookingPage: ctx.can('booking_page.manage'),
     settings: ctx.can('settings.manage'),
     billing: ctx.can('billing.view'),
+    admin: ctx.user.isPlatformAdmin,
   }
   return (
     <CommandPaletteProvider bookingUrl={bookingUrl} timezone={ctx.business.timezone} can={can}>
@@ -81,6 +82,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             initialUnread={box.unread}
             bookingUrl={bookingUrl}
             canCreate={can.createAppointment}
+            isPlatformAdmin={ctx.user.isPlatformAdmin}
           />
           <main id="main" className="flex-1 pb-20 lg:pb-0">
             {children}

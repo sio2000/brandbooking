@@ -7,6 +7,7 @@
   "conflict": "Jemand anderes hat dies inzwischen geändert. Laden Sie die Seite neu und versuchen Sie es erneut.",
   "internal": "Bei uns ist etwas Unerwartetes passiert. Bitte versuchen Sie es erneut. Wenn das Problem bleibt, wenden Sie sich an den Support.",
   "invalid_credentials": "E-Mail-Adresse und Passwort passen nicht zusammen. Prüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+  "account_banned": "Dieses Konto wurde gesperrt. Wenden Sie sich an den Support, wenn Sie das für einen Fehler halten.",
   "account_locked": "Zu viele fehlgeschlagene Anmeldeversuche. Zu Ihrer Sicherheit ist die Anmeldung für 15 Minuten gesperrt.",
   "email_taken": "Mit dieser E-Mail-Adresse gibt es bereits ein Konto. Versuchen Sie stattdessen, sich anzumelden.",
   "email_not_verified": "Bitte bestätigen Sie zuerst Ihre E-Mail-Adresse. Wir können Ihnen einen neuen Link senden.",

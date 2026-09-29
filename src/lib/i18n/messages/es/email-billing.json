@@ -1,0 +1,16 @@
+{
+  "priceChange": {
+    "subject": "El precio de Hournook cambia el {date}",
+    "preheader": "Tu precio actual se mantiene hasta el {date}. Puedes cancelar cuando quieras antes de esa fecha.",
+    "heading": "Tu precio mensual va a cambiar",
+    "intro": "Vamos a cambiar el precio del plan de Hournook. Para {business}, pasa de {oldPrice} a {newPrice} al mes, IVA incluido.",
+    "when": "Tu precio actual se mantiene hasta el {date}. A partir de entonces, tu suscripción se renueva con el nuevo precio.",
+    "oldLabel": "Precio actual",
+    "newLabel": "Nuevo precio",
+    "fromLabel": "Se aplica desde",
+    "perMonth": "{price} al mes, IVA incluido",
+    "cancel": "No tienes que hacer nada. Si prefieres no continuar con el nuevo precio, puedes cancelar tu suscripción cuando quieras antes del {date} desde Facturación.",
+    "cta": "Abrir Facturación",
+    "footer": "Recibes este correo porque eres titular de un negocio con una suscripción a Hournook."
+  }
+}

@@ -40,6 +40,7 @@ function defaultStatus(code: ErrorCode): number {
     case 'unauthenticated':
       return 401
     case 'forbidden':
+    case 'account_banned':
     case 'business_suspended':
     case 'subscription_inactive':
       return 403

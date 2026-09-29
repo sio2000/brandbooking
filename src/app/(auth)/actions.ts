@@ -54,16 +54,17 @@ export async function signInAction(
   _: ActionResult<null> | null,
   form: FormData,
 ): Promise<ActionResult<null>> {
-  const next = safeRedirectPath(form.get('next'), '/app')
+  // An explicit `next` wins; otherwise platform admins land on /admin.
+  const requested = safeRedirectPath(form.get('next'), '')
   const result = await runAction(async () => {
     const input = parse(signInSchema, form)
-    const { session, locale } = await signIn(input, await requestMeta())
+    const { session, locale, isPlatformAdmin } = await signIn(input, await requestMeta())
     await setSessionCookie(session.token, session.expiresAt)
     // Pages outside the account (sign-in, marketing) follow the account's language too.
     await setLocaleCookie(locale)
-    return null
+    return isPlatformAdmin
   })
-  if (result.ok) redirect(next)
+  if (result.ok) redirect(requested || (result.data ? '/admin' : '/app'))
   return result
 }
 

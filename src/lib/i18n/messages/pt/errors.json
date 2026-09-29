@@ -7,6 +7,7 @@
   "conflict": "Outra pessoa alterou isto entretanto. Atualize a página e tente novamente.",
   "internal": "Ocorreu um problema inesperado do nosso lado. Tente novamente. Se continuar a acontecer, contacte o apoio.",
   "invalid_credentials": "O email e a palavra-passe não coincidem. Verifique-os e tente novamente.",
+  "account_banned": "Esta conta foi suspensa. Contacte o apoio se considerar que se trata de um erro.",
   "account_locked": "Demasiadas tentativas de início de sessão falhadas. Por segurança, o acesso fica bloqueado durante 15 minutos.",
   "email_taken": "Já existe uma conta com este email. Experimente iniciar sessão.",
   "email_not_verified": "Confirme primeiro o seu endereço de email. Podemos enviar-lhe uma nova ligação.",

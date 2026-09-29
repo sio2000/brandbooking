@@ -72,6 +72,15 @@ const directUrl =
 run('1/3 Applying database migrations', 'npx', ['tsx', 'scripts/migrate.ts'], {
   DATABASE_URL: directUrl,
 })
+// Optional first platform admin (docs/ADMIN.md). Never fails the build and
+// never prints the password; remove the variables after the first sign-in.
+if (clean(process.env.ADMIN_BOOTSTRAP_EMAIL) && process.env.ADMIN_BOOTSTRAP_PASSWORD) {
+  const r = spawnSync('npx', ['tsx', 'scripts/admin-bootstrap.ts'], {
+    stdio: 'inherit',
+    env: { ...process.env, ADMIN_BOOTSTRAP_EMAIL: clean(process.env.ADMIN_BOOTSTRAP_EMAIL) },
+  })
+  if (r.status !== 0) log('admin bootstrap: ERROR, skipped (see the message above)')
+}
 if (process.env.CONTEXT === 'production') {
   // Registers the webhook for this site's URL; never fails the build.
   run(

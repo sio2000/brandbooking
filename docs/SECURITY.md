@@ -59,9 +59,15 @@ secret, and its view of payment status is never trusted.
   for 15 minutes after 10 consecutive failures.
 - Unverified accounts can use the dashboard but cannot publish a booking page
   or accept team invitations.
-- Platform admins are flagged in the database (`npm run admin:grant`); admin
-  routes return 404 to everyone else, and admin actions (suspend, etc.) require a
-  reason and are audit-logged.
+- Platform admins are flagged in the database (`npm run admin:grant`,
+  `ADMIN_BOOTSTRAP_EMAIL`/`ADMIN_BOOTSTRAP_PASSWORD`, or `PLATFORM_ADMIN_EMAILS`); every
+  admin page and server action re-checks the flag and returns 404/forbidden to everyone
+  else. Admin mutations are rate limited, confirmed in a dialog, and audit-logged with the
+  admin, the target and the reason (see [ADMIN.md](ADMIN.md)). The admin area shows
+  aggregates and business names only, never a business's customer records.
+- Banned accounts (`users.banned_at`) lose all sessions immediately, sessions are rejected
+  on every request, sign-in is refused (only after a correct password, so the ban isn't
+  disclosed) and password reset links are neither sent nor accepted.
 
 ## Request security
 

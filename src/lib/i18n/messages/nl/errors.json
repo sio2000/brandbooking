@@ -7,6 +7,7 @@
   "conflict": "Iemand anders heeft dit intussen gewijzigd. Vernieuw de pagina en probeer het opnieuw.",
   "internal": "Er ging bij ons iets onverwachts mis. Probeer het opnieuw. Blijft het gebeuren, neem dan contact op met support.",
   "invalid_credentials": "Dit e-mailadres en wachtwoord horen niet bij elkaar. Controleer ze en probeer het opnieuw.",
+  "account_banned": "Dit account is geschorst. Neem contact op met support als je denkt dat dit een vergissing is.",
   "account_locked": "Te veel mislukte inlogpogingen. Voor je veiligheid is inloggen 15 minuten geblokkeerd.",
   "email_taken": "Er bestaat al een account met dit e-mailadres. Probeer in te loggen.",
   "email_not_verified": "Bevestig eerst je e-mailadres. We kunnen je een nieuwe link sturen.",

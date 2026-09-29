@@ -37,6 +37,10 @@ Functions). Minimum set:
 | `RESEND_API_KEY`        | from resend.com (sends as `no-reply@hournook.com`) — or `ALLOW_LOG_EMAIL_IN_PRODUCTION=1` for a trial |
 | `PLATFORM_ADMIN_EMAILS` | your email address — becomes platform admin once verified                                             |
 
+First admin without signing up: set `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD`
+(scope Builds) and redeploy; the build creates (or promotes) that admin account. Remove both
+variables after the first sign-in. See [ADMIN.md](ADMIN.md).
+
 Stripe stays in **test mode**: live keys (`sk_live_…`) are refused unless
 `STRIPE_LIVE_MODE=enabled` is also set, which is reserved for go-live day.
 

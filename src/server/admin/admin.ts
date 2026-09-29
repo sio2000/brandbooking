@@ -1,5 +1,5 @@
 import 'server-only'
-import { and, desc, eq, ilike, or, sql } from 'drizzle-orm'
+import { and, desc, eq, ilike, inArray, isNull, ne, or, sql, type SQL } from 'drizzle-orm'
 import { db } from '@/server/db/client'
 import {
   auditLogs,
@@ -14,7 +14,6 @@ import {
 } from '@/server/db/schema'
 import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
-import { env } from '@/server/env'
 import type { ValidatedSession } from '@/server/auth/session'
 import type { RequestMeta } from '@/server/request'
 
@@ -24,42 +23,46 @@ import type { RequestMeta } from '@/server/request'
  * appointment details (privacy by design).
  */
 
-export async function platformMetrics() {
-  const [row] = await db().execute<{
-    businesses: number
-    published: number
-    suspended: number
-    new_7d: number
-    users: number
-    active_subs: number
-    past_due: number
-    canceled: number
-    trialing_app: number
-    bookings_30d: number
-    bookings_total: number
-    customers: number
-  }>(sql`
-    SELECT
-      (SELECT count(*) FROM businesses WHERE deleted_at IS NULL)::int AS businesses,
-      (SELECT count(*) FROM businesses WHERE deleted_at IS NULL AND publish_status = 'published')::int AS published,
-      (SELECT count(*) FROM businesses WHERE status = 'suspended')::int AS suspended,
-      (SELECT count(*) FROM businesses WHERE created_at > now() - interval '7 days')::int AS new_7d,
-      (SELECT count(*) FROM users)::int AS users,
-      (SELECT count(*) FROM subscriptions WHERE status IN ('active','trialing'))::int AS active_subs,
-      (SELECT count(*) FROM subscriptions WHERE status = 'past_due')::int AS past_due,
-      (SELECT count(*) FROM subscriptions WHERE status = 'canceled')::int AS canceled,
-      (SELECT count(*) FROM businesses b WHERE b.trial_ends_at > now() AND NOT EXISTS (SELECT 1 FROM subscriptions s WHERE s.business_id = b.id AND s.status IN ('active','trialing','past_due')))::int AS trialing_app,
-      (SELECT count(*) FROM appointments WHERE created_at > now() - interval '30 days')::int AS bookings_30d,
-      (SELECT count(*) FROM appointments)::int AS bookings_total,
-      (SELECT count(*) FROM customers)::int AS customers
-  `)
-  const paying = (row?.active_subs ?? 0) + (row?.past_due ?? 0)
-  return { ...row!, mrrCents: paying * env().PLAN_PRICE_CENTS, currency: env().PLAN_CURRENCY }
+export const BUSINESS_FILTERS = [
+  'all',
+  'trialing',
+  'active',
+  'past_due',
+  'canceled',
+  'suspended',
+  'none',
+  'published',
+  'unpublished',
+] as const
+export type BusinessFilter = (typeof BUSINESS_FILTERS)[number]
+export const BUSINESSES_PAGE_SIZE = 25
+
+function businessFilter(filter: BusinessFilter | undefined): SQL | undefined {
+  switch (filter) {
+    case 'trialing':
+      return sql`(${subscriptions.status} = 'trialing' OR (coalesce(${subscriptions.status}, '') NOT IN ('active', 'past_due', 'unpaid', 'trialing') AND ${businesses.trialEndsAt} > now()))`
+    case 'active':
+      return eq(subscriptions.status, 'active')
+    case 'past_due':
+      return inArray(subscriptions.status, ['past_due', 'unpaid'])
+    case 'canceled':
+      return eq(subscriptions.status, 'canceled')
+    case 'suspended':
+      return eq(businesses.status, 'suspended')
+    case 'none':
+      return isNull(subscriptions.stripeSubscriptionId)
+    case 'published':
+      return eq(businesses.publishStatus, 'published')
+    case 'unpublished':
+      return ne(businesses.publishStatus, 'published')
+    default:
+      return undefined
+  }
 }
 
-export async function listBusinesses(q: string | undefined, page = 1) {
-  const pageSize = 25
-  const where = q
+export async function listBusinesses(q: string | undefined, page = 1, filter?: BusinessFilter) {
+  const pageSize = BUSINESSES_PAGE_SIZE
+  const search = q
     ? or(
         ilike(businesses.name, `%${q.replace(/[%_\\]/g, '')}%`),
         ilike(businesses.slug, `%${q.replace(/[%_\\]/g, '')}%`),
@@ -75,8 +78,10 @@ export async function listBusinesses(q: string | undefined, page = 1) {
       createdAt: businesses.createdAt,
       trialEndsAt: businesses.trialEndsAt,
       subStatus: subscriptions.status,
+      cancelAtPeriodEnd: subscriptions.cancelAtPeriodEnd,
       ownerEmail: users.email,
       bookings: sql<number>`(SELECT count(*)::int FROM appointments a WHERE a.business_id = ${businesses.id})`,
+      bookings30d: sql<number>`(SELECT count(*)::int FROM appointments a WHERE a.business_id = ${businesses.id} AND a.created_at > now() - interval '30 days')`,
     })
     .from(businesses)
     .leftJoin(subscriptions, eq(subscriptions.businessId, businesses.id))
@@ -85,8 +90,8 @@ export async function listBusinesses(q: string | undefined, page = 1) {
       and(eq(businessMembers.businessId, businesses.id), eq(businessMembers.role, 'owner')),
     )
     .leftJoin(users, eq(users.id, businessMembers.userId))
-    .where(where)
-    .orderBy(desc(businesses.createdAt))
+    .where(and(isNull(businesses.deletedAt), search, businessFilter(filter)))
+    .orderBy(desc(businesses.createdAt), businesses.id)
     .limit(pageSize)
     .offset((page - 1) * pageSize)
   return rows
@@ -148,8 +153,14 @@ export async function setBusinessSuspended(
     .update(businesses)
     .set(
       suspended
-        ? { status: 'suspended', suspendedAt: new Date(), suspendedReason: reason }
-        : { status: 'active', suspendedAt: null, suspendedReason: null },
+        ? {
+            status: 'suspended',
+            suspendedAt: new Date(),
+            suspendedReason: reason,
+            // A direct suspension outlives unbanning the owner.
+            suspensionSource: 'admin',
+          }
+        : { status: 'active', suspendedAt: null, suspendedReason: null, suspensionSource: null },
     )
     .where(eq(businesses.id, id))
     .returning({ id: businesses.id })

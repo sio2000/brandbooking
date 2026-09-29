@@ -4,12 +4,14 @@ import { getSetting, setSetting } from '@/server/admin/admin'
 import { seal, unseal } from '@/server/security/sealed'
 import { logger } from '@/server/observability/logger'
 import { stripe, type Stripe } from './stripe'
+import { currentPlanPriceRow } from './plan-price-store'
 
 /**
  * Self-provisioning Stripe configuration, so an operator only has to supply
  * STRIPE_SECRET_KEY. Each value can still be pinned explicitly via env:
  *
- *  - Plan price: STRIPE_PRICE_ID, else the price with lookup key
+ *  - Plan price: the price set in the admin panel (plan_prices table), else
+ *    STRIPE_PRICE_ID, else the price with lookup key
  *    `hournook_monthly` (created on first use: €10/month by default).
  *  - Customer Portal: STRIPE_PORTAL_CONFIGURATION_ID, else an existing active
  *    configuration, else one created with the features the app relies on.
@@ -45,12 +47,20 @@ export function resetBillingConfigCache() {
   delete cache.webhook
 }
 
-function matchesPlan(p: Stripe.Price) {
-  const e = env()
+/**
+ * Whether a Stripe price is a valid plan price for `amountCents`/`currency`
+ * (the env plan price by default; the admin price change creates prices that
+ * satisfy it for the new amount).
+ */
+export function matchesPlan(
+  p: Stripe.Price,
+  amountCents = env().PLAN_PRICE_CENTS,
+  currency = env().PLAN_CURRENCY,
+) {
   return (
     p.active &&
-    p.unit_amount === e.PLAN_PRICE_CENTS &&
-    p.currency.toUpperCase() === e.PLAN_CURRENCY.toUpperCase() &&
+    p.unit_amount === amountCents &&
+    p.currency.toUpperCase() === currency.toUpperCase() &&
     p.recurring?.interval === 'month' &&
     p.recurring.interval_count === 1 &&
     // The advertised price includes VAT; Stripe must never add tax on top.
@@ -58,8 +68,14 @@ function matchesPlan(p: Stripe.Price) {
   )
 }
 
-/** The Stripe Price id of the single monthly plan. */
+/**
+ * The Stripe Price id of the single monthly plan, used for new checkouts:
+ * the price set in the admin panel (plan_prices), else STRIPE_PRICE_ID, else
+ * the auto-provisioned `hournook_monthly` price.
+ */
 export async function planPriceId(): Promise<string> {
+  const current = await currentPlanPriceRow()
+  if (current) return current.stripePriceId
   const e = env()
   if (e.STRIPE_PRICE_ID) return e.STRIPE_PRICE_ID
   if (cache.price) return cache.price

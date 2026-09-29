@@ -11,6 +11,7 @@ import {
   Plus,
   Search,
   Settings,
+  ShieldCheck,
   User,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -52,6 +53,7 @@ export function Topbar({
   initialUnread,
   bookingUrl,
   canCreate,
+  isPlatformAdmin = false,
 }: {
   user: { name: string; email: string }
   business: { id: string; name: string }
@@ -59,6 +61,8 @@ export function Topbar({
   initialUnread: number
   bookingUrl: string | null
   canCreate: boolean
+  /** Platform operators get a link to the (English-only) admin area. */
+  isPlatformAdmin?: boolean
 }) {
   const palette = useCommandPalette()
   return (
@@ -130,6 +134,13 @@ export function Topbar({
               <Settings /> Settings
             </Link>
           </DropdownMenuItem>
+          {isPlatformAdmin && (
+            <DropdownMenuItem asChild>
+              <Link href="/admin">
+                <ShieldCheck /> Admin
+              </Link>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuSeparator />
           <div className="flex items-center justify-between px-2.5 py-1.5 text-sm">
             <span className="text-muted-foreground">Theme</span>

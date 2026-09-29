@@ -28,6 +28,7 @@ export type TemplateId =
   | 'billing_payment_failed'
   | 'billing_subscription_active'
   | 'billing_subscription_canceled'
+  | 'plan_price_change' // to business owner: 30 days' notice of a new plan price
 
 export type EnqueueInput = {
   template: TemplateId

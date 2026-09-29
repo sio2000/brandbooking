@@ -155,11 +155,16 @@ and cancellation yourself.
 
 ## 8. First admin
 
-Sign up normally, verify the email, then:
+Either set `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` for one deploy (the Netlify
+build, or `npm run admin:bootstrap`, creates or promotes the account; remove both variables
+after the first sign-in), or sign up normally, verify the email, then:
 
 ```bash
 DATABASE_URL=… npm run admin:grant -- you@example.com
 ```
+
+The admin panel (`/admin`), price changes and all admin actions are described in
+[ADMIN.md](ADMIN.md).
 
 ## 9. Pre-launch checklist
 

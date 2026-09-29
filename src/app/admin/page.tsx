@@ -1,13 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Building2 } from 'lucide-react'
-import { platformMetrics, recentSignups, systemHealth } from '@/server/admin/admin'
+import { recentSignups, systemHealth } from '@/server/admin/admin'
+import { overviewStats } from '@/server/admin/stats'
+import { requireAdminPage } from '@/server/tenancy/context'
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { Alert, EmptyState } from '@/components/ui/feedback'
 import { Button } from '@/components/ui/button'
 import { Kpi, PageHeader, PublishBadge, StatusText, UtcTime } from '@/components/admin/primitives'
 import { assessHealth, worstTone } from '@/components/admin/health'
-import { formatMoney, formatNumber } from '@/lib/format'
+import { formatMoney, formatNumber, formatPercent } from '@/lib/format'
 
 export const metadata: Metadata = { title: 'Admin overview' }
 
@@ -27,12 +29,14 @@ function KpiGroup({ title, children }: { title: string; children: React.ReactNod
 }
 
 export default async function AdminOverviewPage() {
+  await requireAdminPage()
   const [m, signups, health] = await Promise.all([
-    platformMetrics(),
+    overviewStats(),
     recentSignups(8),
     systemHealth(),
   ])
   const n = (v: number) => formatNumber(v)
+  const pct = (r: number | null) => (r === null ? '—' : formatPercent(r, 'en-GB', 1))
   const checks = assessHealth(health)
   const overall = worstTone(checks)
   const problems = checks.filter((c) => c.tone !== 'ok')
@@ -42,6 +46,13 @@ export default async function AdminOverviewPage() {
       <PageHeader
         title="Overview"
         description="Platform-wide numbers across every business. Times are shown in UTC."
+        actions={
+          <Button asChild variant="secondary" size="sm">
+            <Link href="/admin/stats">
+              Charts & breakdowns <ArrowRight aria-hidden />
+            </Link>
+          </Button>
+        }
       />
 
       {problems.length > 0 && (
@@ -60,55 +71,76 @@ export default async function AdminOverviewPage() {
       )}
 
       <div className="grid grid-cols-1 gap-6">
+        <KpiGroup title="Revenue & subscriptions">
+          <Kpi
+            label="MRR (paying subscriptions × their price)"
+            value={formatMoney(m.mrr.mrrCents, m.mrr.currency, 'en-GB')}
+            hint={
+              m.mrr.unpriced
+                ? `${n(m.mrr.unpriced)} without a known price yet`
+                : `ARR ${formatMoney(m.mrr.arrCents, m.mrr.currency, 'en-GB')}`
+            }
+          />
+          <Kpi label="Paying" value={n(m.paying)} hint="Active Stripe subscriptions" />
+          <Kpi label="In trial" value={n(m.trialing)} hint="Free trial or Stripe trial" />
+          <Kpi
+            label="Past due"
+            value={n(m.pastDue)}
+            tone={m.pastDue > 0 ? 'warning' : undefined}
+            toneLabel={m.pastDue > 0 ? 'Payment failing' : undefined}
+            hint="No failing payments"
+          />
+          <Kpi label="Canceled" value={n(m.canceled)} />
+          <Kpi
+            label="Trial → paid (90 days)"
+            value={pct(m.conversion.rate)}
+            hint={`${n(m.conversion.converted)} of ${n(m.conversion.ended)} ended trials`}
+          />
+          <Kpi
+            label="Churn (30 days)"
+            value={pct(m.churn.rate)}
+            hint={`${n(m.churn.canceled)} canceled of ${n(m.churn.base)}`}
+          />
+          <Kpi
+            label="ARR"
+            value={formatMoney(m.mrr.arrCents, m.mrr.currency, 'en-GB')}
+            hint="MRR × 12"
+          />
+        </KpiGroup>
+
         <KpiGroup title="Businesses">
           <Kpi
             label="Total businesses"
             value={n(m.businesses)}
-            hint={m.suspended ? `${n(m.suspended)} suspended` : 'None suspended'}
+            hint={`${n(m.published)} published`}
           />
+          <Kpi label="New in 7 days" value={n(m.businesses7d)} />
+          <Kpi label="New in 30 days" value={n(m.businesses30d)} />
           <Kpi
-            label="Published"
-            value={n(m.published)}
-            hint={
-              m.businesses
-                ? `${Math.round((m.published / m.businesses) * 100)}% of total`
-                : undefined
-            }
-          />
-          <Kpi label="New in last 7 days" value={n(m.new_7d)} />
-          <Kpi
-            label="In free trial"
-            value={n(m.trialing_app)}
-            hint="Trial running, no subscription yet"
+            label="Suspended"
+            value={n(m.suspended)}
+            tone={m.suspended > 0 ? 'warning' : undefined}
+            toneLabel={m.suspended > 0 ? 'Booking pages blocked' : undefined}
+            hint="None suspended"
           />
         </KpiGroup>
 
-        <KpiGroup title="Revenue & subscriptions">
-          <Kpi
-            label="Estimated MRR (paying subscriptions × plan price)"
-            value={formatMoney(m.mrrCents, m.currency)}
-            className="col-span-2 md:col-span-1"
-          />
-          <Kpi
-            label="Active subscriptions"
-            value={n(m.active_subs)}
-            hint="Active or trialing in Stripe"
-          />
-          <Kpi
-            label="Past due"
-            value={n(m.past_due)}
-            tone={m.past_due > 0 ? 'warning' : undefined}
-            toneLabel={m.past_due > 0 ? 'Payment failing' : undefined}
-            hint="No failing payments"
-          />
-          <Kpi label="Canceled" value={n(m.canceled)} />
-        </KpiGroup>
-
-        <KpiGroup title="Activity">
-          <Kpi label="Bookings, last 30 days" value={n(m.bookings_30d)} />
-          <Kpi label="Total bookings" value={n(m.bookings_total)} />
-          <Kpi label="Total customers" value={n(m.customers)} hint="Aggregate count only" />
+        <KpiGroup title="Accounts">
           <Kpi label="Users" value={n(m.users)} hint="Business team accounts" />
+          <Kpi label="New in 7 days" value={n(m.users7d)} />
+          <Kpi label="New in 30 days" value={n(m.users30d)} />
+          <Kpi
+            label="Banned"
+            value={n(m.banned)}
+            hint={m.unverified ? `${n(m.unverified)} unverified` : 'All verified'}
+          />
+        </KpiGroup>
+
+        <KpiGroup title="Bookings">
+          <Kpi label="Last 7 days" value={n(m.bookings7d)} />
+          <Kpi label="Last 30 days" value={n(m.bookings30d)} />
+          <Kpi label="All time" value={n(m.bookingsTotal)} />
+          <Kpi label="Customers" value={n(m.customers)} hint="Aggregate count only" />
         </KpiGroup>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">

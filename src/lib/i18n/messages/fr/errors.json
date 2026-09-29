@@ -7,6 +7,7 @@
   "conflict": "Quelqu’un d’autre a modifié cet élément. Actualisez la page et réessayez.",
   "internal": "Un problème inattendu est survenu de notre côté. Réessayez. Si le problème persiste, contactez l’assistance.",
   "invalid_credentials": "L’e-mail et le mot de passe ne correspondent pas. Vérifiez-les et réessayez.",
+  "account_banned": "Ce compte a été suspendu. Contactez le support si vous pensez qu’il s’agit d’une erreur.",
   "account_locked": "Trop de tentatives de connexion échouées. Pour votre sécurité, la connexion est suspendue pendant 15 minutes.",
   "email_taken": "Un compte existe déjà avec cet e-mail. Essayez plutôt de vous connecter.",
   "email_not_verified": "Confirmez d’abord votre adresse e-mail. Nous pouvons vous envoyer un nouveau lien.",

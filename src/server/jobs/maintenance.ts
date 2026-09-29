@@ -4,6 +4,7 @@ import { db } from '@/server/db/client'
 import { dispatchDue } from '@/server/notifications/dispatcher'
 import { setSetting } from '@/server/admin/admin'
 import { logger } from '@/server/observability/logger'
+import { runPlanPriceMigrations } from '@/server/billing/plan-prices'
 
 /** Housekeeping: expired sessions/tokens/rate-limit windows, data retention. */
 export async function runMaintenance() {
@@ -50,7 +51,16 @@ export async function runScheduledTick() {
   const started = Date.now()
   const dispatch = await dispatchDue({ limit: 25, maxBatches: 8 })
   const maintenance = await runMaintenance()
-  const result = { dispatch, maintenance, ms: Date.now() - started }
+  // Existing subscriptions move to a changed plan price once its notice period
+  // is over (retried on later ticks; a Stripe outage must not stop the tick).
+  let priceMigrations: Awaited<ReturnType<typeof runPlanPriceMigrations>> | { error: string }
+  try {
+    priceMigrations = await runPlanPriceMigrations()
+  } catch (err) {
+    logger.error('cron.plan_price_migrations_failed', { err })
+    priceMigrations = { error: err instanceof Error ? err.message.slice(0, 200) : 'error' }
+  }
+  const result = { dispatch, maintenance, priceMigrations, ms: Date.now() - started }
   await setSetting('cron.last_run', { at: new Date().toISOString(), result })
   logger.info('cron.tick', result)
   return result
