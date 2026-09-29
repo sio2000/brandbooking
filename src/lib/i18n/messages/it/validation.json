@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Inserisci un indirizzo email valido."
+  },
+  "phone": {
+    "invalid": "Inserisci un numero di telefono valido.",
+    "required": "Inserisci il tuo numero di telefono."
+  },
+  "color": {
+    "invalid": "Usa un colore esadecimale come #0f766e."
+  },
+  "date": {
+    "invalid": "Usa una data valida.",
+    "endBeforeStart": "La data di fine deve essere uguale o successiva alla data di inizio."
+  },
+  "url": {
+    "invalid": "Inserisci un indirizzo web valido."
+  },
+  "text": {
+    "tooShort": "Usa almeno {min} caratteri.",
+    "tooLong": "Usa al massimo {max} caratteri."
+  },
+  "name": {
+    "yours": "Inserisci il tuo nome.",
+    "any": "Inserisci un nome.",
+    "firstName": "Inserisci il tuo nome.",
+    "lastName": "Inserisci il tuo cognome.",
+    "customerFirstName": "Inserisci un nome.",
+    "business": "Inserisci il nome della tua attività.",
+    "service": "Inserisci il nome del servizio."
+  },
+  "terms": {
+    "required": "Accetta i termini per continuare."
+  },
+  "password": {
+    "required": "Inserisci la tua password.",
+    "common": "Questa password è troppo comune. Scegline una più difficile da indovinare.",
+    "repeated": "Evita di ripetere un solo carattere.",
+    "containsEmail": "La password non deve contenere il tuo indirizzo email.",
+    "currentIncorrect": "La password attuale non è corretta.",
+    "incorrect": "La password non è corretta."
+  },
+  "slug": {
+    "format": "Usa lettere minuscole, numeri e trattini.",
+    "reserved": "Questo link è riservato. Provane un altro.",
+    "doubleDash": "Evita i doppi trattini.",
+    "taken": "Questo link di prenotazione è già in uso.",
+    "invalid": "Link non valido"
+  },
+  "timezone": {
+    "invalid": "Scegli un fuso orario valido."
+  },
+  "currency": {
+    "invalid": "Usa un codice valuta di 3 lettere."
+  },
+  "country": {
+    "invalid": "Usa un codice paese di 2 lettere."
+  },
+  "locale": {
+    "invalid": "Scegli una lingua dall’elenco."
+  },
+  "service": {
+    "durationMin": "Almeno 5 minuti.",
+    "durationMax": "Al massimo 12 ore.",
+    "price": "Inserisci un prezzo valido.",
+    "atLeastOne": "Aggiungi almeno un servizio.",
+    "check": "Controlla questo servizio.",
+    "needed": "Prima di pubblicare, aggiungi almeno un servizio attivo con un membro del team assegnato."
+  },
+  "time": {
+    "endAfterStart": "L’orario di fine deve essere successivo a quello di inizio.",
+    "interval": "Scegli un intervallo valido."
+  },
+  "number": {
+    "between": "Inserisci un numero tra {min} e {max}."
+  },
+  "form": {
+    "honeypot": "Invio non valido.",
+    "tooLarge": "Richiesta troppo grande",
+    "invalidJson": "Dati non validi",
+    "chooseImage": "Scegli un’immagine."
+  },
+  "account": {
+    "emailTaken": "Esiste già un account con questa email.",
+    "alreadyMember": "Fai già parte di questa attività.",
+    "profileLinked": "Questo profilo del team è già collegato a un altro account. Chiedi un nuovo invito."
+  },
+  "team": {
+    "hasAccount": "Questo membro del team ha già un account.",
+    "alreadyOnTeam": "Questa persona fa già parte del tuo team.",
+    "choose": "Scegli un membro del team.",
+    "upcoming": "Questo membro del team ha {count, plural, one {# appuntamento in programma} other {# appuntamenti in programma}}. Prima spostali o annullali.",
+    "ownerMustVerify": "{name} deve confermare il proprio indirizzo email prima di poter diventare proprietario."
+  },
+  "customer": {
+    "emailTaken": "Esiste già un cliente con questa email.",
+    "chooseOrName": "Scegli un cliente esistente o inserisci un nome."
+  },
+  "business": {
+    "confirmName": "Digita esattamente il nome dell’attività per confermare."
+  },
+  "generic": {
+    "required": "Questo campo è obbligatorio.",
+    "invalid": "Questo valore non è valido.",
+    "chooseOption": "Scegli una delle opzioni.",
+    "numberMin": "Inserisci un numero pari almeno a {min}.",
+    "numberMax": "Inserisci un numero non superiore a {max}.",
+    "tooFew": "Aggiungine almeno {min}.",
+    "tooMany": "Scegline al massimo {max}."
+  }
+}

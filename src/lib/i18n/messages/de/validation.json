@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Geben Sie eine gültige E-Mail-Adresse ein."
+  },
+  "phone": {
+    "invalid": "Geben Sie eine gültige Telefonnummer ein.",
+    "required": "Geben Sie Ihre Telefonnummer ein."
+  },
+  "color": {
+    "invalid": "Verwenden Sie eine Hex-Farbe wie #0f766e."
+  },
+  "date": {
+    "invalid": "Verwenden Sie ein gültiges Datum.",
+    "endBeforeStart": "Das Enddatum muss am oder nach dem Startdatum liegen."
+  },
+  "url": {
+    "invalid": "Geben Sie eine gültige Webadresse ein."
+  },
+  "text": {
+    "tooShort": "Verwenden Sie mindestens {min} Zeichen.",
+    "tooLong": "Verwenden Sie höchstens {max} Zeichen."
+  },
+  "name": {
+    "yours": "Geben Sie Ihren Namen ein.",
+    "any": "Geben Sie einen Namen ein.",
+    "firstName": "Geben Sie Ihren Vornamen ein.",
+    "lastName": "Geben Sie Ihren Nachnamen ein.",
+    "customerFirstName": "Geben Sie einen Vornamen ein.",
+    "business": "Geben Sie den Namen Ihres Unternehmens ein.",
+    "service": "Geben Sie einen Namen für die Leistung ein."
+  },
+  "terms": {
+    "required": "Bitte akzeptieren Sie die Bedingungen, um fortzufahren."
+  },
+  "password": {
+    "required": "Geben Sie Ihr Passwort ein.",
+    "common": "Dieses Passwort ist zu verbreitet. Wählen Sie etwas, das schwerer zu erraten ist.",
+    "repeated": "Vermeiden Sie es, nur ein einzelnes Zeichen zu wiederholen.",
+    "containsEmail": "Ihr Passwort sollte Ihre E-Mail-Adresse nicht enthalten.",
+    "currentIncorrect": "Ihr aktuelles Passwort ist nicht korrekt.",
+    "incorrect": "Ihr Passwort ist nicht korrekt."
+  },
+  "slug": {
+    "format": "Verwenden Sie Kleinbuchstaben, Ziffern und Bindestriche.",
+    "reserved": "Dieser Link ist reserviert. Versuchen Sie einen anderen.",
+    "doubleDash": "Vermeiden Sie doppelte Bindestriche.",
+    "taken": "Dieser Buchungslink ist bereits vergeben.",
+    "invalid": "Ungültiger Link"
+  },
+  "timezone": {
+    "invalid": "Wählen Sie eine gültige Zeitzone."
+  },
+  "currency": {
+    "invalid": "Verwenden Sie einen dreistelligen Währungscode."
+  },
+  "country": {
+    "invalid": "Verwenden Sie einen zweistelligen Ländercode."
+  },
+  "locale": {
+    "invalid": "Wählen Sie eine Sprache aus der Liste."
+  },
+  "service": {
+    "durationMin": "Mindestens 5 Minuten.",
+    "durationMax": "Höchstens 12 Stunden.",
+    "price": "Geben Sie einen gültigen Preis ein.",
+    "atLeastOne": "Fügen Sie mindestens eine Leistung hinzu.",
+    "check": "Prüfen Sie diese Leistung.",
+    "needed": "Fügen Sie vor dem Veröffentlichen mindestens eine aktive Leistung mit zugewiesenem Teammitglied hinzu."
+  },
+  "time": {
+    "endAfterStart": "Die Endzeit muss nach der Startzeit liegen.",
+    "interval": "Wählen Sie ein gültiges Intervall."
+  },
+  "number": {
+    "between": "Geben Sie eine Zahl zwischen {min} und {max} ein."
+  },
+  "form": {
+    "honeypot": "Ungültige Übermittlung.",
+    "tooLarge": "Anfrage zu groß",
+    "invalidJson": "Ungültige Daten",
+    "chooseImage": "Wählen Sie ein Bild aus."
+  },
+  "account": {
+    "emailTaken": "Mit dieser E-Mail-Adresse gibt es bereits ein Konto.",
+    "alreadyMember": "Sie sind bereits Mitglied dieses Unternehmens.",
+    "profileLinked": "Dieses Teamprofil ist bereits mit einem anderen Konto verknüpft. Bitten Sie um eine neue Einladung."
+  },
+  "team": {
+    "hasAccount": "Dieses Teammitglied hat bereits ein Konto.",
+    "alreadyOnTeam": "Diese Person ist bereits in Ihrem Team.",
+    "choose": "Wählen Sie ein Teammitglied.",
+    "upcoming": "Dieses Teammitglied hat {count, plural, one {# anstehenden Termin} other {# anstehende Termine}}. Verschieben oder stornieren Sie diese zuerst.",
+    "ownerMustVerify": "{name} muss zuerst die E-Mail-Adresse bestätigen, bevor die Inhaberschaft übertragen werden kann."
+  },
+  "customer": {
+    "emailTaken": "Mit dieser E-Mail-Adresse gibt es bereits einen Kunden.",
+    "chooseOrName": "Wählen Sie einen bestehenden Kunden oder geben Sie einen Namen ein."
+  },
+  "business": {
+    "confirmName": "Geben Sie zur Bestätigung den Namen des Unternehmens exakt ein."
+  },
+  "generic": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalid": "Dieser Wert ist ungültig.",
+    "chooseOption": "Wählen Sie eine der Optionen.",
+    "numberMin": "Geben Sie eine Zahl von mindestens {min} ein.",
+    "numberMax": "Geben Sie eine Zahl von höchstens {max} ein.",
+    "tooFew": "Fügen Sie mindestens {min} hinzu.",
+    "tooMany": "Wählen Sie höchstens {max}."
+  }
+}

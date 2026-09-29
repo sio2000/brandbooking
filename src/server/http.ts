@@ -3,33 +3,37 @@ import { NextResponse } from 'next/server'
 import { ZodError } from 'zod'
 import { isAppError } from '@/server/errors'
 import { reportError } from '@/server/observability/errors'
-import { fieldErrors } from '@/lib/validation/common'
-import { messages } from '@/lib/i18n/messages'
+import { vmsg } from '@/lib/validation/messages'
+import { errorTranslator } from '@/server/i18n-errors'
 import { env } from '@/server/env'
 import { clientIpFrom, type RequestMeta } from '@/server/request'
 
-/** JSON error envelope shared by all route handlers. Never leaks internals. */
-export function jsonError(err: unknown, requestId?: string) {
+/**
+ * JSON error envelope shared by all route handlers. Never leaks internals.
+ * Messages are in the request's language; codes and statuses never change.
+ */
+export async function jsonError(err: unknown, requestId?: string) {
   if (err instanceof ZodError) {
+    const t = await errorTranslator()
     return NextResponse.json(
       {
         ok: false,
         code: 'validation',
-        error: messages.errors.validation,
-        fields: fieldErrors(err),
+        error: t.message('validation'),
+        fields: t.zodFields(err),
       },
       { status: 400 },
     )
   }
   if (isAppError(err)) {
     return NextResponse.json(
-      { ok: false, code: err.code, error: err.message, fields: err.fields },
+      { ok: false, ...(await errorTranslator()).appError(err) },
       { status: err.status },
     )
   }
   reportError(err, { message: 'route.failed', requestId })
   return NextResponse.json(
-    { ok: false, code: 'internal', error: messages.errors.internal },
+    { ok: false, code: 'internal', error: (await errorTranslator()).message('internal') },
     { status: 500 },
   )
 }
@@ -62,18 +66,20 @@ export async function readJson(req: Request, maxBytes = 16_384): Promise<unknown
   const text = await req.text()
   if (text.length > maxBytes)
     throw new ZodError([
-      { code: 'custom', path: [], message: 'Request too large', input: undefined },
+      { code: 'custom', path: [], message: vmsg('form.tooLarge'), input: undefined },
     ])
   try {
     return JSON.parse(text)
   } catch {
-    throw new ZodError([{ code: 'custom', path: [], message: 'Invalid JSON', input: undefined }])
+    throw new ZodError([
+      { code: 'custom', path: [], message: vmsg('form.invalidJson'), input: undefined },
+    ])
   }
 }
 
-export function forbiddenOrigin() {
+export async function forbiddenOrigin() {
   return NextResponse.json(
-    { ok: false, code: 'forbidden', error: messages.errors.forbidden },
+    { ok: false, code: 'forbidden', error: (await errorTranslator()).message('forbidden') },
     { status: 403 },
   )
 }

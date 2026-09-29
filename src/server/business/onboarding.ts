@@ -8,15 +8,18 @@ import {
   services,
   staff,
   staffServices,
+  users,
   weeklyHours,
   type Business,
 } from '@/server/db/schema'
+import type { Locale } from '@/lib/i18n/config'
 import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
 import { env } from '@/server/env'
 import type { SessionUser } from '@/server/auth/session'
 import type { RequestMeta } from '@/server/request'
 import { RESERVED_SLUGS } from '@/lib/validation/business'
+import { vmsg } from '@/lib/validation/messages'
 import { slugify } from '@/lib/utils'
 
 /** Sensible defaults so a new business can take bookings within minutes. */
@@ -55,12 +58,23 @@ export async function createBusiness(
     category: string | null
     timezone: string
     currency: string
+    /**
+     * Language chosen in onboarding: the owner's account language and the
+     * booking page's default language. Left unchanged / English when absent.
+     */
+    locale?: Locale
   },
   meta: RequestMeta,
 ): Promise<Business> {
   const trialDays = env().TRIAL_DAYS
   try {
     return await db().transaction(async (tx) => {
+      if (input.locale) {
+        await tx
+          .update(users)
+          .set({ locale: input.locale, updatedAt: new Date() })
+          .where(eq(users.id, user.id))
+      }
       const [business] = await tx
         .insert(businesses)
         .values({
@@ -69,6 +83,7 @@ export async function createBusiness(
           category: input.category,
           timezone: input.timezone,
           currency: input.currency,
+          ...(input.locale ? { locale: input.locale } : {}),
           email: user.email,
           trialEndsAt: trialDays > 0 ? new Date(Date.now() + trialDays * 86_400_000) : null,
         })
@@ -107,7 +122,7 @@ export async function createBusiness(
     })
   } catch (err) {
     if (pgErrorCode(err) === PgErrorCode.uniqueViolation) {
-      throw new AppError('slug_taken', { fields: { slug: 'That booking link is already taken.' } })
+      throw new AppError('slug_taken', { fields: { slug: vmsg('slug.taken') } })
     }
     throw err
   }

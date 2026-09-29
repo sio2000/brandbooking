@@ -1,13 +1,14 @@
 import { z } from 'zod'
 import { emailSchema } from './common'
+import { vmsg } from './messages'
 import { PASSWORD_MAX, passwordProblem } from './password'
 
 export const signUpSchema = z
   .object({
-    name: z.string().trim().min(1, 'Enter your name.').max(120),
+    name: z.string().trim().min(1, vmsg('name.yours')).max(120),
     email: emailSchema,
     password: z.string().max(PASSWORD_MAX),
-    acceptTerms: z.literal('on', { message: 'Please accept the terms to continue.' }),
+    acceptTerms: z.literal('on', { message: vmsg('terms.required') }),
   })
   .superRefine((v, ctx) => {
     const problem = passwordProblem(v.password, v.email)
@@ -16,7 +17,7 @@ export const signUpSchema = z
 
 export const signInSchema = z.object({
   email: emailSchema,
-  password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX),
+  password: z.string().min(1, vmsg('password.required')).max(PASSWORD_MAX),
 })
 
 export const forgotPasswordSchema = z.object({ email: emailSchema })

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { emailSchema } from './common'
+import { vmsg } from './messages'
 
 export const PUBLIC_SOURCES = ['booking_page', 'widget', 'qr', 'campaign', 'social'] as const
 export type PublicSource = (typeof PUBLIC_SOURCES)[number]
@@ -20,8 +21,8 @@ export const publicBookingSchema = z.object({
     .optional()
     .transform((v) => v ?? null),
   start: z.iso.datetime({ offset: true }),
-  firstName: z.string().trim().min(1, 'Enter your first name.').max(80),
-  lastName: z.string().trim().min(1, 'Enter your last name.').max(80),
+  firstName: z.string().trim().min(1, vmsg('name.firstName')).max(80),
+  lastName: z.string().trim().min(1, vmsg('name.lastName')).max(80),
   email: emailSchema,
   phone: z
     .string()
@@ -30,7 +31,7 @@ export const publicBookingSchema = z.object({
     .optional()
     .nullable()
     .transform((v) => v || null)
-    .refine((v) => v === null || /^[+()\d\s.-]{6,40}$/.test(v), 'Enter a valid phone number.'),
+    .refine((v) => v === null || /^[+()\d\s.-]{6,40}$/.test(v), vmsg('phone.invalid')),
   message: z
     .string()
     .trim()
@@ -50,7 +51,7 @@ export const publicBookingSchema = z.object({
     .nullable()
     .transform((v) => v || null),
   /** Honeypot: humans never see or fill this field. */
-  website: z.string().max(0, 'Invalid submission.').optional().nullable(),
+  website: z.string().max(0, vmsg('form.honeypot')).optional().nullable(),
 })
 export type PublicBookingInput = z.infer<typeof publicBookingSchema>
 

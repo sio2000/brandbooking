@@ -1,23 +1,37 @@
-import { messages, type ErrorCode } from '@/lib/i18n/messages'
+import { interpolate, messages, type ErrorCode } from '@/lib/i18n/messages'
+
+export type ErrorVars = Record<string, string | number>
 
 /**
  * Domain error with a stable machine code and a safe user-facing message.
  * Never put internal details in `message`; log them separately.
+ *
+ * `message` is the English text (logs, tests). What reaches the browser is
+ * translated from `code` (+ `vars`) into the request's language by
+ * src/server/actions.ts#runAction and src/server/http.ts#jsonError.
  */
 export class AppError extends Error {
   readonly code: ErrorCode
   readonly status: number
   readonly fields?: Record<string, string>
+  /** Values for the message's placeholders, e.g. `{ min: 800 }` for upload_too_small. */
+  readonly vars?: ErrorVars
 
   constructor(
     code: ErrorCode,
-    opts: { status?: number; fields?: Record<string, string>; cause?: unknown } = {},
+    opts: {
+      status?: number
+      fields?: Record<string, string>
+      vars?: ErrorVars
+      cause?: unknown
+    } = {},
   ) {
-    super(messages.errors[code], { cause: opts.cause })
+    super(interpolate(messages.errors[code], opts.vars), { cause: opts.cause })
     this.name = 'AppError'
     this.code = code
     this.status = opts.status ?? defaultStatus(code)
     this.fields = opts.fields
+    this.vars = opts.vars
   }
 }
 

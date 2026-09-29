@@ -8,6 +8,8 @@ import {
   urlSchema,
 } from './common'
 import { isValidTimeZone } from '../tz'
+import { vmsg } from './messages'
+import { LOCALES } from '../i18n/config'
 
 /** HTML checkbox / JSON boolean: "on" | "true" | true => true; absent => false. */
 export const checkbox = z
@@ -54,13 +56,13 @@ export const slugSchema = z
   .string()
   .trim()
   .toLowerCase()
-  .min(3, 'Use at least 3 characters.')
-  .max(48, 'Use at most 48 characters.')
-  .regex(/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])$/, 'Use lowercase letters, numbers and dashes.')
-  .refine((s) => !RESERVED_SLUGS.has(s), 'This link is reserved. Try another one.')
-  .refine((s) => !s.includes('--'), 'Avoid double dashes.')
+  .min(3, vmsg('text.tooShort', { min: 3 }))
+  .max(48, vmsg('text.tooLong', { max: 48 }))
+  .regex(/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])$/, vmsg('slug.format'))
+  .refine((s) => !RESERVED_SLUGS.has(s), vmsg('slug.reserved'))
+  .refine((s) => !s.includes('--'), vmsg('slug.doubleDash'))
 
-export const timezoneSchema = z.string().refine(isValidTimeZone, 'Choose a valid timezone.')
+export const timezoneSchema = z.string().refine(isValidTimeZone, vmsg('timezone.invalid'))
 
 export const BUSINESS_CATEGORIES = [
   'Hair & beauty',
@@ -80,7 +82,7 @@ export const BUSINESS_CATEGORIES = [
 ] as const
 
 export const createBusinessSchema = z.object({
-  name: z.string().trim().min(1, 'Enter your business name.').max(120),
+  name: z.string().trim().min(1, vmsg('name.business')).max(120),
   slug: slugSchema,
   category: z
     .string()
@@ -93,14 +95,16 @@ export const createBusinessSchema = z.object({
     .string()
     .regex(/^[A-Z]{3}$/)
     .default('EUR'),
+  /** Account and booking-page language chosen in onboarding; the current language when absent. */
+  locale: z.enum(LOCALES, { message: vmsg('locale.invalid') }).optional(),
 })
 
 export const profileSchema = z.object({
-  name: z.string().trim().min(1, 'Enter your business name.').max(120),
+  name: z.string().trim().min(1, vmsg('name.business')).max(120),
   description: optionalText(2000),
   category: optionalText(60),
   timezone: timezoneSchema,
-  currency: z.string().regex(/^[A-Z]{3}$/, 'Use a 3-letter currency code.'),
+  currency: z.string().regex(/^[A-Z]{3}$/, vmsg('currency.invalid')),
   email: z
     .union([z.literal(''), emailSchema])
     .optional()
@@ -121,7 +125,7 @@ export const profileSchema = z.object({
     .max(2)
     .optional()
     .transform((v) => v || null)
-    .refine((v) => v === null || /^[A-Z]{2}$/.test(v), 'Use a 2-letter country code.'),
+    .refine((v) => v === null || /^[A-Z]{2}$/.test(v), vmsg('country.invalid')),
 })
 
 const socialUrl = urlSchema.optional().transform((v) => v || undefined)
@@ -150,17 +154,17 @@ export const publishSchema = z.object({
     .string()
     .optional()
     .transform((v) => (v ? v : null))
-    .refine((v) => v === null || /^\d{4}-\d{2}-\d{2}$/.test(v), 'Use a valid date.'),
+    .refine((v) => v === null || /^\d{4}-\d{2}-\d{2}$/.test(v), vmsg('date.invalid')),
 })
 
 export const serviceSchema = z.object({
-  name: z.string().trim().min(1, 'Enter a service name.').max(120),
+  name: z.string().trim().min(1, vmsg('name.service')).max(120),
   description: optionalText(1000),
   durationMinutes: z.coerce
     .number()
     .int()
-    .min(5, 'At least 5 minutes.')
-    .max(720, 'At most 12 hours.'),
+    .min(5, vmsg('service.durationMin'))
+    .max(720, vmsg('service.durationMax')),
   price: z
     .string()
     .trim()
@@ -169,7 +173,7 @@ export const serviceSchema = z.object({
       if (!v) return null
       const n = Number(v.replace(',', '.'))
       if (!Number.isFinite(n) || n < 0 || n > 1_000_000) {
-        ctx.addIssue({ code: 'custom', message: 'Enter a valid price.' })
+        ctx.addIssue({ code: 'custom', message: vmsg('service.price') })
         return z.NEVER
       }
       return Math.round(n * 100)
@@ -189,7 +193,7 @@ export const serviceSchema = z.object({
 })
 
 export const staffSchema = z.object({
-  name: z.string().trim().min(1, 'Enter a name.').max(120),
+  name: z.string().trim().min(1, vmsg('name.any')).max(120),
   email: z
     .union([z.literal(''), emailSchema])
     .optional()
@@ -204,7 +208,7 @@ export const staffSchema = z.object({
 
 export const minuteRangeSchema = z
   .object({ start: z.number().int().min(0).max(1439), end: z.number().int().min(1).max(1440) })
-  .refine((r) => r.start < r.end, 'End time must be after start time.')
+  .refine((r) => r.start < r.end, vmsg('time.endAfterStart'))
 
 export const weeklyHoursSchema = z.object({
   staffId: z.uuid().nullable(),
@@ -231,7 +235,7 @@ export const closureSchema = z
     recurringYearly: checkbox,
   })
   .refine((v) => v.startsOn <= v.endsOn, {
-    message: 'The end date must be on or after the start date.',
+    message: vmsg('date.endBeforeStart'),
     path: ['endsOn'],
   })
 
@@ -258,7 +262,7 @@ export const timeBlockSchema = z
     reason: optionalText(200),
   })
   .refine((v) => v.startMinute < v.endMinute, {
-    message: 'End time must be after start time.',
+    message: vmsg('time.endAfterStart'),
     path: ['endMinute'],
   })
 
@@ -268,7 +272,7 @@ export const bookingRulesSchema = z.object({
   slotIntervalMinutes: z.coerce
     .number()
     .int()
-    .refine((v) => [5, 10, 15, 20, 30, 45, 60].includes(v), 'Choose a valid interval.'),
+    .refine((v) => [5, 10, 15, 20, 30, 45, 60].includes(v), vmsg('time.interval')),
   cancellationDeadlineMinutes: z.coerce.number().int().min(0).max(43200),
   rescheduleDeadlineMinutes: z.coerce.number().int().min(0).max(43200),
   allowCustomerCancel: checkbox,
@@ -280,7 +284,7 @@ export const bookingRulesSchema = z.object({
     .transform((v) => (v ? Number(v) : null))
     .refine(
       (v) => v === null || (Number.isInteger(v) && v >= 1 && v <= 1000),
-      'Enter a number between 1 and 1000.',
+      vmsg('number.between', { min: 1, max: 1000 }),
     ),
   reminderOffsetsMinutes: z
     .array(
@@ -318,7 +322,7 @@ export const inviteSchema = z.object({
 })
 
 export const customerSchema = z.object({
-  firstName: z.string().trim().min(1, 'Enter a first name.').max(80),
+  firstName: z.string().trim().min(1, vmsg('name.customerFirstName')).max(80),
   lastName: z.string().trim().max(80).default(''),
   email: z
     .union([z.literal(''), emailSchema])

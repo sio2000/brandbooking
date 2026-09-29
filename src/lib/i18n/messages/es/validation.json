@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Introduce una dirección de email válida."
+  },
+  "phone": {
+    "invalid": "Introduce un número de teléfono válido.",
+    "required": "Introduce tu número de teléfono."
+  },
+  "color": {
+    "invalid": "Usa un color hexadecimal, como #0f766e."
+  },
+  "date": {
+    "invalid": "Usa una fecha válida.",
+    "endBeforeStart": "La fecha de fin debe ser igual o posterior a la de inicio."
+  },
+  "url": {
+    "invalid": "Introduce una dirección web válida."
+  },
+  "text": {
+    "tooShort": "Usa al menos {min} caracteres.",
+    "tooLong": "Usa como máximo {max} caracteres."
+  },
+  "name": {
+    "yours": "Introduce tu nombre.",
+    "any": "Introduce un nombre.",
+    "firstName": "Introduce tu nombre.",
+    "lastName": "Introduce tus apellidos.",
+    "customerFirstName": "Introduce un nombre.",
+    "business": "Introduce el nombre de tu negocio.",
+    "service": "Introduce el nombre del servicio."
+  },
+  "terms": {
+    "required": "Acepta las condiciones para continuar."
+  },
+  "password": {
+    "required": "Introduce tu contraseña.",
+    "common": "Esta contraseña es demasiado común. Elige algo más difícil de adivinar.",
+    "repeated": "Evita repetir un solo carácter.",
+    "containsEmail": "Tu contraseña no debe contener tu dirección de email.",
+    "currentIncorrect": "Tu contraseña actual no es correcta.",
+    "incorrect": "Tu contraseña no es correcta."
+  },
+  "slug": {
+    "format": "Usa letras minúsculas, números y guiones.",
+    "reserved": "Este enlace está reservado. Prueba con otro.",
+    "doubleDash": "Evita los guiones dobles.",
+    "taken": "Ese enlace de reservas ya está en uso.",
+    "invalid": "Enlace no válido"
+  },
+  "timezone": {
+    "invalid": "Elige una zona horaria válida."
+  },
+  "currency": {
+    "invalid": "Usa un código de moneda de 3 letras."
+  },
+  "country": {
+    "invalid": "Usa un código de país de 2 letras."
+  },
+  "locale": {
+    "invalid": "Elige un idioma de la lista."
+  },
+  "service": {
+    "durationMin": "Al menos 5 minutos.",
+    "durationMax": "Como máximo 12 horas.",
+    "price": "Introduce un precio válido.",
+    "atLeastOne": "Añade al menos un servicio.",
+    "check": "Revisa este servicio.",
+    "needed": "Añade al menos un servicio activo con un miembro del equipo asignado antes de publicar."
+  },
+  "time": {
+    "endAfterStart": "La hora de fin debe ser posterior a la de inicio.",
+    "interval": "Elige un intervalo válido."
+  },
+  "number": {
+    "between": "Introduce un número entre {min} y {max}."
+  },
+  "form": {
+    "honeypot": "Envío no válido.",
+    "tooLarge": "La solicitud es demasiado grande",
+    "invalidJson": "Datos no válidos",
+    "chooseImage": "Elige una imagen."
+  },
+  "account": {
+    "emailTaken": "Ya existe una cuenta con este email.",
+    "alreadyMember": "Ya eres miembro de este negocio.",
+    "profileLinked": "Este perfil del equipo ya está vinculado a otra cuenta. Pide una invitación nueva."
+  },
+  "team": {
+    "hasAccount": "Este miembro del equipo ya tiene una cuenta.",
+    "alreadyOnTeam": "Esta persona ya forma parte de tu equipo.",
+    "choose": "Elige un miembro del equipo.",
+    "upcoming": "Este miembro del equipo tiene {count, plural, one {# cita próxima} other {# citas próximas}}. Cambia la hora o cancélalas primero.",
+    "ownerMustVerify": "{name} tiene que confirmar su dirección de email antes de convertirse en propietario."
+  },
+  "customer": {
+    "emailTaken": "Ya existe un cliente con este email.",
+    "chooseOrName": "Elige un cliente existente o introduce un nombre."
+  },
+  "business": {
+    "confirmName": "Escribe el nombre del negocio exactamente para confirmar."
+  },
+  "generic": {
+    "required": "Este campo es obligatorio.",
+    "invalid": "Este valor no es válido.",
+    "chooseOption": "Elige una de las opciones.",
+    "numberMin": "Introduce un número de al menos {min}.",
+    "numberMax": "Introduce un número no mayor que {max}.",
+    "tooFew": "Añade al menos {min}.",
+    "tooMany": "Elige como máximo {max}."
+  }
+}

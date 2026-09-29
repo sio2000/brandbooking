@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Geçerli bir e-posta adresi girin."
+  },
+  "phone": {
+    "invalid": "Geçerli bir telefon numarası girin.",
+    "required": "Telefon numaranızı girin."
+  },
+  "color": {
+    "invalid": "#0f766e gibi bir onaltılık renk kodu kullanın."
+  },
+  "date": {
+    "invalid": "Geçerli bir tarih kullanın.",
+    "endBeforeStart": "Bitiş tarihi, başlangıç tarihiyle aynı veya ondan sonra olmalıdır."
+  },
+  "url": {
+    "invalid": "Geçerli bir web adresi girin."
+  },
+  "text": {
+    "tooShort": "En az {min} karakter kullanın.",
+    "tooLong": "En fazla {max} karakter kullanın."
+  },
+  "name": {
+    "yours": "Adınızı girin.",
+    "any": "Bir ad girin.",
+    "firstName": "Adınızı girin.",
+    "lastName": "Soyadınızı girin.",
+    "customerFirstName": "Bir ad girin.",
+    "business": "İşletmenizin adını girin.",
+    "service": "Bir hizmet adı girin."
+  },
+  "terms": {
+    "required": "Devam etmek için lütfen koşulları kabul edin."
+  },
+  "password": {
+    "required": "Şifrenizi girin.",
+    "common": "Bu şifre çok yaygın. Tahmin edilmesi daha zor bir şey seçin.",
+    "repeated": "Tek bir karakteri tekrarlamaktan kaçının.",
+    "containsEmail": "Şifreniz e-posta adresinizi içermemelidir.",
+    "currentIncorrect": "Mevcut şifreniz yanlış.",
+    "incorrect": "Şifreniz yanlış."
+  },
+  "slug": {
+    "format": "Küçük harf, rakam ve tire kullanın.",
+    "reserved": "Bu bağlantı ayrılmış. Başka bir tane deneyin.",
+    "doubleDash": "Çift tire kullanmayın.",
+    "taken": "Bu rezervasyon bağlantısı zaten kullanılıyor.",
+    "invalid": "Geçersiz bağlantı"
+  },
+  "timezone": {
+    "invalid": "Geçerli bir saat dilimi seçin."
+  },
+  "currency": {
+    "invalid": "3 harfli bir para birimi kodu kullanın."
+  },
+  "country": {
+    "invalid": "2 harfli bir ülke kodu kullanın."
+  },
+  "locale": {
+    "invalid": "Listeden bir dil seçin."
+  },
+  "service": {
+    "durationMin": "En az 5 dakika.",
+    "durationMax": "En fazla 12 saat.",
+    "price": "Geçerli bir fiyat girin.",
+    "atLeastOne": "En az bir hizmet ekleyin.",
+    "check": "Bu hizmeti kontrol edin.",
+    "needed": "Yayınlamadan önce, bir ekip üyesi atanmış en az bir aktif hizmet ekleyin."
+  },
+  "time": {
+    "endAfterStart": "Bitiş saati başlangıç saatinden sonra olmalıdır.",
+    "interval": "Geçerli bir aralık seçin."
+  },
+  "number": {
+    "between": "{min} ile {max} arasında bir sayı girin."
+  },
+  "form": {
+    "honeypot": "Geçersiz gönderim.",
+    "tooLarge": "İstek çok büyük",
+    "invalidJson": "Geçersiz veri",
+    "chooseImage": "Bir görsel seçin."
+  },
+  "account": {
+    "emailTaken": "Bu e-posta ile kayıtlı bir hesap zaten var.",
+    "alreadyMember": "Bu işletmenin zaten üyesisiniz.",
+    "profileLinked": "Bu ekip profili zaten başka bir hesaba bağlı. Yeni bir davet isteyin."
+  },
+  "team": {
+    "hasAccount": "Bu ekip üyesinin zaten bir hesabı var.",
+    "alreadyOnTeam": "Bu kişi zaten ekibinizde.",
+    "choose": "Bir ekip üyesi seçin.",
+    "upcoming": "Bu ekip üyesinin {count} yaklaşan randevusu var. Önce bunları yeniden planlayın veya iptal edin.",
+    "ownerMustVerify": "{name} sahip olabilmek için önce e-posta adresini doğrulamalıdır."
+  },
+  "customer": {
+    "emailTaken": "Bu e-posta ile kayıtlı bir müşteri zaten var.",
+    "chooseOrName": "Mevcut bir müşteri seçin veya bir ad girin."
+  },
+  "business": {
+    "confirmName": "Onaylamak için işletme adını tam olarak yazın."
+  },
+  "generic": {
+    "required": "Bu alan zorunludur.",
+    "invalid": "Bu değer geçerli değil.",
+    "chooseOption": "Seçeneklerden birini seçin.",
+    "numberMin": "En az {min} olan bir sayı girin.",
+    "numberMax": "En fazla {max} olan bir sayı girin.",
+    "tooFew": "En az {min} tane ekleyin.",
+    "tooMany": "En fazla {max} tane seçin."
+  }
+}

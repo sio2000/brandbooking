@@ -5,10 +5,15 @@ import { requireUserPage, listMemberships, optionalTenant } from '@/server/tenan
 import { db } from '@/server/db/client'
 import { services } from '@/server/db/schema'
 import { appUrl, isEmailSimulated } from '@/server/env'
+import { getT } from '@/server/i18n'
 import { OnboardingWizard } from '@/components/onboarding/wizard'
+import { Translations } from '@/components/i18n/translations'
 import { site } from '@/lib/site'
 
-export const metadata: Metadata = { title: 'Set up your booking page', robots: { index: false } }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('onboarding')
+  return { title: t('metaTitle'), robots: { index: false } }
+}
 
 export default async function OnboardingPage({ searchParams }: PageProps<'/onboarding'>) {
   const session = await requireUserPage('/onboarding')
@@ -20,6 +25,7 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
     slug: string
     step: number
     category: string | null
+    currency: string
     services: Array<{
       id: string
       name: string
@@ -46,18 +52,23 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
       slug: ctx.business.slug,
       step: existing.length > 0 ? 4 : 2,
       category: ctx.business.category,
+      currency: ctx.business.currency,
       services: existing,
     }
   }
   return (
-    <OnboardingWizard
-      userName={session.user.name}
-      emailVerified={session.user.emailVerified}
-      emailSimulated={isEmailSimulated()}
-      email={session.user.email}
-      resume={resume}
-      origin={appUrl('/').replace(/\/$/, '')}
-      trialDays={site.trialDays}
-    />
+    // The wizard also renders shared pieces (account deletion form, colour
+    // picker, copy button) that bring their own namespaces when translated.
+    <Translations ns={['common', 'onboarding']}>
+      <OnboardingWizard
+        userName={session.user.name}
+        emailVerified={session.user.emailVerified}
+        emailSimulated={isEmailSimulated()}
+        email={session.user.email}
+        resume={resume}
+        origin={appUrl('/').replace(/\/$/, '')}
+        trialDays={site.trialDays}
+      />
+    </Translations>
   )
 }

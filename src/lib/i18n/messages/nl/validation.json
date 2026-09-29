@@ -1,0 +1,111 @@
+{
+  "email": {
+    "invalid": "Vul een geldig e-mailadres in."
+  },
+  "phone": {
+    "invalid": "Vul een geldig telefoonnummer in.",
+    "required": "Vul je telefoonnummer in."
+  },
+  "color": {
+    "invalid": "Gebruik een hexkleur zoals #0f766e."
+  },
+  "date": {
+    "invalid": "Gebruik een geldige datum.",
+    "endBeforeStart": "De einddatum moet op of na de begindatum liggen."
+  },
+  "url": {
+    "invalid": "Vul een geldig webadres in."
+  },
+  "text": {
+    "tooShort": "Gebruik minstens {min} tekens.",
+    "tooLong": "Gebruik maximaal {max} tekens."
+  },
+  "name": {
+    "yours": "Vul je naam in.",
+    "any": "Vul een naam in.",
+    "firstName": "Vul je voornaam in.",
+    "lastName": "Vul je achternaam in.",
+    "customerFirstName": "Vul een voornaam in.",
+    "business": "Vul de naam van je bedrijf in.",
+    "service": "Vul een naam voor de dienst in."
+  },
+  "terms": {
+    "required": "Accepteer de voorwaarden om verder te gaan."
+  },
+  "password": {
+    "required": "Vul je wachtwoord in.",
+    "common": "Dit wachtwoord komt te vaak voor. Kies iets wat moeilijker te raden is.",
+    "repeated": "Herhaal niet steeds hetzelfde teken.",
+    "containsEmail": "Je wachtwoord mag je e-mailadres niet bevatten.",
+    "currentIncorrect": "Je huidige wachtwoord klopt niet.",
+    "incorrect": "Je wachtwoord klopt niet."
+  },
+  "slug": {
+    "format": "Gebruik kleine letters, cijfers en streepjes.",
+    "reserved": "Deze link is gereserveerd. Probeer een andere.",
+    "doubleDash": "Vermijd dubbele streepjes.",
+    "taken": "Die boekingslink is al in gebruik.",
+    "invalid": "Ongeldige link"
+  },
+  "timezone": {
+    "invalid": "Kies een geldige tijdzone."
+  },
+  "currency": {
+    "invalid": "Gebruik een valutacode van 3 letters."
+  },
+  "country": {
+    "invalid": "Gebruik een landcode van 2 letters."
+  },
+  "locale": {
+    "invalid": "Kies een taal uit de lijst."
+  },
+  "service": {
+    "durationMin": "Minstens 5 minuten.",
+    "durationMax": "Maximaal 12 uur.",
+    "price": "Vul een geldige prijs in.",
+    "atLeastOne": "Voeg minstens één dienst toe.",
+    "check": "Controleer deze dienst.",
+    "needed": "Voeg vóór het publiceren minstens één actieve dienst toe met een gekoppeld teamlid."
+  },
+  "time": {
+    "endAfterStart": "De eindtijd moet na de begintijd liggen.",
+    "interval": "Kies een geldig interval."
+  },
+  "number": {
+    "between": "Vul een getal tussen {min} en {max} in."
+  },
+  "form": {
+    "honeypot": "Ongeldige inzending.",
+    "tooLarge": "Verzoek te groot",
+    "invalidJson": "Ongeldige gegevens",
+    "chooseImage": "Kies een afbeelding."
+  },
+  "account": {
+    "emailTaken": "Er bestaat al een account met dit e-mailadres.",
+    "alreadyMember": "Je bent al lid van dit bedrijf.",
+    "profileLinked": "Dit teamprofiel is al gekoppeld aan een ander account. Vraag om een nieuwe uitnodiging."
+  },
+  "team": {
+    "hasAccount": "Dit teamlid heeft al een account.",
+    "alreadyOnTeam": "Deze persoon zit al in je team.",
+    "choose": "Kies een teamlid.",
+    "upcoming": "Dit teamlid heeft {count, plural, one {# komende afspraak} other {# komende afspraken}}. Verzet of annuleer die eerst.",
+    "ownerMustVerify": "{name} moet eerst het e-mailadres bevestigen voordat die eigenaar kan worden."
+  },
+  "customer": {
+    "emailTaken": "Er bestaat al een klant met dit e-mailadres.",
+    "chooseOrName": "Kies een bestaande klant of vul een naam in."
+  },
+  "business": {
+    "confirmName": "Typ ter bevestiging exact de naam van het bedrijf."
+  },
+  "generic": {
+    "required": "Dit veld is verplicht.",
+    "invalid": "Deze waarde is ongeldig.",
+    "chooseOption": "Kies een van de opties.",
+    "numberMin": "Vul een getal van minstens {min} in.",
+    "numberMax": "Vul een getal van maximaal {max} in.",
+    "tooFew": "Voeg er minstens {min} toe.",
+    "tooMany": "Kies er maximaal {max}."
+  }
+}
