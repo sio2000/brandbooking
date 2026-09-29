@@ -17,6 +17,7 @@ import {
 import { getAvailability } from '@/server/booking/booking-service'
 import { dispatchForAppointment } from '@/server/notifications/dispatcher'
 import { AppError } from '@/server/errors'
+import { getT } from '@/server/i18n'
 
 function refresh(id?: string) {
   revalidatePath('/app', 'layout')
@@ -24,19 +25,21 @@ function refresh(id?: string) {
 }
 
 export async function createAppointmentAction(input: unknown) {
+  const t = await getT('app-appointments')
   return runAction(async () => {
     const ctx = await requireTenantAction(['appointments.manage_all', 'appointments.manage_own'])
-    const appt = await createManualAppointment(
-      ctx,
-      parse(manualAppointmentSchema, input),
-      await requestMeta(),
-    )
+    const v = parse(manualAppointmentSchema, input)
+    if (!v.customerId && !v.firstName) {
+      throw new AppError('validation', { fields: { firstName: t('new.customerRequired') } })
+    }
+    const appt = await createManualAppointment(ctx, v, await requestMeta())
     refresh(appt.id)
     return { id: appt.id }
-  }, 'Appointment created')
+  }, t('toasts.created'))
 }
 
 export async function rescheduleAction(input: unknown) {
+  const t = await getT('app-appointments')
   return runAction(async () => {
     const ctx = await requireTenantAction(['appointments.manage_all', 'appointments.manage_own'])
     const appt = await rescheduleByBusiness(
@@ -46,7 +49,7 @@ export async function rescheduleAction(input: unknown) {
     )
     refresh(appt.id)
     return { id: appt.id, startsAt: appt.startsAt.toISOString() }
-  }, 'Appointment moved. The customer has been notified')
+  }, t('toasts.moved'))
 }
 
 const transitionSchema = z.object({
@@ -56,15 +59,8 @@ const transitionSchema = z.object({
   notifyCustomer: z.boolean().optional(),
 })
 
-const MESSAGES = {
-  confirm: 'Appointment confirmed',
-  cancel: 'Appointment cancelled',
-  complete: 'Marked as completed',
-  no_show: 'Marked as no-show',
-  reopen: 'Appointment reopened',
-}
-
 export async function changeStatusAction(input: unknown) {
+  const t = await getT('app-appointments')
   const parsed = transitionSchema.safeParse(input)
   return runAction(
     async () => {
@@ -77,7 +73,7 @@ export async function changeStatusAction(input: unknown) {
       refresh(v.id)
       return null
     },
-    parsed.success ? MESSAGES[parsed.data.transition] : undefined,
+    parsed.success ? t(`toasts.${parsed.data.transition}`) : undefined,
   )
 }
 
@@ -98,13 +94,14 @@ export async function bulkStatusAction(input: unknown) {
 }
 
 export async function notesAction(input: unknown) {
+  const t = await getT('app-appointments')
   return runAction(async () => {
     const ctx = await requireTenantAction(['appointments.manage_all', 'appointments.manage_own'])
     const v = parse(z.object({ id: z.uuid(), notes: z.string().trim().max(5000) }), input)
     await updateAppointmentNotes(ctx, v.id, v.notes || null, await requestMeta())
     revalidatePath(`/app/appointments/${v.id}`)
     return null
-  }, 'Notes saved')
+  }, t('toasts.notesSaved'))
 }
 
 /** Free times for a service (used as suggestions when booking/rescheduling from the dashboard). */

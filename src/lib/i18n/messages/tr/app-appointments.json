@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Randevular",
+    "detailTitle": "Randevu"
+  },
+  "status": {
+    "pending": "Beklemede",
+    "confirmed": "Onaylandı",
+    "completed": "Tamamlandı",
+    "cancelled": "İptal edildi",
+    "no_show": "Gelmedi"
+  },
+  "events": {
+    "created": "Alındı",
+    "confirmed": "Onaylandı",
+    "rescheduled": "Yeniden planlandı",
+    "cancelled": "İptal edildi",
+    "completed": "Tamamlandı",
+    "no_show": "Gelmedi",
+    "edited": "Düzenlendi",
+    "reopened": "Yeniden açıldı"
+  },
+  "sources": {
+    "booking_page": "Rezervasyon sayfası",
+    "widget": "Web sitesi eklentisi",
+    "qr": "QR kodu",
+    "manual": "Ekip tarafından eklendi",
+    "campaign": "Kampanya bağlantısı",
+    "social": "Sosyal medya",
+    "api": "API"
+  },
+  "list": {
+    "title": "Randevular",
+    "description": "Tüm rezervasyonlar tek yerde. Filtreleyin, durumları toplu güncelleyin veya bir tabloya aktarın.",
+    "views": {
+      "label": "Hangi randevular",
+      "upcoming": "Yaklaşan",
+      "today": "Bugün",
+      "past": "Geçmiş",
+      "all": "Tümü"
+    },
+    "filters": {
+      "status": "Duruma göre filtrele",
+      "anyStatus": "Tüm durumlar",
+      "staff": "Ekip üyesine göre filtrele",
+      "everyone": "Herkes",
+      "service": "Hizmete göre filtrele",
+      "allServices": "Tüm hizmetler"
+    },
+    "export": "CSV olarak dışa aktar",
+    "new": "Yeni",
+    "newAppointment": "Yeni randevu",
+    "bulk": {
+      "label": "Toplu işlemler",
+      "selected": "{count} seçildi",
+      "confirm": "Onayla",
+      "complete": "Tamamlandı olarak işaretle",
+      "noShow": "Gelmedi",
+      "clear": "Temizle",
+      "result": "{updated} güncellendi",
+      "resultSkipped": "{updated} güncellendi, {skipped} atlandı (uygun değil)"
+    },
+    "empty": {
+      "upcomingTitle": "Yaklaşan randevu yok",
+      "upcomingBody": "Müşteriler sayfanız üzerinden randevu aldığında randevuları anında burada görünür. Kendiniz de randevu ekleyebilirsiniz.",
+      "filteredTitle": "Bu filtrelere uyan randevu yok",
+      "filteredBody": "Farklı bir görünüm deneyin veya filtreleri temizleyin."
+    },
+    "selectAll": "Bu sayfadakilerin tümünü seç",
+    "selectAllShort": "Tümünü seç",
+    "selectRow": "{time} saatindeki {name} randevusunu seç",
+    "pagination": {
+      "label": "Sayfalama",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "page": "Sayfa {page}"
+    }
+  },
+  "detail": {
+    "back": "Randevular",
+    "when": "{date} · {start} – {end} ({zone}) · {staff} ile",
+    "details": "Ayrıntılar",
+    "service": "Hizmet",
+    "staff": "Ekip üyesi",
+    "price": "Fiyat",
+    "noPrice": "Fiyat belirlenmedi",
+    "reference": "Referans",
+    "booked": "Rezervasyon tarihi",
+    "source": "Kaynak",
+    "rescheduled": "Yeniden planlama",
+    "rescheduledTimes": "{count, plural, one {# kez} other {# kez}}",
+    "cancelled": "İptal",
+    "cancelledBy": "{date} · iptal eden: {who}",
+    "cancelledByWho": {
+      "customer": "müşteri",
+      "user": "ekibiniz",
+      "system": "sistem"
+    },
+    "customerMessage": "Müşterinin mesajı",
+    "notes": {
+      "title": "Dahili notlar",
+      "description": "Yalnızca ekibiniz görebilir. Müşterilere asla gösterilmez.",
+      "empty": "Not yok.",
+      "placeholder": "Renk formülü, tercihler, bir dahaki sefere işe yarayacak her şey…",
+      "save": "Notları kaydet"
+    },
+    "history": {
+      "title": "Geçmiş",
+      "byCustomer": "müşteri tarafından",
+      "by": "{name} tarafından",
+      "team": "ekip",
+      "stripe": "Stripe",
+      "automatically": "otomatik olarak",
+      "notesUpdated": "Dahili notlar güncellendi"
+    },
+    "customer": {
+      "title": "Müşteri",
+      "profile": "Profili görüntüle",
+      "noEmail": "Kayıtlı e-posta adresi yok; bu nedenle müşteri onay ve hatırlatma almayacak."
+    },
+    "emails": {
+      "title": "E-postalar",
+      "description": "Bu randevuya ait onaylar ve hatırlatmalar.",
+      "empty": "Bu randevu için e-posta yok.",
+      "sent": "Gönderildi: {when}",
+      "scheduled": "{date} için planlandı",
+      "failed": "Teslim edilemedi",
+      "notNeeded": "Gerekmedi",
+      "sending": "Gönderiliyor…",
+      "badge": {
+        "pending": "beklemede",
+        "sending": "gönderiliyor",
+        "sent": "gönderildi",
+        "failed": "başarısız",
+        "cancelled": "atlandı"
+      },
+      "templates": {
+        "booking_received": "Rezervasyon onayı",
+        "booking_confirmed": "Onay (kabul sonrası)",
+        "booking_cancelled": "İptal bildirimi",
+        "booking_rescheduled": "Yeniden planlama bildirimi",
+        "booking_reminder": "Hatırlatma",
+        "member_booking_created": "Ekip: yeni rezervasyon",
+        "member_booking_cancelled": "Ekip: iptal",
+        "member_booking_rescheduled": "Ekip: yeniden planlama"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Onayla",
+    "completed": "Tamamlandı",
+    "noShow": "Gelmedi",
+    "reschedule": "Yeniden planla",
+    "reopen": "Yeniden aç",
+    "cancel": "İptal et",
+    "updated": "Güncellendi",
+    "cancelDialog": {
+      "title": "Bu randevu iptal edilsin mi?",
+      "description": "Bu saat diğer rezervasyonlar için boşa çıkar. Bu işlem geri alınamaz; yeniden rezervasyon yapmanız gerekir.",
+      "confirm": "Randevuyu iptal et",
+      "message": "Müşteriye mesaj",
+      "optional": "(isteğe bağlı)",
+      "notify": "Müşteriye e-posta gönder"
+    }
+  },
+  "reschedule": {
+    "title": "Randevuyu yeniden planla",
+    "description": "Müşteri eski ve yeni saati içeren bir e-posta alır.",
+    "date": "Tarih",
+    "time": "Başlangıç saati",
+    "staff": "Ekip üyesi",
+    "freeTimes": "Boş saatler",
+    "checking": "Kontrol ediliyor…",
+    "none": "Bu gün çalışma saatleri içinde boş saat yok. Yine de istediğiniz saati elle seçebilirsiniz.",
+    "cancel": "İptal",
+    "submit": "Randevuyu taşı",
+    "done": "Yeniden planlandı"
+  },
+  "new": {
+    "title": "Yeni randevu",
+    "description": "Saatler: {timezone}.",
+    "service": "Hizmet",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Ekip üyesi",
+    "date": "Tarih",
+    "time": "Başlangıç saati",
+    "timeHint": "Çalışma saatleri dışında bile her saat seçilebilir.",
+    "freeTimes": "Boş saatler",
+    "freeTimesFor": "{name} için boş saatler",
+    "checking": "Müsaitlik kontrol ediliyor…",
+    "none": "Bu gün çalışma saatleri içinde boş saat yok.",
+    "customer": "Müşteri",
+    "changeCustomer": "Başka bir müşteri seç",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "emailHint": "Onaylar ve hatırlatmalar için gerekli.",
+    "phone": "Telefon",
+    "searchInstead": "Bunun yerine mevcut müşterilerde ara",
+    "search": "Müşteri ara",
+    "searchPlaceholder": "Ad, e-posta veya telefonla arayın",
+    "newCustomer": "Yeni müşteri",
+    "notes": "Dahili notlar",
+    "notesHint": "Yalnızca ekibiniz görebilir.",
+    "notify": "Müşteriye onay e-postası gönder",
+    "notifyHint": "Müşterinin e-posta adresi varsa hatırlatmalar otomatik gönderilir.",
+    "cancel": "İptal",
+    "submit": "Randevu oluştur",
+    "chooseTime": "Bir başlangıç saati seçin.",
+    "customerRequired": "Mevcut bir müşteri seçin veya bir ad girin."
+  },
+  "toasts": {
+    "created": "Randevu oluşturuldu",
+    "moved": "Randevu taşındı. Müşteri bilgilendirildi",
+    "confirm": "Randevu onaylandı",
+    "cancel": "Randevu iptal edildi",
+    "complete": "Tamamlandı olarak işaretlendi",
+    "no_show": "Gelmedi olarak işaretlendi",
+    "reopen": "Randevu yeniden açıldı",
+    "notesSaved": "Notlar kaydedildi"
+  },
+  "export": {
+    "reference": "Referans",
+    "date": "Tarih",
+    "start": "Başlangıç",
+    "end": "Bitiş",
+    "timezone": "Saat dilimi",
+    "status": "Durum",
+    "service": "Hizmet",
+    "staff": "Ekip üyesi",
+    "customer": "Müşteri",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "price": "Fiyat",
+    "currency": "Para birimi",
+    "source": "Kaynak",
+    "bookedAt": "Rezervasyon tarihi"
+  }
+}

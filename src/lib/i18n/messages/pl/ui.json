@@ -1,0 +1,32 @@
+{
+  "close": "Zamknij",
+  "dialog": "Okno dialogowe",
+  "panel": "Panel",
+  "cancel": "Anuluj",
+  "confirm": "Potwierdź",
+  "typeToConfirm": "Wpisz <phrase>{text}</phrase>, aby potwierdzić",
+  "optional": "Opcjonalnie",
+  "loading": "Wczytywanie",
+  "toasts": "Powiadomienia",
+  "closeToast": "Zamknij powiadomienie",
+  "theme": {
+    "label": "Motyw kolorystyczny",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowy"
+  },
+  "copy": {
+    "label": "Kopiuj link",
+    "copied": "Skopiowano",
+    "toast": "Link skopiowany do schowka",
+    "failed": "Nie udało się skopiować automatycznie. Zaznacz link i skopiuj go ręcznie."
+  },
+  "print": "Drukuj",
+  "color": "Kolor",
+  "stat": {
+    "about": "Informacje: {label}",
+    "up": "wzrost",
+    "down": "spadek",
+    "unchanged": "bez zmian"
+  }
+}

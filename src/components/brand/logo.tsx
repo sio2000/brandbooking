@@ -36,6 +36,9 @@ export function LogoMark({ className, title }: { className?: string; title?: str
   )
 }
 
+/** The brand name is never translated. */
+const BRAND = 'Hournook'
+
 export function Logo({ className, markClassName }: { className?: string; markClassName?: string }) {
   return (
     <span className={cn('inline-flex items-center gap-2', className)}>
@@ -44,9 +47,10 @@ export function Logo({ className, markClassName }: { className?: string; markCla
         aria-hidden
         className="font-display text-[1.25rem] leading-none font-bold tracking-[-0.04em]"
       >
-        hour<span className="text-primary">nook</span>
+        {BRAND.slice(0, 4).toLowerCase()}
+        <span className="text-primary">{BRAND.slice(4).toLowerCase()}</span>
       </span>
-      <span className="sr-only">Hournook</span>
+      <span className="sr-only">{BRAND}</span>
     </span>
   )
 }

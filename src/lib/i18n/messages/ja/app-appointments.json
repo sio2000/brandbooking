@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "予約一覧",
+    "detailTitle": "予約"
+  },
+  "status": {
+    "pending": "保留中",
+    "confirmed": "確定済み",
+    "completed": "完了",
+    "cancelled": "キャンセル済み",
+    "no_show": "無断キャンセル"
+  },
+  "events": {
+    "created": "予約受付",
+    "confirmed": "確定",
+    "rescheduled": "日時変更",
+    "cancelled": "キャンセル",
+    "completed": "完了",
+    "no_show": "無断キャンセル",
+    "edited": "編集",
+    "reopened": "再開"
+  },
+  "sources": {
+    "booking_page": "予約ページ",
+    "widget": "ウェブサイトのウィジェット",
+    "qr": "QRコード",
+    "manual": "スタッフが追加",
+    "campaign": "キャンペーンリンク",
+    "social": "SNS",
+    "api": "API"
+  },
+  "list": {
+    "title": "予約一覧",
+    "description": "すべての予約をひとつの場所で管理できます。絞り込み、ステータスの一括更新、スプレッドシートへのエクスポートが可能です。",
+    "views": {
+      "label": "表示する予約",
+      "upcoming": "今後",
+      "today": "今日",
+      "past": "過去",
+      "all": "すべて"
+    },
+    "filters": {
+      "status": "ステータスで絞り込む",
+      "anyStatus": "すべてのステータス",
+      "staff": "スタッフで絞り込む",
+      "everyone": "全員",
+      "service": "サービスで絞り込む",
+      "allServices": "すべてのサービス"
+    },
+    "export": "CSVをエクスポート",
+    "new": "新規",
+    "newAppointment": "新規予約",
+    "bulk": {
+      "label": "一括操作",
+      "selected": "{count} 件を選択中",
+      "confirm": "確定する",
+      "complete": "完了にする",
+      "noShow": "無断キャンセル",
+      "clear": "選択を解除",
+      "result": "{updated} 件を更新しました",
+      "resultSkipped": "{updated} 件を更新し、{skipped} 件をスキップしました（対象外）"
+    },
+    "empty": {
+      "upcomingTitle": "今後の予約はありません",
+      "upcomingBody": "お客様が予約ページから予約すると、すぐにここに表示されます。ご自身で追加することもできます。",
+      "filteredTitle": "条件に一致する予約はありません",
+      "filteredBody": "別の表示を選ぶか、絞り込みを解除してください。"
+    },
+    "selectAll": "このページの予約をすべて選択",
+    "selectAllShort": "すべて選択",
+    "selectRow": "{time} の{name}様を選択",
+    "pagination": {
+      "label": "ページ送り",
+      "previous": "前へ",
+      "next": "次へ",
+      "page": "{page} ページ"
+    }
+  },
+  "detail": {
+    "back": "予約一覧",
+    "when": "{date} · {start}〜{end}（{zone}）· 担当：{staff}",
+    "details": "詳細",
+    "service": "サービス",
+    "staff": "スタッフ",
+    "price": "料金",
+    "noPrice": "料金未設定",
+    "reference": "予約番号",
+    "booked": "予約日時",
+    "source": "予約経路",
+    "rescheduled": "日時変更",
+    "rescheduledTimes": "{count, plural, other {# 回}}",
+    "cancelled": "キャンセル",
+    "cancelledBy": "{date}（{who}によるキャンセル）",
+    "cancelledByWho": {
+      "customer": "お客様",
+      "user": "チーム",
+      "system": "システム"
+    },
+    "customerMessage": "お客様からのメッセージ",
+    "notes": {
+      "title": "社内メモ",
+      "description": "チームだけが閲覧できます。お客様には表示されません。",
+      "empty": "メモはありません。",
+      "placeholder": "カラーの配合、好み、次回に役立つことなど…",
+      "save": "メモを保存"
+    },
+    "history": {
+      "title": "履歴",
+      "byCustomer": "お客様による操作",
+      "by": "{name}さんによる操作",
+      "team": "チーム",
+      "stripe": "Stripe",
+      "automatically": "自動",
+      "notesUpdated": "社内メモを更新しました"
+    },
+    "customer": {
+      "title": "お客様",
+      "profile": "プロフィールを見る",
+      "noEmail": "メールアドレスが登録されていないため、このお客様には確認や通知のメールが届きません。"
+    },
+    "emails": {
+      "title": "メール",
+      "description": "この予約の確認メールとリマインダー。",
+      "empty": "この予約のメールはありません。",
+      "sent": "送信済み（{when}）",
+      "scheduled": "{date}に送信予定",
+      "failed": "配信に失敗しました",
+      "notNeeded": "送信不要",
+      "sending": "送信中…",
+      "badge": {
+        "pending": "送信待ち",
+        "sending": "送信中",
+        "sent": "送信済み",
+        "failed": "失敗",
+        "cancelled": "スキップ"
+      },
+      "templates": {
+        "booking_received": "予約確認",
+        "booking_confirmed": "予約確定（承認後）",
+        "booking_cancelled": "キャンセルのお知らせ",
+        "booking_rescheduled": "日時変更のお知らせ",
+        "booking_reminder": "リマインダー",
+        "member_booking_created": "チーム向け：新しい予約",
+        "member_booking_cancelled": "チーム向け：キャンセル",
+        "member_booking_rescheduled": "チーム向け：日時変更"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "確定する",
+    "completed": "完了",
+    "noShow": "無断キャンセル",
+    "reschedule": "日時を変更",
+    "reopen": "再開する",
+    "cancel": "キャンセルする",
+    "updated": "更新しました",
+    "cancelDialog": {
+      "title": "この予約をキャンセルしますか？",
+      "description": "この時間枠はほかの予約に開放されます。元に戻すことはできず、改めて予約が必要になります。",
+      "confirm": "予約をキャンセル",
+      "message": "お客様へのメッセージ",
+      "optional": "（任意）",
+      "notify": "お客様にメールで知らせる"
+    }
+  },
+  "reschedule": {
+    "title": "予約の日時を変更",
+    "description": "変更前と変更後の日時がお客様にメールで届きます。",
+    "date": "日付",
+    "time": "開始時刻",
+    "staff": "スタッフ",
+    "freeTimes": "空き時間",
+    "checking": "確認中…",
+    "none": "この日の営業時間内に空き時間はありません。手動で任意の時刻を選ぶこともできます。",
+    "cancel": "キャンセル",
+    "submit": "この日時に変更",
+    "done": "日時を変更しました"
+  },
+  "new": {
+    "title": "新規予約",
+    "description": "時刻は{timezone}です。",
+    "service": "サービス",
+    "serviceOption": "{name}（{duration}）",
+    "staff": "スタッフ",
+    "date": "日付",
+    "time": "開始時刻",
+    "timeHint": "営業時間外でも、どの時刻でも設定できます。",
+    "freeTimes": "空き時間",
+    "freeTimesFor": "{name}さんの空き時間",
+    "checking": "空き状況を確認中…",
+    "none": "この日の営業時間内に空き時間はありません。",
+    "customer": "お客様",
+    "changeCustomer": "別のお客様を選ぶ",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "emailHint": "予約確認とリマインダーの送信に必要です。",
+    "phone": "電話番号",
+    "searchInstead": "登録済みのお客様から検索する",
+    "search": "お客様を検索",
+    "searchPlaceholder": "名前、メールアドレス、電話番号で検索",
+    "newCustomer": "新しいお客様",
+    "notes": "社内メモ",
+    "notesHint": "チームだけが閲覧できます。",
+    "notify": "お客様に確認メールを送る",
+    "notifyHint": "お客様のメールアドレスがあれば、リマインダーは自動で送信されます。",
+    "cancel": "キャンセル",
+    "submit": "予約を作成",
+    "chooseTime": "開始時刻を選んでください。",
+    "customerRequired": "登録済みのお客様を選ぶか、名前を入力してください。"
+  },
+  "toasts": {
+    "created": "予約を作成しました",
+    "moved": "予約を移動しました。お客様にお知らせしました",
+    "confirm": "予約を確定しました",
+    "cancel": "予約をキャンセルしました",
+    "complete": "完了にしました",
+    "no_show": "無断キャンセルとしてマークしました",
+    "reopen": "予約を再開しました",
+    "notesSaved": "メモを保存しました"
+  },
+  "export": {
+    "reference": "予約番号",
+    "date": "日付",
+    "start": "開始",
+    "end": "終了",
+    "timezone": "タイムゾーン",
+    "status": "ステータス",
+    "service": "サービス",
+    "staff": "スタッフ",
+    "customer": "お客様",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "price": "料金",
+    "currency": "通貨",
+    "source": "予約経路",
+    "bookedAt": "予約日時"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "日历"
+  },
+  "toolbar": {
+    "today": "今天",
+    "previous": "上一页",
+    "next": "下一页",
+    "showStaff": "显示团队成员",
+    "everyone": "所有人",
+    "view": "日历视图",
+    "new": "新建"
+  },
+  "views": {
+    "day": "日",
+    "week": "周",
+    "month": "月",
+    "agenda": "列表"
+  },
+  "agendaTitle": "自 {date} 起",
+  "moved": "已改到 {date} {time}",
+  "movedDescription": "已通过邮件将新时间告知客户。",
+  "slot": "在 {date} {time} 新建预约",
+  "block": "{customer}，{service}，{start} 至 {end}，{staff}，{status}",
+  "footer": {
+    "times": "时间为{timezone}。",
+    "hint": "点击空白时段即可添加预约 · 拖动即可改期（会邮件通知客户）。"
+  },
+  "month": {
+    "day": "{date}：{count, plural, other {# 个预约}}",
+    "more": "还有 {count} 个"
+  },
+  "agenda": {
+    "empty": "未来两周没有预约。",
+    "today": "今天 · {date}"
+  }
+}

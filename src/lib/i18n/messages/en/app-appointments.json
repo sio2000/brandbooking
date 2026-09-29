@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Appointments",
+    "detailTitle": "Appointment"
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "no_show": "No-show"
+  },
+  "events": {
+    "created": "Booked",
+    "confirmed": "Confirmed",
+    "rescheduled": "Rescheduled",
+    "cancelled": "Cancelled",
+    "completed": "Completed",
+    "no_show": "No-show",
+    "edited": "Edited",
+    "reopened": "Reopened"
+  },
+  "sources": {
+    "booking_page": "Booking page",
+    "widget": "Website widget",
+    "qr": "QR code",
+    "manual": "Added by team",
+    "campaign": "Campaign link",
+    "social": "Social media",
+    "api": "API"
+  },
+  "list": {
+    "title": "Appointments",
+    "description": "Every booking in one place. Filter, update statuses in bulk, or export to a spreadsheet.",
+    "views": {
+      "label": "Which appointments",
+      "upcoming": "Upcoming",
+      "today": "Today",
+      "past": "Past",
+      "all": "All"
+    },
+    "filters": {
+      "status": "Filter by status",
+      "anyStatus": "Any status",
+      "staff": "Filter by team member",
+      "everyone": "Everyone",
+      "service": "Filter by service",
+      "allServices": "All services"
+    },
+    "export": "Export CSV",
+    "new": "New",
+    "newAppointment": "New appointment",
+    "bulk": {
+      "label": "Bulk actions",
+      "selected": "{count} selected",
+      "confirm": "Confirm",
+      "complete": "Mark completed",
+      "noShow": "No-show",
+      "clear": "Clear",
+      "result": "{updated} updated",
+      "resultSkipped": "{updated} updated, {skipped} skipped (not eligible)"
+    },
+    "empty": {
+      "upcomingTitle": "No upcoming appointments",
+      "upcomingBody": "When customers book through your page, their appointments appear here instantly. You can also add one yourself.",
+      "filteredTitle": "No appointments match these filters",
+      "filteredBody": "Try a different view or clear the filters."
+    },
+    "selectAll": "Select all on this page",
+    "selectAllShort": "Select all",
+    "selectRow": "Select {name} at {time}",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page}"
+    }
+  },
+  "detail": {
+    "back": "Appointments",
+    "when": "{date} · {start} – {end} ({zone}) · with {staff}",
+    "details": "Details",
+    "service": "Service",
+    "staff": "Team member",
+    "price": "Price",
+    "noPrice": "No price set",
+    "reference": "Reference",
+    "booked": "Booked",
+    "source": "Source",
+    "rescheduled": "Rescheduled",
+    "rescheduledTimes": "{count, plural, one {# time} other {# times}}",
+    "cancelled": "Cancelled",
+    "cancelledBy": "{date} by {who}",
+    "cancelledByWho": {
+      "customer": "customer",
+      "user": "your team",
+      "system": "system"
+    },
+    "customerMessage": "Message from customer",
+    "notes": {
+      "title": "Internal notes",
+      "description": "Only your team can see these. Never shown to customers.",
+      "empty": "No notes.",
+      "placeholder": "Colour formula, preferences, anything useful next time…",
+      "save": "Save notes"
+    },
+    "history": {
+      "title": "History",
+      "byCustomer": "by customer",
+      "by": "by {name}",
+      "team": "team",
+      "stripe": "Stripe",
+      "automatically": "automatically",
+      "notesUpdated": "Internal notes updated"
+    },
+    "customer": {
+      "title": "Customer",
+      "profile": "View profile",
+      "noEmail": "No email on file, so this customer won’t receive confirmations or reminders."
+    },
+    "emails": {
+      "title": "Emails",
+      "description": "Confirmations and reminders for this appointment.",
+      "empty": "No emails for this appointment.",
+      "sent": "Sent {when}",
+      "scheduled": "Scheduled for {date}",
+      "failed": "Delivery failed",
+      "notNeeded": "Not needed",
+      "sending": "Sending…",
+      "badge": {
+        "pending": "pending",
+        "sending": "sending",
+        "sent": "sent",
+        "failed": "failed",
+        "cancelled": "skipped"
+      },
+      "templates": {
+        "booking_received": "Booking confirmation",
+        "booking_confirmed": "Confirmation (after approval)",
+        "booking_cancelled": "Cancellation notice",
+        "booking_rescheduled": "Reschedule notice",
+        "booking_reminder": "Reminder",
+        "member_booking_created": "Team: new booking",
+        "member_booking_cancelled": "Team: cancellation",
+        "member_booking_rescheduled": "Team: reschedule"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Confirm",
+    "completed": "Completed",
+    "noShow": "No-show",
+    "reschedule": "Reschedule",
+    "reopen": "Reopen",
+    "cancel": "Cancel",
+    "updated": "Updated",
+    "cancelDialog": {
+      "title": "Cancel this appointment?",
+      "description": "The time will be freed up for other bookings. This can’t be undone; you’d need to book again.",
+      "confirm": "Cancel appointment",
+      "message": "Message to the customer",
+      "optional": "(optional)",
+      "notify": "Email the customer"
+    }
+  },
+  "reschedule": {
+    "title": "Reschedule appointment",
+    "description": "The customer receives an email with the old and new time.",
+    "date": "Date",
+    "time": "Start time",
+    "staff": "Team member",
+    "freeTimes": "Free times",
+    "checking": "Checking…",
+    "none": "No free times within working hours on this day. You can still pick any time manually.",
+    "cancel": "Cancel",
+    "submit": "Move appointment",
+    "done": "Rescheduled"
+  },
+  "new": {
+    "title": "New appointment",
+    "description": "Times are in {timezone}.",
+    "service": "Service",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Team member",
+    "date": "Date",
+    "time": "Start time",
+    "timeHint": "Any time works, even outside opening hours.",
+    "freeTimes": "Free times",
+    "freeTimesFor": "Free times for {name}",
+    "checking": "Checking availability…",
+    "none": "No free times within working hours on this day.",
+    "customer": "Customer",
+    "changeCustomer": "Choose a different customer",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "emailHint": "Needed for confirmations and reminders.",
+    "phone": "Phone",
+    "searchInstead": "Search existing customers instead",
+    "search": "Search customers",
+    "searchPlaceholder": "Search by name, email or phone",
+    "newCustomer": "New customer",
+    "notes": "Internal notes",
+    "notesHint": "Only visible to your team.",
+    "notify": "Email the customer a confirmation",
+    "notifyHint": "Reminders are sent automatically when the customer has an email address.",
+    "cancel": "Cancel",
+    "submit": "Create appointment",
+    "chooseTime": "Choose a start time.",
+    "customerRequired": "Choose an existing customer or enter a name."
+  },
+  "toasts": {
+    "created": "Appointment created",
+    "moved": "Appointment moved. The customer has been notified",
+    "confirm": "Appointment confirmed",
+    "cancel": "Appointment cancelled",
+    "complete": "Marked as completed",
+    "no_show": "Marked as no-show",
+    "reopen": "Appointment reopened",
+    "notesSaved": "Notes saved"
+  },
+  "export": {
+    "reference": "Reference",
+    "date": "Date",
+    "start": "Start",
+    "end": "End",
+    "timezone": "Timezone",
+    "status": "Status",
+    "service": "Service",
+    "staff": "Team member",
+    "customer": "Customer",
+    "email": "Email",
+    "phone": "Phone",
+    "price": "Price",
+    "currency": "Currency",
+    "source": "Source",
+    "bookedAt": "Booked at"
+  }
+}

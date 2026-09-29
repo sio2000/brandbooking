@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Calendario"
+  },
+  "toolbar": {
+    "today": "Oggi",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "showStaff": "Mostra membro del team",
+    "everyone": "Tutti",
+    "view": "Vista calendario",
+    "new": "Nuovo"
+  },
+  "views": {
+    "day": "Giorno",
+    "week": "Settimana",
+    "month": "Mese",
+    "agenda": "Agenda"
+  },
+  "agendaTitle": "Dal {date}",
+  "moved": "Spostato a {date}, {time}",
+  "movedDescription": "Abbiamo inviato al cliente il nuovo orario via email.",
+  "slot": "Nuovo appuntamento {date} alle {time}",
+  "block": "{customer}, {service}, dalle {start} alle {end}, {staff}, {status}",
+  "footer": {
+    "times": "Orari in {timezone}.",
+    "hint": "Fai clic su uno spazio libero per aggiungere un appuntamento · trascina per spostarlo (il cliente riceve un’email)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# appuntamento} other {# appuntamenti}}",
+    "more": "+{count} altri"
+  },
+  "agenda": {
+    "empty": "Nessun appuntamento nelle prossime due settimane.",
+    "today": "Oggi · {date}"
+  }
+}

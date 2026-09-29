@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Übersicht"
+  },
+  "greeting": {
+    "morning": "Guten Morgen, {name}",
+    "afternoon": "Guten Tag, {name}",
+    "evening": "Guten Abend, {name}"
+  },
+  "summary": {
+    "none": "Für heute ist noch nichts gebucht.",
+    "count": "{count, plural, one {Sie haben heute # Termin.} other {Sie haben heute # Termine.}}",
+    "next": "Als Nächstes: {name} um {time}."
+  },
+  "setup": {
+    "eyebrow": "Einrichtung",
+    "title": "Richten Sie Ihre Buchungsseite fertig ein",
+    "description": "Nur noch wenige Schritte, dann können Kunden online bei Ihnen buchen.",
+    "progress": "Fortschritt der Einrichtung",
+    "done": "erledigt",
+    "todo": "offen",
+    "optional": "Optional",
+    "steps": {
+      "profile": "Unternehmensprofil",
+      "services": "Leistungen",
+      "hours": "Arbeitszeiten",
+      "rules": "Buchungseinstellungen",
+      "branding": "Erscheinungsbild",
+      "publish": "Buchungsseite veröffentlichen"
+    }
+  },
+  "live": {
+    "title": "Ihre Buchungsseite ist online",
+    "copy": "Buchungslink kopieren",
+    "preview": "Vorschau",
+    "qr": "QR-Code"
+  },
+  "stats": {
+    "today": "Heute",
+    "bookedToday": "{count, plural, one {# heute gebucht} other {# heute gebucht}}",
+    "week": "Diese Woche",
+    "scheduled": "Geplante Termine",
+    "earned": "Umsatz diese Woche",
+    "expected": "+ {amount} erwartet aus {count} anstehenden",
+    "noneExpected": "Diese Woche werden keine weiteren Buchungen erwartet",
+    "earnedDefinition": "Leistungspreise der Termine dieser Woche, die bereits stattgefunden haben. Termine zählen automatisch, sobald sie vorbei sind – außer sie wurden storniert oder als nicht erschienen markiert. Ihre Kunden bezahlen Sie direkt; Hournook wickelt kein Geld ab.",
+    "newCustomers": "Neue Kunden",
+    "newCustomersHint": "Diese Woche dazugekommen · {cancelled} storniert · {noShows} nicht erschienen"
+  },
+  "schedule": {
+    "title": "Heutiger Tagesplan",
+    "openCalendar": "Kalender öffnen",
+    "emptyTitle": "Heute keine Termine",
+    "emptyBody": "Teilen Sie Ihren Buchungslink, damit Kunden einen Termin finden, oder legen Sie selbst einen Termin an.",
+    "newAppointment": "Neuer Termin",
+    "now": "Jetzt"
+  },
+  "attention": {
+    "title": "Braucht Ihre Aufmerksamkeit",
+    "clear": "Alles erledigt. Gerade gibt es nichts zu tun.",
+    "pending": "{count, plural, one {# Buchungsanfrage wartet auf Bestätigung} other {# Buchungsanfragen warten auf Bestätigung}}",
+    "review": "Prüfen",
+    "unresolved": "{count, plural, one {# vergangener Termin muss als erledigt oder nicht erschienen markiert werden} other {# vergangene Termine müssen als erledigt oder nicht erschienen markiert werden}}",
+    "update": "Aktualisieren",
+    "failedMail": "{count, plural, one {# E-Mail konnte diese Woche nicht zugestellt werden} other {# E-Mails konnten diese Woche nicht zugestellt werden}}",
+    "seeDetails": "Details ansehen",
+    "pastDue": "Ihre letzte Zahlung ist fehlgeschlagen. Aktualisieren Sie Ihre Karte, um online zu bleiben",
+    "fix": "Beheben",
+    "paused": "Online-Buchungen sind pausiert",
+    "resume": "Fortsetzen"
+  },
+  "quick": {
+    "title": "Schnellaktionen",
+    "newAppointment": "Neuer Termin",
+    "addService": "Leistung hinzufügen",
+    "addStaff": "Teammitglied hinzufügen",
+    "hours": "Arbeitszeiten"
+  },
+  "upcoming": {
+    "title": "Demnächst",
+    "description": "Nächste 14 Tage",
+    "all": "Alle",
+    "empty": "Keine anstehenden Termine."
+  },
+  "activity": {
+    "title": "Letzte Aktivitäten",
+    "all": "Alle",
+    "empty": "Änderungen an Ihrem Unternehmen erscheinen hier.",
+    "byCustomer": "durch Kunden",
+    "byStripe": "durch Stripe",
+    "by": "durch {name}",
+    "automatic": "automatisch",
+    "actions": {
+      "business": {
+        "created": "Unternehmen angelegt",
+        "profile_updated": "Unternehmensprofil aktualisiert",
+        "branding_updated": "Erscheinungsbild aktualisiert",
+        "seo_updated": "SEO-Einstellungen aktualisiert",
+        "slug_changed": "Buchungslink geändert",
+        "published": "Buchungsseite veröffentlicht",
+        "paused": "Online-Buchung pausiert",
+        "unpublished": "Buchungsseite zurückgezogen",
+        "logo_uploaded": "Logo hochgeladen",
+        "cover_uploaded": "Titelbild hochgeladen",
+        "logo_removed": "Logo entfernt",
+        "cover_removed": "Titelbild entfernt",
+        "suspended": "Konto von Hournook gesperrt",
+        "reactivated": "Konto reaktiviert",
+        "exported": "Datenexport heruntergeladen"
+      },
+      "service": {
+        "created": "Leistung hinzugefügt",
+        "updated": "Leistung bearbeitet",
+        "deleted": "Leistung entfernt"
+      },
+      "staff": {
+        "created": "Teammitglied hinzugefügt",
+        "updated": "Teammitglied bearbeitet",
+        "deleted": "Teammitglied entfernt",
+        "avatar_uploaded": "Foto eines Teammitglieds aktualisiert"
+      },
+      "appointment": {
+        "created": "Termin gebucht",
+        "cancelled": "Termin storniert",
+        "rescheduled": "Termin verschoben",
+        "confirmed": "Termin bestätigt",
+        "completed": "Termin erledigt",
+        "no_show": "Als nicht erschienen markiert",
+        "reopened": "Termin wieder geöffnet",
+        "notes_updated": "Terminnotizen bearbeitet"
+      },
+      "availability": {
+        "weekly_hours_updated": "Arbeitszeiten geändert",
+        "staff_uses_business_hours": "Teammitglied folgt jetzt den Öffnungszeiten",
+        "closure_added": "Schließzeit hinzugefügt",
+        "closure_removed": "Schließzeit entfernt",
+        "special_hours_set": "Sonderöffnungszeiten festgelegt",
+        "time_blocked": "Zeit blockiert"
+      },
+      "settings": {
+        "booking_rules_updated": "Buchungseinstellungen geändert",
+        "notifications_updated": "Benachrichtigungseinstellungen geändert"
+      },
+      "customer": {
+        "created": "Kunde hinzugefügt",
+        "updated": "Kunde bearbeitet",
+        "erased": "Kundendaten gelöscht"
+      },
+      "team": {
+        "member_invited": "Teammitglied eingeladen",
+        "invitation_revoked": "Einladung widerrufen",
+        "member_joined": "Teammitglied beigetreten",
+        "role_changed": "Rolle geändert",
+        "member_removed": "Teammitglied entfernt",
+        "member_left": "Teammitglied ausgetreten",
+        "ownership_transferred": "Inhaberschaft übertragen"
+      },
+      "billing": {
+        "checkout_started": "Bezahlvorgang gestartet",
+        "checkout_completed": "Abonnement abgeschlossen",
+        "subscription_status_changed": "Abonnementstatus geändert",
+        "invoice_paid": "Rechnung bezahlt",
+        "payment_failed": "Zahlung fehlgeschlagen"
+      },
+      "export": {
+        "appointments": "Termine exportiert",
+        "customers": "Kunden exportiert",
+        "services": "Leistungen exportiert"
+      }
+    }
+  },
+  "footer": "Alle Zeiten: {timezone} · heute ist der {date}"
+}

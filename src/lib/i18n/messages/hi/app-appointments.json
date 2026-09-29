@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "अपॉइंटमेंट",
+    "detailTitle": "अपॉइंटमेंट"
+  },
+  "status": {
+    "pending": "लंबित",
+    "confirmed": "पुष्ट",
+    "completed": "पूरा हुआ",
+    "cancelled": "रद्द",
+    "no_show": "नहीं आए"
+  },
+  "events": {
+    "created": "बुक हुआ",
+    "confirmed": "पुष्ट हुआ",
+    "rescheduled": "समय बदला",
+    "cancelled": "रद्द हुआ",
+    "completed": "पूरा हुआ",
+    "no_show": "नहीं आए",
+    "edited": "बदलाव हुआ",
+    "reopened": "फिर खोला गया"
+  },
+  "sources": {
+    "booking_page": "बुकिंग पेज",
+    "widget": "वेबसाइट विजेट",
+    "qr": "QR कोड",
+    "manual": "टीम ने जोड़ा",
+    "campaign": "कैंपेन लिंक",
+    "social": "सोशल मीडिया",
+    "api": "API"
+  },
+  "list": {
+    "title": "अपॉइंटमेंट",
+    "description": "सारी बुकिंग एक जगह। फ़िल्टर करें, एक साथ कई स्थितियाँ अपडेट करें, या स्प्रेडशीट में एक्सपोर्ट करें।",
+    "views": {
+      "label": "कौन-से अपॉइंटमेंट",
+      "upcoming": "आने वाले",
+      "today": "आज",
+      "past": "पिछले",
+      "all": "सभी"
+    },
+    "filters": {
+      "status": "स्थिति से फ़िल्टर करें",
+      "anyStatus": "कोई भी स्थिति",
+      "staff": "टीम सदस्य से फ़िल्टर करें",
+      "everyone": "सभी",
+      "service": "सेवा से फ़िल्टर करें",
+      "allServices": "सभी सेवाएँ"
+    },
+    "export": "CSV एक्सपोर्ट करें",
+    "new": "नया",
+    "newAppointment": "नया अपॉइंटमेंट",
+    "bulk": {
+      "label": "एक साथ कार्रवाई",
+      "selected": "{count} चुने गए",
+      "confirm": "पुष्टि करें",
+      "complete": "पूरा मार्क करें",
+      "noShow": "नहीं आए",
+      "clear": "चयन हटाएँ",
+      "result": "{updated} अपडेट हुए",
+      "resultSkipped": "{updated} अपडेट हुए, {skipped} छोड़े गए (लागू नहीं)"
+    },
+    "empty": {
+      "upcomingTitle": "कोई आने वाला अपॉइंटमेंट नहीं",
+      "upcomingBody": "जब ग्राहक आपके पेज से बुक करेंगे, उनके अपॉइंटमेंट तुरंत यहाँ दिखेंगे। आप खुद भी अपॉइंटमेंट जोड़ सकते हैं।",
+      "filteredTitle": "इन फ़िल्टर से कोई अपॉइंटमेंट मेल नहीं खाता",
+      "filteredBody": "कोई दूसरा व्यू आज़माएँ या फ़िल्टर हटाएँ।"
+    },
+    "selectAll": "इस पेज के सभी चुनें",
+    "selectAllShort": "सभी चुनें",
+    "selectRow": "{time} बजे {name} को चुनें",
+    "pagination": {
+      "label": "पेज",
+      "previous": "पिछला",
+      "next": "अगला",
+      "page": "पेज {page}"
+    }
+  },
+  "detail": {
+    "back": "अपॉइंटमेंट",
+    "when": "{date} · {start} – {end} ({zone}) · {staff} के साथ",
+    "details": "विवरण",
+    "service": "सेवा",
+    "staff": "टीम सदस्य",
+    "price": "कीमत",
+    "noPrice": "कोई कीमत तय नहीं",
+    "reference": "रेफ़रेंस",
+    "booked": "बुकिंग का समय",
+    "source": "स्रोत",
+    "rescheduled": "समय बदला गया",
+    "rescheduledTimes": "{count, plural, one {# बार} other {# बार}}",
+    "cancelled": "रद्द",
+    "cancelledBy": "{date}, रद्द करने वाले: {who}",
+    "cancelledByWho": {
+      "customer": "ग्राहक",
+      "user": "आपकी टीम",
+      "system": "सिस्टम"
+    },
+    "customerMessage": "ग्राहक का संदेश",
+    "notes": {
+      "title": "आंतरिक नोट्स",
+      "description": "सिर्फ़ आपकी टीम देख सकती है। ग्राहकों को कभी नहीं दिखते।",
+      "empty": "कोई नोट नहीं।",
+      "placeholder": "कलर फ़ॉर्मूला, पसंद, अगली बार काम आने वाली कोई भी बात…",
+      "save": "नोट्स सेव करें"
+    },
+    "history": {
+      "title": "इतिहास",
+      "byCustomer": "ग्राहक द्वारा",
+      "by": "{name} द्वारा",
+      "team": "टीम",
+      "stripe": "Stripe",
+      "automatically": "अपने-आप",
+      "notesUpdated": "आंतरिक नोट्स अपडेट किए गए"
+    },
+    "customer": {
+      "title": "ग्राहक",
+      "profile": "प्रोफ़ाइल देखें",
+      "noEmail": "कोई ईमेल दर्ज नहीं है, इसलिए इस ग्राहक को पुष्टि या रिमाइंडर नहीं मिलेंगे।"
+    },
+    "emails": {
+      "title": "ईमेल",
+      "description": "इस अपॉइंटमेंट के पुष्टि और रिमाइंडर ईमेल।",
+      "empty": "इस अपॉइंटमेंट के लिए कोई ईमेल नहीं।",
+      "sent": "भेजा गया: {when}",
+      "scheduled": "{date} के लिए तय",
+      "failed": "डिलीवरी विफल रही",
+      "notNeeded": "ज़रूरत नहीं पड़ी",
+      "sending": "भेजा जा रहा है…",
+      "badge": {
+        "pending": "लंबित",
+        "sending": "भेजा जा रहा",
+        "sent": "भेजा गया",
+        "failed": "विफल",
+        "cancelled": "छोड़ा गया"
+      },
+      "templates": {
+        "booking_received": "बुकिंग की पुष्टि",
+        "booking_confirmed": "पुष्टि (मंज़ूरी के बाद)",
+        "booking_cancelled": "रद्द होने की सूचना",
+        "booking_rescheduled": "समय बदलने की सूचना",
+        "booking_reminder": "रिमाइंडर",
+        "member_booking_created": "टीम: नई बुकिंग",
+        "member_booking_cancelled": "टीम: रद्द",
+        "member_booking_rescheduled": "टीम: समय बदला"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "पुष्टि करें",
+    "completed": "पूरा हुआ",
+    "noShow": "नहीं आए",
+    "reschedule": "समय बदलें",
+    "reopen": "फिर खोलें",
+    "cancel": "रद्द करें",
+    "updated": "अपडेट हो गया",
+    "cancelDialog": {
+      "title": "यह अपॉइंटमेंट रद्द करें?",
+      "description": "यह समय दूसरी बुकिंग के लिए खाली हो जाएगा। इसे वापस नहीं किया जा सकता; आपको फिर से बुक करना होगा।",
+      "confirm": "अपॉइंटमेंट रद्द करें",
+      "message": "ग्राहक के लिए संदेश",
+      "optional": "(वैकल्पिक)",
+      "notify": "ग्राहक को ईमेल करें"
+    }
+  },
+  "reschedule": {
+    "title": "अपॉइंटमेंट का समय बदलें",
+    "description": "ग्राहक को पुराने और नए समय वाला ईमेल मिलेगा।",
+    "date": "तारीख",
+    "time": "शुरू होने का समय",
+    "staff": "टीम सदस्य",
+    "freeTimes": "खाली समय",
+    "checking": "जाँच हो रही है…",
+    "none": "इस दिन कार्य समय में कोई खाली समय नहीं है। फिर भी आप कोई भी समय खुद चुन सकते हैं।",
+    "cancel": "रद्द करें",
+    "submit": "अपॉइंटमेंट का समय बदलें",
+    "done": "समय बदल दिया गया"
+  },
+  "new": {
+    "title": "नया अपॉइंटमेंट",
+    "description": "समय {timezone} में हैं।",
+    "service": "सेवा",
+    "serviceOption": "{name} ({duration})",
+    "staff": "टीम सदस्य",
+    "date": "तारीख",
+    "time": "शुरू होने का समय",
+    "timeHint": "कोई भी समय चलेगा, खुलने के समय के बाहर भी।",
+    "freeTimes": "खाली समय",
+    "freeTimesFor": "{name} के खाली समय",
+    "checking": "उपलब्धता जाँची जा रही है…",
+    "none": "इस दिन कार्य समय में कोई खाली समय नहीं है।",
+    "customer": "ग्राहक",
+    "changeCustomer": "कोई दूसरा ग्राहक चुनें",
+    "firstName": "पहला नाम",
+    "lastName": "उपनाम",
+    "email": "ईमेल",
+    "emailHint": "पुष्टि और रिमाइंडर भेजने के लिए ज़रूरी।",
+    "phone": "फ़ोन",
+    "searchInstead": "इसके बजाय मौजूदा ग्राहक खोजें",
+    "search": "ग्राहक खोजें",
+    "searchPlaceholder": "नाम, ईमेल या फ़ोन से खोजें",
+    "newCustomer": "नया ग्राहक",
+    "notes": "आंतरिक नोट्स",
+    "notesHint": "सिर्फ़ आपकी टीम को दिखते हैं।",
+    "notify": "ग्राहक को पुष्टि ईमेल भेजें",
+    "notifyHint": "ग्राहक का ईमेल होने पर रिमाइंडर अपने-आप भेजे जाते हैं।",
+    "cancel": "रद्द करें",
+    "submit": "अपॉइंटमेंट बनाएँ",
+    "chooseTime": "शुरू होने का समय चुनें।",
+    "customerRequired": "कोई मौजूदा ग्राहक चुनें या नाम लिखें।"
+  },
+  "toasts": {
+    "created": "अपॉइंटमेंट बन गया",
+    "moved": "अपॉइंटमेंट का समय बदला गया। ग्राहक को सूचना दे दी गई",
+    "confirm": "अपॉइंटमेंट पुष्ट हुआ",
+    "cancel": "अपॉइंटमेंट रद्द हुआ",
+    "complete": "पूरा मार्क किया गया",
+    "no_show": "'नहीं आए' मार्क किया गया",
+    "reopen": "अपॉइंटमेंट फिर खोला गया",
+    "notesSaved": "नोट्स सेव हो गए"
+  },
+  "export": {
+    "reference": "रेफ़रेंस",
+    "date": "तारीख",
+    "start": "शुरुआत",
+    "end": "अंत",
+    "timezone": "टाइम ज़ोन",
+    "status": "स्थिति",
+    "service": "सेवा",
+    "staff": "टीम सदस्य",
+    "customer": "ग्राहक",
+    "email": "ईमेल",
+    "phone": "फ़ोन",
+    "price": "कीमत",
+    "currency": "मुद्रा",
+    "source": "स्रोत",
+    "bookedAt": "बुकिंग का समय"
+  }
+}

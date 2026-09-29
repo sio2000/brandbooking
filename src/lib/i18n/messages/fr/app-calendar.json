@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Agenda"
+  },
+  "toolbar": {
+    "today": "Aujourd’hui",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "showStaff": "Afficher un membre de l’équipe",
+    "everyone": "Tout le monde",
+    "view": "Affichage de l’agenda",
+    "new": "Nouveau"
+  },
+  "views": {
+    "day": "Jour",
+    "week": "Semaine",
+    "month": "Mois",
+    "agenda": "Liste"
+  },
+  "agendaTitle": "À partir du {date}",
+  "moved": "Déplacé au {date}, {time}",
+  "movedDescription": "Le client a reçu la nouvelle heure par e-mail.",
+  "slot": "Nouveau rendez-vous le {date} à {time}",
+  "block": "{customer}, {service}, de {start} à {end}, {staff}, {status}",
+  "footer": {
+    "times": "Heures affichées : {timezone}.",
+    "hint": "Cliquez sur un créneau libre pour ajouter un rendez-vous · faites glisser pour le déplacer (le client est prévenu par e-mail)."
+  },
+  "month": {
+    "day": "{date} : {count, plural, one {# rendez-vous} other {# rendez-vous}}",
+    "more": "+{count} de plus"
+  },
+  "agenda": {
+    "empty": "Aucun rendez-vous dans les deux prochaines semaines.",
+    "today": "Aujourd’hui · {date}"
+  }
+}

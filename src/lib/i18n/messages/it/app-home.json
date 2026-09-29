@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Panoramica"
+  },
+  "greeting": {
+    "morning": "Buongiorno, {name}",
+    "afternoon": "Buon pomeriggio, {name}",
+    "evening": "Buonasera, {name}"
+  },
+  "summary": {
+    "none": "Ancora nessuna prenotazione per oggi.",
+    "count": "{count, plural, one {Oggi hai # appuntamento.} other {Oggi hai # appuntamenti.}}",
+    "next": "Prossimo: {name} alle {time}."
+  },
+  "setup": {
+    "eyebrow": "Per iniziare",
+    "title": "Completa la configurazione della pagina di prenotazione",
+    "description": "Pochi passaggi e i clienti potranno prenotare online.",
+    "progress": "Avanzamento configurazione",
+    "done": "fatto",
+    "todo": "da fare",
+    "optional": "Facoltativo",
+    "steps": {
+      "profile": "Profilo dell’attività",
+      "services": "Servizi",
+      "hours": "Orari di lavoro",
+      "rules": "Impostazioni di prenotazione",
+      "branding": "Stile e logo",
+      "publish": "Pubblica la pagina di prenotazione"
+    }
+  },
+  "live": {
+    "title": "La tua pagina di prenotazione è online",
+    "copy": "Copia link di prenotazione",
+    "preview": "Anteprima",
+    "qr": "Codice QR"
+  },
+  "stats": {
+    "today": "Oggi",
+    "bookedToday": "{count, plural, one {# prenotato oggi} other {# prenotati oggi}}",
+    "week": "Questa settimana",
+    "scheduled": "Appuntamenti in programma",
+    "earned": "Incassato questa settimana",
+    "expected": "+ {amount} previsti da {count} in arrivo",
+    "noneExpected": "Nessun’altra prenotazione prevista questa settimana",
+    "earnedDefinition": "Prezzi dei servizi degli appuntamenti di questa settimana già avvenuti. Gli appuntamenti contano automaticamente quando finiscono, a meno che non vengano annullati o segnati come non presentati. I clienti pagano direttamente te; Hournook non gestisce il denaro.",
+    "newCustomers": "Nuovi clienti",
+    "newCustomersHint": "Arrivati questa settimana · {cancelled} annullati · {noShows} non presentati"
+  },
+  "schedule": {
+    "title": "Programma di oggi",
+    "openCalendar": "Apri calendario",
+    "emptyTitle": "Nessun appuntamento oggi",
+    "emptyBody": "Condividi il link di prenotazione così i clienti trovano un orario, oppure aggiungi tu un appuntamento.",
+    "newAppointment": "Nuovo appuntamento",
+    "now": "Ora"
+  },
+  "attention": {
+    "title": "Da gestire",
+    "clear": "Tutto a posto. Al momento non c’è niente da fare.",
+    "pending": "{count, plural, one {# richiesta di prenotazione in attesa di conferma} other {# richieste di prenotazione in attesa di conferma}}",
+    "review": "Controlla",
+    "unresolved": "{count, plural, one {# appuntamento passato da segnare come completato o non presentato} other {# appuntamenti passati da segnare come completati o non presentati}}",
+    "update": "Aggiorna",
+    "failedMail": "{count, plural, one {# email non è stata recapitata questa settimana} other {# email non sono state recapitate questa settimana}}",
+    "seeDetails": "Vedi dettagli",
+    "pastDue": "L’ultimo pagamento non è riuscito. Aggiorna la carta per restare online",
+    "fix": "Sistema",
+    "paused": "Le prenotazioni online sono in pausa",
+    "resume": "Riprendi"
+  },
+  "quick": {
+    "title": "Azioni rapide",
+    "newAppointment": "Nuovo appuntamento",
+    "addService": "Aggiungi servizio",
+    "addStaff": "Aggiungi membro del team",
+    "hours": "Orari di lavoro"
+  },
+  "upcoming": {
+    "title": "In arrivo",
+    "description": "Prossimi 14 giorni",
+    "all": "Tutti",
+    "empty": "Nessun appuntamento in arrivo."
+  },
+  "activity": {
+    "title": "Attività recente",
+    "all": "Tutte",
+    "empty": "Qui compariranno le modifiche alla tua attività.",
+    "byCustomer": "dal cliente",
+    "byStripe": "da Stripe",
+    "by": "da {name}",
+    "automatic": "automatico",
+    "actions": {
+      "business": {
+        "created": "Attività creata",
+        "profile_updated": "Profilo dell’attività aggiornato",
+        "branding_updated": "Stile aggiornato",
+        "seo_updated": "Impostazioni SEO aggiornate",
+        "slug_changed": "Link di prenotazione modificato",
+        "published": "Pagina di prenotazione pubblicata",
+        "paused": "Prenotazioni online in pausa",
+        "unpublished": "Pagina di prenotazione ritirata",
+        "logo_uploaded": "Logo caricato",
+        "cover_uploaded": "Immagine di copertina caricata",
+        "logo_removed": "Logo rimosso",
+        "cover_removed": "Immagine di copertina rimossa",
+        "suspended": "Account sospeso da Hournook",
+        "reactivated": "Account riattivato",
+        "exported": "Esportazione dati scaricata"
+      },
+      "service": {
+        "created": "Servizio aggiunto",
+        "updated": "Servizio modificato",
+        "deleted": "Servizio rimosso"
+      },
+      "staff": {
+        "created": "Membro del team aggiunto",
+        "updated": "Membro del team modificato",
+        "deleted": "Membro del team rimosso",
+        "avatar_uploaded": "Foto del membro del team aggiornata"
+      },
+      "appointment": {
+        "created": "Appuntamento prenotato",
+        "cancelled": "Appuntamento annullato",
+        "rescheduled": "Appuntamento spostato",
+        "confirmed": "Appuntamento confermato",
+        "completed": "Appuntamento completato",
+        "no_show": "Segnato come non presentato",
+        "reopened": "Appuntamento riaperto",
+        "notes_updated": "Note dell’appuntamento modificate"
+      },
+      "availability": {
+        "weekly_hours_updated": "Orari di lavoro modificati",
+        "staff_uses_business_hours": "Il membro del team ora segue gli orari dell’attività",
+        "closure_added": "Chiusura aggiunta",
+        "closure_removed": "Chiusura rimossa",
+        "special_hours_set": "Orari speciali impostati",
+        "time_blocked": "Orario bloccato"
+      },
+      "settings": {
+        "booking_rules_updated": "Impostazioni di prenotazione modificate",
+        "notifications_updated": "Impostazioni delle notifiche modificate"
+      },
+      "customer": {
+        "created": "Cliente aggiunto",
+        "updated": "Cliente modificato",
+        "erased": "Dati del cliente cancellati"
+      },
+      "team": {
+        "member_invited": "Membro del team invitato",
+        "invitation_revoked": "Invito revocato",
+        "member_joined": "Nuovo membro nel team",
+        "role_changed": "Ruolo modificato",
+        "member_removed": "Membro del team rimosso",
+        "member_left": "Un membro ha lasciato il team",
+        "ownership_transferred": "Titolarità trasferita"
+      },
+      "billing": {
+        "checkout_started": "Pagamento avviato",
+        "checkout_completed": "Sottoscrizione dell’abbonamento completata",
+        "subscription_status_changed": "Stato dell’abbonamento modificato",
+        "invoice_paid": "Fattura pagata",
+        "payment_failed": "Pagamento non riuscito"
+      },
+      "export": {
+        "appointments": "Appuntamenti esportati",
+        "customers": "Clienti esportati",
+        "services": "Servizi esportati"
+      }
+    }
+  },
+  "footer": "Tutti gli orari in {timezone} · oggi è il {date}"
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "カレンダー"
+  },
+  "toolbar": {
+    "today": "今日",
+    "previous": "前へ",
+    "next": "次へ",
+    "showStaff": "表示するスタッフ",
+    "everyone": "全員",
+    "view": "カレンダーの表示",
+    "new": "新規"
+  },
+  "views": {
+    "day": "日",
+    "week": "週",
+    "month": "月",
+    "agenda": "リスト"
+  },
+  "agendaTitle": "{date}から",
+  "moved": "{date} {time}に移動しました",
+  "movedDescription": "新しい日時をお客様にメールでお知らせしました。",
+  "slot": "{date} {time}に新規予約",
+  "block": "{customer}、{service}、{start}〜{end}、{staff}、{status}",
+  "footer": {
+    "times": "時刻は{timezone}です。",
+    "hint": "空いている枠をクリックすると予約を追加できます · ドラッグで日時を変更できます（お客様にメールが届きます）。"
+  },
+  "month": {
+    "day": "{date}：{count, plural, other {予約 # 件}}",
+    "more": "他 {count} 件"
+  },
+  "agenda": {
+    "empty": "今後2週間の予約はありません。",
+    "today": "今日 · {date}"
+  }
+}

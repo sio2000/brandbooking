@@ -6,8 +6,12 @@ import { PageContainer, PageHeader } from '@/components/dashboard/page-header'
 import { AppointmentsView } from '@/components/dashboard/appointments-view'
 import { addDays, localToDate, todayIn } from '@/lib/tz'
 import type { AppointmentStatus } from '@/server/db/schema'
+import { getT } from '@/server/i18n'
 
-export const metadata: Metadata = { title: 'Appointments' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-appointments')
+  return { title: t('meta.title') }
+}
 
 const VIEWS = ['upcoming', 'today', 'past', 'all'] as const
 const STATUSES: AppointmentStatus[] = ['pending', 'confirmed', 'completed', 'cancelled', 'no_show']
@@ -40,7 +44,7 @@ export default async function AppointmentsPage({ searchParams }: PageProps<'/app
           ? { from: now, to: undefined, order: 'asc' as const }
           : { from: undefined, to: undefined, order: 'desc' as const }
   const uuid = (v?: string) => (v && /^[0-9a-f-]{36}$/i.test(v) ? v : undefined)
-  const [rows, pickers] = await Promise.all([
+  const [rows, pickers, t] = await Promise.all([
     listAppointments(ctx, {
       from: range.from,
       to: range.to,
@@ -52,13 +56,11 @@ export default async function AppointmentsPage({ searchParams }: PageProps<'/app
       offset: (page - 1) * PAGE_SIZE,
     }),
     pickerData(ctx),
+    getT('app-appointments'),
   ])
   return (
     <PageContainer wide>
-      <PageHeader
-        title="Appointments"
-        description="Every booking in one place. Filter, update statuses in bulk, or export to a spreadsheet."
-      />
+      <PageHeader title={t('list.title')} description={t('list.description')} />
       <AppointmentsView
         rows={rows.slice(0, PAGE_SIZE).map((r) => ({
           ...r,

@@ -10,7 +10,7 @@ import { Segmented } from '@/components/ui/controls'
 import { NativeSelect } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
-import { formatPlainDate, formatTime, formatMinutesOfDay } from '@/lib/format'
+import { formatMinutesOfDay, formatNumber, formatPlainDate, formatTime } from '@/lib/format'
 import {
   addDaysPD,
   addMonthsPD,
@@ -19,7 +19,6 @@ import {
   startOfWeekPD,
   weekdayLabels,
   weekdayPD,
-  formatMonth,
   type PlainDate,
 } from '@/lib/plain-date'
 import { rescheduleAction } from '@/app/app/_actions/appointments'
@@ -30,6 +29,8 @@ import {
   type PickerStaff,
 } from '../new-appointment-dialog'
 import type { AppointmentStatus } from '@/server/db/schema'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag } from '../format-locale'
 
 export type CalView = 'day' | 'week' | 'month' | 'agenda'
 export type CalAppt = {
@@ -64,6 +65,14 @@ function localMinute(iso: string, tz: string) {
   return (h ?? 0) * 60 + (m ?? 0)
 }
 
+/** Hour label of the time grid: "9 AM", "09", "9 π.μ.", "9時"… */
+function hourLabel(minute: number, tag: string) {
+  if (tag === 'en') return formatMinutesOfDay(minute, tag).replace(':00', '')
+  return new Intl.DateTimeFormat(tag, { hour: 'numeric', timeZone: 'UTC' }).format(
+    new Date(Date.UTC(2000, 0, 1, Math.floor(minute / 60) % 24)),
+  )
+}
+
 /** Assign side-by-side lanes to overlapping appointments within one column. */
 function layoutLanes(items: Array<{ id: string; start: number; end: number }>) {
   const sorted = [...items].sort((a, b) => a.start - b.start || b.end - a.end)
@@ -96,8 +105,12 @@ function layoutLanes(items: Array<{ id: string; start: number; end: number }>) {
 export function CalendarView(props: {
   view: CalView
   date: PlainDate
+  /** Heading for the view and date, built on the server (see ./title.ts). */
+  title: string
   today: PlainDate
   timezone: string
+  /** Readable name of the time zone in the viewer's language. */
+  timezoneLabel: string
   staffFilter: string | null
   appointments: CalAppt[]
   businessHours: Array<{ weekday: number; start: number; end: number }>
@@ -123,6 +136,8 @@ export function CalendarView(props: {
     staffId?: string
   } | null>(null)
   const tz = props.timezone
+  const t = useT('app-calendar')
+  const tag = formatTag(useLocale().locale)
 
   const nav = (updates: Record<string, string | null>) => {
     const p = new URLSearchParams(sp.toString())
@@ -143,20 +158,6 @@ export function CalendarView(props: {
             : addDaysPD(props.date, 14 * dir)
     nav({ date: d })
   }
-
-  const title =
-    props.view === 'day'
-      ? formatPlainDate(props.date, 'en', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })
-      : props.view === 'week'
-        ? `${formatPlainDate(startOfWeekPD(props.date), 'en', { day: 'numeric', month: 'short' })} – ${formatPlainDate(addDaysPD(startOfWeekPD(props.date), 6), 'en', { day: 'numeric', month: 'short', year: 'numeric' })}`
-        : props.view === 'month'
-          ? formatMonth(props.date)
-          : `From ${formatPlainDate(props.date, 'en', { day: 'numeric', month: 'long' })}`
 
   async function move(a: CalAppt, date: string, minute: number, staffId: string) {
     const prev = appts
@@ -188,8 +189,11 @@ export function CalendarView(props: {
     })
     if (r.ok) {
       toast.success(
-        `Moved to ${formatPlainDate(date, 'en', { weekday: 'short', day: 'numeric', month: 'short' })}, ${formatMinutesOfDay(minute)}`,
-        { description: 'The customer has been emailed the new time.' },
+        t('moved', {
+          date: formatPlainDate(date, tag, { weekday: 'short', day: 'numeric', month: 'short' }),
+          time: formatMinutesOfDay(minute, tag),
+        }),
+        { description: t('movedDescription') },
       )
       router.refresh()
     } else {
@@ -203,30 +207,40 @@ export function CalendarView(props: {
       <div className="flex flex-wrap items-center gap-2 border-b border-border px-4 py-3 sm:px-6">
         <div className="flex items-center gap-1">
           <Button variant="secondary" size="sm" onClick={() => nav({ date: props.today })}>
-            Today
+            {t('toolbar.today')}
           </Button>
-          <Button variant="ghost" size="icon-sm" onClick={() => step(-1)} aria-label="Previous">
-            <ChevronLeft />
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => step(-1)}
+            aria-label={t('toolbar.previous')}
+          >
+            <ChevronLeft className="rtl:-scale-x-100" />
           </Button>
-          <Button variant="ghost" size="icon-sm" onClick={() => step(1)} aria-label="Next">
-            <ChevronRight />
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => step(1)}
+            aria-label={t('toolbar.next')}
+          >
+            <ChevronRight className="rtl:-scale-x-100" />
           </Button>
         </div>
         <h1
-          className="mr-auto min-w-0 truncate font-sans text-base font-semibold tracking-normal sm:text-lg"
+          className="me-auto min-w-0 truncate font-sans text-base font-semibold tracking-normal sm:text-lg"
           aria-live="polite"
         >
-          {title}
+          {props.title}
         </h1>
         {!props.lockedStaffId && props.staff.length > 1 && (
           <div className="w-40">
             <NativeSelect
-              aria-label="Show team member"
+              aria-label={t('toolbar.showStaff')}
               value={props.staffFilter ?? ''}
               onChange={(e) => nav({ staff: e.target.value || null })}
               className="h-9"
             >
-              <option value="">Everyone</option>
+              <option value="">{t('toolbar.everyone')}</option>
               {props.staff.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
@@ -236,14 +250,14 @@ export function CalendarView(props: {
           </div>
         )}
         <Segmented
-          label="Calendar view"
+          label={t('toolbar.view')}
           value={props.view}
           onChange={(v) => nav({ view: v })}
           options={[
-            { value: 'day', label: 'Day' },
-            { value: 'week', label: 'Week' },
-            { value: 'month', label: 'Month' },
-            { value: 'agenda', label: 'Agenda' },
+            { value: 'day', label: t('views.day') },
+            { value: 'week', label: t('views.week') },
+            { value: 'month', label: t('views.month') },
+            { value: 'agenda', label: t('views.agenda') },
           ]}
         />
         {props.canManage && (
@@ -252,7 +266,7 @@ export function CalendarView(props: {
             onClick={() => setCreate({ date: props.date, minute: 9 * 60 })}
             className="hidden sm:inline-flex"
           >
-            <CalendarPlus /> New
+            <CalendarPlus /> {t('toolbar.new')}
           </Button>
         )}
       </div>
@@ -304,6 +318,10 @@ type GridProps = Parameters<typeof CalendarView>[0] & {
 
 function TimeGrid(p: GridProps) {
   const tz = p.timezone
+  const t = useT('app-calendar')
+  const ts = useT('app-appointments')
+  const tag = formatTag(useLocale().locale)
+  const weekdays = weekdayLabels(tag)
   // Day view with several team members → one column per person (resource view).
   const byStaff = p.view === 'day' && !p.staffFilter && p.staff.length > 1
   const days =
@@ -319,7 +337,7 @@ function TimeGrid(p: GridProps) {
           label: (
             <span className="flex flex-col items-center leading-tight">
               <span className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-                {weekdayLabels()[weekdayPD(d) - 1]}
+                {weekdays[weekdayPD(d) - 1]}
               </span>
               <span
                 className={cn(
@@ -327,7 +345,7 @@ function TimeGrid(p: GridProps) {
                   d === p.today && 'bg-primary text-primary-foreground',
                 )}
               >
-                {Number(d.slice(8))}
+                {formatNumber(Number(d.slice(8)), tag)}
               </span>
             </span>
           ),
@@ -390,25 +408,25 @@ function TimeGrid(p: GridProps) {
       <div ref={scrollRef} className="min-h-0 flex-1 scrollbar-thin overflow-auto">
         <div style={{ minWidth: columns.length * 92 + 64 }}>
           <div className="sticky top-0 z-30 flex border-b border-border bg-surface">
-            <div className="sticky left-0 z-10 w-14 shrink-0 bg-surface sm:w-16" />
+            <div className="sticky start-0 z-10 w-14 shrink-0 bg-surface sm:w-16" />
             {columns.map((c) => (
               <div
                 key={c.key}
-                className="min-w-0 flex-1 truncate border-l border-border px-1 py-2 text-center text-sm font-medium"
+                className="min-w-0 flex-1 truncate border-s border-border px-1 py-2 text-center text-sm font-medium"
               >
                 {c.label}
               </div>
             ))}
           </div>
           <div className="relative flex" style={{ height }}>
-            <div className="sticky left-0 z-20 w-14 shrink-0 bg-background sm:w-16" aria-hidden>
+            <div className="sticky start-0 z-20 w-14 shrink-0 bg-background sm:w-16" aria-hidden>
               {Array.from({ length: (endMin - startMin) / 60 + 1 }, (_, i) => (
                 <span
                   key={i}
-                  className="tabular absolute right-2 -translate-y-1/2 text-[11px] text-subtle-foreground"
+                  className="tabular absolute end-2 -translate-y-1/2 text-[11px] text-subtle-foreground"
                   style={{ top: i * HOUR_PX }}
                 >
-                  {i === 0 ? '' : formatMinutesOfDay(startMin + i * 60).replace(':00', '')}
+                  {i === 0 ? '' : hourLabel(startMin + i * 60, tag)}
                 </span>
               ))}
             </div>
@@ -429,7 +447,7 @@ function TimeGrid(p: GridProps) {
                   ref={(el) => {
                     colRefs.current[ci] = el
                   }}
-                  className="relative min-w-0 flex-1 border-l border-border bg-surface-2/50"
+                  className="relative min-w-0 flex-1 border-s border-border bg-surface-2/50"
                   onDoubleClick={(e) => {
                     const s = pointToSlot(e.clientX, e.clientY)
                     if (s) p.onCreate(c.date, s.minute, c.staffId)
@@ -466,10 +484,17 @@ function TimeGrid(p: GridProps) {
                           className="group absolute inset-x-0 z-0 flex items-center justify-center opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100"
                           style={{ top: (minute - startMin) * PX_PER_MIN, height: 30 * PX_PER_MIN }}
                           onClick={() => p.onCreate(c.date, minute, c.staffId)}
-                          aria-label={`New appointment ${formatPlainDate(c.date, 'en', { weekday: 'long', day: 'numeric', month: 'long' })} at ${formatMinutesOfDay(minute)}`}
+                          aria-label={t('slot', {
+                            date: formatPlainDate(c.date, tag, {
+                              weekday: 'long',
+                              day: 'numeric',
+                              month: 'long',
+                            }),
+                            time: formatMinutesOfDay(minute, tag),
+                          })}
                         >
                           <span className="rounded-md bg-primary-soft px-2 py-0.5 text-[11px] font-medium text-primary-soft-foreground">
-                            + {formatMinutesOfDay(minute)}
+                            + {formatMinutesOfDay(minute, tag)}
                           </span>
                         </button>
                       )
@@ -483,7 +508,7 @@ function TimeGrid(p: GridProps) {
                         style={{ top: (nowMinute - startMin) * PX_PER_MIN }}
                         aria-hidden
                       >
-                        <span className="-ml-1 size-2 rounded-full bg-accent" />
+                        <span className="-ms-1 size-2 rounded-full bg-accent" />
                         <span className="h-px flex-1 bg-accent" />
                       </div>
                     )}
@@ -548,7 +573,7 @@ function TimeGrid(p: GridProps) {
                           window.addEventListener('pointerup', onUp)
                         }}
                         className={cn(
-                          'group absolute z-10 overflow-hidden rounded-lg border-l-[3px] px-2 py-1 text-left text-xs shadow-xs transition-shadow select-none hover:z-20 hover:shadow-md focus-visible:z-20',
+                          'group absolute z-10 overflow-hidden rounded-lg border-s-[3px] px-2 py-1 text-start text-xs shadow-xs transition-shadow select-none hover:z-20 hover:shadow-md focus-visible:z-20',
                           cancelled
                             ? 'border-border-strong bg-surface-2 text-muted-foreground opacity-70'
                             : 'text-foreground',
@@ -559,24 +584,32 @@ function TimeGrid(p: GridProps) {
                         style={{
                           top,
                           height: h,
-                          left: cancelled
+                          // Logical offsets: lanes run from the start edge (right in Arabic).
+                          insetInlineStart: cancelled
                             ? '55%'
                             : `calc(${(lane.lane / lane.lanes) * 100}% + 2px)`,
                           width: cancelled ? '43%' : `calc(${100 / lane.lanes}% - 4px)`,
-                          borderLeftColor: cancelled ? undefined : a.serviceColor,
+                          borderInlineStartColor: cancelled ? undefined : a.serviceColor,
                           backgroundColor: cancelled
                             ? undefined
                             : `color-mix(in oklab, ${a.serviceColor} 14%, var(--surface))`,
                           touchAction: draggable ? 'none' : undefined,
                         }}
-                        aria-label={`${a.customerName}, ${a.serviceName}, ${formatTime(a.startsAt, tz)} to ${formatTime(a.endsAt, tz)}, ${a.staffName}, ${a.status}`}
+                        aria-label={t('block', {
+                          customer: a.customerName,
+                          service: a.serviceName,
+                          start: formatTime(a.startsAt, tz, tag),
+                          end: formatTime(a.endsAt, tz, tag),
+                          staff: a.staffName,
+                          status: ts(`status.${a.status}`),
+                        })}
                       >
                         <p className={cn('truncate font-semibold', cancelled && 'line-through')}>
                           {a.customerName}
                         </p>
                         {h > 34 && (
                           <p className="truncate text-[11px] text-muted-foreground">
-                            {formatTime(a.startsAt, tz)} · {a.serviceName}
+                            {formatTime(a.startsAt, tz, tag)} · {a.serviceName}
                           </p>
                         )}
                         {h > 52 && !p.staffFilter && !byStaff && p.staff.length > 1 && (
@@ -586,13 +619,13 @@ function TimeGrid(p: GridProps) {
                         )}
                         {a.status === 'pending' && (
                           <span
-                            className="absolute top-1 right-1 size-2 rounded-full bg-warning"
-                            title="Pending"
+                            className="absolute end-1 top-1 size-2 rounded-full bg-warning"
+                            title={ts('status.pending')}
                           />
                         )}
                         {draggable && (
                           <GripVertical
-                            className="absolute right-0.5 bottom-0.5 size-3 text-muted-foreground opacity-0 group-hover:opacity-100"
+                            className="absolute end-0.5 bottom-0.5 size-3 text-muted-foreground opacity-0 group-hover:opacity-100"
                             aria-hidden
                           />
                         )}
@@ -606,10 +639,7 @@ function TimeGrid(p: GridProps) {
         </div>
       </div>
       <p className="border-t border-border px-4 py-1.5 text-[11px] text-subtle-foreground">
-        Times in {tz.replace(/_/g, ' ')}.{' '}
-        {p.canManage
-          ? 'Click an empty slot to add an appointment · drag to reschedule (the customer is emailed).'
-          : ''}
+        {t('footer.times', { timezone: p.timezoneLabel })} {p.canManage ? t('footer.hint') : ''}
       </p>
     </div>
   )
@@ -619,6 +649,8 @@ function MonthGrid(
   p: Parameters<typeof CalendarView>[0] & { appts: CalAppt[]; onPickDay: (d: string) => void },
 ) {
   const tz = p.timezone
+  const t = useT('app-calendar')
+  const tag = formatTag(useLocale().locale)
   const month = monthStartPD(p.date)
   const days = monthGrid(month)
   const byDay = new Map<string, CalAppt[]>()
@@ -629,7 +661,7 @@ function MonthGrid(
   return (
     <div className="flex h-full flex-col overflow-y-auto p-2 sm:p-4">
       <div className="grid grid-cols-7 text-center text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-        {weekdayLabels().map((w) => (
+        {weekdayLabels(tag).map((w) => (
           <div key={w} className="py-2">
             {w}
           </div>
@@ -645,10 +677,10 @@ function MonthGrid(
               type="button"
               onClick={() => p.onPickDay(d)}
               className={cn(
-                'flex min-h-20 flex-col gap-1 bg-surface p-1.5 text-left transition-colors hover:bg-surface-2 sm:p-2',
+                'flex min-h-20 flex-col gap-1 bg-surface p-1.5 text-start transition-colors hover:bg-surface-2 sm:p-2',
                 !inMonth && 'bg-surface-2/60 text-subtle-foreground',
               )}
-              aria-label={`${formatPlainDate(d)}: ${list.length} appointments`}
+              aria-label={t('month.day', { date: formatPlainDate(d, tag), count: list.length })}
             >
               <span
                 className={cn(
@@ -656,7 +688,7 @@ function MonthGrid(
                   d === p.today && 'bg-primary text-primary-foreground',
                 )}
               >
-                {Number(d.slice(8))}
+                {formatNumber(Number(d.slice(8)), tag)}
               </span>
               <span className="hidden flex-col gap-0.5 sm:flex">
                 {list.slice(0, 3).map((a) => (
@@ -666,20 +698,20 @@ function MonthGrid(
                       style={{ background: a.serviceColor }}
                     />
                     <span className="tabular text-muted-foreground">
-                      {formatTime(a.startsAt, tz)}
+                      {formatTime(a.startsAt, tz, tag)}
                     </span>
                     <span className="truncate">{a.customerName}</span>
                   </span>
                 ))}
                 {list.length > 3 && (
                   <span className="text-[11px] font-medium text-primary">
-                    +{list.length - 3} more
+                    {t('month.more', { count: formatNumber(list.length - 3, tag) })}
                   </span>
                 )}
               </span>
               {list.length > 0 && (
                 <span className="text-[11px] font-semibold text-primary sm:hidden">
-                  {list.length}
+                  {formatNumber(list.length, tag)}
                 </span>
               )}
             </button>
@@ -692,17 +724,15 @@ function MonthGrid(
 
 function Agenda(p: Parameters<typeof CalendarView>[0] & { appts: CalAppt[] }) {
   const tz = p.timezone
+  const t = useT('app-calendar')
+  const tag = formatTag(useLocale().locale)
   const groups = new Map<string, CalAppt[]>()
   for (const a of [...p.appts].sort((x, y) => x.startsAt.localeCompare(y.startsAt))) {
     const d = localDate(a.startsAt, tz)
     groups.set(d, [...(groups.get(d) ?? []), a])
   }
   if (groups.size === 0)
-    return (
-      <p className="p-10 text-center text-muted-foreground">
-        No appointments in the next two weeks.
-      </p>
-    )
+    return <p className="p-10 text-center text-muted-foreground">{t('agenda.empty')}</p>
   return (
     <div className="h-full overflow-y-auto px-4 py-4 sm:px-6">
       <div className="mx-auto grid max-w-3xl gap-6">
@@ -714,8 +744,9 @@ function Agenda(p: Parameters<typeof CalendarView>[0] & { appts: CalAppt[] }) {
                 d === p.today && 'text-primary',
               )}
             >
-              {d === p.today ? 'Today · ' : ''}
-              {formatPlainDate(d)}
+              {d === p.today
+                ? t('agenda.today', { date: formatPlainDate(d, tag) })
+                : formatPlainDate(d, tag)}
             </h2>
             <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
               {list.map((a) => (
@@ -725,7 +756,7 @@ function Agenda(p: Parameters<typeof CalendarView>[0] & { appts: CalAppt[] }) {
                     className="flex items-center gap-3 px-4 py-3 hover:bg-surface-2"
                   >
                     <span className="tabular w-16 text-sm font-semibold whitespace-nowrap">
-                      {formatTime(a.startsAt, tz)}
+                      {formatTime(a.startsAt, tz, tag)}
                     </span>
                     <span
                       className="h-8 w-1 rounded-full"

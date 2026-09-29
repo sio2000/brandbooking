@@ -2,6 +2,7 @@ import { requireTenantAction } from '@/server/tenancy/context'
 import { exportAppointmentsCsv } from '@/server/business/exports'
 import { jsonError, metaFrom } from '@/server/http'
 import { localToDate, todayIn, addDays, isPlainDate } from '@/lib/tz'
+import { getLocale } from '@/server/i18n'
 
 export async function GET(req: Request) {
   try {
@@ -16,6 +17,7 @@ export async function GET(req: Request) {
       ctx,
       { from: localToDate(f, 0, tz), to: localToDate(addDays(t, 1), 0, tz) },
       metaFrom(req),
+      await getLocale(),
     )
     return new Response(csv, {
       headers: {

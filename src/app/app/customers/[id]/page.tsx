@@ -13,9 +13,14 @@ import { Avatar } from '@/components/ui/avatar'
 import { Stat } from '@/components/dashboard/stat'
 import { StatusBadge } from '@/components/dashboard/status'
 import { CustomerActions } from '@/components/dashboard/customer-actions'
-import { formatDate, formatMoney, formatTime } from '@/lib/format'
+import { formatDate, formatMoney, formatNumber, formatPercent, formatTime } from '@/lib/format'
+import { getLocale, getT } from '@/server/i18n'
+import { formatTag } from '@/components/dashboard/format-locale'
 
-export const metadata: Metadata = { title: 'Customer' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-customers')
+  return { title: t('meta.detailTitle') }
+}
 
 export default async function CustomerPage({ params }: PageProps<'/app/customers/[id]'>) {
   const ctx = await requireTenantPage('customers.view')
@@ -30,6 +35,10 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
   }
   const { customer: c, stats: s } = data
   const tz = ctx.business.timezone
+  const locale = await getLocale()
+  const t = await getT('app-customers', locale)
+  const tag = formatTag(locale)
+  const cur = ctx.business.currency
   const [history, pickers] = await Promise.all([
     listAppointments(ctx, { customerId: id, order: 'desc', limit: 200 }),
     pickerData(ctx),
@@ -42,7 +51,7 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
         href="/app/customers"
         className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
       >
-        <ArrowLeft className="size-4" /> Customers
+        <ArrowLeft className="size-4 rtl:-scale-x-100" /> {t('detail.back')}
       </Link>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
@@ -90,38 +99,54 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Visits" value={s.completed} hint={`${s.total} booked in total`} />
         <Stat
-          label="Revenue"
-          value={formatMoney(s.revenue_cents, ctx.business.currency)}
+          label={t('detail.stats.visits')}
+          value={formatNumber(s.completed, tag)}
+          hint={t('detail.stats.visitsHint', { count: s.total })}
+        />
+        <Stat
+          label={t('detail.stats.revenue')}
+          value={formatMoney(s.revenue_cents, cur, tag)}
           hint={
             s.avg_cents != null
-              ? `Avg. ${formatMoney(s.avg_cents, ctx.business.currency)} per visit`
-              : 'From completed visits'
+              ? t('detail.stats.average', { amount: formatMoney(s.avg_cents, cur, tag) })
+              : t('detail.stats.fromCompleted')
           }
-          definition="Sum of service prices for completed appointments."
+          definition={t('detail.stats.revenueDefinition')}
         />
         <Stat
-          label="Cancellations"
-          value={s.cancelled}
-          hint={s.total ? `${Math.round((s.cancelled / s.total) * 100)}% of bookings` : undefined}
+          label={t('detail.stats.cancellations')}
+          value={formatNumber(s.cancelled, tag)}
+          hint={
+            s.total
+              ? t('detail.stats.ofBookings', {
+                  percent: formatPercent(Math.round((s.cancelled / s.total) * 100) / 100, tag),
+                })
+              : undefined
+          }
         />
         <Stat
-          label="No-shows"
-          value={s.no_shows}
-          hint={outcomes ? `${Math.round((s.no_shows / outcomes) * 100)}% of visits` : undefined}
+          label={t('detail.stats.noShows')}
+          value={formatNumber(s.no_shows, tag)}
+          hint={
+            outcomes
+              ? t('detail.stats.ofVisits', {
+                  percent: formatPercent(Math.round((s.no_shows / outcomes) * 100) / 100, tag),
+                })
+              : undefined
+          }
         />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card>
           <CardHeader
-            title="Appointment history"
-            description={`${history.length} appointment${history.length === 1 ? '' : 's'}`}
+            title={t('detail.history.title')}
+            description={t('detail.history.count', { count: history.length })}
           />
           <CardBody className="px-0 pb-2">
             {history.length === 0 ? (
-              <p className="px-5 pb-4 text-sm text-muted-foreground">No appointments yet.</p>
+              <p className="px-5 pb-4 text-sm text-muted-foreground">{t('detail.history.empty')}</p>
             ) : (
               <ul className="divide-y divide-border">
                 {history.map((a) => (
@@ -131,9 +156,9 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
                       className="flex items-center gap-3 px-5 py-3 hover:bg-surface-2"
                     >
                       <span className="w-28 shrink-0 text-sm">
-                        <span className="block font-medium">{formatDate(a.startsAt, tz)}</span>
+                        <span className="block font-medium">{formatDate(a.startsAt, tz, tag)}</span>
                         <span className="tabular text-xs text-muted-foreground">
-                          {formatTime(a.startsAt, tz)}
+                          {formatTime(a.startsAt, tz, tag)}
                         </span>
                       </span>
                       <span className="min-w-0 flex-1 truncate text-sm">
@@ -141,7 +166,7 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
                         <span className="text-muted-foreground"> · {a.staffName}</span>
                       </span>
                       <span className="tabular hidden text-sm sm:block">
-                        {a.priceCents != null ? formatMoney(a.priceCents, a.currency) : ''}
+                        {a.priceCents != null ? formatMoney(a.priceCents, a.currency, tag) : ''}
                       </span>
                       <StatusBadge status={a.status} />
                     </Link>
@@ -153,28 +178,37 @@ export default async function CustomerPage({ params }: PageProps<'/app/customers
         </Card>
         <div className="grid content-start gap-6">
           <Card>
-            <CardHeader title="At a glance" />
+            <CardHeader title={t('detail.glance.title')} />
             <CardBody>
               <dl className="grid gap-3 text-sm">
-                <Row label="Customer since">{formatDate(c.createdAt, tz)}</Row>
-                <Row label="First visit">{s.first_at ? formatDate(s.first_at, tz) : '—'}</Row>
-                <Row label="Last visit">{s.last_visit ? formatDate(s.last_visit, tz) : '—'}</Row>
-                <Row label="Next appointment">
-                  {s.next_at
-                    ? `${formatDate(s.next_at, tz)}, ${formatTime(s.next_at, tz)}`
-                    : 'None booked'}
+                <Row label={t('detail.glance.since')}>{formatDate(c.createdAt, tz, tag)}</Row>
+                <Row label={t('detail.glance.firstVisit')}>
+                  {s.first_at ? formatDate(s.first_at, tz, tag) : '—'}
                 </Row>
-                <Row label="Favourite service">{s.favorite_service ?? '—'}</Row>
-                <Row label="Usually sees">{s.favorite_staff ?? '—'}</Row>
+                <Row label={t('detail.glance.lastVisit')}>
+                  {s.last_visit ? formatDate(s.last_visit, tz, tag) : '—'}
+                </Row>
+                <Row label={t('detail.glance.next')}>
+                  {s.next_at
+                    ? t('detail.glance.nextValue', {
+                        date: formatDate(s.next_at, tz, tag),
+                        time: formatTime(s.next_at, tz, tag),
+                      })
+                    : t('detail.glance.none')}
+                </Row>
+                <Row label={t('detail.glance.favoriteService')}>{s.favorite_service ?? '—'}</Row>
+                <Row label={t('detail.glance.usualStaff')}>{s.favorite_staff ?? '—'}</Row>
               </dl>
             </CardBody>
           </Card>
           <Card>
-            <CardHeader title="Internal notes" description="Only visible to your team." />
+            <CardHeader
+              title={t('detail.notes.title')}
+              description={t('detail.notes.description')}
+            />
             <CardBody>
               <p className="text-sm whitespace-pre-line text-muted-foreground">
-                {c.internalNotes ||
-                  'No notes yet. Use Edit to add allergies, preferences or anything useful.'}
+                {c.internalNotes || t('detail.notes.empty')}
               </p>
             </CardBody>
           </Card>
@@ -188,7 +222,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   return (
     <div className="flex justify-between gap-4">
       <dt className="text-muted-foreground">{label}</dt>
-      <dd className="text-right font-medium">{children}</dd>
+      <dd className="text-end font-medium">{children}</dd>
     </div>
   )
 }

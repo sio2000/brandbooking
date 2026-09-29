@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Resumen"
+  },
+  "greeting": {
+    "morning": "Buenos días, {name}",
+    "afternoon": "Buenas tardes, {name}",
+    "evening": "Buenas noches, {name}"
+  },
+  "summary": {
+    "none": "Todavía no hay nada reservado para hoy.",
+    "count": "{count, plural, one {Tienes # cita hoy.} other {Tienes # citas hoy.}}",
+    "next": "Siguiente: {name} a las {time}."
+  },
+  "setup": {
+    "eyebrow": "Primeros pasos",
+    "title": "Termina de configurar tu página de reservas",
+    "description": "Unos pocos pasos y tus clientes podrán reservar contigo en línea.",
+    "progress": "Progreso de la configuración",
+    "done": "hecho",
+    "todo": "pendiente",
+    "optional": "Opcional",
+    "steps": {
+      "profile": "Perfil del negocio",
+      "services": "Servicios",
+      "hours": "Horario",
+      "rules": "Ajustes de reserva",
+      "branding": "Imagen de marca",
+      "publish": "Publicar la página de reservas"
+    }
+  },
+  "live": {
+    "title": "Tu página de reservas está publicada",
+    "copy": "Copiar enlace de reservas",
+    "preview": "Vista previa",
+    "qr": "Código QR"
+  },
+  "stats": {
+    "today": "Hoy",
+    "bookedToday": "{count, plural, one {# reservada hoy} other {# reservadas hoy}}",
+    "week": "Esta semana",
+    "scheduled": "Citas programadas",
+    "earned": "Ingresos de esta semana",
+    "expected": "+ {amount} previstos de {count} próximas",
+    "noneExpected": "No se esperan más reservas esta semana",
+    "earnedDefinition": "Precio de los servicios de las citas de esta semana que ya se han realizado. Las citas cuentan automáticamente al terminar, salvo que se cancelen o se marquen como «no se presentó». Tus clientes te pagan directamente; Hournook no gestiona el dinero.",
+    "newCustomers": "Clientes nuevos",
+    "newCustomersHint": "Esta semana · {cancelled} canceladas · {noShows} no se presentaron"
+  },
+  "schedule": {
+    "title": "Agenda de hoy",
+    "openCalendar": "Abrir calendario",
+    "emptyTitle": "No hay citas hoy",
+    "emptyBody": "Comparte tu enlace de reservas para que tus clientes encuentren hora, o añade una cita tú mismo.",
+    "newAppointment": "Nueva cita",
+    "now": "Ahora"
+  },
+  "attention": {
+    "title": "Requiere tu atención",
+    "clear": "Todo en orden. No hay nada pendiente ahora mismo.",
+    "pending": "{count, plural, one {# solicitud de reserva pendiente de confirmar} other {# solicitudes de reserva pendientes de confirmar}}",
+    "review": "Revisar",
+    "unresolved": "{count, plural, one {# cita pasada por marcar como completada o «no se presentó»} other {# citas pasadas por marcar como completadas o «no se presentó»}}",
+    "update": "Actualizar",
+    "failedMail": "{count, plural, one {# correo no se ha podido entregar esta semana} other {# correos no se han podido entregar esta semana}}",
+    "seeDetails": "Ver detalles",
+    "pastDue": "Tu último pago ha fallado. Actualiza la tarjeta para seguir en línea",
+    "fix": "Resolver",
+    "paused": "Las reservas en línea están en pausa",
+    "resume": "Reanudar"
+  },
+  "quick": {
+    "title": "Acciones rápidas",
+    "newAppointment": "Nueva cita",
+    "addService": "Añadir servicio",
+    "addStaff": "Añadir miembro del equipo",
+    "hours": "Horario"
+  },
+  "upcoming": {
+    "title": "Próximamente",
+    "description": "Próximos 14 días",
+    "all": "Todas",
+    "empty": "No hay citas próximas."
+  },
+  "activity": {
+    "title": "Actividad reciente",
+    "all": "Todo",
+    "empty": "Los cambios en tu negocio aparecerán aquí.",
+    "byCustomer": "por el cliente",
+    "byStripe": "por Stripe",
+    "by": "por {name}",
+    "automatic": "automático",
+    "actions": {
+      "business": {
+        "created": "Negocio creado",
+        "profile_updated": "Perfil del negocio actualizado",
+        "branding_updated": "Imagen de marca actualizada",
+        "seo_updated": "Ajustes de SEO actualizados",
+        "slug_changed": "Enlace de reservas cambiado",
+        "published": "Página de reservas publicada",
+        "paused": "Reservas en línea en pausa",
+        "unpublished": "Página de reservas despublicada",
+        "logo_uploaded": "Logotipo subido",
+        "cover_uploaded": "Imagen de portada subida",
+        "logo_removed": "Logotipo eliminado",
+        "cover_removed": "Imagen de portada eliminada",
+        "suspended": "Cuenta suspendida por Hournook",
+        "reactivated": "Cuenta reactivada",
+        "exported": "Exportación de datos descargada"
+      },
+      "service": {
+        "created": "Servicio añadido",
+        "updated": "Servicio editado",
+        "deleted": "Servicio eliminado"
+      },
+      "staff": {
+        "created": "Miembro del equipo añadido",
+        "updated": "Miembro del equipo editado",
+        "deleted": "Miembro del equipo eliminado",
+        "avatar_uploaded": "Foto del miembro del equipo actualizada"
+      },
+      "appointment": {
+        "created": "Cita reservada",
+        "cancelled": "Cita cancelada",
+        "rescheduled": "Cita cambiada de hora",
+        "confirmed": "Cita confirmada",
+        "completed": "Cita completada",
+        "no_show": "Marcada como «no se presentó»",
+        "reopened": "Cita reabierta",
+        "notes_updated": "Notas de la cita editadas"
+      },
+      "availability": {
+        "weekly_hours_updated": "Horario cambiado",
+        "staff_uses_business_hours": "El miembro del equipo sigue ahora el horario del negocio",
+        "closure_added": "Cierre añadido",
+        "closure_removed": "Cierre eliminado",
+        "special_hours_set": "Horario especial establecido",
+        "time_blocked": "Tiempo bloqueado"
+      },
+      "settings": {
+        "booking_rules_updated": "Ajustes de reserva cambiados",
+        "notifications_updated": "Ajustes de notificaciones cambiados"
+      },
+      "customer": {
+        "created": "Cliente añadido",
+        "updated": "Cliente editado",
+        "erased": "Datos del cliente borrados"
+      },
+      "team": {
+        "member_invited": "Miembro del equipo invitado",
+        "invitation_revoked": "Invitación revocada",
+        "member_joined": "Nuevo miembro en el equipo",
+        "role_changed": "Rol en el equipo cambiado",
+        "member_removed": "Miembro del equipo eliminado",
+        "member_left": "Un miembro ha dejado el equipo",
+        "ownership_transferred": "Propiedad transferida"
+      },
+      "billing": {
+        "checkout_started": "Pago iniciado",
+        "checkout_completed": "Pago de la suscripción completado",
+        "subscription_status_changed": "Estado de la suscripción cambiado",
+        "invoice_paid": "Factura pagada",
+        "payment_failed": "Pago fallido"
+      },
+      "export": {
+        "appointments": "Citas exportadas",
+        "customers": "Clientes exportados",
+        "services": "Servicios exportados"
+      }
+    }
+  },
+  "footer": "Todas las horas en {timezone} · hoy es {date}"
+}

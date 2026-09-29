@@ -5,6 +5,8 @@ import * as React from 'react'
 import { Button } from './button'
 import { Input } from './input'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
 
 /**
  * Confirmation for destructive or consequential actions. `confirmText`
@@ -14,7 +16,7 @@ export function ConfirmDialog({
   trigger,
   title,
   description,
-  confirmLabel = 'Confirm',
+  confirmLabel,
   tone = 'danger',
   confirmText,
   onConfirm,
@@ -33,6 +35,7 @@ export function ConfirmDialog({
   open?: boolean
   onOpenChange?: (o: boolean) => void
 }) {
+  const t = useT('ui')
   const [internalOpen, setInternalOpen] = React.useState(false)
   const isOpen = open ?? internalOpen
   const setOpen = onOpenChange ?? setInternalOpen
@@ -59,8 +62,9 @@ export function ConfirmDialog({
           {confirmText && (
             <div className="mt-4 grid gap-1.5">
               <label htmlFor="confirm-text" className="text-sm">
-                Type <strong className="font-semibold text-foreground">{confirmText}</strong> to
-                confirm
+                {rich(t('typeToConfirm', { text: confirmText }), {
+                  phrase: (c) => <strong className="font-semibold text-foreground">{c}</strong>,
+                })}
               </label>
               <Input
                 id="confirm-text"
@@ -72,7 +76,7 @@ export function ConfirmDialog({
           )}
           <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
             <A.Cancel asChild>
-              <Button variant="secondary">Cancel</Button>
+              <Button variant="secondary">{t('cancel')}</Button>
             </A.Cancel>
             <Button
               variant={tone === 'danger' ? 'danger' : 'primary'}
@@ -89,7 +93,7 @@ export function ConfirmDialog({
                 }
               }}
             >
-              {confirmLabel}
+              {confirmLabel ?? t('confirm')}
             </Button>
           </div>
         </A.Content>

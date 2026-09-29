@@ -5,14 +5,16 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Check, Copy } from 'lucide-react'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { toast } from '@/components/ui/toaster'
+import { useT } from '@/components/i18n/provider'
 
 export function CopyButton({
   value,
-  label = 'Copy link',
-  copiedLabel = 'Copied',
-  toastMessage = 'Link copied to clipboard',
+  label,
+  copiedLabel,
+  toastMessage,
   ...props
 }: ButtonProps & { value: string; label?: string; copiedLabel?: string; toastMessage?: string }) {
+  const t = useT('ui')
   const [copied, setCopied] = React.useState(false)
   return (
     <Button
@@ -22,10 +24,10 @@ export function CopyButton({
         try {
           await navigator.clipboard.writeText(value)
           setCopied(true)
-          toast.success(toastMessage)
+          toast.success(toastMessage ?? t('copy.toast'))
           setTimeout(() => setCopied(false), 1800)
         } catch {
-          toast.error('Couldn’t copy automatically. Select the link and copy it manually.')
+          toast.error(t('copy.failed'))
         }
       }}
     >
@@ -38,7 +40,8 @@ export function CopyButton({
           transition={{ duration: 0.12 }}
           className="inline-flex items-center gap-2"
         >
-          {copied ? <Check /> : <Copy />} {copied ? copiedLabel : label}
+          {copied ? <Check /> : <Copy />}{' '}
+          {copied ? (copiedLabel ?? t('copy.copied')) : (label ?? t('copy.label'))}
         </motion.span>
       </AnimatePresence>
     </Button>

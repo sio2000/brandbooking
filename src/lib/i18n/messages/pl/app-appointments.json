@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Wizyty",
+    "detailTitle": "Wizyta"
+  },
+  "status": {
+    "pending": "Oczekuje",
+    "confirmed": "Potwierdzona",
+    "completed": "Zakończona",
+    "cancelled": "Odwołana",
+    "no_show": "Nieobecność"
+  },
+  "events": {
+    "created": "Zarezerwowano",
+    "confirmed": "Potwierdzono",
+    "rescheduled": "Zmieniono termin",
+    "cancelled": "Odwołano",
+    "completed": "Zakończono",
+    "no_show": "Nieobecność",
+    "edited": "Edytowano",
+    "reopened": "Przywrócono"
+  },
+  "sources": {
+    "booking_page": "Strona rezerwacji",
+    "widget": "Widżet na stronie",
+    "qr": "Kod QR",
+    "manual": "Dodana przez zespół",
+    "campaign": "Link z kampanii",
+    "social": "Media społecznościowe",
+    "api": "API"
+  },
+  "list": {
+    "title": "Wizyty",
+    "description": "Wszystkie rezerwacje w jednym miejscu. Filtruj, zmieniaj statusy hurtowo lub eksportuj do arkusza.",
+    "views": {
+      "label": "Które wizyty",
+      "upcoming": "Nadchodzące",
+      "today": "Dziś",
+      "past": "Minione",
+      "all": "Wszystkie"
+    },
+    "filters": {
+      "status": "Filtruj według statusu",
+      "anyStatus": "Dowolny status",
+      "staff": "Filtruj według członka zespołu",
+      "everyone": "Wszyscy",
+      "service": "Filtruj według usługi",
+      "allServices": "Wszystkie usługi"
+    },
+    "export": "Eksportuj CSV",
+    "new": "Nowa",
+    "newAppointment": "Nowa wizyta",
+    "bulk": {
+      "label": "Działania zbiorcze",
+      "selected": "Zaznaczono: {count}",
+      "confirm": "Potwierdź",
+      "complete": "Oznacz jako zakończone",
+      "noShow": "Nieobecność",
+      "clear": "Wyczyść",
+      "result": "Zaktualizowano: {updated}",
+      "resultSkipped": "Zaktualizowano: {updated}, pominięto: {skipped} (nie kwalifikują się)"
+    },
+    "empty": {
+      "upcomingTitle": "Brak nadchodzących wizyt",
+      "upcomingBody": "Gdy klienci zarezerwują przez Twoją stronę, ich wizyty od razu pojawią się tutaj. Możesz też dodać wizytę samodzielnie.",
+      "filteredTitle": "Żadna wizyta nie pasuje do tych filtrów",
+      "filteredBody": "Wybierz inny widok lub wyczyść filtry."
+    },
+    "selectAll": "Zaznacz wszystkie na tej stronie",
+    "selectAllShort": "Zaznacz wszystkie",
+    "selectRow": "Zaznacz: {name}, {time}",
+    "pagination": {
+      "label": "Paginacja",
+      "previous": "Poprzednia",
+      "next": "Następna",
+      "page": "Strona {page}"
+    }
+  },
+  "detail": {
+    "back": "Wizyty",
+    "when": "{date} · {start} – {end} ({zone}) · u: {staff}",
+    "details": "Szczegóły",
+    "service": "Usługa",
+    "staff": "Członek zespołu",
+    "price": "Cena",
+    "noPrice": "Brak ceny",
+    "reference": "Numer",
+    "booked": "Zarezerwowano",
+    "source": "Źródło",
+    "rescheduled": "Zmiany terminu",
+    "rescheduledTimes": "{count, plural, one {# raz} few {# razy} many {# razy} other {# razy}}",
+    "cancelled": "Odwołano",
+    "cancelledBy": "{date}, odwołał(a): {who}",
+    "cancelledByWho": {
+      "customer": "klient",
+      "user": "Twój zespół",
+      "system": "system"
+    },
+    "customerMessage": "Wiadomość od klienta",
+    "notes": {
+      "title": "Notatki wewnętrzne",
+      "description": "Widzi je tylko Twój zespół. Nigdy nie są pokazywane klientom.",
+      "empty": "Brak notatek.",
+      "placeholder": "Receptura koloru, preferencje, wszystko, co przyda się następnym razem…",
+      "save": "Zapisz notatki"
+    },
+    "history": {
+      "title": "Historia",
+      "byCustomer": "przez klienta",
+      "by": "przez: {name}",
+      "team": "zespół",
+      "stripe": "Stripe",
+      "automatically": "automatycznie",
+      "notesUpdated": "Zaktualizowano notatki wewnętrzne"
+    },
+    "customer": {
+      "title": "Klient",
+      "profile": "Zobacz profil",
+      "noEmail": "Brak adresu e-mail, więc ten klient nie dostanie potwierdzeń ani przypomnień."
+    },
+    "emails": {
+      "title": "E-maile",
+      "description": "Potwierdzenia i przypomnienia dotyczące tej wizyty.",
+      "empty": "Brak e-maili dla tej wizyty.",
+      "sent": "Wysłano {when}",
+      "scheduled": "Zaplanowano na {date}",
+      "failed": "Nie dostarczono",
+      "notNeeded": "Niepotrzebny",
+      "sending": "Wysyłanie…",
+      "badge": {
+        "pending": "oczekuje",
+        "sending": "wysyłanie",
+        "sent": "wysłano",
+        "failed": "błąd",
+        "cancelled": "pominięto"
+      },
+      "templates": {
+        "booking_received": "Potwierdzenie rezerwacji",
+        "booking_confirmed": "Potwierdzenie (po akceptacji)",
+        "booking_cancelled": "Powiadomienie o odwołaniu",
+        "booking_rescheduled": "Powiadomienie o zmianie terminu",
+        "booking_reminder": "Przypomnienie",
+        "member_booking_created": "Zespół: nowa rezerwacja",
+        "member_booking_cancelled": "Zespół: odwołanie",
+        "member_booking_rescheduled": "Zespół: zmiana terminu"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Potwierdź",
+    "completed": "Zakończona",
+    "noShow": "Nieobecność",
+    "reschedule": "Zmień termin",
+    "reopen": "Przywróć",
+    "cancel": "Odwołaj",
+    "updated": "Zaktualizowano",
+    "cancelDialog": {
+      "title": "Odwołać tę wizytę?",
+      "description": "Termin zwolni się dla innych rezerwacji. Tej operacji nie da się cofnąć – trzeba by zarezerwować ponownie.",
+      "confirm": "Odwołaj wizytę",
+      "message": "Wiadomość do klienta",
+      "optional": "(opcjonalnie)",
+      "notify": "Wyślij klientowi e-mail"
+    }
+  },
+  "reschedule": {
+    "title": "Zmień termin wizyty",
+    "description": "Klient dostanie e-mail ze starą i nową godziną.",
+    "date": "Data",
+    "time": "Godzina rozpoczęcia",
+    "staff": "Członek zespołu",
+    "freeTimes": "Wolne terminy",
+    "checking": "Sprawdzanie…",
+    "none": "Tego dnia brak wolnych terminów w godzinach pracy. Możesz jednak wybrać dowolną godzinę ręcznie.",
+    "cancel": "Anuluj",
+    "submit": "Przenieś wizytę",
+    "done": "Zmieniono termin"
+  },
+  "new": {
+    "title": "Nowa wizyta",
+    "description": "Godziny: {timezone}.",
+    "service": "Usługa",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Członek zespołu",
+    "date": "Data",
+    "time": "Godzina rozpoczęcia",
+    "timeHint": "Może to być dowolna godzina, nawet poza godzinami otwarcia.",
+    "freeTimes": "Wolne terminy",
+    "freeTimesFor": "Wolne terminy: {name}",
+    "checking": "Sprawdzanie dostępności…",
+    "none": "Tego dnia brak wolnych terminów w godzinach pracy.",
+    "customer": "Klient",
+    "changeCustomer": "Wybierz innego klienta",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "E-mail",
+    "emailHint": "Potrzebny do potwierdzeń i przypomnień.",
+    "phone": "Telefon",
+    "searchInstead": "Zamiast tego wyszukaj istniejącego klienta",
+    "search": "Szukaj klientów",
+    "searchPlaceholder": "Szukaj po imieniu, e-mailu lub telefonie",
+    "newCustomer": "Nowy klient",
+    "notes": "Notatki wewnętrzne",
+    "notesHint": "Widoczne tylko dla Twojego zespołu.",
+    "notify": "Wyślij klientowi potwierdzenie e-mailem",
+    "notifyHint": "Przypomnienia wysyłamy automatycznie, jeśli klient ma adres e-mail.",
+    "cancel": "Anuluj",
+    "submit": "Utwórz wizytę",
+    "chooseTime": "Wybierz godzinę rozpoczęcia.",
+    "customerRequired": "Wybierz istniejącego klienta lub wpisz imię."
+  },
+  "toasts": {
+    "created": "Utworzono wizytę",
+    "moved": "Przeniesiono wizytę. Klient został powiadomiony",
+    "confirm": "Potwierdzono wizytę",
+    "cancel": "Odwołano wizytę",
+    "complete": "Oznaczono jako zakończoną",
+    "no_show": "Oznaczono nieobecność",
+    "reopen": "Przywrócono wizytę",
+    "notesSaved": "Zapisano notatki"
+  },
+  "export": {
+    "reference": "Numer",
+    "date": "Data",
+    "start": "Początek",
+    "end": "Koniec",
+    "timezone": "Strefa czasowa",
+    "status": "Status",
+    "service": "Usługa",
+    "staff": "Członek zespołu",
+    "customer": "Klient",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "price": "Cena",
+    "currency": "Waluta",
+    "source": "Źródło",
+    "bookedAt": "Data rezerwacji"
+  }
+}

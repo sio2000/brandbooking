@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Kalender"
+  },
+  "toolbar": {
+    "today": "Heute",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "showStaff": "Teammitglied anzeigen",
+    "everyone": "Alle",
+    "view": "Kalenderansicht",
+    "new": "Neu"
+  },
+  "views": {
+    "day": "Tag",
+    "week": "Woche",
+    "month": "Monat",
+    "agenda": "Liste"
+  },
+  "agendaTitle": "Ab {date}",
+  "moved": "Verschoben auf {date}, {time}",
+  "movedDescription": "Der Kunde hat die neue Uhrzeit per E-Mail erhalten.",
+  "slot": "Neuer Termin am {date} um {time}",
+  "block": "{customer}, {service}, {start} bis {end}, {staff}, {status}",
+  "footer": {
+    "times": "Zeiten: {timezone}.",
+    "hint": "Klicken Sie auf einen freien Zeitraum, um einen Termin anzulegen · ziehen Sie ihn zum Verschieben (der Kunde erhält eine E-Mail)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# Termin} other {# Termine}}",
+    "more": "+{count} weitere"
+  },
+  "agenda": {
+    "empty": "Keine Termine in den nächsten zwei Wochen.",
+    "today": "Heute · {date}"
+  }
+}

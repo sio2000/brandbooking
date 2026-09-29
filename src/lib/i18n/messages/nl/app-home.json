@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Overzicht"
+  },
+  "greeting": {
+    "morning": "Goedemorgen, {name}",
+    "afternoon": "Goedemiddag, {name}",
+    "evening": "Goedenavond, {name}"
+  },
+  "summary": {
+    "none": "Voor vandaag is nog niets geboekt.",
+    "count": "{count, plural, one {Je hebt vandaag # afspraak.} other {Je hebt vandaag # afspraken.}}",
+    "next": "Hierna: {name} om {time}."
+  },
+  "setup": {
+    "eyebrow": "Aan de slag",
+    "title": "Rond de instelling van je boekingspagina af",
+    "description": "Nog een paar snelle stappen en klanten kunnen online bij je boeken.",
+    "progress": "Voortgang van de instelling",
+    "done": "klaar",
+    "todo": "nog te doen",
+    "optional": "Optioneel",
+    "steps": {
+      "profile": "Bedrijfsprofiel",
+      "services": "Diensten",
+      "hours": "Werktijden",
+      "rules": "Boekingsinstellingen",
+      "branding": "Huisstijl",
+      "publish": "Boekingspagina publiceren"
+    }
+  },
+  "live": {
+    "title": "Je boekingspagina staat online",
+    "copy": "Boekingslink kopiëren",
+    "preview": "Bekijken",
+    "qr": "QR-code"
+  },
+  "stats": {
+    "today": "Vandaag",
+    "bookedToday": "{count, plural, one {# vandaag geboekt} other {# vandaag geboekt}}",
+    "week": "Deze week",
+    "scheduled": "Geplande afspraken",
+    "earned": "Verdiend deze week",
+    "expected": "+ {amount} verwacht van {count} komende",
+    "noneExpected": "Deze week worden geen boekingen meer verwacht",
+    "earnedDefinition": "De prijzen van de diensten van afspraken deze week die al hebben plaatsgevonden. Afspraken tellen automatisch mee zodra ze voorbij zijn, tenzij ze zijn geannuleerd of als niet verschenen zijn gemarkeerd. Klanten betalen jou rechtstreeks; Hournook komt niet aan het geld.",
+    "newCustomers": "Nieuwe klanten",
+    "newCustomersHint": "Deze week erbij · {cancelled} geannuleerd · {noShows} niet verschenen"
+  },
+  "schedule": {
+    "title": "Planning van vandaag",
+    "openCalendar": "Agenda openen",
+    "emptyTitle": "Vandaag geen afspraken",
+    "emptyBody": "Deel je boekingslink zodat klanten een tijd kunnen kiezen, of voeg zelf een afspraak toe.",
+    "newAppointment": "Nieuwe afspraak",
+    "now": "Nu"
+  },
+  "attention": {
+    "title": "Vraagt je aandacht",
+    "clear": "Alles in orde. Er is nu niets dat je aandacht nodig heeft.",
+    "pending": "{count, plural, one {# boekingsaanvraag wacht op bevestiging} other {# boekingsaanvragen wachten op bevestiging}}",
+    "review": "Bekijken",
+    "unresolved": "{count, plural, one {# eerdere afspraak nog markeren als afgerond of niet verschenen} other {# eerdere afspraken nog markeren als afgerond of niet verschenen}}",
+    "update": "Bijwerken",
+    "failedMail": "{count, plural, one {# e-mail kon deze week niet worden bezorgd} other {# e-mails konden deze week niet worden bezorgd}}",
+    "seeDetails": "Details bekijken",
+    "pastDue": "Je laatste betaling is mislukt. Werk je kaart bij om online te blijven",
+    "fix": "Oplossen",
+    "paused": "Online boeken is gepauzeerd",
+    "resume": "Hervatten"
+  },
+  "quick": {
+    "title": "Snelle acties",
+    "newAppointment": "Nieuwe afspraak",
+    "addService": "Dienst toevoegen",
+    "addStaff": "Teamlid toevoegen",
+    "hours": "Werktijden"
+  },
+  "upcoming": {
+    "title": "Binnenkort",
+    "description": "Komende 14 dagen",
+    "all": "Alle",
+    "empty": "Geen komende afspraken."
+  },
+  "activity": {
+    "title": "Recente activiteit",
+    "all": "Alles",
+    "empty": "Wijzigingen in je bedrijf verschijnen hier.",
+    "byCustomer": "door klant",
+    "byStripe": "door Stripe",
+    "by": "door {name}",
+    "automatic": "automatisch",
+    "actions": {
+      "business": {
+        "created": "Bedrijf aangemaakt",
+        "profile_updated": "Bedrijfsprofiel bijgewerkt",
+        "branding_updated": "Huisstijl bijgewerkt",
+        "seo_updated": "SEO-instellingen bijgewerkt",
+        "slug_changed": "Boekingslink gewijzigd",
+        "published": "Boekingspagina gepubliceerd",
+        "paused": "Online boeken gepauzeerd",
+        "unpublished": "Boekingspagina offline gehaald",
+        "logo_uploaded": "Logo geüpload",
+        "cover_uploaded": "Omslagfoto geüpload",
+        "logo_removed": "Logo verwijderd",
+        "cover_removed": "Omslagfoto verwijderd",
+        "suspended": "Account opgeschort door Hournook",
+        "reactivated": "Account opnieuw geactiveerd",
+        "exported": "Gegevensexport gedownload"
+      },
+      "service": {
+        "created": "Dienst toegevoegd",
+        "updated": "Dienst bewerkt",
+        "deleted": "Dienst verwijderd"
+      },
+      "staff": {
+        "created": "Teamlid toegevoegd",
+        "updated": "Teamlid bewerkt",
+        "deleted": "Teamlid verwijderd",
+        "avatar_uploaded": "Foto van teamlid bijgewerkt"
+      },
+      "appointment": {
+        "created": "Afspraak geboekt",
+        "cancelled": "Afspraak geannuleerd",
+        "rescheduled": "Afspraak verzet",
+        "confirmed": "Afspraak bevestigd",
+        "completed": "Afspraak afgerond",
+        "no_show": "Gemarkeerd als niet verschenen",
+        "reopened": "Afspraak heropend",
+        "notes_updated": "Notities bij afspraak bewerkt"
+      },
+      "availability": {
+        "weekly_hours_updated": "Werktijden gewijzigd",
+        "staff_uses_business_hours": "Teamlid volgt nu de openingstijden van het bedrijf",
+        "closure_added": "Sluiting toegevoegd",
+        "closure_removed": "Sluiting verwijderd",
+        "special_hours_set": "Afwijkende openingstijden ingesteld",
+        "time_blocked": "Tijd geblokkeerd"
+      },
+      "settings": {
+        "booking_rules_updated": "Boekingsinstellingen gewijzigd",
+        "notifications_updated": "Meldingsinstellingen gewijzigd"
+      },
+      "customer": {
+        "created": "Klant toegevoegd",
+        "updated": "Klant bewerkt",
+        "erased": "Klantgegevens gewist"
+      },
+      "team": {
+        "member_invited": "Teamlid uitgenodigd",
+        "invitation_revoked": "Uitnodiging ingetrokken",
+        "member_joined": "Teamlid aangesloten",
+        "role_changed": "Rol gewijzigd",
+        "member_removed": "Teamlid verwijderd",
+        "member_left": "Teamlid vertrokken",
+        "ownership_transferred": "Eigendom overgedragen"
+      },
+      "billing": {
+        "checkout_started": "Betaling gestart",
+        "checkout_completed": "Abonnement afgesloten",
+        "subscription_status_changed": "Status van abonnement gewijzigd",
+        "invoice_paid": "Factuur betaald",
+        "payment_failed": "Betaling mislukt"
+      },
+      "export": {
+        "appointments": "Afspraken geëxporteerd",
+        "customers": "Klanten geëxporteerd",
+        "services": "Diensten geëxporteerd"
+      }
+    }
+  },
+  "footer": "Alle tijden in {timezone} · vandaag is het {date}"
+}

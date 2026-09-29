@@ -8,8 +8,10 @@ import { requestMeta } from '@/server/request'
 import { requireTenantAction } from '@/server/tenancy/context'
 import { customerSchema } from '@/lib/validation/business'
 import { eraseCustomer, saveCustomer } from '@/server/business/customers-admin'
+import { getT } from '@/server/i18n'
 
 export async function saveCustomerAction(id: string | null, input: unknown) {
+  const t = await getT('app-customers')
   return runAction(
     async () => {
       const ctx = await requireTenantAction('customers.manage')
@@ -18,7 +20,7 @@ export async function saveCustomerAction(id: string | null, input: unknown) {
       revalidatePath('/app/customers', 'layout')
       return { id: row.id }
     },
-    id ? 'Customer updated' : 'Customer added',
+    id ? t('toasts.updated') : t('toasts.added'),
   )
 }
 

@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Appuntamenti",
+    "detailTitle": "Appuntamento"
+  },
+  "status": {
+    "pending": "In attesa",
+    "confirmed": "Confermato",
+    "completed": "Completato",
+    "cancelled": "Annullato",
+    "no_show": "Non presentato"
+  },
+  "events": {
+    "created": "Prenotato",
+    "confirmed": "Confermato",
+    "rescheduled": "Spostato",
+    "cancelled": "Annullato",
+    "completed": "Completato",
+    "no_show": "Non presentato",
+    "edited": "Modificato",
+    "reopened": "Riaperto"
+  },
+  "sources": {
+    "booking_page": "Pagina di prenotazione",
+    "widget": "Widget del sito",
+    "qr": "Codice QR",
+    "manual": "Aggiunto dal team",
+    "campaign": "Link di campagna",
+    "social": "Social media",
+    "api": "API"
+  },
+  "list": {
+    "title": "Appuntamenti",
+    "description": "Tutte le prenotazioni in un unico posto. Filtra, aggiorna gli stati in blocco o esporta in un foglio di calcolo.",
+    "views": {
+      "label": "Quali appuntamenti",
+      "upcoming": "In arrivo",
+      "today": "Oggi",
+      "past": "Passati",
+      "all": "Tutti"
+    },
+    "filters": {
+      "status": "Filtra per stato",
+      "anyStatus": "Qualsiasi stato",
+      "staff": "Filtra per membro del team",
+      "everyone": "Tutti",
+      "service": "Filtra per servizio",
+      "allServices": "Tutti i servizi"
+    },
+    "export": "Esporta CSV",
+    "new": "Nuovo",
+    "newAppointment": "Nuovo appuntamento",
+    "bulk": {
+      "label": "Azioni di gruppo",
+      "selected": "{count} selezionati",
+      "confirm": "Conferma",
+      "complete": "Segna come completati",
+      "noShow": "Non presentato",
+      "clear": "Deseleziona",
+      "result": "{updated} aggiornati",
+      "resultSkipped": "{updated} aggiornati, {skipped} saltati (non idonei)"
+    },
+    "empty": {
+      "upcomingTitle": "Nessun appuntamento in arrivo",
+      "upcomingBody": "Quando i clienti prenotano dalla tua pagina, i loro appuntamenti compaiono subito qui. Puoi anche aggiungerne uno tu.",
+      "filteredTitle": "Nessun appuntamento corrisponde a questi filtri",
+      "filteredBody": "Prova un’altra vista o rimuovi i filtri."
+    },
+    "selectAll": "Seleziona tutti in questa pagina",
+    "selectAllShort": "Seleziona tutti",
+    "selectRow": "Seleziona {name} alle {time}",
+    "pagination": {
+      "label": "Paginazione",
+      "previous": "Precedente",
+      "next": "Successiva",
+      "page": "Pagina {page}"
+    }
+  },
+  "detail": {
+    "back": "Appuntamenti",
+    "when": "{date} · {start} – {end} ({zone}) · con {staff}",
+    "details": "Dettagli",
+    "service": "Servizio",
+    "staff": "Membro del team",
+    "price": "Prezzo",
+    "noPrice": "Nessun prezzo",
+    "reference": "Riferimento",
+    "booked": "Prenotato il",
+    "source": "Provenienza",
+    "rescheduled": "Spostamenti",
+    "rescheduledTimes": "{count, plural, one {# volta} other {# volte}}",
+    "cancelled": "Annullato",
+    "cancelledBy": "{date} da {who}",
+    "cancelledByWho": {
+      "customer": "il cliente",
+      "user": "il tuo team",
+      "system": "il sistema"
+    },
+    "customerMessage": "Messaggio del cliente",
+    "notes": {
+      "title": "Note interne",
+      "description": "Le vede solo il tuo team. Non vengono mai mostrate ai clienti.",
+      "empty": "Nessuna nota.",
+      "placeholder": "Formula colore, preferenze, qualsiasi cosa utile per la prossima volta…",
+      "save": "Salva note"
+    },
+    "history": {
+      "title": "Cronologia",
+      "byCustomer": "dal cliente",
+      "by": "da {name}",
+      "team": "il team",
+      "stripe": "Stripe",
+      "automatically": "automaticamente",
+      "notesUpdated": "Note interne aggiornate"
+    },
+    "customer": {
+      "title": "Cliente",
+      "profile": "Vedi profilo",
+      "noEmail": "Nessuna email registrata, quindi questo cliente non riceverà conferme né promemoria."
+    },
+    "emails": {
+      "title": "Email",
+      "description": "Conferme e promemoria per questo appuntamento.",
+      "empty": "Nessuna email per questo appuntamento.",
+      "sent": "Inviata {when}",
+      "scheduled": "Programmata per {date}",
+      "failed": "Recapito non riuscito",
+      "notNeeded": "Non necessaria",
+      "sending": "Invio…",
+      "badge": {
+        "pending": "in attesa",
+        "sending": "in invio",
+        "sent": "inviata",
+        "failed": "non riuscita",
+        "cancelled": "saltata"
+      },
+      "templates": {
+        "booking_received": "Conferma di prenotazione",
+        "booking_confirmed": "Conferma (dopo approvazione)",
+        "booking_cancelled": "Avviso di annullamento",
+        "booking_rescheduled": "Avviso di spostamento",
+        "booking_reminder": "Promemoria",
+        "member_booking_created": "Team: nuova prenotazione",
+        "member_booking_cancelled": "Team: annullamento",
+        "member_booking_rescheduled": "Team: spostamento"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Conferma",
+    "completed": "Completato",
+    "noShow": "Non presentato",
+    "reschedule": "Sposta",
+    "reopen": "Riapri",
+    "cancel": "Annulla",
+    "updated": "Aggiornato",
+    "cancelDialog": {
+      "title": "Annullare questo appuntamento?",
+      "description": "L’orario tornerà disponibile per altre prenotazioni. L’operazione non si può annullare: bisognerebbe prenotare di nuovo.",
+      "confirm": "Annulla appuntamento",
+      "message": "Messaggio per il cliente",
+      "optional": "(facoltativo)",
+      "notify": "Avvisa il cliente via email"
+    }
+  },
+  "reschedule": {
+    "title": "Sposta appuntamento",
+    "description": "Il cliente riceve un’email con il vecchio e il nuovo orario.",
+    "date": "Data",
+    "time": "Ora di inizio",
+    "staff": "Membro del team",
+    "freeTimes": "Orari liberi",
+    "checking": "Verifica…",
+    "none": "Nessun orario libero negli orari di lavoro di questo giorno. Puoi comunque scegliere qualsiasi orario a mano.",
+    "cancel": "Annulla",
+    "submit": "Sposta appuntamento",
+    "done": "Spostato"
+  },
+  "new": {
+    "title": "Nuovo appuntamento",
+    "description": "Orari in {timezone}.",
+    "service": "Servizio",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Membro del team",
+    "date": "Data",
+    "time": "Ora di inizio",
+    "timeHint": "Va bene qualsiasi orario, anche fuori dall’orario di apertura.",
+    "freeTimes": "Orari liberi",
+    "freeTimesFor": "Orari liberi di {name}",
+    "checking": "Verifica disponibilità…",
+    "none": "Nessun orario libero negli orari di lavoro di questo giorno.",
+    "customer": "Cliente",
+    "changeCustomer": "Scegli un altro cliente",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "emailHint": "Serve per conferme e promemoria.",
+    "phone": "Telefono",
+    "searchInstead": "Cerca invece tra i clienti esistenti",
+    "search": "Cerca clienti",
+    "searchPlaceholder": "Cerca per nome, email o telefono",
+    "newCustomer": "Nuovo cliente",
+    "notes": "Note interne",
+    "notesHint": "Visibili solo al tuo team.",
+    "notify": "Invia al cliente una conferma via email",
+    "notifyHint": "I promemoria partono automaticamente se il cliente ha un indirizzo email.",
+    "cancel": "Annulla",
+    "submit": "Crea appuntamento",
+    "chooseTime": "Scegli un’ora di inizio.",
+    "customerRequired": "Scegli un cliente esistente o inserisci un nome."
+  },
+  "toasts": {
+    "created": "Appuntamento creato",
+    "moved": "Appuntamento spostato. Il cliente è stato avvisato",
+    "confirm": "Appuntamento confermato",
+    "cancel": "Appuntamento annullato",
+    "complete": "Segnato come completato",
+    "no_show": "Segnato come non presentato",
+    "reopen": "Appuntamento riaperto",
+    "notesSaved": "Note salvate"
+  },
+  "export": {
+    "reference": "Riferimento",
+    "date": "Data",
+    "start": "Inizio",
+    "end": "Fine",
+    "timezone": "Fuso orario",
+    "status": "Stato",
+    "service": "Servizio",
+    "staff": "Membro del team",
+    "customer": "Cliente",
+    "email": "Email",
+    "phone": "Telefono",
+    "price": "Prezzo",
+    "currency": "Valuta",
+    "source": "Provenienza",
+    "bookedAt": "Prenotato il"
+  }
+}

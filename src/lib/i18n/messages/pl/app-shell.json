@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Panel"
+  },
+  "skipToContent": "Przejdź do treści",
+  "signedInAs": "Zalogowano jako: {role}",
+  "roles": {
+    "owner": "właściciel",
+    "manager": "menedżer",
+    "staff": "członek zespołu"
+  },
+  "nav": {
+    "label": "Menu główne",
+    "more": "Więcej",
+    "groups": {
+      "business": "Firma",
+      "grow": "Rozwój",
+      "account": "Konto"
+    },
+    "items": {
+      "overview": "Przegląd",
+      "calendar": "Kalendarz",
+      "appointments": "Wizyty",
+      "customers": "Klienci",
+      "services": "Usługi",
+      "team": "Zespół",
+      "availability": "Dostępność",
+      "analytics": "Statystyki",
+      "bookingPage": "Strona rezerwacji",
+      "settings": "Ustawienia",
+      "billing": "Płatności"
+    }
+  },
+  "topbar": {
+    "home": "Przegląd",
+    "search": "Szukaj",
+    "searchPlaceholder": "Szukaj lub przejdź do…",
+    "newAppointment": "Nowa wizyta",
+    "openBookingPage": "Otwórz stronę rezerwacji",
+    "accountMenu": "Menu konta",
+    "account": "Konto",
+    "settings": "Ustawienia",
+    "theme": "Motyw",
+    "language": "Język",
+    "signOut": "Wyloguj się",
+    "switchBusiness": "Zmień firmę",
+    "addBusiness": "Dodaj kolejną firmę"
+  },
+  "inbox": {
+    "label": "Powiadomienia",
+    "labelUnread": "Powiadomienia, nieprzeczytane: {count}",
+    "title": "Powiadomienia",
+    "markAllRead": "Oznacz wszystkie jako przeczytane",
+    "loading": "Wczytywanie…",
+    "empty": "Wszystko przeczytane. Nowe rezerwacje i zmiany pojawią się tutaj.",
+    "unread": "Nieprzeczytane",
+    "items": {
+      "bookingRequest": "Nowa prośba o rezerwację",
+      "booking": "Nowa rezerwacja",
+      "booked": "{who}: rezerwacja usługi „{service}” na {date}.",
+      "cancelledTitle": "Rezerwacja odwołana",
+      "cancelled": "{who}: odwołanie usługi „{service}” z {date}.",
+      "rescheduledTitle": "Zmieniono termin rezerwacji",
+      "rescheduled": "{who}: nowy termin usługi „{service}” — {date}.",
+      "aCustomer": "Klient",
+      "memberJoined": "{name} dołącza do Twojego zespołu",
+      "ownership": "{name} przekazuje Ci własność firmy {business}",
+      "paymentFailed": "Płatność nieudana",
+      "paymentFailedBody": "Nie udało się obciążyć Twojej karty. Zaktualizuj metodę płatności, aby dalej przyjmować rezerwacje.",
+      "subscriptionActive": "Subskrypcja aktywna",
+      "subscriptionActiveBody": "Dziękujemy! Twój plan jest aktywny.",
+      "subscriptionEnded": "Subskrypcja zakończona",
+      "subscriptionEndedBody": "Twoja strona rezerwacji nie przyjmuje już nowych rezerwacji."
+    }
+  },
+  "palette": {
+    "title": "Paleta poleceń",
+    "description": "Szukaj klientów, usług i członków zespołu albo przejdź do strony.",
+    "placeholder": "Szukaj klientów, usług, zespołu… lub wpisz polecenie",
+    "suggestions": "Podpowiedzi",
+    "empty": "Brak wyników dla „{query}”.",
+    "groups": {
+      "goTo": "Przejdź do",
+      "actions": "Działania",
+      "customers": "Klienci",
+      "appointments": "Wizyty",
+      "services": "Usługi",
+      "team": "Zespół"
+    },
+    "actions": {
+      "newAppointment": "Nowa wizyta",
+      "addService": "Dodaj usługę",
+      "addStaff": "Dodaj członka zespołu",
+      "copyLink": "Kopiuj link do rezerwacji",
+      "linkCopied": "Link do rezerwacji skopiowany",
+      "preview": "Podgląd strony rezerwacji"
+    }
+  },
+  "banners": {
+    "suspended": "To konto jest zawieszone. Twoja strona rezerwacji jest niedostępna, a zmiany są wyłączone. Skontaktuj się z pomocą techniczną, aby to wyjaśnić.",
+    "emailSimulated": "Wysyłka e-maili nie jest jeszcze skonfigurowana na tej stronie, więc link potwierdzający trafił do dziennika serwera zamiast na adres {email}. Podłącz dostawcę poczty (Resend lub SMTP), aby dostarczać wiadomości do skrzynki.",
+    "verify": "Potwierdź adres e-mail ({email}), aby opublikować stronę rezerwacji.",
+    "verificationSent": "Wysłano e-mail weryfikacyjny",
+    "sending": "Wysyłanie…",
+    "resend": "Wyślij link ponownie",
+    "inactive": "Twoja strona rezerwacji nie przyjmuje nowych rezerwacji, bo nie masz aktywnej subskrypcji.",
+    "subscribe": "Subskrybuj za {price}/mies.",
+    "pastDue": "Ostatnia płatność się nie powiodła. Zaktualizuj kartę, aby strona rezerwacji pozostała dostępna.",
+    "fixBilling": "Napraw płatności",
+    "trial": "{days, plural, one {Został # dzień bezpłatnego okresu próbnego.} few {Zostały # dni bezpłatnego okresu próbnego.} many {Zostało # dni bezpłatnego okresu próbnego.} other {Zostało # dnia bezpłatnego okresu próbnego.}}",
+    "choosePlan": "Wybierz plan"
+  },
+  "error": {
+    "title": "Nie udało się wczytać tej strony",
+    "body": "Twoje rezerwacje i dane są bezpieczne. Spróbuj ponownie. Jeśli problem się powtarza, skontaktuj się z pomocą techniczną i podaj kod referencyjny.",
+    "reference": "Kod referencyjny: {digest}",
+    "retry": "Spróbuj ponownie"
+  },
+  "loading": "Wczytywanie"
+}

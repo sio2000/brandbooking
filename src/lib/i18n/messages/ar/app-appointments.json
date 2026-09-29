@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "المواعيد",
+    "detailTitle": "الموعد"
+  },
+  "status": {
+    "pending": "قيد الانتظار",
+    "confirmed": "مؤكَّد",
+    "completed": "مكتمل",
+    "cancelled": "ملغى",
+    "no_show": "لم يحضر"
+  },
+  "events": {
+    "created": "تم الحجز",
+    "confirmed": "تم التأكيد",
+    "rescheduled": "تغيّر الموعد",
+    "cancelled": "تم الإلغاء",
+    "completed": "اكتمل",
+    "no_show": "لم يحضر",
+    "edited": "تم التعديل",
+    "reopened": "أُعيد فتحه"
+  },
+  "sources": {
+    "booking_page": "صفحة الحجز",
+    "widget": "أداة الموقع",
+    "qr": "رمز QR",
+    "manual": "أضافه الفريق",
+    "campaign": "رابط حملة",
+    "social": "وسائل التواصل الاجتماعي",
+    "api": "API"
+  },
+  "list": {
+    "title": "المواعيد",
+    "description": "كل الحجوزات في مكان واحد. صفِّ النتائج، أو حدِّث الحالات دفعة واحدة، أو صدِّرها إلى جدول بيانات.",
+    "views": {
+      "label": "أي المواعيد",
+      "upcoming": "القادمة",
+      "today": "اليوم",
+      "past": "السابقة",
+      "all": "الكل"
+    },
+    "filters": {
+      "status": "التصفية حسب الحالة",
+      "anyStatus": "أي حالة",
+      "staff": "التصفية حسب عضو الفريق",
+      "everyone": "الجميع",
+      "service": "التصفية حسب الخدمة",
+      "allServices": "كل الخدمات"
+    },
+    "export": "تصدير CSV",
+    "new": "جديد",
+    "newAppointment": "موعد جديد",
+    "bulk": {
+      "label": "إجراءات جماعية",
+      "selected": "المحدد: {count}",
+      "confirm": "تأكيد",
+      "complete": "تعليم كمكتملة",
+      "noShow": "لم يحضر",
+      "clear": "مسح التحديد",
+      "result": "تم التحديث: {updated}",
+      "resultSkipped": "تم التحديث: {updated}، تم التخطي: {skipped} (غير مؤهلة)"
+    },
+    "empty": {
+      "upcomingTitle": "لا مواعيد قادمة",
+      "upcomingBody": "عندما يحجز العملاء عبر صفحتك، تظهر مواعيدهم هنا فورًا. ويمكنك أيضًا إضافة موعد بنفسك.",
+      "filteredTitle": "لا توجد مواعيد مطابقة لعوامل التصفية",
+      "filteredBody": "جرّب عرضًا آخر أو امسح عوامل التصفية."
+    },
+    "selectAll": "تحديد الكل في هذه الصفحة",
+    "selectAllShort": "تحديد الكل",
+    "selectRow": "تحديد {name} في {time}",
+    "pagination": {
+      "label": "التنقل بين الصفحات",
+      "previous": "السابق",
+      "next": "التالي",
+      "page": "الصفحة {page}"
+    }
+  },
+  "detail": {
+    "back": "المواعيد",
+    "when": "{date} · {start} – {end} ({zone}) · مع {staff}",
+    "details": "التفاصيل",
+    "service": "الخدمة",
+    "staff": "عضو الفريق",
+    "price": "السعر",
+    "noPrice": "لم يُحدَّد سعر",
+    "reference": "الرقم المرجعي",
+    "booked": "تاريخ الحجز",
+    "source": "المصدر",
+    "rescheduled": "تغيير الموعد",
+    "rescheduledTimes": "{count, plural, zero {لم يتغير} one {مرة واحدة} two {مرتان} few {# مرات} many {# مرة} other {# مرة}}",
+    "cancelled": "الإلغاء",
+    "cancelledBy": "{date}، بواسطة {who}",
+    "cancelledByWho": {
+      "customer": "العميل",
+      "user": "فريقك",
+      "system": "النظام"
+    },
+    "customerMessage": "رسالة من العميل",
+    "notes": {
+      "title": "ملاحظات داخلية",
+      "description": "يراها فريقك فقط، ولا تظهر للعملاء أبدًا.",
+      "empty": "لا ملاحظات.",
+      "placeholder": "تركيبة اللون، التفضيلات، وأي شيء مفيد للمرة القادمة…",
+      "save": "حفظ الملاحظات"
+    },
+    "history": {
+      "title": "السجل",
+      "byCustomer": "بواسطة العميل",
+      "by": "بواسطة {name}",
+      "team": "الفريق",
+      "stripe": "Stripe",
+      "automatically": "تلقائيًا",
+      "notesUpdated": "تم تحديث الملاحظات الداخلية"
+    },
+    "customer": {
+      "title": "العميل",
+      "profile": "عرض الملف",
+      "noEmail": "لا يوجد بريد إلكتروني مسجَّل، لذا لن يتلقى هذا العميل تأكيدات أو تذكيرات."
+    },
+    "emails": {
+      "title": "رسائل البريد",
+      "description": "التأكيدات والتذكيرات الخاصة بهذا الموعد.",
+      "empty": "لا رسائل بريد لهذا الموعد.",
+      "sent": "أُرسلت {when}",
+      "scheduled": "مجدولة في {date}",
+      "failed": "تعذّر التسليم",
+      "notNeeded": "غير مطلوبة",
+      "sending": "جارٍ الإرسال…",
+      "badge": {
+        "pending": "قيد الانتظار",
+        "sending": "قيد الإرسال",
+        "sent": "أُرسلت",
+        "failed": "فشلت",
+        "cancelled": "تم التخطي"
+      },
+      "templates": {
+        "booking_received": "تأكيد الحجز",
+        "booking_confirmed": "التأكيد (بعد الموافقة)",
+        "booking_cancelled": "إشعار الإلغاء",
+        "booking_rescheduled": "إشعار تغيير الموعد",
+        "booking_reminder": "تذكير",
+        "member_booking_created": "الفريق: حجز جديد",
+        "member_booking_cancelled": "الفريق: إلغاء",
+        "member_booking_rescheduled": "الفريق: تغيير الموعد"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "تأكيد",
+    "completed": "مكتمل",
+    "noShow": "لم يحضر",
+    "reschedule": "تغيير الموعد",
+    "reopen": "إعادة الفتح",
+    "cancel": "إلغاء الموعد",
+    "updated": "تم التحديث",
+    "cancelDialog": {
+      "title": "هل تريد إلغاء هذا الموعد؟",
+      "description": "سيصبح الوقت متاحًا لحجوزات أخرى. لا يمكن التراجع عن ذلك؛ وستحتاج إلى الحجز من جديد.",
+      "confirm": "إلغاء الموعد",
+      "message": "رسالة إلى العميل",
+      "optional": "(اختياري)",
+      "notify": "إبلاغ العميل بالبريد الإلكتروني"
+    }
+  },
+  "reschedule": {
+    "title": "تغيير الموعد",
+    "description": "يتلقى العميل رسالة بريد إلكتروني بالوقت القديم والجديد.",
+    "date": "التاريخ",
+    "time": "وقت البدء",
+    "staff": "عضو الفريق",
+    "freeTimes": "الأوقات المتاحة",
+    "checking": "جارٍ التحقق…",
+    "none": "لا أوقات متاحة ضمن ساعات العمل في هذا اليوم. ويمكنك مع ذلك اختيار أي وقت يدويًا.",
+    "cancel": "إلغاء",
+    "submit": "نقل الموعد",
+    "done": "تم تغيير الموعد"
+  },
+  "new": {
+    "title": "موعد جديد",
+    "description": "الأوقات بتوقيت: {timezone}.",
+    "service": "الخدمة",
+    "serviceOption": "{name} ({duration})",
+    "staff": "عضو الفريق",
+    "date": "التاريخ",
+    "time": "وقت البدء",
+    "timeHint": "يمكنك اختيار أي وقت، حتى خارج ساعات العمل.",
+    "freeTimes": "الأوقات المتاحة",
+    "freeTimesFor": "الأوقات المتاحة لدى {name}",
+    "checking": "جارٍ التحقق من التوفّر…",
+    "none": "لا أوقات متاحة ضمن ساعات العمل في هذا اليوم.",
+    "customer": "العميل",
+    "changeCustomer": "اختيار عميل آخر",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "emailHint": "مطلوب لإرسال التأكيدات والتذكيرات.",
+    "phone": "الهاتف",
+    "searchInstead": "البحث في العملاء الحاليين بدلًا من ذلك",
+    "search": "البحث عن العملاء",
+    "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني أو الهاتف",
+    "newCustomer": "عميل جديد",
+    "notes": "ملاحظات داخلية",
+    "notesHint": "مرئية لفريقك فقط.",
+    "notify": "إرسال تأكيد إلى العميل بالبريد الإلكتروني",
+    "notifyHint": "تُرسَل التذكيرات تلقائيًا إذا كان لدى العميل بريد إلكتروني.",
+    "cancel": "إلغاء",
+    "submit": "إنشاء الموعد",
+    "chooseTime": "اختر وقت البدء.",
+    "customerRequired": "اختر عميلًا حاليًا أو أدخل اسمًا."
+  },
+  "toasts": {
+    "created": "تم إنشاء الموعد",
+    "moved": "تم نقل الموعد وإبلاغ العميل",
+    "confirm": "تم تأكيد الموعد",
+    "cancel": "تم إلغاء الموعد",
+    "complete": "تم تعليمه كمكتمل",
+    "no_show": "عُلِّم بأن العميل لم يحضر",
+    "reopen": "أُعيد فتح الموعد",
+    "notesSaved": "تم حفظ الملاحظات"
+  },
+  "export": {
+    "reference": "الرقم المرجعي",
+    "date": "التاريخ",
+    "start": "البداية",
+    "end": "النهاية",
+    "timezone": "المنطقة الزمنية",
+    "status": "الحالة",
+    "service": "الخدمة",
+    "staff": "عضو الفريق",
+    "customer": "العميل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "price": "السعر",
+    "currency": "العملة",
+    "source": "المصدر",
+    "bookedAt": "تاريخ الحجز"
+  }
+}

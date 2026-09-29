@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "客户",
+    "detailTitle": "客户详情"
+  },
+  "segments": {
+    "all": {
+      "label": "全部",
+      "help": "所有预约过或被添加的客户。"
+    },
+    "new": {
+      "label": "新客户",
+      "help": "过去 30 天内首次预约。"
+    },
+    "returning": {
+      "label": "回头客",
+      "help": "已完成两次及以上到访。"
+    },
+    "vip": {
+      "label": "常客",
+      "help": "已完成五次及以上到访。"
+    },
+    "inactive": {
+      "label": "不活跃",
+      "help": "90 天内未到访，且没有预约。"
+    },
+    "upcoming": {
+      "label": "有预约",
+      "help": "有即将到来的预约。"
+    },
+    "cancelled": {
+      "label": "取消过",
+      "help": "至少取消过一次。"
+    },
+    "no_show": {
+      "label": "未到场过",
+      "help": "至少错过一次预约。"
+    }
+  },
+  "list": {
+    "title": "客户",
+    "description": "所有在您这里预约过的客户，以及他们的记录和消费。可搜索、按分组筛选或导出。",
+    "erased": "该客户的个人数据已清除。其过往预约以匿名记录保留，确保您的统计数据准确。",
+    "segments": "客户分组",
+    "search": "搜索客户",
+    "searchPlaceholder": "搜索姓名、邮箱或电话",
+    "sort": {
+      "label": "排序",
+      "recent": "最新添加",
+      "name": "姓名 A–Z",
+      "visits": "到访最多",
+      "revenue": "消费最高",
+      "last_visit": "最近到访"
+    },
+    "export": "导出",
+    "add": "添加客户",
+    "empty": {
+      "noMatchTitle": "没有匹配的客户",
+      "noMatchBody": "请尝试其他搜索词或分组。",
+      "noneTitle": "还没有客户",
+      "noneBody": "有人通过您的页面预约时，客户会自动添加。您也可以手动添加。"
+    },
+    "caption": "客户，共 {count} 位",
+    "columns": {
+      "customer": "客户",
+      "visits": "到访",
+      "revenue": "消费",
+      "lastVisit": "最近到访",
+      "next": "下次预约"
+    },
+    "noContact": "无联系方式",
+    "regular": "常客",
+    "noShows": "{count, plural, other {未到场 # 次}}",
+    "visitsLabel": "到访：",
+    "pagination": {
+      "label": "分页",
+      "previous": "上一页",
+      "next": "下一页",
+      "summary": "第 {page} / {pages} 页 · 共 {total} 位客户"
+    }
+  },
+  "detail": {
+    "back": "客户",
+    "stats": {
+      "visits": "到访",
+      "visitsHint": "共预约 {count} 次",
+      "revenue": "消费",
+      "average": "平均每次 {amount}",
+      "fromCompleted": "来自已完成的到访",
+      "revenueDefinition": "已完成预约的服务价格总和。",
+      "cancellations": "取消",
+      "ofBookings": "占预约的 {percent}",
+      "noShows": "未到场",
+      "ofVisits": "占到访的 {percent}"
+    },
+    "history": {
+      "title": "预约记录",
+      "count": "{count, plural, other {# 个预约}}",
+      "empty": "还没有预约。"
+    },
+    "glance": {
+      "title": "概况",
+      "since": "成为客户",
+      "firstVisit": "首次到访",
+      "lastVisit": "最近到访",
+      "next": "下次预约",
+      "nextValue": "{date} {time}",
+      "none": "暂无预约",
+      "favoriteService": "最常选的服务",
+      "usualStaff": "常约的团队成员"
+    },
+    "notes": {
+      "title": "内部备注",
+      "description": "仅您的团队可见。",
+      "empty": "还没有备注。点击“编辑”即可添加过敏信息、偏好等有用信息。"
+    }
+  },
+  "actions": {
+    "book": "预约",
+    "edit": "编辑",
+    "erase": "清除客户数据",
+    "eraseTitle": "要清除该客户的个人数据吗？",
+    "eraseBody": "这将永久删除 {name} 的姓名、邮箱、电话和备注（例如在收到 GDPR 删除请求后）。过往预约会以匿名记录保留，确保您的统计数据准确。<strong>此操作无法撤销。</strong>",
+    "eraseConfirm": "清除数据",
+    "eraseWord": "清除"
+  },
+  "form": {
+    "addTitle": "添加客户",
+    "editTitle": "编辑客户",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "邮箱",
+    "phone": "电话",
+    "notes": "内部备注",
+    "notesHint": "仅您的团队可见。",
+    "cancel": "取消",
+    "save": "保存更改",
+    "add": "添加客户",
+    "saved": "已保存"
+  },
+  "toasts": {
+    "added": "客户已添加",
+    "updated": "客户信息已更新"
+  },
+  "export": {
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "邮箱",
+    "phone": "电话",
+    "appointments": "预约",
+    "completed": "已完成",
+    "cancelled": "已取消",
+    "noShows": "未到场",
+    "revenue": "消费",
+    "firstVisit": "首次到访",
+    "lastVisit": "最近到访",
+    "next": "下次预约",
+    "since": "成为客户"
+  }
+}

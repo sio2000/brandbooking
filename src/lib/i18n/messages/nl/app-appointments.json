@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Afspraken",
+    "detailTitle": "Afspraak"
+  },
+  "status": {
+    "pending": "In afwachting",
+    "confirmed": "Bevestigd",
+    "completed": "Afgerond",
+    "cancelled": "Geannuleerd",
+    "no_show": "Niet verschenen"
+  },
+  "events": {
+    "created": "Geboekt",
+    "confirmed": "Bevestigd",
+    "rescheduled": "Verzet",
+    "cancelled": "Geannuleerd",
+    "completed": "Afgerond",
+    "no_show": "Niet verschenen",
+    "edited": "Bewerkt",
+    "reopened": "Heropend"
+  },
+  "sources": {
+    "booking_page": "Boekingspagina",
+    "widget": "Websitewidget",
+    "qr": "QR-code",
+    "manual": "Toegevoegd door team",
+    "campaign": "Campagnelink",
+    "social": "Sociale media",
+    "api": "API"
+  },
+  "list": {
+    "title": "Afspraken",
+    "description": "Alle boekingen op één plek. Filter, werk statussen in één keer bij of exporteer naar een spreadsheet.",
+    "views": {
+      "label": "Welke afspraken",
+      "upcoming": "Komend",
+      "today": "Vandaag",
+      "past": "Voorbij",
+      "all": "Alle"
+    },
+    "filters": {
+      "status": "Filteren op status",
+      "anyStatus": "Elke status",
+      "staff": "Filteren op teamlid",
+      "everyone": "Iedereen",
+      "service": "Filteren op dienst",
+      "allServices": "Alle diensten"
+    },
+    "export": "CSV exporteren",
+    "new": "Nieuw",
+    "newAppointment": "Nieuwe afspraak",
+    "bulk": {
+      "label": "Bulkacties",
+      "selected": "{count} geselecteerd",
+      "confirm": "Bevestigen",
+      "complete": "Markeren als afgerond",
+      "noShow": "Niet verschenen",
+      "clear": "Wissen",
+      "result": "{updated} bijgewerkt",
+      "resultSkipped": "{updated} bijgewerkt, {skipped} overgeslagen (niet mogelijk)"
+    },
+    "empty": {
+      "upcomingTitle": "Geen komende afspraken",
+      "upcomingBody": "Als klanten via je pagina boeken, verschijnen hun afspraken hier meteen. Je kunt er ook zelf een toevoegen.",
+      "filteredTitle": "Geen afspraken die aan deze filters voldoen",
+      "filteredBody": "Probeer een andere weergave of wis de filters."
+    },
+    "selectAll": "Alles op deze pagina selecteren",
+    "selectAllShort": "Alles selecteren",
+    "selectRow": "{name} om {time} selecteren",
+    "pagination": {
+      "label": "Paginering",
+      "previous": "Vorige",
+      "next": "Volgende",
+      "page": "Pagina {page}"
+    }
+  },
+  "detail": {
+    "back": "Afspraken",
+    "when": "{date} · {start} – {end} ({zone}) · met {staff}",
+    "details": "Details",
+    "service": "Dienst",
+    "staff": "Teamlid",
+    "price": "Prijs",
+    "noPrice": "Geen prijs ingesteld",
+    "reference": "Referentie",
+    "booked": "Geboekt op",
+    "source": "Bron",
+    "rescheduled": "Verzet",
+    "rescheduledTimes": "{count, plural, one {# keer} other {# keer}}",
+    "cancelled": "Geannuleerd",
+    "cancelledBy": "{date} door {who}",
+    "cancelledByWho": {
+      "customer": "de klant",
+      "user": "je team",
+      "system": "het systeem"
+    },
+    "customerMessage": "Bericht van de klant",
+    "notes": {
+      "title": "Interne notities",
+      "description": "Alleen je team ziet deze notities. Klanten krijgen ze nooit te zien.",
+      "empty": "Geen notities.",
+      "placeholder": "Kleurrecept, voorkeuren, alles wat de volgende keer handig is…",
+      "save": "Notities opslaan"
+    },
+    "history": {
+      "title": "Geschiedenis",
+      "byCustomer": "door klant",
+      "by": "door {name}",
+      "team": "team",
+      "stripe": "Stripe",
+      "automatically": "automatisch",
+      "notesUpdated": "Interne notities bijgewerkt"
+    },
+    "customer": {
+      "title": "Klant",
+      "profile": "Profiel bekijken",
+      "noEmail": "Geen e-mailadres bekend, dus deze klant krijgt geen bevestigingen of herinneringen."
+    },
+    "emails": {
+      "title": "E-mails",
+      "description": "Bevestigingen en herinneringen voor deze afspraak.",
+      "empty": "Geen e-mails voor deze afspraak.",
+      "sent": "Verstuurd {when}",
+      "scheduled": "Gepland voor {date}",
+      "failed": "Bezorging mislukt",
+      "notNeeded": "Niet nodig",
+      "sending": "Versturen…",
+      "badge": {
+        "pending": "gepland",
+        "sending": "verzenden",
+        "sent": "verstuurd",
+        "failed": "mislukt",
+        "cancelled": "overgeslagen"
+      },
+      "templates": {
+        "booking_received": "Boekingsbevestiging",
+        "booking_confirmed": "Bevestiging (na goedkeuring)",
+        "booking_cancelled": "Annuleringsbericht",
+        "booking_rescheduled": "Bericht over verzetten",
+        "booking_reminder": "Herinnering",
+        "member_booking_created": "Team: nieuwe boeking",
+        "member_booking_cancelled": "Team: annulering",
+        "member_booking_rescheduled": "Team: verzet"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Bevestigen",
+    "completed": "Afgerond",
+    "noShow": "Niet verschenen",
+    "reschedule": "Verzetten",
+    "reopen": "Heropenen",
+    "cancel": "Annuleren",
+    "updated": "Bijgewerkt",
+    "cancelDialog": {
+      "title": "Deze afspraak annuleren?",
+      "description": "De tijd komt vrij voor andere boekingen. Dit kan niet ongedaan worden gemaakt; je zou opnieuw moeten boeken.",
+      "confirm": "Afspraak annuleren",
+      "message": "Bericht aan de klant",
+      "optional": "(optioneel)",
+      "notify": "Klant per e-mail laten weten"
+    }
+  },
+  "reschedule": {
+    "title": "Afspraak verzetten",
+    "description": "De klant krijgt een e-mail met de oude en de nieuwe tijd.",
+    "date": "Datum",
+    "time": "Begintijd",
+    "staff": "Teamlid",
+    "freeTimes": "Vrije tijden",
+    "checking": "Controleren…",
+    "none": "Geen vrije tijden binnen de werktijden op deze dag. Je kunt nog steeds handmatig elke tijd kiezen.",
+    "cancel": "Annuleren",
+    "submit": "Afspraak verzetten",
+    "done": "Verzet"
+  },
+  "new": {
+    "title": "Nieuwe afspraak",
+    "description": "Tijden in {timezone}.",
+    "service": "Dienst",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Teamlid",
+    "date": "Datum",
+    "time": "Begintijd",
+    "timeHint": "Elke tijd kan, ook buiten de openingstijden.",
+    "freeTimes": "Vrije tijden",
+    "freeTimesFor": "Vrije tijden voor {name}",
+    "checking": "Beschikbaarheid controleren…",
+    "none": "Geen vrije tijden binnen de werktijden op deze dag.",
+    "customer": "Klant",
+    "changeCustomer": "Andere klant kiezen",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "emailHint": "Nodig voor bevestigingen en herinneringen.",
+    "phone": "Telefoon",
+    "searchInstead": "Toch een bestaande klant zoeken",
+    "search": "Klanten zoeken",
+    "searchPlaceholder": "Zoek op naam, e-mail of telefoon",
+    "newCustomer": "Nieuwe klant",
+    "notes": "Interne notities",
+    "notesHint": "Alleen zichtbaar voor je team.",
+    "notify": "Klant een bevestiging mailen",
+    "notifyHint": "Herinneringen gaan automatisch als de klant een e-mailadres heeft.",
+    "cancel": "Annuleren",
+    "submit": "Afspraak maken",
+    "chooseTime": "Kies een begintijd.",
+    "customerRequired": "Kies een bestaande klant of vul een naam in."
+  },
+  "toasts": {
+    "created": "Afspraak gemaakt",
+    "moved": "Afspraak verzet. De klant is op de hoogte gebracht",
+    "confirm": "Afspraak bevestigd",
+    "cancel": "Afspraak geannuleerd",
+    "complete": "Gemarkeerd als afgerond",
+    "no_show": "Gemarkeerd als niet verschenen",
+    "reopen": "Afspraak heropend",
+    "notesSaved": "Notities opgeslagen"
+  },
+  "export": {
+    "reference": "Referentie",
+    "date": "Datum",
+    "start": "Begin",
+    "end": "Einde",
+    "timezone": "Tijdzone",
+    "status": "Status",
+    "service": "Dienst",
+    "staff": "Teamlid",
+    "customer": "Klant",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "price": "Prijs",
+    "currency": "Valuta",
+    "source": "Bron",
+    "bookedAt": "Geboekt op"
+  }
+}

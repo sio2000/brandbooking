@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Klienci",
+    "detailTitle": "Klient"
+  },
+  "segments": {
+    "all": {
+      "label": "Wszyscy",
+      "help": "Każdy, kto zarezerwował wizytę lub został dodany."
+    },
+    "new": {
+      "label": "Nowi",
+      "help": "Pierwsza wizyta w ciągu ostatnich 30 dni."
+    },
+    "returning": {
+      "label": "Powracający",
+      "help": "Co najmniej dwie zakończone wizyty."
+    },
+    "vip": {
+      "label": "Stali klienci",
+      "help": "Co najmniej pięć zakończonych wizyt."
+    },
+    "inactive": {
+      "label": "Nieaktywni",
+      "help": "Brak wizyt od 90 dni i nic nie zarezerwowano."
+    },
+    "upcoming": {
+      "label": "Z nadchodzącą wizytą",
+      "help": "Ma zaplanowaną wizytę."
+    },
+    "cancelled": {
+      "label": "Odwołujący",
+      "help": "Co najmniej raz odwołał wizytę."
+    },
+    "no_show": {
+      "label": "Nieobecności",
+      "help": "Nie przyszedł na co najmniej jedną wizytę."
+    }
+  },
+  "list": {
+    "title": "Klienci",
+    "description": "Wszyscy, którzy u Ciebie rezerwowali, wraz z historią i wartością. Szukaj, filtruj według segmentu lub eksportuj.",
+    "erased": "Dane osobowe klienta zostały usunięte. Jego wcześniejsze wizyty zostają jako anonimowe wpisy, żeby statystyki się zgadzały.",
+    "segments": "Segmenty klientów",
+    "search": "Szukaj klientów",
+    "searchPlaceholder": "Szukaj imienia, e-maila lub telefonu",
+    "sort": {
+      "label": "Sortuj",
+      "recent": "Najnowsi",
+      "name": "Nazwisko A–Z",
+      "visits": "Najwięcej wizyt",
+      "revenue": "Najwyższy przychód",
+      "last_visit": "Ostatnia wizyta"
+    },
+    "export": "Eksportuj",
+    "add": "Dodaj klienta",
+    "empty": {
+      "noMatchTitle": "Brak pasujących klientów",
+      "noMatchBody": "Spróbuj innego wyszukiwania lub segmentu.",
+      "noneTitle": "Nie masz jeszcze klientów",
+      "noneBody": "Klienci dodają się automatycznie, gdy ktoś zarezerwuje przez Twoją stronę. Możesz też dodać ich samodzielnie."
+    },
+    "caption": "Klienci, łącznie: {count}",
+    "columns": {
+      "customer": "Klient",
+      "visits": "Wizyty",
+      "revenue": "Przychód",
+      "lastVisit": "Ostatnia wizyta",
+      "next": "Następna"
+    },
+    "noContact": "Brak danych kontaktowych",
+    "regular": "Stały klient",
+    "noShows": "{count, plural, one {# nieobecność} few {# nieobecności} many {# nieobecności} other {# nieobecności}}",
+    "visitsLabel": "Wizyty:",
+    "pagination": {
+      "label": "Paginacja",
+      "previous": "Poprzednia",
+      "next": "Następna",
+      "summary": "Strona {page} z {pages} · klienci: {total}"
+    }
+  },
+  "detail": {
+    "back": "Klienci",
+    "stats": {
+      "visits": "Wizyty",
+      "visitsHint": "Łącznie rezerwacji: {count}",
+      "revenue": "Przychód",
+      "average": "Średnio {amount} za wizytę",
+      "fromCompleted": "Z zakończonych wizyt",
+      "revenueDefinition": "Suma cen usług z zakończonych wizyt.",
+      "cancellations": "Odwołania",
+      "ofBookings": "{percent} rezerwacji",
+      "noShows": "Nieobecności",
+      "ofVisits": "{percent} wizyt"
+    },
+    "history": {
+      "title": "Historia wizyt",
+      "count": "{count, plural, one {# wizyta} few {# wizyty} many {# wizyt} other {# wizyty}}",
+      "empty": "Nie ma jeszcze wizyt."
+    },
+    "glance": {
+      "title": "W skrócie",
+      "since": "Klient od",
+      "firstVisit": "Pierwsza wizyta",
+      "lastVisit": "Ostatnia wizyta",
+      "next": "Następna wizyta",
+      "nextValue": "{date}, {time}",
+      "none": "Brak zaplanowanych",
+      "favoriteService": "Ulubiona usługa",
+      "usualStaff": "Zwykle u"
+    },
+    "notes": {
+      "title": "Notatki wewnętrzne",
+      "description": "Widoczne tylko dla Twojego zespołu.",
+      "empty": "Nie ma jeszcze notatek. Kliknij Edytuj, aby dodać alergie, preferencje lub inne przydatne informacje."
+    }
+  },
+  "actions": {
+    "book": "Zarezerwuj",
+    "edit": "Edytuj",
+    "erase": "Usuń dane klienta",
+    "eraseTitle": "Usunąć dane osobowe tego klienta?",
+    "eraseBody": "Spowoduje to trwałe usunięcie imienia i nazwiska, e-maila, telefonu i notatek klienta {name} (np. po żądaniu usunięcia danych zgodnie z RODO). Wcześniejsze wizyty zostaną jako anonimowe wpisy, żeby statystyki się zgadzały. <strong>Tej operacji nie można cofnąć.</strong>",
+    "eraseConfirm": "Usuń dane",
+    "eraseWord": "USUŃ"
+  },
+  "form": {
+    "addTitle": "Dodaj klienta",
+    "editTitle": "Edytuj klienta",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "notes": "Notatki wewnętrzne",
+    "notesHint": "Widoczne tylko dla Twojego zespołu.",
+    "cancel": "Anuluj",
+    "save": "Zapisz zmiany",
+    "add": "Dodaj klienta",
+    "saved": "Zapisano"
+  },
+  "toasts": {
+    "added": "Dodano klienta",
+    "updated": "Zaktualizowano klienta"
+  },
+  "export": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "appointments": "Wizyty",
+    "completed": "Zakończone",
+    "cancelled": "Odwołane",
+    "noShows": "Nieobecności",
+    "revenue": "Przychód",
+    "firstVisit": "Pierwsza wizyta",
+    "lastVisit": "Ostatnia wizyta",
+    "next": "Następna wizyta",
+    "since": "Klient od"
+  }
+}

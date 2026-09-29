@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Clientes",
+    "detailTitle": "Cliente"
+  },
+  "segments": {
+    "all": {
+      "label": "Todos",
+      "help": "Todas as pessoas que reservaram ou foram adicionadas."
+    },
+    "new": {
+      "label": "Novos",
+      "help": "Primeira marcação nos últimos 30 dias."
+    },
+    "returning": {
+      "label": "Recorrentes",
+      "help": "Duas ou mais visitas concluídas."
+    },
+    "vip": {
+      "label": "Habituais",
+      "help": "Cinco ou mais visitas concluídas."
+    },
+    "inactive": {
+      "label": "Inativos",
+      "help": "Sem visitas há 90 dias e nada reservado."
+    },
+    "upcoming": {
+      "label": "Com marcação",
+      "help": "Tem uma marcação futura."
+    },
+    "cancelled": {
+      "label": "Com cancelamentos",
+      "help": "Cancelou pelo menos uma vez."
+    },
+    "no_show": {
+      "label": "Faltosos",
+      "help": "Faltou a pelo menos uma marcação."
+    }
+  },
+  "list": {
+    "title": "Clientes",
+    "description": "Todas as pessoas que reservaram consigo, com histórico e valor. Pesquise, filtre por segmento ou exporte.",
+    "erased": "Os dados pessoais do cliente foram apagados. As marcações anteriores ficam como registos anónimos para que as suas estatísticas continuem corretas.",
+    "segments": "Segmentos de clientes",
+    "search": "Pesquisar clientes",
+    "searchPlaceholder": "Pesquisar nome, e-mail ou telefone",
+    "sort": {
+      "label": "Ordenar",
+      "recent": "Mais recentes",
+      "name": "Nome A–Z",
+      "visits": "Mais visitas",
+      "revenue": "Maior faturação",
+      "last_visit": "Última visita"
+    },
+    "export": "Exportar",
+    "add": "Adicionar cliente",
+    "empty": {
+      "noMatchTitle": "Nenhum cliente corresponde",
+      "noMatchBody": "Experimente outra pesquisa ou outro segmento.",
+      "noneTitle": "Ainda não há clientes",
+      "noneBody": "Os clientes são adicionados automaticamente quando alguém reserva através da sua página. Também os pode adicionar manualmente."
+    },
+    "caption": "Clientes, {count} no total",
+    "columns": {
+      "customer": "Cliente",
+      "visits": "Visitas",
+      "revenue": "Faturação",
+      "lastVisit": "Última visita",
+      "next": "Próxima"
+    },
+    "noContact": "Sem contactos",
+    "regular": "Habitual",
+    "noShows": "{count, plural, one {# falta} other {# faltas}}",
+    "visitsLabel": "Visitas:",
+    "pagination": {
+      "label": "Paginação",
+      "previous": "Anterior",
+      "next": "Seguinte",
+      "summary": "Página {page} de {pages} · {total} clientes"
+    }
+  },
+  "detail": {
+    "back": "Clientes",
+    "stats": {
+      "visits": "Visitas",
+      "visitsHint": "{count, plural, one {# reserva no total} other {# reservas no total}}",
+      "revenue": "Faturação",
+      "average": "Média de {amount} por visita",
+      "fromCompleted": "De visitas concluídas",
+      "revenueDefinition": "Soma dos preços dos serviços das marcações concluídas.",
+      "cancellations": "Cancelamentos",
+      "ofBookings": "{percent} das reservas",
+      "noShows": "Faltas",
+      "ofVisits": "{percent} das visitas"
+    },
+    "history": {
+      "title": "Histórico de marcações",
+      "count": "{count, plural, one {# marcação} other {# marcações}}",
+      "empty": "Ainda não há marcações."
+    },
+    "glance": {
+      "title": "Resumo",
+      "since": "Cliente desde",
+      "firstVisit": "Primeira visita",
+      "lastVisit": "Última visita",
+      "next": "Próxima marcação",
+      "nextValue": "{date}, {time}",
+      "none": "Nenhuma reservada",
+      "favoriteService": "Serviço preferido",
+      "usualStaff": "Costuma ser atendido por"
+    },
+    "notes": {
+      "title": "Notas internas",
+      "description": "Visíveis apenas para a sua equipa.",
+      "empty": "Ainda não há notas. Use Editar para adicionar alergias, preferências ou qualquer informação útil."
+    }
+  },
+  "actions": {
+    "book": "Reservar",
+    "edit": "Editar",
+    "erase": "Apagar dados do cliente",
+    "eraseTitle": "Apagar os dados pessoais deste cliente?",
+    "eraseBody": "Isto remove de forma permanente o nome, o e-mail, o telefone e as notas de {name} (por exemplo, após um pedido de apagamento ao abrigo do RGPD). As marcações anteriores ficam como registos anónimos para que as suas estatísticas continuem corretas. <strong>Esta ação não pode ser anulada.</strong>",
+    "eraseConfirm": "Apagar dados",
+    "eraseWord": "APAGAR"
+  },
+  "form": {
+    "addTitle": "Adicionar cliente",
+    "editTitle": "Editar cliente",
+    "firstName": "Nome próprio",
+    "lastName": "Apelido",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "notes": "Notas internas",
+    "notesHint": "Visíveis apenas para a sua equipa.",
+    "cancel": "Cancelar",
+    "save": "Guardar alterações",
+    "add": "Adicionar cliente",
+    "saved": "Guardado"
+  },
+  "toasts": {
+    "added": "Cliente adicionado",
+    "updated": "Cliente atualizado"
+  },
+  "export": {
+    "firstName": "Nome próprio",
+    "lastName": "Apelido",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "appointments": "Marcações",
+    "completed": "Concluídas",
+    "cancelled": "Canceladas",
+    "noShows": "Faltas",
+    "revenue": "Faturação",
+    "firstVisit": "Primeira visita",
+    "lastVisit": "Última visita",
+    "next": "Próxima marcação",
+    "since": "Cliente desde"
+  }
+}

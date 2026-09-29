@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "概要"
+  },
+  "greeting": {
+    "morning": "おはようございます、{name}さん",
+    "afternoon": "こんにちは、{name}さん",
+    "evening": "こんばんは、{name}さん"
+  },
+  "summary": {
+    "none": "今日の予約はまだありません。",
+    "count": "{count, plural, other {今日の予約は # 件です。}}",
+    "next": "次は {time} から{name}様です。"
+  },
+  "setup": {
+    "eyebrow": "セットアップ",
+    "title": "予約ページの設定を完了しましょう",
+    "description": "あと少しの手順で、お客様がオンラインで予約できるようになります。",
+    "progress": "設定の進み具合",
+    "done": "完了",
+    "todo": "未完了",
+    "optional": "任意",
+    "steps": {
+      "profile": "ビジネスのプロフィール",
+      "services": "サービス",
+      "hours": "営業時間",
+      "rules": "予約の設定",
+      "branding": "ブランディング",
+      "publish": "予約ページを公開"
+    }
+  },
+  "live": {
+    "title": "予約ページは公開中です",
+    "copy": "予約リンクをコピー",
+    "preview": "プレビュー",
+    "qr": "QRコード"
+  },
+  "stats": {
+    "today": "今日",
+    "bookedToday": "{count, plural, other {今日の新規予約 # 件}}",
+    "week": "今週",
+    "scheduled": "予定されている予約",
+    "earned": "今週の売上",
+    "expected": "今後の予約 {count} 件で + {amount} の見込み",
+    "noneExpected": "今週これ以上の予約は見込まれていません",
+    "earnedDefinition": "今週、すでに終了した予約のサービス料金の合計です。予約は終了時刻を過ぎると自動で計上されます（キャンセルや無断キャンセルとしてマークされたものを除く）。お支払いはお客様から直接受け取るもので、Hournook は代金を扱いません。",
+    "newCustomers": "新規のお客様",
+    "newCustomersHint": "今週の新規 · キャンセル {cancelled} 件 · 無断キャンセル {noShows} 件"
+  },
+  "schedule": {
+    "title": "今日のスケジュール",
+    "openCalendar": "カレンダーを開く",
+    "emptyTitle": "今日の予約はありません",
+    "emptyBody": "予約リンクを共有してお客様に時間を選んでもらうか、ご自身で予約を追加してください。",
+    "newAppointment": "新規予約",
+    "now": "対応中"
+  },
+  "attention": {
+    "title": "要対応",
+    "clear": "すべて完了しています。今対応が必要なことはありません。",
+    "pending": "{count, plural, other {確認待ちの予約リクエストが # 件あります}}",
+    "review": "確認する",
+    "unresolved": "{count, plural, other {完了または無断キャンセルのマークが必要な過去の予約が # 件あります}}",
+    "update": "更新する",
+    "failedMail": "{count, plural, other {今週 # 件のメールが配信できませんでした}}",
+    "seeDetails": "詳細を見る",
+    "pastDue": "前回のお支払いに失敗しました。公開を続けるにはカード情報を更新してください",
+    "fix": "修正する",
+    "paused": "オンライン予約は一時停止中です",
+    "resume": "再開する"
+  },
+  "quick": {
+    "title": "クイック操作",
+    "newAppointment": "新規予約",
+    "addService": "サービスを追加",
+    "addStaff": "スタッフを追加",
+    "hours": "営業時間"
+  },
+  "upcoming": {
+    "title": "今後の予約",
+    "description": "今後14日間",
+    "all": "すべて",
+    "empty": "今後の予約はありません。"
+  },
+  "activity": {
+    "title": "最近のアクティビティ",
+    "all": "すべて",
+    "empty": "ビジネスの変更履歴がここに表示されます。",
+    "byCustomer": "お客様による操作",
+    "byStripe": "Stripe による操作",
+    "by": "{name}さんによる操作",
+    "automatic": "自動",
+    "actions": {
+      "business": {
+        "created": "ビジネスを作成しました",
+        "profile_updated": "ビジネスのプロフィールを更新しました",
+        "branding_updated": "ブランディングを更新しました",
+        "seo_updated": "SEO設定を更新しました",
+        "slug_changed": "予約リンクを変更しました",
+        "published": "予約ページを公開しました",
+        "paused": "オンライン予約を一時停止しました",
+        "unpublished": "予約ページを非公開にしました",
+        "logo_uploaded": "ロゴをアップロードしました",
+        "cover_uploaded": "カバー画像をアップロードしました",
+        "logo_removed": "ロゴを削除しました",
+        "cover_removed": "カバー画像を削除しました",
+        "suspended": "Hournook によりアカウントが停止されました",
+        "reactivated": "アカウントが再開されました",
+        "exported": "データのエクスポートをダウンロードしました"
+      },
+      "service": {
+        "created": "サービスを追加しました",
+        "updated": "サービスを編集しました",
+        "deleted": "サービスを削除しました"
+      },
+      "staff": {
+        "created": "スタッフを追加しました",
+        "updated": "スタッフを編集しました",
+        "deleted": "スタッフを削除しました",
+        "avatar_uploaded": "スタッフの写真を更新しました"
+      },
+      "appointment": {
+        "created": "予約が入りました",
+        "cancelled": "予約がキャンセルされました",
+        "rescheduled": "予約の日時が変更されました",
+        "confirmed": "予約を確定しました",
+        "completed": "予約が完了しました",
+        "no_show": "無断キャンセルとしてマークしました",
+        "reopened": "予約を再開しました",
+        "notes_updated": "予約メモを編集しました"
+      },
+      "availability": {
+        "weekly_hours_updated": "営業時間を変更しました",
+        "staff_uses_business_hours": "スタッフがビジネスの営業時間に従うようになりました",
+        "closure_added": "休業日を追加しました",
+        "closure_removed": "休業日を削除しました",
+        "special_hours_set": "特別営業時間を設定しました",
+        "time_blocked": "時間枠をブロックしました"
+      },
+      "settings": {
+        "booking_rules_updated": "予約の設定を変更しました",
+        "notifications_updated": "通知の設定を変更しました"
+      },
+      "customer": {
+        "created": "お客様を追加しました",
+        "updated": "お客様情報を編集しました",
+        "erased": "お客様のデータを消去しました"
+      },
+      "team": {
+        "member_invited": "スタッフを招待しました",
+        "invitation_revoked": "招待を取り消しました",
+        "member_joined": "スタッフが参加しました",
+        "role_changed": "役割を変更しました",
+        "member_removed": "スタッフを削除しました",
+        "member_left": "スタッフが退出しました",
+        "ownership_transferred": "オーナー権限を移譲しました"
+      },
+      "billing": {
+        "checkout_started": "お支払い手続きを開始しました",
+        "checkout_completed": "サブスクリプションの手続きが完了しました",
+        "subscription_status_changed": "サブスクリプションの状態が変わりました",
+        "invoice_paid": "請求書の支払いが完了しました",
+        "payment_failed": "お支払いに失敗しました"
+      },
+      "export": {
+        "appointments": "予約をエクスポートしました",
+        "customers": "お客様をエクスポートしました",
+        "services": "サービスをエクスポートしました"
+      }
+    }
+  },
+  "footer": "時刻はすべて{timezone} · 今日は {date}"
+}

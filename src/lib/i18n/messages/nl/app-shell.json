@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Dashboard"
+  },
+  "skipToContent": "Naar de inhoud",
+  "signedInAs": "Ingelogd als {role}",
+  "roles": {
+    "owner": "eigenaar",
+    "manager": "manager",
+    "staff": "teamlid"
+  },
+  "nav": {
+    "label": "Hoofdmenu",
+    "more": "Meer",
+    "groups": {
+      "business": "Bedrijf",
+      "grow": "Groeien",
+      "account": "Account"
+    },
+    "items": {
+      "overview": "Overzicht",
+      "calendar": "Agenda",
+      "appointments": "Afspraken",
+      "customers": "Klanten",
+      "services": "Diensten",
+      "team": "Team",
+      "availability": "Beschikbaarheid",
+      "analytics": "Statistieken",
+      "bookingPage": "Boekingspagina",
+      "settings": "Instellingen",
+      "billing": "Facturering"
+    }
+  },
+  "topbar": {
+    "home": "Overzicht",
+    "search": "Zoeken",
+    "searchPlaceholder": "Zoek of ga naar…",
+    "newAppointment": "Nieuwe afspraak",
+    "openBookingPage": "Boekingspagina openen",
+    "accountMenu": "Accountmenu",
+    "account": "Account",
+    "settings": "Instellingen",
+    "theme": "Thema",
+    "language": "Taal",
+    "signOut": "Uitloggen",
+    "switchBusiness": "Ander bedrijf kiezen",
+    "addBusiness": "Nog een bedrijf toevoegen"
+  },
+  "inbox": {
+    "label": "Meldingen",
+    "labelUnread": "Meldingen, {count} ongelezen",
+    "title": "Meldingen",
+    "markAllRead": "Alles als gelezen markeren",
+    "loading": "Laden…",
+    "empty": "Je bent helemaal bij. Nieuwe boekingen en wijzigingen verschijnen hier.",
+    "unread": "Ongelezen",
+    "items": {
+      "bookingRequest": "Nieuwe boekingsaanvraag",
+      "booking": "Nieuwe boeking",
+      "booked": "{who} heeft {service} geboekt voor {date}.",
+      "cancelledTitle": "Boeking geannuleerd",
+      "cancelled": "{who} heeft {service} op {date} geannuleerd.",
+      "rescheduledTitle": "Boeking verzet",
+      "rescheduled": "{who} heeft {service} verzet naar {date}.",
+      "aCustomer": "Een klant",
+      "memberJoined": "{name} is lid geworden van je team",
+      "ownership": "{name} heeft jou eigenaar gemaakt van {business}",
+      "paymentFailed": "Betaling mislukt",
+      "paymentFailedBody": "We konden je kaart niet belasten. Werk je betaalmethode bij om boekingen te blijven ontvangen.",
+      "subscriptionActive": "Abonnement actief",
+      "subscriptionActiveBody": "Bedankt! Je abonnement is actief.",
+      "subscriptionEnded": "Abonnement beëindigd",
+      "subscriptionEndedBody": "Je boekingspagina accepteert geen nieuwe boekingen meer."
+    }
+  },
+  "palette": {
+    "title": "Opdrachtenpalet",
+    "description": "Zoek naar klanten, diensten en teamleden, of ga naar een pagina.",
+    "placeholder": "Zoek klanten, diensten, team… of typ een opdracht",
+    "suggestions": "Suggesties",
+    "empty": "Geen resultaten voor ‘{query}’.",
+    "groups": {
+      "goTo": "Ga naar",
+      "actions": "Acties",
+      "customers": "Klanten",
+      "appointments": "Afspraken",
+      "services": "Diensten",
+      "team": "Team"
+    },
+    "actions": {
+      "newAppointment": "Nieuwe afspraak",
+      "addService": "Dienst toevoegen",
+      "addStaff": "Teamlid toevoegen",
+      "copyLink": "Boekingslink kopiëren",
+      "linkCopied": "Boekingslink gekopieerd",
+      "preview": "Boekingspagina bekijken"
+    }
+  },
+  "banners": {
+    "suspended": "Dit account is opgeschort. Je boekingspagina is offline en wijzigingen zijn uitgeschakeld. Neem contact op met support om dit op te lossen.",
+    "emailSimulated": "E-mail versturen is op deze site nog niet ingesteld, dus je bevestigingslink is in het serverlogboek gezet in plaats van naar {email} gestuurd. Koppel een e-mailprovider (Resend of SMTP) om hem in je inbox te ontvangen.",
+    "verify": "Bevestig je e-mailadres ({email}) om je boekingspagina te publiceren.",
+    "verificationSent": "Verificatiemail verstuurd",
+    "sending": "Versturen…",
+    "resend": "Link opnieuw sturen",
+    "inactive": "Je boekingspagina accepteert geen nieuwe boekingen omdat er geen actief abonnement is.",
+    "subscribe": "Abonneer voor {price}/maand",
+    "pastDue": "Je laatste betaling is mislukt. Werk je kaart bij om je boekingspagina online te houden.",
+    "fixBilling": "Betaling regelen",
+    "trial": "{days, plural, one {Nog # dag van je gratis proefperiode.} other {Nog # dagen van je gratis proefperiode.}}",
+    "choosePlan": "Kies een abonnement"
+  },
+  "error": {
+    "title": "Deze pagina kon niet worden geladen",
+    "body": "Je boekingen en gegevens zijn veilig. Probeer het opnieuw. Blijft het probleem bestaan, neem dan contact op met support en vermeld de referentie.",
+    "reference": "Referentie: {digest}",
+    "retry": "Opnieuw proberen"
+  },
+  "loading": "Laden"
+}

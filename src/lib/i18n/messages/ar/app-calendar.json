@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "التقويم"
+  },
+  "toolbar": {
+    "today": "اليوم",
+    "previous": "السابق",
+    "next": "التالي",
+    "showStaff": "عرض عضو الفريق",
+    "everyone": "الجميع",
+    "view": "عرض التقويم",
+    "new": "جديد"
+  },
+  "views": {
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "agenda": "قائمة"
+  },
+  "agendaTitle": "بدءًا من {date}",
+  "moved": "نُقل إلى {date}، {time}",
+  "movedDescription": "أُرسل الموعد الجديد إلى العميل بالبريد الإلكتروني.",
+  "slot": "موعد جديد يوم {date} الساعة {time}",
+  "block": "{customer}، {service}، من {start} إلى {end}، {staff}، {status}",
+  "footer": {
+    "times": "الأوقات بتوقيت: {timezone}.",
+    "hint": "انقر على خانة فارغة لإضافة موعد · اسحب الموعد لتغيير وقته (يُرسَل بريد إلى العميل)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, zero {لا مواعيد} one {موعد واحد} two {موعدان} few {# مواعيد} many {# موعدًا} other {# موعد}}",
+    "more": "+{count} أخرى"
+  },
+  "agenda": {
+    "empty": "لا مواعيد خلال الأسبوعين القادمين.",
+    "today": "اليوم · {date}"
+  }
+}

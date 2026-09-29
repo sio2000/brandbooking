@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Clienti",
+    "detailTitle": "Cliente"
+  },
+  "segments": {
+    "all": {
+      "label": "Tutti",
+      "help": "Chiunque abbia prenotato o sia stato aggiunto."
+    },
+    "new": {
+      "label": "Nuovi",
+      "help": "Primo appuntamento negli ultimi 30 giorni."
+    },
+    "returning": {
+      "label": "Di ritorno",
+      "help": "Due o più visite completate."
+    },
+    "vip": {
+      "label": "Abituali",
+      "help": "Cinque o più visite completate."
+    },
+    "inactive": {
+      "label": "Inattivi",
+      "help": "Nessuna visita da 90 giorni e niente prenotato."
+    },
+    "upcoming": {
+      "label": "Con appuntamento",
+      "help": "Ha un appuntamento in arrivo."
+    },
+    "cancelled": {
+      "label": "Hanno annullato",
+      "help": "Ha annullato almeno una volta."
+    },
+    "no_show": {
+      "label": "Non presentati",
+      "help": "Ha saltato almeno un appuntamento."
+    }
+  },
+  "list": {
+    "title": "Clienti",
+    "description": "Tutti quelli che hanno prenotato da te, con storico e valore. Cerca, filtra per segmento o esporta.",
+    "erased": "I dati personali del cliente sono stati cancellati. I suoi appuntamenti passati restano come record anonimi, così le tue statistiche restano corrette.",
+    "segments": "Segmenti di clienti",
+    "search": "Cerca clienti",
+    "searchPlaceholder": "Cerca nome, email o telefono",
+    "sort": {
+      "label": "Ordina",
+      "recent": "Più recenti",
+      "name": "Nome A–Z",
+      "visits": "Più visite",
+      "revenue": "Incasso più alto",
+      "last_visit": "Ultima visita"
+    },
+    "export": "Esporta",
+    "add": "Aggiungi cliente",
+    "empty": {
+      "noMatchTitle": "Nessun cliente corrispondente",
+      "noMatchBody": "Prova un’altra ricerca o un altro segmento.",
+      "noneTitle": "Ancora nessun cliente",
+      "noneBody": "I clienti vengono aggiunti automaticamente quando qualcuno prenota dalla tua pagina. Puoi anche aggiungerli tu."
+    },
+    "caption": "Clienti, {count} in totale",
+    "columns": {
+      "customer": "Cliente",
+      "visits": "Visite",
+      "revenue": "Incasso",
+      "lastVisit": "Ultima visita",
+      "next": "Prossimo"
+    },
+    "noContact": "Nessun recapito",
+    "regular": "Abituale",
+    "noShows": "{count, plural, one {# assenza} other {# assenze}}",
+    "visitsLabel": "Visite:",
+    "pagination": {
+      "label": "Paginazione",
+      "previous": "Precedente",
+      "next": "Successiva",
+      "summary": "Pagina {page} di {pages} · {total} clienti"
+    }
+  },
+  "detail": {
+    "back": "Clienti",
+    "stats": {
+      "visits": "Visite",
+      "visitsHint": "{count, plural, one {# prenotazione in totale} other {# prenotazioni in totale}}",
+      "revenue": "Incasso",
+      "average": "Media {amount} a visita",
+      "fromCompleted": "Dalle visite completate",
+      "revenueDefinition": "Somma dei prezzi dei servizi degli appuntamenti completati.",
+      "cancellations": "Annullamenti",
+      "ofBookings": "{percent} delle prenotazioni",
+      "noShows": "Assenze",
+      "ofVisits": "{percent} delle visite"
+    },
+    "history": {
+      "title": "Storico appuntamenti",
+      "count": "{count, plural, one {# appuntamento} other {# appuntamenti}}",
+      "empty": "Ancora nessun appuntamento."
+    },
+    "glance": {
+      "title": "In sintesi",
+      "since": "Cliente dal",
+      "firstVisit": "Prima visita",
+      "lastVisit": "Ultima visita",
+      "next": "Prossimo appuntamento",
+      "nextValue": "{date}, {time}",
+      "none": "Nessuno prenotato",
+      "favoriteService": "Servizio preferito",
+      "usualStaff": "Di solito con"
+    },
+    "notes": {
+      "title": "Note interne",
+      "description": "Visibili solo al tuo team.",
+      "empty": "Ancora nessuna nota. Usa Modifica per aggiungere allergie, preferenze o qualsiasi cosa utile."
+    }
+  },
+  "actions": {
+    "book": "Prenota",
+    "edit": "Modifica",
+    "erase": "Cancella i dati del cliente",
+    "eraseTitle": "Cancellare i dati personali di questo cliente?",
+    "eraseBody": "Vengono rimossi definitivamente nome, email, telefono e note di {name} (ad esempio dopo una richiesta di cancellazione ai sensi del GDPR). Gli appuntamenti passati restano come record anonimi, così le tue statistiche restano corrette. <strong>L’operazione è irreversibile.</strong>",
+    "eraseConfirm": "Cancella dati",
+    "eraseWord": "CANCELLA"
+  },
+  "form": {
+    "addTitle": "Aggiungi cliente",
+    "editTitle": "Modifica cliente",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "notes": "Note interne",
+    "notesHint": "Visibili solo al tuo team.",
+    "cancel": "Annulla",
+    "save": "Salva modifiche",
+    "add": "Aggiungi cliente",
+    "saved": "Salvato"
+  },
+  "toasts": {
+    "added": "Cliente aggiunto",
+    "updated": "Cliente aggiornato"
+  },
+  "export": {
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "appointments": "Appuntamenti",
+    "completed": "Completati",
+    "cancelled": "Annullati",
+    "noShows": "Assenze",
+    "revenue": "Incasso",
+    "firstVisit": "Prima visita",
+    "lastVisit": "Ultima visita",
+    "next": "Prossimo appuntamento",
+    "since": "Cliente dal"
+  }
+}

@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import { headers } from 'next/headers'
 import { AppProviders } from '@/components/providers/app-providers'
+import { Translations } from '@/components/i18n/translations'
 import { themeScript } from '@/components/providers/theme'
 import { site, socialImage } from '@/lib/site'
 import { LOCALE_META } from '@/lib/i18n/config'
@@ -68,7 +69,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Script id="theme" strategy="beforeInteractive" nonce={nonce}>
           {themeScript}
         </Script>
-        <AppProviders>{children}</AppProviders>
+        {/* 'ui': labels of the shared components (dialogs, toasts, forms) used on every page. */}
+        <Translations ns={['ui']}>
+          <AppProviders>{children}</AppProviders>
+        </Translations>
       </body>
     </html>
   )

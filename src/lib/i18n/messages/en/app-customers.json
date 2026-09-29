@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "title": "Customers",
+    "detailTitle": "Customer"
+  },
+  "segments": {
+    "all": { "label": "All", "help": "Everyone who has booked or been added." },
+    "new": { "label": "New", "help": "First appointment in the last 30 days." },
+    "returning": { "label": "Returning", "help": "Two or more completed visits." },
+    "vip": { "label": "Regulars", "help": "Five or more completed visits." },
+    "inactive": { "label": "Inactive", "help": "No visit in 90 days and nothing booked." },
+    "upcoming": { "label": "Upcoming", "help": "Has an upcoming appointment." },
+    "cancelled": { "label": "Cancelled", "help": "Cancelled at least once." },
+    "no_show": { "label": "No-shows", "help": "Missed at least one appointment." }
+  },
+  "list": {
+    "title": "Customers",
+    "description": "Everyone who has booked with you, with their history and value. Search, filter by segment, or export.",
+    "erased": "The customer’s personal data was erased. Their past appointments remain as anonymous records so your statistics stay correct.",
+    "segments": "Customer segments",
+    "search": "Search customers",
+    "searchPlaceholder": "Search name, email or phone",
+    "sort": {
+      "label": "Sort",
+      "recent": "Newest first",
+      "name": "Name A–Z",
+      "visits": "Most visits",
+      "revenue": "Highest revenue",
+      "last_visit": "Last visit"
+    },
+    "export": "Export",
+    "add": "Add customer",
+    "empty": {
+      "noMatchTitle": "No customers match",
+      "noMatchBody": "Try a different search or segment.",
+      "noneTitle": "No customers yet",
+      "noneBody": "Customers are added automatically when someone books through your page. You can also add them yourself."
+    },
+    "caption": "Customers, {count} total",
+    "columns": {
+      "customer": "Customer",
+      "visits": "Visits",
+      "revenue": "Revenue",
+      "lastVisit": "Last visit",
+      "next": "Next"
+    },
+    "noContact": "No contact details",
+    "regular": "Regular",
+    "noShows": "{count, plural, one {# no-show} other {# no-shows}}",
+    "visitsLabel": "Visits:",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "summary": "Page {page} of {pages} · {total} customers"
+    }
+  },
+  "detail": {
+    "back": "Customers",
+    "stats": {
+      "visits": "Visits",
+      "visitsHint": "{count} booked in total",
+      "revenue": "Revenue",
+      "average": "Avg. {amount} per visit",
+      "fromCompleted": "From completed visits",
+      "revenueDefinition": "Sum of service prices for completed appointments.",
+      "cancellations": "Cancellations",
+      "ofBookings": "{percent} of bookings",
+      "noShows": "No-shows",
+      "ofVisits": "{percent} of visits"
+    },
+    "history": {
+      "title": "Appointment history",
+      "count": "{count, plural, one {# appointment} other {# appointments}}",
+      "empty": "No appointments yet."
+    },
+    "glance": {
+      "title": "At a glance",
+      "since": "Customer since",
+      "firstVisit": "First visit",
+      "lastVisit": "Last visit",
+      "next": "Next appointment",
+      "nextValue": "{date}, {time}",
+      "none": "None booked",
+      "favoriteService": "Favourite service",
+      "usualStaff": "Usually sees"
+    },
+    "notes": {
+      "title": "Internal notes",
+      "description": "Only visible to your team.",
+      "empty": "No notes yet. Use Edit to add allergies, preferences or anything useful."
+    }
+  },
+  "actions": {
+    "book": "Book",
+    "edit": "Edit",
+    "erase": "Erase customer data",
+    "eraseTitle": "Erase this customer’s personal data?",
+    "eraseBody": "This permanently removes {name}’s name, email, phone and notes (for example after a GDPR erasure request). Past appointments stay as anonymous records so your statistics remain correct. <strong>This can’t be undone.</strong>",
+    "eraseConfirm": "Erase data",
+    "eraseWord": "ERASE"
+  },
+  "form": {
+    "addTitle": "Add customer",
+    "editTitle": "Edit customer",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "notes": "Internal notes",
+    "notesHint": "Only visible to your team.",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "add": "Add customer",
+    "saved": "Saved"
+  },
+  "toasts": {
+    "added": "Customer added",
+    "updated": "Customer updated"
+  },
+  "export": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "appointments": "Appointments",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "noShows": "No-shows",
+    "revenue": "Revenue",
+    "firstVisit": "First visit",
+    "lastVisit": "Last visit",
+    "next": "Next appointment",
+    "since": "Customer since"
+  }
+}

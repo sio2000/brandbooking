@@ -3,6 +3,7 @@
 import { Monitor, Moon, Sun } from 'lucide-react'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
 
 type Theme = 'light' | 'dark' | 'system'
 const KEY = 'hn-theme'
@@ -53,15 +54,16 @@ export function useTheme() {
 
 export function ThemeSwitcher({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme()
+  const t = useT('ui')
   const opts: Array<{ v: Theme; label: string; Icon: typeof Sun }> = [
-    { v: 'light', label: 'Light', Icon: Sun },
-    { v: 'dark', label: 'Dark', Icon: Moon },
-    { v: 'system', label: 'System', Icon: Monitor },
+    { v: 'light', label: t('theme.light'), Icon: Sun },
+    { v: 'dark', label: t('theme.dark'), Icon: Moon },
+    { v: 'system', label: t('theme.system'), Icon: Monitor },
   ]
   return (
     <div
       role="radiogroup"
-      aria-label="Colour theme"
+      aria-label={t('theme.label')}
       className={cn('inline-flex rounded-lg bg-surface-2 p-0.5', className)}
     >
       {opts.map(({ v, label, Icon }) => (

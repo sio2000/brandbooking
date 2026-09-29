@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "ダッシュボード"
+  },
+  "skipToContent": "本文へスキップ",
+  "signedInAs": "{role}としてログイン中",
+  "roles": {
+    "owner": "オーナー",
+    "manager": "マネージャー",
+    "staff": "スタッフ"
+  },
+  "nav": {
+    "label": "メインメニュー",
+    "more": "その他",
+    "groups": {
+      "business": "ビジネス",
+      "grow": "集客",
+      "account": "アカウント"
+    },
+    "items": {
+      "overview": "概要",
+      "calendar": "カレンダー",
+      "appointments": "予約一覧",
+      "customers": "お客様",
+      "services": "サービス",
+      "team": "スタッフ",
+      "availability": "空き状況",
+      "analytics": "分析",
+      "bookingPage": "予約ページ",
+      "settings": "設定",
+      "billing": "お支払い"
+    }
+  },
+  "topbar": {
+    "home": "概要",
+    "search": "検索",
+    "searchPlaceholder": "検索またはページへ移動…",
+    "newAppointment": "新規予約",
+    "openBookingPage": "予約ページを開く",
+    "accountMenu": "アカウントメニュー",
+    "account": "アカウント",
+    "settings": "設定",
+    "theme": "テーマ",
+    "language": "言語",
+    "signOut": "ログアウト",
+    "switchBusiness": "ビジネスを切り替え",
+    "addBusiness": "別のビジネスを追加"
+  },
+  "inbox": {
+    "label": "通知",
+    "labelUnread": "通知（未読 {count} 件）",
+    "title": "通知",
+    "markAllRead": "すべて既読にする",
+    "loading": "読み込み中…",
+    "empty": "新しい通知はありません。新しい予約や変更はここに表示されます。",
+    "unread": "未読",
+    "items": {
+      "bookingRequest": "新しい予約リクエスト",
+      "booking": "新しい予約",
+      "booked": "{who}様が{date}の{service}を予約しました。",
+      "cancelledTitle": "予約がキャンセルされました",
+      "cancelled": "{who}様が{date}の{service}をキャンセルしました。",
+      "rescheduledTitle": "予約の日時が変更されました",
+      "rescheduled": "{who}様が{service}の日時を{date}に変更しました。",
+      "aCustomer": "お客様",
+      "memberJoined": "{name}さんがチームに参加しました",
+      "ownership": "{name}さんがあなたを{business}のオーナーにしました",
+      "paymentFailed": "お支払いに失敗しました",
+      "paymentFailedBody": "カードに請求できませんでした。予約の受付を続けるには、お支払い方法を更新してください。",
+      "subscriptionActive": "サブスクリプションが有効になりました",
+      "subscriptionActiveBody": "ありがとうございます。プランが有効になりました。",
+      "subscriptionEnded": "サブスクリプションが終了しました",
+      "subscriptionEndedBody": "予約ページで新しい予約を受け付けなくなりました。"
+    }
+  },
+  "palette": {
+    "title": "コマンドパレット",
+    "description": "お客様、サービス、スタッフを検索するか、ページに移動します。",
+    "placeholder": "お客様、サービス、スタッフを検索…またはコマンドを入力",
+    "suggestions": "候補",
+    "empty": "「{query}」に一致する結果はありません。",
+    "groups": {
+      "goTo": "移動",
+      "actions": "操作",
+      "customers": "お客様",
+      "appointments": "予約",
+      "services": "サービス",
+      "team": "スタッフ"
+    },
+    "actions": {
+      "newAppointment": "新規予約",
+      "addService": "サービスを追加",
+      "addStaff": "スタッフを追加",
+      "copyLink": "予約リンクをコピー",
+      "linkCopied": "予約リンクをコピーしました",
+      "preview": "予約ページをプレビュー"
+    }
+  },
+  "banners": {
+    "suspended": "このアカウントは停止されています。予約ページは公開停止中で、変更もできません。解決するにはサポートにお問い合わせください。",
+    "emailSimulated": "このサイトではまだメール送信が設定されていないため、確認リンクは {email} に送信されず、サーバーログに記録されました。受信トレイに届けるには、メール配信サービス（Resend または SMTP）を接続してください。",
+    "verify": "予約ページを公開するには、メールアドレス（{email}）を確認してください。",
+    "verificationSent": "確認メールを送信しました",
+    "sending": "送信中…",
+    "resend": "リンクを再送信",
+    "inactive": "有効なサブスクリプションがないため、予約ページで新しい予約を受け付けていません。",
+    "subscribe": "月額 {price} で登録",
+    "pastDue": "前回のお支払いに失敗しました。予約ページの公開を続けるには、カード情報を更新してください。",
+    "fixBilling": "お支払いを修正",
+    "trial": "{days, plural, other {無料トライアルの残りはあと # 日です。}}",
+    "choosePlan": "プランを選ぶ"
+  },
+  "error": {
+    "title": "このページを読み込めませんでした",
+    "body": "予約とデータは安全です。もう一度お試しください。問題が続く場合は、参照番号を添えてサポートにお問い合わせください。",
+    "reference": "参照番号：{digest}",
+    "retry": "再試行"
+  },
+  "loading": "読み込み中"
+}

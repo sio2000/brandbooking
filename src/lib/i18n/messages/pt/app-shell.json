@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Painel"
+  },
+  "skipToContent": "Saltar para o conteúdo",
+  "signedInAs": "Sessão iniciada como {role}",
+  "roles": {
+    "owner": "proprietário",
+    "manager": "gestor",
+    "staff": "membro da equipa"
+  },
+  "nav": {
+    "label": "Navegação principal",
+    "more": "Mais",
+    "groups": {
+      "business": "Negócio",
+      "grow": "Crescer",
+      "account": "Conta"
+    },
+    "items": {
+      "overview": "Visão geral",
+      "calendar": "Calendário",
+      "appointments": "Marcações",
+      "customers": "Clientes",
+      "services": "Serviços",
+      "team": "Equipa",
+      "availability": "Disponibilidade",
+      "analytics": "Estatísticas",
+      "bookingPage": "Página de reservas",
+      "settings": "Definições",
+      "billing": "Faturação"
+    }
+  },
+  "topbar": {
+    "home": "Visão geral",
+    "search": "Pesquisar",
+    "searchPlaceholder": "Pesquisar ou ir para…",
+    "newAppointment": "Nova marcação",
+    "openBookingPage": "Abrir a página de reservas",
+    "accountMenu": "Menu da conta",
+    "account": "Conta",
+    "settings": "Definições",
+    "theme": "Tema",
+    "language": "Idioma",
+    "signOut": "Terminar sessão",
+    "switchBusiness": "Mudar de negócio",
+    "addBusiness": "Adicionar outro negócio"
+  },
+  "inbox": {
+    "label": "Notificações",
+    "labelUnread": "Notificações, {count} por ler",
+    "title": "Notificações",
+    "markAllRead": "Marcar tudo como lido",
+    "loading": "A carregar…",
+    "empty": "Está tudo em dia. As novas reservas e alterações aparecem aqui.",
+    "unread": "Por ler",
+    "items": {
+      "bookingRequest": "Novo pedido de reserva",
+      "booking": "Nova reserva",
+      "booked": "{who} reservou {service} para {date}.",
+      "cancelledTitle": "Reserva cancelada",
+      "cancelled": "{who} cancelou {service} de {date}.",
+      "rescheduledTitle": "Reserva reagendada",
+      "rescheduled": "{who} reagendou {service} para {date}.",
+      "aCustomer": "Um cliente",
+      "memberJoined": "{name} juntou-se à sua equipa",
+      "ownership": "{name} tornou-o proprietário de {business}",
+      "paymentFailed": "Falha no pagamento",
+      "paymentFailedBody": "Não foi possível cobrar o seu cartão. Atualize o método de pagamento para continuar a aceitar reservas.",
+      "subscriptionActive": "Subscrição ativa",
+      "subscriptionActiveBody": "Obrigado! O seu plano está ativo.",
+      "subscriptionEnded": "Subscrição terminada",
+      "subscriptionEndedBody": "A sua página de reservas já não aceita novas reservas."
+    }
+  },
+  "palette": {
+    "title": "Paleta de comandos",
+    "description": "Pesquise clientes, serviços e equipa, ou vá para uma página.",
+    "placeholder": "Pesquisar clientes, serviços, equipa… ou escrever um comando",
+    "suggestions": "Sugestões",
+    "empty": "Sem resultados para «{query}».",
+    "groups": {
+      "goTo": "Ir para",
+      "actions": "Ações",
+      "customers": "Clientes",
+      "appointments": "Marcações",
+      "services": "Serviços",
+      "team": "Equipa"
+    },
+    "actions": {
+      "newAppointment": "Nova marcação",
+      "addService": "Adicionar serviço",
+      "addStaff": "Adicionar membro da equipa",
+      "copyLink": "Copiar ligação de reservas",
+      "linkCopied": "Ligação de reservas copiada",
+      "preview": "Pré-visualizar a página de reservas"
+    }
+  },
+  "banners": {
+    "suspended": "Esta conta está suspensa. A sua página de reservas está offline e as alterações estão desativadas. Contacte o suporte para resolver a situação.",
+    "emailSimulated": "O envio de e-mails ainda não está ligado neste site, por isso a ligação de confirmação foi escrita no registo do servidor em vez de ser enviada para {email}. Ligue um fornecedor de e-mail (Resend ou SMTP) para a receber na sua caixa de entrada.",
+    "verify": "Confirme o seu e-mail ({email}) para publicar a sua página de reservas.",
+    "verificationSent": "E-mail de verificação enviado",
+    "sending": "A enviar…",
+    "resend": "Reenviar ligação",
+    "inactive": "A sua página de reservas não está a aceitar novas reservas porque não existe nenhuma subscrição ativa.",
+    "subscribe": "Subscrever por {price}/mês",
+    "pastDue": "O seu último pagamento falhou. Atualize o cartão para manter a página de reservas online.",
+    "fixBilling": "Resolver faturação",
+    "trial": "{days, plural, one {Resta # dia do período experimental.} other {Restam # dias do período experimental.}}",
+    "choosePlan": "Escolher um plano"
+  },
+  "error": {
+    "title": "Não foi possível carregar esta página",
+    "body": "As suas reservas e os seus dados estão seguros. Tente novamente. Se o problema persistir, contacte o suporte e indique a referência.",
+    "reference": "Referência: {digest}",
+    "retry": "Tentar novamente"
+  },
+  "loading": "A carregar"
+}

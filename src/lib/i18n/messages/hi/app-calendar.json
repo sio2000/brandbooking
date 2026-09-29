@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "कैलेंडर"
+  },
+  "toolbar": {
+    "today": "आज",
+    "previous": "पिछला",
+    "next": "अगला",
+    "showStaff": "टीम सदस्य दिखाएँ",
+    "everyone": "सभी",
+    "view": "कैलेंडर व्यू",
+    "new": "नया"
+  },
+  "views": {
+    "day": "दिन",
+    "week": "हफ़्ता",
+    "month": "महीना",
+    "agenda": "सूची"
+  },
+  "agendaTitle": "{date} से",
+  "moved": "{date}, {time} पर ले जाया गया",
+  "movedDescription": "ग्राहक को नया समय ईमेल कर दिया गया है।",
+  "slot": "{date} को {time} बजे नया अपॉइंटमेंट",
+  "block": "{customer}, {service}, {start} से {end}, {staff}, {status}",
+  "footer": {
+    "times": "समय {timezone} में।",
+    "hint": "अपॉइंटमेंट जोड़ने के लिए खाली स्लॉट पर क्लिक करें · समय बदलने के लिए खींचें (ग्राहक को ईमेल जाता है)।"
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# अपॉइंटमेंट} other {# अपॉइंटमेंट}}",
+    "more": "+{count} और"
+  },
+  "agenda": {
+    "empty": "अगले दो हफ़्तों में कोई अपॉइंटमेंट नहीं।",
+    "today": "आज · {date}"
+  }
+}

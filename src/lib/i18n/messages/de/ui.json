@@ -1,0 +1,32 @@
+{
+  "close": "Schließen",
+  "dialog": "Dialog",
+  "panel": "Bereich",
+  "cancel": "Abbrechen",
+  "confirm": "Bestätigen",
+  "typeToConfirm": "Geben Sie zur Bestätigung <phrase>{text}</phrase> ein",
+  "optional": "Optional",
+  "loading": "Wird geladen",
+  "toasts": "Benachrichtigungen",
+  "closeToast": "Benachrichtigung schließen",
+  "theme": {
+    "label": "Farbschema",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "copy": {
+    "label": "Link kopieren",
+    "copied": "Kopiert",
+    "toast": "Link in die Zwischenablage kopiert",
+    "failed": "Automatisches Kopieren nicht möglich. Markieren Sie den Link und kopieren Sie ihn manuell."
+  },
+  "print": "Drucken",
+  "color": "Farbe",
+  "stat": {
+    "about": "Info zu: {label}",
+    "up": "gestiegen",
+    "down": "gesunken",
+    "unchanged": "unverändert"
+  }
+}

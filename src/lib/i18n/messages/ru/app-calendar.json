@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Календарь"
+  },
+  "toolbar": {
+    "today": "Сегодня",
+    "previous": "Назад",
+    "next": "Вперёд",
+    "showStaff": "Показать сотрудника",
+    "everyone": "Все",
+    "view": "Вид календаря",
+    "new": "Создать"
+  },
+  "views": {
+    "day": "День",
+    "week": "Неделя",
+    "month": "Месяц",
+    "agenda": "Список"
+  },
+  "agendaTitle": "С {date}",
+  "moved": "Перенесено на {date}, {time}",
+  "movedDescription": "Клиенту отправлено письмо с новым временем.",
+  "slot": "Новая запись: {date}, {time}",
+  "block": "{customer}, {service}, с {start} до {end}, {staff}, {status}",
+  "footer": {
+    "times": "Время: {timezone}.",
+    "hint": "Нажмите на свободное время, чтобы добавить запись · перетащите запись, чтобы перенести её (клиент получит письмо)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# запись} few {# записи} many {# записей} other {# записи}}",
+    "more": "ещё {count}"
+  },
+  "agenda": {
+    "empty": "В ближайшие две недели записей нет.",
+    "today": "Сегодня · {date}"
+  }
+}

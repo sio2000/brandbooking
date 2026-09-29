@@ -4,6 +4,7 @@ import { Dialog as D } from 'radix-ui'
 import { X } from 'lucide-react'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
 
 export const Dialog = D.Root
 export const DialogTrigger = D.Trigger
@@ -35,6 +36,7 @@ export function DialogContent({
   size?: 'sm' | 'md' | 'lg' | 'xl'
   hideClose?: boolean
 }) {
+  const t = useT('ui')
   return (
     <D.Portal>
       <Overlay />
@@ -57,14 +59,14 @@ export function DialogContent({
               </D.Description>
             ) : (
               <D.Description className="sr-only">
-                {typeof title === 'string' ? title : 'Dialog'}
+                {typeof title === 'string' ? title : t('dialog')}
               </D.Description>
             )}
           </div>
           {!hideClose && (
             <D.Close
-              className="-mr-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
-              aria-label="Close"
+              className="-me-1 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+              aria-label={t('close')}
             >
               <X className="size-4" />
             </D.Close>
@@ -92,7 +94,7 @@ export function DialogFooter({ className, ...props }: React.ComponentProps<'div'
   )
 }
 
-/** Right-hand drawer (full screen on phones) for detail views and long forms. */
+/** Side drawer at the end of the reading direction (full screen on phones) for detail views and long forms. */
 export function SheetContent({
   className,
   children,
@@ -103,13 +105,14 @@ export function SheetContent({
   title: React.ReactNode
   description?: React.ReactNode
 }) {
+  const t = useT('ui')
   return (
     <D.Portal>
       <Overlay />
       <D.Content
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex w-full flex-col border-l border-border bg-elevated shadow-lg outline-none sm:max-w-lg',
-          'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right-12 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right-12',
+          'fixed inset-y-0 end-0 z-50 flex w-full flex-col border-s border-border bg-elevated shadow-lg outline-none sm:max-w-lg',
+          'duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-end-12 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-end-12',
           className,
         )}
         {...props}
@@ -120,12 +123,12 @@ export function SheetContent({
             <D.Description
               className={description ? 'mt-0.5 text-sm text-muted-foreground' : 'sr-only'}
             >
-              {description ?? (typeof title === 'string' ? title : 'Panel')}
+              {description ?? (typeof title === 'string' ? title : t('panel'))}
             </D.Description>
           </div>
           <D.Close
-            className="-mr-1 rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-foreground"
-            aria-label="Close"
+            className="-me-1 rounded-md p-1.5 text-muted-foreground hover:bg-surface-2 hover:text-foreground"
+            aria-label={t('close')}
           >
             <X className="size-4" />
           </D.Close>

@@ -1,0 +1,32 @@
+{
+  "close": "Sluiten",
+  "dialog": "Dialoogvenster",
+  "panel": "Paneel",
+  "cancel": "Annuleren",
+  "confirm": "Bevestigen",
+  "typeToConfirm": "Typ <phrase>{text}</phrase> om te bevestigen",
+  "optional": "Optioneel",
+  "loading": "Laden",
+  "toasts": "Meldingen",
+  "closeToast": "Melding sluiten",
+  "theme": {
+    "label": "Kleurthema",
+    "light": "Licht",
+    "dark": "Donker",
+    "system": "Systeem"
+  },
+  "copy": {
+    "label": "Link kopiëren",
+    "copied": "Gekopieerd",
+    "toast": "Link gekopieerd naar het klembord",
+    "failed": "Automatisch kopiëren lukte niet. Selecteer de link en kopieer hem handmatig."
+  },
+  "print": "Afdrukken",
+  "color": "Kleur",
+  "stat": {
+    "about": "Over: {label}",
+    "up": "gestegen",
+    "down": "gedaald",
+    "unchanged": "ongewijzigd"
+  }
+}
