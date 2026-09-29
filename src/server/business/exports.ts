@@ -20,15 +20,25 @@ import type { RequestMeta } from '@/server/request'
 import { enforceRateLimits, POLICIES } from '@/server/security/rate-limit'
 import { toCsv } from '@/lib/csv'
 import { formatDate, formatTime } from '@/lib/format'
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n/config'
+import { translator } from '@/lib/i18n/load'
+import { formatTag } from '@/components/dashboard/format-locale'
 import { listAppointments } from './appointments-admin'
 import { listCustomers } from './customers-admin'
 import type { Segment } from './customers-admin'
 
+/**
+ * Column headers and dates follow `locale` (the member’s language). Status and
+ * source stay machine-readable codes (confirmed, manual) so spreadsheets can filter on them.
+ */
 export async function exportAppointmentsCsv(
   ctx: TenantContext,
   range: { from: Date; to: Date },
   meta: RequestMeta,
+  locale: Locale = DEFAULT_LOCALE,
 ) {
+  const t = await translator(locale, 'app-appointments')
+  const tag = formatTag(locale)
   await enforceRateLimits([[`export:user:${ctx.user.id}`, POLICIES.exportByUser]])
   const rows = await listAppointments(ctx, { from: range.from, to: range.to, limit: 2000 })
   const tz = ctx.business.timezone
@@ -41,28 +51,30 @@ export async function exportAppointmentsCsv(
     ip: meta.ip,
   })
   return toCsv(
-    [
-      'Reference',
-      'Date',
-      'Start',
-      'End',
-      'Timezone',
-      'Status',
-      'Service',
-      'Team member',
-      'Customer',
-      'Email',
-      'Phone',
-      'Price',
-      'Currency',
-      'Source',
-      'Booked at',
-    ],
+    (
+      [
+        'reference',
+        'date',
+        'start',
+        'end',
+        'timezone',
+        'status',
+        'service',
+        'staff',
+        'customer',
+        'email',
+        'phone',
+        'price',
+        'currency',
+        'source',
+        'bookedAt',
+      ] as const
+    ).map((k) => t(`export.${k}`)),
     rows.map((r) => [
       r.reference,
-      formatDate(r.startsAt, tz),
-      formatTime(r.startsAt, tz),
-      formatTime(r.endsAt, tz),
+      formatDate(r.startsAt, tz, tag),
+      formatTime(r.startsAt, tz, tag),
+      formatTime(r.endsAt, tz, tag),
       tz,
       r.status,
       r.serviceName,
@@ -78,7 +90,13 @@ export async function exportAppointmentsCsv(
   )
 }
 
-export async function exportCustomersCsv(ctx: TenantContext, segment: Segment, meta: RequestMeta) {
+export async function exportCustomersCsv(
+  ctx: TenantContext,
+  segment: Segment,
+  meta: RequestMeta,
+  locale: Locale = DEFAULT_LOCALE,
+) {
+  const t = await translator(locale, 'app-customers')
   await enforceRateLimits([[`export:user:${ctx.user.id}`, POLICIES.exportByUser]])
   const { rows } = await listCustomers(ctx, { segment, pageSize: 5000, sort: 'name' })
   await audit(db(), {
@@ -90,21 +108,23 @@ export async function exportCustomersCsv(ctx: TenantContext, segment: Segment, m
     ip: meta.ip,
   })
   return toCsv(
-    [
-      'First name',
-      'Last name',
-      'Email',
-      'Phone',
-      'Appointments',
-      'Completed',
-      'Cancelled',
-      'No-shows',
-      'Revenue',
-      'First visit',
-      'Last visit',
-      'Next appointment',
-      'Customer since',
-    ],
+    (
+      [
+        'firstName',
+        'lastName',
+        'email',
+        'phone',
+        'appointments',
+        'completed',
+        'cancelled',
+        'noShows',
+        'revenue',
+        'firstVisit',
+        'lastVisit',
+        'next',
+        'since',
+      ] as const
+    ).map((k) => t(`export.${k}`)),
     rows.map((c) => [
       c.first_name,
       c.last_name,

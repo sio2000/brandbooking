@@ -20,6 +20,8 @@ import {
 } from '@/app/app/_actions/appointments'
 import type { Transition } from '@/server/booking/transitions'
 import type { PickerService, PickerStaff } from './new-appointment-dialog'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag } from './format-locale'
 
 type Appt = {
   id: string
@@ -48,22 +50,23 @@ export function AppointmentActions({
   customerHasEmail: boolean
 }) {
   const router = useRouter()
+  const t = useT('app-appointments')
   const [pending, setPending] = React.useState<string | null>(null)
   const [reschedOpen, setReschedOpen] = React.useState(false)
   const [reason, setReason] = React.useState('')
   const [notify, setNotify] = React.useState(true)
 
-  async function run(t: Transition) {
-    setPending(t)
+  async function run(transition: Transition) {
+    setPending(transition)
     const r = await changeStatusAction({
       id: a.id,
-      transition: t,
+      transition,
       reason: reason || null,
       notifyCustomer: notify,
     })
     setPending(null)
     if (r.ok) {
-      toast.success(r.message ?? 'Updated')
+      toast.success(r.message ?? t('actions.updated'))
       router.refresh()
     } else {
       toast.error(r.error)
@@ -75,46 +78,48 @@ export function AppointmentActions({
     <div className="flex flex-wrap gap-2">
       {transitions.includes('confirm') && (
         <Button onClick={() => run('confirm')} loading={pending === 'confirm'}>
-          <Check /> Confirm
+          <Check /> {t('actions.confirm')}
         </Button>
       )}
       {transitions.includes('complete') && (
         <Button onClick={() => run('complete')} loading={pending === 'complete'}>
-          <CheckCheck /> Completed
+          <CheckCheck /> {t('actions.completed')}
         </Button>
       )}
       {transitions.includes('no_show') && (
         <Button variant="secondary" onClick={() => run('no_show')} loading={pending === 'no_show'}>
-          <UserX /> No-show
+          <UserX /> {t('actions.noShow')}
         </Button>
       )}
       {active && (
         <Button variant="secondary" onClick={() => setReschedOpen(true)}>
-          <CalendarClock /> Reschedule
+          <CalendarClock /> {t('actions.reschedule')}
         </Button>
       )}
       {transitions.includes('reopen') && (
         <Button variant="secondary" onClick={() => run('reopen')} loading={pending === 'reopen'}>
-          <RotateCcw /> Reopen
+          <RotateCcw /> {t('actions.reopen')}
         </Button>
       )}
       {transitions.includes('cancel') && (
         <ConfirmDialog
           trigger={
             <Button variant="danger-soft">
-              <Ban /> Cancel
+              <Ban /> {t('actions.cancel')}
             </Button>
           }
-          title="Cancel this appointment?"
-          description="The time will be freed up for other bookings. This can’t be undone; you’d need to book again."
-          confirmLabel="Cancel appointment"
+          title={t('actions.cancelDialog.title')}
+          description={t('actions.cancelDialog.description')}
+          confirmLabel={t('actions.cancelDialog.confirm')}
           onConfirm={() => run('cancel')}
         >
           <div className="mt-4 grid gap-3">
             <div className="grid gap-1.5">
               <label htmlFor="cancel-reason" className="text-sm font-medium">
-                Message to the customer{' '}
-                <span className="font-normal text-muted-foreground">(optional)</span>
+                {t('actions.cancelDialog.message')}{' '}
+                <span className="font-normal text-muted-foreground">
+                  {t('actions.cancelDialog.optional')}
+                </span>
               </label>
               <Textarea
                 id="cancel-reason"
@@ -127,7 +132,7 @@ export function AppointmentActions({
             {customerHasEmail && (
               <SwitchRow
                 id="cancel-notify"
-                label="Email the customer"
+                label={t('actions.cancelDialog.notify')}
                 checked={notify}
                 onCheckedChange={setNotify}
               />
@@ -178,12 +183,10 @@ export function RescheduleDialog({
   lockedStaffId: string | null
   timezone: string
 }) {
+  const t = useT('app-appointments')
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        title="Reschedule appointment"
-        description="The customer receives an email with the old and new time."
-      >
+      <DialogContent title={t('reschedule.title')} description={t('reschedule.description')}>
         <RescheduleForm
           onDone={() => onOpenChange(false)}
           appointment={a}
@@ -213,6 +216,8 @@ function RescheduleForm({
   timezone: string
 }) {
   const router = useRouter()
+  const t = useT('app-appointments')
+  const tag = formatTag(useLocale().locale)
   const initial = localParts(a.startsAt, timezone)
   const [date, setDate] = React.useState(initial.date)
   const [time, setTime] = React.useState(initial.time)
@@ -253,7 +258,7 @@ function RescheduleForm({
     })
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Rescheduled')
+      toast.success(r.message ?? t('reschedule.done'))
       onDone()
       router.refresh()
     } else setError(r.error)
@@ -263,14 +268,14 @@ function RescheduleForm({
       <DialogBody className="grid gap-4">
         <FormError message={error} />
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Date" htmlFor="rs-date">
+          <Field label={t('reschedule.date')} htmlFor="rs-date">
             <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
           </Field>
-          <Field label="Start time" htmlFor="rs-time">
+          <Field label={t('reschedule.time')} htmlFor="rs-time">
             <Input type="time" step={300} value={time} onChange={(e) => setTime(e.target.value)} />
           </Field>
           {!lockedStaffId && (
-            <Field label="Team member" htmlFor="rs-staff" className="sm:col-span-2">
+            <Field label={t('reschedule.staff')} htmlFor="rs-staff" className="sm:col-span-2">
               <NativeSelect value={staffId} onChange={(e) => setStaffId(e.target.value)}>
                 {eligible.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -282,13 +287,13 @@ function RescheduleForm({
           )}
         </div>
         <div>
-          <p className="mb-2 text-[13px] font-medium text-muted-foreground">Free times</p>
+          <p className="mb-2 text-[13px] font-medium text-muted-foreground">
+            {t('reschedule.freeTimes')}
+          </p>
           {list === null ? (
-            <p className="text-sm text-muted-foreground">Checking…</p>
+            <p className="text-sm text-muted-foreground">{t('reschedule.checking')}</p>
           ) : list.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No free times within working hours on this day. You can still pick any time manually.
-            </p>
+            <p className="text-sm text-muted-foreground">{t('reschedule.none')}</p>
           ) : (
             <div className="flex flex-wrap gap-1.5">
               {list.slice(0, 40).map((s) => {
@@ -306,7 +311,7 @@ function RescheduleForm({
                         : 'border-border-strong hover:border-primary hover:bg-primary-soft',
                     )}
                   >
-                    {formatTime(s, timezone)}
+                    {formatTime(s, timezone, tag)}
                   </button>
                 )
               })}
@@ -316,10 +321,10 @@ function RescheduleForm({
       </DialogBody>
       <DialogFooter>
         <Button variant="secondary" onClick={onDone}>
-          Cancel
+          {t('reschedule.cancel')}
         </Button>
         <Button loading={pending} onClick={submit}>
-          Move appointment
+          {t('reschedule.submit')}
         </Button>
       </DialogFooter>
     </>
@@ -339,14 +344,17 @@ export function NotesEditor({
   const [saved, setSaved] = React.useState(initial)
   const [pending, setPending] = React.useState(false)
   const [ok, setOk] = React.useState(false)
+  const t = useT('app-appointments')
   if (readOnly)
     return (
-      <p className="text-sm whitespace-pre-line text-muted-foreground">{initial || 'No notes.'}</p>
+      <p className="text-sm whitespace-pre-line text-muted-foreground">
+        {initial || t('detail.notes.empty')}
+      </p>
     )
   return (
     <div className="grid gap-2">
       <label htmlFor="notes" className="sr-only">
-        Internal notes
+        {t('detail.notes.title')}
       </label>
       <Textarea
         id="notes"
@@ -357,7 +365,7 @@ export function NotesEditor({
           setValue(e.target.value)
           setOk(false)
         }}
-        placeholder="Colour formula, preferences, anything useful next time…"
+        placeholder={t('detail.notes.placeholder')}
       />
       <div className="flex justify-end">
         <Button
@@ -376,7 +384,7 @@ export function NotesEditor({
             } else toast.error(r.error)
           }}
         >
-          Save notes
+          {t('detail.notes.save')}
         </Button>
       </div>
     </div>

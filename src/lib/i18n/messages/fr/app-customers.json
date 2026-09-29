@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Clients",
+    "detailTitle": "Client"
+  },
+  "segments": {
+    "all": {
+      "label": "Tous",
+      "help": "Toutes les personnes qui ont réservé ou ont été ajoutées."
+    },
+    "new": {
+      "label": "Nouveaux",
+      "help": "Premier rendez-vous au cours des 30 derniers jours."
+    },
+    "returning": {
+      "label": "Fidèles",
+      "help": "Deux visites terminées ou plus."
+    },
+    "vip": {
+      "label": "Habitués",
+      "help": "Cinq visites terminées ou plus."
+    },
+    "inactive": {
+      "label": "Inactifs",
+      "help": "Aucune visite depuis 90 jours et rien de réservé."
+    },
+    "upcoming": {
+      "label": "À venir",
+      "help": "Ont un rendez-vous à venir."
+    },
+    "cancelled": {
+      "label": "Ont annulé",
+      "help": "Ont annulé au moins une fois."
+    },
+    "no_show": {
+      "label": "Absents",
+      "help": "Ont manqué au moins un rendez-vous."
+    }
+  },
+  "list": {
+    "title": "Clients",
+    "description": "Toutes les personnes qui ont réservé chez vous, avec leur historique et leur valeur. Recherchez, filtrez par segment ou exportez.",
+    "erased": "Les données personnelles du client ont été effacées. Ses rendez-vous passés restent sous forme anonyme pour que vos statistiques restent justes.",
+    "segments": "Segments de clients",
+    "search": "Rechercher des clients",
+    "searchPlaceholder": "Rechercher un nom, un e-mail ou un téléphone",
+    "sort": {
+      "label": "Trier",
+      "recent": "Plus récents",
+      "name": "Nom de A à Z",
+      "visits": "Plus de visites",
+      "revenue": "Chiffre d’affaires le plus élevé",
+      "last_visit": "Dernière visite"
+    },
+    "export": "Exporter",
+    "add": "Ajouter un client",
+    "empty": {
+      "noMatchTitle": "Aucun client ne correspond",
+      "noMatchBody": "Essayez une autre recherche ou un autre segment.",
+      "noneTitle": "Pas encore de clients",
+      "noneBody": "Les clients sont ajoutés automatiquement lorsqu’une personne réserve depuis votre page. Vous pouvez aussi les ajouter vous-même."
+    },
+    "caption": "Clients, {count} au total",
+    "columns": {
+      "customer": "Client",
+      "visits": "Visites",
+      "revenue": "Chiffre d’affaires",
+      "lastVisit": "Dernière visite",
+      "next": "Prochain"
+    },
+    "noContact": "Aucune coordonnée",
+    "regular": "Habitué",
+    "noShows": "{count, plural, one {# absence} other {# absences}}",
+    "visitsLabel": "Visites :",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "summary": "Page {page} sur {pages} · {total} clients"
+    }
+  },
+  "detail": {
+    "back": "Clients",
+    "stats": {
+      "visits": "Visites",
+      "visitsHint": "{count, plural, one {# réservation au total} other {# réservations au total}}",
+      "revenue": "Chiffre d’affaires",
+      "average": "Moy. {amount} par visite",
+      "fromCompleted": "Sur les visites terminées",
+      "revenueDefinition": "Somme des prix des prestations des rendez-vous terminés.",
+      "cancellations": "Annulations",
+      "ofBookings": "{percent} des réservations",
+      "noShows": "Absences",
+      "ofVisits": "{percent} des visites"
+    },
+    "history": {
+      "title": "Historique des rendez-vous",
+      "count": "{count, plural, one {# rendez-vous} other {# rendez-vous}}",
+      "empty": "Pas encore de rendez-vous."
+    },
+    "glance": {
+      "title": "En un coup d’œil",
+      "since": "Client depuis le",
+      "firstVisit": "Première visite",
+      "lastVisit": "Dernière visite",
+      "next": "Prochain rendez-vous",
+      "nextValue": "{date}, {time}",
+      "none": "Aucun réservé",
+      "favoriteService": "Prestation préférée",
+      "usualStaff": "Voit habituellement"
+    },
+    "notes": {
+      "title": "Notes internes",
+      "description": "Visibles uniquement par votre équipe.",
+      "empty": "Pas encore de notes. Utilisez Modifier pour ajouter des allergies, des préférences ou toute information utile."
+    }
+  },
+  "actions": {
+    "book": "Réserver",
+    "edit": "Modifier",
+    "erase": "Effacer les données du client",
+    "eraseTitle": "Effacer les données personnelles de ce client ?",
+    "eraseBody": "Cette action supprime définitivement le nom, l’e-mail, le téléphone et les notes de {name} (par exemple à la suite d’une demande d’effacement RGPD). Les rendez-vous passés restent sous forme anonyme pour que vos statistiques restent justes. <strong>Cette action est irréversible.</strong>",
+    "eraseConfirm": "Effacer les données",
+    "eraseWord": "EFFACER"
+  },
+  "form": {
+    "addTitle": "Ajouter un client",
+    "editTitle": "Modifier le client",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "notes": "Notes internes",
+    "notesHint": "Visibles uniquement par votre équipe.",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "add": "Ajouter le client",
+    "saved": "Enregistré"
+  },
+  "toasts": {
+    "added": "Client ajouté",
+    "updated": "Client mis à jour"
+  },
+  "export": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "appointments": "Rendez-vous",
+    "completed": "Terminés",
+    "cancelled": "Annulés",
+    "noShows": "Absences",
+    "revenue": "Chiffre d’affaires",
+    "firstVisit": "Première visite",
+    "lastVisit": "Dernière visite",
+    "next": "Prochain rendez-vous",
+    "since": "Client depuis le"
+  }
+}

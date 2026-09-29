@@ -72,7 +72,7 @@ export function RadioCard({ className, children, ...props }: React.ComponentProp
   return (
     <R.Item
       className={cn(
-        'relative rounded-xl border border-border-strong bg-surface p-3.5 text-left transition-[border-color,box-shadow,background-color] outline-none hover:border-primary/50 focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary-soft/40 data-[state=checked]:ring-1 data-[state=checked]:ring-primary',
+        'relative rounded-xl border border-border-strong bg-surface p-3.5 text-start transition-[border-color,box-shadow,background-color] outline-none hover:border-primary/50 focus-visible:ring-2 focus-visible:ring-ring data-[state=checked]:border-primary data-[state=checked]:bg-primary-soft/40 data-[state=checked]:ring-1 data-[state=checked]:ring-primary',
         className,
       )}
       {...props}

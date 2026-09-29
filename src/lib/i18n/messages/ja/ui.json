@@ -1,0 +1,32 @@
+{
+  "close": "閉じる",
+  "dialog": "ダイアログ",
+  "panel": "パネル",
+  "cancel": "キャンセル",
+  "confirm": "確認",
+  "typeToConfirm": "確認のため <phrase>{text}</phrase> と入力してください",
+  "optional": "任意",
+  "loading": "読み込み中",
+  "toasts": "通知",
+  "closeToast": "通知を閉じる",
+  "theme": {
+    "label": "カラーテーマ",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム設定"
+  },
+  "copy": {
+    "label": "リンクをコピー",
+    "copied": "コピーしました",
+    "toast": "リンクをクリップボードにコピーしました",
+    "failed": "自動でコピーできませんでした。リンクを選択して手動でコピーしてください。"
+  },
+  "print": "印刷",
+  "color": "色",
+  "stat": {
+    "about": "「{label}」について",
+    "up": "増加",
+    "down": "減少",
+    "unchanged": "変化なし"
+  }
+}

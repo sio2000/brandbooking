@@ -1,9 +1,21 @@
 import 'server-only'
 import { and, desc, eq, gte, inArray, lt, sql } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { appointmentEvents, auditLogs, customers, inboxItems, users } from '@/server/db/schema'
+import {
+  appointmentEvents,
+  appointments,
+  auditLogs,
+  customers,
+  inboxItems,
+  services,
+  users,
+} from '@/server/db/schema'
 import { ownStaffFilter, type TenantContext } from '@/server/tenancy/context'
 import { addDays, startOfLocalDayMs, startOfWeek, todayIn } from '@/lib/tz'
+import { DEFAULT_LOCALE, type Locale } from '@/lib/i18n/config'
+import { translator } from '@/lib/i18n/load'
+import { formatDateTime } from '@/lib/format'
+import { formatTag } from '@/components/dashboard/format-locale'
 import { listAppointments, attentionCounts } from './appointments-admin'
 
 export async function getOverview(ctx: TenantContext) {
@@ -114,7 +126,12 @@ export async function recentActivity(ctx: TenantContext, limit = 12) {
     .limit(limit)
 }
 
-export async function inbox(ctx: TenantContext, limit = 30) {
+/**
+ * The member's in-app notifications. Items are stored in English when the
+ * event happens; for other languages the known kinds are re-worded here, in
+ * the reader's language, from the stored text and the appointment they point to.
+ */
+export async function inbox(ctx: TenantContext, limit = 30, locale: Locale = DEFAULT_LOCALE) {
   const [items, [unread]] = await Promise.all([
     db()
       .select()
@@ -133,7 +150,85 @@ export async function inbox(ctx: TenantContext, limit = 30) {
         ),
       ),
   ])
-  return { items, unread: unread?.n ?? 0 }
+  return { items: await localizeInbox(ctx, items, locale), unread: unread?.n ?? 0 }
+}
+
+type InboxItem = typeof inboxItems.$inferSelect
+
+const BOOKING_KINDS = new Set(['booking_created', 'booking_cancelled', 'booking_rescheduled'])
+const UUID = /^[0-9a-f-]{36}$/i
+
+async function localizeInbox(
+  ctx: TenantContext,
+  items: InboxItem[],
+  locale: Locale,
+): Promise<InboxItem[]> {
+  if (locale === DEFAULT_LOCALE || items.length === 0) return items
+  const t = await translator(locale, 'app-shell')
+  const apptId = (i: InboxItem) => {
+    const id = BOOKING_KINDS.has(i.kind) ? i.href?.split('/').pop() : undefined
+    return id && UUID.test(id) ? id : null
+  }
+  const ids = [...new Set(items.map(apptId).filter((id): id is string => id !== null))]
+  const rows = ids.length
+    ? await db()
+        .select({
+          id: appointments.id,
+          startsAt: appointments.startsAt,
+          timezone: appointments.timezone,
+          firstName: customers.firstName,
+          lastName: customers.lastName,
+          service: services.name,
+        })
+        .from(appointments)
+        .innerJoin(customers, eq(customers.id, appointments.customerId))
+        .leftJoin(services, eq(services.id, appointments.serviceId))
+        .where(and(eq(appointments.businessId, ctx.business.id), inArray(appointments.id, ids)))
+    : []
+  const byId = new Map(rows.map((r) => [r.id, r]))
+  const tag = formatTag(locale)
+  return items.map((i) => {
+    const out = (title: string, body: string | null = i.body) => ({ ...i, title, body })
+    const id = apptId(i)
+    if (id) {
+      const a = byId.get(id)
+      // The body names the customer; erased customers have it cleared, keep it that way.
+      const vars = a && {
+        who: `${a.firstName} ${a.lastName}`.trim() || t('inbox.items.aCustomer'),
+        service: a.service ?? '',
+        date: formatDateTime(a.startsAt, a.timezone, tag),
+      }
+      const body = (key: 'booked' | 'cancelled' | 'rescheduled') =>
+        i.body && vars ? t(`inbox.items.${key}`, vars) : i.body
+      if (i.kind === 'booking_created')
+        return out(
+          t(
+            i.title === 'New booking request'
+              ? 'inbox.items.bookingRequest'
+              : 'inbox.items.booking',
+          ),
+          body('booked'),
+        )
+      if (i.kind === 'booking_cancelled')
+        return out(t('inbox.items.cancelledTitle'), body('cancelled'))
+      return out(t('inbox.items.rescheduledTitle'), body('rescheduled'))
+    }
+    if (i.kind === 'billing') {
+      if (i.title === 'Payment failed')
+        return out(t('inbox.items.paymentFailed'), t('inbox.items.paymentFailedBody'))
+      if (i.title === 'Subscription active')
+        return out(t('inbox.items.subscriptionActive'), t('inbox.items.subscriptionActiveBody'))
+      if (i.title === 'Subscription ended')
+        return out(t('inbox.items.subscriptionEnded'), t('inbox.items.subscriptionEndedBody'))
+    }
+    if (i.kind === 'team') {
+      const joined = i.title.match(/^(.+) joined your team$/)
+      if (joined) return out(t('inbox.items.memberJoined', { name: joined[1] }))
+      const owner = i.title.match(/^(.+) made you the owner of (.+)$/)
+      if (owner) return out(t('inbox.items.ownership', { name: owner[1], business: owner[2] }))
+    }
+    return i
+  })
 }
 
 export async function markInboxItemsRead(ctx: TenantContext, ids?: string[]) {

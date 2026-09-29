@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "お客様",
+    "detailTitle": "お客様"
+  },
+  "segments": {
+    "all": {
+      "label": "すべて",
+      "help": "予約したことがある、または追加されたすべてのお客様。"
+    },
+    "new": {
+      "label": "新規",
+      "help": "過去30日以内に初めて予約したお客様。"
+    },
+    "returning": {
+      "label": "リピーター",
+      "help": "来店完了が2回以上のお客様。"
+    },
+    "vip": {
+      "label": "常連",
+      "help": "来店完了が5回以上のお客様。"
+    },
+    "inactive": {
+      "label": "休眠",
+      "help": "90日間来店がなく、予約もないお客様。"
+    },
+    "upcoming": {
+      "label": "予約あり",
+      "help": "今後の予約があるお客様。"
+    },
+    "cancelled": {
+      "label": "キャンセルあり",
+      "help": "1回以上キャンセルしたお客様。"
+    },
+    "no_show": {
+      "label": "無断キャンセルあり",
+      "help": "1回以上予約に来なかったお客様。"
+    }
+  },
+  "list": {
+    "title": "お客様",
+    "description": "これまでに予約したすべてのお客様と、その履歴や売上を確認できます。検索、セグメントでの絞り込み、エクスポートが可能です。",
+    "erased": "お客様の個人データを消去しました。統計が正しく保たれるよう、過去の予約は匿名の記録として残ります。",
+    "segments": "お客様のセグメント",
+    "search": "お客様を検索",
+    "searchPlaceholder": "名前、メールアドレス、電話番号で検索",
+    "sort": {
+      "label": "並べ替え",
+      "recent": "新しい順",
+      "name": "名前順",
+      "visits": "来店回数が多い順",
+      "revenue": "売上が高い順",
+      "last_visit": "最終来店日"
+    },
+    "export": "エクスポート",
+    "add": "お客様を追加",
+    "empty": {
+      "noMatchTitle": "該当するお客様はいません",
+      "noMatchBody": "別のキーワードやセグメントをお試しください。",
+      "noneTitle": "まだお客様はいません",
+      "noneBody": "予約ページから予約があると、お客様は自動で追加されます。ご自身で追加することもできます。"
+    },
+    "caption": "お客様（合計 {count} 名）",
+    "columns": {
+      "customer": "お客様",
+      "visits": "来店",
+      "revenue": "売上",
+      "lastVisit": "最終来店",
+      "next": "次回"
+    },
+    "noContact": "連絡先なし",
+    "regular": "常連",
+    "noShows": "{count, plural, other {無断キャンセル # 回}}",
+    "visitsLabel": "来店：",
+    "pagination": {
+      "label": "ページ送り",
+      "previous": "前へ",
+      "next": "次へ",
+      "summary": "{page} / {pages} ページ · お客様 {total} 名"
+    }
+  },
+  "detail": {
+    "back": "お客様",
+    "stats": {
+      "visits": "来店",
+      "visitsHint": "予約合計 {count} 件",
+      "revenue": "売上",
+      "average": "1回あたり平均 {amount}",
+      "fromCompleted": "完了した来店から算出",
+      "revenueDefinition": "完了した予約のサービス料金の合計です。",
+      "cancellations": "キャンセル",
+      "ofBookings": "予約の {percent}",
+      "noShows": "無断キャンセル",
+      "ofVisits": "来店の {percent}"
+    },
+    "history": {
+      "title": "予約履歴",
+      "count": "{count, plural, other {予約 # 件}}",
+      "empty": "まだ予約はありません。"
+    },
+    "glance": {
+      "title": "概要",
+      "since": "登録日",
+      "firstVisit": "初回来店",
+      "lastVisit": "最終来店",
+      "next": "次回の予約",
+      "nextValue": "{date} {time}",
+      "none": "予約なし",
+      "favoriteService": "よく選ぶサービス",
+      "usualStaff": "いつもの担当"
+    },
+    "notes": {
+      "title": "社内メモ",
+      "description": "チームだけが閲覧できます。",
+      "empty": "まだメモはありません。「編集」からアレルギーや好みなど、役立つ情報を追加できます。"
+    }
+  },
+  "actions": {
+    "book": "予約する",
+    "edit": "編集",
+    "erase": "お客様のデータを消去",
+    "eraseTitle": "このお客様の個人データを消去しますか？",
+    "eraseBody": "{name}様の名前、メールアドレス、電話番号、メモを完全に削除します（GDPRに基づく削除依頼を受けた場合など）。統計が正しく保たれるよう、過去の予約は匿名の記録として残ります。<strong>この操作は元に戻せません。</strong>",
+    "eraseConfirm": "データを消去",
+    "eraseWord": "消去"
+  },
+  "form": {
+    "addTitle": "お客様を追加",
+    "editTitle": "お客様情報を編集",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "notes": "社内メモ",
+    "notesHint": "チームだけが閲覧できます。",
+    "cancel": "キャンセル",
+    "save": "変更を保存",
+    "add": "お客様を追加",
+    "saved": "保存しました"
+  },
+  "toasts": {
+    "added": "お客様を追加しました",
+    "updated": "お客様情報を更新しました"
+  },
+  "export": {
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "phone": "電話番号",
+    "appointments": "予約数",
+    "completed": "完了",
+    "cancelled": "キャンセル",
+    "noShows": "無断キャンセル",
+    "revenue": "売上",
+    "firstVisit": "初回来店",
+    "lastVisit": "最終来店",
+    "next": "次回の予約",
+    "since": "登録日"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Przegląd"
+  },
+  "greeting": {
+    "morning": "Dzień dobry, {name}",
+    "afternoon": "Dzień dobry, {name}",
+    "evening": "Dobry wieczór, {name}"
+  },
+  "summary": {
+    "none": "Na dziś nie ma jeszcze rezerwacji.",
+    "count": "{count, plural, one {Masz dziś # wizytę.} few {Masz dziś # wizyty.} many {Masz dziś # wizyt.} other {Masz dziś # wizyty.}}",
+    "next": "Następna: {name} o {time}."
+  },
+  "setup": {
+    "eyebrow": "Pierwsze kroki",
+    "title": "Dokończ konfigurację strony rezerwacji",
+    "description": "Jeszcze kilka szybkich kroków i klienci będą mogli rezerwować online.",
+    "progress": "Postęp konfiguracji",
+    "done": "gotowe",
+    "todo": "do zrobienia",
+    "optional": "Opcjonalnie",
+    "steps": {
+      "profile": "Profil firmy",
+      "services": "Usługi",
+      "hours": "Godziny pracy",
+      "rules": "Ustawienia rezerwacji",
+      "branding": "Wygląd marki",
+      "publish": "Opublikuj stronę rezerwacji"
+    }
+  },
+  "live": {
+    "title": "Twoja strona rezerwacji jest opublikowana",
+    "copy": "Kopiuj link do rezerwacji",
+    "preview": "Podgląd",
+    "qr": "Kod QR"
+  },
+  "stats": {
+    "today": "Dziś",
+    "bookedToday": "{count, plural, one {# zarezerwowana dziś} few {# zarezerwowane dziś} many {# zarezerwowanych dziś} other {# zarezerwowanej dziś}}",
+    "week": "Ten tydzień",
+    "scheduled": "Zaplanowane wizyty",
+    "earned": "Zarobione w tym tygodniu",
+    "expected": "+ {amount} oczekiwane z nadchodzących: {count}",
+    "noneExpected": "W tym tygodniu nie oczekujemy więcej rezerwacji",
+    "earnedDefinition": "Ceny usług z wizyt w tym tygodniu, które już się odbyły. Wizyty liczą się automatycznie po zakończeniu, chyba że zostały odwołane lub oznaczone jako nieobecność. Klienci płacą Ci bezpośrednio; Hournook nie obsługuje pieniędzy.",
+    "newCustomers": "Nowi klienci",
+    "newCustomersHint": "Dołączyli w tym tygodniu · odwołane: {cancelled} · nieobecności: {noShows}"
+  },
+  "schedule": {
+    "title": "Dzisiejszy grafik",
+    "openCalendar": "Otwórz kalendarz",
+    "emptyTitle": "Brak wizyt na dziś",
+    "emptyBody": "Udostępnij link do rezerwacji, aby klienci znaleźli termin, albo dodaj wizytę samodzielnie.",
+    "newAppointment": "Nowa wizyta",
+    "now": "Teraz"
+  },
+  "attention": {
+    "title": "Wymaga Twojej uwagi",
+    "clear": "Wszystko w porządku. Nic nie wymaga teraz Twojej uwagi.",
+    "pending": "{count, plural, one {# prośba o rezerwację czeka na potwierdzenie} few {# prośby o rezerwację czekają na potwierdzenie} many {# próśb o rezerwację czeka na potwierdzenie} other {# prośby o rezerwację czeka na potwierdzenie}}",
+    "review": "Sprawdź",
+    "unresolved": "{count, plural, one {# minioną wizytę trzeba oznaczyć jako zakończoną lub nieobecność} few {# minione wizyty trzeba oznaczyć jako zakończone lub nieobecność} many {# minionych wizyt trzeba oznaczyć jako zakończone lub nieobecność} other {# minionej wizyty trzeba oznaczyć jako zakończone lub nieobecność}}",
+    "update": "Zaktualizuj",
+    "failedMail": "{count, plural, one {# e-mail nie został dostarczony w tym tygodniu} few {# e-maile nie zostały dostarczone w tym tygodniu} many {# e-maili nie zostało dostarczonych w tym tygodniu} other {# e-maila nie dostarczono w tym tygodniu}}",
+    "seeDetails": "Zobacz szczegóły",
+    "pastDue": "Ostatnia płatność się nie powiodła. Zaktualizuj kartę, aby pozostać online",
+    "fix": "Napraw",
+    "paused": "Rezerwacje online są wstrzymane",
+    "resume": "Wznów"
+  },
+  "quick": {
+    "title": "Szybkie działania",
+    "newAppointment": "Nowa wizyta",
+    "addService": "Dodaj usługę",
+    "addStaff": "Dodaj członka zespołu",
+    "hours": "Godziny pracy"
+  },
+  "upcoming": {
+    "title": "Nadchodzące",
+    "description": "Najbliższe 14 dni",
+    "all": "Wszystkie",
+    "empty": "Brak nadchodzących wizyt."
+  },
+  "activity": {
+    "title": "Ostatnia aktywność",
+    "all": "Wszystko",
+    "empty": "Zmiany w Twojej firmie pojawią się tutaj.",
+    "byCustomer": "przez klienta",
+    "byStripe": "przez Stripe",
+    "by": "przez: {name}",
+    "automatic": "automatycznie",
+    "actions": {
+      "business": {
+        "created": "Utworzono firmę",
+        "profile_updated": "Zaktualizowano profil firmy",
+        "branding_updated": "Zaktualizowano wygląd marki",
+        "seo_updated": "Zaktualizowano ustawienia SEO",
+        "slug_changed": "Zmieniono link do rezerwacji",
+        "published": "Opublikowano stronę rezerwacji",
+        "paused": "Wstrzymano rezerwacje online",
+        "unpublished": "Wycofano publikację strony rezerwacji",
+        "logo_uploaded": "Przesłano logo",
+        "cover_uploaded": "Przesłano zdjęcie w tle",
+        "logo_removed": "Usunięto logo",
+        "cover_removed": "Usunięto zdjęcie w tle",
+        "suspended": "Konto zawieszone przez Hournook",
+        "reactivated": "Konto przywrócone",
+        "exported": "Pobrano eksport danych"
+      },
+      "service": {
+        "created": "Dodano usługę",
+        "updated": "Edytowano usługę",
+        "deleted": "Usunięto usługę"
+      },
+      "staff": {
+        "created": "Dodano członka zespołu",
+        "updated": "Edytowano członka zespołu",
+        "deleted": "Usunięto członka zespołu",
+        "avatar_uploaded": "Zaktualizowano zdjęcie członka zespołu"
+      },
+      "appointment": {
+        "created": "Zarezerwowano wizytę",
+        "cancelled": "Odwołano wizytę",
+        "rescheduled": "Zmieniono termin wizyty",
+        "confirmed": "Potwierdzono wizytę",
+        "completed": "Zakończono wizytę",
+        "no_show": "Oznaczono nieobecność",
+        "reopened": "Przywrócono wizytę",
+        "notes_updated": "Edytowano notatki do wizyty"
+      },
+      "availability": {
+        "weekly_hours_updated": "Zmieniono godziny pracy",
+        "staff_uses_business_hours": "Członek zespołu korzysta teraz z godzin pracy firmy",
+        "closure_added": "Dodano dzień zamknięcia",
+        "closure_removed": "Usunięto dzień zamknięcia",
+        "special_hours_set": "Ustawiono godziny specjalne",
+        "time_blocked": "Zablokowano czas"
+      },
+      "settings": {
+        "booking_rules_updated": "Zmieniono ustawienia rezerwacji",
+        "notifications_updated": "Zmieniono ustawienia powiadomień"
+      },
+      "customer": {
+        "created": "Dodano klienta",
+        "updated": "Edytowano klienta",
+        "erased": "Usunięto dane klienta"
+      },
+      "team": {
+        "member_invited": "Zaproszono członka zespołu",
+        "invitation_revoked": "Cofnięto zaproszenie",
+        "member_joined": "Członek zespołu dołączył",
+        "role_changed": "Zmieniono rolę w zespole",
+        "member_removed": "Usunięto członka zespołu",
+        "member_left": "Członek zespołu odszedł",
+        "ownership_transferred": "Przekazano własność"
+      },
+      "billing": {
+        "checkout_started": "Rozpoczęto płatność",
+        "checkout_completed": "Zakończono zakup subskrypcji",
+        "subscription_status_changed": "Zmienił się status subskrypcji",
+        "invoice_paid": "Faktura opłacona",
+        "payment_failed": "Płatność nieudana"
+      },
+      "export": {
+        "appointments": "Wyeksportowano wizyty",
+        "customers": "Wyeksportowano klientów",
+        "services": "Wyeksportowano usługi"
+      }
+    }
+  },
+  "footer": "Wszystkie godziny: {timezone} · dziś jest {date}"
+}

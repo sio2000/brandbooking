@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { UiText } from './ui-text'
 
 export function Label({ className, ...props }: React.ComponentProps<'label'>) {
   return <label className={cn('text-sm font-medium text-foreground', className)} {...props} />
@@ -15,7 +16,7 @@ export function Field({
   hint,
   error,
   optional,
-  optionalLabel = 'Optional',
+  optionalLabel,
   className,
   children,
 }: {
@@ -41,7 +42,11 @@ export function Field({
     <div className={cn('grid gap-1.5', className)}>
       <div className="flex items-baseline justify-between gap-2">
         <Label htmlFor={htmlFor}>{label}</Label>
-        {optional && <span className="text-xs text-subtle-foreground">{optionalLabel}</span>}
+        {optional && (
+          <span className="text-xs text-subtle-foreground">
+            {optionalLabel ?? <UiText k="optional" />}
+          </span>
+        )}
       </div>
       {control}
       {hint && !error && (

@@ -7,6 +7,8 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { toast } from '@/components/ui/toaster'
 import { eraseCustomerAction } from '@/app/app/_actions/customers'
 import { CustomerFormDialog } from './customer-form'
+import { useT } from '@/components/i18n/provider'
+import { rich } from '@/components/i18n/rich'
 import {
   NewAppointmentDialog,
   type PickerService,
@@ -31,37 +33,34 @@ export function CustomerActions(p: {
   lockedStaffId: string | null
   timezone: string
 }) {
+  const t = useT('app-customers')
   const [editing, setEditing] = React.useState(false)
   const [booking, setBooking] = React.useState(false)
   return (
     <div className="flex flex-wrap gap-2">
       {p.canBook && (
         <Button onClick={() => setBooking(true)}>
-          <CalendarPlus /> Book
+          <CalendarPlus /> {t('actions.book')}
         </Button>
       )}
       {p.canManage && (
         <Button variant="secondary" onClick={() => setEditing(true)}>
-          <Pencil /> Edit
+          <Pencil /> {t('actions.edit')}
         </Button>
       )}
       {p.canErase && (
         <ConfirmDialog
           trigger={
-            <Button variant="ghost" aria-label="Erase customer data">
+            <Button variant="ghost" aria-label={t('actions.erase')}>
               <Trash2 />
             </Button>
           }
-          title="Erase this customer’s personal data?"
-          description={
-            <>
-              This permanently removes {p.customer.name}’s name, email, phone and notes (for example
-              after a GDPR erasure request). Past appointments stay as anonymous records so your
-              statistics remain correct. <strong>This can’t be undone.</strong>
-            </>
-          }
-          confirmLabel="Erase data"
-          confirmText="ERASE"
+          title={t('actions.eraseTitle')}
+          description={rich(t('actions.eraseBody', { name: p.customer.name }), {
+            strong: (c) => <strong>{c}</strong>,
+          })}
+          confirmLabel={t('actions.eraseConfirm')}
+          confirmText={t('actions.eraseWord')}
           onConfirm={async () => {
             const r = await eraseCustomerAction(p.customer.id)
             if (r && !r.ok) {

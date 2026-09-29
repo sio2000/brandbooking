@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Calendário"
+  },
+  "toolbar": {
+    "today": "Hoje",
+    "previous": "Anterior",
+    "next": "Seguinte",
+    "showStaff": "Mostrar membro da equipa",
+    "everyone": "Todos",
+    "view": "Vista do calendário",
+    "new": "Nova"
+  },
+  "views": {
+    "day": "Dia",
+    "week": "Semana",
+    "month": "Mês",
+    "agenda": "Agenda"
+  },
+  "agendaTitle": "A partir de {date}",
+  "moved": "Movida para {date}, {time}",
+  "movedDescription": "O cliente recebeu o novo horário por e-mail.",
+  "slot": "Nova marcação a {date} às {time}",
+  "block": "{customer}, {service}, das {start} às {end}, {staff}, {status}",
+  "footer": {
+    "times": "Horas em {timezone}.",
+    "hint": "Clique num espaço livre para adicionar uma marcação · arraste para reagendar (o cliente recebe um e-mail)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# marcação} other {# marcações}}",
+    "more": "+{count} mais"
+  },
+  "agenda": {
+    "empty": "Sem marcações nas próximas duas semanas.",
+    "today": "Hoje · {date}"
+  }
+}

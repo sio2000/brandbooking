@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Klanten",
+    "detailTitle": "Klant"
+  },
+  "segments": {
+    "all": {
+      "label": "Alle",
+      "help": "Iedereen die heeft geboekt of is toegevoegd."
+    },
+    "new": {
+      "label": "Nieuw",
+      "help": "Eerste afspraak in de afgelopen 30 dagen."
+    },
+    "returning": {
+      "label": "Terugkerend",
+      "help": "Twee of meer afgeronde bezoeken."
+    },
+    "vip": {
+      "label": "Vaste klanten",
+      "help": "Vijf of meer afgeronde bezoeken."
+    },
+    "inactive": {
+      "label": "Inactief",
+      "help": "Geen bezoek in 90 dagen en niets geboekt."
+    },
+    "upcoming": {
+      "label": "Met afspraak",
+      "help": "Heeft een komende afspraak."
+    },
+    "cancelled": {
+      "label": "Geannuleerd",
+      "help": "Heeft minstens één keer geannuleerd."
+    },
+    "no_show": {
+      "label": "Niet verschenen",
+      "help": "Heeft minstens één afspraak gemist."
+    }
+  },
+  "list": {
+    "title": "Klanten",
+    "description": "Iedereen die bij je heeft geboekt, met hun geschiedenis en waarde. Zoek, filter op segment of exporteer.",
+    "erased": "De persoonsgegevens van de klant zijn gewist. Eerdere afspraken blijven als anonieme records bewaard, zodat je statistieken kloppen.",
+    "segments": "Klantsegmenten",
+    "search": "Klanten zoeken",
+    "searchPlaceholder": "Zoek naam, e-mail of telefoon",
+    "sort": {
+      "label": "Sorteren",
+      "recent": "Nieuwste eerst",
+      "name": "Naam A–Z",
+      "visits": "Meeste bezoeken",
+      "revenue": "Hoogste omzet",
+      "last_visit": "Laatste bezoek"
+    },
+    "export": "Exporteren",
+    "add": "Klant toevoegen",
+    "empty": {
+      "noMatchTitle": "Geen klanten gevonden",
+      "noMatchBody": "Probeer een andere zoekopdracht of een ander segment.",
+      "noneTitle": "Nog geen klanten",
+      "noneBody": "Klanten worden automatisch toegevoegd zodra iemand via je pagina boekt. Je kunt ze ook zelf toevoegen."
+    },
+    "caption": "Klanten, {count} in totaal",
+    "columns": {
+      "customer": "Klant",
+      "visits": "Bezoeken",
+      "revenue": "Omzet",
+      "lastVisit": "Laatste bezoek",
+      "next": "Volgende"
+    },
+    "noContact": "Geen contactgegevens",
+    "regular": "Vaste klant",
+    "noShows": "{count, plural, one {# keer niet verschenen} other {# keer niet verschenen}}",
+    "visitsLabel": "Bezoeken:",
+    "pagination": {
+      "label": "Paginering",
+      "previous": "Vorige",
+      "next": "Volgende",
+      "summary": "Pagina {page} van {pages} · {total} klanten"
+    }
+  },
+  "detail": {
+    "back": "Klanten",
+    "stats": {
+      "visits": "Bezoeken",
+      "visitsHint": "{count, plural, one {# boeking in totaal} other {# boekingen in totaal}}",
+      "revenue": "Omzet",
+      "average": "Gem. {amount} per bezoek",
+      "fromCompleted": "Uit afgeronde bezoeken",
+      "revenueDefinition": "Som van de dienstprijzen van afgeronde afspraken.",
+      "cancellations": "Annuleringen",
+      "ofBookings": "{percent} van de boekingen",
+      "noShows": "Niet verschenen",
+      "ofVisits": "{percent} van de bezoeken"
+    },
+    "history": {
+      "title": "Afsprakengeschiedenis",
+      "count": "{count, plural, one {# afspraak} other {# afspraken}}",
+      "empty": "Nog geen afspraken."
+    },
+    "glance": {
+      "title": "In één oogopslag",
+      "since": "Klant sinds",
+      "firstVisit": "Eerste bezoek",
+      "lastVisit": "Laatste bezoek",
+      "next": "Volgende afspraak",
+      "nextValue": "{date}, {time}",
+      "none": "Niets geboekt",
+      "favoriteService": "Favoriete dienst",
+      "usualStaff": "Meestal bij"
+    },
+    "notes": {
+      "title": "Interne notities",
+      "description": "Alleen zichtbaar voor je team.",
+      "empty": "Nog geen notities. Gebruik Bewerken om allergieën, voorkeuren of andere handige info toe te voegen."
+    }
+  },
+  "actions": {
+    "book": "Boeken",
+    "edit": "Bewerken",
+    "erase": "Klantgegevens wissen",
+    "eraseTitle": "Persoonsgegevens van deze klant wissen?",
+    "eraseBody": "Hiermee worden de naam, het e-mailadres, het telefoonnummer en de notities van {name} definitief verwijderd (bijvoorbeeld na een verzoek tot verwijdering onder de AVG). Eerdere afspraken blijven als anonieme records bewaard, zodat je statistieken kloppen. <strong>Dit kan niet ongedaan worden gemaakt.</strong>",
+    "eraseConfirm": "Gegevens wissen",
+    "eraseWord": "WISSEN"
+  },
+  "form": {
+    "addTitle": "Klant toevoegen",
+    "editTitle": "Klant bewerken",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "notes": "Interne notities",
+    "notesHint": "Alleen zichtbaar voor je team.",
+    "cancel": "Annuleren",
+    "save": "Wijzigingen opslaan",
+    "add": "Klant toevoegen",
+    "saved": "Opgeslagen"
+  },
+  "toasts": {
+    "added": "Klant toegevoegd",
+    "updated": "Klant bijgewerkt"
+  },
+  "export": {
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "appointments": "Afspraken",
+    "completed": "Afgerond",
+    "cancelled": "Geannuleerd",
+    "noShows": "Niet verschenen",
+    "revenue": "Omzet",
+    "firstVisit": "Eerste bezoek",
+    "lastVisit": "Laatste bezoek",
+    "next": "Volgende afspraak",
+    "since": "Klant sinds"
+  }
+}

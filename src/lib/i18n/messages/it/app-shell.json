@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Dashboard"
+  },
+  "skipToContent": "Vai al contenuto",
+  "signedInAs": "Accesso come {role}",
+  "roles": {
+    "owner": "titolare",
+    "manager": "manager",
+    "staff": "membro del team"
+  },
+  "nav": {
+    "label": "Navigazione principale",
+    "more": "Altro",
+    "groups": {
+      "business": "Attività",
+      "grow": "Crescita",
+      "account": "Account"
+    },
+    "items": {
+      "overview": "Panoramica",
+      "calendar": "Calendario",
+      "appointments": "Appuntamenti",
+      "customers": "Clienti",
+      "services": "Servizi",
+      "team": "Team",
+      "availability": "Disponibilità",
+      "analytics": "Statistiche",
+      "bookingPage": "Pagina di prenotazione",
+      "settings": "Impostazioni",
+      "billing": "Fatturazione"
+    }
+  },
+  "topbar": {
+    "home": "Panoramica",
+    "search": "Cerca",
+    "searchPlaceholder": "Cerca o vai a…",
+    "newAppointment": "Nuovo appuntamento",
+    "openBookingPage": "Apri la pagina di prenotazione",
+    "accountMenu": "Menu account",
+    "account": "Account",
+    "settings": "Impostazioni",
+    "theme": "Tema",
+    "language": "Lingua",
+    "signOut": "Esci",
+    "switchBusiness": "Cambia attività",
+    "addBusiness": "Aggiungi un’altra attività"
+  },
+  "inbox": {
+    "label": "Notifiche",
+    "labelUnread": "Notifiche, {count} da leggere",
+    "title": "Notifiche",
+    "markAllRead": "Segna tutte come lette",
+    "loading": "Caricamento…",
+    "empty": "Sei in pari. Qui compariranno le nuove prenotazioni e le modifiche.",
+    "unread": "Da leggere",
+    "items": {
+      "bookingRequest": "Nuova richiesta di prenotazione",
+      "booking": "Nuova prenotazione",
+      "booked": "{who} ha prenotato {service} per {date}.",
+      "cancelledTitle": "Prenotazione annullata",
+      "cancelled": "{who} ha annullato {service} di {date}.",
+      "rescheduledTitle": "Prenotazione spostata",
+      "rescheduled": "{who} ha spostato {service} a {date}.",
+      "aCustomer": "Un cliente",
+      "memberJoined": "{name} si è unito al tuo team",
+      "ownership": "{name} ti ha nominato titolare di {business}",
+      "paymentFailed": "Pagamento non riuscito",
+      "paymentFailedBody": "Non siamo riusciti ad addebitare la tua carta. Aggiorna il metodo di pagamento per continuare ad accettare prenotazioni.",
+      "subscriptionActive": "Abbonamento attivo",
+      "subscriptionActiveBody": "Grazie! Il tuo piano è attivo.",
+      "subscriptionEnded": "Abbonamento terminato",
+      "subscriptionEndedBody": "La tua pagina di prenotazione non accetta più nuove prenotazioni."
+    }
+  },
+  "palette": {
+    "title": "Palette dei comandi",
+    "description": "Cerca clienti, servizi e membri del team, oppure vai a una pagina.",
+    "placeholder": "Cerca clienti, servizi, team… o digita un comando",
+    "suggestions": "Suggerimenti",
+    "empty": "Nessun risultato per «{query}».",
+    "groups": {
+      "goTo": "Vai a",
+      "actions": "Azioni",
+      "customers": "Clienti",
+      "appointments": "Appuntamenti",
+      "services": "Servizi",
+      "team": "Team"
+    },
+    "actions": {
+      "newAppointment": "Nuovo appuntamento",
+      "addService": "Aggiungi servizio",
+      "addStaff": "Aggiungi membro del team",
+      "copyLink": "Copia link di prenotazione",
+      "linkCopied": "Link di prenotazione copiato",
+      "preview": "Anteprima della pagina di prenotazione"
+    }
+  },
+  "banners": {
+    "suspended": "Questo account è sospeso. La tua pagina di prenotazione è offline e le modifiche sono disattivate. Contatta l’assistenza per risolvere.",
+    "emailSimulated": "L’invio delle email non è ancora collegato su questo sito, quindi il link di conferma è stato scritto nel log del server invece di essere inviato a {email}. Collega un provider email (Resend o SMTP) per riceverlo nella tua casella.",
+    "verify": "Conferma la tua email ({email}) per pubblicare la pagina di prenotazione.",
+    "verificationSent": "Email di verifica inviata",
+    "sending": "Invio…",
+    "resend": "Invia di nuovo il link",
+    "inactive": "La tua pagina di prenotazione non accetta nuove prenotazioni perché non c’è un abbonamento attivo.",
+    "subscribe": "Abbonati a {price}/mese",
+    "pastDue": "L’ultimo pagamento non è riuscito. Aggiorna la carta per mantenere online la tua pagina di prenotazione.",
+    "fixBilling": "Sistema la fatturazione",
+    "trial": "{days, plural, one {Ti resta # giorno di prova gratuita.} other {Ti restano # giorni di prova gratuita.}}",
+    "choosePlan": "Scegli un piano"
+  },
+  "error": {
+    "title": "Impossibile caricare questa pagina",
+    "body": "Le tue prenotazioni e i tuoi dati sono al sicuro. Riprova. Se il problema continua, contatta l’assistenza indicando il riferimento.",
+    "reference": "Riferimento: {digest}",
+    "retry": "Riprova"
+  },
+  "loading": "Caricamento"
+}

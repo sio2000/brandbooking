@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Marcações",
+    "detailTitle": "Marcação"
+  },
+  "status": {
+    "pending": "Pendente",
+    "confirmed": "Confirmada",
+    "completed": "Concluída",
+    "cancelled": "Cancelada",
+    "no_show": "Não compareceu"
+  },
+  "events": {
+    "created": "Reservada",
+    "confirmed": "Confirmada",
+    "rescheduled": "Reagendada",
+    "cancelled": "Cancelada",
+    "completed": "Concluída",
+    "no_show": "Não compareceu",
+    "edited": "Editada",
+    "reopened": "Reaberta"
+  },
+  "sources": {
+    "booking_page": "Página de reservas",
+    "widget": "Widget do site",
+    "qr": "Código QR",
+    "manual": "Adicionada pela equipa",
+    "campaign": "Ligação de campanha",
+    "social": "Redes sociais",
+    "api": "API"
+  },
+  "list": {
+    "title": "Marcações",
+    "description": "Todas as reservas num só lugar. Filtre, atualize estados em massa ou exporte para uma folha de cálculo.",
+    "views": {
+      "label": "Que marcações",
+      "upcoming": "Próximas",
+      "today": "Hoje",
+      "past": "Passadas",
+      "all": "Todas"
+    },
+    "filters": {
+      "status": "Filtrar por estado",
+      "anyStatus": "Qualquer estado",
+      "staff": "Filtrar por membro da equipa",
+      "everyone": "Todos",
+      "service": "Filtrar por serviço",
+      "allServices": "Todos os serviços"
+    },
+    "export": "Exportar CSV",
+    "new": "Nova",
+    "newAppointment": "Nova marcação",
+    "bulk": {
+      "label": "Ações em massa",
+      "selected": "{count} selecionadas",
+      "confirm": "Confirmar",
+      "complete": "Marcar como concluídas",
+      "noShow": "Não compareceu",
+      "clear": "Limpar",
+      "result": "{updated} atualizadas",
+      "resultSkipped": "{updated} atualizadas, {skipped} ignoradas (não elegíveis)"
+    },
+    "empty": {
+      "upcomingTitle": "Sem marcações futuras",
+      "upcomingBody": "Quando os clientes reservam através da sua página, as marcações aparecem aqui de imediato. Também pode adicionar uma.",
+      "filteredTitle": "Nenhuma marcação corresponde a estes filtros",
+      "filteredBody": "Experimente outra vista ou limpe os filtros."
+    },
+    "selectAll": "Selecionar todas nesta página",
+    "selectAllShort": "Selecionar todas",
+    "selectRow": "Selecionar {name} às {time}",
+    "pagination": {
+      "label": "Paginação",
+      "previous": "Anterior",
+      "next": "Seguinte",
+      "page": "Página {page}"
+    }
+  },
+  "detail": {
+    "back": "Marcações",
+    "when": "{date} · {start} – {end} ({zone}) · com {staff}",
+    "details": "Detalhes",
+    "service": "Serviço",
+    "staff": "Membro da equipa",
+    "price": "Preço",
+    "noPrice": "Sem preço definido",
+    "reference": "Referência",
+    "booked": "Reservada em",
+    "source": "Origem",
+    "rescheduled": "Reagendamentos",
+    "rescheduledTimes": "{count, plural, one {# vez} other {# vezes}}",
+    "cancelled": "Cancelada",
+    "cancelledBy": "{date} por {who}",
+    "cancelledByWho": {
+      "customer": "cliente",
+      "user": "a sua equipa",
+      "system": "sistema"
+    },
+    "customerMessage": "Mensagem do cliente",
+    "notes": {
+      "title": "Notas internas",
+      "description": "Só a sua equipa as vê. Nunca são mostradas aos clientes.",
+      "empty": "Sem notas.",
+      "placeholder": "Fórmula de cor, preferências, tudo o que for útil da próxima vez…",
+      "save": "Guardar notas"
+    },
+    "history": {
+      "title": "Histórico",
+      "byCustomer": "pelo cliente",
+      "by": "por {name}",
+      "team": "equipa",
+      "stripe": "Stripe",
+      "automatically": "automaticamente",
+      "notesUpdated": "Notas internas atualizadas"
+    },
+    "customer": {
+      "title": "Cliente",
+      "profile": "Ver perfil",
+      "noEmail": "Sem e-mail registado, por isso este cliente não recebe confirmações nem lembretes."
+    },
+    "emails": {
+      "title": "E-mails",
+      "description": "Confirmações e lembretes desta marcação.",
+      "empty": "Sem e-mails para esta marcação.",
+      "sent": "Enviado {when}",
+      "scheduled": "Agendado para {date}",
+      "failed": "Falha na entrega",
+      "notNeeded": "Não necessário",
+      "sending": "A enviar…",
+      "badge": {
+        "pending": "pendente",
+        "sending": "a enviar",
+        "sent": "enviado",
+        "failed": "falhou",
+        "cancelled": "ignorado"
+      },
+      "templates": {
+        "booking_received": "Confirmação de reserva",
+        "booking_confirmed": "Confirmação (após aprovação)",
+        "booking_cancelled": "Aviso de cancelamento",
+        "booking_rescheduled": "Aviso de reagendamento",
+        "booking_reminder": "Lembrete",
+        "member_booking_created": "Equipa: nova reserva",
+        "member_booking_cancelled": "Equipa: cancelamento",
+        "member_booking_rescheduled": "Equipa: reagendamento"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Confirmar",
+    "completed": "Concluída",
+    "noShow": "Não compareceu",
+    "reschedule": "Reagendar",
+    "reopen": "Reabrir",
+    "cancel": "Cancelar",
+    "updated": "Atualizada",
+    "cancelDialog": {
+      "title": "Cancelar esta marcação?",
+      "description": "O horário fica livre para outras reservas. Não é possível anular; seria preciso reservar de novo.",
+      "confirm": "Cancelar marcação",
+      "message": "Mensagem para o cliente",
+      "optional": "(opcional)",
+      "notify": "Avisar o cliente por e-mail"
+    }
+  },
+  "reschedule": {
+    "title": "Reagendar marcação",
+    "description": "O cliente recebe um e-mail com o horário antigo e o novo.",
+    "date": "Data",
+    "time": "Hora de início",
+    "staff": "Membro da equipa",
+    "freeTimes": "Horários livres",
+    "checking": "A verificar…",
+    "none": "Não há horários livres dentro do horário neste dia. Ainda assim, pode escolher qualquer hora manualmente.",
+    "cancel": "Cancelar",
+    "submit": "Mover marcação",
+    "done": "Reagendada"
+  },
+  "new": {
+    "title": "Nova marcação",
+    "description": "As horas estão em {timezone}.",
+    "service": "Serviço",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Membro da equipa",
+    "date": "Data",
+    "time": "Hora de início",
+    "timeHint": "Qualquer hora serve, mesmo fora do horário de funcionamento.",
+    "freeTimes": "Horários livres",
+    "freeTimesFor": "Horários livres de {name}",
+    "checking": "A verificar disponibilidade…",
+    "none": "Não há horários livres dentro do horário neste dia.",
+    "customer": "Cliente",
+    "changeCustomer": "Escolher outro cliente",
+    "firstName": "Nome próprio",
+    "lastName": "Apelido",
+    "email": "E-mail",
+    "emailHint": "Necessário para confirmações e lembretes.",
+    "phone": "Telefone",
+    "searchInstead": "Pesquisar antes clientes existentes",
+    "search": "Pesquisar clientes",
+    "searchPlaceholder": "Pesquisar por nome, e-mail ou telefone",
+    "newCustomer": "Novo cliente",
+    "notes": "Notas internas",
+    "notesHint": "Visíveis apenas para a sua equipa.",
+    "notify": "Enviar confirmação ao cliente por e-mail",
+    "notifyHint": "Os lembretes são enviados automaticamente se o cliente tiver e-mail.",
+    "cancel": "Cancelar",
+    "submit": "Criar marcação",
+    "chooseTime": "Escolha uma hora de início.",
+    "customerRequired": "Escolha um cliente existente ou introduza um nome."
+  },
+  "toasts": {
+    "created": "Marcação criada",
+    "moved": "Marcação movida. O cliente foi avisado",
+    "confirm": "Marcação confirmada",
+    "cancel": "Marcação cancelada",
+    "complete": "Marcada como concluída",
+    "no_show": "Marcada como «não compareceu»",
+    "reopen": "Marcação reaberta",
+    "notesSaved": "Notas guardadas"
+  },
+  "export": {
+    "reference": "Referência",
+    "date": "Data",
+    "start": "Início",
+    "end": "Fim",
+    "timezone": "Fuso horário",
+    "status": "Estado",
+    "service": "Serviço",
+    "staff": "Membro da equipa",
+    "customer": "Cliente",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "price": "Preço",
+    "currency": "Moeda",
+    "source": "Origem",
+    "bookedAt": "Reservada em"
+  }
+}

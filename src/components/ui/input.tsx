@@ -32,7 +32,7 @@ export function NativeSelect({
   return (
     <div className={cn('relative', containerClassName)}>
       <select
-        className={cn(base, 'h-10 appearance-none pr-9 pl-3 [&>option]:bg-surface', className)}
+        className={cn(base, 'h-10 appearance-none ps-3 pe-9 [&>option]:bg-surface', className)}
         {...props}
       >
         {children}
@@ -40,7 +40,7 @@ export function NativeSelect({
       <svg
         aria-hidden
         viewBox="0 0 16 16"
-        className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-foreground"
+        className="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
       >
         <path
           d="M4 6l4 4 4-4"

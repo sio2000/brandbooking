@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "概览"
+  },
+  "greeting": {
+    "morning": "早上好，{name}",
+    "afternoon": "下午好，{name}",
+    "evening": "晚上好，{name}"
+  },
+  "summary": {
+    "none": "今天还没有预约。",
+    "count": "{count, plural, other {您今天有 # 个预约。}}",
+    "next": "下一位：{name}，{time}。"
+  },
+  "setup": {
+    "eyebrow": "开始设置",
+    "title": "完成预约页面的设置",
+    "description": "只需几个简单步骤，客户就能在线预约您。",
+    "progress": "设置进度",
+    "done": "已完成",
+    "todo": "待完成",
+    "optional": "可选",
+    "steps": {
+      "profile": "商家资料",
+      "services": "服务",
+      "hours": "营业时间",
+      "rules": "预约设置",
+      "branding": "品牌形象",
+      "publish": "发布预约页面"
+    }
+  },
+  "live": {
+    "title": "您的预约页面已上线",
+    "copy": "复制预约链接",
+    "preview": "预览",
+    "qr": "二维码"
+  },
+  "stats": {
+    "today": "今天",
+    "bookedToday": "{count, plural, other {今天新增 # 个}}",
+    "week": "本周",
+    "scheduled": "已安排的预约",
+    "earned": "本周收入",
+    "expected": "另有 {count} 个待进行，预计 + {amount}",
+    "noneExpected": "本周不再有预期的预订",
+    "earnedDefinition": "本周已完成预约的服务价格之和。预约结束后会自动计入，除非已取消或被标记为未到场。客户直接向您付款，Hournook 不经手任何款项。",
+    "newCustomers": "新客户",
+    "newCustomersHint": "本周新增 · 取消 {cancelled} 个 · 未到场 {noShows} 个"
+  },
+  "schedule": {
+    "title": "今日日程",
+    "openCalendar": "打开日历",
+    "emptyTitle": "今天没有预约",
+    "emptyBody": "分享您的预约链接，让客户挑选时间，或者自己添加一个预约。",
+    "newAppointment": "新建预约",
+    "now": "进行中"
+  },
+  "attention": {
+    "title": "需要您处理",
+    "clear": "一切正常，目前没有需要处理的事项。",
+    "pending": "{count, plural, other {# 个预订申请等待确认}}",
+    "review": "查看",
+    "unresolved": "{count, plural, other {# 个过去的预约需要标记为已完成或未到场}}",
+    "update": "更新",
+    "failedMail": "{count, plural, other {本周有 # 封邮件未能送达}}",
+    "seeDetails": "查看详情",
+    "pastDue": "您最近一次付款失败。请更新银行卡以保持在线",
+    "fix": "处理",
+    "paused": "在线预约已暂停",
+    "resume": "恢复"
+  },
+  "quick": {
+    "title": "快捷操作",
+    "newAppointment": "新建预约",
+    "addService": "添加服务",
+    "addStaff": "添加团队成员",
+    "hours": "营业时间"
+  },
+  "upcoming": {
+    "title": "即将到来",
+    "description": "未来 14 天",
+    "all": "全部",
+    "empty": "没有即将到来的预约。"
+  },
+  "activity": {
+    "title": "最近动态",
+    "all": "全部",
+    "empty": "您商家的变更记录会显示在这里。",
+    "byCustomer": "由客户操作",
+    "byStripe": "由 Stripe 操作",
+    "by": "由 {name} 操作",
+    "automatic": "自动",
+    "actions": {
+      "business": {
+        "created": "已创建商家",
+        "profile_updated": "已更新商家资料",
+        "branding_updated": "已更新品牌形象",
+        "seo_updated": "已更新 SEO 设置",
+        "slug_changed": "已更改预约链接",
+        "published": "已发布预约页面",
+        "paused": "已暂停在线预约",
+        "unpublished": "已取消发布预约页面",
+        "logo_uploaded": "已上传标志",
+        "cover_uploaded": "已上传封面图片",
+        "logo_removed": "已移除标志",
+        "cover_removed": "已移除封面图片",
+        "suspended": "账户已被 Hournook 停用",
+        "reactivated": "账户已重新启用",
+        "exported": "已下载数据导出"
+      },
+      "service": {
+        "created": "已添加服务",
+        "updated": "已编辑服务",
+        "deleted": "已移除服务"
+      },
+      "staff": {
+        "created": "已添加团队成员",
+        "updated": "已编辑团队成员",
+        "deleted": "已移除团队成员",
+        "avatar_uploaded": "已更新团队成员照片"
+      },
+      "appointment": {
+        "created": "已预约",
+        "cancelled": "预约已取消",
+        "rescheduled": "预约已改期",
+        "confirmed": "预约已确认",
+        "completed": "预约已完成",
+        "no_show": "已标记为未到场",
+        "reopened": "预约已重新打开",
+        "notes_updated": "已编辑预约备注"
+      },
+      "availability": {
+        "weekly_hours_updated": "已更改营业时间",
+        "staff_uses_business_hours": "团队成员现采用商家营业时间",
+        "closure_added": "已添加休息日",
+        "closure_removed": "已移除休息日",
+        "special_hours_set": "已设置特殊营业时间",
+        "time_blocked": "已锁定时段"
+      },
+      "settings": {
+        "booking_rules_updated": "已更改预约设置",
+        "notifications_updated": "已更改通知设置"
+      },
+      "customer": {
+        "created": "已添加客户",
+        "updated": "已编辑客户",
+        "erased": "已清除客户数据"
+      },
+      "team": {
+        "member_invited": "已邀请团队成员",
+        "invitation_revoked": "已撤销邀请",
+        "member_joined": "团队成员已加入",
+        "role_changed": "已更改团队角色",
+        "member_removed": "已移除团队成员",
+        "member_left": "团队成员已离开",
+        "ownership_transferred": "已转让所有权"
+      },
+      "billing": {
+        "checkout_started": "已开始结账",
+        "checkout_completed": "订阅结账已完成",
+        "subscription_status_changed": "订阅状态已变更",
+        "invoice_paid": "发票已支付",
+        "payment_failed": "付款失败"
+      },
+      "export": {
+        "appointments": "已导出预约",
+        "customers": "已导出客户",
+        "services": "已导出服务"
+      }
+    }
+  },
+  "footer": "所有时间均为{timezone} · 今天是 {date}"
+}

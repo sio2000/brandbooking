@@ -4,14 +4,17 @@ import {
   listCustomers,
   segmentCounts,
   SEGMENTS,
-  SEGMENT_LABELS,
   type CustomerSort,
   type Segment,
 } from '@/server/business/customers-admin'
 import { PageContainer, PageHeader } from '@/components/dashboard/page-header'
 import { CustomersView } from '@/components/dashboard/customers-view'
+import { getT } from '@/server/i18n'
 
-export const metadata: Metadata = { title: 'Customers' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-customers')
+  return { title: t('meta.title') }
+}
 const SORTS: CustomerSort[] = ['recent', 'name', 'visits', 'revenue', 'last_visit']
 
 export default async function CustomersPage({ searchParams }: PageProps<'/app/customers'>) {
@@ -26,16 +29,14 @@ export default async function CustomersPage({ searchParams }: PageProps<'/app/cu
     : 'recent'
   const page = Math.max(1, Number(str('page') ?? 1) || 1)
   const q = str('q')?.slice(0, 100) ?? ''
-  const [list, counts] = await Promise.all([
+  const [list, counts, t] = await Promise.all([
     listCustomers(ctx, { q, segment, sort, page, pageSize: 25 }),
     ctx.can('customers.manage') ? segmentCounts(ctx) : Promise.resolve(null),
+    getT('app-customers'),
   ])
   return (
     <PageContainer wide>
-      <PageHeader
-        title="Customers"
-        description="Everyone who has booked with you, with their history and value. Search, filter by segment, or export."
-      />
+      <PageHeader title={t('list.title')} description={t('list.description')} />
       <CustomersView
         rows={list.rows.map((r) => ({
           ...r,
@@ -51,7 +52,11 @@ export default async function CustomersPage({ searchParams }: PageProps<'/app/cu
         segment={segment}
         sort={sort}
         counts={counts}
-        segments={SEGMENTS.map((s) => ({ value: s, ...SEGMENT_LABELS[s] }))}
+        segments={SEGMENTS.map((s) => ({
+          value: s,
+          label: t(`segments.${s}.label`),
+          help: t(`segments.${s}.help`),
+        }))}
         timezone={ctx.business.timezone}
         currency={ctx.business.currency}
         canManage={ctx.can('customers.manage')}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Genel bakış"
+  },
+  "greeting": {
+    "morning": "Günaydın, {name}",
+    "afternoon": "İyi günler, {name}",
+    "evening": "İyi akşamlar, {name}"
+  },
+  "summary": {
+    "none": "Bugün için henüz rezervasyon yok.",
+    "count": "{count, plural, one {Bugün # randevunuz var.} other {Bugün # randevunuz var.}}",
+    "next": "Sıradaki: {time} saatinde {name}."
+  },
+  "setup": {
+    "eyebrow": "Kurulum",
+    "title": "Rezervasyon sayfanızın kurulumunu tamamlayın",
+    "description": "Birkaç kısa adım daha; ardından müşterileriniz çevrimiçi randevu alabilir.",
+    "progress": "Kurulum ilerlemesi",
+    "done": "tamamlandı",
+    "todo": "yapılacak",
+    "optional": "İsteğe bağlı",
+    "steps": {
+      "profile": "İşletme profili",
+      "services": "Hizmetler",
+      "hours": "Çalışma saatleri",
+      "rules": "Rezervasyon ayarları",
+      "branding": "Marka görünümü",
+      "publish": "Rezervasyon sayfasını yayınla"
+    }
+  },
+  "live": {
+    "title": "Rezervasyon sayfanız yayında",
+    "copy": "Rezervasyon bağlantısını kopyala",
+    "preview": "Önizle",
+    "qr": "QR kodu"
+  },
+  "stats": {
+    "today": "Bugün",
+    "bookedToday": "{count, plural, one {Bugün # rezervasyon} other {Bugün # rezervasyon}}",
+    "week": "Bu hafta",
+    "scheduled": "Planlanan randevular",
+    "earned": "Bu haftaki kazanç",
+    "expected": "+ {count} yaklaşan randevudan {amount} bekleniyor",
+    "noneExpected": "Bu hafta başka rezervasyon beklenmiyor",
+    "earnedDefinition": "Bu hafta gerçekleşen randevuların hizmet fiyatları. Randevular iptal edilmedikçe veya gelmedi olarak işaretlenmedikçe bittiklerinde otomatik olarak sayılır. Müşteriler ödemeyi doğrudan size yapar; Hournook para işlemez.",
+    "newCustomers": "Yeni müşteriler",
+    "newCustomersHint": "Bu hafta katılanlar · {cancelled} iptal · {noShows} gelmedi"
+  },
+  "schedule": {
+    "title": "Bugünün programı",
+    "openCalendar": "Takvimi aç",
+    "emptyTitle": "Bugün randevu yok",
+    "emptyBody": "Müşterilerin uygun bir saat bulması için rezervasyon bağlantınızı paylaşın ya da kendiniz randevu ekleyin.",
+    "newAppointment": "Yeni randevu",
+    "now": "Şimdi"
+  },
+  "attention": {
+    "title": "İlgilenmeniz gerekenler",
+    "clear": "Her şey yolunda. Şu an ilgilenmeniz gereken bir şey yok.",
+    "pending": "{count, plural, one {# rezervasyon talebi onay bekliyor} other {# rezervasyon talebi onay bekliyor}}",
+    "review": "İncele",
+    "unresolved": "{count, plural, one {# geçmiş randevu tamamlandı veya gelmedi olarak işaretlenmeli} other {# geçmiş randevu tamamlandı veya gelmedi olarak işaretlenmeli}}",
+    "update": "Güncelle",
+    "failedMail": "{count, plural, one {Bu hafta # e-posta teslim edilemedi} other {Bu hafta # e-posta teslim edilemedi}}",
+    "seeDetails": "Ayrıntıları gör",
+    "pastDue": "Son ödemeniz başarısız oldu. Çevrimiçi kalmak için kartınızı güncelleyin",
+    "fix": "Düzelt",
+    "paused": "Çevrimiçi rezervasyon duraklatıldı",
+    "resume": "Devam ettir"
+  },
+  "quick": {
+    "title": "Hızlı işlemler",
+    "newAppointment": "Yeni randevu",
+    "addService": "Hizmet ekle",
+    "addStaff": "Ekip üyesi ekle",
+    "hours": "Çalışma saatleri"
+  },
+  "upcoming": {
+    "title": "Yaklaşanlar",
+    "description": "Önümüzdeki 14 gün",
+    "all": "Tümü",
+    "empty": "Yaklaşan randevu yok."
+  },
+  "activity": {
+    "title": "Son etkinlikler",
+    "all": "Tümü",
+    "empty": "İşletmenizdeki değişiklikler burada görünecek.",
+    "byCustomer": "müşteri tarafından",
+    "byStripe": "Stripe tarafından",
+    "by": "{name} tarafından",
+    "automatic": "otomatik",
+    "actions": {
+      "business": {
+        "created": "İşletme oluşturuldu",
+        "profile_updated": "İşletme profili güncellendi",
+        "branding_updated": "Marka görünümü güncellendi",
+        "seo_updated": "SEO ayarları güncellendi",
+        "slug_changed": "Rezervasyon bağlantısı değiştirildi",
+        "published": "Rezervasyon sayfası yayınlandı",
+        "paused": "Çevrimiçi rezervasyon duraklatıldı",
+        "unpublished": "Rezervasyon sayfası yayından kaldırıldı",
+        "logo_uploaded": "Logo yüklendi",
+        "cover_uploaded": "Kapak görseli yüklendi",
+        "logo_removed": "Logo kaldırıldı",
+        "cover_removed": "Kapak görseli kaldırıldı",
+        "suspended": "Hesap Hournook tarafından askıya alındı",
+        "reactivated": "Hesap yeniden etkinleştirildi",
+        "exported": "Veri dışa aktarımı indirildi"
+      },
+      "service": {
+        "created": "Hizmet eklendi",
+        "updated": "Hizmet düzenlendi",
+        "deleted": "Hizmet kaldırıldı"
+      },
+      "staff": {
+        "created": "Ekip üyesi eklendi",
+        "updated": "Ekip üyesi düzenlendi",
+        "deleted": "Ekip üyesi kaldırıldı",
+        "avatar_uploaded": "Ekip üyesinin fotoğrafı güncellendi"
+      },
+      "appointment": {
+        "created": "Randevu alındı",
+        "cancelled": "Randevu iptal edildi",
+        "rescheduled": "Randevu yeniden planlandı",
+        "confirmed": "Randevu onaylandı",
+        "completed": "Randevu tamamlandı",
+        "no_show": "Gelmedi olarak işaretlendi",
+        "reopened": "Randevu yeniden açıldı",
+        "notes_updated": "Randevu notları düzenlendi"
+      },
+      "availability": {
+        "weekly_hours_updated": "Çalışma saatleri değiştirildi",
+        "staff_uses_business_hours": "Ekip üyesi artık işletmenin çalışma saatlerini izliyor",
+        "closure_added": "Kapalı gün eklendi",
+        "closure_removed": "Kapalı gün kaldırıldı",
+        "special_hours_set": "Özel çalışma saatleri ayarlandı",
+        "time_blocked": "Zaman engellendi"
+      },
+      "settings": {
+        "booking_rules_updated": "Rezervasyon ayarları değiştirildi",
+        "notifications_updated": "Bildirim ayarları değiştirildi"
+      },
+      "customer": {
+        "created": "Müşteri eklendi",
+        "updated": "Müşteri düzenlendi",
+        "erased": "Müşteri verileri silindi"
+      },
+      "team": {
+        "member_invited": "Ekip üyesi davet edildi",
+        "invitation_revoked": "Davet geri alındı",
+        "member_joined": "Ekip üyesi katıldı",
+        "role_changed": "Ekip rolü değiştirildi",
+        "member_removed": "Ekip üyesi çıkarıldı",
+        "member_left": "Ekip üyesi ayrıldı",
+        "ownership_transferred": "Sahiplik devredildi"
+      },
+      "billing": {
+        "checkout_started": "Ödeme başlatıldı",
+        "checkout_completed": "Abonelik ödemesi tamamlandı",
+        "subscription_status_changed": "Abonelik durumu değişti",
+        "invoice_paid": "Fatura ödendi",
+        "payment_failed": "Ödeme başarısız"
+      },
+      "export": {
+        "appointments": "Randevular dışa aktarıldı",
+        "customers": "Müşteriler dışa aktarıldı",
+        "services": "Hizmetler dışa aktarıldı"
+      }
+    }
+  },
+  "footer": "Tüm saatler: {timezone} · bugün: {date}"
+}

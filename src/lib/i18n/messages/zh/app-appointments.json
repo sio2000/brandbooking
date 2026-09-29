@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "预约",
+    "detailTitle": "预约详情"
+  },
+  "status": {
+    "pending": "待确认",
+    "confirmed": "已确认",
+    "completed": "已完成",
+    "cancelled": "已取消",
+    "no_show": "未到场"
+  },
+  "events": {
+    "created": "已预约",
+    "confirmed": "已确认",
+    "rescheduled": "已改期",
+    "cancelled": "已取消",
+    "completed": "已完成",
+    "no_show": "未到场",
+    "edited": "已编辑",
+    "reopened": "已重新打开"
+  },
+  "sources": {
+    "booking_page": "预约页面",
+    "widget": "网站插件",
+    "qr": "二维码",
+    "manual": "团队添加",
+    "campaign": "活动链接",
+    "social": "社交媒体",
+    "api": "API"
+  },
+  "list": {
+    "title": "预约",
+    "description": "所有预订尽在一处。可筛选、批量更新状态，或导出为表格。",
+    "views": {
+      "label": "显示哪些预约",
+      "upcoming": "即将到来",
+      "today": "今天",
+      "past": "过去",
+      "all": "全部"
+    },
+    "filters": {
+      "status": "按状态筛选",
+      "anyStatus": "所有状态",
+      "staff": "按团队成员筛选",
+      "everyone": "所有人",
+      "service": "按服务筛选",
+      "allServices": "所有服务"
+    },
+    "export": "导出 CSV",
+    "new": "新建",
+    "newAppointment": "新建预约",
+    "bulk": {
+      "label": "批量操作",
+      "selected": "已选 {count} 个",
+      "confirm": "确认",
+      "complete": "标记为已完成",
+      "noShow": "未到场",
+      "clear": "清除选择",
+      "result": "已更新 {updated} 个",
+      "resultSkipped": "已更新 {updated} 个，跳过 {skipped} 个（不符合条件）"
+    },
+    "empty": {
+      "upcomingTitle": "没有即将到来的预约",
+      "upcomingBody": "客户通过您的页面预约后，预约会立即显示在这里。您也可以自己添加。",
+      "filteredTitle": "没有符合筛选条件的预约",
+      "filteredBody": "请尝试其他视图或清除筛选条件。"
+    },
+    "selectAll": "选择本页全部",
+    "selectAllShort": "全选",
+    "selectRow": "选择 {name}（{time}）",
+    "pagination": {
+      "label": "分页",
+      "previous": "上一页",
+      "next": "下一页",
+      "page": "第 {page} 页"
+    }
+  },
+  "detail": {
+    "back": "预约",
+    "when": "{date} · {start} – {end}（{zone}）· 服务人员：{staff}",
+    "details": "详情",
+    "service": "服务",
+    "staff": "团队成员",
+    "price": "价格",
+    "noPrice": "未设置价格",
+    "reference": "预约编号",
+    "booked": "预约时间",
+    "source": "来源",
+    "rescheduled": "改期次数",
+    "rescheduledTimes": "{count, plural, other {# 次}}",
+    "cancelled": "已取消",
+    "cancelledBy": "{date}，由{who}取消",
+    "cancelledByWho": {
+      "customer": "客户",
+      "user": "您的团队",
+      "system": "系统"
+    },
+    "customerMessage": "客户留言",
+    "notes": {
+      "title": "内部备注",
+      "description": "仅您的团队可见，绝不会展示给客户。",
+      "empty": "暂无备注。",
+      "placeholder": "染发配方、偏好，任何下次用得上的信息…",
+      "save": "保存备注"
+    },
+    "history": {
+      "title": "历史记录",
+      "byCustomer": "由客户操作",
+      "by": "由 {name} 操作",
+      "team": "团队",
+      "stripe": "Stripe",
+      "automatically": "自动",
+      "notesUpdated": "已更新内部备注"
+    },
+    "customer": {
+      "title": "客户",
+      "profile": "查看资料",
+      "noEmail": "未登记邮箱，因此该客户不会收到确认和提醒。"
+    },
+    "emails": {
+      "title": "邮件",
+      "description": "此预约的确认和提醒邮件。",
+      "empty": "此预约没有邮件。",
+      "sent": "已发送 · {when}",
+      "scheduled": "计划于 {date} 发送",
+      "failed": "投递失败",
+      "notNeeded": "无需发送",
+      "sending": "发送中…",
+      "badge": {
+        "pending": "待发送",
+        "sending": "发送中",
+        "sent": "已发送",
+        "failed": "失败",
+        "cancelled": "已跳过"
+      },
+      "templates": {
+        "booking_received": "预订确认",
+        "booking_confirmed": "确认（审核通过后）",
+        "booking_cancelled": "取消通知",
+        "booking_rescheduled": "改期通知",
+        "booking_reminder": "提醒",
+        "member_booking_created": "团队：新预订",
+        "member_booking_cancelled": "团队：取消",
+        "member_booking_rescheduled": "团队：改期"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "确认",
+    "completed": "已完成",
+    "noShow": "未到场",
+    "reschedule": "改期",
+    "reopen": "重新打开",
+    "cancel": "取消预约",
+    "updated": "已更新",
+    "cancelDialog": {
+      "title": "要取消此预约吗？",
+      "description": "该时段将释放给其他预订。此操作无法撤销，如需恢复只能重新预约。",
+      "confirm": "取消预约",
+      "message": "给客户的留言",
+      "optional": "（选填）",
+      "notify": "发邮件通知客户"
+    }
+  },
+  "reschedule": {
+    "title": "预约改期",
+    "description": "客户会收到一封包含原时间和新时间的邮件。",
+    "date": "日期",
+    "time": "开始时间",
+    "staff": "团队成员",
+    "freeTimes": "空闲时段",
+    "checking": "正在查询…",
+    "none": "当天营业时间内没有空闲时段。您仍可手动选择任意时间。",
+    "cancel": "取消",
+    "submit": "改到此时间",
+    "done": "已改期"
+  },
+  "new": {
+    "title": "新建预约",
+    "description": "时间为{timezone}。",
+    "service": "服务",
+    "serviceOption": "{name}（{duration}）",
+    "staff": "团队成员",
+    "date": "日期",
+    "time": "开始时间",
+    "timeHint": "任何时间都可以，即使不在营业时间内。",
+    "freeTimes": "空闲时段",
+    "freeTimesFor": "{name}的空闲时段",
+    "checking": "正在查询可预约时间…",
+    "none": "当天营业时间内没有空闲时段。",
+    "customer": "客户",
+    "changeCustomer": "选择其他客户",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "邮箱",
+    "emailHint": "用于发送确认和提醒。",
+    "phone": "电话",
+    "searchInstead": "改为搜索现有客户",
+    "search": "搜索客户",
+    "searchPlaceholder": "按姓名、邮箱或电话搜索",
+    "newCustomer": "新客户",
+    "notes": "内部备注",
+    "notesHint": "仅您的团队可见。",
+    "notify": "给客户发送确认邮件",
+    "notifyHint": "客户留有邮箱时，系统会自动发送提醒。",
+    "cancel": "取消",
+    "submit": "创建预约",
+    "chooseTime": "请选择开始时间。",
+    "customerRequired": "请选择现有客户或输入姓名。"
+  },
+  "toasts": {
+    "created": "预约已创建",
+    "moved": "预约已改期，并已通知客户",
+    "confirm": "预约已确认",
+    "cancel": "预约已取消",
+    "complete": "已标记为已完成",
+    "no_show": "已标记为未到场",
+    "reopen": "预约已重新打开",
+    "notesSaved": "备注已保存"
+  },
+  "export": {
+    "reference": "预约编号",
+    "date": "日期",
+    "start": "开始",
+    "end": "结束",
+    "timezone": "时区",
+    "status": "状态",
+    "service": "服务",
+    "staff": "团队成员",
+    "customer": "客户",
+    "email": "邮箱",
+    "phone": "电话",
+    "price": "价格",
+    "currency": "货币",
+    "source": "来源",
+    "bookedAt": "预订时间"
+  }
+}

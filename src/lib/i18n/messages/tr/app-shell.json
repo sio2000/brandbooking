@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Panel"
+  },
+  "skipToContent": "İçeriğe geç",
+  "signedInAs": "{role} olarak oturum açıldı",
+  "roles": {
+    "owner": "İşletme sahibi",
+    "manager": "Yönetici",
+    "staff": "Ekip üyesi"
+  },
+  "nav": {
+    "label": "Ana menü",
+    "more": "Daha fazla",
+    "groups": {
+      "business": "İşletme",
+      "grow": "Büyüme",
+      "account": "Hesap"
+    },
+    "items": {
+      "overview": "Genel bakış",
+      "calendar": "Takvim",
+      "appointments": "Randevular",
+      "customers": "Müşteriler",
+      "services": "Hizmetler",
+      "team": "Ekip",
+      "availability": "Müsaitlik",
+      "analytics": "Analiz",
+      "bookingPage": "Rezervasyon sayfası",
+      "settings": "Ayarlar",
+      "billing": "Faturalandırma"
+    }
+  },
+  "topbar": {
+    "home": "Genel bakış",
+    "search": "Ara",
+    "searchPlaceholder": "Ara veya git…",
+    "newAppointment": "Yeni randevu",
+    "openBookingPage": "Rezervasyon sayfasını aç",
+    "accountMenu": "Hesap menüsü",
+    "account": "Hesap",
+    "settings": "Ayarlar",
+    "theme": "Tema",
+    "language": "Dil",
+    "signOut": "Oturumu kapat",
+    "switchBusiness": "İşletme değiştir",
+    "addBusiness": "Başka bir işletme ekle"
+  },
+  "inbox": {
+    "label": "Bildirimler",
+    "labelUnread": "Bildirimler, {count} okunmamış",
+    "title": "Bildirimler",
+    "markAllRead": "Tümünü okundu say",
+    "loading": "Yükleniyor…",
+    "empty": "Her şey yolunda. Yeni rezervasyonlar ve değişiklikler burada görünecek.",
+    "unread": "Okunmadı",
+    "items": {
+      "bookingRequest": "Yeni rezervasyon talebi",
+      "booking": "Yeni rezervasyon",
+      "booked": "{who}, {date} için {service} rezervasyonu yaptı.",
+      "cancelledTitle": "Rezervasyon iptal edildi",
+      "cancelled": "{who}, {date} tarihli {service} randevusunu iptal etti.",
+      "rescheduledTitle": "Rezervasyon yeniden planlandı",
+      "rescheduled": "{who}, {service} randevusunu {date} tarihine taşıdı.",
+      "aCustomer": "Bir müşteri",
+      "memberJoined": "{name} ekibinize katıldı",
+      "ownership": "{name} sizi {business} işletmesinin sahibi yaptı",
+      "paymentFailed": "Ödeme başarısız",
+      "paymentFailedBody": "Kartınızdan ödeme alınamadı. Rezervasyon almaya devam etmek için ödeme yönteminizi güncelleyin.",
+      "subscriptionActive": "Abonelik etkin",
+      "subscriptionActiveBody": "Teşekkürler! Planınız etkin.",
+      "subscriptionEnded": "Abonelik sona erdi",
+      "subscriptionEndedBody": "Rezervasyon sayfanız artık yeni rezervasyon kabul etmiyor."
+    }
+  },
+  "palette": {
+    "title": "Komut paleti",
+    "description": "Müşteri, hizmet ve ekip üyesi arayın ya da bir sayfaya gidin.",
+    "placeholder": "Müşteri, hizmet, ekip arayın… ya da bir komut yazın",
+    "suggestions": "Öneriler",
+    "empty": "“{query}” için sonuç yok.",
+    "groups": {
+      "goTo": "Git",
+      "actions": "İşlemler",
+      "customers": "Müşteriler",
+      "appointments": "Randevular",
+      "services": "Hizmetler",
+      "team": "Ekip"
+    },
+    "actions": {
+      "newAppointment": "Yeni randevu",
+      "addService": "Hizmet ekle",
+      "addStaff": "Ekip üyesi ekle",
+      "copyLink": "Rezervasyon bağlantısını kopyala",
+      "linkCopied": "Rezervasyon bağlantısı kopyalandı",
+      "preview": "Rezervasyon sayfasını önizle"
+    }
+  },
+  "banners": {
+    "suspended": "Bu hesap askıya alındı. Rezervasyon sayfanız çevrimdışı ve değişiklikler devre dışı. Çözmek için destek ekibiyle iletişime geçin.",
+    "emailSimulated": "Bu sitede e-posta gönderimi henüz bağlanmadı; bu yüzden onay bağlantınız {email} adresine gönderilmek yerine sunucu günlüğüne yazıldı. Gelen kutunuza ulaşması için bir e-posta sağlayıcısı (Resend veya SMTP) bağlayın.",
+    "verify": "Rezervasyon sayfanızı yayınlamak için e-posta adresinizi ({email}) onaylayın.",
+    "verificationSent": "Doğrulama e-postası gönderildi",
+    "sending": "Gönderiliyor…",
+    "resend": "Bağlantıyı yeniden gönder",
+    "inactive": "Etkin bir abonelik olmadığı için rezervasyon sayfanız yeni rezervasyon kabul etmiyor.",
+    "subscribe": "Aylık {price} ile abone olun",
+    "pastDue": "Son ödemeniz başarısız oldu. Rezervasyon sayfanızın çevrimiçi kalması için kartınızı güncelleyin.",
+    "fixBilling": "Faturalandırmayı düzelt",
+    "trial": "{days, plural, one {Ücretsiz denemenizin bitmesine # gün kaldı.} other {Ücretsiz denemenizin bitmesine # gün kaldı.}}",
+    "choosePlan": "Plan seçin"
+  },
+  "error": {
+    "title": "Bu sayfa yüklenemedi",
+    "body": "Rezervasyonlarınız ve verileriniz güvende. Tekrar deneyin. Sorun devam ederse destek ekibiyle iletişime geçip referans kodunu belirtin.",
+    "reference": "Referans: {digest}",
+    "retry": "Tekrar dene"
+  },
+  "loading": "Yükleniyor"
+}

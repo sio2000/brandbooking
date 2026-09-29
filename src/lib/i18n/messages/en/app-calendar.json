@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Calendar"
+  },
+  "toolbar": {
+    "today": "Today",
+    "previous": "Previous",
+    "next": "Next",
+    "showStaff": "Show team member",
+    "everyone": "Everyone",
+    "view": "Calendar view",
+    "new": "New"
+  },
+  "views": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "agenda": "Agenda"
+  },
+  "agendaTitle": "From {date}",
+  "moved": "Moved to {date}, {time}",
+  "movedDescription": "The customer has been emailed the new time.",
+  "slot": "New appointment {date} at {time}",
+  "block": "{customer}, {service}, {start} to {end}, {staff}, {status}",
+  "footer": {
+    "times": "Times in {timezone}.",
+    "hint": "Click an empty slot to add an appointment · drag to reschedule (the customer is emailed)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# appointment} other {# appointments}}",
+    "more": "+{count} more"
+  },
+  "agenda": {
+    "empty": "No appointments in the next two weeks.",
+    "today": "Today · {date}"
+  }
+}

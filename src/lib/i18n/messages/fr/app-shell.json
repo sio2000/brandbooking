@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Tableau de bord"
+  },
+  "skipToContent": "Aller au contenu",
+  "signedInAs": "Connecté en tant que {role}",
+  "roles": {
+    "owner": "propriétaire",
+    "manager": "gestionnaire",
+    "staff": "membre de l’équipe"
+  },
+  "nav": {
+    "label": "Navigation principale",
+    "more": "Plus",
+    "groups": {
+      "business": "Établissement",
+      "grow": "Développer",
+      "account": "Compte"
+    },
+    "items": {
+      "overview": "Vue d’ensemble",
+      "calendar": "Agenda",
+      "appointments": "Rendez-vous",
+      "customers": "Clients",
+      "services": "Prestations",
+      "team": "Équipe",
+      "availability": "Disponibilités",
+      "analytics": "Statistiques",
+      "bookingPage": "Page de réservation",
+      "settings": "Paramètres",
+      "billing": "Facturation"
+    }
+  },
+  "topbar": {
+    "home": "Vue d’ensemble",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher ou accéder à…",
+    "newAppointment": "Nouveau rendez-vous",
+    "openBookingPage": "Ouvrir la page de réservation",
+    "accountMenu": "Menu du compte",
+    "account": "Compte",
+    "settings": "Paramètres",
+    "theme": "Thème",
+    "language": "Langue",
+    "signOut": "Se déconnecter",
+    "switchBusiness": "Changer d’établissement",
+    "addBusiness": "Ajouter un autre établissement"
+  },
+  "inbox": {
+    "label": "Notifications",
+    "labelUnread": "Notifications, {count} non lues",
+    "title": "Notifications",
+    "markAllRead": "Tout marquer comme lu",
+    "loading": "Chargement…",
+    "empty": "Vous êtes à jour. Les nouvelles réservations et les modifications apparaîtront ici.",
+    "unread": "Non lue",
+    "items": {
+      "bookingRequest": "Nouvelle demande de réservation",
+      "booking": "Nouvelle réservation",
+      "booked": "{who} a réservé {service} pour le {date}.",
+      "cancelledTitle": "Réservation annulée",
+      "cancelled": "{who} a annulé {service} du {date}.",
+      "rescheduledTitle": "Réservation déplacée",
+      "rescheduled": "{who} a déplacé {service} au {date}.",
+      "aCustomer": "Un client",
+      "memberJoined": "{name} a rejoint votre équipe",
+      "ownership": "{name} vous a désigné propriétaire de {business}",
+      "paymentFailed": "Échec du paiement",
+      "paymentFailedBody": "Nous n’avons pas pu débiter votre carte. Mettez à jour votre moyen de paiement pour continuer à accepter des réservations.",
+      "subscriptionActive": "Abonnement actif",
+      "subscriptionActiveBody": "Merci ! Votre formule est active.",
+      "subscriptionEnded": "Abonnement terminé",
+      "subscriptionEndedBody": "Votre page de réservation n’accepte plus de nouvelles réservations."
+    }
+  },
+  "palette": {
+    "title": "Palette de commandes",
+    "description": "Recherchez des clients, des prestations et l’équipe, ou accédez à une page.",
+    "placeholder": "Rechercher des clients, prestations, membres… ou saisir une commande",
+    "suggestions": "Suggestions",
+    "empty": "Aucun résultat pour « {query} ».",
+    "groups": {
+      "goTo": "Aller à",
+      "actions": "Actions",
+      "customers": "Clients",
+      "appointments": "Rendez-vous",
+      "services": "Prestations",
+      "team": "Équipe"
+    },
+    "actions": {
+      "newAppointment": "Nouveau rendez-vous",
+      "addService": "Ajouter une prestation",
+      "addStaff": "Ajouter un membre de l’équipe",
+      "copyLink": "Copier le lien de réservation",
+      "linkCopied": "Lien de réservation copié",
+      "preview": "Aperçu de la page de réservation"
+    }
+  },
+  "banners": {
+    "suspended": "Ce compte est suspendu. Votre page de réservation est hors ligne et les modifications sont désactivées. Contactez le support pour régler la situation.",
+    "emailSimulated": "L’envoi d’e-mails n’est pas encore configuré sur ce site : votre lien de confirmation a été écrit dans le journal du serveur au lieu d’être envoyé à {email}. Connectez un fournisseur d’e-mail (Resend ou SMTP) pour le recevoir dans votre boîte de réception.",
+    "verify": "Confirmez votre adresse e-mail ({email}) pour publier votre page de réservation.",
+    "verificationSent": "E-mail de vérification envoyé",
+    "sending": "Envoi…",
+    "resend": "Renvoyer le lien",
+    "inactive": "Votre page de réservation n’accepte pas de nouvelles réservations, car aucun abonnement n’est actif.",
+    "subscribe": "S’abonner pour {price}/mois",
+    "pastDue": "Votre dernier paiement a échoué. Mettez à jour votre carte pour garder votre page de réservation en ligne.",
+    "fixBilling": "Régulariser la facturation",
+    "trial": "{days, plural, one {Il reste # jour d’essai gratuit.} other {Il reste # jours d’essai gratuit.}}",
+    "choosePlan": "Choisir une formule"
+  },
+  "error": {
+    "title": "Impossible de charger cette page",
+    "body": "Vos réservations et vos données sont en sécurité. Réessayez. Si le problème persiste, contactez le support en indiquant la référence.",
+    "reference": "Référence : {digest}",
+    "retry": "Réessayer"
+  },
+  "loading": "Chargement"
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Agenda"
+  },
+  "toolbar": {
+    "today": "Vandaag",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "showStaff": "Teamlid tonen",
+    "everyone": "Iedereen",
+    "view": "Agendaweergave",
+    "new": "Nieuw"
+  },
+  "views": {
+    "day": "Dag",
+    "week": "Week",
+    "month": "Maand",
+    "agenda": "Lijst"
+  },
+  "agendaTitle": "Vanaf {date}",
+  "moved": "Verzet naar {date}, {time}",
+  "movedDescription": "De klant heeft de nieuwe tijd per e-mail ontvangen.",
+  "slot": "Nieuwe afspraak op {date} om {time}",
+  "block": "{customer}, {service}, {start} tot {end}, {staff}, {status}",
+  "footer": {
+    "times": "Tijden in {timezone}.",
+    "hint": "Klik op een leeg tijdvak om een afspraak toe te voegen · sleep om te verzetten (de klant krijgt een e-mail)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# afspraak} other {# afspraken}}",
+    "more": "+{count} meer"
+  },
+  "agenda": {
+    "empty": "Geen afspraken in de komende twee weken.",
+    "today": "Vandaag · {date}"
+  }
+}

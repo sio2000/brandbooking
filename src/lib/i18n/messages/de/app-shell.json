@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Dashboard"
+  },
+  "skipToContent": "Zum Inhalt springen",
+  "signedInAs": "Angemeldet als {role}",
+  "roles": {
+    "owner": "Inhaber",
+    "manager": "Manager",
+    "staff": "Teammitglied"
+  },
+  "nav": {
+    "label": "Hauptnavigation",
+    "more": "Mehr",
+    "groups": {
+      "business": "Unternehmen",
+      "grow": "Wachstum",
+      "account": "Konto"
+    },
+    "items": {
+      "overview": "Übersicht",
+      "calendar": "Kalender",
+      "appointments": "Termine",
+      "customers": "Kunden",
+      "services": "Leistungen",
+      "team": "Team",
+      "availability": "Verfügbarkeit",
+      "analytics": "Auswertungen",
+      "bookingPage": "Buchungsseite",
+      "settings": "Einstellungen",
+      "billing": "Abrechnung"
+    }
+  },
+  "topbar": {
+    "home": "Übersicht",
+    "search": "Suchen",
+    "searchPlaceholder": "Suchen oder springen zu…",
+    "newAppointment": "Neuer Termin",
+    "openBookingPage": "Buchungsseite öffnen",
+    "accountMenu": "Kontomenü",
+    "account": "Konto",
+    "settings": "Einstellungen",
+    "theme": "Design",
+    "language": "Sprache",
+    "signOut": "Abmelden",
+    "switchBusiness": "Unternehmen wechseln",
+    "addBusiness": "Weiteres Unternehmen hinzufügen"
+  },
+  "inbox": {
+    "label": "Benachrichtigungen",
+    "labelUnread": "Benachrichtigungen, {count} ungelesen",
+    "title": "Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "loading": "Wird geladen…",
+    "empty": "Sie sind auf dem neuesten Stand. Neue Buchungen und Änderungen erscheinen hier.",
+    "unread": "Ungelesen",
+    "items": {
+      "bookingRequest": "Neue Buchungsanfrage",
+      "booking": "Neue Buchung",
+      "booked": "{who} hat {service} für {date} gebucht.",
+      "cancelledTitle": "Buchung storniert",
+      "cancelled": "{who} hat {service} am {date} storniert.",
+      "rescheduledTitle": "Buchung verschoben",
+      "rescheduled": "{who} hat {service} auf {date} verschoben.",
+      "aCustomer": "Ein Kunde",
+      "memberJoined": "{name} ist Ihrem Team beigetreten",
+      "ownership": "{name} hat Sie zum Inhaber von {business} gemacht",
+      "paymentFailed": "Zahlung fehlgeschlagen",
+      "paymentFailedBody": "Ihre Karte konnte nicht belastet werden. Aktualisieren Sie Ihre Zahlungsmethode, um weiterhin Buchungen anzunehmen.",
+      "subscriptionActive": "Abonnement aktiv",
+      "subscriptionActiveBody": "Vielen Dank! Ihr Tarif ist aktiv.",
+      "subscriptionEnded": "Abonnement beendet",
+      "subscriptionEndedBody": "Ihre Buchungsseite nimmt keine neuen Buchungen mehr an."
+    }
+  },
+  "palette": {
+    "title": "Befehlspalette",
+    "description": "Suchen Sie nach Kunden, Leistungen und Teammitgliedern oder springen Sie zu einer Seite.",
+    "placeholder": "Kunden, Leistungen, Team suchen… oder einen Befehl eingeben",
+    "suggestions": "Vorschläge",
+    "empty": "Keine Ergebnisse für „{query}“.",
+    "groups": {
+      "goTo": "Gehe zu",
+      "actions": "Aktionen",
+      "customers": "Kunden",
+      "appointments": "Termine",
+      "services": "Leistungen",
+      "team": "Team"
+    },
+    "actions": {
+      "newAppointment": "Neuer Termin",
+      "addService": "Leistung hinzufügen",
+      "addStaff": "Teammitglied hinzufügen",
+      "copyLink": "Buchungslink kopieren",
+      "linkCopied": "Buchungslink kopiert",
+      "preview": "Vorschau der Buchungsseite"
+    }
+  },
+  "banners": {
+    "suspended": "Dieses Konto ist gesperrt. Ihre Buchungsseite ist offline und Änderungen sind deaktiviert. Wenden Sie sich an den Support, um das zu klären.",
+    "emailSimulated": "Der E-Mail-Versand ist auf dieser Website noch nicht eingerichtet. Ihr Bestätigungslink wurde deshalb ins Serverprotokoll geschrieben statt an {email} gesendet. Verbinden Sie einen E-Mail-Anbieter (Resend oder SMTP), damit er in Ihrem Posteingang ankommt.",
+    "verify": "Bestätigen Sie Ihre E-Mail-Adresse ({email}), um Ihre Buchungsseite zu veröffentlichen.",
+    "verificationSent": "Bestätigungs-E-Mail gesendet",
+    "sending": "Wird gesendet…",
+    "resend": "Link erneut senden",
+    "inactive": "Ihre Buchungsseite nimmt keine neuen Buchungen an, weil kein aktives Abonnement besteht.",
+    "subscribe": "Für {price}/Monat abonnieren",
+    "pastDue": "Ihre letzte Zahlung ist fehlgeschlagen. Aktualisieren Sie Ihre Karte, damit Ihre Buchungsseite online bleibt.",
+    "fixBilling": "Abrechnung klären",
+    "trial": "{days, plural, one {Noch # Tag kostenloser Test.} other {Noch # Tage kostenloser Test.}}",
+    "choosePlan": "Tarif wählen"
+  },
+  "error": {
+    "title": "Diese Seite konnte nicht geladen werden",
+    "body": "Ihre Buchungen und Daten sind sicher. Versuchen Sie es erneut. Wenn das Problem weiter besteht, wenden Sie sich an den Support und nennen Sie die Referenz.",
+    "reference": "Referenz: {digest}",
+    "retry": "Erneut versuchen"
+  },
+  "loading": "Wird geladen"
+}

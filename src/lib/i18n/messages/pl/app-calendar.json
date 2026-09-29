@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Kalendarz"
+  },
+  "toolbar": {
+    "today": "Dziś",
+    "previous": "Poprzedni",
+    "next": "Następny",
+    "showStaff": "Pokaż członka zespołu",
+    "everyone": "Wszyscy",
+    "view": "Widok kalendarza",
+    "new": "Nowa"
+  },
+  "views": {
+    "day": "Dzień",
+    "week": "Tydzień",
+    "month": "Miesiąc",
+    "agenda": "Lista"
+  },
+  "agendaTitle": "Od {date}",
+  "moved": "Przeniesiono na {date}, {time}",
+  "movedDescription": "Klient dostał e-mail z nową godziną.",
+  "slot": "Nowa wizyta {date} o {time}",
+  "block": "{customer}, {service}, {start}–{end}, {staff}, {status}",
+  "footer": {
+    "times": "Godziny: {timezone}.",
+    "hint": "Kliknij wolne miejsce, aby dodać wizytę · przeciągnij, aby zmienić termin (klient dostanie e-mail)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# wizyta} few {# wizyty} many {# wizyt} other {# wizyty}}",
+    "more": "+{count} więcej"
+  },
+  "agenda": {
+    "empty": "Brak wizyt w ciągu najbliższych dwóch tygodni.",
+    "today": "Dziś · {date}"
+  }
+}

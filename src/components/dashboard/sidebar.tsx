@@ -8,6 +8,8 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/brand/logo'
 import { Dialog, SheetContent, DialogTrigger } from '@/components/ui/dialog'
+import { useT } from '@/components/i18n/provider'
+import { LanguageSwitcher } from '@/components/i18n/language-switcher'
 import { NAV_ICONS } from './icons'
 import type { NavItem } from './nav'
 
@@ -21,14 +23,15 @@ function isActive(pathname: string, href: string) {
 
 export function Sidebar({ groups, footer }: { groups: NavGroup[]; footer?: React.ReactNode }) {
   const pathname = usePathname()
+  const t = useT('app-shell')
   return (
-    <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col border-r border-border bg-surface/60 lg:flex">
+    <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col border-e border-border bg-surface/60 lg:flex">
       <div className="flex h-16 items-center px-5">
         <Link href="/app" className="rounded-md">
           <Logo />
         </Link>
       </div>
-      <nav aria-label="Main" className="flex-1 scrollbar-thin overflow-y-auto px-3 pb-4">
+      <nav aria-label={t('nav.label')} className="flex-1 scrollbar-thin overflow-y-auto px-3 pb-4">
         {groups.map((g, gi) => (
           <div key={gi} className={cn(gi > 0 && 'mt-5')}>
             {g.label && (
@@ -77,13 +80,14 @@ export function Sidebar({ groups, footer }: { groups: NavGroup[]; footer?: React
 /** Bottom tab bar on phones: the four daily destinations + "More". */
 export function MobileNav({ groups }: { groups: NavGroup[] }) {
   const pathname = usePathname()
+  const t = useT('app-shell')
   const [open, setOpen] = React.useState(false)
   const all = groups.flatMap((g) => g.items)
   const primary = all.filter((i) => i.mobile).slice(0, 4)
   const rest = all.filter((i) => !primary.includes(i))
   return (
     <nav
-      aria-label="Main"
+      aria-label={t('nav.label')}
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
     >
       <ul className="grid grid-cols-5">
@@ -117,9 +121,9 @@ export function MobileNav({ groups }: { groups: NavGroup[] }) {
               )}
             >
               <MoreHorizontal className="size-5" aria-hidden />
-              More
+              {t('nav.more')}
             </DialogTrigger>
-            <SheetContent title="More">
+            <SheetContent title={t('nav.more')}>
               <ul className="grid gap-1 p-3">
                 {rest.map((item) => {
                   const Icon = NAV_ICONS[item.icon as keyof typeof NAV_ICONS]
@@ -142,6 +146,10 @@ export function MobileNav({ groups }: { groups: NavGroup[] }) {
                   )
                 })}
               </ul>
+              <div className="flex items-center justify-between gap-3 border-t border-border px-6 py-4">
+                <span className="text-sm text-muted-foreground">{t('topbar.language')}</span>
+                <LanguageSwitcher mode="account" compact align="end" />
+              </div>
             </SheetContent>
           </Dialog>
         </li>

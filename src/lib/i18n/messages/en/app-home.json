@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Overview"
+  },
+  "greeting": {
+    "morning": "Good morning, {name}",
+    "afternoon": "Good afternoon, {name}",
+    "evening": "Good evening, {name}"
+  },
+  "summary": {
+    "none": "Nothing booked for today yet.",
+    "count": "{count, plural, one {You have # appointment today.} other {You have # appointments today.}}",
+    "next": "Next up: {name} at {time}."
+  },
+  "setup": {
+    "eyebrow": "Get set up",
+    "title": "Finish setting up your booking page",
+    "description": "A few quick steps and customers can book you online.",
+    "progress": "Setup progress",
+    "done": "done",
+    "todo": "to do",
+    "optional": "Optional",
+    "steps": {
+      "profile": "Business profile",
+      "services": "Services",
+      "hours": "Working hours",
+      "rules": "Booking settings",
+      "branding": "Branding",
+      "publish": "Publish booking page"
+    }
+  },
+  "live": {
+    "title": "Your booking page is live",
+    "copy": "Copy booking link",
+    "preview": "Preview",
+    "qr": "QR code"
+  },
+  "stats": {
+    "today": "Today",
+    "bookedToday": "{count, plural, other {# booked today}}",
+    "week": "This week",
+    "scheduled": "Appointments scheduled",
+    "earned": "Earned this week",
+    "expected": "+ {amount} expected from {count} upcoming",
+    "noneExpected": "No more bookings expected this week",
+    "earnedDefinition": "Service prices of this week’s appointments that have taken place. Appointments count automatically once they end, unless cancelled or marked as a no-show. Customers pay you directly; Hournook does not handle the money.",
+    "newCustomers": "New customers",
+    "newCustomersHint": "Joined this week · {cancelled} cancelled · {noShows} no-shows"
+  },
+  "schedule": {
+    "title": "Today’s schedule",
+    "openCalendar": "Open calendar",
+    "emptyTitle": "No appointments today",
+    "emptyBody": "Share your booking link so customers can find a time, or add an appointment yourself.",
+    "newAppointment": "New appointment",
+    "now": "Now"
+  },
+  "attention": {
+    "title": "Needs your attention",
+    "clear": "All clear. Nothing needs you right now.",
+    "pending": "{count, plural, one {# booking request waiting for confirmation} other {# booking requests waiting for confirmation}}",
+    "review": "Review",
+    "unresolved": "{count, plural, one {# past appointment to mark as completed or no-show} other {# past appointments to mark as completed or no-show}}",
+    "update": "Update",
+    "failedMail": "{count, plural, one {# email couldn’t be delivered this week} other {# emails couldn’t be delivered this week}}",
+    "seeDetails": "See details",
+    "pastDue": "Your last payment failed. Update your card to stay online",
+    "fix": "Fix",
+    "paused": "Online booking is paused",
+    "resume": "Resume"
+  },
+  "quick": {
+    "title": "Quick actions",
+    "newAppointment": "New appointment",
+    "addService": "Add service",
+    "addStaff": "Add team member",
+    "hours": "Working hours"
+  },
+  "upcoming": {
+    "title": "Coming up",
+    "description": "Next 14 days",
+    "all": "All",
+    "empty": "No upcoming appointments."
+  },
+  "activity": {
+    "title": "Recent activity",
+    "all": "All",
+    "empty": "Changes to your business will appear here.",
+    "byCustomer": "by customer",
+    "byStripe": "by Stripe",
+    "by": "by {name}",
+    "automatic": "automatic",
+    "actions": {
+      "business": {
+        "created": "Business created",
+        "profile_updated": "Business profile updated",
+        "branding_updated": "Branding updated",
+        "seo_updated": "SEO settings updated",
+        "slug_changed": "Booking link changed",
+        "published": "Booking page published",
+        "paused": "Online booking paused",
+        "unpublished": "Booking page unpublished",
+        "logo_uploaded": "Logo uploaded",
+        "cover_uploaded": "Cover image uploaded",
+        "logo_removed": "Logo removed",
+        "cover_removed": "Cover image removed",
+        "suspended": "Account suspended by Hournook",
+        "reactivated": "Account reactivated",
+        "exported": "Data export downloaded"
+      },
+      "service": {
+        "created": "Service added",
+        "updated": "Service edited",
+        "deleted": "Service removed"
+      },
+      "staff": {
+        "created": "Team member added",
+        "updated": "Team member edited",
+        "deleted": "Team member removed",
+        "avatar_uploaded": "Team member photo updated"
+      },
+      "appointment": {
+        "created": "Appointment booked",
+        "cancelled": "Appointment cancelled",
+        "rescheduled": "Appointment rescheduled",
+        "confirmed": "Appointment confirmed",
+        "completed": "Appointment completed",
+        "no_show": "Marked as no-show",
+        "reopened": "Appointment reopened",
+        "notes_updated": "Appointment notes edited"
+      },
+      "availability": {
+        "weekly_hours_updated": "Working hours changed",
+        "staff_uses_business_hours": "Team member now follows business hours",
+        "closure_added": "Closure added",
+        "closure_removed": "Closure removed",
+        "special_hours_set": "Special opening hours set",
+        "time_blocked": "Time blocked"
+      },
+      "settings": {
+        "booking_rules_updated": "Booking settings changed",
+        "notifications_updated": "Notification settings changed"
+      },
+      "customer": {
+        "created": "Customer added",
+        "updated": "Customer edited",
+        "erased": "Customer data erased"
+      },
+      "team": {
+        "member_invited": "Team member invited",
+        "invitation_revoked": "Invitation revoked",
+        "member_joined": "Team member joined",
+        "role_changed": "Team role changed",
+        "member_removed": "Team member removed",
+        "member_left": "Team member left",
+        "ownership_transferred": "Ownership transferred"
+      },
+      "billing": {
+        "checkout_started": "Checkout started",
+        "checkout_completed": "Subscription checkout completed",
+        "subscription_status_changed": "Subscription status changed",
+        "invoice_paid": "Invoice paid",
+        "payment_failed": "Payment failed"
+      },
+      "export": {
+        "appointments": "Appointments exported",
+        "customers": "Customers exported",
+        "services": "Services exported"
+      }
+    }
+  },
+  "footer": "All times in {timezone} · today is {date}"
+}

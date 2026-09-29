@@ -26,6 +26,8 @@ import {
 import { toast } from '@/components/ui/toaster'
 import { searchAction } from '@/app/app/shell-actions'
 import { formatDateTime } from '@/lib/format'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag } from './format-locale'
 
 type Ctx = { open: () => void }
 const PaletteContext = React.createContext<Ctx>({ open: () => {} })
@@ -49,6 +51,9 @@ export function CommandPaletteProvider({
   const [query, setQuery] = React.useState('')
   const [results, setResults] = React.useState<Results | null>(null)
   const router = useRouter()
+  const t = useT('app-shell')
+  const nav = (k: string) => t(`nav.items.${k}`)
+  const tag = formatTag(useLocale().locale)
 
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -90,23 +95,25 @@ export function CommandPaletteProvider({
 
   const pages = (
     [
-      ['/app', 'Overview', Home, true],
-      ['/app/calendar', 'Calendar', Calendar, true],
-      ['/app/appointments', 'Appointments', List, true],
-      ['/app/customers', 'Customers', Users, can.customers],
-      ['/app/services', 'Services', Scissors, can.services],
-      ['/app/staff', 'Team', UserCog, can.staff],
-      ['/app/analytics', 'Analytics', BarChart3, can.analytics],
-      ['/app/booking-page', 'Booking page', Globe, can.bookingPage],
-      ['/app/settings', 'Settings', Settings, can.settings],
-      ['/app/billing', 'Billing', CreditCard, can.billing],
-      ['/admin', 'Admin', ShieldCheck, can.admin],
+      ['/app', nav('overview'), Home, true],
+      ['/app/calendar', nav('calendar'), Calendar, true],
+      ['/app/appointments', nav('appointments'), List, true],
+      ['/app/customers', nav('customers'), Users, can.customers],
+      ['/app/services', nav('services'), Scissors, can.services],
+      ['/app/staff', nav('team'), UserCog, can.staff],
+      ['/app/analytics', nav('analytics'), BarChart3, can.analytics],
+      ['/app/booking-page', nav('bookingPage'), Globe, can.bookingPage],
+      ['/app/settings', nav('settings'), Settings, can.settings],
+      ['/app/billing', nav('billing'), CreditCard, can.billing],
+      ['/admin', 'Admin', ShieldCheck, can.admin], // i18n-ignore: the admin area is English only
     ] as Array<[string, string, typeof Home, boolean | undefined]>
   ).filter(([, , , show]) => show)
   // While search results are shown (cmdk filtering is off), keep pages whose
   // name matches the query, so typing a page name still jumps there.
   const matchingPages = r
-    ? pages.filter(([, label]) => label.toLowerCase().includes(query.trim().toLowerCase()))
+    ? pages.filter(([, label]) =>
+        label.toLocaleLowerCase(tag).includes(query.trim().toLocaleLowerCase(tag)),
+      )
     : []
   const pageItem = ([href, label, I]: (typeof pages)[number]) => (
     <Command.Item key={href} onSelect={() => go(href)} className={item}>
@@ -121,31 +128,34 @@ export function CommandPaletteProvider({
         <D.Portal>
           <D.Overlay className="fixed inset-0 z-50 bg-overlay backdrop-blur-[2px] data-[state=open]:animate-in data-[state=open]:fade-in-0" />
           <D.Content className="fixed top-[12vh] left-1/2 z-50 w-[calc(100%-1.5rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-elevated shadow-lg data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98]">
-            <D.Title className="sr-only">Command palette</D.Title>
-            <D.Description className="sr-only">
-              Search customers, services and team, or jump to a page.
-            </D.Description>
-            <Command label="Command palette" shouldFilter={!r} className={heading}>
+            <D.Title className="sr-only">{t('palette.title')}</D.Title>
+            <D.Description className="sr-only">{t('palette.description')}</D.Description>
+            <Command label={t('palette.title')} shouldFilter={!r} className={heading}>
               <div className="flex items-center gap-2 border-b border-border px-4">
                 <Search className="size-4 text-muted-foreground" aria-hidden />
                 <Command.Input
                   value={query}
                   onValueChange={setQuery}
-                  placeholder="Search customers, services, team… or type a command"
+                  placeholder={t('palette.placeholder')}
                   className="h-12 flex-1 bg-transparent text-[15px] outline-none placeholder:text-subtle-foreground"
                 />
               </div>
-              <Command.List className="max-h-[60vh] overflow-y-auto p-2">
+              <Command.List
+                label={t('palette.suggestions')}
+                className="max-h-[60vh] overflow-y-auto p-2"
+              >
                 <Command.Empty className="px-3 py-8 text-center text-sm text-muted-foreground">
-                  No results for “{query}”.
+                  {t('palette.empty', { query })}
                 </Command.Empty>
                 {r && (
                   <>
                     {matchingPages.length > 0 && (
-                      <Command.Group heading="Go to">{matchingPages.map(pageItem)}</Command.Group>
+                      <Command.Group heading={t('palette.groups.goTo')}>
+                        {matchingPages.map(pageItem)}
+                      </Command.Group>
                     )}
                     {r.customers.length > 0 && (
-                      <Command.Group heading="Customers">
+                      <Command.Group heading={t('palette.groups.customers')}>
                         {r.customers.map((c) => (
                           <Command.Item
                             key={c.id}
@@ -165,7 +175,7 @@ export function CommandPaletteProvider({
                       </Command.Group>
                     )}
                     {r.appointments.length > 0 && (
-                      <Command.Group heading="Appointments">
+                      <Command.Group heading={t('palette.groups.appointments')}>
                         {r.appointments.map((a) => (
                           <Command.Item
                             key={a.id}
@@ -173,13 +183,13 @@ export function CommandPaletteProvider({
                             onSelect={() => go(`/app/appointments/${a.id}`)}
                             className={item}
                           >
-                            <Calendar /> {a.reference} · {formatDateTime(a.startsAt, timezone)}
+                            <Calendar /> {a.reference} · {formatDateTime(a.startsAt, timezone, tag)}
                           </Command.Item>
                         ))}
                       </Command.Group>
                     )}
                     {r.services.length > 0 && (
-                      <Command.Group heading="Services">
+                      <Command.Group heading={t('palette.groups.services')}>
                         {r.services.map((s) => (
                           <Command.Item
                             key={s.id}
@@ -193,7 +203,7 @@ export function CommandPaletteProvider({
                       </Command.Group>
                     )}
                     {r.staff.length > 0 && (
-                      <Command.Group heading="Team">
+                      <Command.Group heading={t('palette.groups.team')}>
                         {r.staff.map((s) => (
                           <Command.Item
                             key={s.id}
@@ -210,23 +220,23 @@ export function CommandPaletteProvider({
                 )}
                 {!r && (
                   <>
-                    <Command.Group heading="Actions">
+                    <Command.Group heading={t('palette.groups.actions')}>
                       {can.createAppointment && (
                         <Command.Item
                           onSelect={() => go('/app/appointments?new=1')}
                           className={item}
                         >
-                          <CalendarPlus /> New appointment
+                          <CalendarPlus /> {t('palette.actions.newAppointment')}
                         </Command.Item>
                       )}
                       {can.services && (
                         <Command.Item onSelect={() => go('/app/services?new=1')} className={item}>
-                          <Plus /> Add service
+                          <Plus /> {t('palette.actions.addService')}
                         </Command.Item>
                       )}
                       {can.staff && (
                         <Command.Item onSelect={() => go('/app/staff?new=1')} className={item}>
-                          <Plus /> Add team member
+                          <Plus /> {t('palette.actions.addStaff')}
                         </Command.Item>
                       )}
                       {bookingUrl && (
@@ -235,12 +245,12 @@ export function CommandPaletteProvider({
                             run(() => {
                               void navigator.clipboard
                                 .writeText(bookingUrl)
-                                .then(() => toast.success('Booking link copied'))
+                                .then(() => toast.success(t('palette.actions.linkCopied')))
                             })
                           }
                           className={item}
                         >
-                          <Copy /> Copy booking link
+                          <Copy /> {t('palette.actions.copyLink')}
                         </Command.Item>
                       )}
                       {bookingUrl && (
@@ -248,11 +258,13 @@ export function CommandPaletteProvider({
                           onSelect={() => run(() => window.open(bookingUrl, '_blank', 'noopener'))}
                           className={item}
                         >
-                          <Link2 /> Preview booking page
+                          <Link2 /> {t('palette.actions.preview')}
                         </Command.Item>
                       )}
                     </Command.Group>
-                    <Command.Group heading="Go to">{pages.map(pageItem)}</Command.Group>
+                    <Command.Group heading={t('palette.groups.goTo')}>
+                      {pages.map(pageItem)}
+                    </Command.Group>
                   </>
                 )}
               </Command.List>

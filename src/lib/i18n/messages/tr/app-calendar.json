@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Takvim"
+  },
+  "toolbar": {
+    "today": "Bugün",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "showStaff": "Ekip üyesini göster",
+    "everyone": "Herkes",
+    "view": "Takvim görünümü",
+    "new": "Yeni"
+  },
+  "views": {
+    "day": "Gün",
+    "week": "Hafta",
+    "month": "Ay",
+    "agenda": "Ajanda"
+  },
+  "agendaTitle": "{date} tarihinden itibaren",
+  "moved": "{date}, {time} saatine taşındı",
+  "movedDescription": "Yeni saat müşteriye e-postayla bildirildi.",
+  "slot": "{date}, {time} için yeni randevu",
+  "block": "{customer}, {service}, {start} – {end}, {staff}, {status}",
+  "footer": {
+    "times": "Saatler: {timezone}.",
+    "hint": "Randevu eklemek için boş bir aralığa tıklayın · yeniden planlamak için sürükleyin (müşteriye e-posta gider)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# randevu} other {# randevu}}",
+    "more": "+{count} tane daha"
+  },
+  "agenda": {
+    "empty": "Önümüzdeki iki hafta içinde randevu yok.",
+    "today": "Bugün · {date}"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Visão geral"
+  },
+  "greeting": {
+    "morning": "Bom dia, {name}",
+    "afternoon": "Boa tarde, {name}",
+    "evening": "Boa noite, {name}"
+  },
+  "summary": {
+    "none": "Ainda não há nada reservado para hoje.",
+    "count": "{count, plural, one {Tem # marcação hoje.} other {Tem # marcações hoje.}}",
+    "next": "A seguir: {name} às {time}."
+  },
+  "setup": {
+    "eyebrow": "Primeiros passos",
+    "title": "Termine a configuração da sua página de reservas",
+    "description": "Mais alguns passos rápidos e os clientes poderão reservar online.",
+    "progress": "Progresso da configuração",
+    "done": "concluído",
+    "todo": "por fazer",
+    "optional": "Opcional",
+    "steps": {
+      "profile": "Perfil do negócio",
+      "services": "Serviços",
+      "hours": "Horário",
+      "rules": "Definições de reserva",
+      "branding": "Imagem de marca",
+      "publish": "Publicar a página de reservas"
+    }
+  },
+  "live": {
+    "title": "A sua página de reservas está online",
+    "copy": "Copiar ligação de reservas",
+    "preview": "Pré-visualizar",
+    "qr": "Código QR"
+  },
+  "stats": {
+    "today": "Hoje",
+    "bookedToday": "{count, plural, one {# reservada hoje} other {# reservadas hoje}}",
+    "week": "Esta semana",
+    "scheduled": "Marcações agendadas",
+    "earned": "Faturado esta semana",
+    "expected": "+ {amount} previstos de {count} próximas",
+    "noneExpected": "Não são esperadas mais reservas esta semana",
+    "earnedDefinition": "Preços dos serviços das marcações desta semana que já se realizaram. As marcações contam automaticamente quando terminam, exceto se forem canceladas ou marcadas como «não compareceu». Os clientes pagam-lhe diretamente; a Hournook não trata do dinheiro.",
+    "newCustomers": "Novos clientes",
+    "newCustomersHint": "Chegaram esta semana · {cancelled} canceladas · {noShows} não compareceram"
+  },
+  "schedule": {
+    "title": "Agenda de hoje",
+    "openCalendar": "Abrir calendário",
+    "emptyTitle": "Sem marcações hoje",
+    "emptyBody": "Partilhe a sua ligação de reservas para os clientes encontrarem um horário, ou adicione uma marcação.",
+    "newAppointment": "Nova marcação",
+    "now": "Agora"
+  },
+  "attention": {
+    "title": "Requer a sua atenção",
+    "clear": "Está tudo em ordem. Não há nada pendente neste momento.",
+    "pending": "{count, plural, one {# pedido de reserva a aguardar confirmação} other {# pedidos de reserva a aguardar confirmação}}",
+    "review": "Rever",
+    "unresolved": "{count, plural, one {# marcação passada por marcar como concluída ou «não compareceu»} other {# marcações passadas por marcar como concluídas ou «não compareceu»}}",
+    "update": "Atualizar",
+    "failedMail": "{count, plural, one {# e-mail não foi entregue esta semana} other {# e-mails não foram entregues esta semana}}",
+    "seeDetails": "Ver detalhes",
+    "pastDue": "O seu último pagamento falhou. Atualize o cartão para continuar online",
+    "fix": "Resolver",
+    "paused": "As reservas online estão em pausa",
+    "resume": "Retomar"
+  },
+  "quick": {
+    "title": "Ações rápidas",
+    "newAppointment": "Nova marcação",
+    "addService": "Adicionar serviço",
+    "addStaff": "Adicionar membro da equipa",
+    "hours": "Horário"
+  },
+  "upcoming": {
+    "title": "Próximas",
+    "description": "Próximos 14 dias",
+    "all": "Todas",
+    "empty": "Sem marcações futuras."
+  },
+  "activity": {
+    "title": "Atividade recente",
+    "all": "Tudo",
+    "empty": "As alterações ao seu negócio aparecem aqui.",
+    "byCustomer": "pelo cliente",
+    "byStripe": "pela Stripe",
+    "by": "por {name}",
+    "automatic": "automático",
+    "actions": {
+      "business": {
+        "created": "Negócio criado",
+        "profile_updated": "Perfil do negócio atualizado",
+        "branding_updated": "Imagem de marca atualizada",
+        "seo_updated": "Definições de SEO atualizadas",
+        "slug_changed": "Ligação de reservas alterada",
+        "published": "Página de reservas publicada",
+        "paused": "Reservas online em pausa",
+        "unpublished": "Página de reservas despublicada",
+        "logo_uploaded": "Logótipo carregado",
+        "cover_uploaded": "Imagem de capa carregada",
+        "logo_removed": "Logótipo removido",
+        "cover_removed": "Imagem de capa removida",
+        "suspended": "Conta suspensa pela Hournook",
+        "reactivated": "Conta reativada",
+        "exported": "Exportação de dados transferida"
+      },
+      "service": {
+        "created": "Serviço adicionado",
+        "updated": "Serviço editado",
+        "deleted": "Serviço removido"
+      },
+      "staff": {
+        "created": "Membro da equipa adicionado",
+        "updated": "Membro da equipa editado",
+        "deleted": "Membro da equipa removido",
+        "avatar_uploaded": "Fotografia de membro da equipa atualizada"
+      },
+      "appointment": {
+        "created": "Marcação reservada",
+        "cancelled": "Marcação cancelada",
+        "rescheduled": "Marcação reagendada",
+        "confirmed": "Marcação confirmada",
+        "completed": "Marcação concluída",
+        "no_show": "Marcada como «não compareceu»",
+        "reopened": "Marcação reaberta",
+        "notes_updated": "Notas da marcação editadas"
+      },
+      "availability": {
+        "weekly_hours_updated": "Horário alterado",
+        "staff_uses_business_hours": "O membro da equipa segue agora o horário do negócio",
+        "closure_added": "Encerramento adicionado",
+        "closure_removed": "Encerramento removido",
+        "special_hours_set": "Horário especial definido",
+        "time_blocked": "Período bloqueado"
+      },
+      "settings": {
+        "booking_rules_updated": "Definições de reserva alteradas",
+        "notifications_updated": "Definições de notificações alteradas"
+      },
+      "customer": {
+        "created": "Cliente adicionado",
+        "updated": "Cliente editado",
+        "erased": "Dados do cliente apagados"
+      },
+      "team": {
+        "member_invited": "Membro da equipa convidado",
+        "invitation_revoked": "Convite revogado",
+        "member_joined": "Novo membro na equipa",
+        "role_changed": "Função alterada",
+        "member_removed": "Membro da equipa removido",
+        "member_left": "Um membro saiu da equipa",
+        "ownership_transferred": "Propriedade transferida"
+      },
+      "billing": {
+        "checkout_started": "Pagamento iniciado",
+        "checkout_completed": "Subscrição concluída",
+        "subscription_status_changed": "Estado da subscrição alterado",
+        "invoice_paid": "Fatura paga",
+        "payment_failed": "Falha no pagamento"
+      },
+      "export": {
+        "appointments": "Marcações exportadas",
+        "customers": "Clientes exportados",
+        "services": "Serviços exportados"
+      }
+    }
+  },
+  "footer": "Todas as horas em {timezone} · hoje é {date}"
+}

@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { ArrowDownRight, ArrowUpRight, Minus } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Tooltip } from '@/components/ui/menu'
-import { Info } from 'lucide-react'
+import { StatDefinition, StatTrend } from './stat-labels'
 
 /** KPI tile: label, big tabular number, optional delta vs previous period and definition tooltip. */
 export function Stat({
@@ -36,17 +35,7 @@ export function Stat({
       <div className="flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground">
         {Icon && <Icon className="size-4" />}
         <span>{label}</span>
-        {definition && (
-          <Tooltip content={definition}>
-            <button
-              type="button"
-              className="rounded text-subtle-foreground hover:text-foreground"
-              aria-label={`About ${label}`}
-            >
-              <Info className="size-3.5" />
-            </button>
-          </Tooltip>
-        )}
+        {definition && <StatDefinition label={label} definition={definition} />}
       </div>
       <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span className="tabular min-w-0 font-display text-[1.6rem] leading-none font-bold break-words sm:text-[1.75rem]">
@@ -68,7 +57,7 @@ export function Stat({
             ) : (
               <Minus className="size-3" aria-hidden />
             )}
-            <span className="sr-only">{up ? 'up' : down ? 'down' : 'unchanged'}</span>
+            <StatTrend trend={up ? 'up' : down ? 'down' : 'unchanged'} />
             {Math.abs(Math.round((delta ?? 0) * 100))}%
           </span>
         )}

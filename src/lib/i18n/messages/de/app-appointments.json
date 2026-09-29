@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Termine",
+    "detailTitle": "Termin"
+  },
+  "status": {
+    "pending": "Ausstehend",
+    "confirmed": "Bestätigt",
+    "completed": "Erledigt",
+    "cancelled": "Storniert",
+    "no_show": "Nicht erschienen"
+  },
+  "events": {
+    "created": "Gebucht",
+    "confirmed": "Bestätigt",
+    "rescheduled": "Verschoben",
+    "cancelled": "Storniert",
+    "completed": "Erledigt",
+    "no_show": "Nicht erschienen",
+    "edited": "Bearbeitet",
+    "reopened": "Wieder geöffnet"
+  },
+  "sources": {
+    "booking_page": "Buchungsseite",
+    "widget": "Website-Widget",
+    "qr": "QR-Code",
+    "manual": "Vom Team angelegt",
+    "campaign": "Kampagnenlink",
+    "social": "Soziale Medien",
+    "api": "API"
+  },
+  "list": {
+    "title": "Termine",
+    "description": "Alle Buchungen an einem Ort. Filtern, Status gesammelt ändern oder als Tabelle exportieren.",
+    "views": {
+      "label": "Welche Termine",
+      "upcoming": "Anstehend",
+      "today": "Heute",
+      "past": "Vergangen",
+      "all": "Alle"
+    },
+    "filters": {
+      "status": "Nach Status filtern",
+      "anyStatus": "Jeder Status",
+      "staff": "Nach Teammitglied filtern",
+      "everyone": "Alle",
+      "service": "Nach Leistung filtern",
+      "allServices": "Alle Leistungen"
+    },
+    "export": "Als CSV exportieren",
+    "new": "Neu",
+    "newAppointment": "Neuer Termin",
+    "bulk": {
+      "label": "Sammelaktionen",
+      "selected": "{count} ausgewählt",
+      "confirm": "Bestätigen",
+      "complete": "Als erledigt markieren",
+      "noShow": "Nicht erschienen",
+      "clear": "Auswahl aufheben",
+      "result": "{updated} aktualisiert",
+      "resultSkipped": "{updated} aktualisiert, {skipped} übersprungen (nicht möglich)"
+    },
+    "empty": {
+      "upcomingTitle": "Keine anstehenden Termine",
+      "upcomingBody": "Wenn Kunden über Ihre Seite buchen, erscheinen ihre Termine sofort hier. Sie können auch selbst einen anlegen.",
+      "filteredTitle": "Keine Termine passen zu diesen Filtern",
+      "filteredBody": "Probieren Sie eine andere Ansicht oder setzen Sie die Filter zurück."
+    },
+    "selectAll": "Alle auf dieser Seite auswählen",
+    "selectAllShort": "Alle auswählen",
+    "selectRow": "{name} um {time} auswählen",
+    "pagination": {
+      "label": "Seitennavigation",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "page": "Seite {page}"
+    }
+  },
+  "detail": {
+    "back": "Termine",
+    "when": "{date} · {start} – {end} ({zone}) · bei {staff}",
+    "details": "Details",
+    "service": "Leistung",
+    "staff": "Teammitglied",
+    "price": "Preis",
+    "noPrice": "Kein Preis festgelegt",
+    "reference": "Referenz",
+    "booked": "Gebucht am",
+    "source": "Herkunft",
+    "rescheduled": "Verschoben",
+    "rescheduledTimes": "{count, plural, one {# Mal} other {# Mal}}",
+    "cancelled": "Storniert",
+    "cancelledBy": "{date} durch {who}",
+    "cancelledByWho": {
+      "customer": "den Kunden",
+      "user": "Ihr Team",
+      "system": "das System"
+    },
+    "customerMessage": "Nachricht vom Kunden",
+    "notes": {
+      "title": "Interne Notizen",
+      "description": "Nur Ihr Team sieht diese Notizen. Sie werden Kunden nie angezeigt.",
+      "empty": "Keine Notizen.",
+      "placeholder": "Farbrezeptur, Vorlieben, alles Nützliche für das nächste Mal…",
+      "save": "Notizen speichern"
+    },
+    "history": {
+      "title": "Verlauf",
+      "byCustomer": "durch Kunden",
+      "by": "durch {name}",
+      "team": "das Team",
+      "stripe": "Stripe",
+      "automatically": "automatisch",
+      "notesUpdated": "Interne Notizen aktualisiert"
+    },
+    "customer": {
+      "title": "Kunde",
+      "profile": "Profil ansehen",
+      "noEmail": "Keine E-Mail-Adresse hinterlegt – dieser Kunde erhält keine Bestätigungen oder Erinnerungen."
+    },
+    "emails": {
+      "title": "E-Mails",
+      "description": "Bestätigungen und Erinnerungen zu diesem Termin.",
+      "empty": "Keine E-Mails zu diesem Termin.",
+      "sent": "Gesendet {when}",
+      "scheduled": "Geplant für {date}",
+      "failed": "Zustellung fehlgeschlagen",
+      "notNeeded": "Nicht nötig",
+      "sending": "Wird gesendet…",
+      "badge": {
+        "pending": "geplant",
+        "sending": "wird gesendet",
+        "sent": "gesendet",
+        "failed": "fehlgeschlagen",
+        "cancelled": "übersprungen"
+      },
+      "templates": {
+        "booking_received": "Buchungsbestätigung",
+        "booking_confirmed": "Bestätigung (nach Freigabe)",
+        "booking_cancelled": "Stornierungshinweis",
+        "booking_rescheduled": "Verschiebungshinweis",
+        "booking_reminder": "Erinnerung",
+        "member_booking_created": "Team: neue Buchung",
+        "member_booking_cancelled": "Team: Stornierung",
+        "member_booking_rescheduled": "Team: Verschiebung"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Bestätigen",
+    "completed": "Erledigt",
+    "noShow": "Nicht erschienen",
+    "reschedule": "Verschieben",
+    "reopen": "Wieder öffnen",
+    "cancel": "Stornieren",
+    "updated": "Aktualisiert",
+    "cancelDialog": {
+      "title": "Diesen Termin stornieren?",
+      "description": "Die Zeit wird für andere Buchungen frei. Das lässt sich nicht rückgängig machen; es müsste neu gebucht werden.",
+      "confirm": "Termin stornieren",
+      "message": "Nachricht an den Kunden",
+      "optional": "(optional)",
+      "notify": "Kunden per E-Mail informieren"
+    }
+  },
+  "reschedule": {
+    "title": "Termin verschieben",
+    "description": "Der Kunde erhält eine E-Mail mit der alten und der neuen Uhrzeit.",
+    "date": "Datum",
+    "time": "Beginn",
+    "staff": "Teammitglied",
+    "freeTimes": "Freie Zeiten",
+    "checking": "Wird geprüft…",
+    "none": "An diesem Tag gibt es innerhalb der Arbeitszeiten keine freien Zeiten. Sie können trotzdem jede Uhrzeit manuell wählen.",
+    "cancel": "Abbrechen",
+    "submit": "Termin verschieben",
+    "done": "Verschoben"
+  },
+  "new": {
+    "title": "Neuer Termin",
+    "description": "Zeiten in {timezone}.",
+    "service": "Leistung",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Teammitglied",
+    "date": "Datum",
+    "time": "Beginn",
+    "timeHint": "Jede Uhrzeit ist möglich, auch außerhalb der Öffnungszeiten.",
+    "freeTimes": "Freie Zeiten",
+    "freeTimesFor": "Freie Zeiten für {name}",
+    "checking": "Verfügbarkeit wird geprüft…",
+    "none": "An diesem Tag gibt es innerhalb der Arbeitszeiten keine freien Zeiten.",
+    "customer": "Kunde",
+    "changeCustomer": "Anderen Kunden wählen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "emailHint": "Für Bestätigungen und Erinnerungen erforderlich.",
+    "phone": "Telefon",
+    "searchInstead": "Stattdessen bestehende Kunden suchen",
+    "search": "Kunden suchen",
+    "searchPlaceholder": "Nach Name, E-Mail oder Telefon suchen",
+    "newCustomer": "Neuer Kunde",
+    "notes": "Interne Notizen",
+    "notesHint": "Nur für Ihr Team sichtbar.",
+    "notify": "Kunden eine Bestätigung per E-Mail senden",
+    "notifyHint": "Erinnerungen werden automatisch gesendet, wenn der Kunde eine E-Mail-Adresse hat.",
+    "cancel": "Abbrechen",
+    "submit": "Termin anlegen",
+    "chooseTime": "Wählen Sie eine Anfangszeit.",
+    "customerRequired": "Wählen Sie einen bestehenden Kunden oder geben Sie einen Namen ein."
+  },
+  "toasts": {
+    "created": "Termin angelegt",
+    "moved": "Termin verschoben. Der Kunde wurde benachrichtigt",
+    "confirm": "Termin bestätigt",
+    "cancel": "Termin storniert",
+    "complete": "Als erledigt markiert",
+    "no_show": "Als nicht erschienen markiert",
+    "reopen": "Termin wieder geöffnet",
+    "notesSaved": "Notizen gespeichert"
+  },
+  "export": {
+    "reference": "Referenz",
+    "date": "Datum",
+    "start": "Beginn",
+    "end": "Ende",
+    "timezone": "Zeitzone",
+    "status": "Status",
+    "service": "Leistung",
+    "staff": "Teammitglied",
+    "customer": "Kunde",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "price": "Preis",
+    "currency": "Währung",
+    "source": "Herkunft",
+    "bookedAt": "Gebucht am"
+  }
+}

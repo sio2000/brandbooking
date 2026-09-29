@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Calendario"
+  },
+  "toolbar": {
+    "today": "Hoy",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "showStaff": "Mostrar miembro del equipo",
+    "everyone": "Todos",
+    "view": "Vista del calendario",
+    "new": "Nueva"
+  },
+  "views": {
+    "day": "Día",
+    "week": "Semana",
+    "month": "Mes",
+    "agenda": "Agenda"
+  },
+  "agendaTitle": "Desde el {date}",
+  "moved": "Movida al {date}, {time}",
+  "movedDescription": "Hemos enviado la nueva hora al cliente por correo.",
+  "slot": "Nueva cita el {date} a las {time}",
+  "block": "{customer}, {service}, de {start} a {end}, {staff}, {status}",
+  "footer": {
+    "times": "Horas en {timezone}.",
+    "hint": "Haz clic en un hueco libre para añadir una cita · arrastra para cambiar la hora (se avisa al cliente por correo)."
+  },
+  "month": {
+    "day": "{date}: {count, plural, one {# cita} other {# citas}}",
+    "more": "+{count} más"
+  },
+  "agenda": {
+    "empty": "No hay citas en las próximas dos semanas.",
+    "today": "Hoy · {date}"
+  }
+}

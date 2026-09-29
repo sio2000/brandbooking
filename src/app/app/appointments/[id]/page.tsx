@@ -2,16 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Mail, MessageSquare, Phone, User } from 'lucide-react'
+import { getLocale, getT } from '@/server/i18n'
+import { formatTag } from '@/components/dashboard/format-locale'
 import { requireTenantPage } from '@/server/tenancy/context'
 import { getAppointmentForBusiness } from '@/server/business/appointments-admin'
 import { pickerData } from '@/server/business/pickers'
 import { availableTransitions } from '@/server/booking/transitions'
 import { isAppError } from '@/server/errors'
-import { ACTIVITY_LABELS } from '@/server/business/overview'
 import { PageContainer } from '@/components/dashboard/page-header'
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { StatusBadge, SOURCE_LABELS } from '@/components/dashboard/status'
+import { StatusBadge } from '@/components/dashboard/status'
 import { AppointmentActions, NotesEditor } from '@/components/dashboard/appointment-actions'
 import {
   formatDateLong,
@@ -23,17 +24,9 @@ import {
   formatRelative,
 } from '@/lib/format'
 
-export const metadata: Metadata = { title: 'Appointment' }
-
-const TEMPLATE_LABELS: Record<string, string> = {
-  booking_received: 'Booking confirmation',
-  booking_confirmed: 'Confirmation (after approval)',
-  booking_cancelled: 'Cancellation notice',
-  booking_rescheduled: 'Reschedule notice',
-  booking_reminder: 'Reminder',
-  member_booking_created: 'Team: new booking',
-  member_booking_cancelled: 'Team: cancellation',
-  member_booking_rescheduled: 'Team: reschedule',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-appointments')
+  return { title: t('meta.detailTitle') }
 }
 
 export default async function AppointmentPage({ params }: PageProps<'/app/appointments/[id]'>) {
@@ -50,6 +43,11 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
   const a = data.appt
   const c = data.customer
   const tz = ctx.business.timezone
+  const locale = await getLocale()
+  const t = await getT('app-appointments', locale)
+  const tag = formatTag(locale)
+  const label = (group: 'events' | 'sources' | 'detail.emails.templates', key: string) =>
+    t.has(`${group}.${key}`) ? t(`${group}.${key}`) : key
   const canManage =
     ctx.can('appointments.manage_all') ||
     (ctx.can('appointments.manage_own') && ctx.membership.staffId === a.staffId)
@@ -63,7 +61,7 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
         href="/app/appointments"
         className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
       >
-        <ArrowLeft className="size-4" /> Appointments
+        <ArrowLeft className="size-4 rtl:-scale-x-100" /> {t('detail.back')}
       </Link>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
@@ -72,9 +70,13 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
             <StatusBadge status={a.status} />
           </div>
           <p className="mt-1 text-[15px] text-muted-foreground">
-            {formatDateLong(a.startsAt, tz)} · {formatTime(a.startsAt, tz)} –{' '}
-            {formatTime(a.endsAt, tz)} ({formatTimeZoneName(a.startsAt, tz)}) · with{' '}
-            {data.staffName}
+            {t('detail.when', {
+              date: formatDateLong(a.startsAt, tz, tag),
+              start: formatTime(a.startsAt, tz, tag),
+              end: formatTime(a.endsAt, tz, tag),
+              zone: formatTimeZoneName(a.startsAt, tz, tag),
+              staff: data.staffName,
+            })}
           </p>
         </div>
         {canManage && pickers && (
@@ -100,22 +102,24 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="grid content-start gap-6">
           <Card>
-            <CardHeader title="Details" />
+            <CardHeader title={t('detail.details')} />
             <CardBody>
               <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
-                <Detail label="Service">
-                  {data.serviceName} · {formatDuration(a.durationMinutes)}
+                <Detail label={t('detail.service')}>
+                  {data.serviceName} · {formatDuration(a.durationMinutes, tag)}
                 </Detail>
-                <Detail label="Team member">{data.staffName}</Detail>
-                <Detail label="Price">
-                  {a.priceCents != null ? formatMoney(a.priceCents, a.currency) : 'No price set'}
+                <Detail label={t('detail.staff')}>{data.staffName}</Detail>
+                <Detail label={t('detail.price')}>
+                  {a.priceCents != null
+                    ? formatMoney(a.priceCents, a.currency, tag)
+                    : t('detail.noPrice')}
                 </Detail>
-                <Detail label="Reference">
+                <Detail label={t('detail.reference')}>
                   <span className="font-mono">{a.reference}</span>
                 </Detail>
-                <Detail label="Booked">{formatDateTime(a.createdAt, tz)}</Detail>
-                <Detail label="Source">
-                  {SOURCE_LABELS[a.source] ?? a.source}
+                <Detail label={t('detail.booked')}>{formatDateTime(a.createdAt, tz, tag)}</Detail>
+                <Detail label={t('detail.source')}>
+                  {label('sources', a.source)}
                   {a.utmCampaign && (
                     <span className="text-muted-foreground">
                       {' '}
@@ -124,18 +128,20 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
                   )}
                 </Detail>
                 {a.rescheduleCount > 0 && (
-                  <Detail label="Rescheduled">
-                    {a.rescheduleCount} time{a.rescheduleCount === 1 ? '' : 's'}
+                  <Detail label={t('detail.rescheduled')}>
+                    {t('detail.rescheduledTimes', { count: a.rescheduleCount })}
                   </Detail>
                 )}
                 {a.cancelledAt && (
-                  <Detail label="Cancelled">
-                    {formatDateTime(a.cancelledAt, tz)} by{' '}
-                    {a.cancelledBy === 'customer'
-                      ? 'customer'
-                      : a.cancelledBy === 'user'
-                        ? 'your team'
-                        : 'system'}
+                  <Detail label={t('detail.cancelled')}>
+                    {t('detail.cancelledBy', {
+                      date: formatDateTime(a.cancelledAt, tz, tag),
+                      who: t(
+                        a.cancelledBy === 'customer' || a.cancelledBy === 'user'
+                          ? `detail.cancelledByWho.${a.cancelledBy}`
+                          : 'detail.cancelledByWho.system',
+                      ),
+                    })}
                     {a.cancellationReason && (
                       <span className="block text-muted-foreground">“{a.cancellationReason}”</span>
                     )}
@@ -150,7 +156,7 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
                   />
                   <div>
                     <p className="text-xs font-medium text-muted-foreground">
-                      Message from customer
+                      {t('detail.customerMessage')}
                     </p>
                     <p className="mt-1 whitespace-pre-line">{a.customerMessage}</p>
                   </div>
@@ -161,8 +167,8 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
 
           <Card>
             <CardHeader
-              title="Internal notes"
-              description="Only your team can see these. Never shown to customers."
+              title={t('detail.notes.title')}
+              description={t('detail.notes.description')}
             />
             <CardBody>
               <NotesEditor id={a.id} initial={a.internalNotes ?? ''} readOnly={!canManage} />
@@ -170,40 +176,51 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
           </Card>
 
           <Card>
-            <CardHeader title="History" />
+            <CardHeader title={t('detail.history.title')} />
             <CardBody>
-              <ol className="relative grid gap-4 border-l border-border pl-5">
+              <ol className="relative grid gap-4 border-s border-border ps-5">
                 {data.history.map(({ event: e, actorName }) => (
                   <li key={e.id} className="relative text-sm">
                     <span
-                      className="absolute top-1 -left-[25px] size-2.5 rounded-full bg-primary ring-4 ring-surface"
+                      className="absolute -start-[25px] top-1 size-2.5 rounded-full bg-primary ring-4 ring-surface"
                       aria-hidden
                     />
                     <p className="font-medium">
-                      {ACTIVITY_LABELS[e.event] ?? e.event}
+                      {label('events', e.event)}
                       <span className="font-normal text-muted-foreground">
                         {' '}
                         ·{' '}
                         {e.actor === 'customer'
-                          ? 'by customer'
+                          ? t('detail.history.byCustomer')
                           : e.actor === 'user'
-                            ? `by ${actorName ?? 'team'}`
+                            ? t('detail.history.by', {
+                                name: actorName ?? t('detail.history.team'),
+                              })
                             : e.actor === 'stripe'
-                              ? 'Stripe'
-                              : 'automatically'}
+                              ? t('detail.history.stripe')
+                              : t('detail.history.automatically')}
                       </span>
                     </p>
                     {e.event === 'rescheduled' && e.previousStartsAt && e.newStartsAt && (
                       <p className="text-[13px] text-muted-foreground">
                         <span className="line-through">
-                          {formatDateTime(e.previousStartsAt, tz)}
+                          {formatDateTime(e.previousStartsAt, tz, tag)}
                         </span>{' '}
-                        → {formatDateTime(e.newStartsAt, tz)}
+                        <span className="inline-block rtl:-scale-x-100">→</span>{' '}
+                        {formatDateTime(e.newStartsAt, tz, tag)}
                       </p>
                     )}
-                    {e.note && <p className="text-[13px] text-muted-foreground">“{e.note}”</p>}
+                    {e.note && (
+                      <p className="text-[13px] text-muted-foreground">
+                        “
+                        {e.event === 'edited' && e.note === 'Internal notes updated'
+                          ? t('detail.history.notesUpdated')
+                          : e.note}
+                        ”
+                      </p>
+                    )}
                     <p className="text-xs text-subtle-foreground">
-                      {formatDateTime(e.createdAt, tz)}
+                      {formatDateTime(e.createdAt, tz, tag)}
                     </p>
                   </li>
                 ))}
@@ -215,14 +232,14 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
         <div className="grid content-start gap-6">
           <Card>
             <CardHeader
-              title="Customer"
+              title={t('detail.customer.title')}
               action={
                 ctx.can('customers.view') ? (
                   <Link
                     href={`/app/customers/${c.id}`}
                     className="text-sm font-medium text-primary hover:underline"
                   >
-                    View profile
+                    {t('detail.customer.profile')}
                   </Link>
                 ) : undefined
               }
@@ -248,36 +265,40 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
                 </a>
               )}
               {!c.email && (
-                <p className="text-[13px] text-muted-foreground">
-                  No email on file, so this customer won’t receive confirmations or reminders.
-                </p>
+                <p className="text-[13px] text-muted-foreground">{t('detail.customer.noEmail')}</p>
               )}
             </CardBody>
           </Card>
           <Card>
             <CardHeader
-              title="Emails"
-              description="Confirmations and reminders for this appointment."
+              title={t('detail.emails.title')}
+              description={t('detail.emails.description')}
             />
             <CardBody>
               {data.notifications.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No emails for this appointment.</p>
+                <p className="text-sm text-muted-foreground">{t('detail.emails.empty')}</p>
               ) : (
                 <ul className="grid gap-2.5">
                   {data.notifications.map((n, i) => (
                     <li key={i} className="flex items-start justify-between gap-3 text-sm">
                       <div className="min-w-0">
-                        <p className="font-medium">{TEMPLATE_LABELS[n.template] ?? n.template}</p>
+                        <p className="font-medium">
+                          {label('detail.emails.templates', n.template)}
+                        </p>
                         <p className="text-xs text-muted-foreground">
                           {n.status === 'sent' && n.sentAt
-                            ? `Sent ${formatRelative(n.sentAt)}`
+                            ? t('detail.emails.sent', {
+                                when: formatRelative(n.sentAt, new Date(), tag),
+                              })
                             : n.status === 'pending'
-                              ? `Scheduled for ${formatDateTime(n.sendAfter, tz)}`
+                              ? t('detail.emails.scheduled', {
+                                  date: formatDateTime(n.sendAfter, tz, tag),
+                                })
                               : n.status === 'failed'
-                                ? (n.lastError ?? 'Delivery failed')
+                                ? (n.lastError ?? t('detail.emails.failed'))
                                 : n.status === 'cancelled'
-                                  ? 'Not needed'
-                                  : 'Sending…'}
+                                  ? t('detail.emails.notNeeded')
+                                  : t('detail.emails.sending')}
                         </p>
                       </div>
                       <Badge
@@ -291,7 +312,7 @@ export default async function AppointmentPage({ params }: PageProps<'/app/appoin
                                 : 'neutral'
                         }
                       >
-                        {n.status === 'cancelled' ? 'skipped' : n.status}
+                        {t(`detail.emails.badge.${n.status}`)}
                       </Badge>
                     </li>
                   ))}

@@ -10,9 +10,11 @@ import { Alert, EmptyState } from '@/components/ui/feedback'
 import { Avatar } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Tooltip } from '@/components/ui/menu'
-import { formatDateShort, formatMoney, formatRelative } from '@/lib/format'
+import { formatDateShort, formatMoney, formatNumber, formatRelative } from '@/lib/format'
 import { cn } from '@/lib/utils'
 import { CustomerFormDialog } from './customer-form'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag } from './format-locale'
 
 type Row = {
   id: string
@@ -51,6 +53,8 @@ export function CustomersView(p: {
   const sp = useSearchParams()
   const [q, setQ] = React.useState(p.q)
   const [adding, setAdding] = React.useState(false)
+  const t = useT('app-customers')
+  const tag = formatTag(useLocale().locale)
   const set = (u: Record<string, string | null>) => {
     const params = new URLSearchParams(sp.toString())
     for (const [k, v] of Object.entries(u)) {
@@ -75,16 +79,11 @@ export function CustomersView(p: {
 
   return (
     <div className="grid gap-4">
-      {p.erased && (
-        <Alert tone="success">
-          The customer’s personal data was erased. Their past appointments remain as anonymous
-          records so your statistics stay correct.
-        </Alert>
-      )}
+      {p.erased && <Alert tone="success">{t('list.erased')}</Alert>}
       <div
         className="-mx-4 flex scrollbar-thin gap-1.5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
         role="tablist"
-        aria-label="Customer segments"
+        aria-label={t('list.segments')}
       >
         {p.segments.map((s) => (
           <Tooltip key={s.value} content={s.help}>
@@ -107,7 +106,7 @@ export function CustomersView(p: {
                     p.segment === s.value ? 'opacity-80' : 'text-muted-foreground',
                   )}
                 >
-                  {p.counts[s.value] ?? 0}
+                  {formatNumber(p.counts[s.value] ?? 0, tag)}
                 </span>
               )}
             </button>
@@ -117,41 +116,41 @@ export function CustomersView(p: {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <div className="relative flex-1 sm:max-w-sm">
           <Search
-            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+            className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
             aria-hidden
           />
           <Input
-            aria-label="Search customers"
-            placeholder="Search name, email or phone"
+            aria-label={t('list.search')}
+            placeholder={t('list.searchPlaceholder')}
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            className="pl-9"
+            className="ps-9"
           />
         </div>
-        <div className="flex gap-2 sm:ml-auto">
+        <div className="flex gap-2 sm:ms-auto">
           <div className="min-w-0 flex-1 sm:w-44 sm:flex-none">
             <NativeSelect
-              aria-label="Sort"
+              aria-label={t('list.sort.label')}
               value={p.sort}
               onChange={(e) => set({ sort: e.target.value === 'recent' ? null : e.target.value })}
             >
-              <option value="recent">Newest first</option>
-              <option value="name">Name A–Z</option>
-              <option value="visits">Most visits</option>
-              <option value="revenue">Highest revenue</option>
-              <option value="last_visit">Last visit</option>
+              {(['recent', 'name', 'visits', 'revenue', 'last_visit'] as const).map((s) => (
+                <option key={s} value={s}>
+                  {t(`list.sort.${s}`)}
+                </option>
+              ))}
             </NativeSelect>
           </div>
           {p.canExport && (
             <Button asChild variant="secondary">
               <a href={`/app/export/customers?segment=${p.segment}`}>
-                <Download /> <span className="hidden sm:inline">Export</span>
+                <Download /> <span className="hidden sm:inline">{t('list.export')}</span>
               </a>
             </Button>
           )}
           {p.canManage && (
             <Button onClick={() => setAdding(true)}>
-              <UserPlus /> <span className="hidden sm:inline">Add customer</span>
+              <UserPlus /> <span className="hidden sm:inline">{t('list.add')}</span>
             </Button>
           )}
         </div>
@@ -161,16 +160,16 @@ export function CustomersView(p: {
         <div className="rounded-xl border border-border bg-surface">
           <EmptyState
             icon={Users}
-            title={p.q || p.segment !== 'all' ? 'No customers match' : 'No customers yet'}
+            title={
+              p.q || p.segment !== 'all' ? t('list.empty.noMatchTitle') : t('list.empty.noneTitle')
+            }
             description={
-              p.q || p.segment !== 'all'
-                ? 'Try a different search or segment.'
-                : 'Customers are added automatically when someone books through your page. You can also add them yourself.'
+              p.q || p.segment !== 'all' ? t('list.empty.noMatchBody') : t('list.empty.noneBody')
             }
             action={
               p.canManage && !p.q ? (
                 <Button onClick={() => setAdding(true)}>
-                  <UserPlus /> Add customer
+                  <UserPlus /> {t('list.add')}
                 </Button>
               ) : undefined
             }
@@ -179,23 +178,23 @@ export function CustomersView(p: {
       ) : (
         <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-xs">
           <table className="w-full text-sm">
-            <caption className="sr-only">Customers, {p.total} total</caption>
-            <thead className="hidden border-b border-border bg-surface-2/60 text-left text-xs font-medium text-muted-foreground md:table-header-group">
+            <caption className="sr-only">{t('list.caption', { count: p.total })}</caption>
+            <thead className="hidden border-b border-border bg-surface-2/60 text-start text-xs font-medium text-muted-foreground md:table-header-group">
               <tr>
-                <th scope="col" className="px-4 py-2.5 font-medium">
-                  Customer
+                <th scope="col" className="px-4 py-2.5 text-start font-medium">
+                  {t('list.columns.customer')}
                 </th>
-                <th scope="col" className="px-4 py-2.5 text-right font-medium">
-                  Visits
+                <th scope="col" className="px-4 py-2.5 text-end font-medium">
+                  {t('list.columns.visits')}
                 </th>
-                <th scope="col" className="px-4 py-2.5 text-right font-medium">
-                  Revenue
+                <th scope="col" className="px-4 py-2.5 text-end font-medium">
+                  {t('list.columns.revenue')}
                 </th>
-                <th scope="col" className="px-4 py-2.5 font-medium">
-                  Last visit
+                <th scope="col" className="px-4 py-2.5 text-start font-medium">
+                  {t('list.columns.lastVisit')}
                 </th>
-                <th scope="col" className="px-4 py-2.5 font-medium">
-                  Next
+                <th scope="col" className="px-4 py-2.5 text-start font-medium">
+                  {t('list.columns.next')}
                 </th>
               </tr>
             </thead>
@@ -216,39 +215,39 @@ export function CustomersView(p: {
                         <span className="min-w-0">
                           <span className="block truncate font-medium">{name}</span>
                           <span className="block truncate text-[13px] text-muted-foreground">
-                            {c.email ?? c.phone ?? 'No contact details'}
+                            {c.email ?? c.phone ?? t('list.noContact')}
                           </span>
                         </span>
                         {c.completed >= 5 && (
-                          <Badge tone="accent" className="ml-1">
-                            Regular
+                          <Badge tone="accent" className="ms-1">
+                            {t('list.regular')}
                           </Badge>
                         )}
                         {c.no_shows > 0 && (
-                          <Badge tone="neutral" className="ml-1 hidden lg:inline-flex">
-                            {c.no_shows} no-show{c.no_shows === 1 ? '' : 's'}
+                          <Badge tone="neutral" className="ms-1 hidden lg:inline-flex">
+                            {t('list.noShows', { count: c.no_shows })}
                           </Badge>
                         )}
                       </Link>
                     </td>
-                    <td className="md:tabular inline-block px-4 pb-3 text-[13px] text-muted-foreground md:table-cell md:py-3 md:text-right md:text-sm md:text-foreground">
-                      <span className="md:hidden">Visits: </span>
-                      {c.completed}
-                      <span className="text-muted-foreground"> / {c.total}</span>
+                    <td className="md:tabular inline-block px-4 pb-3 text-[13px] text-muted-foreground md:table-cell md:py-3 md:text-end md:text-sm md:text-foreground">
+                      <span className="md:hidden">{t('list.visitsLabel')} </span>
+                      {formatNumber(c.completed, tag)}
+                      <span className="text-muted-foreground"> / {formatNumber(c.total, tag)}</span>
                     </td>
-                    <td className="md:tabular inline-block px-0 pb-3 text-[13px] text-muted-foreground md:table-cell md:px-4 md:py-3 md:text-right md:text-sm md:text-foreground">
+                    <td className="md:tabular inline-block px-0 pb-3 text-[13px] text-muted-foreground md:table-cell md:px-4 md:py-3 md:text-end md:text-sm md:text-foreground">
                       <span className="md:hidden">· </span>
-                      {formatMoney(c.revenue_cents, p.currency)}
+                      {formatMoney(c.revenue_cents, p.currency, tag)}
                     </td>
                     <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">
-                      {c.last_visit ? formatDateShort(c.last_visit, p.timezone) : '—'}
+                      {c.last_visit ? formatDateShort(c.last_visit, p.timezone, tag) : '—'}
                     </td>
                     <td className="hidden px-4 py-3 md:table-cell">
                       {c.next_at ? (
                         <span className="text-primary">
                           {now
-                            ? formatRelative(c.next_at, new Date(now))
-                            : formatDateShort(c.next_at, p.timezone)}
+                            ? formatRelative(c.next_at, new Date(now), tag)
+                            : formatDateShort(c.next_at, p.timezone, tag)}
                         </span>
                       ) : (
                         <span className="text-muted-foreground">—</span>
@@ -262,17 +261,17 @@ export function CustomersView(p: {
         </div>
       )}
       {p.pages > 1 && (
-        <nav aria-label="Pagination" className="flex items-center justify-between">
+        <nav aria-label={t('list.pagination.label')} className="flex items-center justify-between">
           <Button
             variant="secondary"
             size="sm"
             disabled={p.page <= 1}
             onClick={() => set({ page: String(p.page - 1) })}
           >
-            <ChevronLeft /> Previous
+            <ChevronLeft className="rtl:-scale-x-100" /> {t('list.pagination.previous')}
           </Button>
           <span className="text-sm text-muted-foreground">
-            Page {p.page} of {p.pages} · {p.total} customers
+            {t('list.pagination.summary', { page: p.page, pages: p.pages, total: p.total })}
           </span>
           <Button
             variant="secondary"
@@ -280,7 +279,7 @@ export function CustomersView(p: {
             disabled={p.page >= p.pages}
             onClick={() => set({ page: String(p.page + 1) })}
           >
-            Next <ChevronRight />
+            {t('list.pagination.next')} <ChevronRight className="rtl:-scale-x-100" />
           </Button>
         </nav>
       )}

@@ -19,7 +19,9 @@ import { Checkbox, Segmented } from '@/components/ui/controls'
 import { NativeSelect } from '@/components/ui/input'
 import { EmptyState } from '@/components/ui/feedback'
 import { toast } from '@/components/ui/toaster'
-import { StatusBadge, SOURCE_LABELS } from './status'
+import { StatusBadge } from './status'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag } from './format-locale'
 import {
   NewAppointmentDialog,
   type PickerService,
@@ -76,6 +78,8 @@ export function AppointmentsView(props: {
   const [newOpen, setNewOpen] = React.useState(props.openNew)
   const [busy, setBusy] = React.useState(false)
   const tz = props.timezone
+  const t = useT('app-appointments')
+  const tag = formatTag(useLocale().locale)
 
   const setParam = (updates: Record<string, string | null>) => {
     const p = new URLSearchParams(sp.toString())
@@ -104,7 +108,9 @@ export function AppointmentsView(props: {
     setBusy(false)
     if (r.ok) {
       toast.success(
-        `${r.data.updated} updated${r.data.skipped ? `, ${r.data.skipped} skipped (not eligible)` : ''}`,
+        r.data.skipped
+          ? t('list.bulk.resultSkipped', { updated: r.data.updated, skipped: r.data.skipped })
+          : t('list.bulk.result', { updated: r.data.updated }),
       )
       setSelected(new Set())
       router.refresh()
@@ -125,43 +131,43 @@ export function AppointmentsView(props: {
     <div>
       <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <Segmented
-          label="Which appointments"
+          label={t('list.views.label')}
           value={props.view}
           onChange={(v) => setParam({ view: v === 'upcoming' ? null : v })}
           options={[
-            { value: 'upcoming', label: 'Upcoming' },
-            { value: 'today', label: 'Today' },
-            { value: 'past', label: 'Past' },
-            { value: 'all', label: 'All' },
+            { value: 'upcoming', label: t('list.views.upcoming') },
+            { value: 'today', label: t('list.views.today') },
+            { value: 'past', label: t('list.views.past') },
+            { value: 'all', label: t('list.views.all') },
           ]}
           className="self-start"
         />
         <div className="flex flex-wrap items-center gap-2">
           <ListFilter className="size-4 text-muted-foreground" aria-hidden />
-          <div className="w-36">
+          <div className="w-40">
             <NativeSelect
-              aria-label="Filter by status"
+              aria-label={t('list.filters.status')}
               value={props.status ?? ''}
               onChange={(e) => setParam({ status: e.target.value || null })}
               className="h-9"
             >
-              <option value="">Any status</option>
-              <option value="pending">Pending</option>
-              <option value="confirmed">Confirmed</option>
-              <option value="completed">Completed</option>
-              <option value="cancelled">Cancelled</option>
-              <option value="no_show">No-show</option>
+              <option value="">{t('list.filters.anyStatus')}</option>
+              {(['pending', 'confirmed', 'completed', 'cancelled', 'no_show'] as const).map((s) => (
+                <option key={s} value={s}>
+                  {t(`status.${s}`)}
+                </option>
+              ))}
             </NativeSelect>
           </div>
           {!props.lockedStaffId && props.allStaff.length > 1 && (
             <div className="w-40">
               <NativeSelect
-                aria-label="Filter by team member"
+                aria-label={t('list.filters.staff')}
                 value={props.staffFilter ?? ''}
                 onChange={(e) => setParam({ staff: e.target.value || null })}
                 className="h-9"
               >
-                <option value="">Everyone</option>
+                <option value="">{t('list.filters.everyone')}</option>
                 {props.allStaff.map((s) => (
                   <option key={s.id} value={s.id}>
                     {s.name}
@@ -172,12 +178,12 @@ export function AppointmentsView(props: {
           )}
           <div className="w-44">
             <NativeSelect
-              aria-label="Filter by service"
+              aria-label={t('list.filters.service')}
               value={props.serviceFilter ?? ''}
               onChange={(e) => setParam({ service: e.target.value || null })}
               className="h-9"
             >
-              <option value="">All services</option>
+              <option value="">{t('list.filters.allServices')}</option>
               {props.allServices.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
@@ -188,13 +194,13 @@ export function AppointmentsView(props: {
           {props.canExport && (
             <Button asChild variant="secondary" size="sm">
               <a href="/app/export/appointments">
-                <Download /> Export CSV
+                <Download /> {t('list.export')}
               </a>
             </Button>
           )}
           {props.canManage && (
             <Button size="sm" onClick={() => setNewOpen(true)}>
-              <CalendarPlus /> New
+              <CalendarPlus /> {t('list.new')}
             </Button>
           )}
         </div>
@@ -206,22 +212,24 @@ export function AppointmentsView(props: {
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="sticky top-16 z-20 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-elevated p-2 pl-4 shadow-md"
+            className="sticky top-16 z-20 mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-elevated p-2 ps-4 shadow-md"
             role="region"
-            aria-label="Bulk actions"
+            aria-label={t('list.bulk.label')}
           >
-            <span className="mr-auto text-sm font-medium">{selected.size} selected</span>
+            <span className="me-auto text-sm font-medium">
+              {t('list.bulk.selected', { count: selected.size })}
+            </span>
             <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('confirm')}>
-              Confirm
+              {t('list.bulk.confirm')}
             </Button>
             <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('complete')}>
-              <CheckCheck /> Mark completed
+              <CheckCheck /> {t('list.bulk.complete')}
             </Button>
             <Button size="sm" variant="secondary" loading={busy} onClick={() => bulk('no_show')}>
-              <UserX /> No-show
+              <UserX /> {t('list.bulk.noShow')}
             </Button>
             <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
-              Clear
+              {t('list.bulk.clear')}
             </Button>
           </motion.div>
         )}
@@ -233,41 +241,41 @@ export function AppointmentsView(props: {
             icon={CalendarX2}
             title={
               props.view === 'upcoming'
-                ? 'No upcoming appointments'
-                : 'No appointments match these filters'
+                ? t('list.empty.upcomingTitle')
+                : t('list.empty.filteredTitle')
             }
             description={
               props.view === 'upcoming'
-                ? 'When customers book through your page, their appointments appear here instantly. You can also add one yourself.'
-                : 'Try a different view or clear the filters.'
+                ? t('list.empty.upcomingBody')
+                : t('list.empty.filteredBody')
             }
             action={
               props.canManage ? (
                 <Button onClick={() => setNewOpen(true)}>
-                  <CalendarPlus /> New appointment
+                  <CalendarPlus /> {t('list.newAppointment')}
                 </Button>
               ) : undefined
             }
           />
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-xs">
+        <div className="overflow-clip rounded-xl border border-border bg-surface shadow-xs">
           {props.canManage && (
             <div className="flex items-center gap-3 border-b border-border bg-surface-2/60 px-4 py-2 text-xs font-medium text-muted-foreground">
               <Checkbox
-                aria-label="Select all on this page"
+                aria-label={t('list.selectAll')}
                 checked={allSelected ? true : selected.size > 0 ? 'indeterminate' : false}
                 onCheckedChange={() =>
                   setSelected(allSelected ? new Set() : new Set(props.rows.map((r) => r.id)))
                 }
               />
-              <span>Select all</span>
+              <span>{t('list.selectAllShort')}</span>
             </div>
           )}
           {groups.map(([day, rows]) => (
-            <section key={day} aria-label={formatDate(rows[0]!.startsAt, tz)}>
+            <section key={day} aria-label={formatDate(rows[0]!.startsAt, tz, tag)}>
               <h2 className="sticky top-14 z-10 border-b border-border bg-surface/95 px-4 py-2 font-sans text-xs font-semibold tracking-wide text-muted-foreground uppercase backdrop-blur sm:top-16">
-                {formatDate(rows[0]!.startsAt, tz)}
+                {formatDate(rows[0]!.startsAt, tz, tag)}
               </h2>
               <ul className="divide-y divide-border">
                 {rows.map((r) => (
@@ -280,7 +288,10 @@ export function AppointmentsView(props: {
                   >
                     {props.canManage && (
                       <Checkbox
-                        aria-label={`Select ${r.customerFirstName} ${r.customerLastName} at ${formatTime(r.startsAt, tz)}`}
+                        aria-label={t('list.selectRow', {
+                          name: `${r.customerFirstName} ${r.customerLastName}`,
+                          time: formatTime(r.startsAt, tz, tag),
+                        })}
                         checked={selected.has(r.id)}
                         onCheckedChange={() => toggle(r.id)}
                       />
@@ -291,10 +302,10 @@ export function AppointmentsView(props: {
                     >
                       <div className="w-16 shrink-0 sm:w-20">
                         <p className="tabular text-sm font-semibold whitespace-nowrap">
-                          {formatTime(r.startsAt, tz)}
+                          {formatTime(r.startsAt, tz, tag)}
                         </p>
                         <p className="tabular text-xs whitespace-nowrap text-muted-foreground">
-                          {formatTime(r.endsAt, tz)}
+                          {formatTime(r.endsAt, tz, tag)}
                         </p>
                       </div>
                       <span
@@ -316,10 +327,10 @@ export function AppointmentsView(props: {
                         </p>
                       </div>
                       <div className="hidden w-32 shrink-0 text-[13px] text-muted-foreground md:block">
-                        {SOURCE_LABELS[r.source] ?? r.source}
+                        {t.has(`sources.${r.source}`) ? t(`sources.${r.source}`) : r.source}
                       </div>
-                      <div className="tabular hidden w-20 shrink-0 text-right text-sm sm:block">
-                        {r.priceCents != null ? formatMoney(r.priceCents, r.currency) : '—'}
+                      <div className="tabular hidden w-20 shrink-0 text-end text-sm sm:block">
+                        {r.priceCents != null ? formatMoney(r.priceCents, r.currency, tag) : '—'}
                       </div>
                       <div className="shrink-0">
                         <StatusBadge status={r.status} />
@@ -333,23 +344,28 @@ export function AppointmentsView(props: {
         </div>
       )}
       {(props.page > 1 || props.hasMore) && (
-        <nav aria-label="Pagination" className="mt-4 flex items-center justify-between">
+        <nav
+          aria-label={t('list.pagination.label')}
+          className="mt-4 flex items-center justify-between"
+        >
           <Button
             variant="secondary"
             size="sm"
             disabled={props.page <= 1}
             onClick={() => setParam({ page: String(props.page - 1) })}
           >
-            <ChevronLeft /> Previous
+            <ChevronLeft className="rtl:-scale-x-100" /> {t('list.pagination.previous')}
           </Button>
-          <span className="text-sm text-muted-foreground">Page {props.page}</span>
+          <span className="text-sm text-muted-foreground">
+            {t('list.pagination.page', { page: props.page })}
+          </span>
           <Button
             variant="secondary"
             size="sm"
             disabled={!props.hasMore}
             onClick={() => setParam({ page: String(props.page + 1) })}
           >
-            Next <ChevronRight />
+            {t('list.pagination.next')} <ChevronRight className="rtl:-scale-x-100" />
           </Button>
         </nav>
       )}

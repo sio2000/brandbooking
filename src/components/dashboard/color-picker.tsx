@@ -2,6 +2,7 @@
 
 import { Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useT } from '@/components/i18n/provider'
 
 export const SWATCHES = [
   '#0b8a7b',
@@ -17,14 +18,15 @@ export const SWATCHES = [
 export function ColorPicker({
   value,
   onChange,
-  label = 'Colour',
+  label,
 }: {
   value: string
   onChange: (v: string) => void
   label?: string
 }) {
+  const t = useT('ui')
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-2">
+    <div role="radiogroup" aria-label={label ?? t('color')} className="flex flex-wrap gap-2">
       {SWATCHES.map((c) => (
         <button
           key={c}

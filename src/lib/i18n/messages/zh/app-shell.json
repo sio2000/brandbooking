@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "仪表板"
+  },
+  "skipToContent": "跳到主要内容",
+  "signedInAs": "当前身份：{role}",
+  "roles": {
+    "owner": "所有者",
+    "manager": "管理员",
+    "staff": "团队成员"
+  },
+  "nav": {
+    "label": "主导航",
+    "more": "更多",
+    "groups": {
+      "business": "业务",
+      "grow": "增长",
+      "account": "账户"
+    },
+    "items": {
+      "overview": "概览",
+      "calendar": "日历",
+      "appointments": "预约",
+      "customers": "客户",
+      "services": "服务",
+      "team": "团队",
+      "availability": "可预约时间",
+      "analytics": "数据分析",
+      "bookingPage": "预约页面",
+      "settings": "设置",
+      "billing": "账单"
+    }
+  },
+  "topbar": {
+    "home": "概览",
+    "search": "搜索",
+    "searchPlaceholder": "搜索或跳转到…",
+    "newAppointment": "新建预约",
+    "openBookingPage": "打开预约页面",
+    "accountMenu": "账户菜单",
+    "account": "账户",
+    "settings": "设置",
+    "theme": "主题",
+    "language": "语言",
+    "signOut": "退出登录",
+    "switchBusiness": "切换商家",
+    "addBusiness": "添加其他商家"
+  },
+  "inbox": {
+    "label": "通知",
+    "labelUnread": "通知，{count} 条未读",
+    "title": "通知",
+    "markAllRead": "全部标为已读",
+    "loading": "加载中…",
+    "empty": "暂无新通知。新的预订和变更会显示在这里。",
+    "unread": "未读",
+    "items": {
+      "bookingRequest": "新的预订申请",
+      "booking": "新预订",
+      "booked": "{who} 预约了 {service}，时间为 {date}。",
+      "cancelledTitle": "预订已取消",
+      "cancelled": "{who} 取消了 {date} 的 {service}。",
+      "rescheduledTitle": "预订已改期",
+      "rescheduled": "{who} 将 {service} 改期至 {date}。",
+      "aCustomer": "一位客户",
+      "memberJoined": "{name} 已加入您的团队",
+      "ownership": "{name} 已将 {business} 的所有权转给您",
+      "paymentFailed": "付款失败",
+      "paymentFailedBody": "无法从您的银行卡扣款。请更新付款方式，以便继续接受预订。",
+      "subscriptionActive": "订阅已生效",
+      "subscriptionActiveBody": "谢谢！您的套餐已生效。",
+      "subscriptionEnded": "订阅已结束",
+      "subscriptionEndedBody": "您的预约页面已不再接受新的预订。"
+    }
+  },
+  "palette": {
+    "title": "命令面板",
+    "description": "搜索客户、服务和团队成员，或跳转到某个页面。",
+    "placeholder": "搜索客户、服务、团队成员…或输入命令",
+    "suggestions": "建议",
+    "empty": "没有与“{query}”匹配的结果。",
+    "groups": {
+      "goTo": "跳转到",
+      "actions": "操作",
+      "customers": "客户",
+      "appointments": "预约",
+      "services": "服务",
+      "team": "团队"
+    },
+    "actions": {
+      "newAppointment": "新建预约",
+      "addService": "添加服务",
+      "addStaff": "添加团队成员",
+      "copyLink": "复制预约链接",
+      "linkCopied": "预约链接已复制",
+      "preview": "预览预约页面"
+    }
+  },
+  "banners": {
+    "suspended": "此账户已被停用。您的预约页面已下线，且无法进行修改。请联系客服解决。",
+    "emailSimulated": "本站尚未接入邮件发送服务，因此确认链接已写入服务器日志，而没有发送到 {email}。请接入邮件服务（Resend 或 SMTP），以便邮件送达您的收件箱。",
+    "verify": "请验证您的邮箱（{email}）后再发布预约页面。",
+    "verificationSent": "验证邮件已发送",
+    "sending": "发送中…",
+    "resend": "重新发送链接",
+    "inactive": "由于没有有效订阅，您的预约页面目前不接受新的预订。",
+    "subscribe": "以 {price}/月 订阅",
+    "pastDue": "您最近一次付款失败。请更新银行卡，以保持预约页面在线。",
+    "fixBilling": "处理账单问题",
+    "trial": "{days, plural, other {免费试用还剩 # 天。}}",
+    "choosePlan": "选择套餐"
+  },
+  "error": {
+    "title": "无法加载此页面",
+    "body": "您的预订和数据都很安全。请重试。如果问题仍然存在，请联系客服并提供参考编号。",
+    "reference": "参考编号：{digest}",
+    "retry": "重试"
+  },
+  "loading": "加载中"
+}

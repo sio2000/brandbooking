@@ -1,0 +1,32 @@
+{
+  "close": "Kapat",
+  "dialog": "İletişim kutusu",
+  "panel": "Panel",
+  "cancel": "İptal",
+  "confirm": "Onayla",
+  "typeToConfirm": "Onaylamak için <phrase>{text}</phrase> yazın",
+  "optional": "İsteğe bağlı",
+  "loading": "Yükleniyor",
+  "toasts": "Bildirimler",
+  "closeToast": "Bildirimi kapat",
+  "theme": {
+    "label": "Renk teması",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem"
+  },
+  "copy": {
+    "label": "Bağlantıyı kopyala",
+    "copied": "Kopyalandı",
+    "toast": "Bağlantı panoya kopyalandı",
+    "failed": "Otomatik olarak kopyalanamadı. Bağlantıyı seçip elle kopyalayın."
+  },
+  "print": "Yazdır",
+  "color": "Renk",
+  "stat": {
+    "about": "Hakkında: {label}",
+    "up": "artışta",
+    "down": "düşüşte",
+    "unchanged": "değişmedi"
+  }
+}

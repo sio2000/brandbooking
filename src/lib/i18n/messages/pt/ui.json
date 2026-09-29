@@ -1,0 +1,32 @@
+{
+  "close": "Fechar",
+  "dialog": "Caixa de diálogo",
+  "panel": "Painel",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "typeToConfirm": "Escreva <phrase>{text}</phrase> para confirmar",
+  "optional": "Opcional",
+  "loading": "A carregar",
+  "toasts": "Notificações",
+  "closeToast": "Fechar notificação",
+  "theme": {
+    "label": "Tema de cores",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
+  },
+  "copy": {
+    "label": "Copiar ligação",
+    "copied": "Copiado",
+    "toast": "Ligação copiada para a área de transferência",
+    "failed": "Não foi possível copiar automaticamente. Selecione a ligação e copie-a manualmente."
+  },
+  "print": "Imprimir",
+  "color": "Cor",
+  "stat": {
+    "about": "Sobre: {label}",
+    "up": "a subir",
+    "down": "a descer",
+    "unchanged": "sem alteração"
+  }
+}

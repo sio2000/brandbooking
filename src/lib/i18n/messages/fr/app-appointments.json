@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Rendez-vous",
+    "detailTitle": "Rendez-vous"
+  },
+  "status": {
+    "pending": "En attente",
+    "confirmed": "Confirmé",
+    "completed": "Terminé",
+    "cancelled": "Annulé",
+    "no_show": "Absent"
+  },
+  "events": {
+    "created": "Réservé",
+    "confirmed": "Confirmé",
+    "rescheduled": "Déplacé",
+    "cancelled": "Annulé",
+    "completed": "Terminé",
+    "no_show": "Absent",
+    "edited": "Modifié",
+    "reopened": "Rouvert"
+  },
+  "sources": {
+    "booking_page": "Page de réservation",
+    "widget": "Widget du site",
+    "qr": "Code QR",
+    "manual": "Ajouté par l’équipe",
+    "campaign": "Lien de campagne",
+    "social": "Réseaux sociaux",
+    "api": "API"
+  },
+  "list": {
+    "title": "Rendez-vous",
+    "description": "Toutes vos réservations au même endroit. Filtrez, mettez à jour les statuts en masse ou exportez vers un tableur.",
+    "views": {
+      "label": "Quels rendez-vous",
+      "upcoming": "À venir",
+      "today": "Aujourd’hui",
+      "past": "Passés",
+      "all": "Tous"
+    },
+    "filters": {
+      "status": "Filtrer par statut",
+      "anyStatus": "Tous les statuts",
+      "staff": "Filtrer par membre de l’équipe",
+      "everyone": "Tout le monde",
+      "service": "Filtrer par prestation",
+      "allServices": "Toutes les prestations"
+    },
+    "export": "Exporter en CSV",
+    "new": "Nouveau",
+    "newAppointment": "Nouveau rendez-vous",
+    "bulk": {
+      "label": "Actions groupées",
+      "selected": "{count} sélectionnés",
+      "confirm": "Confirmer",
+      "complete": "Marquer comme terminés",
+      "noShow": "Absent",
+      "clear": "Effacer",
+      "result": "{updated} mis à jour",
+      "resultSkipped": "{updated} mis à jour, {skipped} ignorés (non éligibles)"
+    },
+    "empty": {
+      "upcomingTitle": "Aucun rendez-vous à venir",
+      "upcomingBody": "Lorsque vos clients réservent depuis votre page, leurs rendez-vous apparaissent ici instantanément. Vous pouvez aussi en ajouter un vous-même.",
+      "filteredTitle": "Aucun rendez-vous ne correspond à ces filtres",
+      "filteredBody": "Essayez un autre affichage ou effacez les filtres."
+    },
+    "selectAll": "Tout sélectionner sur cette page",
+    "selectAllShort": "Tout sélectionner",
+    "selectRow": "Sélectionner {name} à {time}",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "page": "Page {page}"
+    }
+  },
+  "detail": {
+    "back": "Rendez-vous",
+    "when": "{date} · {start} – {end} ({zone}) · avec {staff}",
+    "details": "Détails",
+    "service": "Prestation",
+    "staff": "Membre de l’équipe",
+    "price": "Prix",
+    "noPrice": "Aucun prix défini",
+    "reference": "Référence",
+    "booked": "Réservé le",
+    "source": "Provenance",
+    "rescheduled": "Déplacements",
+    "rescheduledTimes": "{count, plural, one {# fois} other {# fois}}",
+    "cancelled": "Annulé",
+    "cancelledBy": "{date} par {who}",
+    "cancelledByWho": {
+      "customer": "le client",
+      "user": "votre équipe",
+      "system": "le système"
+    },
+    "customerMessage": "Message du client",
+    "notes": {
+      "title": "Notes internes",
+      "description": "Visibles uniquement par votre équipe. Jamais montrées aux clients.",
+      "empty": "Aucune note.",
+      "placeholder": "Formule de couleur, préférences, tout ce qui sera utile la prochaine fois…",
+      "save": "Enregistrer les notes"
+    },
+    "history": {
+      "title": "Historique",
+      "byCustomer": "par le client",
+      "by": "par {name}",
+      "team": "l’équipe",
+      "stripe": "Stripe",
+      "automatically": "automatiquement",
+      "notesUpdated": "Notes internes mises à jour"
+    },
+    "customer": {
+      "title": "Client",
+      "profile": "Voir le profil",
+      "noEmail": "Aucune adresse e-mail enregistrée : ce client ne recevra ni confirmations ni rappels."
+    },
+    "emails": {
+      "title": "E-mails",
+      "description": "Confirmations et rappels pour ce rendez-vous.",
+      "empty": "Aucun e-mail pour ce rendez-vous.",
+      "sent": "Envoyé {when}",
+      "scheduled": "Prévu le {date}",
+      "failed": "Échec de la remise",
+      "notNeeded": "Pas nécessaire",
+      "sending": "Envoi…",
+      "badge": {
+        "pending": "en attente",
+        "sending": "envoi",
+        "sent": "envoyé",
+        "failed": "échec",
+        "cancelled": "ignoré"
+      },
+      "templates": {
+        "booking_received": "Confirmation de réservation",
+        "booking_confirmed": "Confirmation (après validation)",
+        "booking_cancelled": "Avis d’annulation",
+        "booking_rescheduled": "Avis de déplacement",
+        "booking_reminder": "Rappel",
+        "member_booking_created": "Équipe : nouvelle réservation",
+        "member_booking_cancelled": "Équipe : annulation",
+        "member_booking_rescheduled": "Équipe : déplacement"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Confirmer",
+    "completed": "Terminé",
+    "noShow": "Absent",
+    "reschedule": "Déplacer",
+    "reopen": "Rouvrir",
+    "cancel": "Annuler",
+    "updated": "Mis à jour",
+    "cancelDialog": {
+      "title": "Annuler ce rendez-vous ?",
+      "description": "Le créneau sera libéré pour d’autres réservations. Cette action est définitive ; il faudrait réserver à nouveau.",
+      "confirm": "Annuler le rendez-vous",
+      "message": "Message au client",
+      "optional": "(facultatif)",
+      "notify": "Prévenir le client par e-mail"
+    }
+  },
+  "reschedule": {
+    "title": "Déplacer le rendez-vous",
+    "description": "Le client reçoit un e-mail avec l’ancienne et la nouvelle heure.",
+    "date": "Date",
+    "time": "Heure de début",
+    "staff": "Membre de l’équipe",
+    "freeTimes": "Créneaux libres",
+    "checking": "Vérification…",
+    "none": "Aucun créneau libre dans les horaires ce jour-là. Vous pouvez tout de même choisir n’importe quelle heure manuellement.",
+    "cancel": "Annuler",
+    "submit": "Déplacer le rendez-vous",
+    "done": "Rendez-vous déplacé"
+  },
+  "new": {
+    "title": "Nouveau rendez-vous",
+    "description": "Heures affichées : {timezone}.",
+    "service": "Prestation",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Membre de l’équipe",
+    "date": "Date",
+    "time": "Heure de début",
+    "timeHint": "N’importe quelle heure convient, même en dehors des horaires d’ouverture.",
+    "freeTimes": "Créneaux libres",
+    "freeTimesFor": "Créneaux libres de {name}",
+    "checking": "Vérification des disponibilités…",
+    "none": "Aucun créneau libre dans les horaires ce jour-là.",
+    "customer": "Client",
+    "changeCustomer": "Choisir un autre client",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "emailHint": "Nécessaire pour les confirmations et les rappels.",
+    "phone": "Téléphone",
+    "searchInstead": "Rechercher plutôt un client existant",
+    "search": "Rechercher des clients",
+    "searchPlaceholder": "Rechercher par nom, e-mail ou téléphone",
+    "newCustomer": "Nouveau client",
+    "notes": "Notes internes",
+    "notesHint": "Visibles uniquement par votre équipe.",
+    "notify": "Envoyer une confirmation au client par e-mail",
+    "notifyHint": "Les rappels sont envoyés automatiquement si le client a une adresse e-mail.",
+    "cancel": "Annuler",
+    "submit": "Créer le rendez-vous",
+    "chooseTime": "Choisissez une heure de début.",
+    "customerRequired": "Choisissez un client existant ou saisissez un nom."
+  },
+  "toasts": {
+    "created": "Rendez-vous créé",
+    "moved": "Rendez-vous déplacé. Le client a été prévenu",
+    "confirm": "Rendez-vous confirmé",
+    "cancel": "Rendez-vous annulé",
+    "complete": "Marqué comme terminé",
+    "no_show": "Marqué comme absent",
+    "reopen": "Rendez-vous rouvert",
+    "notesSaved": "Notes enregistrées"
+  },
+  "export": {
+    "reference": "Référence",
+    "date": "Date",
+    "start": "Début",
+    "end": "Fin",
+    "timezone": "Fuseau horaire",
+    "status": "Statut",
+    "service": "Prestation",
+    "staff": "Membre de l’équipe",
+    "customer": "Client",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "price": "Prix",
+    "currency": "Devise",
+    "source": "Provenance",
+    "bookedAt": "Réservé le"
+  }
+}

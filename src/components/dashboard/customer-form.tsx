@@ -8,6 +8,7 @@ import { Field, FormError } from '@/components/ui/field'
 import { Input, Textarea } from '@/components/ui/input'
 import { toast } from '@/components/ui/toaster'
 import { saveCustomerAction } from '@/app/app/_actions/customers'
+import { useT } from '@/components/i18n/provider'
 
 type Values = {
   firstName: string
@@ -26,9 +27,10 @@ export function CustomerFormDialog({
   onOpenChange: (o: boolean) => void
   customer?: { id: string } & Values
 }) {
+  const t = useT('app-customers')
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent title={customer ? 'Edit customer' : 'Add customer'}>
+      <DialogContent title={customer ? t('form.editTitle') : t('form.addTitle')}>
         <CustomerForm customer={customer} onDone={() => onOpenChange(false)} />
       </DialogContent>
     </Dialog>
@@ -43,6 +45,7 @@ function CustomerForm({
   onDone: () => void
 }) {
   const router = useRouter()
+  const t = useT('app-customers')
   const [v, setV] = React.useState<Values>(
     customer ?? { firstName: '', lastName: '', email: '', phone: '', internalNotes: '' },
   )
@@ -60,7 +63,7 @@ function CustomerForm({
     const r = await saveCustomerAction(customer?.id ?? null, v)
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Saved')
+      toast.success(r.message ?? t('form.saved'))
       onDone()
       if (!customer) router.push(`/app/customers/${r.data.id}`)
       else router.refresh()
@@ -75,23 +78,23 @@ function CustomerForm({
         <div className="sm:col-span-2">
           <FormError message={error} />
         </div>
-        <Field label="First name" htmlFor="c-first" error={errors.firstName}>
+        <Field label={t('form.firstName')} htmlFor="c-first" error={errors.firstName}>
           <Input {...bind('firstName')} required />
         </Field>
-        <Field label="Last name" htmlFor="c-last" optional error={errors.lastName}>
+        <Field label={t('form.lastName')} htmlFor="c-last" optional error={errors.lastName}>
           <Input {...bind('lastName')} />
         </Field>
-        <Field label="Email" htmlFor="c-email" optional error={errors.email}>
+        <Field label={t('form.email')} htmlFor="c-email" optional error={errors.email}>
           <Input type="email" {...bind('email')} />
         </Field>
-        <Field label="Phone" htmlFor="c-phone" optional error={errors.phone}>
+        <Field label={t('form.phone')} htmlFor="c-phone" optional error={errors.phone}>
           <Input type="tel" {...bind('phone')} />
         </Field>
         <Field
-          label="Internal notes"
+          label={t('form.notes')}
           htmlFor="c-notes"
           optional
-          hint="Only visible to your team."
+          hint={t('form.notesHint')}
           className="sm:col-span-2"
         >
           <Textarea rows={3} {...bind('internalNotes')} />
@@ -99,10 +102,10 @@ function CustomerForm({
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onDone}>
-          Cancel
+          {t('form.cancel')}
         </Button>
         <Button type="submit" loading={pending}>
-          {customer ? 'Save changes' : 'Add customer'}
+          {customer ? t('form.save') : t('form.add')}
         </Button>
       </DialogFooter>
     </form>

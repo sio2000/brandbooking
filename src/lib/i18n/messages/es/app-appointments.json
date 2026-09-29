@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "title": "Citas",
+    "detailTitle": "Cita"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "confirmed": "Confirmada",
+    "completed": "Completada",
+    "cancelled": "Cancelada",
+    "no_show": "No se presentó"
+  },
+  "events": {
+    "created": "Reservada",
+    "confirmed": "Confirmada",
+    "rescheduled": "Cambio de hora",
+    "cancelled": "Cancelada",
+    "completed": "Completada",
+    "no_show": "No se presentó",
+    "edited": "Editada",
+    "reopened": "Reabierta"
+  },
+  "sources": {
+    "booking_page": "Página de reservas",
+    "widget": "Widget de la web",
+    "qr": "Código QR",
+    "manual": "Añadida por el equipo",
+    "campaign": "Enlace de campaña",
+    "social": "Redes sociales",
+    "api": "API"
+  },
+  "list": {
+    "title": "Citas",
+    "description": "Todas las reservas en un solo lugar. Filtra, actualiza estados en bloque o exporta a una hoja de cálculo.",
+    "views": {
+      "label": "Qué citas",
+      "upcoming": "Próximas",
+      "today": "Hoy",
+      "past": "Pasadas",
+      "all": "Todas"
+    },
+    "filters": {
+      "status": "Filtrar por estado",
+      "anyStatus": "Cualquier estado",
+      "staff": "Filtrar por miembro del equipo",
+      "everyone": "Todos",
+      "service": "Filtrar por servicio",
+      "allServices": "Todos los servicios"
+    },
+    "export": "Exportar CSV",
+    "new": "Nueva",
+    "newAppointment": "Nueva cita",
+    "bulk": {
+      "label": "Acciones en bloque",
+      "selected": "{count} seleccionadas",
+      "confirm": "Confirmar",
+      "complete": "Marcar como completadas",
+      "noShow": "No se presentó",
+      "clear": "Quitar selección",
+      "result": "{updated} actualizadas",
+      "resultSkipped": "{updated} actualizadas, {skipped} omitidas (no aplicable)"
+    },
+    "empty": {
+      "upcomingTitle": "No hay citas próximas",
+      "upcomingBody": "Cuando tus clientes reserven desde tu página, sus citas aparecerán aquí al instante. También puedes añadir una tú mismo.",
+      "filteredTitle": "Ninguna cita coincide con estos filtros",
+      "filteredBody": "Prueba otra vista o quita los filtros."
+    },
+    "selectAll": "Seleccionar todas en esta página",
+    "selectAllShort": "Seleccionar todas",
+    "selectRow": "Seleccionar a {name} a las {time}",
+    "pagination": {
+      "label": "Paginación",
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página {page}"
+    }
+  },
+  "detail": {
+    "back": "Citas",
+    "when": "{date} · {start} – {end} ({zone}) · con {staff}",
+    "details": "Detalles",
+    "service": "Servicio",
+    "staff": "Miembro del equipo",
+    "price": "Precio",
+    "noPrice": "Sin precio",
+    "reference": "Referencia",
+    "booked": "Reservada",
+    "source": "Origen",
+    "rescheduled": "Cambios de hora",
+    "rescheduledTimes": "{count, plural, one {# vez} other {# veces}}",
+    "cancelled": "Cancelada",
+    "cancelledBy": "{date} por {who}",
+    "cancelledByWho": {
+      "customer": "el cliente",
+      "user": "tu equipo",
+      "system": "el sistema"
+    },
+    "customerMessage": "Mensaje del cliente",
+    "notes": {
+      "title": "Notas internas",
+      "description": "Solo las ve tu equipo. Nunca se muestran a los clientes.",
+      "empty": "Sin notas.",
+      "placeholder": "Fórmula de color, preferencias, cualquier cosa útil para la próxima vez…",
+      "save": "Guardar notas"
+    },
+    "history": {
+      "title": "Historial",
+      "byCustomer": "por el cliente",
+      "by": "por {name}",
+      "team": "el equipo",
+      "stripe": "Stripe",
+      "automatically": "automáticamente",
+      "notesUpdated": "Notas internas actualizadas"
+    },
+    "customer": {
+      "title": "Cliente",
+      "profile": "Ver perfil",
+      "noEmail": "No hay correo registrado, así que este cliente no recibirá confirmaciones ni recordatorios."
+    },
+    "emails": {
+      "title": "Correos",
+      "description": "Confirmaciones y recordatorios de esta cita.",
+      "empty": "No hay correos para esta cita.",
+      "sent": "Enviado {when}",
+      "scheduled": "Programado para el {date}",
+      "failed": "No se ha podido entregar",
+      "notNeeded": "No necesario",
+      "sending": "Enviando…",
+      "badge": {
+        "pending": "pendiente",
+        "sending": "enviando",
+        "sent": "enviado",
+        "failed": "fallido",
+        "cancelled": "omitido"
+      },
+      "templates": {
+        "booking_received": "Confirmación de reserva",
+        "booking_confirmed": "Confirmación (tras aprobación)",
+        "booking_cancelled": "Aviso de cancelación",
+        "booking_rescheduled": "Aviso de cambio de hora",
+        "booking_reminder": "Recordatorio",
+        "member_booking_created": "Equipo: nueva reserva",
+        "member_booking_cancelled": "Equipo: cancelación",
+        "member_booking_rescheduled": "Equipo: cambio de hora"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Confirmar",
+    "completed": "Completada",
+    "noShow": "No se presentó",
+    "reschedule": "Cambiar la hora",
+    "reopen": "Reabrir",
+    "cancel": "Cancelar",
+    "updated": "Actualizada",
+    "cancelDialog": {
+      "title": "¿Cancelar esta cita?",
+      "description": "La hora quedará libre para otras reservas. No se puede deshacer; tendrías que reservar de nuevo.",
+      "confirm": "Cancelar cita",
+      "message": "Mensaje para el cliente",
+      "optional": "(opcional)",
+      "notify": "Avisar al cliente por correo"
+    }
+  },
+  "reschedule": {
+    "title": "Cambiar la hora de la cita",
+    "description": "El cliente recibe un correo con la hora anterior y la nueva.",
+    "date": "Fecha",
+    "time": "Hora de inicio",
+    "staff": "Miembro del equipo",
+    "freeTimes": "Horas libres",
+    "checking": "Comprobando…",
+    "none": "No hay horas libres dentro del horario este día. Aun así, puedes elegir cualquier hora manualmente.",
+    "cancel": "Cancelar",
+    "submit": "Mover cita",
+    "done": "Hora cambiada"
+  },
+  "new": {
+    "title": "Nueva cita",
+    "description": "Las horas están en {timezone}.",
+    "service": "Servicio",
+    "serviceOption": "{name} ({duration})",
+    "staff": "Miembro del equipo",
+    "date": "Fecha",
+    "time": "Hora de inicio",
+    "timeHint": "Vale cualquier hora, incluso fuera del horario de apertura.",
+    "freeTimes": "Horas libres",
+    "freeTimesFor": "Horas libres de {name}",
+    "checking": "Comprobando disponibilidad…",
+    "none": "No hay horas libres dentro del horario este día.",
+    "customer": "Cliente",
+    "changeCustomer": "Elegir otro cliente",
+    "firstName": "Nombre",
+    "lastName": "Apellidos",
+    "email": "Correo electrónico",
+    "emailHint": "Necesario para confirmaciones y recordatorios.",
+    "phone": "Teléfono",
+    "searchInstead": "Buscar entre los clientes existentes",
+    "search": "Buscar clientes",
+    "searchPlaceholder": "Busca por nombre, correo o teléfono",
+    "newCustomer": "Nuevo cliente",
+    "notes": "Notas internas",
+    "notesHint": "Solo las ve tu equipo.",
+    "notify": "Enviar una confirmación al cliente por correo",
+    "notifyHint": "Los recordatorios se envían automáticamente si el cliente tiene correo electrónico.",
+    "cancel": "Cancelar",
+    "submit": "Crear cita",
+    "chooseTime": "Elige una hora de inicio.",
+    "customerRequired": "Elige un cliente existente o escribe un nombre."
+  },
+  "toasts": {
+    "created": "Cita creada",
+    "moved": "Cita movida. Hemos avisado al cliente",
+    "confirm": "Cita confirmada",
+    "cancel": "Cita cancelada",
+    "complete": "Marcada como completada",
+    "no_show": "Marcada como «no se presentó»",
+    "reopen": "Cita reabierta",
+    "notesSaved": "Notas guardadas"
+  },
+  "export": {
+    "reference": "Referencia",
+    "date": "Fecha",
+    "start": "Inicio",
+    "end": "Fin",
+    "timezone": "Zona horaria",
+    "status": "Estado",
+    "service": "Servicio",
+    "staff": "Miembro del equipo",
+    "customer": "Cliente",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "price": "Precio",
+    "currency": "Moneda",
+    "source": "Origen",
+    "bookedAt": "Reservada el"
+  }
+}

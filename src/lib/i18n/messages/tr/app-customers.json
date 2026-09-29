@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Müşteriler",
+    "detailTitle": "Müşteri"
+  },
+  "segments": {
+    "all": {
+      "label": "Tümü",
+      "help": "Randevu alan veya eklenen herkes."
+    },
+    "new": {
+      "label": "Yeni",
+      "help": "Son 30 günde ilk randevusu olanlar."
+    },
+    "returning": {
+      "label": "Geri gelen",
+      "help": "İki veya daha fazla tamamlanmış ziyaret."
+    },
+    "vip": {
+      "label": "Düzenli",
+      "help": "Beş veya daha fazla tamamlanmış ziyaret."
+    },
+    "inactive": {
+      "label": "Pasif",
+      "help": "90 gündür ziyaret yok ve randevu da yok."
+    },
+    "upcoming": {
+      "label": "Randevusu olan",
+      "help": "Yaklaşan bir randevusu var."
+    },
+    "cancelled": {
+      "label": "İptal edenler",
+      "help": "En az bir kez iptal etti."
+    },
+    "no_show": {
+      "label": "Gelmeyenler",
+      "help": "En az bir randevuya gelmedi."
+    }
+  },
+  "list": {
+    "title": "Müşteriler",
+    "description": "Sizden randevu almış herkes, geçmişi ve değeriyle birlikte. Arayın, segmente göre filtreleyin veya dışa aktarın.",
+    "erased": "Müşterinin kişisel verileri silindi. İstatistikleriniz doğru kalsın diye geçmiş randevuları anonim kayıtlar olarak duruyor.",
+    "segments": "Müşteri segmentleri",
+    "search": "Müşteri ara",
+    "searchPlaceholder": "Ad, e-posta veya telefon arayın",
+    "sort": {
+      "label": "Sırala",
+      "recent": "En yeniler önce",
+      "name": "Ad (A–Z)",
+      "visits": "En çok ziyaret",
+      "revenue": "En yüksek gelir",
+      "last_visit": "Son ziyaret"
+    },
+    "export": "Dışa aktar",
+    "add": "Müşteri ekle",
+    "empty": {
+      "noMatchTitle": "Eşleşen müşteri yok",
+      "noMatchBody": "Farklı bir arama veya segment deneyin.",
+      "noneTitle": "Henüz müşteri yok",
+      "noneBody": "Birisi sayfanız üzerinden randevu aldığında müşteriler otomatik olarak eklenir. Kendiniz de ekleyebilirsiniz."
+    },
+    "caption": "Müşteriler, toplam {count}",
+    "columns": {
+      "customer": "Müşteri",
+      "visits": "Ziyaret",
+      "revenue": "Gelir",
+      "lastVisit": "Son ziyaret",
+      "next": "Sıradaki"
+    },
+    "noContact": "İletişim bilgisi yok",
+    "regular": "Düzenli",
+    "noShows": "{count, plural, one {# kez gelmedi} other {# kez gelmedi}}",
+    "visitsLabel": "Ziyaret:",
+    "pagination": {
+      "label": "Sayfalama",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "summary": "Sayfa {page}/{pages} · {total} müşteri"
+    }
+  },
+  "detail": {
+    "back": "Müşteriler",
+    "stats": {
+      "visits": "Ziyaret",
+      "visitsHint": "Toplam {count} rezervasyon",
+      "revenue": "Gelir",
+      "average": "Ziyaret başına ort. {amount}",
+      "fromCompleted": "Tamamlanan ziyaretlerden",
+      "revenueDefinition": "Tamamlanan randevuların hizmet fiyatlarının toplamı.",
+      "cancellations": "İptaller",
+      "ofBookings": "Rezervasyonların {percent} kadarı",
+      "noShows": "Gelmedi",
+      "ofVisits": "Ziyaretlerin {percent} kadarı"
+    },
+    "history": {
+      "title": "Randevu geçmişi",
+      "count": "{count, plural, one {# randevu} other {# randevu}}",
+      "empty": "Henüz randevu yok."
+    },
+    "glance": {
+      "title": "Bir bakışta",
+      "since": "Müşteri olduğu tarih",
+      "firstVisit": "İlk ziyaret",
+      "lastVisit": "Son ziyaret",
+      "next": "Sıradaki randevu",
+      "nextValue": "{date}, {time}",
+      "none": "Randevu yok",
+      "favoriteService": "En sevdiği hizmet",
+      "usualStaff": "Genellikle gittiği kişi"
+    },
+    "notes": {
+      "title": "Dahili notlar",
+      "description": "Yalnızca ekibiniz görebilir.",
+      "empty": "Henüz not yok. Alerji, tercih veya işe yarayacak her şeyi eklemek için Düzenle’yi kullanın."
+    }
+  },
+  "actions": {
+    "book": "Randevu ver",
+    "edit": "Düzenle",
+    "erase": "Müşteri verilerini sil",
+    "eraseTitle": "Bu müşterinin kişisel verileri silinsin mi?",
+    "eraseBody": "Bu işlem {name} adlı müşterinin adını, e-postasını, telefonunu ve notlarını kalıcı olarak kaldırır (örneğin KVKK/GDPR kapsamındaki bir silme talebinden sonra). İstatistikleriniz doğru kalsın diye geçmiş randevular anonim kayıtlar olarak kalır. <strong>Bu işlem geri alınamaz.</strong>",
+    "eraseConfirm": "Verileri sil",
+    "eraseWord": "SİL"
+  },
+  "form": {
+    "addTitle": "Müşteri ekle",
+    "editTitle": "Müşteriyi düzenle",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "notes": "Dahili notlar",
+    "notesHint": "Yalnızca ekibiniz görebilir.",
+    "cancel": "İptal",
+    "save": "Değişiklikleri kaydet",
+    "add": "Müşteri ekle",
+    "saved": "Kaydedildi"
+  },
+  "toasts": {
+    "added": "Müşteri eklendi",
+    "updated": "Müşteri güncellendi"
+  },
+  "export": {
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "appointments": "Randevular",
+    "completed": "Tamamlanan",
+    "cancelled": "İptal edilen",
+    "noShows": "Gelmedi",
+    "revenue": "Gelir",
+    "firstVisit": "İlk ziyaret",
+    "lastVisit": "Son ziyaret",
+    "next": "Sıradaki randevu",
+    "since": "Müşteri olduğu tarih"
+  }
+}

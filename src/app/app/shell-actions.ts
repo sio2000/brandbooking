@@ -10,6 +10,7 @@ import { AppError } from '@/server/errors'
 import { globalSearch } from '@/server/business/search'
 import { inbox, markInboxItemsRead } from '@/server/business/overview'
 import { env } from '@/server/env'
+import { getLocale } from '@/server/i18n'
 
 export async function switchBusinessAction(businessId: string) {
   const session = await getSession()
@@ -33,7 +34,7 @@ export async function searchAction(q: string) {
 }
 
 export async function inboxAction() {
-  return runAction(async () => inbox(await requireTenantAction()))
+  return runAction(async () => inbox(await requireTenantAction(), 30, await getLocale()))
 }
 
 export async function markInboxReadAction(ids?: string[]) {

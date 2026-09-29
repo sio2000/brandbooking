@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Kunden",
+    "detailTitle": "Kunde"
+  },
+  "segments": {
+    "all": {
+      "label": "Alle",
+      "help": "Alle, die gebucht haben oder hinzugefügt wurden."
+    },
+    "new": {
+      "label": "Neu",
+      "help": "Erster Termin in den letzten 30 Tagen."
+    },
+    "returning": {
+      "label": "Wiederkehrend",
+      "help": "Zwei oder mehr erledigte Besuche."
+    },
+    "vip": {
+      "label": "Stammkunden",
+      "help": "Fünf oder mehr erledigte Besuche."
+    },
+    "inactive": {
+      "label": "Inaktiv",
+      "help": "Seit 90 Tagen kein Besuch und nichts gebucht."
+    },
+    "upcoming": {
+      "label": "Mit Termin",
+      "help": "Hat einen anstehenden Termin."
+    },
+    "cancelled": {
+      "label": "Storniert",
+      "help": "Hat mindestens einmal storniert."
+    },
+    "no_show": {
+      "label": "Nicht erschienen",
+      "help": "Hat mindestens einen Termin versäumt."
+    }
+  },
+  "list": {
+    "title": "Kunden",
+    "description": "Alle, die bei Ihnen gebucht haben, mit Verlauf und Umsatz. Suchen, nach Segment filtern oder exportieren.",
+    "erased": "Die personenbezogenen Daten des Kunden wurden gelöscht. Seine früheren Termine bleiben als anonyme Einträge erhalten, damit Ihre Statistiken stimmen.",
+    "segments": "Kundensegmente",
+    "search": "Kunden suchen",
+    "searchPlaceholder": "Name, E-Mail oder Telefon suchen",
+    "sort": {
+      "label": "Sortieren",
+      "recent": "Neueste zuerst",
+      "name": "Name A–Z",
+      "visits": "Meiste Besuche",
+      "revenue": "Höchster Umsatz",
+      "last_visit": "Letzter Besuch"
+    },
+    "export": "Exportieren",
+    "add": "Kunde hinzufügen",
+    "empty": {
+      "noMatchTitle": "Keine passenden Kunden",
+      "noMatchBody": "Probieren Sie eine andere Suche oder ein anderes Segment.",
+      "noneTitle": "Noch keine Kunden",
+      "noneBody": "Kunden werden automatisch hinzugefügt, wenn jemand über Ihre Seite bucht. Sie können sie auch selbst anlegen."
+    },
+    "caption": "Kunden, insgesamt {count}",
+    "columns": {
+      "customer": "Kunde",
+      "visits": "Besuche",
+      "revenue": "Umsatz",
+      "lastVisit": "Letzter Besuch",
+      "next": "Nächster"
+    },
+    "noContact": "Keine Kontaktdaten",
+    "regular": "Stammkunde",
+    "noShows": "{count, plural, one {# Mal nicht erschienen} other {# Mal nicht erschienen}}",
+    "visitsLabel": "Besuche:",
+    "pagination": {
+      "label": "Seitennavigation",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "summary": "Seite {page} von {pages} · {total} Kunden"
+    }
+  },
+  "detail": {
+    "back": "Kunden",
+    "stats": {
+      "visits": "Besuche",
+      "visitsHint": "{count, plural, one {# Buchung insgesamt} other {# Buchungen insgesamt}}",
+      "revenue": "Umsatz",
+      "average": "Ø {amount} pro Besuch",
+      "fromCompleted": "Aus erledigten Besuchen",
+      "revenueDefinition": "Summe der Leistungspreise erledigter Termine.",
+      "cancellations": "Stornierungen",
+      "ofBookings": "{percent} der Buchungen",
+      "noShows": "Nicht erschienen",
+      "ofVisits": "{percent} der Besuche"
+    },
+    "history": {
+      "title": "Terminverlauf",
+      "count": "{count, plural, one {# Termin} other {# Termine}}",
+      "empty": "Noch keine Termine."
+    },
+    "glance": {
+      "title": "Auf einen Blick",
+      "since": "Kunde seit",
+      "firstVisit": "Erster Besuch",
+      "lastVisit": "Letzter Besuch",
+      "next": "Nächster Termin",
+      "nextValue": "{date}, {time}",
+      "none": "Keiner gebucht",
+      "favoriteService": "Lieblingsleistung",
+      "usualStaff": "Meist bei"
+    },
+    "notes": {
+      "title": "Interne Notizen",
+      "description": "Nur für Ihr Team sichtbar.",
+      "empty": "Noch keine Notizen. Über „Bearbeiten“ können Sie Allergien, Vorlieben oder andere nützliche Hinweise ergänzen."
+    }
+  },
+  "actions": {
+    "book": "Buchen",
+    "edit": "Bearbeiten",
+    "erase": "Kundendaten löschen",
+    "eraseTitle": "Personenbezogene Daten dieses Kunden löschen?",
+    "eraseBody": "Damit werden Name, E-Mail, Telefonnummer und Notizen von {name} dauerhaft entfernt (zum Beispiel nach einem Löschantrag gemäß DSGVO). Frühere Termine bleiben als anonyme Einträge erhalten, damit Ihre Statistiken stimmen. <strong>Das kann nicht rückgängig gemacht werden.</strong>",
+    "eraseConfirm": "Daten löschen",
+    "eraseWord": "LÖSCHEN"
+  },
+  "form": {
+    "addTitle": "Kunde hinzufügen",
+    "editTitle": "Kunde bearbeiten",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "notes": "Interne Notizen",
+    "notesHint": "Nur für Ihr Team sichtbar.",
+    "cancel": "Abbrechen",
+    "save": "Änderungen speichern",
+    "add": "Kunde hinzufügen",
+    "saved": "Gespeichert"
+  },
+  "toasts": {
+    "added": "Kunde hinzugefügt",
+    "updated": "Kunde aktualisiert"
+  },
+  "export": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "appointments": "Termine",
+    "completed": "Erledigt",
+    "cancelled": "Storniert",
+    "noShows": "Nicht erschienen",
+    "revenue": "Umsatz",
+    "firstVisit": "Erster Besuch",
+    "lastVisit": "Letzter Besuch",
+    "next": "Nächster Termin",
+    "since": "Kunde seit"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "title": "Vue d’ensemble"
+  },
+  "greeting": {
+    "morning": "Bonjour, {name}",
+    "afternoon": "Bon après-midi, {name}",
+    "evening": "Bonsoir, {name}"
+  },
+  "summary": {
+    "none": "Rien n’est encore réservé pour aujourd’hui.",
+    "count": "{count, plural, one {Vous avez # rendez-vous aujourd’hui.} other {Vous avez # rendez-vous aujourd’hui.}}",
+    "next": "Prochain : {name} à {time}."
+  },
+  "setup": {
+    "eyebrow": "Bien démarrer",
+    "title": "Terminez la configuration de votre page de réservation",
+    "description": "Quelques étapes rapides et vos clients pourront réserver en ligne.",
+    "progress": "Progression de la configuration",
+    "done": "terminé",
+    "todo": "à faire",
+    "optional": "Facultatif",
+    "steps": {
+      "profile": "Profil de l’établissement",
+      "services": "Prestations",
+      "hours": "Horaires",
+      "rules": "Règles de réservation",
+      "branding": "Identité visuelle",
+      "publish": "Publier la page de réservation"
+    }
+  },
+  "live": {
+    "title": "Votre page de réservation est en ligne",
+    "copy": "Copier le lien de réservation",
+    "preview": "Aperçu",
+    "qr": "Code QR"
+  },
+  "stats": {
+    "today": "Aujourd’hui",
+    "bookedToday": "{count, plural, one {# réservé aujourd’hui} other {# réservés aujourd’hui}}",
+    "week": "Cette semaine",
+    "scheduled": "Rendez-vous prévus",
+    "earned": "Gagné cette semaine",
+    "expected": "+ {amount} attendus sur {count} à venir",
+    "noneExpected": "Plus aucune réservation attendue cette semaine",
+    "earnedDefinition": "Prix des prestations des rendez-vous de cette semaine qui ont eu lieu. Un rendez-vous compte automatiquement une fois terminé, sauf s’il est annulé ou marqué comme absent. Vos clients vous paient directement ; Hournook ne gère pas l’argent.",
+    "newCustomers": "Nouveaux clients",
+    "newCustomersHint": "Arrivés cette semaine · {cancelled} annulés · {noShows} absents"
+  },
+  "schedule": {
+    "title": "Programme du jour",
+    "openCalendar": "Ouvrir l’agenda",
+    "emptyTitle": "Aucun rendez-vous aujourd’hui",
+    "emptyBody": "Partagez votre lien de réservation pour que vos clients trouvent un créneau, ou ajoutez vous-même un rendez-vous.",
+    "newAppointment": "Nouveau rendez-vous",
+    "now": "En cours"
+  },
+  "attention": {
+    "title": "À traiter",
+    "clear": "Tout est en ordre. Rien ne demande votre attention pour le moment.",
+    "pending": "{count, plural, one {# demande de réservation en attente de confirmation} other {# demandes de réservation en attente de confirmation}}",
+    "review": "Examiner",
+    "unresolved": "{count, plural, one {# rendez-vous passé à marquer comme terminé ou absent} other {# rendez-vous passés à marquer comme terminés ou absents}}",
+    "update": "Mettre à jour",
+    "failedMail": "{count, plural, one {# e-mail n’a pas pu être remis cette semaine} other {# e-mails n’ont pas pu être remis cette semaine}}",
+    "seeDetails": "Voir les détails",
+    "pastDue": "Votre dernier paiement a échoué. Mettez à jour votre carte pour rester en ligne",
+    "fix": "Régler",
+    "paused": "La réservation en ligne est en pause",
+    "resume": "Reprendre"
+  },
+  "quick": {
+    "title": "Actions rapides",
+    "newAppointment": "Nouveau rendez-vous",
+    "addService": "Ajouter une prestation",
+    "addStaff": "Ajouter un membre",
+    "hours": "Horaires"
+  },
+  "upcoming": {
+    "title": "À venir",
+    "description": "14 prochains jours",
+    "all": "Tout",
+    "empty": "Aucun rendez-vous à venir."
+  },
+  "activity": {
+    "title": "Activité récente",
+    "all": "Tout",
+    "empty": "Les modifications apportées à votre établissement apparaîtront ici.",
+    "byCustomer": "par le client",
+    "byStripe": "par Stripe",
+    "by": "par {name}",
+    "automatic": "automatique",
+    "actions": {
+      "business": {
+        "created": "Établissement créé",
+        "profile_updated": "Profil de l’établissement mis à jour",
+        "branding_updated": "Identité visuelle mise à jour",
+        "seo_updated": "Paramètres SEO mis à jour",
+        "slug_changed": "Lien de réservation modifié",
+        "published": "Page de réservation publiée",
+        "paused": "Réservation en ligne mise en pause",
+        "unpublished": "Page de réservation dépubliée",
+        "logo_uploaded": "Logo importé",
+        "cover_uploaded": "Image de couverture importée",
+        "logo_removed": "Logo supprimé",
+        "cover_removed": "Image de couverture supprimée",
+        "suspended": "Compte suspendu par Hournook",
+        "reactivated": "Compte réactivé",
+        "exported": "Export des données téléchargé"
+      },
+      "service": {
+        "created": "Prestation ajoutée",
+        "updated": "Prestation modifiée",
+        "deleted": "Prestation supprimée"
+      },
+      "staff": {
+        "created": "Membre de l’équipe ajouté",
+        "updated": "Membre de l’équipe modifié",
+        "deleted": "Membre de l’équipe supprimé",
+        "avatar_uploaded": "Photo d’un membre mise à jour"
+      },
+      "appointment": {
+        "created": "Rendez-vous réservé",
+        "cancelled": "Rendez-vous annulé",
+        "rescheduled": "Rendez-vous déplacé",
+        "confirmed": "Rendez-vous confirmé",
+        "completed": "Rendez-vous terminé",
+        "no_show": "Marqué comme absent",
+        "reopened": "Rendez-vous rouvert",
+        "notes_updated": "Notes du rendez-vous modifiées"
+      },
+      "availability": {
+        "weekly_hours_updated": "Horaires modifiés",
+        "staff_uses_business_hours": "Le membre suit désormais les horaires de l’établissement",
+        "closure_added": "Fermeture ajoutée",
+        "closure_removed": "Fermeture supprimée",
+        "special_hours_set": "Horaires exceptionnels définis",
+        "time_blocked": "Créneau bloqué"
+      },
+      "settings": {
+        "booking_rules_updated": "Règles de réservation modifiées",
+        "notifications_updated": "Paramètres de notification modifiés"
+      },
+      "customer": {
+        "created": "Client ajouté",
+        "updated": "Client modifié",
+        "erased": "Données du client effacées"
+      },
+      "team": {
+        "member_invited": "Membre de l’équipe invité",
+        "invitation_revoked": "Invitation révoquée",
+        "member_joined": "Un membre a rejoint l’équipe",
+        "role_changed": "Rôle modifié",
+        "member_removed": "Membre de l’équipe retiré",
+        "member_left": "Un membre a quitté l’équipe",
+        "ownership_transferred": "Propriété transférée"
+      },
+      "billing": {
+        "checkout_started": "Paiement commencé",
+        "checkout_completed": "Souscription de l’abonnement terminée",
+        "subscription_status_changed": "Statut de l’abonnement modifié",
+        "invoice_paid": "Facture payée",
+        "payment_failed": "Échec du paiement"
+      },
+      "export": {
+        "appointments": "Rendez-vous exportés",
+        "customers": "Clients exportés",
+        "services": "Prestations exportées"
+      }
+    }
+  },
+  "footer": "Heures affichées : {timezone} · nous sommes le {date}"
+}

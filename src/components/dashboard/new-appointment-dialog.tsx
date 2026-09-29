@@ -13,6 +13,8 @@ import { cn } from '@/lib/utils'
 import { formatDuration, formatTime } from '@/lib/format'
 import { createAppointmentAction, suggestedTimesAction } from '@/app/app/_actions/appointments'
 import { searchAction } from '@/app/app/shell-actions'
+import { useLocale, useT } from '@/components/i18n/provider'
+import { formatTag, timeZoneLabel } from './format-locale'
 
 export type PickerService = {
   id: string
@@ -51,11 +53,13 @@ type Props = {
 }
 
 export function NewAppointmentDialog(props: Props) {
+  const t = useT('app-appointments')
+  const { locale } = useLocale()
   return (
     <Dialog open={props.open} onOpenChange={props.onOpenChange}>
       <DialogContent
-        title="New appointment"
-        description={`Times are in ${props.timezone.replace(/_/g, ' ')}.`}
+        title={t('new.title')}
+        description={t('new.description', { timezone: timeZoneLabel(props.timezone, locale) })}
         size="lg"
       >
         {/* Mounted only while open, so every opening starts from fresh defaults. */}
@@ -75,6 +79,8 @@ function NewAppointmentForm({
   customer: presetCustomer,
 }: Props) {
   const router = useRouter()
+  const t = useT('app-appointments')
+  const tag = formatTag(useLocale().locale)
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: timezone }).format(new Date())
   const [serviceId, setServiceId] = React.useState(services[0]?.id ?? '')
   const service = services.find((s) => s.id === serviceId)
@@ -152,14 +158,14 @@ function NewAppointmentForm({
     })
     setPending(false)
     if (r.ok) {
-      toast.success(r.message ?? 'Appointment created')
+      toast.success(r.message ?? t('toasts.created'))
       onOpenChange(false)
       router.refresh()
       return
     }
     if (r.fields) setErrors(r.fields)
     setFormError(r.fields && Object.keys(r.fields).length ? null : r.error)
-    if (r.fields?.startMinute) setErrors((e) => ({ ...e, time: 'Choose a start time.' }))
+    if (r.fields?.startMinute) setErrors((e) => ({ ...e, time: t('new.chooseTime') }))
   }
 
   return (
@@ -167,7 +173,7 @@ function NewAppointmentForm({
       <DialogBody className="grid gap-5">
         <FormError message={formError} />
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Service" htmlFor="na-service" error={errors.serviceId}>
+          <Field label={t('new.service')} htmlFor="na-service" error={errors.serviceId}>
             <NativeSelect
               value={serviceId}
               onChange={(e) => {
@@ -179,12 +185,15 @@ function NewAppointmentForm({
             >
               {services.map((s) => (
                 <option key={s.id} value={s.id}>
-                  {s.name} ({formatDuration(s.durationMinutes)})
+                  {t('new.serviceOption', {
+                    name: s.name,
+                    duration: formatDuration(s.durationMinutes, tag),
+                  })}
                 </option>
               ))}
             </NativeSelect>
           </Field>
-          <Field label="Team member" htmlFor="na-staff" error={errors.staffId}>
+          <Field label={t('new.staff')} htmlFor="na-staff" error={errors.staffId}>
             <NativeSelect
               value={staffId}
               onChange={(e) => setStaffId(e.target.value)}
@@ -197,33 +206,30 @@ function NewAppointmentForm({
               ))}
             </NativeSelect>
           </Field>
-          <Field label="Date" htmlFor="na-date" error={errors.date}>
+          <Field label={t('new.date')} htmlFor="na-date" error={errors.date}>
             <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
           </Field>
           <Field
-            label="Start time"
+            label={t('new.time')}
             htmlFor="na-time"
             error={errors.time ?? errors.startMinute}
-            hint="Any time works, even outside opening hours."
+            hint={t('new.timeHint')}
           >
             <Input type="time" step={300} value={time} onChange={(e) => setTime(e.target.value)} />
           </Field>
         </div>
         <div>
           <p className="mb-2 text-[13px] font-medium text-muted-foreground">
-            Free times{' '}
             {staff.find((s) => s.id === staffId)?.name
-              ? `for ${staff.find((s) => s.id === staffId)?.name}`
-              : ''}
+              ? t('new.freeTimesFor', { name: staff.find((s) => s.id === staffId)!.name })
+              : t('new.freeTimes')}
           </p>
           {slots === null ? (
-            <p className="text-sm text-muted-foreground">Checking availability…</p>
+            <p className="text-sm text-muted-foreground">{t('new.checking')}</p>
           ) : slots.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No free times within working hours on this day.
-            </p>
+            <p className="text-sm text-muted-foreground">{t('new.none')}</p>
           ) : (
-            <div className="flex flex-wrap gap-1.5" role="listbox" aria-label="Free times">
+            <div className="flex flex-wrap gap-1.5" role="listbox" aria-label={t('new.freeTimes')}>
               {slots.slice(0, 40).map((s) => {
                 const m = localMinute(s, timezone)
                 const active = time && minutesOf(time) === m
@@ -241,7 +247,7 @@ function NewAppointmentForm({
                         : 'border-border-strong hover:border-primary hover:bg-primary-soft',
                     )}
                   >
-                    {formatTime(s, timezone)}
+                    {formatTime(s, timezone, tag)}
                   </button>
                 )
               })}
@@ -250,7 +256,7 @@ function NewAppointmentForm({
         </div>
 
         <div className="rounded-xl border border-border p-4">
-          <p className="mb-3 text-sm font-semibold">Customer</p>
+          <p className="mb-3 text-sm font-semibold">{t('new.customer')}</p>
           {customer ? (
             <div className="flex items-center justify-between rounded-lg bg-surface-2 px-3 py-2 text-sm">
               <span className="font-medium">{customer.name}</span>
@@ -259,7 +265,7 @@ function NewAppointmentForm({
                   type="button"
                   onClick={() => setCustomer(null)}
                   className="text-muted-foreground hover:text-foreground"
-                  aria-label="Choose a different customer"
+                  aria-label={t('new.changeCustomer')}
                 >
                   <X className="size-4" />
                 </button>
@@ -267,24 +273,24 @@ function NewAppointmentForm({
             </div>
           ) : creatingNew ? (
             <div className="grid gap-3 sm:grid-cols-2">
-              <Field label="First name" htmlFor="na-first" error={errors.firstName}>
+              <Field label={t('new.firstName')} htmlFor="na-first" error={errors.firstName}>
                 <Input
                   value={newCustomer.firstName}
                   onChange={(e) => setNewCustomer({ ...newCustomer, firstName: e.target.value })}
                 />
               </Field>
-              <Field label="Last name" htmlFor="na-last" optional>
+              <Field label={t('new.lastName')} htmlFor="na-last" optional>
                 <Input
                   value={newCustomer.lastName}
                   onChange={(e) => setNewCustomer({ ...newCustomer, lastName: e.target.value })}
                 />
               </Field>
               <Field
-                label="Email"
+                label={t('new.email')}
                 htmlFor="na-email"
                 optional
                 error={errors.email}
-                hint="Needed for confirmations and reminders."
+                hint={t('new.emailHint')}
               >
                 <Input
                   type="email"
@@ -292,7 +298,7 @@ function NewAppointmentForm({
                   onChange={(e) => setNewCustomer({ ...newCustomer, email: e.target.value })}
                 />
               </Field>
-              <Field label="Phone" htmlFor="na-phone" optional error={errors.phone}>
+              <Field label={t('new.phone')} htmlFor="na-phone" optional error={errors.phone}>
                 <Input
                   type="tel"
                   value={newCustomer.phone}
@@ -304,22 +310,22 @@ function NewAppointmentForm({
                 onClick={() => setCreatingNew(false)}
                 className="justify-self-start text-[13px] font-medium text-primary hover:underline sm:col-span-2"
               >
-                Search existing customers instead
+                {t('new.searchInstead')}
               </button>
             </div>
           ) : (
             <div className="grid gap-2">
               <div className="relative">
                 <Search
-                  className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
+                  className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
                   aria-hidden
                 />
                 <Input
-                  aria-label="Search customers"
-                  placeholder="Search by name, email or phone"
+                  aria-label={t('new.search')}
+                  placeholder={t('new.searchPlaceholder')}
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
-                  className="pl-9"
+                  className="ps-9"
                 />
               </div>
               {shownResults.length > 0 && (
@@ -331,7 +337,7 @@ function NewAppointmentForm({
                         onClick={() =>
                           setCustomer({ id: c.id, name: `${c.firstName} ${c.lastName}`.trim() })
                         }
-                        className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-surface-2"
+                        className="flex w-full items-center justify-between px-3 py-2 text-start text-sm hover:bg-surface-2"
                       >
                         <span className="font-medium">
                           {c.firstName} {c.lastName}
@@ -352,13 +358,13 @@ function NewAppointmentForm({
                 className="justify-self-start"
                 onClick={() => setCreatingNew(true)}
               >
-                <UserPlus /> New customer
+                <UserPlus /> {t('new.newCustomer')}
               </Button>
             </div>
           )}
         </div>
 
-        <Field label="Internal notes" htmlFor="na-notes" optional hint="Only visible to your team.">
+        <Field label={t('new.notes')} htmlFor="na-notes" optional hint={t('new.notesHint')}>
           <Textarea
             rows={2}
             value={notes}
@@ -368,18 +374,18 @@ function NewAppointmentForm({
         </Field>
         <SwitchRow
           id="na-notify"
-          label="Email the customer a confirmation"
-          description="Reminders are sent automatically when the customer has an email address."
+          label={t('new.notify')}
+          description={t('new.notifyHint')}
           checked={notify}
           onCheckedChange={setNotify}
         />
       </DialogBody>
       <DialogFooter>
         <Button variant="secondary" onClick={() => onOpenChange(false)}>
-          Cancel
+          {t('new.cancel')}
         </Button>
         <Button loading={pending} onClick={submit} disabled={!serviceId || !staffId}>
-          Create appointment
+          {t('new.submit')}
         </Button>
       </DialogFooter>
     </>

@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Dashboard"
+  },
+  "skipToContent": "Skip to content",
+  "signedInAs": "Signed in as {role}",
+  "roles": {
+    "owner": "owner",
+    "manager": "manager",
+    "staff": "team member"
+  },
+  "nav": {
+    "label": "Main",
+    "more": "More",
+    "groups": {
+      "business": "Business",
+      "grow": "Grow",
+      "account": "Account"
+    },
+    "items": {
+      "overview": "Overview",
+      "calendar": "Calendar",
+      "appointments": "Appointments",
+      "customers": "Customers",
+      "services": "Services",
+      "team": "Team",
+      "availability": "Availability",
+      "analytics": "Analytics",
+      "bookingPage": "Booking page",
+      "settings": "Settings",
+      "billing": "Billing"
+    }
+  },
+  "topbar": {
+    "home": "Overview",
+    "search": "Search",
+    "searchPlaceholder": "Search or jump to…",
+    "newAppointment": "New appointment",
+    "openBookingPage": "Open booking page",
+    "accountMenu": "Account menu",
+    "account": "Account",
+    "settings": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "signOut": "Sign out",
+    "switchBusiness": "Switch business",
+    "addBusiness": "Add another business"
+  },
+  "inbox": {
+    "label": "Notifications",
+    "labelUnread": "Notifications, {count} unread",
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "loading": "Loading…",
+    "empty": "You’re all caught up. New bookings and changes will show up here.",
+    "unread": "Unread",
+    "items": {
+      "bookingRequest": "New booking request",
+      "booking": "New booking",
+      "booked": "{who} booked {service} for {date}.",
+      "cancelledTitle": "Booking cancelled",
+      "cancelled": "{who} cancelled {service} on {date}.",
+      "rescheduledTitle": "Booking rescheduled",
+      "rescheduled": "{who} moved {service} to {date}.",
+      "aCustomer": "A customer",
+      "memberJoined": "{name} joined your team",
+      "ownership": "{name} made you the owner of {business}",
+      "paymentFailed": "Payment failed",
+      "paymentFailedBody": "We couldn’t charge your card. Update your payment method to keep accepting bookings.",
+      "subscriptionActive": "Subscription active",
+      "subscriptionActiveBody": "Thanks! Your plan is active.",
+      "subscriptionEnded": "Subscription ended",
+      "subscriptionEndedBody": "Your booking page no longer accepts new bookings."
+    }
+  },
+  "palette": {
+    "title": "Command palette",
+    "description": "Search customers, services and team, or jump to a page.",
+    "placeholder": "Search customers, services, team… or type a command",
+    "suggestions": "Suggestions",
+    "empty": "No results for “{query}”.",
+    "groups": {
+      "goTo": "Go to",
+      "actions": "Actions",
+      "customers": "Customers",
+      "appointments": "Appointments",
+      "services": "Services",
+      "team": "Team"
+    },
+    "actions": {
+      "newAppointment": "New appointment",
+      "addService": "Add service",
+      "addStaff": "Add team member",
+      "copyLink": "Copy booking link",
+      "linkCopied": "Booking link copied",
+      "preview": "Preview booking page"
+    }
+  },
+  "banners": {
+    "suspended": "This account is suspended. Your booking page is offline and changes are disabled. Contact support to resolve it.",
+    "emailSimulated": "Email sending isn’t connected on this site yet, so your confirmation link was written to the server log instead of {email}. Connect an email provider (Resend or SMTP) to deliver it to your inbox.",
+    "verify": "Confirm your email ({email}) to publish your booking page.",
+    "verificationSent": "Verification email sent",
+    "sending": "Sending…",
+    "resend": "Resend link",
+    "inactive": "Your booking page is not accepting new bookings because there’s no active subscription.",
+    "subscribe": "Subscribe for {price}/month",
+    "pastDue": "Your last payment failed. Update your card to keep your booking page online.",
+    "fixBilling": "Fix billing",
+    "trial": "{days, plural, one {# day left in your free trial.} other {# days left in your free trial.}}",
+    "choosePlan": "Choose a plan"
+  },
+  "error": {
+    "title": "We couldn’t load this page",
+    "body": "Your bookings and data are safe. Try again. If the problem continues, contact support and mention the reference.",
+    "reference": "Reference: {digest}",
+    "retry": "Try again"
+  },
+  "loading": "Loading"
+}

@@ -6,6 +6,9 @@ import { pickerData } from '@/server/business/pickers'
 import { db } from '@/server/db/client'
 import { weeklyHours } from '@/server/db/schema'
 import { CalendarView, type CalView } from '@/components/dashboard/calendar/calendar-view'
+import { formatTag, timeZoneLabel } from '@/components/dashboard/format-locale'
+import { calendarTitle } from '@/components/dashboard/calendar/title'
+import { getLocale, getT } from '@/server/i18n'
 import {
   addDays,
   endOfMonth,
@@ -16,7 +19,10 @@ import {
   todayIn,
 } from '@/lib/tz'
 
-export const metadata: Metadata = { title: 'Calendar' }
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT('app-calendar')
+  return { title: t('meta.title') }
+}
 
 const VIEWS: CalView[] = ['day', 'week', 'month', 'agenda']
 
@@ -39,6 +45,8 @@ export default async function CalendarPage({ searchParams }: PageProps<'/app/cal
           : [date, addDays(date, 13)]
   void endOfMonth
 
+  const locale = await getLocale()
+  const t = await getT('app-calendar', locale)
   const [rows, pickers, hours] = await Promise.all([
     listAppointments(ctx, {
       from: localToDate(from, 0, tz),
@@ -57,8 +65,10 @@ export default async function CalendarPage({ searchParams }: PageProps<'/app/cal
     <CalendarView
       view={view}
       date={date}
+      title={calendarTitle(view, date, formatTag(locale), (d) => t('agendaTitle', { date: d }))}
       today={todayIn(tz)}
       timezone={tz}
+      timezoneLabel={timeZoneLabel(tz, locale)}
       staffFilter={staffFilter}
       appointments={rows.map((r) => ({
         id: r.id,

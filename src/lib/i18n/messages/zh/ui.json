@@ -1,0 +1,32 @@
+{
+  "close": "关闭",
+  "dialog": "对话框",
+  "panel": "面板",
+  "cancel": "取消",
+  "confirm": "确认",
+  "typeToConfirm": "输入 <phrase>{text}</phrase> 以确认",
+  "optional": "选填",
+  "loading": "加载中",
+  "toasts": "通知",
+  "closeToast": "关闭通知",
+  "theme": {
+    "label": "颜色主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  },
+  "copy": {
+    "label": "复制链接",
+    "copied": "已复制",
+    "toast": "链接已复制到剪贴板",
+    "failed": "无法自动复制。请选中链接后手动复制。"
+  },
+  "print": "打印",
+  "color": "颜色",
+  "stat": {
+    "about": "关于“{label}”",
+    "up": "上升",
+    "down": "下降",
+    "unchanged": "持平"
+  }
+}
