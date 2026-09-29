@@ -11,7 +11,7 @@ import { audit } from '@/server/audit'
 import { logger } from '@/server/observability/logger'
 import { addInboxItems, enqueueEmail, membersToNotify } from '@/server/notifications/outbox'
 import { stripe, type Stripe } from './stripe'
-import { webhookSecret } from './config'
+import { webhookSecrets } from './config'
 
 /**
  * Stripe webhook processing.
@@ -52,13 +52,15 @@ export async function verifyEvent(
   signature: string | null,
 ): Promise<Stripe.Event | null> {
   if (!signature) return null
-  const secret = await webhookSecret()
-  if (!secret) return null
-  try {
-    return stripe().webhooks.constructEvent(rawBody, signature, secret)
-  } catch {
-    return null
+  // Any secret of an endpoint this app registered may have signed the event.
+  for (const secret of await webhookSecrets()) {
+    try {
+      return stripe().webhooks.constructEvent(rawBody, signature, secret)
+    } catch {
+      // Not this one: try the next.
+    }
   }
+  return null
 }
 
 export async function handleStripeWebhook(

@@ -1,6 +1,6 @@
 import 'server-only'
 import StripeSdk from 'stripe'
-import { eq } from 'drizzle-orm'
+import { eq, like, or } from 'drizzle-orm'
 import { db } from '@/server/db/client'
 import { platformSettings } from '@/server/db/schema'
 import { env } from '@/server/env'
@@ -21,13 +21,17 @@ import { currentPlanPriceRow } from './plan-price-store'
  *    configuration, else one created with the features the app relies on.
  *  - Webhook secret: STRIPE_WEBHOOK_SECRET, else the secret of the endpoint the
  *    app registered for itself (`npm run stripe:setup`, run on deploy), stored
- *    encrypted in platform_settings.
+ *    encrypted in platform_settings, one row per endpoint URL: several sites
+ *    that share a database (an extra Netlify project, a staging copy) each
+ *    keep their own secret and never overwrite production's.
  */
 
 export const PRICE_LOOKUP_KEY = 'hournook_monthly'
 const PRICE_SETTING = 'stripe.price_id'
 const PORTAL_SETTING = 'stripe.portal_configuration_id'
+/** One row per endpoint URL (`stripe.webhook:<url>`); releases before that kept a single row. */
 const WEBHOOK_SETTING = 'stripe.webhook'
+const webhookKey = (url: string) => `${WEBHOOK_SETTING}:${url}`
 const SEAL_PURPOSE = 'stripe-webhook-secret'
 
 export const WEBHOOK_EVENTS: Stripe.WebhookEndpointCreateParams.EnabledEvent[] = [
@@ -42,7 +46,7 @@ export const WEBHOOK_EVENTS: Stripe.WebhookEndpointCreateParams.EnabledEvent[] =
   'invoice.payment_failed',
 ]
 
-const cache: { price?: string; portal?: string; webhook?: string | null } = {}
+const cache: { price?: string; portal?: string; webhook?: string[] } = {}
 
 /** For tests: forget memoised values. */
 export function resetBillingConfigCache() {
@@ -164,15 +168,41 @@ export async function portalConfigurationId(): Promise<string> {
 
 type StoredWebhook = { endpointId: string; url: string; sealedSecret: string }
 
-/** The webhook signing secret, from env or the app-registered endpoint. */
-export async function webhookSecret(): Promise<string | null> {
+/**
+ * Every signing secret an incoming event may be signed with: STRIPE_WEBHOOK_SECRET
+ * when pinned, otherwise the secrets of the endpoints the app registered for
+ * itself (a database shared by several sites holds one per site URL).
+ */
+export async function webhookSecrets(): Promise<string[]> {
   const e = env()
-  if (e.STRIPE_WEBHOOK_SECRET) return e.STRIPE_WEBHOOK_SECRET
-  if (cache.webhook) return cache.webhook
-  const stored = await getSetting<StoredWebhook>(WEBHOOK_SETTING)
-  const secret = stored ? unseal(stored.sealedSecret, SEAL_PURPOSE) : null
-  if (secret) cache.webhook = secret
-  return secret
+  if (e.STRIPE_WEBHOOK_SECRET) return [e.STRIPE_WEBHOOK_SECRET]
+  if (cache.webhook?.length) return cache.webhook
+  const rows = await db()
+    .select({ value: platformSettings.value })
+    .from(platformSettings)
+    .where(
+      or(
+        eq(platformSettings.key, WEBHOOK_SETTING),
+        like(platformSettings.key, `${WEBHOOK_SETTING}:%`),
+      ),
+    )
+  const secrets = [
+    ...new Set(
+      rows
+        .map((r) => unseal((r.value as StoredWebhook).sealedSecret, SEAL_PURPOSE))
+        .filter((x): x is string => Boolean(x)),
+    ),
+  ]
+  if (secrets.length) cache.webhook = secrets
+  return secrets
+}
+
+/** The endpoint this site registered for `url` (or, from older releases, the single shared row). */
+async function storedWebhook(url: string): Promise<StoredWebhook | null> {
+  const own = await getSetting<StoredWebhook>(webhookKey(url))
+  if (own) return own
+  const legacy = await getSetting<StoredWebhook>(WEBHOOK_SETTING)
+  return legacy?.url === url ? legacy : null
 }
 
 /**
@@ -186,7 +216,7 @@ export async function ensureWebhookEndpoint(
 ): Promise<{ endpointId: string; created: boolean }> {
   const url = new URL('/api/stripe/webhook', appUrl).toString()
   if (!url.startsWith('https://')) throw new Error(`Stripe webhooks need an https URL (got ${url})`)
-  const stored = await getSetting<StoredWebhook>(WEBHOOK_SETTING)
+  const stored = await storedWebhook(url)
   const knownSecret = stored ? unseal(stored.sealedSecret, SEAL_PURPOSE) : null
 
   const endpoints = await stripe().webhookEndpoints.list({ limit: 100 })
@@ -198,6 +228,8 @@ export async function ensureWebhookEndpoint(
     const missing = WEBHOOK_EVENTS.filter((ev) => !keep.enabled_events.includes(ev))
     if (missing.length)
       await stripe().webhookEndpoints.update(keep.id, { enabled_events: WEBHOOK_EVENTS })
+    // Move a secret from the old single row to this URL's own row.
+    await setSetting(webhookKey(url), stored)
     return { endpointId: keep.id, created: false }
   }
   for (const w of mine) await stripe().webhookEndpoints.del(w.id)
@@ -211,12 +243,12 @@ export async function ensureWebhookEndpoint(
     metadata: { app: 'hournook' },
   })
   if (!created.secret) throw new Error('Stripe did not return a webhook signing secret')
-  await setSetting(WEBHOOK_SETTING, {
+  await setSetting(webhookKey(url), {
     endpointId: created.id,
     url,
     sealedSecret: seal(created.secret, SEAL_PURPOSE),
   } satisfies StoredWebhook)
-  cache.webhook = created.secret
+  delete cache.webhook
   return { endpointId: created.id, created: true }
 }
 

@@ -13,8 +13,10 @@ import {
   portalConfigurationId,
   PRICE_LOOKUP_KEY,
   resetBillingConfigCache,
-  webhookSecret,
+  WEBHOOK_EVENTS,
+  webhookSecrets,
 } from '@/server/billing/config'
+import { seal } from '@/server/security/sealed'
 import { createCheckoutSession, createPortalSession } from '@/server/billing/service'
 import { handleStripeWebhook } from '@/server/billing/webhook'
 import { resetDatabase } from '../helpers/db'
@@ -158,7 +160,7 @@ describe('webhook endpoint provisioning', () => {
   const APP = 'https://hournook.example.com'
 
   it('registers the endpoint, stores the secret encrypted, and verifies events with it', async () => {
-    expect(await webhookSecret()).toBeNull()
+    expect(await webhookSecrets()).toEqual([])
     const r = await ensureWebhookEndpoint(APP)
     expect(r.created).toBe(true)
     const req = fake.requests.find(
@@ -168,13 +170,14 @@ describe('webhook endpoint provisioning', () => {
     // Payloads are pinned to the API version the handler is written for, not the
     // Stripe account's default (endpoints created without it had api_version null).
     expect(req.params.get('api_version')).toBe(Stripe.API_VERSION)
-    const secret = await webhookSecret()
+    const [secret] = await webhookSecrets()
     expect(secret).toMatch(/^whsec_test_/)
-    // The plaintext secret is never stored.
+    // The plaintext secret is never stored; the row belongs to this URL.
     const rows = await db()
       .select()
       .from(platformSettings)
-      .where(eq(platformSettings.key, 'stripe.webhook'))
+      .where(eq(platformSettings.key, `stripe.webhook:${APP}/api/stripe/webhook`))
+    expect(rows).toHaveLength(1)
     expect(JSON.stringify(rows[0]!.value)).not.toContain(secret!)
 
     // A second deploy keeps the endpoint.
@@ -194,6 +197,63 @@ describe('webhook endpoint provisioning', () => {
     expect((await handleStripeWebhook(payload, good)).status).toBe(200)
     const bad = stripe().webhooks.generateTestHeaderString({ payload, secret: 'whsec_other' })
     expect((await handleStripeWebhook(payload, bad)).status).toBe(400)
+  })
+
+  it('sites sharing one database keep their own secrets (another site never breaks production)', async () => {
+    const OTHER = 'https://old-copy.netlify.example'
+    await ensureWebhookEndpoint(APP)
+    const [prodSecret] = await webhookSecrets()
+    // A second Netlify project on the same database deploys and registers its own endpoint…
+    resetBillingConfigCache()
+    await ensureWebhookEndpoint(OTHER)
+    // …production's secret is still there and still verifies production's deliveries.
+    resetBillingConfigCache()
+    const secrets = await webhookSecrets()
+    expect(secrets).toHaveLength(2)
+    expect(secrets).toContain(prodSecret)
+    const payload = JSON.stringify({
+      id: 'evt_shared_1',
+      object: 'event',
+      type: 'customer.tax_id.created',
+      created: Math.floor(Date.now() / 1000),
+      data: { object: { id: 'txi_1', object: 'tax_id' } },
+    })
+    const sig = stripe().webhooks.generateTestHeaderString({ payload, secret: prodSecret! })
+    expect((await handleStripeWebhook(payload, sig)).status).toBe(200)
+    // Production's next deploy keeps its endpoint instead of replacing it.
+    resetBillingConfigCache()
+    expect((await ensureWebhookEndpoint(APP)).created).toBe(false)
+    expect(fake.state.webhooks).toHaveLength(2)
+  })
+
+  it('carries over the secret an earlier release stored in the single shared row', async () => {
+    const url = `${APP}/api/stripe/webhook`
+    fake.state.webhooks.push({
+      id: 'we_legacy',
+      url,
+      status: 'enabled',
+      enabled_events: [...WEBHOOK_EVENTS],
+    })
+    await db()
+      .insert(platformSettings)
+      .values({
+        key: 'stripe.webhook',
+        value: {
+          endpointId: 'we_legacy',
+          url,
+          sealedSecret: seal('whsec_legacy_secret', 'stripe-webhook-secret'),
+        },
+      })
+    // Live production deliveries keep working before the next deploy…
+    expect(await webhookSecrets()).toEqual(['whsec_legacy_secret'])
+    // …and the deploy keeps the same endpoint, moving its secret to the per-URL row.
+    resetBillingConfigCache()
+    expect(await ensureWebhookEndpoint(APP)).toEqual({ endpointId: 'we_legacy', created: false })
+    const [own] = await db()
+      .select()
+      .from(platformSettings)
+      .where(eq(platformSettings.key, `stripe.webhook:${url}`))
+    expect(own).toBeTruthy()
   })
 
   it('replaces an endpoint whose secret it cannot read', async () => {

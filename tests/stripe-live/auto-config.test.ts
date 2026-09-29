@@ -18,7 +18,7 @@ import {
   portalConfigurationId,
   PRICE_LOOKUP_KEY,
   resetBillingConfigCache,
-  webhookSecret,
+  webhookSecrets,
   WEBHOOK_EVENTS,
 } from '@/server/billing/config'
 import { getSetting } from '@/server/admin/admin'
@@ -122,7 +122,7 @@ describe.skipIf(!LIVE)('Stripe auto-configuration (live API, test mode)', () => 
     expect([...hook.enabled_events].sort()).toEqual([...WEBHOOK_EVENTS].sort())
     // The signing secret is stored encrypted and used to verify deliveries.
     resetBillingConfigCache()
-    expect(await webhookSecret()).toMatch(/^whsec_/)
+    expect((await webhookSecrets())[0]).toMatch(/^whsec_/)
 
     const second = await ensureWebhookEndpoint(appUrl)
     expect(second).toEqual({ endpointId: first.endpointId, created: false })

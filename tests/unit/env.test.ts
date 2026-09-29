@@ -159,3 +159,25 @@ describe('production requirements', () => {
     expect(() => env()).toThrow(/Local storage is not durable/)
   })
 })
+
+describe('values pasted into a hosting dashboard', () => {
+  it('ignores surrounding spaces and quotes, exactly like the Netlify build does', () => {
+    E.APP_SECRET = `  "${'s'.repeat(40)}"  `
+    E.CRON_SECRET = ` '${'c'.repeat(30)}' `
+    E.STRIPE_SECRET_KEY = ' sk_test_abc\n'
+    E.RESEND_API_KEY = '"re_key"'
+    E.APP_URL = ' https://www.hournook.com '
+    const e = env()
+    expect(e.APP_SECRET).toBe('s'.repeat(40))
+    expect(e.CRON_SECRET).toBe('c'.repeat(30))
+    expect(e.STRIPE_SECRET_KEY).toBe('sk_test_abc')
+    expect(e.RESEND_API_KEY).toBe('re_key')
+    expect(e.APP_URL).toBe('https://www.hournook.com')
+  })
+
+  it('treats a value of only spaces as not set', () => {
+    E.STRIPE_SECRET_KEY = '   '
+    expect(env().STRIPE_SECRET_KEY).toBeUndefined()
+    expect(isStripeConfigured()).toBe(false)
+  })
+})

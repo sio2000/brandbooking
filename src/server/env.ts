@@ -13,6 +13,24 @@ import { z } from 'zod'
 const mailDomain = () =>
   new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host.replace(/^www\./, '')
 
+/**
+ * A value pasted into a hosting dashboard: surrounding whitespace and quotes
+ * are ignored, exactly as scripts/netlify-build.mjs does at build time. Build
+ * and runtime must agree, e.g. APP_SECRET encrypts the Stripe webhook secret
+ * during the build and decrypts it at runtime.
+ */
+const pasted = <T extends z.ZodType>(schema: T) =>
+  z.preprocess(
+    (v) =>
+      typeof v === 'string'
+        ? v
+            .trim()
+            .replace(/^(['"])(.*)\1$/, '$2')
+            .trim() || undefined
+        : v,
+    schema,
+  )
+
 const bool = z
   .enum(['true', 'false', '1', '0', ''])
   .optional()
@@ -22,9 +40,13 @@ const EnvSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     // On Netlify the site URL is baked in at build time (next.config.ts).
-    APP_URL: z
-      .url()
-      .default(() => process.env.NEXT_PUBLIC_APP_URL || process.env.URL || 'http://localhost:3000'),
+    APP_URL: pasted(
+      z
+        .url()
+        .default(
+          () => process.env.NEXT_PUBLIC_APP_URL || process.env.URL || 'http://localhost:3000',
+        ),
+    ),
     // Netlify DB (Neon) exposes NETLIFY_DATABASE_URL.
     DATABASE_URL: z.preprocess(
       // Tolerate whitespace/quotes pasted into hosting dashboards.
@@ -40,8 +62,8 @@ const EnvSchema = z
     DATABASE_SSL: bool,
     TRUST_PROXY: bool,
     // Signs customer booking links. 32+ random bytes; rotating it invalidates all links.
-    APP_SECRET: z.string().min(32).optional(),
-    CRON_SECRET: z.string().min(24).optional(),
+    APP_SECRET: pasted(z.string().min(32).optional()),
+    CRON_SECRET: pasted(z.string().min(24).optional()),
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
     ERROR_WEBHOOK_URL: z.url().optional(),
 
@@ -63,7 +85,7 @@ const EnvSchema = z
           : 'Hournook <no-reply@localhost>',
       ),
     SMTP_URL: z.string().optional(),
-    RESEND_API_KEY: z.string().optional(),
+    RESEND_API_KEY: pasted(z.string().optional()),
     // Test-only: point the Resend client at a local fake API. Ignored in production.
     RESEND_API_BASE: z.url().optional(),
 
@@ -83,12 +105,12 @@ const EnvSchema = z
     S3_SECRET_ACCESS_KEY: z.string().optional(),
     S3_PUBLIC_URL: z.url().optional(),
 
-    STRIPE_SECRET_KEY: z.string().optional(),
+    STRIPE_SECRET_KEY: pasted(z.string().optional()),
     // Not needed by the server-redirect Checkout flow; accepted so a shared
     // .env can carry it. Never exposed to the browser by this app.
-    STRIPE_PUBLISHABLE_KEY: z.string().optional(),
-    STRIPE_WEBHOOK_SECRET: z.string().optional(),
-    STRIPE_PRICE_ID: z.string().optional(),
+    STRIPE_PUBLISHABLE_KEY: pasted(z.string().optional()),
+    STRIPE_WEBHOOK_SECRET: pasted(z.string().optional()),
+    STRIPE_PRICE_ID: pasted(z.string().optional()),
     // Test-only: point the Stripe SDK at a local fake API. Ignored in production.
     STRIPE_API_BASE: z.url().optional(),
     STRIPE_AUTOMATIC_TAX: bool,
