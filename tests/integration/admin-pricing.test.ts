@@ -171,7 +171,7 @@ describe('changing the monthly price', () => {
     const de = box.sent.find((m) => m.to === B.owner.email)!
     expect(en.text).toContain('from €10 to €12 per month, VAT included')
     expect(en.text).toContain('cancel your subscription any time before')
-    expect(en.subject).toMatch(/^Your Hournook price changes on \d+ \w+ \d{4}$/)
+    expect(en.subject).toMatch(/^Your Hournook price changes on \w+ \d+, \d{4}$/)
     expect(de.subject).toMatch(/^Ihr Hournook-Preis ändert sich am /)
     expect(de.text).toMatch(/von 10\s€ auf 12\s€ pro Monat/)
     expect(de.text).toContain('inkl. MwSt.')

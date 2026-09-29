@@ -127,7 +127,7 @@ describe('customer emails follow the language they booked in', () => {
     await dispatchForAppointment(res.appointmentId)
     const [m] = mailTo('nikos@example.com')
     expect(m!.subject).toBe(`Booking confirmed: Haircut on ${formatDateLong(start(), TZ, 'en')}`)
-    expect(m!.html).toContain('<html lang="en-GB" dir="ltr">')
+    expect(m!.html).toContain('<html lang="en" dir="ltr">')
     expect(m!.text).toContain('Manage booking: http')
   })
 })
