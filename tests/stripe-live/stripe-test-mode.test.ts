@@ -67,6 +67,10 @@ describe.skipIf(!enabled)('Stripe test mode (live API)', () => {
     expect(sub?.stripeCustomerId).toMatch(/^cus_/)
     expect(sub?.status).toBeNull()
     customers.push(sub!.stripeCustomerId)
+    // Mark it for anyone else using the shared test account (see support.ts).
+    await stripe().customers.update(sub!.stripeCustomerId, {
+      metadata: { hournook_test: process.env.STRIPE_TEST_TAG || 'billing-agent' },
+    })
 
     const sessions = await stripe().checkout.sessions.list({
       customer: sub!.stripeCustomerId,

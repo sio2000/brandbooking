@@ -136,13 +136,16 @@ live keys on every environment, including deployed sites, until
 5. Optional: enable Stripe Tax and set `STRIPE_AUTOMATIC_TAX=true`.
 6. Local testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook`
    prints a test webhook secret for your `.env`; pay with card `4242 4242 4242 4242`.
-7. Optional live-API test suite (test mode):
-   `STRIPE_TEST_SECRET_KEY=sk_test_… STRIPE_TEST_PRICE_ID=price_… npm run test:stripe-live`.
+7. Optional live-API test suite (test mode, real webhook route, test clocks):
+   `STRIPE_TEST_SECRET_KEY=sk_test_… npm run test:stripe-live`. Results and the
+   full go-live checklist: [STRIPE_VERIFICATION.md](STRIPE_VERIFICATION.md).
 
 Going live (final step only): set `STRIPE_LIVE_MODE=enabled` and the live
 `sk_live_…` key on the production site, redeploy (the automatic setup creates
-the live price, portal configuration and webhook), then run one real purchase
-and cancellation yourself.
+the live price, portal configuration and webhook, and drops the test-mode ids
+it had stored), then run one real purchase and cancellation yourself. Clear the
+test-mode `subscriptions` rows first — see the go-live checklist in
+[STRIPE_VERIFICATION.md](STRIPE_VERIFICATION.md).
 
 ## 7. Email deliverability
 
