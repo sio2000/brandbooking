@@ -7,8 +7,8 @@ import { auditLogs, sessions, users } from '@/server/db/schema'
 import { resetDatabase } from '../helpers/db'
 import { TEST_PASSWORD, createUser, meta } from '../helpers/factory'
 import { bootstrapAdmin } from '@/server/admin/bootstrap'
-import { createSession } from '@/server/auth/session'
-import { signIn } from '@/server/auth/service'
+import { createSession, validateSessionToken } from '@/server/auth/session'
+import { changePassword, signIn } from '@/server/auth/service'
 import { verifyPassword } from '@/server/auth/password'
 import { LEGAL_VERSION } from '@/lib/legal'
 import { TEST_ENV } from '../helpers/test-env'
@@ -72,13 +72,41 @@ describe('admin bootstrap (ADMIN_BOOTSTRAP_EMAIL / ADMIN_BOOTSTRAP_PASSWORD)', (
     // Re-running with the same password (every deploy) changes nothing else.
     const { token } = await createSession(existing.id)
     const hash = u!.passwordHash
-    expect((await bootstrapAdmin({ email: EMAIL, password })).status).toBe('updated')
+    expect((await bootstrapAdmin({ email: EMAIL, password })).status).toBe('unchanged')
     const [again] = await db().select().from(users).where(eq(users.id, existing.id))
     expect(again!.passwordHash).toBe(hash)
     expect(token).toBeTruthy()
     expect(await db().select().from(sessions).where(eq(sessions.userId, existing.id))).toHaveLength(
       1,
     )
+  })
+
+  it('never undoes a password the admin changed later, even if the variables stay set', async () => {
+    const initial = throwaway()
+    await bootstrapAdmin({ email: EMAIL, password: initial })
+    const [admin] = await db().select().from(users).where(eq(users.email, EMAIL))
+    // The admin signs in and picks their own password.
+    const chosen = throwaway()
+    const current = (await validateSessionToken((await createSession(admin!.id)).token))!
+    await changePassword(admin!.id, current.sessionId, initial, chosen, meta())
+    const { token } = await createSession(admin!.id)
+
+    // The next deploy runs the bootstrap again with the old variables.
+    expect(await bootstrapAdmin({ email: EMAIL, password: initial })).toMatchObject({
+      status: 'unchanged',
+    })
+    const [after] = await db().select().from(users).where(eq(users.id, admin!.id))
+    expect(await verifyPassword(after!.passwordHash, chosen)).toBe(true)
+    expect(await verifyPassword(after!.passwordHash, initial)).toBe(false)
+    expect(await validateSessionToken(token)).not.toBeNull()
+
+    // Only an explicit ADMIN_BOOTSTRAP_RESET_PASSWORD=true puts it back (and signs out).
+    expect(
+      await bootstrapAdmin({ email: EMAIL, password: initial, resetPassword: true }),
+    ).toMatchObject({ status: 'updated' })
+    const [reset] = await db().select().from(users).where(eq(users.id, admin!.id))
+    expect(await verifyPassword(reset!.passwordHash, initial)).toBe(true)
+    expect(await validateSessionToken(token)).toBeNull()
   })
 
   it('skips with a clear reason when not configured or the password breaks the rules', async () => {

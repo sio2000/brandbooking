@@ -17,9 +17,20 @@ async function main() {
     return
   }
   const { bootstrapAdmin } = await import('../src/server/admin/bootstrap')
-  const r = await bootstrapAdmin({ email, password })
+  const r = await bootstrapAdmin({
+    email,
+    password,
+    resetPassword: process.env.ADMIN_BOOTSTRAP_RESET_PASSWORD?.trim() === 'true',
+  })
   if (r.status === 'skipped') {
     console.error(`[hournook] admin bootstrap: ERROR, skipped. ${r.reason}`)
+    return
+  }
+  if (r.status === 'unchanged') {
+    console.log(
+      `[hournook] admin bootstrap: ${r.email} is already an admin, nothing changed ` +
+        '(you can delete ADMIN_BOOTSTRAP_EMAIL and ADMIN_BOOTSTRAP_PASSWORD)',
+    )
     return
   }
   console.log(`[hournook] admin bootstrap: ${r.status} ${r.email}`)

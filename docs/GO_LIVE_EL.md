@@ -23,8 +23,10 @@ Deploy site**. Στο build αυτό δημιουργείται ο λογαρι�
 1. Συνδεθείτε στο `https://www.hournook.com/login` με `devtaskhub@gmail.com`: ανοίγει κατευθείαν το
    `/admin`.
 2. Αλλάξτε τον κωδικό στο `/admin/account`.
-3. **Διαγράψτε** τις `ADMIN_BOOTSTRAP_PASSWORD` και `ADMIN_BOOTSTRAP_EMAIL` από το Netlify (αλλιώς
-   κάθε deploy ξαναβάζει τον αρχικό κωδικό).
+3. **Διαγράψτε** τις `ADMIN_BOOTSTRAP_PASSWORD` και `ADMIN_BOOTSTRAP_EMAIL` από το Netlify. Δεν
+   κάνουν πια ζημιά (ένας υπάρχων admin δεν αλλάζει σε επόμενα deploy), αλλά δεν χρειάζονται και
+   δεν πρέπει να μένει κωδικός σε μεταβλητή. Αν ξεχάσετε τον κωδικό: «Forgot password» στη
+   σελίδα σύνδεσης.
 
 Ο λογαριασμός της επιχείρησής σας (xsiwzos@gmail.com) μένει κανονικός λογαριασμός επιχείρησης.
 Αν στο `/admin/users` εμφανίζεται κι αυτός ως admin (από παλιότερη ρύθμιση), πατήστε εκεί

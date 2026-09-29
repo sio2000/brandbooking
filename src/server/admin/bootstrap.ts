@@ -17,16 +17,20 @@ import { LEGAL_VERSION } from '@/lib/legal'
  *  - No account yet: one is created exactly like a normal sign-up (Argon2id
  *    hash, Terms accepted) but with the email already verified and
  *    platform-admin rights.
- *  - Existing account: promoted to admin, email marked verified, any ban or
- *    sign-in lock lifted, and the password set to the given one (other
- *    sessions are signed out when it actually changes).
+ *  - Existing account that is not an admin yet: promoted to admin, email
+ *    marked verified, any ban or sign-in lock lifted, and the password set
+ *    to the given one (other sessions are signed out when it actually changes).
+ *  - Existing admin: nothing changes. The variables often stay set by
+ *    mistake, and every deploy runs this again: it must never undo a
+ *    password the admin changed since. Set ADMIN_BOOTSTRAP_RESET_PASSWORD=true
+ *    for one deploy to force the password back (e.g. when locked out).
  *
  * The password is never logged or returned. Remove the variables after the
  * first successful sign-in (see docs/ADMIN.md).
  */
 
 export type BootstrapResult =
-  | { status: 'created' | 'updated'; email: string; userId: string }
+  | { status: 'created' | 'updated' | 'unchanged'; email: string; userId: string }
   | { status: 'skipped'; reason: string }
 
 const emailSchema = z.email().max(254)
@@ -34,6 +38,8 @@ const emailSchema = z.email().max(254)
 export async function bootstrapAdmin(input: {
   email?: string | null
   password?: string | null
+  /** Overwrite the password of an existing admin too (ADMIN_BOOTSTRAP_RESET_PASSWORD=true). */
+  resetPassword?: boolean
 }): Promise<BootstrapResult> {
   const rawEmail = (input.email ?? '').trim().toLowerCase()
   const password = input.password ?? ''
@@ -79,6 +85,10 @@ export async function bootstrapAdmin(input: {
       metadata: { created: true },
     })
     return { status: 'created', email, userId: created!.id }
+  }
+
+  if (existing.isPlatformAdmin && !existing.bannedAt && !input.resetPassword) {
+    return { status: 'unchanged', email, userId: existing.id }
   }
 
   const passwordChanged = !(await verifyPassword(existing.passwordHash, password))
