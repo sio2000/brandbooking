@@ -8,7 +8,13 @@ import { startFakeStripe } from '../helpers/fake-stripe'
 import { resetEnvCache } from '@/server/env'
 import { resetStripeClient, stripe } from '@/server/billing/stripe'
 import { handleStripeWebhook } from '@/server/billing/webhook'
-import { accessFor, createCheckoutSession, createPortalSession } from '@/server/billing/service'
+import {
+  accessFor,
+  createCheckoutSession,
+  createPortalSession,
+  paymentMethodSummary,
+} from '@/server/billing/service'
+import { planPriceId, PRICE_LOOKUP_KEY, resetBillingConfigCache } from '@/server/billing/config'
 import { createPublicBooking } from '@/server/booking/public'
 import { localToDate } from '@/lib/tz'
 import { AppError } from '@/server/errors'
@@ -104,6 +110,9 @@ describe('checkout', () => {
     expect(checkout.params.get('line_items[0][quantity]')).toBe('1')
     expect(checkout.params.get('client_reference_id')).toBe(s.ctx.business.id)
     expect(checkout.params.get('subscription_data[metadata][business_id]')).toBe(s.ctx.business.id)
+    // Invoices need the business's billing address: always collected and saved on the customer.
+    expect(checkout.params.get('billing_address_collection')).toBe('required')
+    expect(checkout.params.get('customer_update[address]')).toBe('auto')
     // Remaining free trial (14 days) carries over so the business is not charged early.
     const trialEnd = Number(checkout.params.get('subscription_data[trial_end]'))
     expect(trialEnd).toBeGreaterThan(Date.now() / 1000 + 13 * 86400)
@@ -345,5 +354,111 @@ describe('client cannot manipulate subscription state', () => {
       .where(eq(businesses.id, s.ctx.business.id))
     const access = await accessFor({ ...s.ctx.business, trialEndsAt: null })
     expect(access.canAcceptBookings).toBe(false)
+  })
+})
+
+describe('regressions found against the live Stripe test API', () => {
+  it('re-provisions the plan price even when an older release used the same idempotency key', async () => {
+    const saved = process.env.STRIPE_PRICE_ID
+    delete process.env.STRIPE_PRICE_ID
+    resetEnvCache()
+    resetBillingConfigCache()
+    fake.state.prices.length = 0
+    // The lookup key sits on a price from an older release (no tax behaviour set).
+    fake.state.prices.push({
+      id: 'price_old_unspecified',
+      object: 'price',
+      active: true,
+      product: 'prod_old',
+      currency: 'eur',
+      unit_amount: 1000,
+      lookup_key: PRICE_LOOKUP_KEY,
+      recurring: { interval: 'month', interval_count: 1 },
+      tax_behavior: 'unspecified',
+    })
+    // That release created its product with a static key and other parameters; Stripe
+    // rejects reusing a key with different parameters for 24 hours.
+    fake.state.enforceIdempotency = true
+    fake.state.idempotency.set('hournook-product-1000-EUR', '/v1/products?name=Hournook')
+    try {
+      const id = await planPriceId()
+      const price = fake.state.prices.find((p) => p.id === id)!
+      expect(price).toMatchObject({ unit_amount: 1000, tax_behavior: 'inclusive' })
+      expect(price.lookup_key).toBe(PRICE_LOOKUP_KEY)
+      expect(fake.state.prices.find((p) => p.id === 'price_old_unspecified')!.lookup_key).toBeNull()
+    } finally {
+      fake.state.enforceIdempotency = false
+      fake.state.idempotency.clear()
+      fake.state.prices.length = 0
+      process.env.STRIPE_PRICE_ID = saved
+      resetEnvCache()
+      resetBillingConfigCache()
+    }
+  })
+
+  it('shows the card Stripe charges when it is the customer default, not the subscription’s', async () => {
+    await db().insert(subscriptions).values({
+      businessId: s.ctx.business.id,
+      stripeCustomerId: 'cus_pm',
+      stripeSubscriptionId: 'sub_pm',
+      status: 'active',
+    })
+    fake.state.subscriptions.sub_pm = {
+      id: 'sub_pm',
+      object: 'subscription',
+      default_payment_method: null,
+      customer: {
+        id: 'cus_pm',
+        object: 'customer',
+        invoice_settings: {
+          default_payment_method: {
+            id: 'pm_1',
+            object: 'payment_method',
+            card: { brand: 'visa', last4: '4242' },
+          },
+        },
+      },
+    }
+    expect(await paymentMethodSummary(s.ctx.business.id)).toBe('VISA •••• 4242')
+    const req = fake.requests.find((r) => r.path === '/v1/subscriptions/sub_pm')!
+    expect(req.method).toBe('GET')
+  })
+
+  it('past_due without an invoice.payment_failed event still ends the grace period', async () => {
+    await db()
+      .update(businesses)
+      .set({ trialEndsAt: null })
+      .where(eq(businesses.id, s.ctx.business.id))
+    const b = { ...s.ctx.business, trialEndsAt: null }
+    await send('customer.subscription.created', subscription('active'))
+    await send('customer.subscription.updated', subscription('past_due'), 1)
+    const [sub] = await db()
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.businessId, s.ctx.business.id))
+    expect(sub!.lastPaymentFailedAt).not.toBeNull()
+    expect((await accessFor(b)).state).toBe('past_due_grace')
+    const later = await accessFor(b, new Date(Date.now() + 8 * 86_400_000))
+    expect(later).toMatchObject({ state: 'inactive', canAcceptBookings: false })
+    // A later invoice.payment_failed does not restart the grace period.
+    await send(
+      'invoice.payment_failed',
+      {
+        id: 'in_pf',
+        object: 'invoice',
+        customer: 'cus_test_billing',
+        attempt_count: 1,
+        parent: {
+          type: 'subscription_details',
+          subscription_details: { subscription: 'sub_test_1', metadata: {} },
+        },
+      },
+      2,
+    )
+    const [again] = await db()
+      .select()
+      .from(subscriptions)
+      .where(eq(subscriptions.businessId, s.ctx.business.id))
+    expect(again!.lastPaymentFailedAt!.getTime()).toBe(sub!.lastPaymentFailedAt!.getTime())
   })
 })

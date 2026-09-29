@@ -1,10 +1,13 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { eq } from 'drizzle-orm'
+import Stripe from 'stripe'
 import { closeDb, db } from '@/server/db/client'
 import { platformSettings, subscriptions } from '@/server/db/schema'
 import { resetEnvCache } from '@/server/env'
 import { resetStripeClient, stripe } from '@/server/billing/stripe'
+import { setSetting } from '@/server/admin/admin'
 import {
+  dropForeignModeSettings,
   ensureWebhookEndpoint,
   planPriceId,
   portalConfigurationId,
@@ -160,6 +163,9 @@ describe('webhook endpoint provisioning', () => {
       (x) => x.method === 'POST' && x.path === '/v1/webhook_endpoints',
     )!
     expect(req.params.get('url')).toBe(`${APP}/api/stripe/webhook`)
+    // Payloads are pinned to the API version the handler is written for, not the
+    // Stripe account's default (endpoints created without it had api_version null).
+    expect(req.params.get('api_version')).toBe(Stripe.API_VERSION)
     const secret = await webhookSecret()
     expect(secret).toMatch(/^whsec_test_/)
     // The plaintext secret is never stored.
@@ -203,5 +209,35 @@ describe('webhook endpoint provisioning', () => {
 
   it('refuses non-https URLs', async () => {
     await expect(ensureWebhookEndpoint('http://localhost:3000')).rejects.toThrow(/https/)
+  })
+})
+
+describe('switching Stripe mode (test keys → live keys at go-live)', () => {
+  it('forgets stored price/portal ids the current key cannot see, then provisions new ones', async () => {
+    // Ids stored while the site ran on test-mode keys; the new key's account has neither.
+    await setSetting('stripe.price_id', 'price_from_test_mode')
+    await setSetting('stripe.portal_configuration_id', 'bpc_from_test_mode')
+    expect((await dropForeignModeSettings()).sort()).toEqual([
+      'stripe.portal_configuration_id',
+      'stripe.price_id',
+    ])
+    expect(await planPriceId()).not.toBe('price_from_test_mode')
+    expect(creates('/v1/prices')).toBe(1)
+    expect(await portalConfigurationId()).not.toBe('bpc_from_test_mode')
+  })
+
+  it('keeps ids that belong to the current mode', async () => {
+    const price = await planPriceId()
+    fake.state.portalConfigs.push({
+      id: 'bpc_same_mode',
+      active: true,
+      is_default: true,
+      livemode: false,
+    })
+    expect(await portalConfigurationId()).toBe('bpc_same_mode')
+    expect(await dropForeignModeSettings()).toEqual([])
+    resetBillingConfigCache()
+    expect(await planPriceId()).toBe(price)
+    expect(creates('/v1/prices')).toBe(1)
   })
 })

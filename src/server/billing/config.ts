@@ -1,4 +1,8 @@
 import 'server-only'
+import StripeSdk from 'stripe'
+import { eq } from 'drizzle-orm'
+import { db } from '@/server/db/client'
+import { platformSettings } from '@/server/db/schema'
 import { env } from '@/server/env'
 import { getSetting, setSetting } from '@/server/admin/admin'
 import { seal, unseal } from '@/server/security/sealed'
@@ -73,13 +77,18 @@ export async function planPriceId(): Promise<string> {
   })
   let price = existing.data[0]
   if (!price || !matchesPlan(price)) {
+    // Idempotency keys name the price being replaced: concurrent cold starts
+    // share one request, while a later re-provisioning (plan changed, price
+    // archived, parameters changed by a newer release) is never answered with a
+    // stale replay or rejected as a key reused with different parameters.
+    const replaces = price?.id ?? 'none'
     const product = await stripe().products.create(
       {
         name: 'Hournook',
         description: 'Online booking for your business. One plan, everything included.',
         metadata: { app: 'hournook' },
       },
-      { idempotencyKey: `hournook-product-${e.PLAN_PRICE_CENTS}-${e.PLAN_CURRENCY}` },
+      { idempotencyKey: `hournook-product-${e.PLAN_PRICE_CENTS}-${e.PLAN_CURRENCY}-${replaces}` },
     )
     price = await stripe().prices.create(
       {
@@ -93,7 +102,9 @@ export async function planPriceId(): Promise<string> {
         transfer_lookup_key: true,
         metadata: { app: 'hournook' },
       },
-      { idempotencyKey: `hournook-price-${product.id}-${e.PLAN_PRICE_CENTS}-inclusive` },
+      {
+        idempotencyKey: `hournook-price-${product.id}-${e.PLAN_PRICE_CENTS}-inclusive-${replaces}`,
+      },
     )
     logger.info('stripe.price_created', { priceId: price.id })
   }
@@ -177,6 +188,9 @@ export async function ensureWebhookEndpoint(
   const created = await stripe().webhookEndpoints.create({
     url,
     enabled_events: WEBHOOK_EVENTS,
+    // Payloads in the API version this SDK (and the handler) is written for,
+    // not whatever default the Stripe account happens to have.
+    api_version: StripeSdk.API_VERSION,
     description: 'Hournook billing (created automatically)',
     metadata: { app: 'hournook' },
   })
@@ -188,4 +202,38 @@ export async function ensureWebhookEndpoint(
   } satisfies StoredWebhook)
   cache.webhook = created.secret
   return { endpointId: created.id, created: true }
+}
+
+/**
+ * Forgets a stored plan price or portal configuration that the current secret
+ * key cannot use: ids saved while running on test-mode keys do not exist in
+ * live mode (and vice versa), so after switching keys Checkout would fail with
+ * "No such price". Dropped ids are provisioned again for the current mode on
+ * next use. Run by `npm run stripe:setup` before anything else.
+ */
+export async function dropForeignModeSettings(): Promise<string[]> {
+  const live = /^(sk|rk)_live_/.test(env().STRIPE_SECRET_KEY ?? '')
+  const checks: Array<[string, (id: string) => Promise<{ livemode?: boolean }>]> = [
+    [PRICE_SETTING, (id) => stripe().prices.retrieve(id)],
+    [PORTAL_SETTING, (id) => stripe().billingPortal.configurations.retrieve(id)],
+  ]
+  const dropped: string[] = []
+  for (const [key, retrieve] of checks) {
+    const id = await getSetting<string>(key)
+    if (!id) continue
+    const usable = await retrieve(id).then(
+      (obj) => obj.livemode === undefined || obj.livemode === live,
+      (err: { statusCode?: number }) => {
+        if (err?.statusCode === 404) return false
+        throw err
+      },
+    )
+    if (!usable) {
+      await db().delete(platformSettings).where(eq(platformSettings.key, key))
+      logger.info('stripe.setting_dropped', { key, id })
+      dropped.push(key)
+    }
+  }
+  if (dropped.length) resetBillingConfigCache()
+  return dropped
 }
