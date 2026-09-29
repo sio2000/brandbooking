@@ -19,7 +19,7 @@ function build(extra: Record<string, string>) {
       RESEND_API_KEY: 're_test',
       CONTEXT: 'production',
       ...extra,
-    },
+    } as unknown as NodeJS.ProcessEnv,
   })
 }
 

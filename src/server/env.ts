@@ -127,7 +127,13 @@ const EnvSchema = z
     // Stripe safety lock: only TEST MODE keys are accepted — on developer
     // machines, CI and every deployment — until live mode is deliberately
     // switched on at go-live with STRIPE_LIVE_MODE=enabled.
-    if (process.env.STRIPE_LIVE_MODE !== 'enabled') {
+    // Compared like the Netlify build does (scripts/netlify-build.mjs): spaces
+    // and quotes around the value are ignored, so build and runtime agree.
+    const liveMode = (process.env.STRIPE_LIVE_MODE ?? '')
+      .trim()
+      .replace(/^(['"])(.*)\1$/, '$2')
+      .trim()
+    if (liveMode !== 'enabled') {
       for (const key of ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'] as const) {
         if (/^(sk|rk|pk)_live_/.test(env[key] ?? '')) {
           ctx.addIssue({

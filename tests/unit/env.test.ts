@@ -181,3 +181,19 @@ describe('values pasted into a hosting dashboard', () => {
     expect(isStripeConfigured()).toBe(false)
   })
 })
+
+describe('STRIPE_LIVE_MODE as pasted in a dashboard', () => {
+  it('accepts "enabled" with stray spaces or quotes, like the build does, and nothing else', () => {
+    E.STRIPE_SECRET_KEY = 'sk_live_abc'
+    for (const v of [' enabled ', '"enabled"', 'enabled\n']) {
+      E.STRIPE_LIVE_MODE = v
+      resetEnvCache()
+      expect(env().STRIPE_SECRET_KEY, JSON.stringify(v)).toBe('sk_live_abc')
+    }
+    for (const v of ['true', 'Enabled', '1']) {
+      E.STRIPE_LIVE_MODE = v
+      resetEnvCache()
+      expect(() => env(), v).toThrow(/live-mode key/)
+    }
+  })
+})
