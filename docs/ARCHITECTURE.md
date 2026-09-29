@@ -196,8 +196,9 @@ Rotating `APP_SECRET` revokes every outstanding link.
 
 ## Scheduled work
 
-`runScheduledTick()` (via `/api/cron/tick` or `npm run worker`, every minute)
-dispatches due emails including reminders, and runs housekeeping: expired
+`runScheduledTick()` (via `/api/cron/tick` every 15 minutes on Netlify, or
+`npm run worker` every minute) dispatches due emails including reminders (those
+due before the next run go out now, so they are never late), and runs housekeeping: expired
 sessions/tokens, stale rate-limit windows, funnel events older than 400 days,
 and scrubbing payloads of old sent notifications. The last run is recorded and
 shown on the admin health page.

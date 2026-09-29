@@ -60,6 +60,7 @@ palette (⌘K).
 | Pricing       | Current price (VAT included) and its Stripe price, price history, pending subscription moves.                                                                                                                                                        |
 | Feature flags | Global or per-business flags.                                                                                                                                                                                                                        |
 | Health        | Email backlog and failures, webhook failures, scheduler heartbeat, database latency.                                                                                                                                                                 |
+| Usage         | Free-plan meters for Neon (database compute, storage, transfer), Netlify (credits) and Resend (emails per month and per day): used, forecast for the period, the date it would run out, and the paid plan to move to. See below.                     |
 | Audit log     | The latest platform-wide events.                                                                                                                                                                                                                     |
 
 ### How the numbers are counted
@@ -116,7 +117,7 @@ VAT included. The dialog lists the consequences before you confirm. Then:
 2. Existing subscribers (active, trialing or past due) keep their price for **30 days**, as
    the Terms say. Each owner is emailed right away in their account language: old price, new
    price (VAT included), the date, and that they can cancel from Billing before then.
-3. After those 30 days the scheduler (the every-minute Netlify function → `/api/cron/tick`)
+3. After those 30 days the scheduler (the Netlify function every 15 minutes → `/api/cron/tick`)
    moves each subscription's item to the new price with `proration_behavior: none`: nothing is
    charged now, the new amount applies from the next renewal. It is idempotent, retried with
    backoff (up to 8 attempts), logged and audited; failures show under _Pending subscription
@@ -131,6 +132,25 @@ The Stripe webhook accepts subscriptions on any price and records each one's amo
 revenue figures follow the move. Without `STRIPE_SECRET_KEY` the price can't be changed and
 the dialog says "Stripe is not configured".
 
+## Usage (free plans)
+
+Hournook is sized to run on the free Neon, Netlify and Resend plans. The Usage page shows,
+for each allowance, how much is used, where the current pace ends up at the end of the
+period, the day it would run out, and the paid plan to move to. A meter turns amber at 70%
+(or when the pace would run out before the period ends) and red at 90%; the overview shows
+a banner then.
+
+| Meter           | Source                                                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Neon compute    | Exact with `NEON_API_KEY` + `NEON_PROJECT_ID`; otherwise a reading you enter, or an estimate (scheduler only).                                                |
+| Neon storage    | Exact with the API; otherwise the database size.                                                                                                              |
+| Neon transfer   | Only with the API.                                                                                                                                            |
+| Netlify credits | A reading you copy from Netlify → Usage (Netlify has no API for it); otherwise an estimate from production deploys (counted by the build) and scheduler runs. |
+| Resend emails   | Measured: every email the app sent this month and today (UTC).                                                                                                |
+
+The app counts deploys, scheduler runs and account emails per day in `usage_counters`
+(kept 400 days). Plan figures live in `src/lib/usage.ts`.
+
 ## Environment variables
 
 | Variable                         | Purpose                                                                                        |
@@ -142,6 +162,8 @@ the dialog says "Stripe is not configured".
 | `PLAN_PRICE_CENTS`               | Existing. The price until one is set in the panel (then the panel's price wins).               |
 | `PLAN_CURRENCY`                  | Existing. Currency of that price.                                                              |
 | `STRIPE_PRICE_ID`                | Existing. Pinned Stripe price until one is set in the panel (then the panel's price wins).     |
+| `NEON_API_KEY`                   | New, optional. Read-only Neon API key: exact database figures on the Usage page.               |
+| `NEON_PROJECT_ID`                | New, optional. The Neon project to read (Project settings → General).                          |
 
 ## Database
 

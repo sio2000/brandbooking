@@ -29,6 +29,7 @@ const userActions = await import('@/app/admin/users/actions')
 const businessActions = await import('@/app/admin/businesses/actions')
 const pricingActions = await import('@/app/admin/pricing/actions')
 const accountActions = await import('@/app/admin/account/actions')
+const usageActions = await import('@/app/admin/usage/actions')
 
 const PAGES = {
   '/admin': () => import('@/app/admin/page'),
@@ -40,6 +41,7 @@ const PAGES = {
   '/admin/pricing': () => import('@/app/admin/pricing/page'),
   '/admin/flags': () => import('@/app/admin/flags/page'),
   '/admin/health': () => import('@/app/admin/health/page'),
+  '/admin/usage': () => import('@/app/admin/usage/page'),
   '/admin/audit': () => import('@/app/admin/audit/page'),
   '/admin/account': () => import('@/app/admin/account/page'),
   layout: () => import('@/app/admin/layout'),
@@ -75,6 +77,9 @@ function allActions() {
       businessActions.deleteBusinessAction(id, A.ctx.business.slug, 'Delete it'),
     changePriceAction: () => pricingActions.changePriceAction('1.00', 'Cheap'),
     retryMigrationsAction: () => pricingActions.retryMigrationsAction(),
+    saveUsageReadingAction: () =>
+      usageActions.saveUsageReadingAction({ service: 'netlify', value: '120', resetDay: '14' }),
+    clearUsageReadingAction: () => usageActions.clearUsageReadingAction('netlify'),
     changeAdminPasswordAction: () =>
       accountActions.changeAdminPasswordAction(
         'correct-horse-battery-9',
@@ -101,6 +106,7 @@ describe('admin server actions', () => {
       businessActions,
       pricingActions,
       accountActions,
+      usageActions,
     ].flatMap((m) =>
       Object.entries(m)
         .filter(([, v]) => typeof v === 'function')

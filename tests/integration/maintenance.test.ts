@@ -155,6 +155,7 @@ describe('runMaintenance', () => {
       auditIps: 0,
       accountEmails: 0,
       completed: 0,
+      usage: 0,
     })
   })
 

@@ -85,6 +85,34 @@ describe('outbox delivery', () => {
     expect(memoryMailbox().sent.filter((m) => m.subject.startsWith('Reminder:'))).toHaveLength(2) // no duplicates
   })
 
+  it('the scheduler sends reminders due before its next run early, never other emails', async () => {
+    await book()
+    await dispatchDue()
+    const before = memoryMailbox().sent.length
+    // Reminders due in 10 minutes, and some other email due in 10 minutes.
+    await db().execute(
+      sql`UPDATE notifications SET send_after = now() + interval '10 minutes' WHERE status = 'pending'`,
+    )
+    const [appt] = await db().execute<{ id: string }>(sql`SELECT id FROM appointments LIMIT 1`)
+    await db()
+      .insert(notifications)
+      .values({
+        businessId: s.ctx.business.id,
+        appointmentId: appt!.id,
+        template: 'booking_cancelled',
+        recipient: 'later@example.com',
+        sendAfter: new Date(Date.now() + 10 * 60_000),
+      })
+    await dispatchDue()
+    expect(memoryMailbox().sent.length).toBe(before) // without a lead nothing is due yet
+    await dispatchDue({ reminderLeadMinutes: 5 })
+    expect(memoryMailbox().sent.length).toBe(before) // 10 minutes is beyond a 5-minute lead
+    await dispatchDue({ reminderLeadMinutes: 15 })
+    const sent = memoryMailbox().sent.slice(before)
+    expect(sent.filter((m) => m.subject.startsWith('Reminder:'))).toHaveLength(2)
+    expect(sent.some((m) => m.to === 'later@example.com')).toBe(false)
+  })
+
   it('cancelled bookings never receive reminders', async () => {
     const res = await book()
     await cancelManagedBooking(res.manageToken, null, meta())

@@ -109,3 +109,7 @@ if (process.env.CONTEXT === 'production') {
   log(`2/3 ${process.env.CONTEXT ?? 'local'} build: skipping Stripe webhook provisioning`)
 }
 run('3/3 Building the Next.js app', 'npx', ['next', 'build'])
+// Every production deploy costs Netlify credits: count it for Admin → Usage.
+if (process.env.CONTEXT === 'production') {
+  spawnSync('npx', ['tsx', 'scripts/record-deploy.ts'], { stdio: 'inherit', env: process.env })
+}

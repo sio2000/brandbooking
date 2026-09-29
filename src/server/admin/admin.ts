@@ -16,6 +16,7 @@ import { AppError } from '@/server/errors'
 import { audit } from '@/server/audit'
 import type { ValidatedSession } from '@/server/auth/session'
 import type { RequestMeta } from '@/server/request'
+import { OVERDUE_EMAIL_MINUTES } from '@/lib/scheduler'
 
 /**
  * Platform administration. Admins see operational data and aggregates, but
@@ -266,7 +267,7 @@ export async function systemHealth() {
   }>(sql`
     SELECT
       (SELECT count(*) FROM notifications WHERE status IN ('pending','sending') AND send_after <= now())::int AS backlog,
-      (SELECT count(*) FROM notifications WHERE status = 'pending' AND send_after <= now() - interval '10 minutes')::int AS overdue,
+      (SELECT count(*) FROM notifications WHERE status = 'pending' AND send_after <= now() - make_interval(mins => ${OVERDUE_EMAIL_MINUTES}))::int AS overdue,
       (SELECT count(*) FROM notifications WHERE status = 'failed' AND updated_at > now() - interval '24 hours')::int AS failed_24h,
       (SELECT count(*) FROM billing_events WHERE status = 'failed' AND received_at > now() - interval '24 hours')::int AS webhook_failed_24h,
       (SELECT count(*) FROM notifications WHERE status = 'sent' AND sent_at > now() - interval '24 hours')::int AS sent_24h

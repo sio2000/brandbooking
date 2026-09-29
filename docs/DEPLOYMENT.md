@@ -7,15 +7,15 @@ and what **you** must configure — nothing here is pre-provisioned.
 
 ## 1. What you need
 
-| Service                  | Purpose                                           | Examples                                                                |
-| ------------------------ | ------------------------------------------------- | ----------------------------------------------------------------------- |
-| Node.js host             | Runs the app (`next build` / `next start`)        | Vercel, Render, Fly.io, Docker on a VM                                  |
-| PostgreSQL ≥ 16          | All application data                              | Neon, AWS RDS, Google Cloud SQL, Render, DigitalOcean                   |
-| Transactional email      | Booking confirmations, reminders, account emails  | Resend (API) or any SMTP: Postmark, SES, Mailgun                        |
-| S3-compatible storage    | Logos, covers, avatars                            | AWS S3, Cloudflare R2, Backblaze B2, MinIO                              |
-| Scheduler (every minute) | Sends due emails & reminders, housekeeping        | Vercel Cron (paid plans), GitHub Actions/cron-job.org, `npm run worker` |
-| Stripe account           | €10/month subscriptions                           | Stripe Billing                                                          |
-| Domain + DNS             | App URL and email sending domain (SPF/DKIM/DMARC) | Any registrar                                                           |
+| Service                    | Purpose                                           | Examples                                                                |
+| -------------------------- | ------------------------------------------------- | ----------------------------------------------------------------------- |
+| Node.js host               | Runs the app (`next build` / `next start`)        | Vercel, Render, Fly.io, Docker on a VM                                  |
+| PostgreSQL ≥ 16            | All application data                              | Neon, AWS RDS, Google Cloud SQL, Render, DigitalOcean                   |
+| Transactional email        | Booking confirmations, reminders, account emails  | Resend (API) or any SMTP: Postmark, SES, Mailgun                        |
+| S3-compatible storage      | Logos, covers, avatars                            | AWS S3, Cloudflare R2, Backblaze B2, MinIO                              |
+| Scheduler (every 1–15 min) | Sends due emails & reminders, housekeeping        | Vercel Cron (paid plans), GitHub Actions/cron-job.org, `npm run worker` |
+| Stripe account             | €10/month subscriptions                           | Stripe Billing                                                          |
+| Domain + DNS               | App URL and email sending domain (SPF/DKIM/DMARC) | Any registrar                                                           |
 
 The database needs the `citext`, `btree_gist` and `pg_trgm` extensions (standard
 contrib modules; all managed providers above support them). The migration
@@ -81,7 +81,9 @@ email count.
 
 ## 5. Scheduler (required for emails and reminders)
 
-Call the tick endpoint **every minute**:
+Call the tick endpoint **every 1–15 minutes** (Netlify: every 15 minutes, to stay on the
+free plans; booking and account emails never wait for it, and reminders due before the
+next run are sent early):
 
 ```bash
 curl -fsS -X POST -H "Authorization: Bearer $CRON_SECRET" https://app.example.com/api/cron/tick
@@ -173,7 +175,7 @@ The admin panel (`/admin`), price changes and all admin actions are described in
 
 - [ ] All production env vars set; app starts without configuration errors
 - [ ] `npm run db:migrate` applied; `/api/health` returns 200
-- [ ] Scheduler calling `/api/cron/tick` every minute (Admin → Health shows last run)
+- [ ] Scheduler calling `/api/cron/tick` every 1–15 minutes (Admin → Health shows last run)
 - [ ] Email domain authenticated; test booking confirmation and password reset received
 - [ ] S3 bucket private (files are served through `/media` or a CDN you configured); upload a logo
 - [ ] Stripe live product, portal configuration and webhook created; one real checkout tested and refunded

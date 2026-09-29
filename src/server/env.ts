@@ -120,6 +120,11 @@ const EnvSchema = z
     PLAN_PRICE_CENTS: z.coerce.number().int().min(0).default(1000),
     PLAN_CURRENCY: z.string().length(3).default('EUR'),
 
+    // Optional: exact database usage on Admin → Usage. Checked where used, so
+    // a wrong value there can never take the site down.
+    NEON_API_KEY: pasted(z.string().optional()),
+    NEON_PROJECT_ID: pasted(z.string().optional()),
+
     SUPPORT_EMAIL: z.email().optional(),
     SUPPORT_URL: z.url().optional(),
   })

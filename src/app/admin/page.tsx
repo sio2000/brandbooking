@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, Building2 } from 'lucide-react'
 import { recentSignups, systemHealth } from '@/server/admin/admin'
 import { overviewStats } from '@/server/admin/stats'
+import { usageReport } from '@/server/usage/report'
 import { requireAdminPage } from '@/server/tenancy/context'
 import { Card, CardBody, CardHeader } from '@/components/ui/card'
 import { Alert, EmptyState } from '@/components/ui/feedback'
@@ -30,11 +31,13 @@ function KpiGroup({ title, children }: { title: string; children: React.ReactNod
 
 export default async function AdminOverviewPage() {
   await requireAdminPage()
-  const [m, signups, health] = await Promise.all([
+  const [m, signups, health, usage] = await Promise.all([
     overviewStats(),
     recentSignups(8),
     systemHealth(),
+    usageReport(),
   ])
+  const tightUsage = usage.items.filter((i) => i.assessment.tone !== 'ok')
   const n = (v: number) => formatNumber(v)
   const pct = (r: number | null) => (r === null ? '—' : formatPercent(r, 'en-GB', 1))
   const checks = assessHealth(health)
@@ -67,6 +70,30 @@ export default async function AdminOverviewPage() {
           }
         >
           {problems.map((p) => `${p.label}: ${p.note}`).join(' · ')}
+        </Alert>
+      )}
+
+      {tightUsage.length > 0 && (
+        <Alert
+          tone={usage.tone === 'danger' ? 'danger' : 'warning'}
+          title={
+            usage.tone === 'danger'
+              ? 'A free plan is nearly used up'
+              : 'A free plan is on course to run out'
+          }
+          className="mb-6"
+          action={
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/admin/usage">View usage</Link>
+            </Button>
+          }
+        >
+          {tightUsage
+            .map(
+              (i) =>
+                `${i.service} ${i.label.toLowerCase()}: ${formatPercent(i.assessment.share, 'en-GB', 0)} used`,
+            )
+            .join(' · ')}
         </Alert>
       )}
 

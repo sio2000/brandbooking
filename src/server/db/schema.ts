@@ -563,3 +563,14 @@ export const planPriceMigrations = pgTable(
   },
   (t) => [primaryKey({ columns: [t.planPriceId, t.businessId] })],
 )
+
+/** Per-day usage counters shown on the admin Usage page (0005_usage). */
+export const usageCounters = pgTable(
+  'usage_counters',
+  {
+    day: date('day', { mode: 'string' }).notNull(),
+    metric: text('metric').notNull(),
+    value: bigint('value', { mode: 'number' }).notNull().default(0),
+  },
+  (t) => [primaryKey({ columns: [t.day, t.metric] })],
+)

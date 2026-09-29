@@ -16,6 +16,7 @@ import {
 } from '@/components/admin/primitives'
 import { assessHealth, HEALTH_THRESHOLDS, worstTone } from '@/components/admin/health'
 import { formatNumber } from '@/lib/format'
+import { SCHEDULER_INTERVAL_MINUTES } from '@/lib/scheduler'
 
 export const metadata: Metadata = { title: 'System health' }
 
@@ -70,8 +71,8 @@ export default async function AdminHealthPage() {
             label="Overdue emails"
             value={formatNumber(h.overdue)}
             tone={h.overdue > 0 ? 'warning' : undefined}
-            toneLabel="Waiting > 10 min"
-            hint="None waiting > 10 min"
+            toneLabel={`Waiting > ${HEALTH_THRESHOLDS.overdueEmailMinutes} min`}
+            hint={`None waiting > ${HEALTH_THRESHOLDS.overdueEmailMinutes} min`}
           />
           <Kpi label="Sent (24 h)" value={formatNumber(h.sent_24h)} />
           <Kpi
@@ -93,7 +94,7 @@ export default async function AdminHealthPage() {
         <Card>
           <CardHeader
             title="Scheduler"
-            description="Delivers due emails and reminders and runs housekeeping on every tick."
+            description={`Runs every ${SCHEDULER_INTERVAL_MINUTES} minutes: sends reminders and retried or billing emails, and runs housekeeping. Booking and account emails are sent immediately.`}
           />
           <CardBody className="flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm">

@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto'
 import { company } from '@/lib/legal'
 import { absoluteUrl } from '@/lib/site'
 import { EmailSendError, emailProvider, type EmailMessage } from './providers'
+import { recordUsage, USAGE_METRICS } from '@/server/usage/counters'
 import { logger } from '@/server/observability/logger'
 import type { Locale } from '@/lib/i18n/config'
 import { translator } from '@/lib/i18n/load'
@@ -53,6 +54,7 @@ async function deliver(message: EmailMessage): Promise<boolean> {
         attempts: attempt + 1,
         ms: Date.now() - started,
       })
+      await recordUsage({ [USAGE_METRICS.accountEmail]: 1 })
       return true
     } catch (err) {
       const retryable = !(err instanceof EmailSendError) || err.retryable

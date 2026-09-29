@@ -39,7 +39,7 @@ npm run db:seed                 # demo business "Linden & Co. Hair Studio"
 
 # 4. Run
 npm run dev                     # http://localhost:3000
-npm run worker                  # optional: sends emails & reminders every minute
+npm run worker                  # optional: sends emails & reminders every minute (local)
 ```
 
 Demo logins created by the seed (development only — the seed refuses to run in production):

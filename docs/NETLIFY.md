@@ -8,7 +8,7 @@ On Netlify the app configures itself as far as possible:
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Site URL                        | Production: `https://www.hournook.com` once the domain is attached; otherwise Netlify's `URL` / `DEPLOY_PRIME_URL`               |
 | File uploads                    | **Netlify Blobs**, automatically (no bucket needed)                                                                              |
-| Scheduler (emails, reminders)   | **Netlify Scheduled Function** `netlify/functions/cron-tick.mts`, every minute                                                   |
+| Scheduler (emails, reminders)   | **Netlify Scheduled Function** `netlify/functions/cron-tick.mts`, every 15 minutes (fits the free plans, see below)              |
 | Database migrations             | Run on every build (`npm run build:netlify`)                                                                                     |
 | Stripe price / portal / webhook | Provisioned on every production build (`npm run stripe:setup`); the webhook signing secret is stored encrypted with `APP_SECRET` |
 | Client IP for rate limiting     | Netlify's `x-nf-client-connection-ip`                                                                                            |
@@ -98,6 +98,15 @@ for the new URL.
 - Deploy previews use the same environment variables — and therefore the same
   database — unless you scope variables per deploy context.
 - Uploaded images live in the site-wide Netlify Blobs store `hournook-uploads`.
+- **Free plans.** Netlify's Free plan has 300 credits a month (a production deploy
+  costs 15, so 20 deploys use it all; functions, bandwidth and requests use the rest)
+  and pauses the site when they run out. Neon's Free plan has 100 CU-hours a month and
+  suspends the database when they run out. The scheduler therefore runs every 15
+  minutes, not every minute: an every-minute tick would keep the database awake all
+  month (~180 CU-hours) and cost ~450 credits on its own. Booking, cancellation and
+  account emails are sent immediately; reminders go out up to 15 minutes early, never
+  late. **Admin → Usage** shows how much of each free plan is used, the forecast for the
+  month and when to upgrade (`src/lib/usage.ts` holds the plan figures).
 - Server Actions accept up to 6 MB, matching Netlify Functions' request limit;
   image uploads are capped at 5 MB.
 

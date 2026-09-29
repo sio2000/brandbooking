@@ -9,6 +9,7 @@ import {
   Building2,
   Euro,
   Flag,
+  Gauge,
   KeyRound,
   LayoutDashboard,
   Menu,
@@ -29,6 +30,7 @@ const items = [
   { href: '/admin/pricing', label: 'Pricing', icon: Euro },
   { href: '/admin/flags', label: 'Feature flags', icon: Flag },
   { href: '/admin/health', label: 'Health', icon: Activity },
+  { href: '/admin/usage', label: 'Usage', icon: Gauge },
   { href: '/admin/audit', label: 'Audit log', icon: ScrollText },
 ] as const
 

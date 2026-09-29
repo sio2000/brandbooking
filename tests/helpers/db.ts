@@ -9,7 +9,8 @@ export async function resetDatabase() {
       service_categories, services, staff_services, weekly_hours, special_hours, closures, time_blocks,
       booking_rules, customers, appointments, appointment_events, notifications, inbox_items,
       subscriptions, billing_events, audit_logs, uploaded_assets, feature_flags, platform_settings,
-      rate_limits, booking_page_events, plan_prices, plan_price_migrations RESTART IDENTITY CASCADE`)
+      rate_limits, booking_page_events, plan_prices, plan_price_migrations, usage_counters
+      RESTART IDENTITY CASCADE`)
   const box = memoryMailbox()
   box.sent.length = 0
   box.failNext = 0

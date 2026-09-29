@@ -26,13 +26,21 @@ const BACKOFF_MINUTES = [1, 5, 30, 120, 360]
 
 type Claimed = typeof notifications.$inferSelect
 
-export async function claimDue(limit: number): Promise<Claimed[]> {
+/**
+ * Claims due rows. `reminderLeadMinutes` also claims appointment reminders due
+ * within that many minutes: with a scheduler that runs every N minutes, a
+ * reminder then arrives up to N minutes early instead of up to N minutes late.
+ */
+export async function claimDue(limit: number, reminderLeadMinutes = 0): Promise<Claimed[]> {
+  const lead = Math.max(0, Math.floor(reminderLeadMinutes))
   const rows = await db().execute<{ id: string }>(sql`
     UPDATE notifications SET status = 'sending', attempts = attempts + 1,
       locked_until = now() + make_interval(secs => ${LEASE_SECONDS})
     WHERE id IN (
       SELECT id FROM notifications
       WHERE (status = 'pending' AND send_after <= now())
+         OR (status = 'pending' AND template = 'booking_reminder'
+             AND send_after <= now() + make_interval(mins => ${lead}))
          OR (status = 'sending' AND locked_until < now())
       ORDER BY send_after
       LIMIT ${limit}
@@ -123,11 +131,13 @@ export async function deliver(n: Claimed): Promise<'sent' | 'skipped' | 'retry' 
   }
 }
 
-export async function dispatchDue(opts: { limit?: number; maxBatches?: number } = {}) {
+export async function dispatchDue(
+  opts: { limit?: number; maxBatches?: number; reminderLeadMinutes?: number } = {},
+) {
   const limit = opts.limit ?? 25
   const totals = { sent: 0, skipped: 0, retry: 0, failed: 0 }
   for (let batch = 0; batch < (opts.maxBatches ?? 4); batch++) {
-    const claimed = await claimDue(limit)
+    const claimed = await claimDue(limit, opts.reminderLeadMinutes)
     if (claimed.length === 0) break
     const results = await Promise.all(claimed.map(deliver))
     for (const r of results) totals[r]++

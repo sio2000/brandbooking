@@ -12,7 +12,8 @@ async function loop() {
   while (!stopping) {
     const started = Date.now()
     try {
-      const r = await runScheduledTick()
+      // Runs every minute, so reminders need no head start.
+      const r = await runScheduledTick({ reminderLeadMinutes: 0 })
       if (r.dispatch.sent || r.dispatch.failed) console.log(JSON.stringify({ msg: 'tick', ...r }))
     } catch (err) {
       console.error('tick failed', err)

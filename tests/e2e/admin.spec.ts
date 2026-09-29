@@ -33,6 +33,7 @@ const ADMIN_PAGES = [
   '/admin/pricing',
   '/admin/flags',
   '/admin/health',
+  '/admin/usage',
   '/admin/audit',
 ]
 
@@ -168,6 +169,42 @@ test.describe('platform admin', () => {
     await expect(dialog.getByRole('alert').filter({ hasText: /\S/ }).first()).toContainText(
       'Stripe is not configured',
     )
+    await ctx.close()
+  })
+
+  test('usage: free-plan meters, a Netlify reading turns the forecast amber', async ({
+    browser,
+  }) => {
+    const ctx = await browser.newContext()
+    await loginAs(ctx, USERS.admin.email)
+    const page = await ctx.newPage()
+    await page.goto('/admin/usage')
+    await expect(page.getByRole('heading', { level: 1, name: 'Usage' })).toBeVisible()
+    for (const key of ['neon.compute', 'neon.storage', 'netlify.credits', 'resend.month']) {
+      await expect(page.getByTestId(`usage-${key}`)).toBeVisible()
+    }
+    await expect(page.getByRole('table', { name: 'Free and paid plans' })).toContainText(
+      'Personal: $9 / month',
+    )
+    await page.waitForLoadState('networkidle')
+    const form = page.getByRole('form', { name: 'netlify reading' })
+    await form.getByLabel('Credits used').fill('280')
+    await form.getByLabel('Credits renew on day').selectOption('1')
+    await form.getByRole('button', { name: 'Save reading' }).click()
+    const credits = page.getByTestId('usage-netlify.credits')
+    await expect(credits).toContainText('280 credits')
+    await expect(credits).toContainText('Your reading')
+    await expect(page.getByText('A free plan is nearly used up').first()).toBeVisible()
+    await page.goto('/admin')
+    await expect(page.getByRole('link', { name: 'View usage' })).toBeVisible()
+    // Leave the shared database as it was for the other tests.
+    await page.goto('/admin/usage')
+    await page.waitForLoadState('networkidle')
+    await page
+      .getByRole('form', { name: 'netlify reading' })
+      .getByRole('button', { name: 'Remove reading' })
+      .click()
+    await expect(page.getByTestId('usage-netlify.credits')).toContainText('Estimate')
     await ctx.close()
   })
 

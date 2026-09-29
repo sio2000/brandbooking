@@ -8,7 +8,8 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
 /**
- * Scheduler entry point (every minute): delivers due emails incl. reminders
+ * Scheduler entry point (every 15 minutes in production, see
+ * src/lib/scheduler.ts): delivers due emails incl. reminders
  * and runs housekeeping. Protected by CRON_SECRET (Authorization: Bearer …),
  * which is what Vercel Cron and most schedulers send.
  */

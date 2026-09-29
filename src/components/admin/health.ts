@@ -1,11 +1,13 @@
 import type { Tone } from './primitives'
+import { OVERDUE_EMAIL_MINUTES, SCHEDULER_STALE_MINUTES } from '@/lib/scheduler'
 
 /** Thresholds used to flag operational problems on the overview and health pages. */
 export const HEALTH_THRESHOLDS = {
   dbLatencyWarnMs: 250,
   dbLatencyDangerMs: 1000,
   backlogWarn: 100,
-  cronStaleMinutes: 15,
+  overdueEmailMinutes: OVERDUE_EMAIL_MINUTES,
+  cronStaleMinutes: SCHEDULER_STALE_MINUTES,
 } as const
 
 export type HealthInput = {
@@ -43,7 +45,7 @@ export function assessHealth(h: HealthInput, now = Date.now()): HealthCheck[] {
       tone: h.overdue > 0 ? 'warning' : h.backlog >= T.backlogWarn ? 'warning' : 'ok',
       note:
         h.overdue > 0
-          ? `${h.overdue} overdue (> 10 min)`
+          ? `${h.overdue} overdue (> ${T.overdueEmailMinutes} min)`
           : h.backlog >= T.backlogWarn
             ? 'Large backlog'
             : 'On time',
