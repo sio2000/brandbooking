@@ -187,6 +187,13 @@ test('the public booking flow can be completed with the keyboard alone', async (
   const today = await page.evaluate(() => new Date().getDate())
   let day = availableDays(page).first()
   if (Number((await day.innerText()).trim()) === today) day = availableDays(page).nth(1)
+  if ((await day.count()) === 0) {
+    // End of the month: no other bookable day left in it, so move on with the keyboard.
+    const nextMonth = page.getByRole('button', { name: 'Next month' })
+    await tabTo(page, nextMonth)
+    await page.keyboard.press('Enter')
+    day = availableDays(page).first()
+  }
   await expect(day).toBeVisible()
   await tabTo(page, day)
   await page.keyboard.press('Enter')
