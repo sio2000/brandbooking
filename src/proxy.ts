@@ -14,6 +14,9 @@ import { legacyBookingRedirect, rootBookingSlug } from '@/lib/booking-url'
 
 const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
 const bareHost = (host: string) => host.replace(/^www\./, '')
+/** Counts language redirects in a row (see the loop guard in `proxy`). */
+const REDIRECT_HOPS_COOKIE = 'hn_lr'
+const MAX_LANGUAGE_REDIRECTS = 3
 
 /**
  * Runs before every page render:
@@ -24,10 +27,26 @@ const bareHost = (host: string) => host.replace(/^www\./, '')
  */
 export function proxy(request: NextRequest) {
   const lang = resolveLocale(request)
+  // Loop guard: language redirects in a row are counted in a short-lived
+  // cookie. Whatever sits between the browser and the app (a cache, an in-app
+  // browser that drops cookies), a visitor never ends on "too many redirects":
+  // after a few the page is simply served in English.
+  const hops = Number(request.cookies.get(REDIRECT_HOPS_COOKIE)?.value) || 0
+  if (lang.redirect && !lang.permanent && hops >= MAX_LANGUAGE_REDIRECTS) {
+    lang.redirect = undefined
+    lang.locale = DEFAULT_LOCALE
+  }
   if (lang.redirect) {
     if (lang.permanent) return NextResponse.redirect(lang.redirect, 308)
     const res = NextResponse.redirect(lang.redirect, 307)
     res.headers.set('Vary', 'Accept-Language, Cookie')
+    res.headers.set('Cache-Control', 'private, no-store')
+    res.cookies.set(REDIRECT_HOPS_COOKIE, String(hops + 1), {
+      path: '/',
+      maxAge: 30,
+      sameSite: 'lax',
+      httpOnly: true,
+    })
     return res
   }
 
@@ -67,6 +86,7 @@ export function proxy(request: NextRequest) {
   const response = lang.rewrite
     ? NextResponse.rewrite(lang.rewrite, { request: { headers } })
     : NextResponse.next({ request: { headers } })
+  if (hops) response.cookies.delete(REDIRECT_HOPS_COOKIE)
   for (const [name, value] of lang.cookies) {
     response.cookies.set(name, value, { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' })
   }

@@ -16,9 +16,12 @@ import { ClockSlot, useHydrated, useReducedMotion } from './primitives'
  * Hero: the headline names a type of business and, next to it, a phone shows
  * that business's booking page while a customer books — service, time,
  * confirmed — then the owner's notification and the confirmation email pop up.
- * It rotates through business types on its own (no controls to learn), pauses
- * off-screen, and has a pause button (WCAG 2.2.2). Server render, no-JS and
- * reduced motion show the first example, fully booked.
+ * It rotates through business types on its own (no controls to learn) while
+ * the hero is on screen — headline or phone, so it also turns on phones,
+ * where the phone sits below the headline — and has a pause button
+ * (WCAG 2.2.2). With reduced motion it still changes example, calmly: each
+ * one appears fully booked and is swapped without any sliding or fading.
+ * Server render and no-JS show the first example, fully booked.
  */
 
 type SceneDef = {
@@ -43,6 +46,8 @@ const SCENES: SceneDef[] = [
 const PHASE_MS = [650, 550, 550, 1900] as const
 const BOOKED = 3
 const SCENE_MS = PHASE_MS.reduce((a, b) => a + b, 0)
+/** With reduced motion: how long each (already booked) example stays before the next. */
+const CALM_SCENE_MS = 4000
 const EASE = [0.22, 1, 0.36, 1] as const
 
 /**
@@ -80,11 +85,11 @@ export function HeroShowcase({ price }: { price: string }) {
   const [paused, setPaused] = React.useState(false)
   const [hovered, setHovered] = React.useState(false)
   const [visible, setVisible] = React.useState(true)
-  const stageRef = React.useRef<HTMLDivElement>(null)
+  const heroRef = React.useRef<HTMLDivElement>(null)
 
-  // Only animate while the stage is on screen and the tab is visible.
+  // Only animate while the hero (headline or phone) is on screen and the tab is visible.
   React.useEffect(() => {
-    const el = stageRef.current
+    const el = heroRef.current
     if (!el || typeof IntersectionObserver === 'undefined') return
     let onScreen = true
     const sync = () => setVisible(onScreen && document.visibilityState === 'visible')
@@ -100,10 +105,18 @@ export function HeroShowcase({ price }: { price: string }) {
     }
   }, [])
 
-  const playing = hydrated && !reduced && !paused && !hovered && visible
+  const playing = hydrated && !paused && !hovered && visible
 
   React.useEffect(() => {
     if (!playing) return
+    if (reduced) {
+      // No steps and no movement: the next example, already booked.
+      const t = setTimeout(() => {
+        setIndex((i) => (i + 1) % SCENES.length)
+        setPhase(BOOKED)
+      }, CALM_SCENE_MS)
+      return () => clearTimeout(t)
+    }
     const t = setTimeout(
       () => {
         if (phase < BOOKED) {
@@ -116,7 +129,7 @@ export function HeroShowcase({ price }: { price: string }) {
       PHASE_MS[phase as 0 | 1 | 2 | 3],
     )
     return () => clearTimeout(t)
-  }, [playing, phase])
+  }, [playing, phase, reduced, index])
 
   const scene = scenes[index]!
   const { industry } = scene
@@ -126,7 +139,10 @@ export function HeroShowcase({ price }: { price: string }) {
   const animate = hydrated && !reduced
 
   return (
-    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-16">
+    <div
+      ref={heroRef}
+      className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-10 xl:gap-16"
+    >
       {/* Copy */}
       <div className="max-w-xl min-w-0">
         <h1
@@ -186,7 +202,6 @@ export function HeroShowcase({ price }: { price: string }) {
 
       {/* Stage */}
       <div
-        ref={stageRef}
         onPointerEnter={(e) => e.pointerType === 'mouse' && setHovered(true)}
         onPointerLeave={() => setHovered(false)}
         className="relative mx-auto w-full max-w-[460px] min-w-0 lg:max-w-none"
@@ -195,7 +210,7 @@ export function HeroShowcase({ price }: { price: string }) {
         <p className="sr-only">{t('hero.srDescription')}</p>
         <div
           aria-hidden
-          className="relative overflow-hidden rounded-[28px] border border-border px-4 pt-8 pb-10 transition-[background-color] duration-700 sm:px-8 sm:pt-10"
+          className="relative overflow-hidden rounded-[28px] border border-border px-4 pt-8 pb-10 transition-[background-color] duration-700 motion-reduce:transition-none sm:px-8 sm:pt-10"
           style={{
             backgroundColor: 'color-mix(in oklab, var(--accent) 9%, var(--surface-2))',
           }}
@@ -300,7 +315,7 @@ export function HeroShowcase({ price }: { price: string }) {
             </span>
           ))}
         </div>
-        {hydrated && !reduced && (
+        {hydrated && (
           // Keyboard and screen-reader users can stop the motion (WCAG 2.2.2);
           // the control only becomes visible when focused.
           <button
@@ -422,7 +437,7 @@ function Phone({
                   <li
                     key={s.name}
                     className={cn(
-                      'relative flex items-center justify-between gap-2 overflow-hidden rounded-xl border px-3 py-[7px] transition-colors duration-300',
+                      'relative flex items-center justify-between gap-2 overflow-hidden rounded-xl border px-3 py-[7px] transition-colors duration-300 motion-reduce:transition-none',
                       on ? 'border-[var(--accent)]' : 'border-[#e7e3db]',
                     )}
                     style={
@@ -442,7 +457,7 @@ function Phone({
                       <span className="tabular text-[12px] font-semibold">{s.price}</span>
                       <span
                         className={cn(
-                          'grid size-4 place-items-center rounded-full border transition-colors duration-300',
+                          'grid size-4 place-items-center rounded-full border transition-colors duration-300 motion-reduce:transition-none',
                           on
                             ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
                             : 'border-[#cfc9be]',
@@ -472,7 +487,7 @@ function Phone({
                   <span
                     key={time}
                     className={cn(
-                      'tabular relative grid h-8 place-items-center overflow-hidden rounded-lg border text-[11.5px] font-semibold whitespace-nowrap transition-colors duration-300',
+                      'tabular relative grid h-8 place-items-center overflow-hidden rounded-lg border text-[11.5px] font-semibold whitespace-nowrap transition-colors duration-300 motion-reduce:transition-none',
                       on ? 'border-transparent text-white' : 'border-[#e7e3db]',
                     )}
                     style={on ? { backgroundColor: scene.accent } : undefined}
@@ -487,7 +502,7 @@ function Phone({
             <div className="absolute inset-x-3 bottom-4">
               <span
                 className={cn(
-                  'block h-10 truncate rounded-xl px-3 text-center text-[12.5px] leading-10 font-semibold transition-colors duration-300',
+                  'block h-10 truncate rounded-xl px-3 text-center text-[12.5px] leading-10 font-semibold transition-colors duration-300 motion-reduce:transition-none',
                   chosenTime ? 'text-white' : 'bg-[#efece6] text-[#5f5a51]',
                 )}
                 style={chosenTime ? { backgroundColor: scene.accent } : undefined}

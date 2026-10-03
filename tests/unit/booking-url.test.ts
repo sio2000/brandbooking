@@ -11,7 +11,7 @@ import {
 } from '@/lib/booking-url'
 import { slugSchema } from '@/lib/validation/business'
 import { LOCALES } from '@/lib/i18n/config'
-import { resolveLocale } from '@/proxy'
+import { proxy, resolveLocale } from '@/proxy'
 
 const ROOT = path.resolve(import.meta.dirname, '../..')
 
@@ -101,5 +101,31 @@ describe('proxy', () => {
     const d = resolveLocale(req('/pricing'))
     expect(d.redirect).toBeUndefined()
     expect(d.locale).toBe('en')
+  })
+
+  it('never leaves a visitor on "too many redirects": language redirects in a row are capped', () => {
+    const greek = (cookie?: string) =>
+      new NextRequest(new URL('/', 'https://www.hournook.com'), {
+        headers: { 'accept-language': 'el-GR,el;q=0.9', ...(cookie ? { cookie } : {}) },
+      })
+    // A Greek browser is sent to /el, and the hop is counted.
+    const first = proxy(greek())
+    expect(first.status).toBe(307)
+    expect(new URL(first.headers.get('location')!).pathname).toBe('/el')
+    expect(first.headers.get('cache-control')).toBe('private, no-store')
+    expect(first.cookies.get('hn_lr')?.value).toBe('1')
+    expect(proxy(greek('hn_lr=2')).cookies.get('hn_lr')?.value).toBe('3')
+    // If something keeps bouncing it back, the page is served after three hops.
+    const capped = proxy(greek('hn_lr=3'))
+    expect(capped.status).toBe(200)
+    expect(capped.headers.get('location')).toBeNull()
+    // A page that is served resets the count.
+    const landed = proxy(
+      new NextRequest(new URL('/el', 'https://www.hournook.com'), {
+        headers: { cookie: 'hn_lr=1' },
+      }),
+    )
+    expect(landed.status).toBe(200)
+    expect(landed.headers.get('set-cookie')).toMatch(/hn_lr=;/)
   })
 })

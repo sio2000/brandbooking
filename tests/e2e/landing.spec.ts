@@ -78,6 +78,35 @@ test.describe('landing page', () => {
     await expect(word).toHaveText(frozen!)
   })
 
+  test('on a phone the headline turns too, with the phone mock-up still below the fold', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await ready(page, '/')
+    const hero = page.locator('section[aria-labelledby="hero-title"]')
+    const word = hero.locator('h1 [aria-hidden]').first()
+    const first = (await word.textContent())!
+    await expect(word).not.toHaveText(first, { timeout: 10_000 })
+  })
+
+  test('with reduced motion the examples still change, calmly', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await ready(page, '/')
+    const hero = page.locator('section[aria-labelledby="hero-title"]')
+    const word = hero.locator('h1 [aria-hidden]').first()
+    const first = (await word.textContent())!
+    // Each example shows already booked: the confirmation is on screen at once.
+    await expect(hero.getByText('You’re booked!')).toBeVisible()
+    await expect(word).not.toHaveText(first, { timeout: 10_000 })
+    await expect(hero.getByText('You’re booked!')).toBeVisible()
+    // And it can still be paused.
+    await hero.getByRole('button', { name: 'Pause animation' }).focus()
+    await page.keyboard.press('Enter')
+    const frozen = await word.textContent()
+    await page.waitForTimeout(5_000)
+    await expect(word).toHaveText(frozen!)
+  })
+
   test('FAQ answers expand and collapse from the keyboard', async ({ page }) => {
     await ready(page, '/#faq')
     const q = page.getByRole('button', { name: 'Do I need a website?' })
