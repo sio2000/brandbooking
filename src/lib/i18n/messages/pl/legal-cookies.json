@@ -8,14 +8,14 @@
   "s1": {
     "title": "W skrócie",
     "items": {
-      "i1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię i zabezpieczenia twojej sesji.",
+      "i1": "Używamy wyłącznie niezbędnych plików cookie: do zalogowania cię, zabezpieczenia twojej sesji i zapamiętania twojego języka.",
       "i2": "Nie używamy analitycznych, reklamowych ani śledzących plików cookie mediów społecznościowych.",
       "i3": "Statystyki strony rezerwacji są anonimowe i działają bez plików cookie. Na urządzeniach twoich klientów nic nie jest zapisywane."
     }
   },
   "s2": {
     "title": "Pliki cookie, których używamy",
-    "p1": "Te pliki cookie ustawia sam {brand} (pliki cookie własne). Są ustawiane wyłącznie dla osób, które logują się do konta firmowego.",
+    "p1": "Te pliki cookie ustawia sam {brand} (pliki cookie własne). Pliki cookie języka mogą być ustawiane dla każdego odwiedzającego; pozostałe są ustawiane wyłącznie dla osób, które logują się do konta firmowego.",
     "table": {
       "caption": "Pliki cookie ustawiane przez {brand}",
       "name": "Nazwa",
@@ -32,6 +32,21 @@
         "purpose": "Zapamiętuje, w której firmie pracujesz, jeśli należysz do więcej niż jednej.",
         "duration": "Do zamknięcia przeglądarki lub wylogowania.",
         "when": "Po zalogowaniu i zmianie firmy"
+      },
+      "locale": {
+        "purpose": "Zapamiętuje wybrany przez ciebie język strony, aby przy następnej wizycie strony otwierały się w tym języku.",
+        "duration": "1 rok.",
+        "when": "Gdy wybierasz język w menu języka lub otwierasz stronę pod adresem języka, np. /el"
+      },
+      "bookingLocale": {
+        "purpose": "Zapamiętuje język wybrany na stronie rezerwacji, aby kolejne strony pozostały w tym języku.",
+        "duration": "1 rok.",
+        "when": "Gdy wybierasz język na stronie rezerwacji"
+      },
+      "redirects": {
+        "purpose": "Liczy kolejne przekierowania językowe, aby nigdy nie pojawił się błąd „zbyt wiele przekierowań”. Zawiera tylko liczbę i nie może być odczytany przez skrypty strony.",
+        "duration": "Do 30 sekund. Usuwany zaraz po załadowaniu strony.",
+        "when": "Gdy przekierowujemy cię do wersji strony w twoim języku"
       }
     },
     "p2": "Te pliki cookie są niezbędne do świadczenia usługi, o którą prosisz, dlatego zgodnie z dyrektywą o prywatności i łączności elektronicznej (art. 5 ust. 3) oraz greckim prawem 3471/2006 (art. 4 ust. 5) nie wymagają zgody. Z tego powodu nie wyświetlamy banera cookie. Jeśli kiedykolwiek dodamy opcjonalne pliki cookie, najpierw poprosimy cię o zgodę."

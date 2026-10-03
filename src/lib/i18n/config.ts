@@ -79,6 +79,8 @@ export function matchAcceptLanguage(header: string | null | undefined): Locale |
 export const LOCALE_COOKIE = 'hn_locale'
 /** Cookie holding the language a customer picked on booking pages. */
 export const BOOKING_LOCALE_COOKIE = 'hn_booking_locale'
+/** Short-lived cookie counting language redirects in a row (loop guard in src/proxy.ts). */
+export const REDIRECT_HOPS_COOKIE = 'hn_lr'
 
 /** Marketing pages are served under /{locale}/… for every language except English. */
 export const MARKETING_PATHS = [

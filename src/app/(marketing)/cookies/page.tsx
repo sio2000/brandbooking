@@ -5,12 +5,13 @@ import {
   legalText,
   type LegalSection,
 } from '@/components/marketing/legal'
+import { BOOKING_LOCALE_COOKIE, LOCALE_COOKIE, REDIRECT_HOPS_COOKIE } from '@/lib/i18n/config'
 
 export function generateMetadata(): Promise<Metadata> {
   return legalMetadata('legal-cookies', '/cookies')
 }
 
-/** Names of what we store in the browser (see src/server/auth/session.ts, tenancy, theme). */
+/** Names of what we store in the browser (see src/server/auth/session.ts, tenancy, theme, src/proxy.ts). */
 const SESSION_COOKIE = '__Host-hn_session'
 const SESSION_COOKIE_DEV = 'hn_session'
 const BUSINESS_COOKIE = 'hn_business'
@@ -37,6 +38,12 @@ export default async function CookiesPage() {
       ),
     },
     { key: 'business', name: <code>{BUSINESS_COOKIE}</code> },
+    { key: 'locale', name: <code>{LOCALE_COOKIE}</code> },
+    {
+      key: 'bookingLocale',
+      name: <code className="whitespace-nowrap">{BOOKING_LOCALE_COOKIE}</code>,
+    },
+    { key: 'redirects', name: <code>{REDIRECT_HOPS_COOKIE}</code> },
   ]
 
   const sections: LegalSection[] = [

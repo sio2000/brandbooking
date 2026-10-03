@@ -8,14 +8,14 @@
   "s1": {
     "title": "Kurz gesagt",
     "items": {
-      "i1": "Wir verwenden nur Cookies, die unbedingt erforderlich sind, um Sie anzumelden und Ihre Sitzung zu sichern.",
+      "i1": "Wir verwenden nur Cookies, die unbedingt erforderlich sind: um Sie anzumelden, Ihre Sitzung zu sichern und sich Ihre Sprache zu merken.",
       "i2": "Wir verwenden keine Analyse-, Werbe- oder Social-Media-Tracking-Cookies.",
       "i3": "Die Statistiken der Buchungsseite sind anonym und cookielos. Auf den Geräten Ihrer Kunden wird nichts gespeichert."
     }
   },
   "s2": {
     "title": "Cookies, die wir verwenden",
-    "p1": "Diese Cookies setzt {brand} selbst (Erstanbieter-Cookies). Sie werden nur für Personen gesetzt, die sich bei einem Unternehmenskonto anmelden.",
+    "p1": "Diese Cookies setzt {brand} selbst (Erstanbieter-Cookies). Die Sprach-Cookies können für alle Besucher gesetzt werden; die übrigen werden nur für Personen gesetzt, die sich bei einem Unternehmenskonto anmelden.",
     "table": {
       "caption": "Von {brand} gesetzte Cookies",
       "name": "Name",
@@ -32,6 +32,21 @@
         "purpose": "Merkt sich, in welchem Unternehmen Sie arbeiten, wenn Sie mehreren angehören.",
         "duration": "Bis Sie Ihren Browser schließen oder sich abmelden.",
         "when": "Nach der Anmeldung und einem Wechsel des Unternehmens"
+      },
+      "locale": {
+        "purpose": "Merkt sich die gewählte Sprache der Website, damit sich die Seiten bei Ihrem nächsten Besuch in dieser Sprache öffnen.",
+        "duration": "1 Jahr.",
+        "when": "Wenn Sie im Sprachmenü eine Sprache wählen oder eine Seite unter einer Sprachadresse wie /el öffnen"
+      },
+      "bookingLocale": {
+        "purpose": "Merkt sich die auf einer Buchungsseite gewählte Sprache, damit die folgenden Seiten in dieser Sprache bleiben.",
+        "duration": "1 Jahr.",
+        "when": "Wenn Sie auf einer Buchungsseite eine Sprache wählen"
+      },
+      "redirects": {
+        "purpose": "Zählt aufeinanderfolgende Sprach-Weiterleitungen, damit Sie nie bei einem Fehler „zu viele Weiterleitungen“ landen. Enthält nur eine Zahl und kann von Skripten der Seite nicht gelesen werden.",
+        "duration": "Bis zu 30 Sekunden. Wird gelöscht, sobald die Seite geladen ist.",
+        "when": "Wenn Sie zur Version einer Seite in Ihrer Sprache weitergeleitet werden"
       }
     },
     "p2": "Diese Cookies sind unbedingt erforderlich, um den von Ihnen gewünschten Dienst bereitzustellen; nach der ePrivacy-Richtlinie (Art. 5 Abs. 3) und dem griechischen Gesetz 3471/2006 (Art. 4 Abs. 5) bedürfen sie daher keiner Einwilligung. Deshalb zeigen wir kein Cookie-Banner an. Sollten wir jemals optionale Cookies einführen, bitten wir Sie vorher um Ihre Einwilligung."

@@ -3,6 +3,7 @@ import {
   BOOKING_LOCALE_COOKIE,
   DEFAULT_LOCALE,
   LOCALE_COOKIE,
+  REDIRECT_HOPS_COOKIE,
   isLocale,
   isMarketingPath,
   localizedPath,
@@ -14,8 +15,6 @@ import { legacyBookingRedirect, rootBookingSlug } from '@/lib/booking-url'
 
 const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
 const bareHost = (host: string) => host.replace(/^www\./, '')
-/** Counts language redirects in a row (see the loop guard in `proxy`). */
-const REDIRECT_HOPS_COOKIE = 'hn_lr'
 const MAX_LANGUAGE_REDIRECTS = 3
 
 /**

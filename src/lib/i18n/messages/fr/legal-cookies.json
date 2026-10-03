@@ -8,14 +8,14 @@
   "s1": {
     "title": "En bref",
     "items": {
-      "i1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter et sécuriser votre session.",
+      "i1": "Nous utilisons uniquement les cookies strictement nécessaires : pour vous connecter, sécuriser votre session et mémoriser votre langue.",
       "i2": "Nous n’utilisons pas de cookies d’analyse, publicitaires ou de suivi des réseaux sociaux.",
       "i3": "Les statistiques de la page de réservation sont anonymes et sans cookies. Rien n’est stocké sur les appareils de vos clients."
     }
   },
   "s2": {
     "title": "Les cookies que nous utilisons",
-    "p1": "Ces cookies sont déposés par {brand} lui-même (cookies propriétaires). Ils ne sont déposés que pour les personnes qui se connectent à un compte d’entreprise.",
+    "p1": "Ces cookies sont déposés par {brand} lui-même (cookies propriétaires). Les cookies de langue peuvent être déposés pour tout visiteur ; les autres ne sont déposés que pour les personnes qui se connectent à un compte d’entreprise.",
     "table": {
       "caption": "Cookies déposés par {brand}",
       "name": "Nom",
@@ -32,6 +32,21 @@
         "purpose": "Mémorise l’entreprise dans laquelle vous travaillez si vous appartenez à plusieurs.",
         "duration": "Jusqu’à la fermeture de votre navigateur ou votre déconnexion.",
         "when": "Après votre connexion et un changement d’entreprise"
+      },
+      "locale": {
+        "purpose": "Mémorise la langue du site que vous avez choisie, pour que les pages s’ouvrent dans cette langue lors de votre prochaine visite.",
+        "duration": "1 an.",
+        "when": "Lorsque vous choisissez une langue dans le menu des langues ou ouvrez une page sous une adresse de langue comme /el"
+      },
+      "bookingLocale": {
+        "purpose": "Mémorise la langue choisie sur une page de réservation, pour que les pages suivantes restent dans cette langue.",
+        "duration": "1 an.",
+        "when": "Lorsque vous choisissez une langue sur une page de réservation"
+      },
+      "redirects": {
+        "purpose": "Compte les redirections de langue successives pour que vous ne tombiez jamais sur une erreur « trop de redirections ». Il ne contient qu’un nombre et ne peut pas être lu par les scripts de la page.",
+        "duration": "30 secondes au maximum. Supprimé dès le chargement de la page.",
+        "when": "Lorsque vous êtes redirigé vers la version d’une page dans votre langue"
       }
     },
     "p2": "Ces cookies sont strictement nécessaires pour fournir le service que vous avez demandé ; en vertu de la directive « vie privée et communications électroniques » (art. 5, par. 3) et de la loi grecque 3471/2006 (art. 4, par. 5), ils ne nécessitent donc pas de consentement. C’est pourquoi nous n’affichons pas de bandeau cookies. Si nous ajoutons un jour des cookies facultatifs, nous vous demanderons d’abord votre consentement."

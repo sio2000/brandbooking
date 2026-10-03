@@ -8,14 +8,14 @@
   "s1": {
     "title": "In het kort",
     "items": {
-      "i1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen en je sessie te beveiligen.",
+      "i1": "We gebruiken alleen cookies die strikt noodzakelijk zijn: om je in te loggen, je sessie te beveiligen en je taal te onthouden.",
       "i2": "We gebruiken geen analyse-, advertentie- of trackingcookies van sociale media.",
       "i3": "Statistieken van de boekingspagina zijn anoniem en cookieloos. Er wordt niets opgeslagen op de apparaten van je klanten."
     }
   },
   "s2": {
     "title": "Cookies die we gebruiken",
-    "p1": "Deze cookies worden door {brand} zelf geplaatst (first-party). Ze worden alleen geplaatst voor mensen die inloggen op een bedrijfsaccount.",
+    "p1": "Deze cookies worden door {brand} zelf geplaatst (first-party). De taalcookies kunnen voor elke bezoeker worden geplaatst; de andere worden alleen geplaatst voor mensen die inloggen op een bedrijfsaccount.",
     "table": {
       "caption": "Cookies die {brand} plaatst",
       "name": "Naam",
@@ -32,6 +32,21 @@
         "purpose": "Onthoudt in welk bedrijf je werkt als je bij meer dan één bedrijf hoort.",
         "duration": "Totdat je je browser sluit of uitlogt.",
         "when": "Nadat je bent ingelogd en van bedrijf wisselt"
+      },
+      "locale": {
+        "purpose": "Onthoudt de taal van de site die je hebt gekozen, zodat pagina’s bij je volgende bezoek in die taal openen.",
+        "duration": "1 jaar.",
+        "when": "Als je een taal kiest in het taalmenu of een pagina opent onder een taaladres zoals /el"
+      },
+      "bookingLocale": {
+        "purpose": "Onthoudt de taal die je op een boekingspagina hebt gekozen, zodat de volgende pagina’s in die taal blijven.",
+        "duration": "1 jaar.",
+        "when": "Als je een taal kiest op een boekingspagina"
+      },
+      "redirects": {
+        "purpose": "Telt taaldoorverwijzingen achter elkaar, zodat je nooit op een foutmelding ‘te veel omleidingen’ uitkomt. Bevat alleen een getal en kan niet door scripts op de pagina worden gelezen.",
+        "duration": "Maximaal 30 seconden. Wordt verwijderd zodra de pagina is geladen.",
+        "when": "Als je wordt doorgestuurd naar de versie van een pagina in jouw taal"
       }
     },
     "p2": "Deze cookies zijn strikt noodzakelijk om de dienst te leveren waar je om hebt gevraagd; op grond van de e-privacyrichtlijn (art. 5, lid 3) en de Griekse wet 3471/2006 (art. 4, lid 5) is er daarom geen toestemming voor nodig. Daarom tonen we geen cookiebanner. Als we ooit optionele cookies toevoegen, vragen we eerst om je toestemming."

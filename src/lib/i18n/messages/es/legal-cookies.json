@@ -8,14 +8,14 @@
   "s1": {
     "title": "En resumen",
     "items": {
-      "i1": "Solo usamos cookies estrictamente necesarias para iniciar tu sesión y mantenerla segura.",
+      "i1": "Solo usamos cookies estrictamente necesarias: para iniciar tu sesión, mantenerla segura y recordar tu idioma.",
       "i2": "No usamos cookies analíticas, publicitarias ni de seguimiento de redes sociales.",
       "i3": "Las estadísticas de la página de reservas son anónimas y no usan cookies. No se almacena nada en los dispositivos de tus clientes."
     }
   },
   "s2": {
     "title": "Cookies que utilizamos",
-    "p1": "Estas cookies las instala el propio {brand} (cookies propias). Solo se instalan para las personas que inician sesión en una cuenta de negocio.",
+    "p1": "Estas cookies las instala el propio {brand} (cookies propias). Las cookies de idioma pueden instalarse para cualquier visitante; las demás solo se instalan para las personas que inician sesión en una cuenta de negocio.",
     "table": {
       "caption": "Cookies instaladas por {brand}",
       "name": "Nombre",
@@ -32,6 +32,21 @@
         "purpose": "Recuerda en qué negocio estás trabajando si perteneces a más de uno.",
         "duration": "Hasta que cierres el navegador o cierres sesión.",
         "when": "Después de iniciar sesión y cambiar de negocio"
+      },
+      "locale": {
+        "purpose": "Recuerda el idioma del sitio que elegiste, para que las páginas se abran en ese idioma en tu próxima visita.",
+        "duration": "1 año.",
+        "when": "Cuando eliges un idioma en el menú de idioma o abres una página bajo una dirección de idioma como /el"
+      },
+      "bookingLocale": {
+        "purpose": "Recuerda el idioma que elegiste en una página de reservas, para que las páginas siguientes se mantengan en ese idioma.",
+        "duration": "1 año.",
+        "when": "Cuando eliges un idioma en una página de reservas"
+      },
+      "redirects": {
+        "purpose": "Cuenta las redirecciones de idioma seguidas para que nunca acabes en un error de “demasiadas redirecciones”. Solo contiene un número y los scripts de la página no pueden leerla.",
+        "duration": "Hasta 30 segundos. Se elimina en cuanto se carga la página.",
+        "when": "Cuando se te lleva a la versión de una página en tu idioma"
       }
     },
     "p2": "Estas cookies son estrictamente necesarias para prestar el servicio que has solicitado, por lo que, conforme a la Directiva sobre la privacidad y las comunicaciones electrónicas (art. 5, apartado 3) y la ley griega 3471/2006 (art. 4, apartado 5), no requieren consentimiento. Por eso no mostramos un banner de cookies. Si alguna vez añadimos cookies opcionales, te pediremos antes tu consentimiento."

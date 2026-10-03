@@ -8,14 +8,14 @@
   "s1": {
     "title": "In breve",
     "items": {
-      "i1": "Utilizziamo solo cookie strettamente necessari per farti accedere e mantenere sicura la tua sessione.",
+      "i1": "Utilizziamo solo cookie strettamente necessari: per farti accedere, mantenere sicura la tua sessione e ricordare la tua lingua.",
       "i2": "Non utilizziamo cookie analitici, pubblicitari o di tracciamento dei social media.",
       "i3": "Le statistiche della pagina di prenotazione sono anonime e senza cookie. Non viene memorizzato nulla sui dispositivi dei tuoi clienti."
     }
   },
   "s2": {
     "title": "Cookie che utilizziamo",
-    "p1": "Questi cookie sono impostati direttamente da {brand} (cookie di prima parte). Vengono impostati solo per chi accede a un account aziendale.",
+    "p1": "Questi cookie sono impostati direttamente da {brand} (cookie di prima parte). I cookie della lingua possono essere impostati per qualsiasi visitatore; gli altri vengono impostati solo per chi accede a un account aziendale.",
     "table": {
       "caption": "Cookie impostati da {brand}",
       "name": "Nome",
@@ -32,6 +32,21 @@
         "purpose": "Ricorda in quale attività stai lavorando se appartieni a più di una.",
         "duration": "Finché non chiudi il browser o esci.",
         "when": "Dopo l’accesso e il cambio di attività"
+      },
+      "locale": {
+        "purpose": "Ricorda la lingua del sito che hai scelto, così alla prossima visita le pagine si aprono in quella lingua.",
+        "duration": "1 anno.",
+        "when": "Quando scegli una lingua dal menu della lingua o apri una pagina con un indirizzo di lingua come /el"
+      },
+      "bookingLocale": {
+        "purpose": "Ricorda la lingua che hai scelto su una pagina di prenotazione, così le pagine successive restano in quella lingua.",
+        "duration": "1 anno.",
+        "when": "Quando scegli una lingua su una pagina di prenotazione"
+      },
+      "redirects": {
+        "purpose": "Conta i reindirizzamenti di lingua consecutivi, così non finisci mai su un errore di “troppi reindirizzamenti”. Contiene solo un numero e non può essere letto dagli script della pagina.",
+        "duration": "Fino a 30 secondi. Viene eliminato appena la pagina si carica.",
+        "when": "Quando vieni portato alla versione di una pagina nella tua lingua"
       }
     },
     "p2": "Questi cookie sono strettamente necessari per fornire il servizio che hai richiesto; pertanto, ai sensi della direttiva e-Privacy (art. 5, par. 3) e della legge greca 3471/2006 (art. 4, par. 5), non richiedono il consenso. Per questo non mostriamo un banner dei cookie. Se in futuro aggiungessimo cookie facoltativi, ti chiederemmo prima il consenso."

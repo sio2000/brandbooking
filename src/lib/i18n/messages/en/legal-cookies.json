@@ -8,14 +8,14 @@
   "s1": {
     "title": "In short",
     "items": {
-      "i1": "We only use cookies that are strictly necessary to sign you in and keep your session secure.",
+      "i1": "We only use cookies that are strictly necessary: to sign you in, keep your session secure and remember your language.",
       "i2": "We do not use analytics, advertising or social-media tracking cookies.",
       "i3": "Booking-page statistics are anonymous and cookieless. Nothing is stored on your customers’ devices."
     }
   },
   "s2": {
     "title": "Cookies we use",
-    "p1": "These cookies are set by {brand} itself (first-party). They are only set for people who sign in to a business account.",
+    "p1": "These cookies are set by {brand} itself (first-party). The language cookies can be set for any visitor; the others are only set for people who sign in to a business account.",
     "table": {
       "caption": "Cookies set by {brand}",
       "name": "Name",
@@ -32,6 +32,21 @@
         "purpose": "Remembers which business you are working in if you belong to more than one.",
         "duration": "Until you close your browser or sign out.",
         "when": "After you sign in and switch business"
+      },
+      "locale": {
+        "purpose": "Remembers the site language you chose, so pages open in that language on your next visit.",
+        "duration": "1 year.",
+        "when": "When you choose a language in the language menu or open a page under a language address such as /el"
+      },
+      "bookingLocale": {
+        "purpose": "Remembers the language you chose on a booking page, so the next pages stay in that language.",
+        "duration": "1 year.",
+        "when": "When you choose a language on a booking page"
+      },
+      "redirects": {
+        "purpose": "Counts language redirects in a row, so you never end up on a “too many redirects” error. It holds only a number and cannot be read by page scripts.",
+        "duration": "Up to 30 seconds. Removed as soon as the page loads.",
+        "when": "When you are sent to the version of a page in your language"
       }
     },
     "p2": "These cookies are strictly necessary to provide the service you asked for, so under the ePrivacy Directive (art. 5(3)) and Greek law 3471/2006 (art. 4(5)) they do not require consent. That is why we do not show a cookie banner. If we ever add optional cookies, we will ask for your consent first."
