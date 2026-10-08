@@ -1,14 +1,19 @@
 import type { Tone } from './primitives'
-import { OVERDUE_EMAIL_MINUTES, SCHEDULER_STALE_MINUTES } from '@/lib/scheduler'
+import { overdueEmailMinutes, schedulerStaleMinutes } from '@/lib/scheduler'
 
 /** Thresholds used to flag operational problems on the overview and health pages. */
 export const HEALTH_THRESHOLDS = {
   dbLatencyWarnMs: 250,
   dbLatencyDangerMs: 1000,
   backlogWarn: 100,
-  overdueEmailMinutes: OVERDUE_EMAIL_MINUTES,
-  cronStaleMinutes: SCHEDULER_STALE_MINUTES,
-} as const
+  // Both follow the scheduler's interval, which can change with the date.
+  get overdueEmailMinutes() {
+    return overdueEmailMinutes()
+  },
+  get cronStaleMinutes() {
+    return schedulerStaleMinutes()
+  },
+}
 
 export type HealthInput = {
   dbLatencyMs: number
@@ -23,7 +28,11 @@ export type HealthInput = {
 export type HealthCheck = { key: string; label: string; value: string; tone: Tone; note: string }
 
 export function assessHealth(h: HealthInput, now = Date.now()): HealthCheck[] {
-  const T = HEALTH_THRESHOLDS
+  const T = {
+    ...HEALTH_THRESHOLDS,
+    overdueEmailMinutes: overdueEmailMinutes(now),
+    cronStaleMinutes: schedulerStaleMinutes(now),
+  }
   const cronAgeMin = h.lastCron ? (now - new Date(h.lastCron.at).getTime()) / 60_000 : null
   return [
     {

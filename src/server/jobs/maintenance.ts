@@ -6,7 +6,7 @@ import { setSetting } from '@/server/admin/admin'
 import { logger } from '@/server/observability/logger'
 import { runPlanPriceMigrations } from '@/server/billing/plan-prices'
 import { recordUsage, USAGE_METRICS } from '@/server/usage/counters'
-import { SCHEDULER_INTERVAL_MINUTES } from '@/lib/scheduler'
+import { schedulerIntervalMinutes } from '@/lib/scheduler'
 
 /** Housekeeping: expired sessions/tokens/rate-limit windows, data retention. */
 export async function runMaintenance() {
@@ -61,7 +61,7 @@ export async function runScheduledTick(opts: { reminderLeadMinutes?: number } = 
   const dispatch = await dispatchDue({
     limit: 25,
     maxBatches: 8,
-    reminderLeadMinutes: opts.reminderLeadMinutes ?? SCHEDULER_INTERVAL_MINUTES,
+    reminderLeadMinutes: opts.reminderLeadMinutes ?? schedulerIntervalMinutes(),
   })
   const maintenance = await runMaintenance()
   // Existing subscriptions move to a changed plan price once its notice period

@@ -16,7 +16,7 @@ import {
 } from '@/components/admin/primitives'
 import { assessHealth, HEALTH_THRESHOLDS, worstTone } from '@/components/admin/health'
 import { formatNumber } from '@/lib/format'
-import { SCHEDULER_INTERVAL_MINUTES } from '@/lib/scheduler'
+import { schedulerIntervalMinutes } from '@/lib/scheduler'
 
 export const metadata: Metadata = { title: 'System health' }
 
@@ -94,7 +94,7 @@ export default async function AdminHealthPage() {
         <Card>
           <CardHeader
             title="Scheduler"
-            description={`Runs every ${SCHEDULER_INTERVAL_MINUTES} minutes: sends reminders and retried or billing emails, and runs housekeeping. Booking and account emails are sent immediately.`}
+            description={`Runs every ${schedulerIntervalMinutes()} minutes: sends reminders and retried or billing emails, and runs housekeeping. Booking and account emails are sent immediately.`}
           />
           <CardBody className="flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm">

@@ -5,8 +5,20 @@
  *
  * 15 minutes (not every minute) keeps the site on the free Netlify and Neon
  * plans; see src/lib/scheduler.ts, whose SCHEDULER_INTERVAL_MINUTES must match.
+ *
+ * Until SLOW_UNTIL only every second run does anything (minutes 0 and 30), so the
+ * database is woken half as often; a skipped run calls nothing. After that every
+ * run counts again, without a deploy. Both values must match SLOW_SCHEDULER in
+ * src/lib/scheduler.ts, which says why (checked by a unit test).
  */
+const SLOW_UNTIL = '2026-11-01T00:00:00Z'
+const SLOW_INTERVAL_MINUTES = 30
+
 export default async function cronTick() {
+  const now = new Date()
+  if (now.getTime() < Date.parse(SLOW_UNTIL) && now.getUTCMinutes() % SLOW_INTERVAL_MINUTES >= 15) {
+    return new Response(null, { status: 204 })
+  }
   const base = process.env.APP_URL || process.env.URL
   const secret = process.env.CRON_SECRET
   if (!base || !secret) {

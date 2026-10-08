@@ -2,7 +2,7 @@ import 'server-only'
 import { sql } from 'drizzle-orm'
 import { db } from '@/server/db/client'
 import { getSetting, setSetting } from '@/server/admin/admin'
-import { SCHEDULER_INTERVAL_MINUTES } from '@/lib/scheduler'
+import { schedulerIntervalMinutes } from '@/lib/scheduler'
 import {
   assess,
   calendarMonth,
@@ -149,7 +149,7 @@ export async function usageReport(now = new Date()): Promise<UsageReport> {
   const schedulerCu = neonSchedulerCuHours({
     ticks: monthTicks,
     tickMs: monthTickMs,
-    intervalMinutes: SCHEDULER_INTERVAL_MINUTES,
+    intervalMinutes: schedulerIntervalMinutes(),
   })
   const schedulerDetails = [
     { label: 'Scheduler runs this month', value: n0(monthTicks) },

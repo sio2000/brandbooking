@@ -105,7 +105,9 @@ for the new URL.
   minutes, not every minute: an every-minute tick would keep the database awake all
   month (~180 CU-hours) and cost ~450 credits on its own. Booking, cancellation and
   account emails are sent immediately; reminders go out up to 15 minutes early, never
-  late. **Admin → Usage** shows how much of each free plan is used, the forecast for the
+  late. Until 1 November 2026 only every second run does anything (30 minutes), because
+  October lost 45 CU-hours to an old site that ticked every minute; it goes back to 15 by
+  itself (`SLOW_SCHEDULER` in `src/lib/scheduler.ts`). **Admin → Usage** shows how much of each free plan is used, the forecast for the
   month and when to upgrade (`src/lib/usage.ts` holds the plan figures).
 - Server Actions accept up to 6 MB, matching Netlify Functions' request limit;
   image uploads are capped at 5 MB.

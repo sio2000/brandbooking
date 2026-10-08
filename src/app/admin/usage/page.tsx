@@ -14,7 +14,7 @@ import {
 } from '@/components/admin/primitives'
 import { UsageReadingForm } from '@/components/admin/usage-reading-form'
 import { formatDate, formatNumber } from '@/lib/format'
-import { SCHEDULER_INTERVAL_MINUTES } from '@/lib/scheduler'
+import { schedulerIntervalMinutes } from '@/lib/scheduler'
 import { FREE_LIMITS, neonLaunchUsd, PAID_PLANS, type UsageTone } from '@/lib/usage'
 import { cn } from '@/lib/utils'
 
@@ -372,7 +372,7 @@ export default async function AdminUsagePage() {
         </div>
 
         <p className="text-xs text-muted-foreground">
-          The scheduler runs every {SCHEDULER_INTERVAL_MINUTES} minutes so the database can sleep in
+          The scheduler runs every {schedulerIntervalMinutes()} minutes so the database can sleep in
           between; every production deploy costs Netlify credits, so fewer, bundled deploys save the
           monthly allowance. Plan figures as published by the providers in September 2026 (
           <code>src/lib/usage.ts</code>). Updated <UtcTime value={r.generatedAt} mode="relative" />.

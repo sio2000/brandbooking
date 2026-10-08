@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   assess,
   calendarMonth,
@@ -12,12 +12,15 @@ import {
   worstUsageTone,
 } from '@/lib/usage'
 import {
-  OVERDUE_EMAIL_MINUTES,
+  overdueEmailMinutes,
   SCHEDULER_CRON,
   SCHEDULER_INTERVAL_MINUTES,
-  SCHEDULER_STALE_MINUTES,
+  schedulerIntervalMinutes,
+  schedulerStaleMinutes,
+  SLOW_SCHEDULER,
 } from '@/lib/scheduler'
-import { assessHealth, HEALTH_THRESHOLDS } from '@/components/admin/health'
+import { assessHealth } from '@/components/admin/health'
+import cronTick from '../../netlify/functions/cron-tick.mjs'
 import { neonUsage, parseNeonProject } from '@/server/usage/neon'
 import { resetEnvCache } from '@/server/env'
 
@@ -31,10 +34,63 @@ describe('scheduler interval', () => {
     expect(SCHEDULER_CRON).toBe('*/15 * * * *')
   })
 
+  it('the slow period is the same in the function and in the app, and ends by itself', () => {
+    const src = readFileSync(path.join(process.cwd(), 'netlify/functions/cron-tick.mts'), 'utf8')
+    expect(src.match(/SLOW_UNTIL = '([^']+)'/)?.[1]).toBe(SLOW_SCHEDULER.until)
+    expect(Number(src.match(/SLOW_INTERVAL_MINUTES = (\d+)/)?.[1])).toBe(
+      SLOW_SCHEDULER.intervalMinutes,
+    )
+    // Twice the normal interval, so every second firing of the function is a run.
+    expect(SLOW_SCHEDULER.intervalMinutes).toBe(2 * SCHEDULER_INTERVAL_MINUTES)
+    expect(schedulerIntervalMinutes(d('2026-10-31T23:59:59Z').getTime())).toBe(30)
+    expect(schedulerIntervalMinutes(d('2026-11-01T00:00:00Z').getTime())).toBe(15)
+    expect(schedulerIntervalMinutes(d('2027-03-01T00:00:00Z').getTime())).toBe(15)
+  })
+
+  describe('the scheduled function', () => {
+    const saved = { APP_URL: process.env.APP_URL, CRON_SECRET: process.env.CRON_SECRET }
+    afterEach(() => {
+      vi.useRealTimers()
+      vi.unstubAllGlobals()
+      for (const [k, v] of Object.entries(saved)) {
+        if (v === undefined) delete process.env[k]
+        else process.env[k] = v
+      }
+    })
+    /** Fire the function at `iso` and say whether it called the app. */
+    const firedAt = async (iso: string) => {
+      process.env.APP_URL = 'https://app.example'
+      process.env.CRON_SECRET = 'x'.repeat(32)
+      const fetchMock = vi.fn(async () => new Response(null, { status: 200 }))
+      vi.stubGlobal('fetch', fetchMock)
+      vi.useFakeTimers()
+      vi.setSystemTime(d(iso))
+      const res = await cronTick()
+      return { called: fetchMock.mock.calls.length === 1, status: res.status }
+    }
+
+    it('during the slow period runs at minutes 0 and 30 and skips 15 and 45', async () => {
+      expect(await firedAt('2026-10-08T10:00:20Z')).toEqual({ called: true, status: 200 })
+      expect(await firedAt('2026-10-08T10:15:20Z')).toEqual({ called: false, status: 204 })
+      expect(await firedAt('2026-10-08T10:30:20Z')).toEqual({ called: true, status: 200 })
+      expect(await firedAt('2026-10-08T10:45:20Z')).toEqual({ called: false, status: 204 })
+      expect(await firedAt('2026-10-31T23:45:20Z')).toEqual({ called: false, status: 204 })
+    })
+
+    it('from 1 November every firing runs again', async () => {
+      expect(await firedAt('2026-11-01T00:00:20Z')).toEqual({ called: true, status: 200 })
+      expect(await firedAt('2026-11-01T00:15:20Z')).toEqual({ called: true, status: 200 })
+      expect(await firedAt('2026-11-01T00:45:20Z')).toEqual({ called: true, status: 200 })
+    })
+  })
+
   it('health checks leave room for the interval before warning', () => {
-    expect(OVERDUE_EMAIL_MINUTES).toBeGreaterThan(SCHEDULER_INTERVAL_MINUTES)
-    expect(SCHEDULER_STALE_MINUTES).toBeGreaterThan(2 * SCHEDULER_INTERVAL_MINUTES)
-    const now = d('2026-09-29T12:00:00Z').getTime()
+    for (const day of ['2026-10-08T12:00:00Z', '2026-11-08T12:00:00Z']) {
+      const t = d(day).getTime()
+      expect(overdueEmailMinutes(t)).toBeGreaterThan(schedulerIntervalMinutes(t))
+      expect(schedulerStaleMinutes(t)).toBeGreaterThan(2 * schedulerIntervalMinutes(t))
+    }
+    const now = d('2026-11-08T12:00:00Z').getTime()
     const at = (minutesAgo: number) => ({
       dbLatencyMs: 20,
       backlog: 0,
@@ -48,7 +104,19 @@ describe('scheduler interval', () => {
       assessHealth(at(minutesAgo), now).find((c) => c.key === 'cron')!
     // A run 14 minutes ago is normal with a 15-minute schedule.
     expect(cron(14).tone).toBe('ok')
-    expect(cron(HEALTH_THRESHOLDS.cronStaleMinutes + 1).tone).toBe('warning')
+    expect(cron(schedulerStaleMinutes(now) + 1).tone).toBe('warning')
+    // During the slow period a run 29 minutes ago is normal too.
+    const slow = d('2026-10-08T12:00:00Z').getTime()
+    const slowCron = (minutesAgo: number) =>
+      assessHealth(
+        {
+          ...at(0),
+          lastCron: { at: new Date(slow - minutesAgo * 60_000).toISOString(), result: null },
+        },
+        slow,
+      ).find((c) => c.key === 'cron')!
+    expect(slowCron(29).tone).toBe('ok')
+    expect(slowCron(schedulerStaleMinutes(slow) + 1).tone).toBe('warning')
   })
 })
 

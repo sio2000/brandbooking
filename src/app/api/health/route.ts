@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { sql } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import { OVERDUE_EMAIL_MINUTES } from '@/lib/scheduler'
+import { overdueEmailMinutes } from '@/lib/scheduler'
 
 export const dynamic = 'force-dynamic'
 
@@ -11,7 +11,7 @@ export async function GET() {
   try {
     const [row] = (await db().execute(sql`
       SELECT 1 AS ok,
-        (SELECT count(*)::int FROM notifications WHERE status = 'pending' AND send_after <= now() - make_interval(mins => ${OVERDUE_EMAIL_MINUTES})) AS overdue,
+        (SELECT count(*)::int FROM notifications WHERE status = 'pending' AND send_after <= now() - make_interval(mins => ${overdueEmailMinutes()})) AS overdue,
         (SELECT max(version) FROM schema_migrations) AS schema
     `)) as unknown as Array<{ ok: number; overdue: number; schema: string }>
     return NextResponse.json(
