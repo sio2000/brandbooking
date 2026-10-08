@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { z } from 'zod'
 import { parse, runAction, type ActionResult } from '@/server/actions'
 import { adminMutation, optionalReasonSchema } from '@/server/admin/guard'
@@ -12,6 +12,8 @@ import {
   MIN_PRICE_CENTS,
   retryFailedMigrations,
 } from '@/server/billing/plan-prices'
+import { logger } from '@/server/observability/logger'
+import { PLAN_PRICE_TAG } from '@/server/pricing'
 
 /** "12", "12.5", "12,50" → 1250 cents; anything else is rejected. */
 const amountSchema = z
@@ -46,7 +48,13 @@ export async function changePriceAction(
       { amountCents: input.amount, reason: input.reason },
       ctx.meta,
     )
-    // Every page shows the price (getPlanPrice), so refresh them all.
+    // Every page shows the price (getPlanPrice), so drop the cached one and refresh
+    // them all. Should expiring fail, the cached price is read again within a day.
+    try {
+      updateTag(PLAN_PRICE_TAG)
+    } catch (err) {
+      logger.error('pricing.cache_expire_failed', { err })
+    }
     revalidatePath('/', 'layout')
     return { effectiveForExistingAt: r.effectiveForExistingAt.toISOString(), notified: r.notified }
   }, 'Price changed. New checkouts use it now; subscribers were notified.')

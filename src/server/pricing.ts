@@ -1,7 +1,8 @@
 import 'server-only'
 import { env } from '@/server/env'
 import { formatMoney } from '@/lib/format'
-import { currentPlanPriceRow } from '@/server/billing/plan-price-store'
+import { currentPlanPriceRow, isLiveStripeKey } from '@/server/billing/plan-price-store'
+import { durable } from '@/server/durable-cache'
 import { logger } from '@/server/observability/logger'
 
 export type PlanPrice = {
@@ -13,20 +14,42 @@ export type PlanPrice = {
   display: string
 }
 
+type StoredPrice = { cents: number; currency: string } | null
+
 const CACHE_MS = 60_000
-let cache: { at: number; value: { cents: number; currency: string } | null } | undefined
+let cache: { at: number; value: StoredPrice } | undefined
+
+/**
+ * Tag of the stored price in the data cache. The admin price change expires it
+ * (`updateTag` in src/app/admin/pricing/actions.ts).
+ */
+export const PLAN_PRICE_TAG = 'plan-price'
+/** A safety net: the cached price is read again once a day even if nothing expired it. */
+const DURABLE_SECONDS = 24 * 60 * 60
 
 /** For tests, and right after an admin price change on this server instance. */
 export function resetPlanPriceCache() {
   cache = undefined
 }
 
+async function loadStoredPrice(): Promise<StoredPrice> {
+  const row = await currentPlanPriceRow()
+  return row ? { cents: row.amountCents, currency: row.currency } : null
+}
+
+/**
+ * Every marketing page shows the price, so this must not ask the database on
+ * each visit: it goes through the data cache (see src/server/durable-cache.ts).
+ * The Stripe mode is part of the key because the stored price differs per mode.
+ */
 async function storedPrice() {
   if (cache && Date.now() - cache.at < CACHE_MS) return cache.value
-  let value: { cents: number; currency: string } | null = null
+  let value: StoredPrice = null
   try {
-    const row = await currentPlanPriceRow()
-    value = row ? { cents: row.amountCents, currency: row.currency } : null
+    value = await durable(['plan-price', isLiveStripeKey() ? 'live' : 'test'], loadStoredPrice, {
+      seconds: DURABLE_SECONDS,
+      tags: [PLAN_PRICE_TAG],
+    })
   } catch (err) {
     // No database (e.g. a build without one): fall back to the configured price.
     logger.warn('pricing.db_unavailable', { err })
@@ -38,8 +61,8 @@ async function storedPrice() {
 /**
  * The monthly plan price shown everywhere (marketing, legal, billing, emails).
  * Every page reads it from here, so a price change needs no copy changes.
- * The price set in the admin panel (/admin/pricing) wins, cached for a minute
- * per server instance; otherwise env PLAN_PRICE_CENTS / PLAN_CURRENCY.
+ * The price set in the admin panel (/admin/pricing) wins, cached until it is
+ * changed there; otherwise env PLAN_PRICE_CENTS / PLAN_CURRENCY.
  */
 export async function getPlanPrice(localeTag = 'en'): Promise<PlanPrice> {
   const stored = await storedPrice()
