@@ -8,7 +8,9 @@ import { resetStripeClient, stripe } from '@/server/billing/stripe'
 import { setSetting } from '@/server/admin/admin'
 import {
   dropForeignModeSettings,
+  ensurePlanProductName,
   ensureWebhookEndpoint,
+  PLAN_PRODUCT_NAME,
   planPriceId,
   portalConfigurationId,
   PRICE_LOOKUP_KEY,
@@ -41,6 +43,7 @@ beforeEach(async () => {
   resetBillingConfigCache()
   fake.requests.length = 0
   fake.state.prices.length = 0
+  fake.state.products.length = 0
   fake.state.portalConfigs.length = 0
   fake.state.webhooks.length = 0
   s = await setupBusiness()
@@ -71,6 +74,15 @@ describe('plan price', () => {
     expect(await planPriceId()).toBe(id)
     expect(creates('/v1/prices')).toBe(1)
     expect(creates('/v1/products')).toBe(1)
+  })
+
+  it('sells the plan under the app and who runs it, nothing else', async () => {
+    // Stripe prints the product name on each invoice line and the invoicing
+    // service copies it on to the legal receipt.
+    await planPriceId()
+    const req = fake.requests.find((r) => r.method === 'POST' && r.path === '/v1/products')!
+    expect(req.params.get('name')).toBe('Hournook powered by DevTaskHub')
+    expect(PLAN_PRODUCT_NAME).toBe('Hournook powered by DevTaskHub')
   })
 
   it('adopts an existing matching price found by lookup key', async () => {
@@ -128,6 +140,56 @@ describe('plan price', () => {
       (r) => r.method === 'POST' && r.path === '/v1/checkout/sessions',
     )!
     expect(checkout.params.get('line_items[0][price]')).toBe(await planPriceId())
+  })
+})
+
+describe('the name on the invoice line', () => {
+  const renames = () =>
+    fake.requests.filter((r) => r.method === 'POST' && r.path.startsWith('/v1/products/'))
+
+  it('renames a product made under an older name, once', async () => {
+    fake.state.products.push({ id: 'prod_old_name', object: 'product', name: 'Hournook' })
+    fake.addPrice({
+      id: 'price_plan',
+      unit_amount: 1000,
+      lookup_key: PRICE_LOOKUP_KEY,
+      product: 'prod_old_name',
+    })
+    expect(await ensurePlanProductName()).toEqual(['prod_old_name'])
+    expect(fake.state.products[0]!.name).toBe(PLAN_PRODUCT_NAME)
+    expect(renames()[0]!.params.get('name')).toBe(PLAN_PRODUCT_NAME)
+
+    expect(await ensurePlanProductName()).toEqual([])
+    expect(renames()).toHaveLength(1)
+  })
+
+  it('leaves a freshly provisioned product alone', async () => {
+    await planPriceId()
+    expect(await ensurePlanProductName()).toEqual([])
+    expect(renames()).toHaveLength(0)
+  })
+
+  it('also renames the product of an older price a subscription is still on', async () => {
+    await planPriceId()
+    fake.state.products.push({ id: 'prod_before', object: 'product', name: 'Hournook' })
+    fake.addPrice({ id: 'price_before', unit_amount: 900, product: 'prod_before' })
+    await db().insert(subscriptions).values({
+      businessId: s.ctx.business.id,
+      stripeCustomerId: 'cus_on_older_price',
+      stripePriceId: 'price_before',
+    })
+    expect(await ensurePlanProductName()).toEqual(['prod_before'])
+    expect(fake.state.products.map((p) => p.name)).toEqual([PLAN_PRODUCT_NAME, PLAN_PRODUCT_NAME])
+  })
+
+  it('skips a subscription price the current key cannot see (saved in the other mode)', async () => {
+    await planPriceId()
+    await db().insert(subscriptions).values({
+      businessId: s.ctx.business.id,
+      stripeCustomerId: 'cus_from_other_mode',
+      stripePriceId: 'price_from_other_mode',
+    })
+    expect(await ensurePlanProductName()).toEqual([])
   })
 })
 

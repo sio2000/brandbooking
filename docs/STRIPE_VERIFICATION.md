@@ -208,9 +208,10 @@ Every Stripe id stored so far belongs to **test mode**:
 1. Deploy production. The build log should show `[stripe:setup] Stripe live mode`,
    `plan price: price_…`, `portal configuration: bpc_…` and
    `webhook created: we_… → https://www.hournook.com/api/stripe/webhook`.
-2. In the live Dashboard, check: product "Hournook" with a price of €10.00 EUR monthly, tax
-   behaviour _inclusive_ and lookup key `hournook_monthly`; the webhook endpoint with its 9
-   events and API version; the portal configuration.
+2. In the live Dashboard, check: product "Hournook powered by DevTaskHub" (the name is the line
+   on every invoice, and what Workadu copies on to the legal receipt) with a price of €10.00
+   EUR monthly, tax behaviour _inclusive_ and lookup key `hournook_monthly`; the webhook
+   endpoint with its 9 events and API version; the portal configuration.
 
 ### First real €10 purchase, then refund
 

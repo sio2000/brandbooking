@@ -2,6 +2,7 @@
  * Provisions everything billing needs in the Stripe account behind
  * STRIPE_SECRET_KEY, idempotently:
  *   - the €10/month plan price (lookup key `hournook_monthly`)
+ *   - the name of the plan's product, which is the line on every invoice
  *   - a Customer Portal configuration
  *   - the webhook endpoint `<APP_URL>/api/stripe/webhook`, whose signing secret
  *     is stored encrypted (with APP_SECRET) in the database
@@ -28,14 +29,32 @@ async function main() {
   if (!process.env.APP_SECRET)
     throw new Error('APP_SECRET is required (it encrypts the webhook secret)')
 
-  const { planPriceId, portalConfigurationId, ensureWebhookEndpoint, dropForeignModeSettings } =
-    await import('../src/server/billing/config')
+  const {
+    planPriceId,
+    portalConfigurationId,
+    ensureWebhookEndpoint,
+    dropForeignModeSettings,
+    ensurePlanProductName,
+    PLAN_PRODUCT_NAME,
+  } = await import('../src/server/billing/config')
   const mode = process.env.STRIPE_SECRET_KEY.includes('_test_') ? 'test' : 'live'
   console.log(`[stripe:setup] Stripe ${mode} mode`)
   // Ids stored while on the other mode's keys (test → live at go-live) are unusable there.
   for (const key of await dropForeignModeSettings())
     console.log(`[stripe:setup] ${key}: stored id is from the other Stripe mode, re-provisioning`)
   console.log(`[stripe:setup] plan price: ${await planPriceId()}`)
+  // Reported, never fatal: in live mode an error thrown here would fail the build,
+  // and a product still under its older name is no reason to stop a deploy.
+  try {
+    const renamed = await ensurePlanProductName()
+    console.log(
+      `[stripe:setup] invoice line "${PLAN_PRODUCT_NAME}": ${renamed.length ? `renamed ${renamed.join(', ')}` : 'up to date'}`,
+    )
+  } catch (err) {
+    console.log(
+      `[stripe:setup] invoice line "${PLAN_PRODUCT_NAME}": NOT SET (${err instanceof Error ? err.message : String(err)}). Rename the product in Stripe by hand, or give the key write access to Products.`,
+    )
+  }
   console.log(`[stripe:setup] portal configuration: ${await portalConfigurationId()}`)
 
   const url = argUrl ?? process.env.APP_URL ?? process.env.URL

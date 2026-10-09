@@ -131,6 +131,8 @@
    - `[stripe:setup] stripe.price_id: stored id is from the other Stripe mode, re-provisioning`
      (και το ίδιο για `stripe.portal_configuration_id`). Είναι αναμενόμενα, δεν είναι σφάλματα.
    - `[stripe:setup] plan price: price_…`
+   - `[stripe:setup] invoice line "Hournook powered by DevTaskHub": up to date` (ή `renamed prod_…`).
+     Αυτό είναι το όνομα του προϊόντος στο Stripe, δηλαδή η γραμμή που γράφει το παραστατικό.
    - `[stripe:setup] portal configuration: bpc_…`
    - `[stripe:setup] webhook created: we_… → https://www.hournook.com/api/stripe/webhook`
 

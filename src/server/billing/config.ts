@@ -1,8 +1,9 @@
 import 'server-only'
 import StripeSdk from 'stripe'
-import { eq, like, or } from 'drizzle-orm'
+import { eq, isNotNull, like, or } from 'drizzle-orm'
+import { site } from '@/lib/site'
 import { db } from '@/server/db/client'
-import { platformSettings } from '@/server/db/schema'
+import { platformSettings, subscriptions } from '@/server/db/schema'
 import { env } from '@/server/env'
 import { getSetting, setSetting } from '@/server/admin/admin'
 import { seal, unseal } from '@/server/security/sealed'
@@ -29,6 +30,13 @@ import { currentPlanPriceRow } from './plan-price-store'
  */
 
 export const PRICE_LOOKUP_KEY = 'hournook_monthly'
+/**
+ * The name of the plan's Stripe product. This is the text that travels: Stripe
+ * prints it on every invoice line, and the invoicing service (Workadu) copies
+ * it on to the legal receipt that goes to the customer and to the tax office.
+ * So it names the app and who runs it and nothing more.
+ */
+export const PLAN_PRODUCT_NAME = `${site.name} powered by DevTaskHub`
 const PRICE_SETTING = 'stripe.price_id'
 const PORTAL_SETTING = 'stripe.portal_configuration_id'
 /** One row per endpoint URL (`stripe.webhook:<url>`); releases before that kept a single row. */
@@ -106,7 +114,7 @@ export async function planPriceId(): Promise<string> {
     const replaces = price?.id ?? 'none'
     const product = await stripe().products.create(
       {
-        name: 'Hournook',
+        name: PLAN_PRODUCT_NAME,
         description: 'Online booking for your business. One plan, everything included.',
         metadata: { app: 'hournook' },
       },
@@ -132,6 +140,45 @@ export async function planPriceId(): Promise<string> {
   }
   await setSetting(PRICE_SETTING, price.id)
   return (cache.price = price.id)
+}
+
+/**
+ * Gives PLAN_PRODUCT_NAME to every product a business is billed under: the
+ * product of the plan price, and of any older price a subscription is still on.
+ *
+ * A product is created once and then lives in Stripe, so changing the name in
+ * code alone would never reach an account that is already selling, and the
+ * product behind a pinned or admin-set price was never created here at all.
+ * Stripe reads the name when it writes each invoice, so subscriptions that
+ * already exist get the new line from their next invoice on. Returns the ids
+ * of the products it renamed. Run by `npm run stripe:setup`, on every deploy.
+ */
+export async function ensurePlanProductName(): Promise<string[]> {
+  const billed = await db()
+    .selectDistinct({ id: subscriptions.stripePriceId })
+    .from(subscriptions)
+    .where(isNotNull(subscriptions.stripePriceId))
+  const priceIds = new Set([await planPriceId(), ...billed.map((r) => r.id!)])
+  const productIds = new Set<string>()
+  for (const id of priceIds) {
+    // A price saved while on the other mode's keys (test, then live) is not found: nothing to rename.
+    const price = await stripe()
+      .prices.retrieve(id)
+      .catch((err: { statusCode?: number }) => {
+        if (err?.statusCode === 404) return null
+        throw err
+      })
+    if (price) productIds.add(typeof price.product === 'string' ? price.product : price.product.id)
+  }
+  const renamed: string[] = []
+  for (const id of productIds) {
+    const product = await stripe().products.retrieve(id)
+    if (product.deleted || product.name === PLAN_PRODUCT_NAME) continue
+    await stripe().products.update(id, { name: PLAN_PRODUCT_NAME })
+    logger.info('stripe.product_renamed', { productId: id })
+    renamed.push(id)
+  }
+  return renamed
 }
 
 /** A Customer Portal configuration id to open billing portal sessions with. */

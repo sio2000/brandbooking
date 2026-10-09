@@ -13,7 +13,9 @@ import { closeDb } from '@/server/db/client'
 import { resetEnvCache } from '@/server/env'
 import { resetStripeClient, stripe } from '@/server/billing/stripe'
 import {
+  ensurePlanProductName,
   ensureWebhookEndpoint,
+  PLAN_PRODUCT_NAME,
   planPriceId,
   portalConfigurationId,
   PRICE_LOOKUP_KEY,
@@ -71,9 +73,11 @@ describe.skipIf(!LIVE)('Stripe auto-configuration (live API, test mode)', () => 
     expect(price.recurring).toMatchObject({ interval: 'month', interval_count: 1 })
     expect(price.tax_behavior).toBe('inclusive')
     expect(price.lookup_key).toBe(PRICE_LOOKUP_KEY)
-    const product = price.product as { active: boolean; name: string }
+    const product = price.product as { id: string; active: boolean }
     expect(product.active).toBe(true)
-    expect(product.name).toBe('Hournook')
+    // An account provisioned by an older release still has the product under its older name.
+    await ensurePlanProductName()
+    expect((await stripe().products.retrieve(product.id)).name).toBe(PLAN_PRODUCT_NAME)
     expect(await getSetting('stripe.price_id')).toBe(id)
     if (price.created >= started - 5) {
       // Created by this run: mark it so parallel users of the test account know where it came from.

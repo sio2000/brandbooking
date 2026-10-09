@@ -72,6 +72,7 @@ The build log shows the migrations and lines like:
 ```
 [stripe:setup] Stripe test mode
 [stripe:setup] plan price: price_…
+[stripe:setup] invoice line "Hournook powered by DevTaskHub": up to date
 [stripe:setup] portal configuration: bpc_…
 [stripe:setup] webhook created: we_… → https://www.hournook.com/api/stripe/webhook
 ```

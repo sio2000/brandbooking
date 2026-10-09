@@ -30,7 +30,7 @@ export async function startFakeStripe() {
   // Minimal server-side state for the configuration objects the app provisions.
   const state = {
     prices: [] as Array<Record<string, unknown> & { lookup_key: string | null }>,
-    products: [] as unknown[],
+    products: [] as Array<{ id: string; object: 'product'; name: string | null }>,
     portalConfigs: [] as unknown[],
     webhooks: [] as Array<Record<string, unknown> & { id: string }>,
     checkoutSessions: [] as Array<
@@ -171,8 +171,21 @@ export async function startFakeStripe() {
       if (req.method === 'GET' && path.startsWith('/v1/billing_portal/configurations/'))
         return byId(state.portalConfigs, 'configuration')
       if (req.method === 'POST' && path === '/v1/products') {
-        const product = { id: `prod_test_${id}`, object: 'product', name: params.get('name') }
+        const product = {
+          id: `prod_test_${id}`,
+          object: 'product' as const,
+          name: params.get('name'),
+        }
         state.products.push(product)
+        return json(200, product)
+      }
+      if (req.method === 'GET' && path.startsWith('/v1/products/'))
+        return byId(state.products, 'product')
+      if (req.method === 'POST' && path.startsWith('/v1/products/')) {
+        const product = state.products.find((o) => o.id === path.split('/').pop())
+        if (!product)
+          return json(404, { error: { type: 'invalid_request_error', message: 'No such product' } })
+        if (params.has('name')) product.name = params.get('name')
         return json(200, product)
       }
       if (req.method === 'POST' && path === '/v1/prices') {
