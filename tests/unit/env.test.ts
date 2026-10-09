@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { env, isStripeConfigured, resetEnvCache } from '@/server/env'
+import { env, isStripeConfigured, resetEnvCache, stripeEmbedKey } from '@/server/env'
 
 const KEYS = [
   'NODE_ENV',
@@ -91,6 +91,35 @@ describe('Stripe key safety', () => {
 
   it('billing is off without a secret key', () => {
     expect(isStripeConfigured()).toBe(false)
+  })
+
+  it('draws the payment form on our own page only with a publishable key of the same mode', () => {
+    const embed = (secret?: string, publishable?: string) => {
+      if (secret === undefined) delete E.STRIPE_SECRET_KEY
+      else E.STRIPE_SECRET_KEY = secret
+      if (publishable === undefined) delete E.STRIPE_PUBLISHABLE_KEY
+      else E.STRIPE_PUBLISHABLE_KEY = publishable
+      resetEnvCache()
+      return stripeEmbedKey()
+    }
+    expect(embed('sk_test_abc', 'pk_test_abc')).toBe('pk_test_abc')
+    // Stray spaces and quotes pasted into the hosting dashboard are ignored.
+    expect(embed('sk_test_abc', ' "pk_test_abc" ')).toBe('pk_test_abc')
+    // Without it the hosted page is used, as before.
+    expect(embed('sk_test_abc')).toBeNull()
+    expect(embed('sk_test_abc', '')).toBeNull()
+    expect(embed(undefined, 'pk_test_abc')).toBeNull()
+    // A secret key pasted where the publishable one belongs never reaches the browser.
+    expect(embed('sk_test_abc', 'sk_test_abc')).toBeNull()
+    expect(embed('sk_test_abc', 'not-a-key')).toBeNull()
+
+    E.STRIPE_LIVE_MODE = 'enabled'
+    expect(embed('sk_live_abc', 'pk_live_abc')).toBe('pk_live_abc')
+    expect(embed('rk_live_abc', 'pk_live_abc')).toBe('pk_live_abc')
+    // Mixed modes, the easy mistake when going live, fail inside Stripe's frame
+    // with an error nobody can act on: the hosted page is used instead.
+    expect(embed('sk_live_abc', 'pk_test_abc')).toBeNull()
+    expect(embed('sk_test_abc', 'pk_live_abc')).toBeNull()
   })
 })
 

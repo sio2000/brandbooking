@@ -146,6 +146,41 @@ test.describe('security headers', () => {
     expect(embed.headers()['content-security-policy']).toContain('frame-ancestors *')
   })
 
+  test('Stripe’s payment form is let in on the app’s pages and never on booking pages', async ({
+    page,
+    context,
+  }) => {
+    // Subscribing opens Stripe's form in a sheet on the billing page. Pages change
+    // without a full load, so every page an owner may arrive on carries the rule.
+    const stripeFrames =
+      /frame-src 'self' https:\/\/js\.stripe\.com [^;]*https:\/\/checkout\.stripe\.com/
+    const stripeApi = /connect-src 'self'[^;]* https:\/\/api\.stripe\.com/
+    const check = async (path: string) => {
+      const res = await page.request.get(path)
+      expect(res.status(), path).toBe(200)
+      const csp = res.headers()['content-security-policy']!
+      expect(csp, path).toMatch(stripeFrames)
+      expect(csp, path).toMatch(stripeApi)
+      // Nothing wider than Stripe's own hosts, and scripts stay locked to the nonce.
+      expect(csp, path).not.toMatch(/frame-src[^;]*\*(?!\.(js\.stripe|link)\.com)/)
+      expect(csp, path).toContain("'strict-dynamic'")
+      expect(res.headers()['permissions-policy'], path).toContain(
+        'payment=(self "https://js.stripe.com"',
+      )
+      expect(res.headers()['cross-origin-opener-policy'], path).toBe('same-origin-allow-popups')
+    }
+    for (const path of ['/login', '/pricing']) await check(path)
+    await loginAs(context, USERS.ownerA.email)
+    for (const path of ['/app', '/app/billing']) await check(path)
+    // What a business's customers see keeps the stricter rule: no Stripe anywhere.
+    for (const path of [`/${BIZ_A.slug}`, `/embed/${BIZ_A.slug}`]) {
+      const csp = (await page.request.get(path)).headers()['content-security-policy']!
+      expect(csp, path).not.toContain('frame-src')
+      expect(csp, path).not.toContain('js.stripe.com')
+      expect(csp, path).not.toMatch(/(connect|img)-src[^;]*stripe/)
+    }
+  })
+
   test('a third-party site can frame the booking widget but not the app', async ({ page }) => {
     // A real server on another origin stands in for a customer's website.
     const html = `<!doctype html><title>Partner</title>

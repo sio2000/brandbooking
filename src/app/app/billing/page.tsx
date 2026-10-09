@@ -22,7 +22,7 @@ import {
 } from '@/server/billing/service'
 import type { Access } from '@/server/billing/entitlements'
 import type { Subscription } from '@/server/db/schema'
-import { isStripeConfigured } from '@/server/env'
+import { isStripeConfigured, stripeEmbedKey } from '@/server/env'
 import { getFormatLocale, getT } from '@/server/i18n'
 import { getPlanPrice } from '@/server/pricing'
 import { site } from '@/lib/site'
@@ -392,7 +392,9 @@ export default async function BillingPage({ searchParams }: PageProps<'/app/bill
                     </div>
                   )}
                   {stripeReady && canManage && status.cta === 'checkout' && !inPortal && (
-                    <p className="mt-3 text-[13px] text-muted-foreground">{t('cta.secure')}</p>
+                    <p className="mt-3 text-[13px] text-muted-foreground">
+                      {t(stripeEmbedKey() ? 'cta.secureHere' : 'cta.secure')}
+                    </p>
                   )}
                 </div>
               </div>

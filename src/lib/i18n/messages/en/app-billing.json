@@ -81,7 +81,8 @@
     "manage": "Manage billing",
     "updateCard": "Update card",
     "cancel": "Cancel subscription",
-    "secure": "You’ll pay securely on Stripe’s checkout page and come straight back here."
+    "secure": "You’ll pay securely on Stripe’s checkout page and come straight back here.",
+    "secureHere": "You’ll pay securely with Stripe, without leaving this page."
   },
   "included": {
     "title": "What’s included",

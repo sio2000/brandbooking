@@ -109,6 +109,13 @@ and several colour-contrast failures (subtle text and dark-mode avatars).
   Hosted Checkout/Portal pages themselves are Stripe's.
 - S3 storage against a real bucket (the S3 driver's request signing uses the
   `aws4fetch` library; the local driver is tested).
+- Stripe's payment form inside the sheet on the billing page: which session is created,
+  and the fall-back to the hosted page, are covered by integration tests against the fake
+  Stripe API; the security headers that let the form in by a browser test. Stripe's own
+  form in its frame was checked by hand in Stripe test mode, on a phone-sized and a desktop
+  screen: it opens over the billing page, takes card details, closes by the button and
+  by Escape, and hands over to the hosted page when it cannot be drawn. Paying through it
+  cannot be automated, because Stripe challenges automated browsers.
 - Google's own sign-in pages: the app's sign-in code is tested against a local stand-in
   (see below); the real exchange needs a Google account and cannot run unattended.
 - Browsers other than Chromium, and real mobile devices (Pixel 7 is emulated).

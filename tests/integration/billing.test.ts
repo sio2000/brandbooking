@@ -1,7 +1,13 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { eq } from 'drizzle-orm'
 import { closeDb, db } from '@/server/db/client'
-import { billingEvents, businesses, notifications, subscriptions } from '@/server/db/schema'
+import {
+  auditLogs,
+  billingEvents,
+  businesses,
+  notifications,
+  subscriptions,
+} from '@/server/db/schema'
 import { resetDatabase } from '../helpers/db'
 import { futureDate, meta, setupBusiness, type Setup } from '../helpers/factory'
 import { startFakeStripe, type FakeSubscription } from '../helpers/fake-stripe'
@@ -11,6 +17,7 @@ import { handleStripeWebhook } from '@/server/billing/webhook'
 import {
   accessFor,
   createCheckoutSession,
+  startCheckout,
   createPortalSession,
   paymentMethodSummary,
 } from '@/server/billing/service'
@@ -88,6 +95,7 @@ beforeEach(async () => {
   await resetDatabase()
   fake.requests.length = 0
   fake.state.checkoutSessions.length = 0
+  fake.state.refuseEmbedded = false
   s = await setupBusiness()
 })
 afterAll(async () => {
@@ -148,6 +156,99 @@ describe('checkout', () => {
     const again = await createCheckoutSession(s.ctx.business, s.owner.id)
     expect(again).toMatch(/billing\.stripe\.com/)
     expect(fake.requests.filter((r) => r.path === '/v1/checkout/sessions')).toHaveLength(0)
+  })
+})
+
+describe('checkout in a sheet on the billing page', () => {
+  const lastCheckout = () =>
+    fake.requests.findLast((r) => r.method === 'POST' && r.path === '/v1/checkout/sessions')!
+
+  it('asks Stripe for an embedded session and hands back only its client secret', async () => {
+    const checkout = await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    expect(checkout.ui).toBe('embedded')
+    expect(checkout.ui === 'embedded' && checkout.clientSecret).toMatch(/^cs_test_.+_secret_/)
+    const sent = lastCheckout().params
+    expect(sent.get('ui_mode')).toBe('embedded_page')
+    // Cards and wallets finish in place; only a bank's own page comes back through here.
+    expect(sent.get('redirect_on_completion')).toBe('if_required')
+    expect(sent.get('return_url')).toBe('http://localhost:3100/app/billing?checkout=success')
+    expect(sent.get('success_url')).toBeNull()
+    expect(sent.get('cancel_url')).toBeNull()
+  })
+
+  it('is the very same subscription as on the hosted page', async () => {
+    await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    const embedded = new Map(lastCheckout().params)
+    await startCheckout(s.ctx.business, s.owner.id, 'hosted')
+    const hosted = new Map(lastCheckout().params)
+    for (const map of [embedded, hosted]) {
+      for (const key of [
+        'ui_mode',
+        'redirect_on_completion',
+        'return_url',
+        'success_url',
+        'cancel_url',
+      ])
+        map.delete(key)
+    }
+    expect(Object.fromEntries(embedded)).toEqual(Object.fromEntries(hosted))
+    expect(embedded.get('mode')).toBe('subscription')
+    expect(embedded.get('line_items[0][price]')).toBe(PRICE)
+    expect(embedded.get('billing_address_collection')).toBe('required')
+    expect(embedded.get('subscription_data[metadata][business_id]')).toBe(s.ctx.business.id)
+    expect(Number(embedded.get('subscription_data[trial_end]'))).toBeGreaterThan(
+      Date.now() / 1000 + 13 * 86400,
+    )
+  })
+
+  it('keeps the hosted page exactly as it was', async () => {
+    const checkout = await startCheckout(s.ctx.business, s.owner.id, 'hosted')
+    expect(checkout).toEqual({
+      ui: 'hosted',
+      url: expect.stringMatching(/^https:\/\/checkout\.stripe\.com\//),
+    })
+    const sent = lastCheckout().params
+    expect(sent.get('ui_mode')).toBeNull()
+    expect(sent.get('success_url')).toBe('http://localhost:3100/app/billing?checkout=success')
+    expect(sent.get('cancel_url')).toBe('http://localhost:3100/app/billing?checkout=cancelled')
+  })
+
+  it('leaves only the newest form payable, whichever way the older one was opened', async () => {
+    await startCheckout(s.ctx.business, s.owner.id, 'hosted')
+    await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    expect(fake.state.checkoutSessions.map((c) => c.status)).toEqual(['expired', 'expired', 'open'])
+  })
+
+  it('sends a business that already subscribes to the portal, never to a second payment', async () => {
+    await db().insert(subscriptions).values({
+      businessId: s.ctx.business.id,
+      stripeCustomerId: 'cus_x',
+      stripeSubscriptionId: 'sub_x',
+      status: 'active',
+    })
+    const checkout = await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    expect(checkout).toEqual({ ui: 'hosted', url: expect.stringMatching(/billing\.stripe\.com/) })
+    expect(fake.requests.filter((r) => r.path === '/v1/checkout/sessions')).toHaveLength(0)
+  })
+
+  it('records which way the checkout was opened', async () => {
+    await startCheckout(s.ctx.business, s.owner.id, 'embedded')
+    const [entry] = await db()
+      .select()
+      .from(auditLogs)
+      .where(eq(auditLogs.action, 'billing.checkout_started'))
+    expect(entry!.metadata).toEqual({ ui: 'embedded' })
+  })
+
+  it('fails loudly when Stripe refuses the sheet, so the caller can fall back', async () => {
+    fake.state.refuseEmbedded = true
+    await expect(startCheckout(s.ctx.business, s.owner.id, 'embedded')).rejects.toThrow(
+      /Embedded Checkout is unavailable/,
+    )
+    // The hosted page still works for the same business right after.
+    const hosted = await startCheckout(s.ctx.business, s.owner.id, 'hosted')
+    expect(hosted.ui).toBe('hosted')
   })
 })
 

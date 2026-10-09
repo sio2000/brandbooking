@@ -81,7 +81,8 @@
     "manage": "Faturalandırmayı yönet",
     "updateCard": "Kartı güncelle",
     "cancel": "Aboneliği iptal et",
-    "secure": "Stripe’ın ödeme sayfasında güvenle ödeme yapıp doğrudan buraya dönersiniz."
+    "secure": "Stripe’ın ödeme sayfasında güvenle ödeme yapıp doğrudan buraya dönersiniz.",
+    "secureHere": "Bu sayfadan ayrılmadan Stripe ile güvenle ödeme yaparsınız."
   },
   "included": {
     "title": "Neler dahil",

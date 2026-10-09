@@ -41,6 +41,14 @@ First admin without signing up: set `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP
 (scope Builds) and redeploy; the build creates (or promotes) that admin account. Remove both
 variables after the first sign-in. See [ADMIN.md](ADMIN.md).
 
+### Paying without leaving the app (optional)
+
+Set `STRIPE_PUBLISHABLE_KEY` (scopes: Builds **and** Functions) to the publishable key of
+the same Stripe account and mode as `STRIPE_SECRET_KEY` (`pk_live_…` with a live secret
+key). Subscribing then opens Stripe's payment form in a sheet on the billing page instead
+of sending the owner to Stripe's site. Without it, or when the two keys are in different
+modes, the hosted Checkout page is used as before. Redeploy after adding it.
+
 ### Sign in with Google (optional)
 
 Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (scopes: Builds **and** Functions) to

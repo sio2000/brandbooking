@@ -44,6 +44,8 @@ export async function startFakeStripe() {
     idempotency: new Map<string, string>(),
     /** When set, reusing a key with different parameters fails as it does on Stripe. */
     enforceIdempotency: false,
+    /** When set, a Checkout Session for the payment sheet is refused (hosted ones still work). */
+    refuseEmbedded: false,
   }
   /** Seed a price (e.g. the plan price the app starts from). */
   const addPrice = (p: {
@@ -125,13 +127,30 @@ export async function startFakeStripe() {
         })
       }
       if (req.method === 'POST' && path === '/v1/checkout/sessions') {
+        // Like Stripe: a hosted session has an address, an embedded one a client secret.
+        const embedded = params.get('ui_mode') === 'embedded_page'
+        if (embedded && (params.get('success_url') || params.get('cancel_url'))) {
+          return json(400, {
+            error: {
+              type: 'invalid_request_error',
+              message: 'success_url and cancel_url cannot be used with an embedded session',
+            },
+          })
+        }
+        if (embedded && state.refuseEmbedded) {
+          return json(400, {
+            error: { type: 'invalid_request_error', message: 'Embedded Checkout is unavailable' },
+          })
+        }
         const session = {
           id: `cs_test_${id}`,
           object: 'checkout.session',
           mode: params.get('mode'),
           customer: params.get('customer'),
           status: 'open',
-          url: `https://checkout.stripe.com/c/pay/cs_test_${id}`,
+          ui_mode: embedded ? 'embedded_page' : 'hosted_page',
+          url: embedded ? null : `https://checkout.stripe.com/c/pay/cs_test_${id}`,
+          client_secret: embedded ? `cs_test_${id}_secret_${id}` : null,
         }
         state.checkoutSessions.push(session)
         return json(200, session)

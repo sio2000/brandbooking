@@ -81,7 +81,8 @@
     "manage": "Abrechnung verwalten",
     "updateCard": "Karte ändern",
     "cancel": "Abonnement kündigen",
-    "secure": "Sie bezahlen sicher auf der Bezahlseite von Stripe und kommen direkt hierher zurück."
+    "secure": "Sie bezahlen sicher auf der Bezahlseite von Stripe und kommen direkt hierher zurück.",
+    "secureHere": "Sie bezahlen sicher mit Stripe, ohne diese Seite zu verlassen."
   },
   "included": {
     "title": "Das ist enthalten",

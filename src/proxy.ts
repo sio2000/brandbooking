@@ -14,6 +14,21 @@ import { legacyBookingRedirect, rootBookingSlug } from '@/lib/booking-url'
 
 const SITE_HOST = new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.hournook.com').host
 const bareHost = (host: string) => host.replace(/^www\./, '')
+/**
+ * Subscribing opens Stripe's payment form in a sheet on the billing page
+ * (Embedded Checkout), so Stripe's frames and API have to be let in. These are
+ * the hosts Stripe lists for Checkout and Stripe.js in its security guide
+ * (docs.stripe.com/security/guide#content-security-policy), no wider. Leaving
+ * one out shows no error: the sheet just stays empty. Stripe's script needs no
+ * entry of its own: it is added by our own nonce-carrying code, which
+ * 'strict-dynamic' already allows.
+ */
+const STRIPE_CSP = {
+  frame:
+    'https://js.stripe.com https://*.js.stripe.com https://hooks.stripe.com https://checkout.stripe.com https://link.com https://*.link.com',
+  connect: 'https://api.stripe.com https://checkout.stripe.com https://link.com https://*.link.com',
+  img: 'https://*.stripe.com https://*.link.com',
+}
 /** Counts language redirects in a row (see the loop guard in `proxy`). */
 const REDIRECT_HOPS_COOKIE = 'hn_lr'
 const MAX_LANGUAGE_REDIRECTS = 3
@@ -53,16 +68,23 @@ export function proxy(request: NextRequest) {
   const nonce = btoa(crypto.randomUUID())
   const requestId = request.headers.get('x-request-id')?.slice(0, 64) || crypto.randomUUID()
   const isDev = process.env.NODE_ENV === 'development'
-  const isEmbed = request.nextUrl.pathname.startsWith('/embed/')
+  const path = request.nextUrl.pathname
+  const isEmbed = path.startsWith('/embed/')
+  // Moving between pages keeps the rules of the page the visit began on, so
+  // every page an owner may arrive on carries Stripe's hosts, not only the
+  // billing page. The booking pages their customers see never do.
+  const isBookingPage = /^\/(book|embed|manage)\//.test(path) || rootBookingSlug(path) !== null
+  const pay = isBookingPage ? null : STRIPE_CSP
   const imgExtra = process.env.S3_PUBLIC_URL ? ` ${new URL(process.env.S3_PUBLIC_URL).origin}` : ''
   const csp = [
     `default-src 'self'`,
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ''}`,
     // Inline style attributes are needed by React/Motion; scripts stay nonce-locked.
     `style-src 'self' 'unsafe-inline'`,
-    `img-src 'self' data: blob:${imgExtra}`,
+    `img-src 'self' data: blob:${imgExtra}${pay ? ` ${pay.img}` : ''}`,
     `font-src 'self'`,
-    `connect-src 'self'${isDev ? ' ws:' : ''}`,
+    `connect-src 'self'${isDev ? ' ws:' : ''}${pay ? ` ${pay.connect}` : ''}`,
+    pay ? `frame-src 'self' ${pay.frame}` : '',
     `object-src 'none'`,
     `base-uri 'self'`,
     `form-action 'self' https://checkout.stripe.com https://billing.stripe.com`,

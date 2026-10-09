@@ -81,7 +81,8 @@
     "manage": "Gerir faturação",
     "updateCard": "Atualizar cartão",
     "cancel": "Cancelar subscrição",
-    "secure": "Pagará em segurança na página de pagamento da Stripe e voltará logo para aqui."
+    "secure": "Pagará em segurança na página de pagamento da Stripe e voltará logo para aqui.",
+    "secureHere": "Pagará em segurança com a Stripe, sem sair desta página."
   },
   "included": {
     "title": "O que está incluído",

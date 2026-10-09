@@ -182,9 +182,11 @@ Rotating `APP_SECRET` revokes every outstanding link.
 - One Stripe Price (€10/month). Businesses start with an app-managed free trial
   (`TRIAL_DAYS`, no card). Checkout carries any remaining trial into the Stripe
   subscription so nobody pays twice.
-- The browser only ever receives Stripe-hosted Checkout/Portal URLs. Returning
-  from Checkout with `?checkout=success` shows "we're confirming your payment";
-  **access is granted only by verified webhooks**.
+- Subscribing opens Stripe's payment form in a sheet on the billing page (Embedded
+  Checkout) when `STRIPE_PUBLISHABLE_KEY` is set and in the same mode as the secret
+  key; otherwise the browser is sent to Stripe's hosted Checkout page. The portal is
+  always a Stripe-hosted page. Either way, finishing with `?checkout=success` shows
+  "we're confirming your payment"; **access is granted only by verified webhooks**.
 - `api/stripe/webhook` verifies the signature on the raw body, stores the event
   id in `billing_events` (claim → process → mark done) for idempotency, returns
   409 while an event is being processed so Stripe retries later, and ignores

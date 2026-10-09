@@ -81,7 +81,8 @@
     "manage": "Facturering beheren",
     "updateCard": "Kaart bijwerken",
     "cancel": "Abonnement opzeggen",
-    "secure": "Je betaalt veilig op de betaalpagina van Stripe en komt daarna direct hier terug."
+    "secure": "Je betaalt veilig op de betaalpagina van Stripe en komt daarna direct hier terug.",
+    "secureHere": "Je betaalt veilig met Stripe, zonder deze pagina te verlaten."
   },
   "included": {
     "title": "Wat je krijgt",

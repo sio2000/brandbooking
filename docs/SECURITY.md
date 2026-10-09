@@ -88,11 +88,15 @@ secret, and its view of payment status is never trusted.
   `script-src 'self' 'nonce-…' 'strict-dynamic'`, no `unsafe-eval` in production,
   `frame-ancestors 'none'` (except `/embed/*`, which is designed to be framed),
   `form-action 'self'` + Stripe Checkout/Portal, `object-src 'none'`,
-  `base-uri 'self'`. Styles allow `'unsafe-inline'` (needed for per-business
+  `base-uri 'self'`. Stripe's payment form opens in a sheet on the billing page, so
+  the pages of the app (never the booking pages customers see) also allow Stripe's
+  own hosts in `frame-src`, `connect-src` and `img-src`; card details are typed
+  inside Stripe's frame and never reach this site. Styles allow `'unsafe-inline'` (needed for per-business
   brand colours and Radix positioning); no user-supplied CSS is accepted.
 - Other headers: HSTS (2 years, preload), `X-Content-Type-Options: nosniff`,
   `Referrer-Policy: strict-origin-when-cross-origin`, restrictive
-  `Permissions-Policy`, `Cross-Origin-Opener-Policy: same-origin`,
+  `Permissions-Policy` (`payment` for this site and Stripe's frames only),
+  `Cross-Origin-Opener-Policy: same-origin-allow-popups` (Stripe's confirmation windows),
   `X-Frame-Options: DENY` (except embed), `X-Powered-By` removed.
 - **Input validation**: every Server Action and route handler parses input with
   Zod schemas (`src/lib/validation`); length limits everywhere; the database adds
@@ -127,8 +131,10 @@ validated against path traversal; `/media/*` responses send `nosniff`.
 
 ## Payments (Stripe)
 
-- Only the server holds `STRIPE_SECRET_KEY`; the browser receives Stripe-hosted
-  Checkout/Portal URLs only. Card data never touches Hournook (PCI scope SAQ A).
+- Only the server holds `STRIPE_SECRET_KEY`. The browser receives Stripe-hosted
+  Checkout/Portal URLs or, for the payment sheet on the billing page, the publishable key
+  and a single checkout session's client secret. The form itself is Stripe's own, drawn
+  inside Stripe's frame, so card data never touches Hournook (PCI scope SAQ A).
 - **Test mode lock**: the app refuses live-mode keys (`sk_live_`, `rk_live_`,
   `pk_live_`) on every environment — development, CI and deployed sites —
   unless `STRIPE_LIVE_MODE=enabled` is set, so no real charge is possible

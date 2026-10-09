@@ -7,9 +7,18 @@ const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
+    // `payment` is what lets Apple Pay and Google Pay appear inside Stripe's
+    // payment form on the billing page. It is granted to this site and to
+    // Stripe's frames, and to nothing else.
+    value:
+      'camera=(), microphone=(), geolocation=(), usb=(), interest-cohort=(), ' +
+      'payment=(self "https://js.stripe.com" "https://*.js.stripe.com" "https://checkout.stripe.com")',
   },
-  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+  // `same-origin-allow-popups` rather than `same-origin`: Stripe opens a small
+  // window for some steps (Link, a bank's own confirmation), and `same-origin`
+  // would cut that window off from the page that opened it, so the step would
+  // never report back. Other sites still cannot reach into this one.
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
 ]
 
 // Values baked in at build time so the running app knows where it lives

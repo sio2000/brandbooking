@@ -81,7 +81,8 @@
     "manage": "管理账单",
     "updateCard": "更新银行卡",
     "cancel": "取消订阅",
-    "secure": "您将在 Stripe 的安全结账页面付款，完成后直接返回此处。"
+    "secure": "您将在 Stripe 的安全结账页面付款，完成后直接返回此处。",
+    "secureHere": "您将通过 Stripe 安全付款，无需离开此页面。"
   },
   "included": {
     "title": "包含内容",

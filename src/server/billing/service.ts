@@ -78,16 +78,41 @@ async function ensureCustomer(business: Business): Promise<string> {
 
 const ACTIVE_LIKE = new Set(['active', 'trialing', 'past_due'])
 
+/**
+ * Where the owner pays:
+ *  - `hosted`: on a page of Stripe's own (Checkout, or the portal for a
+ *    business that already subscribes). The browser is sent there.
+ *  - `embedded`: in Stripe's form drawn in a sheet on the billing page. The
+ *    owner never leaves; the browser is handed the session's client secret.
+ * Either way the card details go straight to Stripe, and whether a business is
+ * paid is decided by webhooks alone.
+ */
+export type CheckoutUi = 'hosted' | 'embedded'
+export type Checkout = { ui: 'hosted'; url: string } | { ui: 'embedded'; clientSecret: string }
+/** What the billing page needs to draw Stripe's payment form in a sheet. */
+export type CheckoutSheetData = { clientSecret: string; publishableKey: string }
+
 /** Start Stripe Checkout for the single €10/month plan. Returns the hosted URL. */
 export async function createCheckoutSession(
   business: Business,
   actorUserId: string,
 ): Promise<string> {
+  const checkout = await startCheckout(business, actorUserId, 'hosted')
+  if (checkout.ui !== 'hosted') throw new AppError('internal')
+  return checkout.url
+}
+
+/** Start Stripe Checkout for the single €10/month plan, shown as `ui` asks. */
+export async function startCheckout(
+  business: Business,
+  actorUserId: string,
+  ui: CheckoutUi,
+): Promise<Checkout> {
   const e = env()
   const sub = await getSubscription(business.id)
   if (sub?.status && ACTIVE_LIKE.has(sub.status)) {
     // Already subscribed: manage it in the portal rather than creating a duplicate.
-    return createPortalSession(business)
+    return { ui: 'hosted', url: await createPortalSession(business) }
   }
   const customer = await ensureCustomer(business)
   await expireOpenCheckouts(customer)
@@ -113,8 +138,19 @@ export async function createCheckoutSession(
     customer_update: e.STRIPE_AUTOMATIC_TAX
       ? { address: 'auto', name: 'auto' }
       : { address: 'auto' },
-    success_url: appUrl('/app/billing?checkout=success'),
-    cancel_url: appUrl('/app/billing?checkout=cancelled'),
+    // An embedded session carries no success or cancel address: it finishes in
+    // place, and only a payment method that has to leave the page (a bank's own
+    // confirmation) comes back through `return_url`.
+    ...(ui === 'embedded'
+      ? {
+          ui_mode: 'embedded_page' as const,
+          redirect_on_completion: 'if_required' as const,
+          return_url: appUrl('/app/billing?checkout=success'),
+        }
+      : {
+          success_url: appUrl('/app/billing?checkout=success'),
+          cancel_url: appUrl('/app/billing?checkout=cancelled'),
+        }),
   })
   await audit(db(), {
     businessId: business.id,
@@ -123,9 +159,14 @@ export async function createCheckoutSession(
     action: 'billing.checkout_started',
     entityType: 'subscription',
     entityId: session.id,
+    metadata: { ui },
   })
+  if (ui === 'embedded') {
+    if (!session.client_secret) throw new AppError('internal')
+    return { ui, clientSecret: session.client_secret }
+  }
   if (!session.url) throw new AppError('internal')
-  return session.url
+  return { ui, url: session.url }
 }
 
 /**

@@ -81,7 +81,8 @@
     "manage": "Zarządzaj płatnościami",
     "updateCard": "Zmień kartę",
     "cancel": "Anuluj subskrypcję",
-    "secure": "Zapłacisz bezpiecznie na stronie płatności Stripe i od razu tu wrócisz."
+    "secure": "Zapłacisz bezpiecznie na stronie płatności Stripe i od razu tu wrócisz.",
+    "secureHere": "Zapłacisz bezpiecznie przez Stripe, bez opuszczania tej strony."
   },
   "included": {
     "title": "Co obejmuje plan",

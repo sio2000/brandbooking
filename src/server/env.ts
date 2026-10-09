@@ -106,8 +106,9 @@ const EnvSchema = z
     S3_PUBLIC_URL: z.url().optional(),
 
     STRIPE_SECRET_KEY: pasted(z.string().optional()),
-    // Not needed by the server-redirect Checkout flow; accepted so a shared
-    // .env can carry it. Never exposed to the browser by this app.
+    // Optional: lets the payment form open in a sheet on the billing page
+    // instead of on Stripe's own site (see stripeEmbedKey). The only Stripe
+    // value the browser ever receives, and only there.
     STRIPE_PUBLISHABLE_KEY: pasted(z.string().optional()),
     STRIPE_WEBHOOK_SECRET: pasted(z.string().optional()),
     STRIPE_PRICE_ID: pasted(z.string().optional()),
@@ -235,6 +236,21 @@ export function isStripeConfigured(): boolean {
   // The price, portal configuration and webhook secret are provisioned
   // automatically when not pinned (see src/server/billing/config.ts).
   return Boolean(e.STRIPE_SECRET_KEY)
+}
+
+/**
+ * The publishable key, when Stripe's payment form can be drawn on our own
+ * page: it has to be set and in the same mode as the secret key. A live secret
+ * key with a test publishable key (the easy mistake when going live) fails
+ * inside Stripe's frame with an error nobody can act on. Otherwise null, and
+ * Stripe's hosted page is used instead, so payments work either way.
+ */
+export function stripeEmbedKey(): string | null {
+  const e = env()
+  const publishable = e.STRIPE_PUBLISHABLE_KEY
+  if (!e.STRIPE_SECRET_KEY || !publishable || !/^pk_(test|live)_/.test(publishable)) return null
+  const live = (key: string) => /^(sk|rk|pk)_live_/.test(key)
+  return live(e.STRIPE_SECRET_KEY) === live(publishable) ? publishable : null
 }
 
 export function appUrl(path = ''): string {
