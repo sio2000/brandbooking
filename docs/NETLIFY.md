@@ -41,6 +41,20 @@ First admin without signing up: set `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP
 (scope Builds) and redeploy; the build creates (or promotes) that admin account. Remove both
 variables after the first sign-in. See [ADMIN.md](ADMIN.md).
 
+### Sign in with Google (optional)
+
+Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` (scopes: Builds **and** Functions) to
+show a "Continue with Google" button on the sign-in and sign-up pages. Without both, the
+button is not shown and nothing else changes. They come from an OAuth client of type
+_Web application_ in Google Cloud (APIs & Services → Credentials) with:
+
+- Authorised JavaScript origin: `https://www.hournook.com`
+- Authorised redirect URI: `https://www.hournook.com/api/auth/google/callback`
+
+Only the basic scopes are requested (`openid email profile`), which need no review by
+Google. Redeploy after adding or changing the variables. The rules for which account a
+Google sign-in opens are in [SECURITY.md](SECURITY.md).
+
 Stripe stays in **test mode**: live keys (`sk_live_…`) are refused unless
 `STRIPE_LIVE_MODE=enabled` is also set, which is reserved for go-live day.
 

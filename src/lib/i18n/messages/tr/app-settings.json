@@ -161,7 +161,9 @@
       "mismatch": "Şifreler eşleşmiyor.",
       "submit": "Şifreyi değiştir",
       "show": "Şifreyi göster",
-      "hide": "Şifreyi gizle"
+      "hide": "Şifreyi gizle",
+      "googleDescription": "Google ile giriş yapıyorsunuz. E-postanızla giriş yapmak için bir şifre de belirleyebilirsiniz.",
+      "setSubmit": "Şifre belirle"
     },
     "leave": {
       "title": "{business} işletmesinden ayrıl",
@@ -181,7 +183,8 @@
       "dialogDescription": "Onaylamak için şifrenizi girin. Bu işlem geri alınamaz.",
       "password": "Şifre",
       "passwordRequired": "Şifrenizi girin.",
-      "submit": "Hesabımı sil"
+      "submit": "Hesabımı sil",
+      "dialogDescriptionNoPassword": "Bu işlem geri alınamaz."
     }
   },
   "booking": {

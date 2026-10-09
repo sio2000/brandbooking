@@ -161,7 +161,9 @@
       "mismatch": "Las contraseñas no coinciden.",
       "submit": "Cambiar contraseña",
       "show": "Mostrar contraseña",
-      "hide": "Ocultar contraseña"
+      "hide": "Ocultar contraseña",
+      "googleDescription": "Inicias sesión con Google. También puedes crear una contraseña para iniciar sesión con tu email.",
+      "setSubmit": "Crear contraseña"
     },
     "leave": {
       "title": "Salir de {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Escribe tu contraseña para confirmar. No se puede deshacer.",
       "password": "Contraseña",
       "passwordRequired": "Escribe tu contraseña.",
-      "submit": "Eliminar mi cuenta"
+      "submit": "Eliminar mi cuenta",
+      "dialogDescriptionNoPassword": "No se puede deshacer."
     }
   },
   "booking": {

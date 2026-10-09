@@ -64,6 +64,7 @@ export default async function OnboardingPage({ searchParams }: PageProps<'/onboa
       <OnboardingWizard
         userName={session.user.name}
         emailVerified={session.user.emailVerified}
+        hasPassword={session.user.hasPassword}
         emailSimulated={isEmailSimulated()}
         email={session.user.email}
         resume={resume}

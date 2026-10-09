@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { AuthShell } from '@/components/auth/auth-shell'
 import { SignUpForm } from '@/components/auth/forms'
+import { GoogleSignIn } from '@/components/auth/google-sign-in'
 import { getSession } from '@/server/auth/session'
 import { getFormatLocale, getT } from '@/server/i18n'
 import { getPlanPrice } from '@/server/pricing'
@@ -39,6 +40,7 @@ export default async function SignupPage({ searchParams }: PageProps<'/signup'>)
         </>
       }
     >
+      <GoogleSignIn next={next} />
       <SignUpForm next={next} />
     </AuthShell>
   )

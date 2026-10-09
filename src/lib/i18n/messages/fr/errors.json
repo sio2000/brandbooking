@@ -30,5 +30,8 @@
   "billing_not_configured": "La facturation n’est pas encore configurée. Contactez l’assistance.",
   "last_owner": "Un établissement doit toujours avoir un propriétaire.",
   "invitation_email_mismatch": "Cette invitation a été envoyée à une autre adresse e-mail. Connectez-vous avec cette adresse pour l’accepter.",
-  "service_has_no_staff": "Personne n’est encore affecté à cette prestation."
+  "service_has_no_staff": "Personne n’est encore affecté à cette prestation.",
+  "google_failed": "La connexion avec Google n’a pas abouti cette fois. Réessayez.",
+  "google_account_conflict": "Un compte existe déjà avec cet e-mail. Connectez-vous avec votre e-mail et votre mot de passe.",
+  "google_unverified_account": "Un compte existe déjà avec cet e-mail, mais son adresse n’a jamais été confirmée. Confirmez-la depuis l’e-mail que nous vous avons envoyé, ou réinitialisez votre mot de passe, puis réessayez avec Google."
 }

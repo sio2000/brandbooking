@@ -99,6 +99,7 @@ function currencySymbol(currency: string, tag: string) {
 export function OnboardingWizard({
   userName,
   emailVerified,
+  hasPassword,
   emailSimulated = false,
   email,
   resume,
@@ -107,6 +108,7 @@ export function OnboardingWizard({
 }: {
   userName: string
   emailVerified: boolean
+  hasPassword: boolean
   emailSimulated?: boolean
   email: string
   resume: {
@@ -151,7 +153,7 @@ export function OnboardingWizard({
             </Link>
           )}
           <LanguageSwitcher mode="account" compact className="-mx-2.5" />
-          <OnboardingAccountMenu />
+          <OnboardingAccountMenu hasPassword={hasPassword} />
         </div>
       </header>
       <main className="mx-auto max-w-2xl px-5 pb-20">
@@ -1135,8 +1137,9 @@ function Done({
 }
 
 /** Sign out or delete the account, even before a business exists. */
-function OnboardingAccountMenu() {
+function OnboardingAccountMenu({ hasPassword }: { hasPassword: boolean }) {
   const t = useT('onboarding')
+  const ts = useT('app-settings')
   const [deleting, setDeleting] = React.useState(false)
   return (
     <>
@@ -1156,10 +1159,14 @@ function OnboardingAccountMenu() {
       <Dialog open={deleting} onOpenChange={setDeleting}>
         <DialogContent
           title={t('header.deleteTitle')}
-          description={t('header.deleteDescription')}
+          description={
+            hasPassword
+              ? t('header.deleteDescription')
+              : ts('account.delete.dialogDescriptionNoPassword')
+          }
           size="sm"
         >
-          <DeleteAccountForm onCancel={() => setDeleting(false)} />
+          <DeleteAccountForm onCancel={() => setDeleting(false)} hasPassword={hasPassword} />
         </DialogContent>
       </Dialog>
     </>

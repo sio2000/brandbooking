@@ -88,6 +88,7 @@ async function insertUser(
     email: row!.email,
     name: row!.name,
     emailVerified: row!.emailVerifiedAt !== null,
+    hasPassword: row!.passwordHash !== null,
     isPlatformAdmin: row!.isPlatformAdmin,
     locale: row!.locale,
   }

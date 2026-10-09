@@ -161,7 +161,9 @@
       "mismatch": "Die Passwörter stimmen nicht überein.",
       "submit": "Passwort ändern",
       "show": "Passwort anzeigen",
-      "hide": "Passwort verbergen"
+      "hide": "Passwort verbergen",
+      "googleDescription": "Sie melden sich mit Google an. Sie können zusätzlich ein Passwort festlegen, um sich mit Ihrer E-Mail-Adresse anzumelden.",
+      "setSubmit": "Passwort festlegen"
     },
     "leave": {
       "title": "{business} verlassen",
@@ -181,7 +183,8 @@
       "dialogDescription": "Geben Sie zur Bestätigung Ihr Passwort ein. Das kann nicht rückgängig gemacht werden.",
       "password": "Passwort",
       "passwordRequired": "Geben Sie Ihr Passwort ein.",
-      "submit": "Mein Konto löschen"
+      "submit": "Mein Konto löschen",
+      "dialogDescriptionNoPassword": "Das kann nicht rückgängig gemacht werden."
     }
   },
   "booking": {

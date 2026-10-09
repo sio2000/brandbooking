@@ -45,6 +45,7 @@ export async function createUser(
     email: u!.email,
     name: u!.name,
     emailVerified: u!.emailVerifiedAt !== null,
+    hasPassword: u!.passwordHash !== null,
     isPlatformAdmin: u!.isPlatformAdmin,
     locale: u!.locale,
   }

@@ -37,9 +37,9 @@ export default async function AccountSettingsPage() {
         verified={ctx.user.emailVerified}
       />
       <AccountLanguageCard current={ctx.user.locale} />
-      <ChangePasswordForm />
+      <ChangePasswordForm hasPassword={ctx.user.hasPassword} />
       {ctx.membership.role !== 'owner' && <LeaveBusinessCard businessName={ctx.business.name} />}
-      <DeleteAccountCard ownedBusinesses={owned} />
+      <DeleteAccountCard ownedBusinesses={owned} hasPassword={ctx.user.hasPassword} />
     </div>
   )
 }

@@ -30,5 +30,8 @@
   "billing_not_configured": "Die Abrechnung ist noch nicht eingerichtet. Bitte wenden Sie sich an den Support.",
   "last_owner": "Ein Unternehmen muss immer einen Inhaber haben.",
   "invitation_email_mismatch": "Diese Einladung wurde an eine andere E-Mail-Adresse gesendet. Melden Sie sich mit dieser Adresse an, um sie anzunehmen.",
-  "service_has_no_staff": "Dieser Leistung ist noch niemand zugewiesen."
+  "service_has_no_staff": "Dieser Leistung ist noch niemand zugewiesen.",
+  "google_failed": "Die Anmeldung mit Google hat diesmal nicht geklappt. Bitte versuchen Sie es erneut.",
+  "google_account_conflict": "Mit dieser E-Mail-Adresse gibt es bereits ein Konto. Melden Sie sich mit Ihrer E-Mail-Adresse und Ihrem Passwort an.",
+  "google_unverified_account": "Mit dieser E-Mail-Adresse gibt es bereits ein Konto, die Adresse wurde aber nie bestätigt. Bestätigen Sie sie über die E-Mail, die wir Ihnen gesendet haben, oder setzen Sie Ihr Passwort zurück und versuchen Sie es dann erneut mit Google."
 }

@@ -305,7 +305,10 @@ export async function changePassword(
   meta: RequestMeta,
 ) {
   const [user] = await db().select().from(users).where(eq(users.id, userId)).limit(1)
-  if (!user || !(await verifyPassword(user.passwordHash, current))) {
+  // An account made through Google has no password to confirm: its first one is simply set.
+  const confirmed =
+    user && (user.passwordHash === null || (await verifyPassword(user.passwordHash, current)))
+  if (!user || !confirmed) {
     throw new AppError('invalid_credentials', {
       fields: { currentPassword: 'Your current password is incorrect.' },
     })
@@ -330,7 +333,10 @@ export async function changePassword(
 /** Delete a user account. Owners must delete (or hand over) their businesses first. */
 export async function deleteAccount(userId: string, password: string, meta: RequestMeta) {
   const [user] = await db().select().from(users).where(eq(users.id, userId)).limit(1)
-  if (!user || !(await verifyPassword(user.passwordHash, password))) {
+  // An account made through Google has no password to confirm with.
+  const confirmed =
+    user && (user.passwordHash === null || (await verifyPassword(user.passwordHash, password)))
+  if (!user || !confirmed) {
     throw new AppError('invalid_credentials', {
       fields: { password: 'Your password is incorrect.' },
     })

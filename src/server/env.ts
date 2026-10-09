@@ -125,6 +125,14 @@ const EnvSchema = z
     NEON_API_KEY: pasted(z.string().optional()),
     NEON_PROJECT_ID: pasted(z.string().optional()),
 
+    // Optional: sign in with Google. Offered only when both are set (an OAuth
+    // web client from Google Cloud whose redirect URI is
+    // <APP_URL>/api/auth/google/callback). Without them the button is not shown.
+    GOOGLE_CLIENT_ID: pasted(z.string().optional()),
+    GOOGLE_CLIENT_SECRET: pasted(z.string().optional()),
+    // Test-only: point the Google sign-in at a local stand-in. Ignored in production.
+    GOOGLE_OAUTH_BASE: z.url().optional(),
+
     SUPPORT_EMAIL: z.email().optional(),
     SUPPORT_URL: z.url().optional(),
   })

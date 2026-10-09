@@ -174,7 +174,7 @@ export function AccountLanguageCard({ current }: { current: string }) {
   )
 }
 
-export function ChangePasswordForm() {
+export function ChangePasswordForm({ hasPassword = true }: { hasPassword?: boolean }) {
   const t = useT('app-settings')
   const empty = { currentPassword: '', newPassword: '' }
   const [confirm, setConfirm] = React.useState('')
@@ -201,22 +201,26 @@ export function ChangePasswordForm() {
       <Card>
         <CardHeader
           title={t('account.password.title')}
-          description={t('account.password.description')}
+          description={t(
+            hasPassword ? 'account.password.description' : 'account.password.googleDescription',
+          )}
         />
         <CardBody className="grid grid-cols-1 gap-4">
           <FormError message={form.formError} />
-          <Field
-            label={t('account.password.current')}
-            htmlFor="currentPassword"
-            error={e.currentPassword}
-            className="sm:max-w-sm"
-          >
-            <PasswordInput
-              autoComplete="current-password"
-              value={v.currentPassword}
-              onChange={(ev) => set('currentPassword', ev.target.value)}
-            />
-          </Field>
+          {hasPassword && (
+            <Field
+              label={t('account.password.current')}
+              htmlFor="currentPassword"
+              error={e.currentPassword}
+              className="sm:max-w-sm"
+            >
+              <PasswordInput
+                autoComplete="current-password"
+                value={v.currentPassword}
+                onChange={(ev) => set('currentPassword', ev.target.value)}
+              />
+            </Field>
+          )}
           <div className="grid items-start gap-4 sm:grid-cols-2">
             <Field
               label={t('account.password.new')}
@@ -251,9 +255,9 @@ export function ChangePasswordForm() {
             type="submit"
             size="sm"
             loading={form.pending}
-            disabled={!v.currentPassword || !v.newPassword || !confirm}
+            disabled={(hasPassword && !v.currentPassword) || !v.newPassword || !confirm}
           >
-            {t('account.password.submit')}
+            {t(hasPassword ? 'account.password.submit' : 'account.password.setSubmit')}
           </Button>
         </CardFooter>
       </Card>
@@ -289,7 +293,13 @@ export function LeaveBusinessCard({ businessName }: { businessName: string }) {
   )
 }
 
-export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string[] }) {
+export function DeleteAccountCard({
+  ownedBusinesses,
+  hasPassword = true,
+}: {
+  ownedBusinesses: string[]
+  hasPassword?: boolean
+}) {
   const t = useT('app-settings')
   const [open, setOpen] = React.useState(false)
   const blocked = ownedBusinesses.length > 0
@@ -322,10 +332,14 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
           </Button>
           <DialogContent
             title={t('account.delete.dialogTitle')}
-            description={t('account.delete.dialogDescription')}
+            description={t(
+              hasPassword
+                ? 'account.delete.dialogDescription'
+                : 'account.delete.dialogDescriptionNoPassword',
+            )}
             size="sm"
           >
-            <DeleteAccountForm onCancel={() => setOpen(false)} />
+            <DeleteAccountForm onCancel={() => setOpen(false)} hasPassword={hasPassword} />
           </DialogContent>
         </Dialog>
       </CardFooter>
@@ -333,25 +347,33 @@ export function DeleteAccountCard({ ownedBusinesses }: { ownedBusinesses: string
   )
 }
 
-export function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
+export function DeleteAccountForm({
+  onCancel,
+  hasPassword = true,
+}: {
+  onCancel: () => void
+  hasPassword?: boolean
+}) {
   const t = useT('app-settings')
   const form = useActionForm({ password: '' }, deleteAccountAction, { silent: true })
   return (
     <form onSubmit={form.submit} noValidate>
       <DialogBody className="grid grid-cols-1 gap-4">
         <FormError message={form.formError} />
-        <Field
-          label={t('account.delete.password')}
-          htmlFor="delete-password"
-          error={form.errors.password}
-        >
-          <PasswordInput
-            autoComplete="current-password"
-            value={form.values.password}
-            onChange={(e) => form.set('password', e.target.value)}
-            autoFocus
-          />
-        </Field>
+        {hasPassword && (
+          <Field
+            label={t('account.delete.password')}
+            htmlFor="delete-password"
+            error={form.errors.password}
+          >
+            <PasswordInput
+              autoComplete="current-password"
+              value={form.values.password}
+              onChange={(e) => form.set('password', e.target.value)}
+              autoFocus
+            />
+          </Field>
+        )}
       </DialogBody>
       <DialogFooter>
         <Button type="button" variant="secondary" onClick={onCancel}>
@@ -361,7 +383,7 @@ export function DeleteAccountForm({ onCancel }: { onCancel: () => void }) {
           type="submit"
           variant="danger"
           loading={form.pending}
-          disabled={!form.values.password}
+          disabled={hasPassword && !form.values.password}
         >
           {t('account.delete.submit')}
         </Button>

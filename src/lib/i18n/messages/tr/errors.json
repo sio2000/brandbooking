@@ -30,5 +30,8 @@
   "billing_not_configured": "Faturalandırma henüz ayarlanmadı. Lütfen destek ekibiyle iletişime geçin.",
   "last_owner": "Bir işletmenin her zaman bir sahibi olmalıdır.",
   "invitation_email_mismatch": "Bu davet başka bir e-posta adresine gönderildi. Kabul etmek için o adresle giriş yapın.",
-  "service_has_no_staff": "Bu hizmete henüz kimse atanmadı."
+  "service_has_no_staff": "Bu hizmete henüz kimse atanmadı.",
+  "google_failed": "Google ile giriş bu kez tamamlanamadı. Lütfen tekrar deneyin.",
+  "google_account_conflict": "Bu e-posta ile kayıtlı bir hesap zaten var. E-postanız ve şifrenizle giriş yapın.",
+  "google_unverified_account": "Bu e-posta ile kayıtlı bir hesap zaten var, ancak adresi hiç doğrulanmamış. Size gönderdiğimiz e-postadan adresi doğrulayın veya şifrenizi sıfırlayın, ardından Google ile tekrar deneyin."
 }

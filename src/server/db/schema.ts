@@ -82,7 +82,10 @@ export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   email: citext('email').notNull(),
   emailVerifiedAt: tstz('email_verified_at'),
-  passwordHash: text('password_hash').notNull(),
+  // Null for an account made through Google whose owner has not set a password (0006).
+  passwordHash: text('password_hash'),
+  // Google's permanent identifier of the Google account this user signs in with (0006).
+  googleSub: text('google_sub'),
   name: text('name').notNull(),
   isPlatformAdmin: boolean('is_platform_admin').notNull().default(false),
   locale: text('locale').notNull().default('en'),

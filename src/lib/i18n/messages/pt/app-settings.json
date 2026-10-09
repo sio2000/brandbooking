@@ -161,7 +161,9 @@
       "mismatch": "As palavras-passe não coincidem.",
       "submit": "Alterar palavra-passe",
       "show": "Mostrar palavra-passe",
-      "hide": "Ocultar palavra-passe"
+      "hide": "Ocultar palavra-passe",
+      "googleDescription": "Inicia sessão com o Google. Também pode definir uma palavra-passe para iniciar sessão com o seu email.",
+      "setSubmit": "Definir palavra-passe"
     },
     "leave": {
       "title": "Sair de {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Introduza a sua palavra-passe para confirmar. Esta ação não pode ser anulada.",
       "password": "Palavra-passe",
       "passwordRequired": "Introduza a sua palavra-passe.",
-      "submit": "Eliminar a minha conta"
+      "submit": "Eliminar a minha conta",
+      "dialogDescriptionNoPassword": "Esta ação não pode ser anulada."
     }
   },
   "booking": {

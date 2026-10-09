@@ -246,6 +246,8 @@ export async function changePasswordAction(input: unknown) {
       v.newPassword,
       await requestMeta(),
     )
+    // A first password (the account came in through Google): the form now asks for it.
+    if (!ctx.user.hasPassword) revalidatePath('/app/settings/account')
     return null
   }, t('actions.passwordChanged'))
 }
@@ -269,12 +271,11 @@ export async function deleteAccountAction(input: unknown) {
     const session = await getSession()
     if (!session) throw new AppError('unauthenticated')
     const ctx = { user: session.user }
-    const v = parse(
-      z.object({
-        password: z.string().min(1, t('account.delete.passwordRequired')).max(PASSWORD_MAX),
-      }),
-      input,
-    )
+    // An account made through Google has no password to ask for.
+    const password = ctx.user.hasPassword
+      ? z.string().min(1, t('account.delete.passwordRequired')).max(PASSWORD_MAX)
+      : z.string().max(PASSWORD_MAX)
+    const v = parse(z.object({ password }), input)
     await enforceRateLimits([[`account-delete:user:${ctx.user.id}`, POLICIES.loginByEmail]])
     await deleteAccount(ctx.user.id, v.password, await requestMeta())
     await clearSessionCookie()

@@ -161,7 +161,9 @@
       "mismatch": "Les mots de passe ne correspondent pas.",
       "submit": "Changer le mot de passe",
       "show": "Afficher le mot de passe",
-      "hide": "Masquer le mot de passe"
+      "hide": "Masquer le mot de passe",
+      "googleDescription": "Vous vous connectez avec Google. Vous pouvez aussi définir un mot de passe pour vous connecter avec votre e-mail.",
+      "setSubmit": "Définir un mot de passe"
     },
     "leave": {
       "title": "Quitter {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Saisissez votre mot de passe pour confirmer. Cette action est irréversible.",
       "password": "Mot de passe",
       "passwordRequired": "Saisissez votre mot de passe.",
-      "submit": "Supprimer mon compte"
+      "submit": "Supprimer mon compte",
+      "dialogDescriptionNoPassword": "Cette action est irréversible."
     }
   },
   "booking": {

@@ -161,7 +161,9 @@
       "mismatch": "De wachtwoorden komen niet overeen.",
       "submit": "Wachtwoord wijzigen",
       "show": "Wachtwoord tonen",
-      "hide": "Wachtwoord verbergen"
+      "hide": "Wachtwoord verbergen",
+      "googleDescription": "Je logt in met Google. Je kunt ook een wachtwoord instellen om met je e-mailadres in te loggen.",
+      "setSubmit": "Wachtwoord instellen"
     },
     "leave": {
       "title": "{business} verlaten",
@@ -181,7 +183,8 @@
       "dialogDescription": "Vul je wachtwoord in om te bevestigen. Dit kan niet ongedaan worden gemaakt.",
       "password": "Wachtwoord",
       "passwordRequired": "Vul je wachtwoord in.",
-      "submit": "Mijn account verwijderen"
+      "submit": "Mijn account verwijderen",
+      "dialogDescriptionNoPassword": "Dit kan niet ongedaan worden gemaakt."
     }
   },
   "booking": {

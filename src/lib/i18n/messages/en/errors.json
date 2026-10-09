@@ -30,5 +30,8 @@
   "billing_not_configured": "Billing is not configured yet. Please contact support.",
   "last_owner": "A business must always have an owner.",
   "invitation_email_mismatch": "This invitation was sent to a different email address. Sign in with that address to accept it.",
-  "service_has_no_staff": "Nobody is assigned to this service yet."
+  "service_has_no_staff": "Nobody is assigned to this service yet.",
+  "google_failed": "Signing in with Google didn't work this time. Please try again.",
+  "google_account_conflict": "There is already an account with this email. Sign in with your email and password.",
+  "google_unverified_account": "There is already an account with this email, but its address was never confirmed. Confirm it from the email we sent, or reset your password, then try Google again."
 }

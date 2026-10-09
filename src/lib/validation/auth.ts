@@ -34,7 +34,8 @@ export const resetPasswordSchema = z
 
 export const changePasswordSchema = z
   .object({
-    currentPassword: z.string().min(1).max(PASSWORD_MAX),
+    // Empty for an account made through Google, which has no password yet.
+    currentPassword: z.string().max(PASSWORD_MAX),
     newPassword: z.string().max(PASSWORD_MAX),
   })
   .superRefine((v, ctx) => {

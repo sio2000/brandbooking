@@ -118,6 +118,7 @@ async function main() {
     emailVerified: true,
     isPlatformAdmin: false,
     locale: 'en',
+    hasPassword: true,
   }
 
   const business = await createBusiness(

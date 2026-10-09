@@ -2,6 +2,8 @@ import { existsSync } from 'node:fs'
 import { defineConfig, devices } from '@playwright/test'
 import {
   E2E_BASE_URL,
+  E2E_GOOGLE_PORT,
+  E2E_GOOGLE_URL,
   E2E_MAIL_DIR,
   E2E_MAIL_PORT,
   E2E_PORT,
@@ -70,6 +72,14 @@ export default defineConfig({
       reuseExistingServer: false,
       timeout: 20_000,
       env: { E2E_MAIL_PORT: String(E2E_MAIL_PORT), E2E_MAIL_DIR },
+    },
+    {
+      // Fake Google sign-in: answers at once as whoever the test chose.
+      command: 'npx tsx tests/e2e/support/fake-google.ts',
+      url: `${E2E_GOOGLE_URL}/health`,
+      reuseExistingServer: false,
+      timeout: 20_000,
+      env: { E2E_GOOGLE_PORT: String(E2E_GOOGLE_PORT) },
     },
     {
       command: `npx next dev --port ${E2E_PORT}`,

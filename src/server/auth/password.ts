@@ -8,7 +8,18 @@ export async function hashPassword(password: string): Promise<string> {
   return hash(password, OPTIONS)
 }
 
-export async function verifyPassword(passwordHash: string, password: string): Promise<boolean> {
+/**
+ * An account without a password (made through Google) matches no password; the
+ * same work is done anyway, so the answer takes as long as for any other account.
+ */
+export async function verifyPassword(
+  passwordHash: string | null,
+  password: string,
+): Promise<boolean> {
+  if (!passwordHash) {
+    await burnPasswordCheck(password)
+    return false
+  }
   try {
     return await verify(passwordHash, password)
   } catch {

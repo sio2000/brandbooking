@@ -69,6 +69,7 @@ async function seedGreekOwner() {
     emailVerified: true,
     isPlatformAdmin: false,
     locale: 'el',
+    hasPassword: true,
   }
   const business = await createBusiness(
     owner,

@@ -25,6 +25,8 @@ export type SessionUser = {
   isPlatformAdmin: boolean
   /** Interface language (users.locale). */
   locale: string
+  /** False for an account made through Google whose owner has not set a password. */
+  hasPassword: boolean
 }
 
 export type ValidatedSession = { sessionId: string; expiresAt: Date; user: SessionUser }
@@ -67,6 +69,7 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       isPlatformAdmin: users.isPlatformAdmin,
       locale: users.locale,
       bannedAt: users.bannedAt,
+      hasPassword: sql<boolean>`${users.passwordHash} is not null`,
     })
     .from(sessions)
     .innerJoin(users, eq(users.id, sessions.userId))
@@ -98,6 +101,7 @@ export async function validateSessionToken(token: string): Promise<ValidatedSess
       emailVerified: row.emailVerifiedAt !== null,
       isPlatformAdmin: row.isPlatformAdmin || isBootstrapAdmin(row.email, row.emailVerifiedAt),
       locale: row.locale,
+      hasPassword: row.hasPassword,
     },
   }
 }

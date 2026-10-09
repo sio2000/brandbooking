@@ -161,7 +161,9 @@
       "mismatch": "Le password non coincidono.",
       "submit": "Cambia password",
       "show": "Mostra password",
-      "hide": "Nascondi password"
+      "hide": "Nascondi password",
+      "googleDescription": "Accedi con Google. Puoi anche impostare una password per accedere con la tua email.",
+      "setSubmit": "Imposta password"
     },
     "leave": {
       "title": "Lascia {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Inserisci la password per confermare. L’operazione è irreversibile.",
       "password": "Password",
       "passwordRequired": "Inserisci la password.",
-      "submit": "Elimina il mio account"
+      "submit": "Elimina il mio account",
+      "dialogDescriptionNoPassword": "L’operazione è irreversibile."
     }
   },
   "booking": {

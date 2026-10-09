@@ -161,7 +161,9 @@
       "mismatch": "パスワードが一致しません。",
       "submit": "パスワードを変更",
       "show": "パスワードを表示",
-      "hide": "パスワードを隠す"
+      "hide": "パスワードを隠す",
+      "googleDescription": "Google でログインしています。メールアドレスでもログインできるように、パスワードを設定することもできます。",
+      "setSubmit": "パスワードを設定"
     },
     "leave": {
       "title": "{business} から退出",
@@ -181,7 +183,8 @@
       "dialogDescription": "確認のためパスワードを入力してください。この操作は元に戻せません。",
       "password": "パスワード",
       "passwordRequired": "パスワードを入力してください。",
-      "submit": "アカウントを削除する"
+      "submit": "アカウントを削除する",
+      "dialogDescriptionNoPassword": "この操作は元に戻せません。"
     }
   },
   "booking": {

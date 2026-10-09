@@ -161,7 +161,9 @@
       "mismatch": "The passwords don’t match.",
       "submit": "Change password",
       "show": "Show password",
-      "hide": "Hide password"
+      "hide": "Hide password",
+      "googleDescription": "You sign in with Google. You can also set a password to sign in with your email.",
+      "setSubmit": "Set password"
     },
     "leave": {
       "title": "Leave {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Enter your password to confirm. This can’t be undone.",
       "password": "Password",
       "passwordRequired": "Enter your password.",
-      "submit": "Delete my account"
+      "submit": "Delete my account",
+      "dialogDescriptionNoPassword": "This can’t be undone."
     }
   },
   "booking": {

@@ -109,6 +109,8 @@ and several colour-contrast failures (subtle text and dark-mode avatars).
   Hosted Checkout/Portal pages themselves are Stripe's.
 - S3 storage against a real bucket (the S3 driver's request signing uses the
   `aws4fetch` library; the local driver is tested).
+- Google's own sign-in pages: the app's sign-in code is tested against a local stand-in
+  (see below); the real exchange needs a Google account and cannot run unattended.
 - Browsers other than Chromium, and real mobile devices (Pixel 7 is emulated).
 - Screen-reader behaviour beyond what axe and the keyboard test assert.
 - Load/performance testing and a professional penetration test.
@@ -123,3 +125,13 @@ stand-in (`tests/e2e/support/fake-resend.mjs`, started by Playwright on port
 them with `tests/e2e/support/mail.ts` (`waitForMail`, `linkIn`) and follow the
 links like a recipient. `tests/e2e/qa-lifecycle.spec.ts` is the full business
 scenario used for the production readiness audit (`docs/QA_REPORT.md`).
+
+## Sign in with Google in tests
+
+The app's real sign-in code runs against a local stand-in for Google
+(`tests/helpers/fake-google.ts`), reached through `GOOGLE_OAUTH_BASE`, which is ignored in
+production. The stand-in answers at once as the person the test chose and checks what Google
+checks: the client and its secret, the redirect address, the PKCE verifier, and that a code
+is used only once. `tests/integration/google-sign-in.test.ts` covers which account a Google
+profile may open and every way the two routes refuse an answer; `tests/e2e/google.spec.ts`
+runs the journey in a browser (Playwright starts the stand-in on port 3198).

@@ -30,5 +30,8 @@
   "billing_not_configured": "Rozliczenia nie są jeszcze skonfigurowane. Skontaktuj się z pomocą techniczną.",
   "last_owner": "Firma musi zawsze mieć właściciela.",
   "invitation_email_mismatch": "To zaproszenie wysłano na inny adres e-mail. Zaloguj się tym adresem, aby je przyjąć.",
-  "service_has_no_staff": "Do tej usługi nie przypisano jeszcze nikogo."
+  "service_has_no_staff": "Do tej usługi nie przypisano jeszcze nikogo.",
+  "google_failed": "Tym razem nie udało się zalogować przez Google. Spróbuj ponownie.",
+  "google_account_conflict": "Konto z tym adresem e-mail już istnieje. Zaloguj się, podając e-mail i hasło.",
+  "google_unverified_account": "Konto z tym adresem e-mail już istnieje, ale adres nigdy nie został potwierdzony. Potwierdź go z wiadomości, którą wysłaliśmy, albo zresetuj hasło, a potem spróbuj ponownie przez Google."
 }

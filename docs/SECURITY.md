@@ -51,6 +51,16 @@ secret, and its view of payment status is never trusted.
   id. Cookie `__Host-hn_session` over HTTPS (`hn_session` on plain-HTTP local
   dev) — `HttpOnly`, `Secure` (HTTPS), `SameSite=Lax`, `Path=/`. 30-day sliding
   expiry, refreshed at most once a day. Sign-out deletes the row.
+- Sign in with Google (optional, `GOOGLE_CLIENT_ID` + `GOOGLE_CLIENT_SECRET`): OpenID
+  Connect authorization code flow with PKCE, `state` and a `nonce`, kept in an encrypted,
+  `HttpOnly` cookie that lives ten minutes. The address is taken only from the ID token
+  that Google hands this server for the one-time code. An account is tied to one Google
+  account by Google's permanent identifier. An existing account is joined only when its
+  own address was confirmed here **and** Google itself runs the mailbox (Gmail or a
+  Google Workspace domain); an unconfirmed account is never handed over, and a second
+  Google account on the same user is refused. Accounts made this way have no password
+  until their owner sets one, and password sign-in never succeeds for them meanwhile.
+  The route that starts the sign-in reads nothing from the database.
 - Password reset and email verification: single-use, hashed, short-lived tokens;
   reset revokes all other sessions; changing the password revokes other sessions.
 - Account enumeration: sign-up, password reset and resend-verification give the

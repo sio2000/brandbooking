@@ -30,5 +30,8 @@
   "billing_not_configured": "Facturering is nog niet ingesteld. Neem contact op met support.",
   "last_owner": "Een bedrijf moet altijd een eigenaar hebben.",
   "invitation_email_mismatch": "Deze uitnodiging is naar een ander e-mailadres gestuurd. Log in met dat adres om haar te accepteren.",
-  "service_has_no_staff": "Er is nog niemand aan deze dienst gekoppeld."
+  "service_has_no_staff": "Er is nog niemand aan deze dienst gekoppeld.",
+  "google_failed": "Inloggen met Google is deze keer niet gelukt. Probeer het opnieuw.",
+  "google_account_conflict": "Er bestaat al een account met dit e-mailadres. Log in met je e-mailadres en wachtwoord.",
+  "google_unverified_account": "Er bestaat al een account met dit e-mailadres, maar het adres is nooit bevestigd. Bevestig het via de e-mail die we je hebben gestuurd, of stel je wachtwoord opnieuw in, en probeer het daarna opnieuw met Google."
 }

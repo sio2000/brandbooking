@@ -161,7 +161,9 @@
       "mismatch": "Hasła nie są takie same.",
       "submit": "Zmień hasło",
       "show": "Pokaż hasło",
-      "hide": "Ukryj hasło"
+      "hide": "Ukryj hasło",
+      "googleDescription": "Logujesz się przez Google. Możesz też ustawić hasło, aby logować się adresem e-mail.",
+      "setSubmit": "Ustaw hasło"
     },
     "leave": {
       "title": "Opuść firmę {business}",
@@ -181,7 +183,8 @@
       "dialogDescription": "Wpisz hasło, aby potwierdzić. Tej operacji nie można cofnąć.",
       "password": "Hasło",
       "passwordRequired": "Wpisz hasło.",
-      "submit": "Usuń moje konto"
+      "submit": "Usuń moje konto",
+      "dialogDescriptionNoPassword": "Tej operacji nie można cofnąć."
     }
   },
   "booking": {

@@ -30,5 +30,8 @@
   "billing_not_configured": "A faturação ainda não está configurada. Contacte o apoio.",
   "last_owner": "Um negócio tem de ter sempre um proprietário.",
   "invitation_email_mismatch": "Este convite foi enviado para outro endereço de email. Inicie sessão com esse endereço para o aceitar.",
-  "service_has_no_staff": "Ainda não há ninguém atribuído a este serviço."
+  "service_has_no_staff": "Ainda não há ninguém atribuído a este serviço.",
+  "google_failed": "Não foi possível iniciar sessão com o Google desta vez. Tente novamente.",
+  "google_account_conflict": "Já existe uma conta com este email. Inicie sessão com o seu email e a sua palavra-passe.",
+  "google_unverified_account": "Já existe uma conta com este email, mas o endereço nunca foi confirmado. Confirme-o através do email que lhe enviámos, ou reponha a palavra-passe, e tente novamente com o Google."
 }

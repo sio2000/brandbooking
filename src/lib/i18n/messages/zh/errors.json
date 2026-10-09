@@ -30,5 +30,8 @@
   "billing_not_configured": "尚未设置计费，请联系客服。",
   "last_owner": "商家必须始终有一位所有者。",
   "invitation_email_mismatch": "此邀请发送到了其他邮箱地址。请使用该地址登录后接受邀请。",
-  "service_has_no_staff": "此服务尚未分配任何人员。"
+  "service_has_no_staff": "此服务尚未分配任何人员。",
+  "google_failed": "这次未能通过 Google 登录，请重试。",
+  "google_account_conflict": "该邮箱已注册账户，请使用邮箱和密码登录。",
+  "google_unverified_account": "该邮箱已注册账户，但邮箱地址从未验证。请通过我们发送的邮件完成验证，或重置密码，然后再次尝试使用 Google 登录。"
 }
