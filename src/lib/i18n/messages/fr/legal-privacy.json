@@ -25,9 +25,10 @@
       "title": "Données de compte (nous sommes responsable du traitement)",
       "items": {
         "i1": "Nom, adresse e-mail, vérification ou non de l’adresse e-mail, langue.",
-        "i2": "Votre mot de passe, stocké uniquement sous forme de hachage à sens unique salé, de sorte que nous ne pouvons pas le lire.",
+        "i2": "Votre mot de passe, si vous en avez défini un, stocké uniquement sous forme de hachage à sens unique salé, de sorte que nous ne pouvons pas le lire.",
         "i3": "La date à laquelle vous avez accepté nos conditions lors de l’inscription, et leur version.",
-        "i4": "Les sessions de connexion, avec l’adresse IP et le type de navigateur, pour vous garder connecté et protéger votre compte."
+        "i4": "Les sessions de connexion, avec l’adresse IP et le type de navigateur, pour vous garder connecté et protéger votre compte.",
+        "i5": "Si vous choisissez de vous connecter avec Google : l’identifiant de votre compte Google, ainsi que le nom et l’adresse e-mail que Google nous communique. Nous ne demandons rien d’autre à Google et ne recevons jamais votre mot de passe Google."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Données de facturation (nous sommes responsable du traitement)",
       "items": {
-        "i1": "Statut de l’abonnement et identifiants de client et d’abonnement Stripe. Les données de carte sont saisies sur les pages de Stripe ; nous ne recevons ni ne stockons jamais de numéros de carte complets.",
+        "i1": "Statut de l’abonnement et identifiants de client et d’abonnement Stripe. Les données de carte sont saisies dans le propre formulaire de paiement de Stripe, affiché sur notre page de facturation ou sur les pages de Stripe ; nous ne recevons ni ne stockons jamais de numéros de carte complets.",
         "i2": "Factures et justificatifs de paiement exigés par la législation fiscale et comptable."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Qui reçoit les données",
     "p1": "Les données à caractère personnel ne sont communiquées qu’aux prestataires ci-dessous, qui les traitent sur nos instructions en vertu d’accords de traitement des données, et uniquement dans la mesure nécessaire à chacun :",
-    "p2": "Stripe traite également les données de paiement en tant que responsable du traitement indépendant, conformément à sa propre politique de confidentialité (par exemple pour la prévention de la fraude et le respect de la réglementation financière). Nous pouvons aussi communiquer des données aux autorités, aux tribunaux ou à des conseillers professionnels (tels que notre comptable ou notre avocat) lorsque la loi l’exige ou le permet."
+    "p2": "Stripe traite également les données de paiement en tant que responsable du traitement indépendant, conformément à sa propre politique de confidentialité (par exemple pour la prévention de la fraude et le respect de la réglementation financière). Si vous choisissez de vous connecter avec Google, Google apprend que vous vous êtes connecté à {brand} et traite cette information en tant que responsable du traitement indépendant, conformément à sa propre politique de confidentialité. Nous pouvons aussi communiquer des données aux autorités, aux tribunaux ou à des conseillers professionnels (tels que notre comptable ou notre avocat) lorsque la loi l’exige ou le permet."
   },
   "s7": {
     "title": "Transferts hors de l’EEE",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Êtes-vous tenu de nous fournir vos données ?",
-    "p1": "Pour créer un compte, nous avons besoin de votre nom, de votre adresse e-mail et d’un mot de passe ; sans eux, nous ne pouvons pas fournir le service. Tout le reste est facultatif ou constitue des informations que votre entreprise choisit d’ajouter."
+    "p1": "Pour créer un compte, nous avons besoin de votre nom et de votre adresse e-mail, ainsi que soit d’un mot de passe, soit d’une connexion avec Google ; sans eux, nous ne pouvons pas fournir le service. Tout le reste est facultatif ou constitue des informations que votre entreprise choisit d’ajouter."
   },
   "s11": {
     "title": "Sécurité",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter et sécuriser votre session, ainsi que le stockage local de votre navigateur pour mémoriser votre choix de thème clair ou sombre. Nous n’utilisons aucun cookie d’analyse, publicitaire ou de réseaux sociaux ; nous n’affichons donc pas de bandeau cookies. Consultez la <cookies>politique relative aux cookies</cookies> pour plus de détails."
+    "p1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter, sécuriser votre session et, lorsque vous payez votre abonnement, permettre à Stripe de prévenir la fraude, ainsi que le stockage local de votre navigateur pour mémoriser votre choix de thème clair ou sombre. Nous n’utilisons aucun cookie d’analyse, publicitaire ou de réseaux sociaux ; nous n’affichons donc pas de bandeau cookies. Consultez la <cookies>politique relative aux cookies</cookies> pour plus de détails."
   },
   "s13": {
     "title": "Enfants",

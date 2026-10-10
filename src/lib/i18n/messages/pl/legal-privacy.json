@@ -25,9 +25,10 @@
       "title": "Dane konta (jesteśmy administratorem)",
       "items": {
         "i1": "Imię i nazwisko, adres e-mail, informacja, czy adres został zweryfikowany, język.",
-        "i2": "Twoje hasło, przechowywane wyłącznie jako jednokierunkowy skrót z solą, dzięki czemu nie możemy go odczytać.",
+        "i2": "Twoje hasło, jeśli je ustawisz, przechowywane wyłącznie jako jednokierunkowy skrót z solą, dzięki czemu nie możemy go odczytać.",
         "i3": "Kiedy i którą wersję naszych warunków zaakceptowałeś podczas rejestracji.",
-        "i4": "Sesje logowania z adresem IP i typem przeglądarki, aby utrzymać cię zalogowanym i chronić twoje konto."
+        "i4": "Sesje logowania z adresem IP i typem przeglądarki, aby utrzymać cię zalogowanym i chronić twoje konto.",
+        "i5": "Jeśli zdecydujesz się logować przez Google: identyfikator twojego konta Google, a także imię i nazwisko oraz adres e-mail, które przekazuje nam Google. Nie prosimy Google o nic więcej i nigdy nie otrzymujemy twojego hasła Google."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Dane rozliczeniowe (jesteśmy administratorem)",
       "items": {
-        "i1": "Status subskrypcji oraz identyfikatory klienta i subskrypcji w Stripe. Dane karty są wprowadzane na stronach Stripe; nigdy nie otrzymujemy ani nie przechowujemy pełnych numerów kart.",
+        "i1": "Status subskrypcji oraz identyfikatory klienta i subskrypcji w Stripe. Dane karty są wprowadzane we własnym formularzu płatności Stripe, wyświetlanym na naszej stronie rozliczeń lub na stronach Stripe; nigdy nie otrzymujemy ani nie przechowujemy pełnych numerów kart.",
         "i2": "Faktury i ewidencja płatności wymagane przez przepisy podatkowe i rachunkowe."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Kto otrzymuje dane",
     "p1": "Dane osobowe są udostępniane wyłącznie wymienionym poniżej dostawcom, którzy przetwarzają je na nasze polecenie na podstawie umów powierzenia przetwarzania danych i tylko w zakresie, w jakim każdy z nich tego potrzebuje:",
-    "p2": "Stripe przetwarza również dane płatnicze jako niezależny administrator zgodnie z własną polityką prywatności (na przykład w celu zapobiegania oszustwom i spełnienia wymogów regulacji finansowych). Możemy też ujawniać dane organom, sądom lub profesjonalnym doradcom (takim jak nasz księgowy lub prawnik), jeśli wymagają tego lub pozwalają na to przepisy."
+    "p2": "Stripe przetwarza również dane płatnicze jako niezależny administrator zgodnie z własną polityką prywatności (na przykład w celu zapobiegania oszustwom i spełnienia wymogów regulacji finansowych). Jeśli zdecydujesz się logować przez Google, Google dowiaduje się o twoim zalogowaniu do {brand} i przetwarza tę informację jako niezależny administrator zgodnie z własną polityką prywatności. Możemy też ujawniać dane organom, sądom lub profesjonalnym doradcom (takim jak nasz księgowy lub prawnik), jeśli wymagają tego lub pozwalają na to przepisy."
   },
   "s7": {
     "title": "Przekazywanie danych poza EOG",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Czy musisz podawać nam swoje dane?",
-    "p1": "Aby założyć konto, potrzebujemy twojego imienia i nazwiska, adresu e-mail oraz hasła; bez nich nie możemy świadczyć usługi. Wszystko inne jest opcjonalne lub stanowi informacje, które twoja firma zdecyduje się dodać."
+    "p1": "Aby założyć konto, potrzebujemy twojego imienia i nazwiska oraz adresu e-mail, a także albo hasła, albo logowania przez Google; bez nich nie możemy świadczyć usługi. Wszystko inne jest opcjonalne lub stanowi informacje, które twoja firma zdecyduje się dodać."
   },
   "s11": {
     "title": "Bezpieczeństwo",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Pliki cookie",
-    "p1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię i zabezpieczenia twojej sesji oraz pamięci lokalnej przeglądarki do zapamiętania wybranego motywu jasnego lub ciemnego. Nie używamy analitycznych ani reklamowych plików cookie ani plików cookie mediów społecznościowych, dlatego nie wyświetlamy banera cookie. Szczegóły znajdziesz w <cookies>polityce plików cookie</cookies>."
+    "p1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię, zabezpieczenia twojej sesji i, gdy płacisz za subskrypcję, umożliwienia Stripe zapobiegania oszustwom, a także pamięci lokalnej przeglądarki do zapamiętania wybranego motywu jasnego lub ciemnego. Nie używamy analitycznych ani reklamowych plików cookie ani plików cookie mediów społecznościowych, dlatego nie wyświetlamy banera cookie. Szczegóły znajdziesz w <cookies>polityce plików cookie</cookies>."
   },
   "s13": {
     "title": "Dzieci",

@@ -8,14 +8,14 @@
   "s1": {
     "title": "In short",
     "items": {
-      "i1": "We only use cookies that are strictly necessary to sign you in and keep your session secure.",
+      "i1": "We only use cookies that are strictly necessary to sign you in, keep your session secure and take your subscription payment safely.",
       "i2": "We do not use analytics, advertising or social-media tracking cookies.",
       "i3": "Booking-page statistics are anonymous and cookieless. Nothing is stored on your customers’ devices."
     }
   },
   "s2": {
     "title": "Cookies we use",
-    "p1": "These cookies are set by {brand} itself (first-party). They are only set for people who sign in to a business account.",
+    "p1": "These cookies are stored under {brand}’s own address (first-party). They are only set for people who sign in to a business account, or are in the middle of doing so.",
     "table": {
       "caption": "Cookies set by {brand}",
       "name": "Name",
@@ -32,6 +32,16 @@
         "purpose": "Remembers which business you are working in if you belong to more than one.",
         "duration": "Until you close your browser or sign out.",
         "when": "After you sign in and switch business"
+      },
+      "google": {
+        "purpose": "Used only while you sign in with Google. Holds, encrypted, the one-time values that let us recognise Google’s answer as meant for your browser. It cannot be read by page scripts.",
+        "duration": "Ten minutes at most. Removed as soon as the sign-in finishes.",
+        "when": "When you press “Continue with Google”"
+      },
+      "stripe": {
+        "purpose": "Set by Stripe’s payment form, which opens on our billing page when you subscribe. Stripe uses them to prevent payment fraud.",
+        "duration": "<code>__stripe_mid</code>: one year. <code>__stripe_sid</code>: 30 minutes.",
+        "when": "When you open the payment form on the billing page"
       }
     },
     "p2": "These cookies are strictly necessary to provide the service you asked for, so under the ePrivacy Directive (art. 5(3)) and Greek law 3471/2006 (art. 4(5)) they do not require consent. That is why we do not show a cookie banner. If we ever add optional cookies, we will ask for your consent first."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Payments with Stripe",
-    "p1": "When a business owner subscribes or manages billing, they are taken to pages hosted by Stripe. Stripe may set its own cookies there, for example to prevent fraud, under Stripe’s own cookie and privacy policies."
+    "p1": "When a business owner subscribes, Stripe’s payment form opens on our billing page, inside a frame that belongs to Stripe. Managing billing happens on pages hosted by Stripe. In both, Stripe may set its own cookies, for example to prevent fraud, under Stripe’s own cookie and privacy policies."
   },
   "s6": {
     "title": "Managing cookies",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Questions",
     "p1": "Contact us at <email>{email}</email>. For more on how we handle personal data, see the <privacy>privacy policy</privacy>."
+  },
+  "s8": {
+    "title": "Signing in with Google",
+    "p1": "If you choose “Continue with Google”, you sign in on a page hosted by Google. Google may set its own cookies there, under Google’s own cookie and privacy policies. We receive no cookies from Google; we only set the short-lived cookie listed above."
   }
 }

@@ -58,7 +58,7 @@ test.describe('legal pages in Greek', () => {
       const main = page.getByRole('main')
       await expect(main.getByRole('heading', { level: 1, name: el.title })).toBeVisible()
       await expect(main.locator('section h2').first()).toContainText(el.s1.title)
-      await expect(main).toContainText('Σεπτεμβρίου 2026')
+      await expect(main).toContainText('Οκτωβρίου 2026')
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         'href',
         `${site.url}/el${path}`,
@@ -132,6 +132,6 @@ test('English legal pages show no translation notice', async ({ page }) => {
     await expect(page.getByRole('heading', { level: 1, name: en.title })).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
     await expect(page.getByTestId('translation-notice')).toHaveCount(0)
-    await expect(page.getByRole('main')).toContainText('Last updated 28 September 2026')
+    await expect(page.getByRole('main')).toContainText('Last updated 10 October 2026')
   }
 })

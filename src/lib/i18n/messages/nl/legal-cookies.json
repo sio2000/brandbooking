@@ -8,14 +8,14 @@
   "s1": {
     "title": "In het kort",
     "items": {
-      "i1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen en je sessie te beveiligen.",
+      "i1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen, je sessie te beveiligen en de betaling van je abonnement veilig af te handelen.",
       "i2": "We gebruiken geen analyse-, advertentie- of trackingcookies van sociale media.",
       "i3": "Statistieken van de boekingspagina zijn anoniem en cookieloos. Er wordt niets opgeslagen op de apparaten van je klanten."
     }
   },
   "s2": {
     "title": "Cookies die we gebruiken",
-    "p1": "Deze cookies worden door {brand} zelf geplaatst (first-party). Ze worden alleen geplaatst voor mensen die inloggen op een bedrijfsaccount.",
+    "p1": "Deze cookies worden opgeslagen onder het eigen adres van {brand} (first-party). Ze worden alleen geplaatst voor mensen die inloggen op een bedrijfsaccount of daarmee bezig zijn.",
     "table": {
       "caption": "Cookies die {brand} plaatst",
       "name": "Naam",
@@ -32,6 +32,16 @@
         "purpose": "Onthoudt in welk bedrijf je werkt als je bij meer dan één bedrijf hoort.",
         "duration": "Totdat je je browser sluit of uitlogt.",
         "when": "Nadat je bent ingelogd en van bedrijf wisselt"
+      },
+      "google": {
+        "purpose": "Wordt alleen gebruikt terwijl je inlogt met Google. Bevat, versleuteld, de eenmalige waarden waarmee we kunnen herkennen dat het antwoord van Google voor jouw browser bedoeld is. De cookie kan niet door paginascripts worden gelezen.",
+        "duration": "Maximaal tien minuten. Verwijderd zodra het inloggen is voltooid.",
+        "when": "Wanneer je op ‘Doorgaan met Google’ klikt"
+      },
+      "stripe": {
+        "purpose": "Geplaatst door het betaalformulier van Stripe, dat op onze factureringspagina wordt geopend wanneer je een abonnement afsluit. Stripe gebruikt ze om betalingsfraude te voorkomen.",
+        "duration": "<code>__stripe_mid</code>: één jaar. <code>__stripe_sid</code>: 30 minuten.",
+        "when": "Wanneer je het betaalformulier op de factureringspagina opent"
       }
     },
     "p2": "Deze cookies zijn strikt noodzakelijk om de dienst te leveren waar je om hebt gevraagd; op grond van de e-privacyrichtlijn (art. 5, lid 3) en de Griekse wet 3471/2006 (art. 4, lid 5) is er daarom geen toestemming voor nodig. Daarom tonen we geen cookiebanner. Als we ooit optionele cookies toevoegen, vragen we eerst om je toestemming."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Betalingen met Stripe",
-    "p1": "Wanneer een bedrijfseigenaar een abonnement afsluit of de facturering beheert, wordt hij doorgestuurd naar pagina’s die door Stripe worden gehost. Stripe kan daar eigen cookies plaatsen, bijvoorbeeld om fraude te voorkomen, volgens het eigen cookie- en privacybeleid van Stripe."
+    "p1": "Wanneer een bedrijfseigenaar een abonnement afsluit, wordt het betaalformulier van Stripe geopend op onze factureringspagina, in een frame dat van Stripe is. Het beheer van de facturering vindt plaats op pagina’s die door Stripe worden gehost. In beide gevallen kan Stripe eigen cookies plaatsen, bijvoorbeeld om fraude te voorkomen, volgens het eigen cookie- en privacybeleid van Stripe."
   },
   "s6": {
     "title": "Cookies beheren",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Vragen",
     "p1": "Neem contact met ons op via <email>{email}</email>. Lees het <privacy>privacybeleid</privacy> voor meer informatie over hoe we met persoonsgegevens omgaan."
+  },
+  "s8": {
+    "title": "Inloggen met Google",
+    "p1": "Als je kiest voor ‘Doorgaan met Google’, log je in op een pagina die door Google wordt gehost. Google kan daar eigen cookies plaatsen, volgens het eigen cookie- en privacybeleid van Google. We ontvangen geen cookies van Google; we plaatsen alleen de hierboven vermelde kortlevende cookie."
   }
 }

@@ -8,14 +8,14 @@
   "s1": {
     "title": "W skrócie",
     "items": {
-      "i1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię i zabezpieczenia twojej sesji.",
+      "i1": "Używamy wyłącznie plików cookie niezbędnych do zalogowania cię, zabezpieczenia twojej sesji i bezpiecznego przyjęcia płatności za twoją subskrypcję.",
       "i2": "Nie używamy analitycznych, reklamowych ani śledzących plików cookie mediów społecznościowych.",
       "i3": "Statystyki strony rezerwacji są anonimowe i działają bez plików cookie. Na urządzeniach twoich klientów nic nie jest zapisywane."
     }
   },
   "s2": {
     "title": "Pliki cookie, których używamy",
-    "p1": "Te pliki cookie ustawia sam {brand} (pliki cookie własne). Są ustawiane wyłącznie dla osób, które logują się do konta firmowego.",
+    "p1": "Te pliki cookie są przechowywane pod własnym adresem {brand} (pliki cookie własne). Są ustawiane wyłącznie dla osób, które logują się do konta firmowego lub są w trakcie logowania.",
     "table": {
       "caption": "Pliki cookie ustawiane przez {brand}",
       "name": "Nazwa",
@@ -32,6 +32,16 @@
         "purpose": "Zapamiętuje, w której firmie pracujesz, jeśli należysz do więcej niż jednej.",
         "duration": "Do zamknięcia przeglądarki lub wylogowania.",
         "when": "Po zalogowaniu i zmianie firmy"
+      },
+      "google": {
+        "purpose": "Używany wyłącznie podczas logowania przez Google. Zawiera, w postaci zaszyfrowanej, jednorazowe wartości, dzięki którym rozpoznajemy, że odpowiedź Google jest przeznaczona dla twojej przeglądarki. Skrypty strony nie mogą go odczytać.",
+        "duration": "Najwyżej dziesięć minut. Usuwany, gdy tylko logowanie się zakończy.",
+        "when": "Gdy naciśniesz „Kontynuuj z Google”"
+      },
+      "stripe": {
+        "purpose": "Ustawiane przez formularz płatności Stripe, który otwiera się na naszej stronie rozliczeń, gdy wykupujesz subskrypcję. Stripe używa ich, aby zapobiegać oszustwom płatniczym.",
+        "duration": "<code>__stripe_mid</code>: jeden rok. <code>__stripe_sid</code>: 30 minut.",
+        "when": "Gdy otworzysz formularz płatności na stronie rozliczeń"
       }
     },
     "p2": "Te pliki cookie są niezbędne do świadczenia usługi, o którą prosisz, dlatego zgodnie z dyrektywą o prywatności i łączności elektronicznej (art. 5 ust. 3) oraz greckim prawem 3471/2006 (art. 4 ust. 5) nie wymagają zgody. Z tego powodu nie wyświetlamy banera cookie. Jeśli kiedykolwiek dodamy opcjonalne pliki cookie, najpierw poprosimy cię o zgodę."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Płatności przez Stripe",
-    "p1": "Gdy właściciel firmy wykupuje subskrypcję lub zarządza rozliczeniami, zostaje przekierowany na strony hostowane przez Stripe. Stripe może tam ustawiać własne pliki cookie, na przykład w celu zapobiegania oszustwom, zgodnie z własnymi zasadami dotyczącymi plików cookie i prywatności."
+    "p1": "Gdy właściciel firmy wykupuje subskrypcję, formularz płatności Stripe otwiera się na naszej stronie rozliczeń, w ramce należącej do Stripe. Zarządzanie rozliczeniami odbywa się na stronach hostowanych przez Stripe. W obu przypadkach Stripe może ustawiać własne pliki cookie, na przykład w celu zapobiegania oszustwom, zgodnie z własnymi zasadami dotyczącymi plików cookie i prywatności."
   },
   "s6": {
     "title": "Zarządzanie plikami cookie",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Pytania",
     "p1": "Skontaktuj się z nami pod adresem <email>{email}</email>. Więcej o tym, jak przetwarzamy dane osobowe, przeczytasz w <privacy>polityce prywatności</privacy>."
+  },
+  "s8": {
+    "title": "Logowanie przez Google",
+    "p1": "Jeśli wybierzesz „Kontynuuj z Google”, logujesz się na stronie hostowanej przez Google. Google może tam ustawiać własne pliki cookie, zgodnie z własnymi zasadami dotyczącymi plików cookie i prywatności. Nie otrzymujemy od Google żadnych plików cookie; ustawiamy tylko krótkotrwały plik cookie wymieniony powyżej."
   }
 }

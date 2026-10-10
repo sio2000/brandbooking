@@ -25,9 +25,10 @@
       "title": "Accountgegevens (wij zijn verwerkingsverantwoordelijke)",
       "items": {
         "i1": "Naam, e-mailadres, of het e-mailadres is geverifieerd, taal.",
-        "i2": "Je wachtwoord, uitsluitend opgeslagen als gezouten eenrichtingshash, zodat wij het niet kunnen lezen.",
+        "i2": "Je wachtwoord, als je er een hebt ingesteld, uitsluitend opgeslagen als gezouten eenrichtingshash, zodat wij het niet kunnen lezen.",
         "i3": "Wanneer en welke versie van onze voorwaarden je bij het aanmelden hebt aanvaard.",
-        "i4": "Inlogsessies met IP-adres en browsertype, om je ingelogd te houden en je account te beschermen."
+        "i4": "Inlogsessies met IP-adres en browsertype, om je ingelogd te houden en je account te beschermen.",
+        "i5": "Als je ervoor kiest in te loggen met Google: de ID van je Google-account, en de naam en het e-mailadres die Google ons verstrekt. We vragen Google om niets anders en ontvangen nooit je Google-wachtwoord."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Factureringsgegevens (wij zijn verwerkingsverantwoordelijke)",
       "items": {
-        "i1": "Abonnementsstatus en klant- en abonnements-ID’s bij Stripe. Kaartgegevens worden ingevoerd op de pagina’s van Stripe; we ontvangen of bewaren nooit volledige kaartnummers.",
+        "i1": "Abonnementsstatus en klant- en abonnements-ID’s bij Stripe. Kaartgegevens worden ingevoerd in het eigen betaalformulier van Stripe, dat wordt getoond op onze factureringspagina of op de pagina’s van Stripe; we ontvangen of bewaren nooit volledige kaartnummers.",
         "i2": "Facturen en betalingsgegevens die de fiscale en boekhoudwetgeving vereist."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Wie gegevens ontvangt",
     "p1": "Persoonsgegevens worden alleen gedeeld met de hieronder genoemde aanbieders, die ze in onze opdracht verwerken op grond van verwerkersovereenkomsten, en alleen voor zover elk van hen dat nodig heeft:",
-    "p2": "Stripe verwerkt betalingsgegevens daarnaast als zelfstandige verwerkingsverantwoordelijke op grond van zijn eigen privacybeleid (bijvoorbeeld ter voorkoming van fraude en om aan financiële regelgeving te voldoen). We kunnen gegevens ook verstrekken aan autoriteiten, rechtbanken of professionele adviseurs (zoals onze accountant of advocaat) wanneer de wet dat vereist of toestaat."
+    "p2": "Stripe verwerkt betalingsgegevens daarnaast als zelfstandige verwerkingsverantwoordelijke op grond van zijn eigen privacybeleid (bijvoorbeeld ter voorkoming van fraude en om aan financiële regelgeving te voldoen). Als je ervoor kiest in te loggen met Google, komt Google te weten dat je bij {brand} bent ingelogd en verwerkt Google dat als zelfstandige verwerkingsverantwoordelijke op grond van zijn eigen privacybeleid. We kunnen gegevens ook verstrekken aan autoriteiten, rechtbanken of professionele adviseurs (zoals onze accountant of advocaat) wanneer de wet dat vereist of toestaat."
   },
   "s7": {
     "title": "Doorgiften buiten de EER",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Ben je verplicht ons je gegevens te geven?",
-    "p1": "Om een account aan te maken hebben we je naam, e-mailadres en een wachtwoord nodig; zonder die gegevens kunnen we de dienst niet leveren. Al het andere is optioneel of informatie die je bedrijf zelf wil toevoegen."
+    "p1": "Om een account aan te maken hebben we je naam en e-mailadres nodig, en ofwel een wachtwoord ofwel inloggen met Google; zonder die gegevens kunnen we de dienst niet leveren. Al het andere is optioneel of informatie die je bedrijf zelf wil toevoegen."
   },
   "s11": {
     "title": "Beveiliging",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen en je sessie te beveiligen, en de lokale opslag van je browser om je keuze voor een licht of donker thema te onthouden. We gebruiken geen analyse-, advertentie- of socialemediacookies en tonen daarom geen cookiebanner. Zie het <cookies>cookiebeleid</cookies> voor details."
+    "p1": "We gebruiken alleen cookies die strikt noodzakelijk zijn om je in te loggen, je sessie te beveiligen en, wanneer je voor je abonnement betaalt, Stripe fraude te laten voorkomen, en de lokale opslag van je browser om je keuze voor een licht of donker thema te onthouden. We gebruiken geen analyse-, advertentie- of socialemediacookies en tonen daarom geen cookiebanner. Zie het <cookies>cookiebeleid</cookies> voor details."
   },
   "s13": {
     "title": "Kinderen",

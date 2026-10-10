@@ -8,14 +8,14 @@
   "s1": {
     "title": "Kısaca",
     "items": {
-      "i1": "Yalnızca oturum açmanız ve oturumunuzun güvenliği için kesinlikle gerekli çerezleri kullanırız.",
+      "i1": "Yalnızca oturum açmanız, oturumunuzun güvenliği ve abonelik ödemenizin güvenli biçimde alınması için kesinlikle gerekli çerezleri kullanırız.",
       "i2": "Analiz, reklam veya sosyal medya izleme çerezleri kullanmayız.",
       "i3": "Rezervasyon sayfası istatistikleri anonimdir ve çerez kullanmaz. Müşterilerinizin cihazlarında hiçbir şey saklanmaz."
     }
   },
   "s2": {
     "title": "Kullandığımız çerezler",
-    "p1": "Bu çerezler doğrudan {brand} tarafından yerleştirilir (birinci taraf çerezleri). Yalnızca bir işletme hesabında oturum açan kişiler için yerleştirilir.",
+    "p1": "Bu çerezler {brand}’un kendi adresi altında saklanır (birinci taraf çerezleri). Yalnızca bir işletme hesabında oturum açan ya da oturum açma işlemini sürdürmekte olan kişiler için yerleştirilir.",
     "table": {
       "caption": "{brand} tarafından yerleştirilen çerezler",
       "name": "Ad",
@@ -32,6 +32,16 @@
         "purpose": "Birden fazla işletmeye bağlıysanız hangi işletmede çalıştığınızı hatırlar.",
         "duration": "Tarayıcınızı kapatana veya oturumu kapatana kadar.",
         "when": "Oturum açıp işletme değiştirdikten sonra"
+      },
+      "google": {
+        "purpose": "Yalnızca siz Google ile oturum açarken kullanılır. Google’ın yanıtının sizin tarayıcınıza yönelik olduğunu tanımamızı sağlayan tek kullanımlık değerleri şifrelenmiş olarak içerir. Sayfa betikleri tarafından okunamaz.",
+        "duration": "En fazla on dakika. Oturum açma işlemi biter bitmez silinir.",
+        "when": "“Google ile devam et” düğmesine bastığınızda"
+      },
+      "stripe": {
+        "purpose": "Stripe’ın, abone olduğunuzda faturalandırma sayfamızda açılan ödeme formu tarafından yerleştirilir. Stripe bunları ödeme dolandırıcılığını önlemek için kullanır.",
+        "duration": "<code>__stripe_mid</code>: bir yıl. <code>__stripe_sid</code>: 30 dakika.",
+        "when": "Faturalandırma sayfasında ödeme formunu açtığınızda"
       }
     },
     "p2": "Bu çerezler talep ettiğiniz hizmeti sunmak için kesinlikle gereklidir; bu nedenle e-Gizlilik Direktifi (md. 5(3)) ve 3471/2006 sayılı Yunan kanunu (md. 4(5)) uyarınca onay gerektirmez. Bu yüzden çerez bildirimi göstermeyiz. İleride isteğe bağlı çerezler eklersek önce onayınızı isteriz."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Stripe ile ödemeler",
-    "p1": "Bir işletme sahibi abone olduğunda veya faturalandırmayı yönettiğinde Stripe tarafından barındırılan sayfalara yönlendirilir. Stripe orada, örneğin dolandırıcılığı önlemek için, kendi çerez ve gizlilik politikaları kapsamında kendi çerezlerini yerleştirebilir."
+    "p1": "Bir işletme sahibi abone olduğunda Stripe’ın ödeme formu faturalandırma sayfamızda, Stripe’a ait bir çerçevenin içinde açılır. Faturalandırmanın yönetimi Stripe tarafından barındırılan sayfalarda gerçekleşir. Her iki durumda da Stripe, örneğin dolandırıcılığı önlemek için, kendi çerez ve gizlilik politikaları kapsamında kendi çerezlerini yerleştirebilir."
   },
   "s6": {
     "title": "Çerezleri yönetme",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Sorular",
     "p1": "Bize <email>{email}</email> adresinden ulaşın. Kişisel verileri nasıl işlediğimiz hakkında daha fazla bilgi için <privacy>gizlilik politikasına</privacy> bakın."
+  },
+  "s8": {
+    "title": "Google ile oturum açma",
+    "p1": "“Google ile devam et” seçeneğini tercih ederseniz Google tarafından barındırılan bir sayfada oturum açarsınız. Google orada, kendi çerez ve gizlilik politikaları kapsamında kendi çerezlerini yerleştirebilir. Google’dan hiçbir çerez almayız; yalnızca yukarıda listelenen kısa ömürlü çerezi yerleştiririz."
   }
 }

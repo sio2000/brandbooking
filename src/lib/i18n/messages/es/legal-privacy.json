@@ -25,9 +25,10 @@
       "title": "Datos de la cuenta (somos responsables)",
       "items": {
         "i1": "Nombre, dirección de correo electrónico, si el correo está verificado, idioma.",
-        "i2": "Tu contraseña, almacenada únicamente como hash unidireccional con sal, de modo que no podemos leerla.",
+        "i2": "Tu contraseña, si has establecido una, almacenada únicamente como hash unidireccional con sal, de modo que no podemos leerla.",
         "i3": "Cuándo y qué versión de nuestras condiciones aceptaste al registrarte.",
-        "i4": "Sesiones iniciadas, con dirección IP y tipo de navegador, para mantener tu sesión abierta y proteger tu cuenta."
+        "i4": "Sesiones iniciadas, con dirección IP y tipo de navegador, para mantener tu sesión abierta y proteger tu cuenta.",
+        "i5": "Si eliges iniciar sesión con Google: el identificador de tu cuenta de Google, y el nombre y la dirección de correo electrónico que Google nos facilita. No pedimos nada más a Google y nunca recibimos tu contraseña de Google."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Datos de facturación (somos responsables)",
       "items": {
-        "i1": "Estado de la suscripción e identificadores de cliente y de suscripción de Stripe. Los datos de la tarjeta se introducen en las páginas de Stripe; nunca recibimos ni almacenamos números de tarjeta completos.",
+        "i1": "Estado de la suscripción e identificadores de cliente y de suscripción de Stripe. Los datos de la tarjeta se introducen en el propio formulario de pago de Stripe, que se muestra en nuestra página de facturación o en las páginas de Stripe; nunca recibimos ni almacenamos números de tarjeta completos.",
         "i2": "Facturas y registros de pagos exigidos por la normativa tributaria y contable."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Quién recibe los datos",
     "p1": "Los datos personales solo se comunican a los proveedores indicados a continuación, que los tratan siguiendo nuestras instrucciones en virtud de acuerdos de encargo del tratamiento, y solo en la medida en que cada uno lo necesite:",
-    "p2": "Stripe también trata datos de pago como responsable independiente conforme a su propia política de privacidad (por ejemplo, para prevenir el fraude y cumplir la normativa financiera). También podemos comunicar datos a autoridades, tribunales o asesores profesionales (como nuestro gestor o abogado) cuando la ley lo exija o lo permita."
+    "p2": "Stripe también trata datos de pago como responsable independiente conforme a su propia política de privacidad (por ejemplo, para prevenir el fraude y cumplir la normativa financiera). Si eliges iniciar sesión con Google, Google tiene conocimiento de que has iniciado sesión en {brand} y trata esa información como responsable independiente conforme a su propia política de privacidad. También podemos comunicar datos a autoridades, tribunales o asesores profesionales (como nuestro gestor o abogado) cuando la ley lo exija o lo permita."
   },
   "s7": {
     "title": "Transferencias fuera del EEE",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "¿Estás obligado a facilitarnos tus datos?",
-    "p1": "Para crear una cuenta necesitamos tu nombre, tu dirección de correo electrónico y una contraseña; sin ellos no podemos prestar el servicio. Todo lo demás es opcional o es información que tu negocio decide añadir."
+    "p1": "Para crear una cuenta necesitamos tu nombre y tu dirección de correo electrónico, así como una contraseña o bien un inicio de sesión con Google; sin ellos no podemos prestar el servicio. Todo lo demás es opcional o es información que tu negocio decide añadir."
   },
   "s11": {
     "title": "Seguridad",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "Solo usamos cookies estrictamente necesarias para iniciar tu sesión y mantenerla segura, y el almacenamiento local de tu navegador para recordar si elegiste el tema claro u oscuro. No usamos cookies analíticas, publicitarias ni de redes sociales, por lo que no mostramos un banner de cookies. Consulta la <cookies>política de cookies</cookies> para más detalles."
+    "p1": "Solo usamos cookies estrictamente necesarias para iniciar tu sesión, mantenerla segura y, cuando pagas tu suscripción, permitir que Stripe prevenga el fraude, y el almacenamiento local de tu navegador para recordar si elegiste el tema claro u oscuro. No usamos cookies analíticas, publicitarias ni de redes sociales, por lo que no mostramos un banner de cookies. Consulta la <cookies>política de cookies</cookies> para más detalles."
   },
   "s13": {
     "title": "Menores",

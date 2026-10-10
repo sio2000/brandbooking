@@ -25,9 +25,10 @@
       "title": "Hesap verileri (veri sorumlusu biziz)",
       "items": {
         "i1": "Ad, e-posta adresi, e-postanın doğrulanıp doğrulanmadığı, dil.",
-        "i2": "Şifreniz; yalnızca tuzlanmış tek yönlü karma (hash) olarak saklanır, bu nedenle onu okuyamayız.",
+        "i2": "Bir şifre belirlediyseniz şifreniz; yalnızca tuzlanmış tek yönlü karma (hash) olarak saklanır, bu nedenle onu okuyamayız.",
         "i3": "Kayıt sırasında koşullarımızın hangi sürümünü ne zaman kabul ettiğiniz.",
-        "i4": "Oturumunuzu açık tutmak ve hesabınızı korumak için IP adresi ve tarayıcı türüyle birlikte oturum açma bilgileri."
+        "i4": "Oturumunuzu açık tutmak ve hesabınızı korumak için IP adresi ve tarayıcı türüyle birlikte oturum açma bilgileri.",
+        "i5": "Google ile oturum açmayı seçerseniz: Google hesabınızın tanımlayıcısı ile Google’ın bize verdiği ad ve e-posta adresi. Google’dan başka hiçbir şey istemeyiz ve Google şifrenizi hiçbir zaman almayız."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Faturalandırma verileri (veri sorumlusu biziz)",
       "items": {
-        "i1": "Abonelik durumu ile Stripe müşteri ve abonelik tanımlayıcıları. Kart bilgileri Stripe’ın sayfalarına girilir; tam kart numaralarını hiçbir zaman almayız veya saklamayız.",
+        "i1": "Abonelik durumu ile Stripe müşteri ve abonelik tanımlayıcıları. Kart bilgileri, faturalandırma sayfamızda veya Stripe’ın sayfalarında gösterilen Stripe’ın kendi ödeme formuna girilir; tam kart numaralarını hiçbir zaman almayız veya saklamayız.",
         "i2": "Vergi ve muhasebe mevzuatının gerektirdiği faturalar ve ödeme kayıtları."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Verileri kimler alır",
     "p1": "Kişisel veriler yalnızca aşağıdaki sağlayıcılarla paylaşılır; bu sağlayıcılar verileri veri işleme sözleşmeleri kapsamında talimatlarımız doğrultusunda ve yalnızca her birinin ihtiyaç duyduğu ölçüde işler:",
-    "p2": "Stripe ödeme verilerini ayrıca kendi gizlilik politikası kapsamında bağımsız bir veri sorumlusu olarak da işler (örneğin dolandırıcılığı önlemek ve finansal düzenlemelere uymak için). Yasanın gerektirdiği veya izin verdiği durumlarda verileri yetkili makamlara, mahkemelere veya profesyonel danışmanlara (muhasebecimiz veya avukatımız gibi) da açıklayabiliriz."
+    "p2": "Stripe ödeme verilerini ayrıca kendi gizlilik politikası kapsamında bağımsız bir veri sorumlusu olarak da işler (örneğin dolandırıcılığı önlemek ve finansal düzenlemelere uymak için). Google ile oturum açmayı seçerseniz Google, {brand}’ta oturum açtığınızı öğrenir ve bunu kendi gizlilik politikası kapsamında bağımsız bir veri sorumlusu olarak işler. Yasanın gerektirdiği veya izin verdiği durumlarda verileri yetkili makamlara, mahkemelere veya profesyonel danışmanlara (muhasebecimiz veya avukatımız gibi) da açıklayabiliriz."
   },
   "s7": {
     "title": "AEA dışına aktarımlar",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Verilerinizi bize vermek zorunda mısınız?",
-    "p1": "Hesap oluşturmak için adınıza, e-posta adresinize ve bir şifreye ihtiyacımız vardır; bunlar olmadan hizmeti sunamayız. Geri kalan her şey isteğe bağlıdır ya da işletmenizin eklemeyi seçtiği bilgilerdir."
+    "p1": "Hesap oluşturmak için adınıza ve e-posta adresinize, ayrıca ya bir şifreye ya da Google ile oturum açmanıza ihtiyacımız vardır; bunlar olmadan hizmeti sunamayız. Geri kalan her şey isteğe bağlıdır ya da işletmenizin eklemeyi seçtiği bilgilerdir."
   },
   "s11": {
     "title": "Güvenlik",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Çerezler",
-    "p1": "Yalnızca oturum açmanız ve oturumunuzun güvenliği için kesinlikle gerekli çerezleri ve açık/koyu tema seçiminizi hatırlamak için tarayıcınızın yerel depolamasını kullanırız. Analiz, reklam veya sosyal medya çerezleri kullanmadığımız için çerez bildirimi göstermeyiz. Ayrıntılar için <cookies>çerez politikasına</cookies> bakın."
+    "p1": "Yalnızca oturum açmanız, oturumunuzun güvenliği ve aboneliğiniz için ödeme yaptığınızda Stripe’ın dolandırıcılığı önleyebilmesi için kesinlikle gerekli çerezleri ve açık/koyu tema seçiminizi hatırlamak için tarayıcınızın yerel depolamasını kullanırız. Analiz, reklam veya sosyal medya çerezleri kullanmadığımız için çerez bildirimi göstermeyiz. Ayrıntılar için <cookies>çerez politikasına</cookies> bakın."
   },
   "s13": {
     "title": "Çocuklar",

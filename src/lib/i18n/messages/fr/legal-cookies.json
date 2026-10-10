@@ -8,14 +8,14 @@
   "s1": {
     "title": "En bref",
     "items": {
-      "i1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter et sécuriser votre session.",
+      "i1": "Nous utilisons uniquement les cookies strictement nécessaires pour vous connecter, sécuriser votre session et encaisser le paiement de votre abonnement en toute sécurité.",
       "i2": "Nous n’utilisons pas de cookies d’analyse, publicitaires ou de suivi des réseaux sociaux.",
       "i3": "Les statistiques de la page de réservation sont anonymes et sans cookies. Rien n’est stocké sur les appareils de vos clients."
     }
   },
   "s2": {
     "title": "Les cookies que nous utilisons",
-    "p1": "Ces cookies sont déposés par {brand} lui-même (cookies propriétaires). Ils ne sont déposés que pour les personnes qui se connectent à un compte d’entreprise.",
+    "p1": "Ces cookies sont stockés sous la propre adresse de {brand} (cookies propriétaires). Ils ne sont déposés que pour les personnes qui se connectent à un compte d’entreprise ou qui sont en train de le faire.",
     "table": {
       "caption": "Cookies déposés par {brand}",
       "name": "Nom",
@@ -32,6 +32,16 @@
         "purpose": "Mémorise l’entreprise dans laquelle vous travaillez si vous appartenez à plusieurs.",
         "duration": "Jusqu’à la fermeture de votre navigateur ou votre déconnexion.",
         "when": "Après votre connexion et un changement d’entreprise"
+      },
+      "google": {
+        "purpose": "Utilisé uniquement pendant que vous vous connectez avec Google. Contient, sous forme chiffrée, les valeurs à usage unique qui nous permettent de reconnaître que la réponse de Google est destinée à votre navigateur. Il ne peut pas être lu par les scripts de la page.",
+        "duration": "Dix minutes au maximum. Supprimé dès que la connexion est terminée.",
+        "when": "Lorsque vous appuyez sur « Continuer avec Google »"
+      },
+      "stripe": {
+        "purpose": "Déposés par le formulaire de paiement de Stripe, qui s’ouvre sur notre page de facturation lorsque vous vous abonnez. Stripe les utilise pour prévenir la fraude au paiement.",
+        "duration": "<code>__stripe_mid</code> : un an. <code>__stripe_sid</code> : 30 minutes.",
+        "when": "Lorsque vous ouvrez le formulaire de paiement sur la page de facturation"
       }
     },
     "p2": "Ces cookies sont strictement nécessaires pour fournir le service que vous avez demandé ; en vertu de la directive « vie privée et communications électroniques » (art. 5, par. 3) et de la loi grecque 3471/2006 (art. 4, par. 5), ils ne nécessitent donc pas de consentement. C’est pourquoi nous n’affichons pas de bandeau cookies. Si nous ajoutons un jour des cookies facultatifs, nous vous demanderons d’abord votre consentement."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Paiements avec Stripe",
-    "p1": "Lorsqu’un titulaire d’entreprise s’abonne ou gère sa facturation, il est redirigé vers des pages hébergées par Stripe. Stripe peut y déposer ses propres cookies, par exemple pour prévenir la fraude, conformément à ses propres politiques relatives aux cookies et à la confidentialité."
+    "p1": "Lorsqu’un titulaire d’entreprise s’abonne, le formulaire de paiement de Stripe s’ouvre sur notre page de facturation, dans un cadre qui appartient à Stripe. La gestion de la facturation se fait sur des pages hébergées par Stripe. Dans les deux cas, Stripe peut déposer ses propres cookies, par exemple pour prévenir la fraude, conformément à ses propres politiques relatives aux cookies et à la confidentialité."
   },
   "s6": {
     "title": "Gérer les cookies",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Questions",
     "p1": "Contactez-nous à <email>{email}</email>. Pour en savoir plus sur la manière dont nous traitons les données à caractère personnel, consultez la <privacy>politique de confidentialité</privacy>."
+  },
+  "s8": {
+    "title": "Connexion avec Google",
+    "p1": "Si vous choisissez « Continuer avec Google », vous vous connectez sur une page hébergée par Google. Google peut y déposer ses propres cookies, conformément à ses propres politiques relatives aux cookies et à la confidentialité. Nous ne recevons aucun cookie de Google ; nous ne déposons que le cookie de courte durée indiqué ci-dessus."
   }
 }

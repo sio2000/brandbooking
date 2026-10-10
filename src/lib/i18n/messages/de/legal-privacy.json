@@ -25,9 +25,10 @@
       "title": "Kontodaten (wir sind Verantwortlicher)",
       "items": {
         "i1": "Name, E-Mail-Adresse, ob die E-Mail-Adresse bestätigt ist, Sprache.",
-        "i2": "Ihr Passwort, ausschließlich als gesalzener Einweg-Hash gespeichert, sodass wir es nicht lesen können.",
+        "i2": "Ihr Passwort, falls Sie eines festgelegt haben, ausschließlich als gesalzener Einweg-Hash gespeichert, sodass wir es nicht lesen können.",
         "i3": "Wann und welche Version unserer Bedingungen Sie bei der Registrierung akzeptiert haben.",
-        "i4": "Anmeldesitzungen mit IP-Adresse und Browsertyp, damit Sie angemeldet bleiben und Ihr Konto geschützt ist."
+        "i4": "Anmeldesitzungen mit IP-Adresse und Browsertyp, damit Sie angemeldet bleiben und Ihr Konto geschützt ist.",
+        "i5": "Wenn Sie sich für die Anmeldung mit Google entscheiden: die Kennung Ihres Google-Kontos sowie der Name und die E-Mail-Adresse, die Google uns übermittelt. Wir fordern von Google nichts Weiteres an und erhalten Ihr Google-Passwort nie."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Abrechnungsdaten (wir sind Verantwortlicher)",
       "items": {
-        "i1": "Abonnementstatus sowie Kunden- und Abonnementkennungen bei Stripe. Kartendaten werden auf den Seiten von Stripe eingegeben; vollständige Kartennummern erhalten oder speichern wir nie.",
+        "i1": "Abonnementstatus sowie Kunden- und Abonnementkennungen bei Stripe. Kartendaten werden im eigenen Zahlungsformular von Stripe eingegeben, das auf unserer Abrechnungsseite oder auf den Seiten von Stripe angezeigt wird; vollständige Kartennummern erhalten oder speichern wir nie.",
         "i2": "Rechnungen und Zahlungsbelege, die nach Steuer- und Buchführungsrecht erforderlich sind."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Wer Daten erhält",
     "p1": "Personenbezogene Daten werden nur an die unten genannten Anbieter weitergegeben, die sie in unserem Auftrag auf Grundlage von Auftragsverarbeitungsverträgen verarbeiten, und nur so weit, wie der jeweilige Anbieter sie benötigt:",
-    "p2": "Stripe verarbeitet Zahlungsdaten außerdem als eigenständiger Verantwortlicher nach seiner eigenen Datenschutzerklärung (zum Beispiel zur Betrugsprävention und zur Erfüllung von Finanzvorschriften). Wir können Daten auch an Behörden, Gerichte oder berufliche Berater (etwa unseren Steuerberater oder Rechtsanwalt) weitergeben, soweit das Gesetz dies verlangt oder erlaubt."
+    "p2": "Stripe verarbeitet Zahlungsdaten außerdem als eigenständiger Verantwortlicher nach seiner eigenen Datenschutzerklärung (zum Beispiel zur Betrugsprävention und zur Erfüllung von Finanzvorschriften). Wenn Sie sich für die Anmeldung mit Google entscheiden, erfährt Google, dass Sie sich bei {brand} angemeldet haben, und verarbeitet dies als eigenständiger Verantwortlicher nach seiner eigenen Datenschutzerklärung. Wir können Daten auch an Behörden, Gerichte oder berufliche Berater (etwa unseren Steuerberater oder Rechtsanwalt) weitergeben, soweit das Gesetz dies verlangt oder erlaubt."
   },
   "s7": {
     "title": "Übermittlungen außerhalb des EWR",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Müssen Sie uns Ihre Daten geben?",
-    "p1": "Um ein Konto anzulegen, benötigen wir Ihren Namen, Ihre E-Mail-Adresse und ein Passwort; ohne diese können wir den Dienst nicht erbringen. Alles andere ist freiwillig oder sind Informationen, die Ihr Unternehmen hinzufügen möchte."
+    "p1": "Um ein Konto anzulegen, benötigen wir Ihren Namen und Ihre E-Mail-Adresse sowie entweder ein Passwort oder eine Anmeldung mit Google; ohne diese können wir den Dienst nicht erbringen. Alles andere ist freiwillig oder sind Informationen, die Ihr Unternehmen hinzufügen möchte."
   },
   "s11": {
     "title": "Sicherheit",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "Wir verwenden nur Cookies, die unbedingt erforderlich sind, um Sie anzumelden und Ihre Sitzung zu sichern, sowie den lokalen Speicher Ihres Browsers, um Ihre Wahl zwischen hellem und dunklem Design zu speichern. Wir verwenden keine Analyse-, Werbe- oder Social-Media-Cookies und zeigen daher kein Cookie-Banner an. Einzelheiten finden Sie in der <cookies>Cookie-Richtlinie</cookies>."
+    "p1": "Wir verwenden nur Cookies, die unbedingt erforderlich sind, um Sie anzumelden, Ihre Sitzung zu sichern und, wenn Sie Ihr Abonnement bezahlen, Stripe die Betrugsprävention zu ermöglichen, sowie den lokalen Speicher Ihres Browsers, um Ihre Wahl zwischen hellem und dunklem Design zu speichern. Wir verwenden keine Analyse-, Werbe- oder Social-Media-Cookies und zeigen daher kein Cookie-Banner an. Einzelheiten finden Sie in der <cookies>Cookie-Richtlinie</cookies>."
   },
   "s13": {
     "title": "Kinder",

@@ -25,9 +25,10 @@
       "title": "Dados da conta (somos responsáveis pelo tratamento)",
       "items": {
         "i1": "Nome, endereço de e-mail, se o e-mail está verificado, idioma.",
-        "i2": "A sua palavra-passe, armazenada apenas como hash unidirecional com salt, pelo que não a conseguimos ler.",
+        "i2": "A sua palavra-passe, se tiver definido uma, armazenada apenas como hash unidirecional com salt, pelo que não a conseguimos ler.",
         "i3": "Quando e que versão dos nossos termos aceitou no registo.",
-        "i4": "Sessões iniciadas, com endereço IP e tipo de navegador, para manter a sessão iniciada e proteger a sua conta."
+        "i4": "Sessões iniciadas, com endereço IP e tipo de navegador, para manter a sessão iniciada e proteger a sua conta.",
+        "i5": "Se optar por iniciar sessão com o Google: o identificador da sua conta Google, e o nome e o endereço de e-mail que a Google nos fornece. Não pedimos mais nada à Google e nunca recebemos a palavra-passe da sua conta Google."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Dados de faturação (somos responsáveis pelo tratamento)",
       "items": {
-        "i1": "Estado da subscrição e identificadores de cliente e de subscrição da Stripe. Os dados do cartão são introduzidos nas páginas da Stripe; nunca recebemos nem armazenamos números de cartão completos.",
+        "i1": "Estado da subscrição e identificadores de cliente e de subscrição da Stripe. Os dados do cartão são introduzidos no formulário de pagamento da própria Stripe, apresentado na nossa página de faturação ou nas páginas da Stripe; nunca recebemos nem armazenamos números de cartão completos.",
         "i2": "Faturas e registos de pagamentos exigidos pela legislação fiscal e contabilística."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Quem recebe os dados",
     "p1": "Os dados pessoais apenas são partilhados com os prestadores indicados abaixo, que os tratam segundo as nossas instruções ao abrigo de acordos de tratamento de dados, e apenas na medida em que cada um necessite:",
-    "p2": "A Stripe trata também dados de pagamento como responsável pelo tratamento independente, nos termos da sua própria política de privacidade (por exemplo, para prevenção da fraude e cumprimento da regulamentação financeira). Podemos também divulgar dados a autoridades, tribunais ou consultores profissionais (como o nosso contabilista ou advogado) quando a lei o exija ou permita."
+    "p2": "A Stripe trata também dados de pagamento como responsável pelo tratamento independente, nos termos da sua própria política de privacidade (por exemplo, para prevenção da fraude e cumprimento da regulamentação financeira). Se optar por iniciar sessão com o Google, a Google toma conhecimento de que iniciou sessão no {brand} e trata essa informação como responsável pelo tratamento independente, nos termos da sua própria política de privacidade. Podemos também divulgar dados a autoridades, tribunais ou consultores profissionais (como o nosso contabilista ou advogado) quando a lei o exija ou permita."
   },
   "s7": {
     "title": "Transferências para fora do EEE",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "É obrigado a fornecer-nos os seus dados?",
-    "p1": "Para criar uma conta precisamos do seu nome, do seu endereço de e-mail e de uma palavra-passe; sem eles não podemos prestar o serviço. Tudo o resto é opcional ou é informação que o seu negócio decide acrescentar."
+    "p1": "Para criar uma conta precisamos do seu nome e do seu endereço de e-mail, bem como de uma palavra-passe ou de um início de sessão com o Google; sem eles não podemos prestar o serviço. Tudo o resto é opcional ou é informação que o seu negócio decide acrescentar."
   },
   "s11": {
     "title": "Segurança",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão e mantê-la segura, e o armazenamento local do seu navegador para memorizar a sua escolha de tema claro ou escuro. Não utilizamos cookies de análise, de publicidade nem de redes sociais, pelo que não apresentamos um banner de cookies. Consulte a <cookies>política de cookies</cookies> para mais pormenores."
+    "p1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão, mantê-la segura e, quando paga a sua subscrição, permitir que a Stripe previna a fraude, e o armazenamento local do seu navegador para memorizar a sua escolha de tema claro ou escuro. Não utilizamos cookies de análise, de publicidade nem de redes sociais, pelo que não apresentamos um banner de cookies. Consulte a <cookies>política de cookies</cookies> para mais pormenores."
   },
   "s13": {
     "title": "Crianças",

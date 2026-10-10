@@ -94,7 +94,7 @@ export async function legalText(ns: LegalNamespace) {
     rich(text(key, vars), {
       strong: (c) => <strong>{c}</strong>,
       em: (c) => <em>{c}</em>,
-      code: (c) => <code>{c}</code>,
+      code: (c) => <code dir="ltr">{c}</code>,
       email: (c) => <a href={mailto(subject)}>{c}</a>,
       provider: () => provider,
       terms: page('/terms'),

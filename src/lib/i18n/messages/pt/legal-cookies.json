@@ -8,14 +8,14 @@
   "s1": {
     "title": "Em resumo",
     "items": {
-      "i1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão e mantê-la segura.",
+      "i1": "Utilizamos apenas cookies estritamente necessários para iniciar a sua sessão, mantê-la segura e receber em segurança o pagamento da sua subscrição.",
       "i2": "Não utilizamos cookies de análise, de publicidade nem de rastreio de redes sociais.",
       "i3": "As estatísticas da página de reservas são anónimas e não utilizam cookies. Nada é armazenado nos dispositivos dos seus clientes."
     }
   },
   "s2": {
     "title": "Cookies que utilizamos",
-    "p1": "Estes cookies são definidos pelo próprio {brand} (cookies próprios). Só são definidos para as pessoas que iniciam sessão numa conta de negócio.",
+    "p1": "Estes cookies são armazenados sob o endereço do próprio {brand} (cookies próprios). Só são definidos para as pessoas que iniciam sessão numa conta de negócio ou que estão a meio de o fazer.",
     "table": {
       "caption": "Cookies definidos pelo {brand}",
       "name": "Nome",
@@ -32,6 +32,16 @@
         "purpose": "Memoriza em que negócio está a trabalhar, se pertencer a mais do que um.",
         "duration": "Até fechar o navegador ou terminar sessão.",
         "when": "Após iniciar sessão e mudar de negócio"
+      },
+      "google": {
+        "purpose": "Utilizado apenas enquanto inicia sessão com o Google. Contém, de forma cifrada, os valores de utilização única que nos permitem reconhecer a resposta da Google como destinada ao seu navegador. Não pode ser lido pelos scripts da página.",
+        "duration": "Dez minutos, no máximo. Removido assim que o início de sessão termina.",
+        "when": "Ao premir «Continuar com o Google»"
+      },
+      "stripe": {
+        "purpose": "Definidos pelo formulário de pagamento da Stripe, que abre na nossa página de faturação quando subscreve. A Stripe utiliza-os para prevenir a fraude nos pagamentos.",
+        "duration": "<code>__stripe_mid</code>: um ano. <code>__stripe_sid</code>: 30 minutos.",
+        "when": "Ao abrir o formulário de pagamento na página de faturação"
       }
     },
     "p2": "Estes cookies são estritamente necessários para prestar o serviço que pediu, pelo que, nos termos da Diretiva relativa à privacidade e às comunicações eletrónicas (art. 5.º, n.º 3) e da lei grega 3471/2006 (art. 4.º, n.º 5), não exigem consentimento. É por isso que não apresentamos um banner de cookies. Se algum dia acrescentarmos cookies opcionais, pediremos primeiro o seu consentimento."
@@ -47,7 +57,7 @@
   },
   "s5": {
     "title": "Pagamentos com a Stripe",
-    "p1": "Quando o titular de um negócio subscreve ou gere a faturação, é encaminhado para páginas alojadas pela Stripe. A Stripe pode aí definir os seus próprios cookies, por exemplo para prevenir a fraude, nos termos das suas próprias políticas de cookies e de privacidade."
+    "p1": "Quando o titular de um negócio subscreve, o formulário de pagamento da Stripe abre na nossa página de faturação, dentro de uma moldura que pertence à Stripe. A gestão da faturação é feita em páginas alojadas pela Stripe. Em ambos os casos, a Stripe pode definir os seus próprios cookies, por exemplo para prevenir a fraude, nos termos das suas próprias políticas de cookies e de privacidade."
   },
   "s6": {
     "title": "Gerir cookies",
@@ -56,5 +66,9 @@
   "s7": {
     "title": "Perguntas",
     "p1": "Contacte-nos através de <email>{email}</email>. Para saber mais sobre a forma como tratamos os dados pessoais, consulte a <privacy>política de privacidade</privacy>."
+  },
+  "s8": {
+    "title": "Início de sessão com o Google",
+    "p1": "Se escolher «Continuar com o Google», inicia sessão numa página alojada pela Google. A Google pode aí definir os seus próprios cookies, nos termos das suas próprias políticas de cookies e de privacidade. Não recebemos quaisquer cookies da Google; apenas definimos o cookie de curta duração indicado acima."
   }
 }

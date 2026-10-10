@@ -25,9 +25,10 @@
       "title": "Account data (we are controller)",
       "items": {
         "i1": "Name, email address, whether the email is verified, language.",
-        "i2": "Your password, stored only as a salted one-way hash, so we cannot read it.",
+        "i2": "Your password, if you set one, stored only as a salted one-way hash, so we cannot read it.",
         "i3": "When and which version of our terms you accepted at sign-up.",
-        "i4": "Sign-in sessions with IP address and browser type, to keep you signed in and protect your account."
+        "i4": "Sign-in sessions with IP address and browser type, to keep you signed in and protect your account.",
+        "i5": "If you choose to sign in with Google: the identifier of your Google account, and the name and email address Google gives us. We ask Google for nothing else and never receive your Google password."
       }
     },
     "business": {
@@ -47,7 +48,7 @@
     "billing": {
       "title": "Billing data (we are controller)",
       "items": {
-        "i1": "Subscription status and Stripe customer and subscription identifiers. Card details are entered on Stripe’s pages; we never receive or store full card numbers.",
+        "i1": "Subscription status and Stripe customer and subscription identifiers. Card details are entered in Stripe’s own payment form, shown on our billing page or on Stripe’s pages; we never receive or store full card numbers.",
         "i2": "Invoices and payment records required by tax and accounting law."
       }
     },
@@ -87,7 +88,7 @@
   "s6": {
     "title": "Who receives data",
     "p1": "Personal data is shared only with the providers below, which process it on our instructions under data processing agreements, and only as far as each needs to:",
-    "p2": "Stripe also processes payment data as an independent controller under its own privacy policy (for example for fraud prevention and to meet financial regulations). We may also disclose data to authorities, courts or professional advisers (such as our accountant or lawyer) where the law requires or allows it."
+    "p2": "Stripe also processes payment data as an independent controller under its own privacy policy (for example for fraud prevention and to meet financial regulations). If you choose to sign in with Google, Google learns that you signed in to {brand} and processes that as an independent controller under its own privacy policy. We may also disclose data to authorities, courts or professional advisers (such as our accountant or lawyer) where the law requires or allows it."
   },
   "s7": {
     "title": "Transfers outside the EEA",
@@ -125,7 +126,7 @@
   },
   "s10": {
     "title": "Do you have to give us your data?",
-    "p1": "To create an account we need your name, email address and a password; without them we cannot provide the service. Everything else is optional or is information your business chooses to add."
+    "p1": "To create an account we need your name and email address, and either a password or a sign-in with Google; without them we cannot provide the service. Everything else is optional or is information your business chooses to add."
   },
   "s11": {
     "title": "Security",
@@ -133,7 +134,7 @@
   },
   "s12": {
     "title": "Cookies",
-    "p1": "We only use cookies that are strictly necessary to sign you in and keep your session secure, and your browser’s local storage to remember your light/dark theme choice. We use no analytics, advertising or social-media cookies, so we do not show a cookie banner. See the <cookies>cookie policy</cookies> for details."
+    "p1": "We only use cookies that are strictly necessary to sign you in, keep your session secure and, when you pay for your subscription, let Stripe prevent fraud, and your browser’s local storage to remember your light/dark theme choice. We use no analytics, advertising or social-media cookies, so we do not show a cookie banner. See the <cookies>cookie policy</cookies> for details."
   },
   "s13": {
     "title": "Children",

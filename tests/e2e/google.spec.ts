@@ -68,7 +68,9 @@ test.describe('sign in with Google', () => {
     // The one-time cookie of the trip is gone.
     expect(cookies.find((c) => c.name === 'hn_google')).toBeUndefined()
 
-    // Sign out, then straight back in through the sign-in page.
+    // Sign out, then straight back in through the sign-in page. The menu only
+    // answers once the page is hydrated.
+    await page.waitForLoadState('networkidle')
     await page.getByRole('button', { name: 'Account' }).click()
     await page.getByRole('menuitem', { name: 'Sign out' }).click()
     await expect(page).toHaveURL(/\/login\?signed_out=1$/)

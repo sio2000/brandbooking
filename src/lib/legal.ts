@@ -27,9 +27,9 @@ export const companyAddress = `${company.address.street}, ${company.address.post
  * Version of the Terms of Service / DPA / Privacy Policy. Recorded against each
  * user at sign-up; bump it (and the "last updated" date) when the terms change.
  */
-export const LEGAL_VERSION = '2026-09-28'
+export const LEGAL_VERSION = '2026-10-10'
 /** Date the legal texts last changed (ISO date), shown formatted in each page's language. */
-export const LEGAL_UPDATED = '2026-09-28'
+export const LEGAL_UPDATED = '2026-10-10'
 
 /**
  * Sub-processors: providers that process personal data to run Hournook.
