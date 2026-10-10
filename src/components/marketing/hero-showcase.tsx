@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { AnimatePresence } from 'motion/react'
+import { AnimatePresence, MotionConfig } from 'motion/react'
 import * as m from 'motion/react-m'
 import { ArrowRight, BellRing, Check, Lock, Mail } from 'lucide-react'
 import { useLocale, useT } from '@/components/i18n/provider'
@@ -19,9 +19,10 @@ import { ClockSlot, useHydrated, useReducedMotion } from './primitives'
  * It rotates through business types on its own (no controls to learn) while
  * the hero is on screen — headline or phone, so it also turns on phones,
  * where the phone sits below the headline — and has a pause button
- * (WCAG 2.2.2). With reduced motion it still changes example, calmly: each
- * one appears fully booked and is swapped without any sliding or fading.
- * Server render and no-JS show the first example, fully booked.
+ * (WCAG 2.2.2). Devices that ask for less motion (many phones do so on their
+ * own, to save battery) get the same story with shorter moves: a short slide
+ * and a fade instead of a full one. Server render and no-JS show the first
+ * example, fully booked.
  */
 
 type SceneDef = {
@@ -43,11 +44,9 @@ const SCENES: SceneDef[] = [
 ]
 
 /** How long each step stays on screen: browsing, service picked, time picked, booked. */
-const PHASE_MS = [650, 550, 550, 1900] as const
+const PHASE_MS = [520, 440, 440, 1500] as const
 const BOOKED = 3
 const SCENE_MS = PHASE_MS.reduce((a, b) => a + b, 0)
-/** With reduced motion: how long each (already booked) example stays before the next. */
-const CALM_SCENE_MS = 4000
 const EASE = [0.22, 1, 0.36, 1] as const
 
 /**
@@ -67,7 +66,17 @@ function emWidth(text: string) {
   return w
 }
 
-export function HeroShowcase({ price }: { price: string }) {
+export function HeroShowcase(props: { price: string }) {
+  return (
+    // The showcase picks its own moves per motion preference (see `gentle`),
+    // so the app-wide rule that drops every transform must not strip them.
+    <MotionConfig reducedMotion="never">
+      <Showcase {...props} />
+    </MotionConfig>
+  )
+}
+
+function Showcase({ price }: { price: string }) {
   const t = useT('marketing-home')
   const { locale, dir } = useLocale()
   const scenes = React.useMemo<Scene[]>(
@@ -109,14 +118,6 @@ export function HeroShowcase({ price }: { price: string }) {
 
   React.useEffect(() => {
     if (!playing) return
-    if (reduced) {
-      // No steps and no movement: the next example, already booked.
-      const t = setTimeout(() => {
-        setIndex((i) => (i + 1) % SCENES.length)
-        setPhase(BOOKED)
-      }, CALM_SCENE_MS)
-      return () => clearTimeout(t)
-    }
     const t = setTimeout(
       () => {
         if (phase < BOOKED) {
@@ -129,14 +130,16 @@ export function HeroShowcase({ price }: { price: string }) {
       PHASE_MS[phase as 0 | 1 | 2 | 3],
     )
     return () => clearTimeout(t)
-  }, [playing, phase, reduced, index])
+  }, [playing, phase, index])
 
   const scene = scenes[index]!
   const { industry } = scene
   const service = industry.services[scene.service]!
   const time = industry.times[scene.time]!
   const when = t('hero.phone.dayTime', { day: weekday(1, locale), time })
-  const animate = hydrated && !reduced
+  const animate = hydrated
+  // Shorter moves for devices that ask for less motion.
+  const gentle = reduced
 
   return (
     <div
@@ -160,10 +163,10 @@ export function HeroShowcase({ price }: { price: string }) {
               <m.span
                 key={scene.id}
                 className="block whitespace-nowrap"
-                initial={animate ? { y: '100%', opacity: 0 } : false}
+                initial={animate ? { y: gentle ? '45%' : '100%', opacity: 0 } : false}
                 animate={{ y: '0%', opacity: 1 }}
-                exit={animate ? { y: '-100%', opacity: 0 } : undefined}
-                transition={{ duration: 0.45, ease: EASE }}
+                exit={animate ? { y: gentle ? '-45%' : '-100%', opacity: 0 } : undefined}
+                transition={{ duration: 0.4, ease: EASE }}
               >
                 {t('hero.phrase', { phrase: industry.phrase })}
               </m.span>
@@ -210,7 +213,7 @@ export function HeroShowcase({ price }: { price: string }) {
         <p className="sr-only">{t('hero.srDescription')}</p>
         <div
           aria-hidden
-          className="relative overflow-hidden rounded-[28px] border border-border px-4 pt-8 pb-10 transition-[background-color] duration-700 motion-reduce:transition-none sm:px-8 sm:pt-10"
+          className="motion-keep relative overflow-hidden rounded-[28px] border border-border px-4 pt-8 pb-10 transition-[background-color] duration-700 sm:px-8 sm:pt-10"
           style={{
             backgroundColor: 'color-mix(in oklab, var(--accent) 9%, var(--surface-2))',
           }}
@@ -220,6 +223,7 @@ export function HeroShowcase({ price }: { price: string }) {
             scene={scene}
             phase={phase}
             animate={animate}
+            gentle={gentle}
             service={service}
             time={time}
             when={when}
@@ -234,7 +238,7 @@ export function HeroShowcase({ price }: { price: string }) {
                 initial={animate ? { opacity: 0, y: -12, scale: 0.96 } : false}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={animate ? { opacity: 0, y: -8 } : undefined}
-                transition={{ duration: 0.45, ease: EASE, delay: animate ? 0.35 : 0 }}
+                transition={{ duration: 0.4, ease: EASE, delay: animate ? 0.25 : 0 }}
                 className="absolute end-3 top-5 w-[min(250px,62%)] rounded-2xl border border-border bg-surface/95 p-3 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur sm:end-5 sm:top-8"
               >
                 <div className="flex items-start gap-2.5">
@@ -266,7 +270,7 @@ export function HeroShowcase({ price }: { price: string }) {
                 initial={animate ? { opacity: 0, y: 12, scale: 0.96 } : false}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={animate ? { opacity: 0, y: 8 } : undefined}
-                transition={{ duration: 0.45, ease: EASE, delay: animate ? 0.8 : 0 }}
+                transition={{ duration: 0.4, ease: EASE, delay: animate ? 0.55 : 0 }}
                 className="absolute start-3 bottom-6 hidden w-[min(250px,60%)] rounded-2xl border border-border bg-surface/95 p-3 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur sm:start-5 sm:bottom-10 sm:block"
               >
                 <div className="flex items-start gap-2.5">
@@ -299,7 +303,7 @@ export function HeroShowcase({ price }: { price: string }) {
                 <span
                   key={index}
                   className={cn(
-                    'absolute inset-0 origin-left rounded-full bg-foreground rtl:origin-right',
+                    'motion-keep absolute inset-0 origin-left rounded-full bg-foreground rtl:origin-right',
                     animate && 'animate-[hn-progress_linear_forwards]',
                   )}
                   style={
@@ -348,6 +352,7 @@ function Phone({
   scene,
   phase,
   animate,
+  gentle,
   service,
   time,
   when,
@@ -356,6 +361,7 @@ function Phone({
   scene: Scene
   phase: number
   animate: boolean
+  gentle: boolean
   service: Industry['services'][number]
   time: string
   when: string
@@ -368,7 +374,7 @@ function Phone({
   const chosenService = phase >= 1
   const chosenTime = phase >= 2
   // The next business's page slides in from the end of the reading direction.
-  const slide = rtl ? -24 : 24
+  const slide = (rtl ? -1 : 1) * (gentle ? 10 : 24)
 
   return (
     <div className="relative mx-auto w-[min(272px,78vw)] rounded-[40px] bg-[#16140f] p-[9px] shadow-[0_30px_60px_-25px_rgb(0_0_0/0.55),0_0_0_1px_rgb(255_255_255/0.06)_inset]">
@@ -395,7 +401,7 @@ function Phone({
             initial={animate ? { opacity: 0, x: slide } : false}
             animate={{ opacity: 1, x: 0 }}
             exit={animate ? { opacity: 0, x: -slide } : undefined}
-            transition={{ duration: 0.45, ease: EASE }}
+            transition={{ duration: 0.4, ease: EASE }}
             className="absolute inset-x-0 top-[62px] bottom-0"
           >
             {/* Cover + business */}
@@ -437,7 +443,7 @@ function Phone({
                   <li
                     key={s.name}
                     className={cn(
-                      'relative flex items-center justify-between gap-2 overflow-hidden rounded-xl border px-3 py-[7px] transition-colors duration-300 motion-reduce:transition-none',
+                      'motion-keep relative flex items-center justify-between gap-2 overflow-hidden rounded-xl border px-3 py-[7px] transition-colors duration-300',
                       on ? 'border-[var(--accent)]' : 'border-[#e7e3db]',
                     )}
                     style={
@@ -457,7 +463,7 @@ function Phone({
                       <span className="tabular text-[12px] font-semibold">{s.price}</span>
                       <span
                         className={cn(
-                          'grid size-4 place-items-center rounded-full border transition-colors duration-300 motion-reduce:transition-none',
+                          'motion-keep grid size-4 place-items-center rounded-full border transition-colors duration-300',
                           on
                             ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
                             : 'border-[#cfc9be]',
@@ -487,7 +493,7 @@ function Phone({
                   <span
                     key={time}
                     className={cn(
-                      'tabular relative grid h-8 place-items-center overflow-hidden rounded-lg border text-[11.5px] font-semibold whitespace-nowrap transition-colors duration-300 motion-reduce:transition-none',
+                      'motion-keep tabular relative grid h-8 place-items-center overflow-hidden rounded-lg border text-[11.5px] font-semibold whitespace-nowrap transition-colors duration-300',
                       on ? 'border-transparent text-white' : 'border-[#e7e3db]',
                     )}
                     style={on ? { backgroundColor: scene.accent } : undefined}
@@ -502,7 +508,7 @@ function Phone({
             <div className="absolute inset-x-3 bottom-4">
               <span
                 className={cn(
-                  'block h-10 truncate rounded-xl px-3 text-center text-[12.5px] leading-10 font-semibold transition-colors duration-300 motion-reduce:transition-none',
+                  'motion-keep block h-10 truncate rounded-xl px-3 text-center text-[12.5px] leading-10 font-semibold transition-colors duration-300',
                   chosenTime ? 'text-white' : 'bg-[#efece6] text-[#5f5a51]',
                 )}
                 style={chosenTime ? { backgroundColor: scene.accent } : undefined}
@@ -520,10 +526,12 @@ function Phone({
           {phase === 3 && (
             <m.div
               key={`sheet-${industry.id}`}
-              initial={animate ? { y: '100%' } : false}
-              animate={{ y: 0 }}
+              initial={
+                animate ? (gentle ? { y: 36, opacity: 0 } : { y: '100%', opacity: 1 }) : false
+              }
+              animate={{ y: 0, opacity: 1 }}
               exit={animate ? { opacity: 0 } : undefined}
-              transition={{ duration: 0.5, ease: EASE }}
+              transition={{ duration: 0.45, ease: EASE }}
               className="absolute inset-x-0 bottom-0 rounded-t-[26px] border-t border-[#e7e3db] bg-white px-5 pt-5 pb-6 shadow-[0_-18px_40px_-20px_rgb(0_0_0/0.3)]"
             >
               <m.span
@@ -533,7 +541,7 @@ function Phone({
                   type: 'spring',
                   stiffness: 380,
                   damping: 18,
-                  delay: animate ? 0.2 : 0,
+                  delay: animate ? 0.15 : 0,
                 }}
                 className="mx-auto grid size-12 place-items-center rounded-full text-white"
                 style={{ backgroundColor: scene.accent }}

@@ -1,9 +1,11 @@
 /**
- * A slowly scrolling band of business types (CSS only). The list is also
- * rendered once for assistive technology; the moving copy is decorative.
- * Hovering pauses it; with reduced motion it becomes a static, wrapping list.
- * The track is laid out left to right in every language (the loop depends on
- * it); in right-to-left languages it runs the other way.
+ * A slowly scrolling band of business types (CSS only): always one line that
+ * keeps turning, on phones too, also when the device asks for less motion (it
+ * is slow and stays in place; a wrapped list filled half a phone screen).
+ * Hovering or pressing pauses it. The list is also rendered once for assistive
+ * technology; the moving copy is decorative. The track is laid out left to
+ * right in every language (the loop depends on it); in right-to-left languages
+ * it runs the other way.
  */
 export function BusinessMarquee({
   items,
@@ -31,11 +33,12 @@ export function BusinessMarquee({
       <div
         aria-hidden
         dir="ltr"
-        className="flex w-max animate-[hn-marquee_48s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-y-2 motion-reduce:px-4"
+        data-marquee
+        className="motion-keep flex w-max animate-[hn-marquee_48s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused] group-active:[animation-play-state:paused]"
         style={rtl ? { animationDirection: 'reverse' } : undefined}
       >
         {row(0)}
-        <span className="flex motion-reduce:hidden">{row(1)}</span>
+        {row(1)}
       </div>
       <div
         aria-hidden

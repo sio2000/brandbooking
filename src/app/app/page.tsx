@@ -324,12 +324,12 @@ export default async function OverviewPage() {
                         <Link
                           href={`/app/appointments/${a.id}`}
                           className={cn(
-                            'flex items-center gap-4 px-5 py-3 transition-colors hover:bg-surface-2',
+                            'flex flex-wrap items-center gap-x-4 gap-y-1.5 px-5 py-3 transition-colors hover:bg-surface-2 sm:flex-nowrap',
                             past && 'opacity-60',
                           )}
                         >
-                          <div className="w-16 shrink-0 text-end">
-                            <p className="tabular text-sm font-semibold">
+                          <div className="w-[4.5rem] shrink-0 text-end">
+                            <p className="tabular text-sm font-semibold whitespace-nowrap">
                               {formatTime(a.startsAt, tz, tag)}
                             </p>
                             <p className="text-xs text-muted-foreground">
@@ -354,13 +354,16 @@ export default async function OverviewPage() {
                               {a.serviceName} · {a.staffName}
                             </p>
                           </div>
-                          {current ? (
-                            <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-accent-soft-foreground">
-                              {t('schedule.now')}
-                            </span>
-                          ) : (
-                            <StatusBadge status={a.status} />
-                          )}
+                          {/* Under the name on phones, at the end of the row otherwise. */}
+                          <span className="w-full shrink-0 ps-[calc(4.5rem+2.25rem)] sm:w-auto sm:ps-0">
+                            {current ? (
+                              <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-accent-soft-foreground">
+                                {t('schedule.now')}
+                              </span>
+                            ) : (
+                              <StatusBadge status={a.status} />
+                            )}
+                          </span>
                         </Link>
                       </li>
                     )
@@ -467,7 +470,7 @@ export default async function OverviewPage() {
                     <li key={a.id}>
                       <Link
                         href={`/app/appointments/${a.id}`}
-                        className="flex items-center gap-3 px-5 py-2.5 hover:bg-surface-2"
+                        className="flex flex-wrap items-center gap-x-3 gap-y-0.5 px-5 py-2.5 hover:bg-surface-2 sm:flex-nowrap"
                       >
                         <span className="tabular w-24 shrink-0 text-[13px] text-muted-foreground">
                           {new Intl.DateTimeFormat(tag, {
@@ -480,11 +483,16 @@ export default async function OverviewPage() {
                         <span className="tabular w-[4.5rem] shrink-0 text-sm font-medium whitespace-nowrap">
                           {formatTime(a.startsAt, tz, tag)}
                         </span>
-                        <span className="min-w-0 flex-1 truncate text-sm">
+                        {/* On phones: date and time on one line, who and what below. */}
+                        <span className="order-last w-full truncate text-sm sm:order-none sm:w-auto sm:min-w-0 sm:flex-1">
                           {a.customerFirstName} {a.customerLastName} ·{' '}
                           <span className="text-muted-foreground">{a.serviceName}</span>
                         </span>
-                        {a.status === 'pending' && <StatusBadge status="pending" />}
+                        {a.status === 'pending' && (
+                          <span className="ms-auto sm:ms-0">
+                            <StatusBadge status="pending" />
+                          </span>
+                        )}
                       </Link>
                     </li>
                   ))}

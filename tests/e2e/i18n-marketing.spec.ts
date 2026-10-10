@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import type { Page } from '@playwright/test'
 import { test, expect } from './support/test'
-import { settle } from './support/flows'
+import { settle, stillHome } from './support/flows'
 
 /**
  * The marketing site in other languages: language URLs, the language menu,
@@ -171,6 +171,8 @@ for (const colorScheme of ['light', 'dark'] as const) {
     for (const path of ['/el', '/ar', '/ar/pricing', '/de/support']) {
       test(`${path} has no WCAG A/AA violations`, async ({ page }) => {
         await ready(page, path)
+        // A home page keeps moving; axe needs a still frame.
+        if (/^\/[a-z]{2}$/.test(path)) await stillHome(page)
         const results = await new AxeBuilder({ page })
           .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
           .exclude('nextjs-portal')

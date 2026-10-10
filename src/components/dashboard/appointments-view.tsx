@@ -298,11 +298,13 @@ export function AppointmentsView(props: {
                         onCheckedChange={() => toggle(r.id)}
                       />
                     )}
+                    {/* On phones the status sits under the name, so the name
+                        keeps the width of the row. */}
                     <Link
                       href={`/app/appointments/${r.id}`}
-                      className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4"
+                      className="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-1.5 sm:flex-nowrap sm:gap-4"
                     >
-                      <div className="w-16 shrink-0 sm:w-20">
+                      <div className="w-[4.5rem] shrink-0 sm:w-20">
                         <p className="tabular text-sm font-semibold whitespace-nowrap">
                           {formatTime(r.startsAt, tz, tag)}
                         </p>
@@ -334,7 +336,7 @@ export function AppointmentsView(props: {
                       <div className="tabular hidden w-20 shrink-0 text-end text-sm sm:block">
                         {r.priceCents != null ? formatMoney(r.priceCents, r.currency, tag) : '—'}
                       </div>
-                      <div className="shrink-0">
+                      <div className="w-full shrink-0 ps-[calc(4.5rem+1.75rem)] sm:w-auto sm:ps-0">
                         <StatusBadge status={r.status} />
                       </div>
                     </Link>

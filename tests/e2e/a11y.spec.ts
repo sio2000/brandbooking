@@ -12,6 +12,7 @@ import {
   dateGrid,
   fillDetails,
   settle,
+  stillHome,
   timeRadios,
   toReview,
 } from './support/flows'
@@ -36,7 +37,7 @@ async function expectNoViolations(page: Page, label: string) {
 
 type Who = 'anonymous' | 'owner' | 'newcomer'
 const PAGES: Array<{ path: string; who: Who; ready?: (page: Page) => Promise<void> }> = [
-  { path: '/', who: 'anonymous' },
+  { path: '/', who: 'anonymous', ready: stillHome },
   { path: '/pricing', who: 'anonymous' },
   { path: '/terms', who: 'anonymous' },
   { path: '/privacy', who: 'anonymous' },
@@ -65,7 +66,8 @@ for (const colorScheme of ['light', 'dark'] as const) {
   test.describe(`axe (${colorScheme})`, () => {
     test.beforeEach(async ({ page }) => {
       // Reduced motion: axe must judge the settled page, not a frame in the
-      // middle of a cross-fade (the rotating hero), where colours are blended.
+      // middle of a cross-fade, where colours are blended. The home page keeps
+      // turning even so, so it is paused first (its `ready` step).
       await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' })
     })
 
@@ -79,6 +81,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
         await expect(page.locator('html')).toHaveClass(
           new RegExp(colorScheme === 'dark' ? '\\bdark\\b' : '^(?!.*\\bdark\\b)'),
         )
+        await p.ready?.(page)
         await expectNoViolations(page, `${p.path} (${colorScheme})`)
       })
     }

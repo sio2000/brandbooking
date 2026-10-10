@@ -6,13 +6,15 @@ import { ArrowRight, BellRing, Check, Mail, X } from 'lucide-react'
 import { useLocale, useT } from '@/components/i18n/provider'
 import { cn } from '@/lib/utils'
 import { clock, clockParts, industry, weekday, weekdayTime } from './industries'
-import { ClockSlot, useHydrated, useReducedMotion } from './primitives'
+import { ClockSlot, useHydrated } from './primitives'
 
 /**
  * What you get: six features, each explained by a small animation that plays
  * when the tile scrolls into view (and again when it comes back). On phones the
- * tiles sit in one swipeable row to keep the page short. Visuals are decorative;
- * the title and one line carry the meaning.
+ * tiles are stacked, one whole tile per row (a sideways row left the next tile
+ * cut off at the edge). Devices that ask for less motion get fades only (the
+ * app-wide motion setting drops the moves). Visuals are decorative; the title
+ * and one line carry the meaning.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -33,29 +35,24 @@ const TILES: Array<{
 
 export function FeatureTiles() {
   const t = useT('marketing-home')
-  const hydrated = useHydrated()
-  const reduced = useReducedMotion()
-  const animate = hydrated && !reduced
+  const animate = useHydrated()
   return (
-    <ul className="-mx-4 flex snap-x snap-mandatory [scrollbar-width:none] gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
+    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
       {TILES.map(({ key, Visual }) => (
-        <li
-          key={key}
-          className="w-[82%] shrink-0 snap-start overflow-hidden rounded-[22px] border border-border bg-surface sm:w-auto"
-        >
+        <li key={key} className="overflow-hidden rounded-[22px] border border-border bg-surface">
           <m.div
             // Remount once hydrated so the visual starts hidden and plays in
             // view; the server render shows it finished (readable without JS).
             key={animate ? 'live' : 'static'}
             aria-hidden
-            className="relative h-[168px] overflow-hidden border-b border-border bg-surface-2/60"
+            className="relative h-[156px] overflow-hidden border-b border-border bg-surface-2/60 sm:h-[168px]"
             initial={animate ? 'hidden' : false}
             whileInView="shown"
             viewport={{ once: false, amount: 0.6 }}
           >
             <Visual animate={animate} />
           </m.div>
-          <div className="p-5">
+          <div className="p-4 sm:p-5">
             <h3 className="font-sans text-[17px] font-semibold tracking-normal">
               {t(`features.tiles.${key}.title`)}
             </h3>

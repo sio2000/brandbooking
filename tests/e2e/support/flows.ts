@@ -102,3 +102,19 @@ export async function settle(page: Page) {
       ),
   )
 }
+
+/**
+ * The home page keeps moving even when the device asks for less motion (the
+ * hero turns, scenes fade in). A check that needs a still frame (axe judges
+ * colours, and a fade blends them) pauses the hero with its own control, in
+ * any language, and lets what was under way finish.
+ */
+export async function stillHome(page: Page) {
+  await page.waitForLoadState('networkidle')
+  // The only button in the hero; it appears once the page is interactive.
+  await page.locator('section[aria-labelledby="hero-title"] button').focus()
+  await page.keyboard.press('Enter')
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur())
+  // The example that was fading in, and the first "How it works" scene.
+  await page.waitForTimeout(3_500)
+}

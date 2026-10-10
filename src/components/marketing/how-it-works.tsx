@@ -7,16 +7,19 @@ import { AtSign, BellRing, Check, Copy, Globe2, Link2, MessageCircle } from 'luc
 import { useLocale, useT } from '@/components/i18n/provider'
 import { cn } from '@/lib/utils'
 import { durationLabel, industry, priceLabel, weekday, weekdayTime } from './industries'
-import { useHydrated, useReducedMotion } from './primitives'
+import { useHydrated } from './primitives'
 
 /**
  * How it works, shown rather than told: three steps play one after another on
  * a single stage (services appear, the link is copied and shared, the week
  * fills with bookings). Autoplays while on screen; steps can also be picked.
- * No-JS and reduced motion show each step's finished state.
+ * Devices that ask for less motion get the same story with fades only (the
+ * app-wide motion setting drops the moves); no-JS shows the finished state.
+ * The stage is as tall as its tallest scene, so nothing is ever cut off.
  */
 
 const STEPS = ['services', 'share', 'booked'] as const
+const SCENES = [ServicesScene, ShareScene, BookedScene] as const
 
 const STEP_MS = 4200
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -24,8 +27,7 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export function HowItWorks() {
   const t = useT('marketing-home')
   const hydrated = useHydrated()
-  const reduced = useReducedMotion()
-  const animate = hydrated && !reduced
+  const animate = hydrated
   const [step, setStep] = React.useState(0)
   const [visible, setVisible] = React.useState(false)
   const [picked, setPicked] = React.useState(false)
@@ -97,7 +99,7 @@ export function HowItWorks() {
                     <span
                       key={`${step}-${playing}`}
                       className={cn(
-                        'block h-full origin-left bg-primary rtl:origin-right',
+                        'motion-keep block h-full origin-left bg-primary rtl:origin-right',
                         playing ? 'animate-[hn-progress_linear_forwards]' : 'scale-x-0',
                       )}
                       style={playing ? { animationDuration: `${STEP_MS}ms` } : undefined}
@@ -113,13 +115,26 @@ export function HowItWorks() {
       {/* Stage */}
       <div
         aria-hidden
-        className="relative h-[330px] overflow-hidden rounded-[26px] border border-border bg-surface-2/70 sm:h-[380px]"
+        data-how-stage
+        className="relative min-h-[330px] overflow-hidden rounded-[26px] border border-border bg-surface-2/70 sm:min-h-[380px]"
       >
         <div className="pointer-events-none absolute inset-0 [background-image:radial-gradient(var(--border-strong)_1px,transparent_1px)] [background-size:20px_20px] opacity-50" />
+        {/* Invisible copies of the three scenes, stacked: they give the stage
+            the height of the tallest one in this language and at this width. */}
+        <div className="invisible grid grid-cols-[minmax(0,1fr)] p-4 sm:p-8">
+          {SCENES.map((Scene, i) => (
+            <div
+              key={STEPS[i]}
+              className="col-start-1 row-start-1 grid grid-cols-[minmax(0,1fr)] place-items-center"
+            >
+              <Scene animate={false} />
+            </div>
+          ))}
+        </div>
         <AnimatePresence mode="wait" initial={false}>
           <m.div
             key={`${step}-${animate}`}
-            className="absolute inset-0 grid place-items-center p-4 sm:p-8"
+            className="absolute inset-0 grid grid-cols-[minmax(0,1fr)] place-items-center p-4 sm:p-8"
             initial={animate ? { opacity: 0, y: 14 } : false}
             animate={{ opacity: 1, y: 0 }}
             exit={animate ? { opacity: 0, y: -10 } : undefined}
@@ -238,10 +253,13 @@ function ShareScene({ animate }: { animate: boolean }) {
     <div className="flex w-full max-w-[460px] flex-col items-center gap-5">
       <div className="flex w-full items-center gap-2 rounded-2xl border border-border bg-surface p-2 ps-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)]">
         <Link2 className="size-4 shrink-0 text-primary" />
-        <span dir="ltr" className="min-w-0 flex-1 truncate text-start text-[14px] font-medium">
+        <span
+          dir="ltr"
+          className="min-w-0 flex-1 truncate text-start text-[13px] font-medium sm:text-[14px]"
+        >
           {`hournook.com/${industry('barber', t, locale).slug}`}
         </span>
-        <span className="relative grid h-9 min-w-[92px] shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground px-3 text-[13px] font-semibold whitespace-nowrap text-background">
+        <span className="relative grid h-9 min-w-[84px] shrink-0 place-items-center overflow-hidden rounded-xl bg-foreground px-2.5 text-[12px] font-semibold whitespace-nowrap text-background sm:min-w-[92px] sm:px-3 sm:text-[13px]">
           {/* Sizes the button to the longer of the two labels. */}
           <span aria-hidden className="invisible flex items-center gap-1.5">
             <Check className="size-3.5" />
@@ -265,16 +283,22 @@ function ShareScene({ animate }: { animate: boolean }) {
           </m.span>
         </span>
       </div>
-      <div className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+      <div className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:gap-4">
         <div className="min-w-0 space-y-2">
           {targets.map(([Icon, label], i) => (
             <In key={label} delay={1.3 + i * 0.35} animate={animate} from={{ opacity: 0, x: from }}>
-              <div className="flex items-center gap-2.5 rounded-xl border border-border bg-surface px-3 py-2 text-[13.5px]">
+              <div className="flex min-h-11 items-center gap-2 rounded-xl border border-border bg-surface px-2.5 py-1.5 text-[13px] sm:gap-2.5 sm:px-3 sm:text-[13.5px]">
                 <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
                   <Icon className="size-4" />
                 </span>
-                <span className="min-w-0 truncate font-medium">{label}</span>
-                <Check className="ms-auto size-4 shrink-0 text-primary" strokeWidth={3} />
+                {/* Two lines on narrow phones rather than a cut-off label. */}
+                <span className="line-clamp-2 min-w-0 leading-[1.2] font-medium [overflow-wrap:anywhere]">
+                  {label}
+                </span>
+                <Check
+                  className="ms-auto size-4 shrink-0 text-primary max-[359px]:hidden"
+                  strokeWidth={3}
+                />
               </div>
             </In>
           ))}
@@ -301,8 +325,11 @@ const QR_CELLS = (() => {
 
 function QrDraw({ animate }: { animate: boolean }) {
   return (
-    <div className="grid size-[118px] place-items-center rounded-2xl border border-border bg-surface sm:size-[132px]">
-      <svg viewBox="0 0 9 9" className="size-[88px] sm:size-[100px]">
+    <div className="grid size-[104px] place-items-center rounded-2xl border border-border bg-surface max-[359px]:size-[92px] min-[400px]:size-[118px] sm:size-[132px]">
+      <svg
+        viewBox="0 0 9 9"
+        className="size-[78px] max-[359px]:size-[68px] min-[400px]:size-[88px] sm:size-[100px]"
+      >
         {[
           [0, 0],
           [6, 0],
@@ -363,7 +390,8 @@ function BookedScene({ animate }: { animate: boolean }) {
     [2, 2, 1, 'p7'],
   ]
   return (
-    <div className="relative w-full max-w-[480px]">
+    // The bottom padding is the room the "new booking" card hangs into.
+    <div className="relative w-full max-w-[480px] pb-5">
       <div className="rounded-2xl border border-border bg-surface p-3 shadow-[0_24px_50px_-28px_rgb(0_0_0/0.35)] sm:p-4">
         <div className="flex items-center justify-between gap-2">
           <p className="truncate text-[14px] font-semibold">{t('how.thisWeek')}</p>
@@ -394,13 +422,17 @@ function BookedScene({ animate }: { animate: boolean }) {
           {blocks.map(([day, row, span, who], i) => (
             <m.span
               key={who}
-              className="overflow-hidden rounded-lg border-s-[3px] border-primary bg-primary-soft px-1.5 py-1 text-[10.5px] leading-tight font-semibold text-primary-soft-foreground sm:text-[11.5px]"
+              className="overflow-hidden rounded-lg border-s-[3px] border-primary bg-primary-soft px-1 py-1 text-[10.5px] leading-tight font-semibold text-primary-soft-foreground sm:px-1.5 sm:text-[11.5px]"
               style={{ gridColumn: day + 1, gridRow: `${row + 1} / span ${span}` }}
               initial={animate ? { opacity: 0, y: -12, scale: 0.9 } : false}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, ease: EASE, delay: animate ? 0.3 + i * 0.25 : 0 }}
             >
-              <span className="block truncate">{t(`demo.people.${who}`)}</span>
+              {/* First name only where a column is too narrow for more. */}
+              <span className="block truncate sm:hidden">
+                {t(`demo.people.${who}`).split(/\s/)[0]}
+              </span>
+              <span className="hidden truncate sm:block">{t(`demo.people.${who}`)}</span>
             </m.span>
           ))}
         </div>
@@ -409,7 +441,7 @@ function BookedScene({ animate }: { animate: boolean }) {
         delay={2.1}
         animate={animate}
         from={{ opacity: 0, y: -14, scale: 0.95 }}
-        className="absolute end-3 -bottom-4 w-[min(240px,72%)] rounded-2xl border border-border bg-surface/95 p-2.5 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur"
+        className="absolute end-3 bottom-0 w-[min(240px,72%)] rounded-2xl border border-border bg-surface/95 p-2.5 shadow-[0_18px_40px_-18px_rgb(0_0_0/0.35)] backdrop-blur"
       >
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground">

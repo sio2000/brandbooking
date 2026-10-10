@@ -386,10 +386,16 @@
   }
 }
 
+/*
+ * Less motion on request. Phones also ask for it on their own (battery saver,
+ * "remove animations"), so the home page's small, slow, in-place movements
+ * (the business-types band, progress bars, colour fades) opt out with
+ * `motion-keep` and keep telling the story; everything else stops.
+ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not(.motion-keep),
+  *:not(.motion-keep)::before,
+  *:not(.motion-keep)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
